@@ -3,8 +3,7 @@ languageCode: en-US
 defaultContentLanguage: en
 defaultContentLanguageInSubdir: false
 title: Sven van Ginkel
-theme: "hugo-narrow"
-
+theme: "github.com/tom2almighty/hugo-narrow"
 
 hasCJKLanguage: true
 enableEmoji: true
@@ -23,30 +22,6 @@ languages:
     languageCode: en-US
     languageName: "English"
     weight: 1
-  zh-cn:
-    languageCode: zh-CN
-    languageName: "简体中文"
-    weight: 2
-  ja:
-    languageCode: ja-JP
-    languageName: "日本語"
-    weight: 3
-  fr:
-    languageCode: fr-FR
-    languageName: "Français"
-    weight: 4
-  # de:
-  #   languageCode: de-DE
-  #   languageName: "Deutsch"
-  #   weight: 5
-  # es:
-  #   languageCode: es-ES
-  #   languageName: "Español"
-  #   weight: 6
-  # ru:
-  #   languageCode: ru-RU
-  #   languageName: "Русский"
-  #   weight: 7
 
 # 分类法配置
 taxonomies:
@@ -85,7 +60,7 @@ menus:
       params:
         icon: about
     - name: Contact
-      url: https://google.com
+      url: mailto:svenvanginkel@icloud.com
       weight: 20
       params:
         icon: contact
@@ -98,63 +73,63 @@ menus:
   # footer social link
   social:
     - name: GitHub
-      url: https://github.com/username
+      url: https://github.com/svenvg93
       weight: 10
       params:
         icon: github
     - name: Twitter
-      url: https://twitter.com/username
+      url: https://x.com/svenvginkel
       weight: 20
       params:
         icon: twitter
     - name: LinkedIn
-      url: https://linkedin.com/in/username
+      url: https://linkedin.com/in/svenvanginkel
       weight: 30
       params:
         icon: linkedin
     - name: Email
-      url: mailto:your.email@example.com
+      url: mailto:svenvanginkel@icloud.com
       weight: 40
       params:
         icon: email
 
 params:
   # Basic site info with SEO
-  description: "A modern, clean, and minimal Hugo theme built with Tailwind CSS 4.0. Support custom themes, dark mode, and responsive design."
-  keywords: ["Hugo", "Blog", "Theme", "Technology", "Programming"]
-  defaultAuthor: "Hugo Narrow"
+  description: "Personal blog by Sven van Ginkel, focused on self-hosting, homelab architecture, networking, and automation. Sharing practical insights, tools, and guides for building reliable and privacy-respecting infrastructure."
+  keywords: ["Self-Hosting", "Homelab", "Networking", "Linux", "Automation", "Infrastructure", "Ansible", "Docker", "Tailscale"]
+  defaultAuthor: "Sven van Ginkel"
   language: "en-US"
-  shortName: "Hugo Narrow"  # PWA
+  shortName: "Sven van Ginkel"  # PWA
   images:
   - "/images/og-default.avif"
 
   logo:
-    image: "/images/logo.svg"  # Logo path rel to static folder, leave empty use site title and primary color
+    image: "https://avatars.githubusercontent.com/u/4511676"  # Logo path rel to static folder, leave empty use site title and primary color
     link: "/"                  # click to home page
   favicon:
     svg: "/favicon.svg"        # SVG format favicon (recommended)
 
 
   author:
-    name: "Hugo Narrow"
-    title: "A Clean and Minimal Hugo Theme"
-    description: "Focused on content and user experience."
-    avatar: "/images/avatar.svg"
+    name: "Sven van Ginkel"
+    title: "Homelab Enthusiast • Self-Hosting • Network Designer"
+    description: "Sharing insights on networking, automation, and building reliable self-hosted systems."
+    avatar: "https://avatars.githubusercontent.com/u/4511676"
     social:
       - name: "GitHub"
-        url: "https://github.com/username"
+        url: "https://github.com/svenvg93"
         icon: "github"
       - name: "Twitter"
-        url: "https://twitter.com/username"
+        url: "https://x.com/svenvginkel"
         icon: "twitter"
       - name: "Email"
-        url: "mailto:hello@example.com"
+        url: "mailto:svenvanginkel@icloud.com"
         icon: "email"
 
   # UI Components Control
-  showThemeSwitch: true      # Set to false to hide theme style switcher (palette icon)
+  showThemeSwitch: false      # Set to false to hide theme style switcher (palette icon)
   showDarkModeSwitch: true   # Set to false to hide dark mode switcher (sun/moon icon)
-  showLanguageSwitch: true   # Set to false to hide language switcher
+  showLanguageSwitch: false   # Set to false to hide language switcher
 
   # Header sticky effect
   stickyHeader: true  # Set to true to enable sticky navigation bar
@@ -206,7 +181,7 @@ params:
   
     license:
       show: true
-      author: "Hugo Narrow"
+      author: "Sven van Ginkel"
       name: "CC BY-NC-SA 4.0"
       description: "This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. Please attribute the source, use non-commercially, and maintain the same license."
       url: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
@@ -336,7 +311,7 @@ markup:
   highlight:
     codeFences: true
     guessSyntax: false
-    lineNos: false
+    lineNos: true
     lineNumbersInTable: false # Set to false
     noClasses: false
     style: github # No need to change
@@ -357,9 +332,6 @@ readingProgress:
   showOnHomepage: false
   smoothScroll: true
   hideOnComplete: false
-
-
-
 
 outputs:
   home: ["HTML", "RSS", "JSON", "WebAppManifest"]

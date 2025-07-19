@@ -1,0 +1,74 @@
+{{/* 相关文章组件
+
+  显示与当前文章相关的其他文章
+
+  @context {page} . 当前文章页面对象
+*/}}
+
+{{/* 获取配置参数 */}}
+{{ $relatedCount := .Site.Params.post.relatedPostsCount | default 3 }}
+{{ $showRelated := .Params.showRelated | default .Site.Params.post.showRelated | default true }}
+{{ $related := .Site.RegularPages.Related . | first $relatedCount }}
+
+{{ if and $showRelated $related }}
+  <section class="related-posts mb-12">
+    <!-- 标题 -->
+    <div class="mb-6 flex items-center gap-3">
+      {{ partial "features/icon.html" (dict "name" "related" "size" "md" "ariaLabel" "") }}
+      <h2 class="text-foreground text-2xl font-bold">
+        {{ i18n "post.related_posts" | default "相关文章" }}
+      </h2>
+    </div>
+
+    <!-- 相关文章列表 -->
+    {{/* 动态网格布局逻辑 */}}
+    {{ $gridClass := "grid gap-6" }}
+    {{ $relatedLen := len $related }}
+    {{ if eq $relatedLen 1 }}
+      {{ $gridClass = "grid grid-cols-1 gap-6 md:grid-cols-2" }}
+    {{ else if eq $relatedLen 2 }}
+      {{ $gridClass = "grid grid-cols-1 gap-6 md:grid-cols-2" }}
+    {{ else if eq $relatedLen 3 }}
+      {{ $gridClass = "grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3" }}
+    {{ else if le $relatedLen 6 }}
+      {{ $gridClass = "grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3" }}
+    {{ else }}
+      {{ $gridClass = "grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3" }}
+    {{ end }}
+
+    <div class="{{ $gridClass }}">
+      {{ range $related }}
+        {{/* 使用重新设计的统一卡片组件 - 垂直布局，激进精简 */}}
+        {{ partial "content/card-base.html" (dict
+          "page" .
+          "type" "related"
+          "config" (dict
+            "layout" "vertical"
+            "showSummary" true
+            "summaryLength" 80
+            "showDate" true
+            "showReadingTime" true
+            "imageType" "related"
+          )
+        ) }}
+      {{ end }}
+    </div>
+
+    <!-- 查看更多相关文章 -->
+    {{/* 检查总的相关文章数量，而不是已过滤的数量 */}}
+    {{ $totalRelated := .Site.RegularPages.Related . }}
+    {{ if gt (len $totalRelated) $relatedCount }}
+      <div class="mt-8 text-center">
+        <a
+          href="{{ "/posts/" | relLangURL }}"
+          class="text-primary hover:text-primary/80 focus:ring-primary/20 inline-flex items-center gap-2 rounded-lg px-4 py-2 font-medium transition-all duration-200 ease-out hover:-translate-y-0.5 hover:scale-105 focus:ring-2 focus:outline-none">
+          <span
+            >{{ i18n "post.view_more_posts" | default "查看更多文章" }}</span
+          >
+          {{ partial "features/icon.html" (dict "name" "arrow-right" "size" "sm" "ariaLabel" "") }}
+        </a>
+      </div>
+    {{ end }}
+
+  </section>
+{{ end }}

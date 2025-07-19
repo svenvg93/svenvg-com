@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Alerte on My New Hugo Site</title>
+    <link>http://localhost:1313/tags/alerte/</link>
+    <description>Recent content in Alerte on My New Hugo Site</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 01 Jun 2025 10:00:00 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/alerte/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Test d&#39;Alertes Style GitHub</title>
+      <link>http://localhost:1313/posts/test-alert/</link>
+      <pubDate>Sun, 01 Jun 2025 10:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/posts/test-alert/</guid>
+      <description>&lt;h1 id=&#34;test-dalertes-style-github&#34;&gt;Test d&amp;rsquo;Alertes Style GitHub&lt;/h1&gt;&#xA;&lt;p&gt;Cet article est utilisé pour tester la nouvelle fonctionnalité d&amp;rsquo;alertes style GitHub et la fonctionnalité de pliage.&lt;/p&gt;&#xA;&lt;h2 id=&#34;syntaxe-des-alertes&#34;&gt;Syntaxe des Alertes&lt;/h2&gt;&#xA;&lt;h3 id=&#34;alerte-note&#34;&gt;Alerte Note&lt;/h3&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;[!NOTE]&#xA;Ceci est une boîte d&amp;rsquo;alerte note. Utilisée pour afficher des informations utiles dont les utilisateurs doivent être conscients, même lors d&amp;rsquo;un parcours rapide du contenu.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;h3 id=&#34;alerte-conseil&#34;&gt;Alerte Conseil&lt;/h3&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;[!TIP]&#xA;Ceci est une boîte d&amp;rsquo;alerte conseil. Fournit des suggestions qui aident à accomplir les tâches mieux ou plus facilement.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

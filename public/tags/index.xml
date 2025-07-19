@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on My New Hugo Site</title>
+    <link>http://localhost:1313/tags/</link>
+    <description>Recent content in Tags on My New Hugo Site</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 01 Jun 2025 10:00:00 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Alert</title>
+      <link>http://localhost:1313/tags/alert/</link>
+      <pubDate>Sun, 01 Jun 2025 10:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/tags/alert/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Alerte</title>
+      <link>http://localhost:1313/tags/alerte/</link>
+      <pubDate>Sun, 01 Jun 2025 10:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/tags/alerte/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Markdown</title>
+      <link>http://localhost:1313/tags/markdown/</link>
+      <pubDate>Sun, 01 Jun 2025 10:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/tags/markdown/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Test</title>
+      <link>http://localhost:1313/tags/test/</link>
+      <pubDate>Sun, 01 Jun 2025 10:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/tags/test/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>アラート</title>
+      <link>http://localhost:1313/tags/%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88/</link>
+      <pubDate>Sun, 01 Jun 2025 10:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>テスト</title>
+      <link>http://localhost:1313/tags/%E3%83%86%E3%82%B9%E3%83%88/</link>
+      <pubDate>Sun, 01 Jun 2025 10:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E3%83%86%E3%82%B9%E3%83%88/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>提示框</title>
+      <link>http://localhost:1313/tags/%E6%8F%90%E7%A4%BA%E6%A1%86/</link>
+      <pubDate>Sun, 01 Jun 2025 10:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E6%8F%90%E7%A4%BA%E6%A1%86/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>测试</title>
+      <link>http://localhost:1313/tags/%E6%B5%8B%E8%AF%95/</link>
+      <pubDate>Sun, 01 Jun 2025 10:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E6%B5%8B%E8%AF%95/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Graphiques</title>
+      <link>http://localhost:1313/tags/graphiques/</link>
+      <pubDate>Wed, 17 Jan 2024 10:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/tags/graphiques/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Katex</title>
+      <link>http://localhost:1313/tags/katex/</link>
+      <pubDate>Wed, 17 Jan 2024 10:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/tags/katex/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mathématiques</title>
+      <link>http://localhost:1313/tags/math%C3%A9matiques/</link>
+      <pubDate>Wed, 17 Jan 2024 10:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/tags/math%C3%A9matiques/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mermaid</title>
+      <link>http://localhost:1313/tags/mermaid/</link>
+      <pubDate>Wed, 17 Jan 2024 10:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/tags/mermaid/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>チャート</title>
+      <link>http://localhost:1313/tags/%E3%83%81%E3%83%A3%E3%83%BC%E3%83%88/</link>
+      <pubDate>Wed, 17 Jan 2024 10:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E3%83%81%E3%83%A3%E3%83%BC%E3%83%88/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>图表</title>
+      <link>http://localhost:1313/tags/%E5%9B%BE%E8%A1%A8/</link>
+      <pubDate>Wed, 17 Jan 2024 10:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E5%9B%BE%E8%A1%A8/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>数学</title>
+      <link>http://localhost:1313/tags/%E6%95%B0%E5%AD%A6/</link>
+      <pubDate>Wed, 17 Jan 2024 10:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E6%95%B0%E5%AD%A6/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Image</title>
+      <link>http://localhost:1313/tags/image/</link>
+      <pubDate>Tue, 16 Jan 2024 22:30:00 +0800</pubDate>
+      <guid>http://localhost:1313/tags/image/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rendering</title>
+      <link>http://localhost:1313/tags/rendering/</link>
+      <pubDate>Tue, 16 Jan 2024 22:30:00 +0800</pubDate>
+      <guid>http://localhost:1313/tags/rendering/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Code</title>
+      <link>http://localhost:1313/tags/code/</link>
+      <pubDate>Tue, 16 Jan 2024 10:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/tags/code/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Coloration-Syntaxique</title>
+      <link>http://localhost:1313/tags/coloration-syntaxique/</link>
+      <pubDate>Tue, 16 Jan 2024 10:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/tags/coloration-syntaxique/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Syntax-Highlighting</title>
+      <link>http://localhost:1313/tags/syntax-highlighting/</link>
+      <pubDate>Tue, 16 Jan 2024 10:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/tags/syntax-highlighting/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>コード</title>
+      <link>http://localhost:1313/tags/%E3%82%B3%E3%83%BC%E3%83%89/</link>
+      <pubDate>Tue, 16 Jan 2024 10:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E3%82%B3%E3%83%BC%E3%83%89/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>シンタックスハイライト</title>
+      <link>http://localhost:1313/tags/%E3%82%B7%E3%83%B3%E3%82%BF%E3%83%83%E3%82%AF%E3%82%B9%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88/</link>
+      <pubDate>Tue, 16 Jan 2024 10:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E3%82%B7%E3%83%B3%E3%82%BF%E3%83%83%E3%82%AF%E3%82%B9%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>代码</title>
+      <link>http://localhost:1313/tags/%E4%BB%A3%E7%A0%81/</link>
+      <pubDate>Tue, 16 Jan 2024 10:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E4%BB%A3%E7%A0%81/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>语法高亮</title>
+      <link>http://localhost:1313/tags/%E8%AF%AD%E6%B3%95%E9%AB%98%E4%BA%AE/</link>
+      <pubDate>Tue, 16 Jan 2024 10:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E8%AF%AD%E6%B3%95%E9%AB%98%E4%BA%AE/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Prose</title>
+      <link>http://localhost:1313/tags/prose/</link>
+      <pubDate>Mon, 15 Jan 2024 10:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/tags/prose/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Style</title>
+      <link>http://localhost:1313/tags/style/</link>
+      <pubDate>Mon, 15 Jan 2024 10:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/tags/style/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>スタイル</title>
+      <link>http://localhost:1313/tags/%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%AB/</link>
+      <pubDate>Mon, 15 Jan 2024 10:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%AB/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>プロス</title>
+      <link>http://localhost:1313/tags/%E3%83%97%E3%83%AD%E3%82%B9/</link>
+      <pubDate>Mon, 15 Jan 2024 10:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E3%83%97%E3%83%AD%E3%82%B9/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>文档</title>
+      <link>http://localhost:1313/tags/%E6%96%87%E6%A1%A3/</link>
+      <pubDate>Mon, 15 Jan 2024 10:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E6%96%87%E6%A1%A3/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>样式</title>
+      <link>http://localhost:1313/tags/%E6%A0%B7%E5%BC%8F/</link>
+      <pubDate>Mon, 15 Jan 2024 10:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E6%A0%B7%E5%BC%8F/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

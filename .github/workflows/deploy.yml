@@ -1,8 +1,8 @@
-name: Deploy Worker
+name: Deploy to Cloudflare
 on:
   push:
     branches:
-      - master
+      - main
     paths-ignore:
       - '.github/**'
   workflow_dispatch:

@@ -250,7 +250,7 @@ params:
       enabled: false
       id: "your-google-analytics-id"
     umami: 
-      enabled: false
+      enabled: true
       id: "y74ed0228-dfa9-4106-adb2-e841910730bb"
       src: "https://umami.com/myscript.js"
       domains: "svenvg.com"

@@ -17,14 +17,14 @@ What makes Umami even more appealing is that it can be self-hosted, giving you f
 
 ## Setup Umami
 
-To set up Umami, we need to create a folder to hold both the <kbd>docker-compose.yml</kbd> and the configuration file.
+To set up Umami, we need to create a folder to hold both the `docker-compose.yml` and the configuration file.
 
 First, create the folder for Umami:
 ```bash
 mkdir umami
 ```
 
-Open a new <kbd>docker-compose.yml</kbd> file for editing:
+Open a new `docker-compose.yml` file for editing:
 
 ```bash
 nano umami/docker-compose.yml
@@ -74,7 +74,7 @@ openssl rand 30 | openssl base64 -A
 # Example output : grYw1gf2CurwJqgyuVCJD9A9xa7pDKzvA1kmzDry
 ```
 
-Once you’ve generated the secret, add it to your <kbd>.env</kbd> file for use by your Umami container:
+Once you’ve generated the secret, add it to your `.env` file for use by your Umami container:
 
 ```bash
 nano umami/.env
@@ -116,7 +116,7 @@ Make sure that the Domain you choose for your Umami instance is not easily assoc
 
 Now we need to add the website we want to analyze to Umami.
 
-1. Log into Umami (default login is <kbd>admin/umami</kbd>) and click on **Settings** in the header.
+1. Log into Umami (default login is `admin/umami`) and click on **Settings** in the header.
 2. Navigate to **Websites** and click the **Add Website** button.
 3. Fill out the form with the following details and click **Save**:
    - The **Name** field can be anything you prefer, but it's typically the same as your domain name.
@@ -131,7 +131,7 @@ Don't forget to change the username and password, as this website will be access
 
 Now you can add the Website ID to your website, according to their instructions. In this example we add it to a [Jekyll blog with the Chripy theme](../jekyll-chirpy-cloudflare-pages).
 
-Fill in your own data into <kbd>_config.yml</kbd> to integrate Umami analytics.
+Fill in your own data into `_config.yml` to integrate Umami analytics.
 (search for umami in config file)
 
 ```yaml
@@ -139,4 +139,4 @@ umami:
   id: "19e0f843-ddd1-4841-b112-e21f6a750770" # fill in your Umami ID
   domain: "https://umami.yourdomain.com"     # fill in your Umami domain
 ```
-Ensure <kbd>JEKYLL_ENV=production</kbd> environment variable is set when running jekyll build to apply production specific features such as web analytics.
+Ensure `JEKYLL_ENV=production` environment variable is set when running jekyll build to apply production specific features such as web analytics.

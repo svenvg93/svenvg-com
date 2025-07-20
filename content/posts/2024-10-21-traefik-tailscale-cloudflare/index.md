@@ -122,7 +122,7 @@ services:
       - --entrypoints.websecure.http.tls.domains[0].sans=${SANS_DOMAIN}
     labels:
       - "traefik.enable=true"
-      - 'traefik.http.routers.traefik.rule=Host(<kbd>traefik.ts.example.com</kbd>)'
+      - 'traefik.http.routers.traefik.rule=Host(`traefik.ts.example.com`)'
       - "traefik.http.routers.traefik.entrypoints=websecure"
       - "traefik.http.routers.traefik.tls.certresolver=letsencrypt"
       - "traefik.http.routers.traefik.service=api@internal"
@@ -134,7 +134,7 @@ volumes:
 
 Don't forget to change **traefik.ts.example.com** to your domain name.
 
-To store sensitive information and configuration values, create a <kbd>.env</kbd> file in the same directory as your docker-compose.yml`.
+To store sensitive information and configuration values, create a `.env` file in the same directory as your docker-compose.yml`.
 
 ```bash
 nano .env

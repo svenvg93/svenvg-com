@@ -11,7 +11,7 @@ Built with [Hugo](https://gohugo.io) using the [hugo-narrow](https://github.com/
 - Support for drafts and scheduled content
 - Syntax highlighting with line numbers
 - Cover images per post
-- Easy content structure: <kbd>index.md</kbd> + <kbd>cover.jpg</kbd>
+- Easy content structure: `index.md` + `cover.jpg`
 
 ## 🚀 Local Development
 
@@ -26,10 +26,10 @@ hugo server -D
 
 ## 🗂 Content Structure
 
-Posts are located in <kbd>content/posts/YYYY-MM-DD-title/index.md</kbd>  
+Posts are located in `content/posts/YYYY-MM-DD-short-title/index.md`  
 Each post can include:
-- <kbd>index.md</kbd>: the post content
-- <kbd>cover.jpg</kbd>: used as the featured image
+- `index.md`: the post content
+- `cover.jpg`: used as the featured image
 
 ## 🛠 Requirements
 

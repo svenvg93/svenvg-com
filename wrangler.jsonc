@@ -1,7 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/recaptimedev-labs/workers-config-schema/refs/heads/main/config-schema.json",
   "name": "svenvg-com",
-  "account_id": "cf0bd808c6a294fd8c4d8f6d2cdeca05",
   "compatibility_date": "2025-07-20",
   "assets": {
     "directory": "./public",

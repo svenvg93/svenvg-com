@@ -28,7 +28,7 @@ nano generate-dependabot.sh
 
 Paste the following content into the file:
 
-```bash
+```bash {filename="generate-dependabot.sh"}
 #!/bin/bash
 
 # Script to generate or update dependabot.yml based on docker-compose.yml files
@@ -125,7 +125,7 @@ To keep your <kbd>dependabot.yml</kbd> up to date automatically, we can use a Gi
 ### Create the workflow file
 Create a file at <kbd>.github/workflows/update-dependabot.yml</kbd>:
 
-```shell
+```bash {filename="update-dependabot.yml"}
 name: Update Dependabot Config
 
 on:

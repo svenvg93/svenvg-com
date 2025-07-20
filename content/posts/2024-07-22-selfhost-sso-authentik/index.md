@@ -32,7 +32,7 @@ Next, create the <kbd>docker-compose.yml</kbd> file to set up the Docker contain
 nano docker-compose.yml
 ```
 Add the following configuration to the file:
-```yaml
+```yaml {filename="docker-compose.yml"}
 services:
   authentik-db:
     image: docker.io/library/postgres:16-alpine

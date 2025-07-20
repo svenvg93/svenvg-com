@@ -79,7 +79,7 @@ Open the <kbd>mkdocs.yml</kbd> file to adjust the the **site_name**.
 nano mkdocs.yml
 ```
 
-```yaml
+```yaml {filename="mkdocs.yml"}
 site_name: My Docs
 
 theme:
@@ -90,14 +90,14 @@ theme:
 
 Navigate to the docs folder and create a new markdown file:
 
-```bash
+```bash 
 cd docs
 nane firstguide.md
 ```
 
 In this file, add a title and some content:
 
-```markdown
+```markdown {filename="firstguide.md"}
 ---
 title: Lorem ipsum dolor sit amet 
 ---

@@ -169,12 +169,12 @@ We’ll create a new user account with the necessary privileges and then disable
 ### User Account
 
 ```bash
-/user add name=YourUsername password=YourPassword group=full
+/user add name=[YourUsername] password=[YourPassword] group=full
 /user disable admin
 ```
 
-* Replace <kbd>YourUsername</kbd> to your new username
-* Replace <kbd>YourPassword</kbd> to your new password
+* Replace [YourUsername] to your new username
+* Replace [YourPassword] to your new password
 
 ### Hostname
 

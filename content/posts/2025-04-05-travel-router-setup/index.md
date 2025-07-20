@@ -34,7 +34,7 @@ You can set up a VPN (WireGuard, OpenVPN) on your travel router to encrypt traff
 When it comes to a travel router, you want it to light and small. You don't want to carry your big heavy router from home with you. 
 
 In terms of the hardware GL-Inet makes small Wifi routers in the size of a pack of cards. 
-One of the best band for your buck devices is the Beryl AX. The GL.iNet Beryl AX (GL-MT3000) is a compact Wi-Fi 6 travel router equipped with the following specifications:​
+One of the best bang for your buck devices is the Beryl AX. The GL.iNet Beryl AX (GL-MT3000) is a compact Wi-Fi 6 travel router equipped with the following specifications:​
 
 - Processor: MediaTek MT7981B dual-core CPU running at 1.3 GHz.​
 - Memory: 512MB DDR4 RAM.​
@@ -71,7 +71,7 @@ On the main dashboard, locate the **Repeater** section and click **Connect** to 
 
 If an authentication portal is needed, open a browser on your device to complete the login process.
 
-### Wireless network
+## Wireless network
 
 By default, the Beryl has separate networks for 2.4GHz and 5GHz. To simplify things, we'll give them the same name, allowing devices to automatically choose the best band based on signal strength and coverage.  
 
@@ -87,7 +87,5 @@ By default, the Beryl has separate networks for 2.4GHz and 5GHz. To simplify thi
 Repeat these steps for the 2.4GHz network.
 
 Once you've updated the 2.4GHz network settings, your Beryl is ready to go—use it anywhere you like! 
-
-In an later posts we will dive deeper in other options of the Beryl like DoH, Adguard Home etc.
 
 Happy networking! 🤝

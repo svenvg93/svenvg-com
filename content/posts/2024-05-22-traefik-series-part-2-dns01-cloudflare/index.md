@@ -43,7 +43,7 @@ To enable Traefik to use the DNS-01 Challenge with Cloudflare, you need to set u
 
 Add the following environment variables under the Traefik service in your <kbd>docker-compose.yml</kbd>:
 
-```yaml
+```yaml {filename="docker-compose.yml"}
   environment:
     - CF_API_EMAIL=${CF_API_EMAIL}
     - CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN}
@@ -57,7 +57,7 @@ nano .env
 
 Add the following content to the <kbd>.env</kbd> file, replacing the placeholders with your actual Cloudflare email and API token:
 
-```bash
+```bash {filename=".env"}
 CF_API_EMAIL=<Your cloudflare email>
 CF_DNS_API_TOKEN=<Your API Token>
 ```
@@ -68,7 +68,7 @@ This setup allows Traefik to access your Cloudflare account securely using the p
 
 In your <kbd>traefik.yml</kbd> configuration file, you need to remove the <kbd>httpChallenge</kbd> part and add the <kbd>dnsChallenge</kbd> configuration. Here’s the complete updated <kbd>traefik.yml</kbd>:
 
-```yaml
+```yaml {filename="traefik.yml"}
 api:
   dashboard: true
   insecure: true

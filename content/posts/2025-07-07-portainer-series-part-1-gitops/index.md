@@ -28,7 +28,7 @@ In this series, I’m using the Enterprise Edition of Portainer to unlock all th
 
 You can use the following Docker Compose snippet to get started:
 
-```yaml
+```yaml {filename="docker-compose.yml"}
 services:
   portainer:
     image: portainer/portainer-ee:2.31.3

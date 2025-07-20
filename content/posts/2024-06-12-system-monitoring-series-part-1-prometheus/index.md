@@ -43,7 +43,7 @@ Open a new <kbd>docker-compose.yml</kbd> file for editing:
 nano nodeexporter/docker-compose.yml
 ```
 Paste the following content into the file:
-```yaml
+```yaml {filename="docker-compose.yml"}
 services:
   nodeexporter:
     image: prom/node-exporter
@@ -71,7 +71,7 @@ Open a new <kbd>docker-compose.yml</kbd> file for editing:
 nano cadvisor/docker-compose.yml
 ```
 Paste the following content into the file:
-```yaml
+```yaml {filename="docker-compose.yml"}
 services:
   cadvisor:
     image: gcr.io/cadvisor/cadvisor
@@ -120,7 +120,7 @@ Next, create a <kbd>docker-compose.yml</kbd> file for Prometheus:
 nano prometheus/docker-compose.yml
 ```
 Add the following configuration to the file:
-```yaml
+```yaml {filename="docker-compose.yml"}
 services:
   prometheus:
     image: prom/prometheus
@@ -158,7 +158,7 @@ Prometheus requires a configuration file to define which services to scrape for 
 nano prometheus/prometheus.yml
 ```
 Add the following configuration to the file:
-```yaml
+```yaml {filename="prometheus.yml"}
 global:
   scrape_interval:     15s
   evaluation_interval: 15s
@@ -206,7 +206,7 @@ Next, create a <kbd>docker-compose.yml</kbd> file for Grafana:
 nano grafana/docker-compose.yml
 ```
 Add the following configuration to the file:
-```yaml
+```yaml {filename="docker-compose.yml"}
 services:
   grafana:
     image: grafana/grafana
@@ -256,12 +256,7 @@ Dashboards
 To see all the metrics we need to dashboards. You can make your own dashboards or use mine as a starter:
 
 *   [NodeExporter](https://github.com/svenvg93/Grafana-Dashboard/tree/master/node_expoter)
-
-![captionless image](assets/img/screenshots/grafana/node_exporter_dashboard.png)
-
 *   [cAdvisor](https://github.com/svenvg93/Grafana-Dashboard/tree/master/cadvisor)
-
-![captionless image](assets/img/screenshots/grafana/cadvisor_dashboard.png)
 
 ## Conclusion
 

@@ -112,8 +112,8 @@ params:
 
   author:
     name: "Sven van Ginkel"
-    title: "Homelab Enthusiast • Self-Hosting • Network Designer"
-    description: "Sharing insights on networking, automation, and building reliable self-hosted systems."
+    title: "Homelab Enthusiast • Network Designer"
+    description: "Sharing insights on networking, automation, and building reliable systems."
     avatar: "https://avatars.githubusercontent.com/u/4511676"
     social:
       - name: "GitHub"

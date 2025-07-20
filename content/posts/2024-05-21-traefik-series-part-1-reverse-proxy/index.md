@@ -33,7 +33,7 @@ nano traefik/docker-compose.yml
 ```
 Add the following configuration to the file:
 
-```yaml
+```yaml {filename="docker-compose.yml"}
 # Project URL: https://github.com/traefik/traefik
 # Docs URL: https://doc.traefik.io/traefik/
 services:
@@ -73,7 +73,7 @@ Let’s create a <kbd>traefik.yml</kbd> file, which will hold Traefik’s config
 nano traefik/traefik.yml
 ```
 Add the following configuration to the file:
-```yaml
+```yaml {filename="traefik.yml"}
 api:
   dashboard: true
   insecure: true
@@ -131,7 +131,7 @@ nano whoami/docker-compose.yml
 
 In the whoami directory, create a <kbd>docker-compose.yml</kbd> file with the following configuration:
 
-```yaml
+```yaml {filename="docker-compose.yml"}
 services:
   whoami:
     container_name: simple-service
@@ -170,7 +170,7 @@ docker compose -f traefik/docker-compose.yml down
 
 Open your <kbd>traefik.yml</kbd> file and modify the caServer setting to point to the production Let’s Encrypt server. Comment out the staging line and ensure the production line is active, as shown below:
 
-```yaml
+```yaml {filename="traefik.yml"}
 ...
 certificatesResolvers:
   letencrypt:

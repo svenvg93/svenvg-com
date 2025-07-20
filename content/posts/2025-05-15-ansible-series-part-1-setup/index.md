@@ -123,7 +123,7 @@ Let's create a simple Ansible playbook to install a package (in this case, <kbd>
 
 Save the following content as <kbd>playbooks/install-htop.yml</kbd>:
 
-```yaml
+```yaml {filename="install-htop.yml"}
 - name: Install htop on homelab servers
   hosts: homelab
   become: true

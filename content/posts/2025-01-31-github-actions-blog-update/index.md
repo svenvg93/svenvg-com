@@ -48,7 +48,7 @@ We need to configure GitHub to use the Webhook for deployment. Since this inform
 
 Create a <kbd>.github/workflows/pages-deployment.yaml</kbd> file at the root of your project. The <kbd>.github/workflows/pages-deployment.yaml</kbd> file will contain the jobs you specify on the request.
 
-```yaml
+```yaml {filename="pages-deployment.yaml"}
 name: Daily build Cloudflare Pages
 on:
   workflow_dispatch:

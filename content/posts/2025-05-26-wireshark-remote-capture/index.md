@@ -39,7 +39,7 @@ This guide shows how to set up **Wireshark** to remotely capture traffic via **S
 
     This captures traffic from <kbd>eth0</kbd> while excluding SSH (port 22).
 
-    **Tip:** Exclude additional ports like Tailscale (41641) or WireGuard (51820) if they're in use, for cleaner results.
+    **Tip** To exclude more ports, simply add filters like <kbd>not port 41641</kbd>. Repeat this for each port you want to omit from the capture.
     
 6. Save and **Start** the capture.
 

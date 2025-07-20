@@ -51,7 +51,7 @@ nano traefik/docker-compose.yml
 
 Add the following configuration to the file:
 
-```yaml
+```yaml {filename="docker-compose.yml"}
 services:
   traefik:
     image: traefik
@@ -91,7 +91,7 @@ nano .env
 
 Add the following content to the <kbd>.env</kbd> file, replacing the placeholders with your actual Cloudflare email and API token:
 
-```bash
+```bash {filename=".env"}
 CF_API_EMAIL=<Your cloudflare email>
 CF_DNS_API_TOKEN=<Your API Token>
 ```
@@ -104,7 +104,7 @@ Create a <kbd>traefik.yml</kbd> file to define Traefik's configuration settings.
 nano traefik/traefik.yml
 ```
 Add the following configuration to the file:
-```yaml
+```yaml {filename="traefik.yml"}
 api:
   dashboard: true
   insecure: true

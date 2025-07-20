@@ -30,7 +30,7 @@ Open a new <kbd>docker-compose.yml</kbd> file for editing:
 nano umami/docker-compose.yml
 ```
 Paste the following content into the file:
-```yaml
+```yaml {filename="docker-compose.yml"}
 services:
   umami:
     image: ghcr.io/umami-software/umami:postgresql-latest
@@ -57,7 +57,7 @@ services:
       - umami-postgresql-db:/var/lib/postgresql/data
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U umami -d umami"]
+      test: ["CMD-bash", "pg_isready -U umami -d umami"]
       interval: 60s
       timeout: 5s
 
@@ -82,7 +82,7 @@ nano umami/.env
 
 Paste the following content into the file:
 
-```shell
+```bash {filename=".env"} 
 UMAMI_SECRET=grYw1gf2CurwJqgyuVCJD9A9xa7pDKzvA1kmzDry
 ```
 ### Start Umami Analytics

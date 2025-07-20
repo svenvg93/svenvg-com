@@ -47,8 +47,6 @@ Here’s how to set it up:
 
 By setting up this wildcard record, any domain that ends with .ts.example.com will be routed to the Traefik container. This ensures that these domains are accessible only when connected to your Tailnet, eliminating the need to create individual DNS records for each specific domain name.
 
-![captionless image](./cloudflare_dns_tailscale.png)
-
 ## Tailscale Auth key
 
 To generate an auth key for Tailscale, which will allow your Docker container to access your Tailnet, follow these steps:
@@ -68,7 +66,7 @@ Make sure to save this Auth Key, as you will need it later for your Docker conta
 
 To set up Tailscale and Traefik using Docker, you’ll create a docker-compose.yml` file that defines both services. Here’s a basic example of how to structure this file:
 
-```yaml
+```yaml {filename="docker-compose.yml"}
 services:
   tailscale-traefik:
     image: tailscale/tailscale
@@ -144,7 +142,7 @@ nano .env
 
 In this **.env** file place the following content.
 
-```bash
+```bash {filename=".env"}
 CF_API_EMAIL=<Cloudflare email>
 CF_DNS_API_TOKEN=<Cloudflare API Token>
 TS_AUTHKEY=<Tailscale Auth Key>

@@ -31,7 +31,7 @@ Open a new <kbd>docker-compose.yml</kbd> file for editing:
 nano loki/docker-compose.yml
 ```
 Paste the following content into the file:
-```yaml
+```yaml {filename="docker-compose.yml"}
 services:
   loki:
     image: grafana/loki
@@ -60,7 +60,7 @@ Loki requires a configuration file to define which services to scrape for metric
 nano loki/loki-config.yaml
 ```
 Paste the following content into the file:
-```yaml
+```yaml {filename="loki-config.yml"}
 auth_enabled: false
 server:
   http_listen_port: 3100
@@ -119,7 +119,7 @@ Open a new <kbd>docker-compose.yml</kbd> file for editing:
 nano promtail/docker-compose.yml
 ```
 Paste the following content into the file:
-```yaml
+```yaml {filename="docker-compose.yml"}
 services:
   promtail:
     image: grafana/promtail
@@ -140,7 +140,7 @@ networks:
 
 Now, create a configuration file named <kbd>promtail-config.yaml</kbd>:
 
-```yaml
+```yaml {filename="promtail-config.yml"}
 server:
   http_listen_port: 9080
   grpc_listen_port: 0

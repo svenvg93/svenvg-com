@@ -60,7 +60,7 @@ nano tsdproxy/docker-compose.yml
 ```
 Paste the following content into the file:
 
-```yaml
+```yaml {filename="docker-compose.yml"}
 # in the config folder make a file called authkey make. Place the Tailscale authkey there.
 services:
   tsdproxy:
@@ -95,7 +95,7 @@ nano tsdproxy/config/tsdproxy.yaml
 ```
 Paste the following content into the file:
 
-```yaml
+```yaml {filename="tsdproxy.yml"}
 defaultproxyprovider: default
 docker:
   local:
@@ -124,7 +124,7 @@ nano tsdproxy/config/authkey
 ```
 Paste the following content into the file:
 
-```yaml
+```bash {filename="authkey"} 
 past_your_authkey_here
 ```
 
@@ -143,7 +143,7 @@ After the container image is pulled and started, you will see a machine in your 
 TSDProxy automatically watches the Docker socket for containers that have specific labels. To make TSDProxy pick up your applications, all you need to do is add a few labels to your Docker Compose files. These labels allow TSDProxy to identify your containers.
 
 Add the following labels into your compose files:
-```yaml
+```yaml {filename="docker-compose.yml"} 
 labels:
   tsdproxy.enable: "true"
   tsdproxy.name: "myserver" # Optional

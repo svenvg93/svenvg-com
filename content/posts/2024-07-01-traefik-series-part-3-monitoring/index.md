@@ -33,8 +33,8 @@ To enable Traefik to expose metrics for Prometheus, you’ll need to modify the 
 
 Add the following configuration to your existing <kbd>traefik.yml</kbd> file:
 
-```yaml
-metrics:
+```yaml {filename="traefik.yml"}
+metrics: 
   prometheus:
     addEntryPointsLabels: true
     addRoutersLabels: true
@@ -55,7 +55,7 @@ Once this is set up, Traefik will expose the necessary metrics, and Prometheus c
 To ensure Prometheus collects metrics from Traefik, you need to add a scrape configuration to your existing prometheus configuration.
 
 Add the following configuration to your <kbd>prometheus.yml</kbd>:
-```yaml
+```yaml {filename="prometheus.yml"}  
 scrape_configs:
   - job_name: 'traefik'
     scrape_interval: 5s
@@ -80,7 +80,7 @@ To effectively monitor logs in Traefik, you’ll need to configure both Traefik 
 
 Add the following sections to your existing <kbd>traefik.yml</kbd> configuration file:
 
-```yaml
+```yaml {filename="traefik.yml"}
 accessLog:
   filePath: "/log/access.log"
   format: json
@@ -98,7 +98,7 @@ Explanation:
 
 Next, you need to ensure that Traefik has access to the directory where logs will be stored. Modify your Traefik <kbd>docker-compose.yml</kbd> to include a volume mapping for the log directory:
 
-```yaml
+```yaml {filename="docker-compose.yml"}
   volumes:
     - /var/log/traefik:/log
 ```
@@ -113,7 +113,7 @@ docker compose up -d --force-recreate
 
 To enable Promtail to scrape Traefik logs, you’ll need to add a new scrape configuration to your <kbd>promtail-config.yaml</kbd>. Here’s how to do it:
 
-```yaml
+```yaml {filename="promtail.yml"}
 scrape_configs:
 - job_name: traefik
   static_configs:
@@ -137,8 +137,6 @@ Traefik exposes a variety of metrics that you can use to monitor the health and 
 If you prefer not to create your own dashboard from scratch, you can use the pre-built Traefik dashboard available in the following GitHub repository:
 
 * [Traefik Dashboard](https://github.com/svenvg93/Grafana-Dashboard/tree/master/traefik)
-
-![captionless image](./tailscale_dashoard.png)
 
 Feel free to customize the dashboard further to meet your specific monitoring needs, and explore other metrics that Traefik provides!
 

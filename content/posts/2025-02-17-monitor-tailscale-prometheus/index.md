@@ -22,7 +22,7 @@ Tailscale offers clients [metrics](https://tailscale.com/kb/1482/client-metrics)
 
 Lets check out the metics by simple running the command below on your tailscale machine. This will display all the metrics ones. 
 
-```shell
+```bash
 tailscale metrics print
 ```
 
@@ -66,7 +66,7 @@ tailscaled_outbound_packets_total{path="direct_ipv6"} 0
 
 Run the command below on the tailscale client/machine you want to get the metrics from. To ensure that the metrics are always available for Prometheus to scrape.
 
-```shell
+```bash
 sudo tailscale set --webclient=true
 ```
 
@@ -77,7 +77,7 @@ Now the metrics are available on <kbd>http://tailscale-ip:5252/metrics</kbd>. Yo
 For Prometheus to scrape the metrics, add the below configuration to your existing <kbd>prometheus.yml</kbd> and restart prometheus.
 You can adjust the <kbd>scrape_interval</kbd> to your liking, and change the targets to your tailscale machines MagicDNS names.
 
-```yaml
+```yaml {filename="prometheus.yml"}
 scrape_configs:
   - job_name: 'tailscale'
     scrape_interval: 10s
@@ -96,5 +96,3 @@ scrape_configs:
 
 Now that Prometheus is scraping all the metrics. We can use Grafana to display them. All the tailscale metrics are starting with <kbd>tailscaled_*</kbd>. 
 Or you can import this [dashboard](https://github.com/svenvg93/Grafana-Dashboard/tree/master/tailscale).
-
-![captionless image](./tailscale_dashoard.png)

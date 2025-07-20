@@ -112,7 +112,7 @@ nano 2024-06-18-first-post.md
 
 At the top of your new Markdown file, include the front matter and content for your post. Here’s a simple example:
 
-```markdown
+```markdown {filename="2024-06-18-first-post.md"}
 ---
 layout: post
 title:  "Welcome to Jekyll!"
@@ -137,7 +137,7 @@ Visit http://localhost:4000 in your web browser to see your new post.
 Once you are satisfied with your new blog post, add, commit, and push your changes.
 All you need to do this run these commands
 
-```
+```bash
 git add .
 git commit -m "First Post"
 git push

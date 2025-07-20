@@ -28,7 +28,7 @@ Next, create a <kbd>docker-compose.yml</kbd> file within this directory to defin
 nano docker-compose.yml
 ```
 Add the following configuration to the file:
-```yaml
+```yaml {filename="docker-compose.yml"}
 services:
   cloudflared:
     image: cloudflare/cloudflared
@@ -70,7 +70,7 @@ nano .env
 
 In the <kbd>.env</kbd> file, add the following content:
 
-```
+``` {filename=".env"}
 TOKEN=<Your tunnel token>
 ```
 
@@ -96,7 +96,7 @@ mkdir whoami
 nano whoami/docker-compose.yml
 ```
 Add the following configuration to the file:
-```yaml
+```yaml {filename="docker-compose.yml"}
 services:
   whoami:
     container_name: simple-service

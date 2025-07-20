@@ -35,7 +35,7 @@ ansible-vault create group_vars/vault.yml
 
 When the editor opens, enter something like:
 
-```yaml
+```yaml {filename="vault.yml"}
 tailscale_auth_key: "tskey-REPLACE_ME"
 ```
 
@@ -45,7 +45,7 @@ Then save and close the editor. The file is now encrypted and safe to commit (if
 
 You can now use the secret just like any other variable:
 
-```yaml
+```yaml {filename="task.yml"}
 ---
 - name: Check if tailscaled service is running
   ansible.builtin.systemd:
@@ -113,7 +113,7 @@ You can now use the secret just like any other variable:
 
 In your playbook you need to reference where the vault file can be found.
 
-```yaml
+```yaml {filename="tailscale.yml"}
 ---
 # Enroll hosts into Tailscale network.
 - name: Enroll hosts into Tailscale

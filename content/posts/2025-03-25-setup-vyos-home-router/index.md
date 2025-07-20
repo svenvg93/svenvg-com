@@ -20,11 +20,11 @@ VyOS offers powerful routing, firewalling, making it an excellent choice for hom
 
 ## Installation
 
+**Note**: VyOS rolling release images are built from the latest development code, incorporating the newest changes from maintainers and community contributors. While they receive automated testing to ensure they boot and load configurations, they may include experimental features, bugs, and compatibility issues. As a result, they are not recommended for production use.
+
 VyOS can run on various diffrent platforms. Both baremetal as well als cloud platforms. In this guide we will use the "bare metal" installation inside of a VM.
 
 After you [download](https://github.com/vyos/vyos-nightly-build/releases) the latests version, boot from the image using the appropriate method for your platform (USB, virtual machine, or PXE).
-
-VyOS rolling release images are built from the latest development code, incorporating the newest changes from maintainers and community contributors. While they receive automated testing to ensure they boot and load configurations, they may include experimental features, bugs, and compatibility issues. As a result, they are not recommended for production use.
 
 Once the image loads, log in with the default credentials (<kbd>vyos/vyos</kbd>). In operational mode, run <kbd>install image</kbd> and follow the wizard. It will guide you through partitioning the disk and configuring the root password. After installation, remove the live USB or CD and reboot the system.
 
@@ -37,7 +37,7 @@ VyOS has two main operational modes: Operational Mode and Configuration Mode. Un
 
 We need to enter configuration mode to configure our initial setup.
 
-```shell
+```bash
 configure
 ```
 
@@ -50,7 +50,7 @@ We’ll configure the LAN ports to establish a network connection for all your d
 We’ll create a bridge interface, allowing us to combine all the ports into a single network. This will enable seamless communication between all your devices on the same network.
 
 
-```shell
+```bash
 set interfaces bridge br0 
 set interfaces bridge br0 description LAN bridge
 set interfaces bridge br0 address 192.168.1.1/24
@@ -63,7 +63,7 @@ In this setup I only have one interface in the bridge. You repeat the <kbd>inter
 You can check the bridge with the command <kbd>run show bridge br0</kbd>
 
 
-```shell
+```bash
 admin@BR01:~$ run show interfaces bridge 
 Codes: S - State, L - Link, u - Up, D - Down, A - Admin Down
 Interface        IP Address                        S/L  Description
@@ -77,7 +77,7 @@ When in Configuration Mode, you normally can't run operational commands like <kb
 
 Now, we’ll set up a DHCP server to automatically assign IP addresses to all the devices connected to your network.
 
-```shell
+```bash
 set service dhcp-server shared-network-name LAN authoritative
 set service dhcp-server shared-network-name LAN subnet 192.168.1.0/24 lease 86400
 set service dhcp-server shared-network-name LAN subnet 192.168.1.0/24 option default-router 192.168.1.1
@@ -90,7 +90,7 @@ commit; save
 
 To view active leases from connected clients, use the command: <kbd>run show dhcp server leases</kbd>
 
-```shell
+```bash
 admin@BR01:~$ run show dhcp server leases
 IP Address     MAC address        State    Lease start                Lease expiration           Remaining    Pool    Hostname     Origin
 -------------  -----------------  -------  -------------------------  -------------------------  -----------  ------  -----------  --------
@@ -107,19 +107,19 @@ In my case I use a VLAN (vif) interface with DHCP, as it is required by my ISP.
 
 Be sure to replace the placeholder variables [inside brackets] with values specific to your setup.
 
-```shell {filename="DHCP with VLAN"}
+```bash {filename="DHCP with VLAN"}
 set interfaces ethernet [YOUR_ETHERNET_INTERFACE] vif [VLAN_ID] address dhcp
 set interfaces ethernet [YOUR_ETHERNET_INTERFACE] vif [VLAN_ID] description WAN-Interface
 commit; save
 ```
 
-```shell {filename="DHCP"}
+```bash {filename="DHCP"}
 set interfaces ethernet eth1 address dhcp
 set interfaces ethernet eth1 description WAN-Interface
 commit; save
 ```
  
-```shell {filename="PPPoE with VLAN"}
+```bash {filename="PPPoE with VLAN"}
 set interfaces ethernet [YOUR_ETHERNET_INTERFACE] vif [VLAN_ID] description WAN-Interface
 set interfaces pppoe pppoe0 authentication username [YOUR_USERNAME]
 set interfaces pppoe pppoe0 authentication password [YOUR_PASSWORD]
@@ -130,7 +130,7 @@ set interfaces pppoe pppoe0 description WAN-Interface
 commit;save
 ``` 
 
-```shell {filename="PPPoE"}
+```bash {filename="PPPoE"}
 set interfaces pppoe pppoe0 authentication username [YOUR_USERNAME]
 set interfaces pppoe pppoe0 authentication password [YOUR_PASSWORD]
 set interfaces pppoe pppoe0 source-interface [YOUR_ETHERNET_INTERFACE]
@@ -140,7 +140,7 @@ set interfaces pppoe pppoe0 description WAN-Interface
 commit; save
 ```
 
-```shell {filename="Static IP"}
+```bash {filename="Static IP"}
 set interfaces ethernet [YOUR_ETHERNET_INTERFACE] description WAN-Interface
 set interfaces ethernet [YOUR_ETHERNET_INTERFACE] address [YOUR_STATIC_IP]/[PREFIX_LENGTH]
 set interfaces ethernet [YOUR_ETHERNET_INTERFACE] mtu 1500
@@ -152,7 +152,7 @@ commit; save
 
 After the commit we can check if the routing table is correct. There should be a at least an 0.0.0.0 route in the table.
 
-```shell
+```bash
 admin@BR01# run show ip route
 Codes: K - kernel route, C - connected, L - local, S - static,
        R - RIP, O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
@@ -177,7 +177,7 @@ In VyOS (and most firewall systems using Netfilter/iptables), traffic filtering 
 
 This controls incoming traffic destined for the VyOS router itself. For example, SSH access to the router or web management interfaces would be filtered by the INPUT chain.
 
-```shell
+```bash
 set firewall ipv4 input filter rule 10 action 'accept'
 set firewall ipv4 input filter rule 10 state 'established'
 set firewall ipv4 input filter rule 10 state 'related'
@@ -194,7 +194,7 @@ commit; save
 
 This manages traffic originating from the VyOS router. If the router itself makes outbound requests (such as NTP synchronization or software updates), they are processed through the OUTPUT chain.
 
-```shell
+```bash
 set firewall ipv4 output filter default-action accept 
 commit; save
 ```
@@ -203,7 +203,7 @@ commit; save
 
 This handles traffic passing through the router but not directed to or from it. If VyOS is acting as a router between networks, the FORWARD chain determines which packets are allowed to pass between them.
 
-```shell
+```bash
 set firewall ipv4 forward filter rule 20 action 'accept'
 set firewall ipv4 forward filter rule 20 description 'Allow Return traffic through the router'
 set firewall ipv4 forward filter rule 20 state 'established'
@@ -220,11 +220,11 @@ commit; save
 
 By default, VyOS doesn't function as a DNS proxy. To enable DNS forwarding from client devices to your upstream DNS servers, you'll need to configure the following settings:
 
-```shell
+```bash
 set service dns forwarding allow-from '192.168.1.0/24'
 set service dns forwarding listen-address '192.168.1.1'
 set service dns forwarding system
-set system name-server [YOUR_INTERFACE]
+set system name-server [YOUR_UPSTREAM_DNS_SERVER]
 commit; save
 ```
 
@@ -241,7 +241,7 @@ Remember to replace [YOUR_UPSTREAM_DNS_SERVER] with the actual IP address of you
 
 We’ll now set up a NAT rule to translate all outgoing traffic from your local network to your public IP address. This will enable devices in your homelab to access the internet using the router’s public IP, ensuring proper routing and security for all outgoing connections.
 
-```shell
+```bash
 set nat source rule 10 description 'Enable NAT on WAN-Interface'
 set nat source rule 10 outbound-interface name [YOUR_INTERFACE]
 set nat source rule 10 translation address 'masquerade'
@@ -253,7 +253,7 @@ commit; save
 
 It’s a good idea to set the Hostname of the system to something that is easily identifiable. I will call mine <kbd>BR01</kbd>
 
-```shell
+```bash
 set system host-name BR01
 commit; save
 ```
@@ -262,14 +262,14 @@ commit; save
 
 By default, VyOS acts as an NTP server for clients. This is usually unnecessary for home use, so it's best to disable it.
 
-```shell
+```bash
 delete service ntp allow-client
 commit; save
 ```
 
 VyOS defaults to NTP servers in the US, Germany, and Singapore (AWS). For better accuracy, use servers closer to your location. I’ll be using NL-based servers from pool.ntp.org since I’m located in the Netherlands.
 
-```shell
+```bash
 delete service ntp server time1.vyos.net
 delete service ntp server time2.vyos.net
 delete service ntp server time3.vyos.net
@@ -285,7 +285,7 @@ commit; save
 
 For security best practices, it's recommended to remove the default <kbd>vyos</kbd> user and create a new one with administrative privileges. Even thought the command suggest that the password will be saved in plaintext, when committing the changes the system will encrypt it by default. 
 
-```shell
+```bash
 set system login user admin authentication plaintext-password admin
 commit; save
 ```
@@ -294,7 +294,7 @@ change <kbd>admin</kbd> to your username and password.
 
 Now login with your new user account to make sure everything works. After that delete the <kbd>vyos</kbd> user account.
 
-```shell
+```bash
 delete system login user vyos 
 commit; save
 ```

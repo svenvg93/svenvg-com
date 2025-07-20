@@ -21,17 +21,17 @@ Setting up Cloudflare tunnels is out of scope for this article see [here](https:
 
 To get started with ntfy, you’ll need to create the necessary directories and files for the Docker container.
 
-```shell
+```bash
 mkdir ntfy
 ```
 Create a docker-compose.yml file:
 In the ntfy folder, create a docker-compose.yml file:
 
-```shell
+```bash
 nano ntfy/docker-compose.yml
 ```
 Add the following content to the file:
-```yaml
+```yaml {filename="docker-compose.yml"}
 services:
   ntfy:
     image: binwiederhier/ntfy:v2.11.0
@@ -62,7 +62,7 @@ The cloudflared network should correspond to the Docker network where your Cloud
 
 Run the following command to start the container:
 
-```
+``` bash
 docker compose -f ntfy/docker-compose.yml up -d
 ```
 
@@ -118,11 +118,11 @@ After sending the command, you should see the message “Hi” appear in the Web
 To enhance the security of your ntfy setup by requiring authentication, you can update your docker-compose.yml file as follows:
 
 Open the docker-compose.yml file:
-```shell
+```bash
 nano ntfy/docker-compose.yml
 ```
 Add the following environment variables
-```yaml
+```yaml {filename="docker-compose.yml"}
 environment:
   - NTFY_AUTH_FILE=/var/lib/ntfy/auth.db
   - NTFY_AUTH_DEFAULT_ACCESS=deny-all
@@ -131,7 +131,7 @@ environment:
 
 Run the following command to restart the container and apply the changes:
 
-```
+``` bash
 docker compose -f ntfy/docker-compose.yml up -d --force-recreate
 ```
 

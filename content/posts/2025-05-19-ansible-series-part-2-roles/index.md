@@ -40,7 +40,7 @@ Handlers are special tasks triggered only when notified by another task.
 They’re usually used for things like restarting services or rebooting after updates.
 
 Example:
-```yaml
+```yaml {filename="main.yml"}
 tasks:
   - name: Update packages
     apt:
@@ -79,7 +79,7 @@ To maintain a well-organized and reusable Ansible project, we've introduced a ro
 
 ### Create Task
 
-```yaml
+```yaml {filename="main.yml"}
 - name: Update APT package cache
   ansible.builtin.apt:
     update_cache: true
@@ -101,7 +101,7 @@ This file defines the main tasks:
 
 ### Create Handlers
 
-```yaml
+```yaml {filename="main.yml"}
 - name: Reboot if required
   ansible.builtin.reboot:
     reboot_timeout: 600
@@ -111,7 +111,7 @@ The reboot handler is triggered only when notified by the upgrade task. If chang
 
 ## Create Playbook
 
-```yaml
+```yaml {filename="system-maintenance.yml"}
 - name: Perform system maintenance
   hosts: homelab
   become: true

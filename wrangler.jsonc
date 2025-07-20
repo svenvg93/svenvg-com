@@ -1,0 +1,23 @@
+{
+  "$schema": "https://raw.githubusercontent.com/recaptimedev-labs/workers-config-schema/refs/heads/main/config-schema.json",
+  "name": "svenvg-com",
+  "account_id": "cf0bd808c6a294fd8c4d8f6d2cdeca05",
+  "compatibility_date": "2025-07-20",
+  "assets": {
+    "directory": "./public",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page",
+    "run_worker_first": false
+  },
+  "build": {
+    "command": "hugo build --gc --minify",
+  },
+  "workers_dev": true,
+  "preview_urls": true,
+  "routes": [
+    {
+        "custom_domain": true,
+        "pattern": "svenvg.com"
+    }
+  ]
+}

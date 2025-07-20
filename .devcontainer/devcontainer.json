@@ -4,11 +4,11 @@
 	"image": "mcr.microsoft.com/devcontainers/base:jammy",
 	"features": {
 		"ghcr.io/devcontainers/features/go:1": {
-			"version": "latest"
+			"version": "1.24.5"
 		},
 		"ghcr.io/devcontainers/features/hugo:1": {
 			"extended": true,
-			"version": "latest"
+			"version": "0.148.0"
 		}
 	}
 }

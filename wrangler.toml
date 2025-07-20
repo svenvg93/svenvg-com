@@ -1,6 +1,6 @@
 # Configure Cloudflare Worker
 
-name = 'svenvg.com'
+name = 'svenvg-com'
 compatibility_date = "2025-07-20"
 
 [build]

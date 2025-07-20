@@ -19,7 +19,7 @@ In the world of self-hosting, secure and reliable server access is crucial. Clou
 
 To get started, we need to set up a directory to store our <kbd>docker-compose.yml</kbd> file.
 
-```
+```bash
 mkdir cloudflared
 cd cloudflared
 ```
@@ -64,7 +64,7 @@ To do so:
 
 To keep your token secure, create a <kbd>.env</kbd> file in the same directory as your <kbd>docker-compose.yml</kbd>:
 
-```
+```bash
 nano .env
 ```
 

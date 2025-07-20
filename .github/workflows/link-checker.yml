@@ -5,21 +5,14 @@ on:
   workflow_dispatch:
 
 jobs:
-  check-links:
-    name: Check for Broken Links
+  check-broken-links:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Hugo
-        uses: peaceiris/actions-hugo@v2
+      - uses: actions/checkout@v3
         with:
-          hugo-version: 'latest'
-          extended: true
-
-      - name: Build site
-        run: hugo --minify
-
-      - name: Run Hugo Link Checker
-        uses: marccampbell/hugo-linkcheck-action@v0.1.3
+          fetch-depth: 0
+      - uses: BoundfoxStudios/action-hugo-link-check@v2
+        with:
+          hugo-root: .
+          hugo-content-dir: content
+          hugo-config: hugo.yaml

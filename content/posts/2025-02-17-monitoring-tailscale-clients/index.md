@@ -14,7 +14,7 @@ cover: cover.jpg
 ---
 Tailscale makes secure networking easy, but how do you monitor its performance? In this guide, we’ll set up Prometheus to collect key Tailscale metrics and gain insights into your mesh VPN connections. Learn how to track bandwidth usage and ensure your network is running smoothly—all with open-source monitoring tools! 🚀
 
-Setting up Prometheus and Grafana is beyond the scope of this post. If you're interested in setting them up, check out this [guide](../system-monitoring-series-part-1-prometheus).
+Setting up Prometheus and Grafana is beyond the scope of this post. If you're interested in setting them up, check out this [guide](../host-container-monitoring-with-prometheus).
 
 
 ## Configure Tailscale

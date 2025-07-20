@@ -13,7 +13,7 @@ tags:
 cover: cover.jpg
 ---
 
-This blog is hosted on Cloudflare Pages for optimal loading speed. As a static website built with Jekyll and the Chirpy theme, it relies on a trigger to prompt Cloudflare to rebuild and publish the site. In a previous post, I showed how to set up [Jekyll with Cloudflare Pages](../jekyll-chirpy-cloudflare-pages), where Cloudflare monitors your Git repository and automatically rebuilds the site with every merge or commit.
+This blog is hosted on Cloudflare Pages for optimal loading speed. As a static website built with Jekyll and the Chirpy theme, it relies on a trigger to prompt Cloudflare to rebuild and publish the site. In a previous post, I showed how to set up [Jekyll with Cloudflare Pages](../jekyll-chirpy-blog-on-cloudflare-pages/), where Cloudflare monitors your Git repository and automatically rebuilds the site with every merge or commit.
 
 Jekyll allows posts to be scheduled based on the date in the frontmatter, so I often write posts in advance while working on something new. This means there won’t always be a commit or merge to trigger a rebuild on the right date to publisch a post. Instead of only relying on Cloudflare to watch the repository, we needed a trigger to rebuild the site. This is where GitHub Actions comes in.
 

@@ -15,7 +15,7 @@ cover: cover.jpg
 
 We all enjoy visually appealing graphs filled with data, especially for the services we host. Thankfully, Traefik exposes useful metrics on EntryPoints, Routers, Services, and more. By using Prometheus to scrape these metrics and integrating Promtail with Loki for log collection, we can create a complete monitoring solution.
 
-Setting up Grafana, Prometheus, Promtail and Loki is out of scope of this Story. See my other stories on how to setup [Grafana & Prometheus](../system-monitoring-series-part-1-prometheus) and [Promtail & Loki](../system-monitoring-series-part-2-loki-promtail)
+Setting up Grafana, Prometheus, Promtail and Loki is out of scope of this Story. See my other stories on how to setup [Grafana & Prometheus](../host-container-monitoring-with-prometheus) and [Promtail & Loki](../log-monitoring-with-loki-promtail)
 
 ## Key Components
 

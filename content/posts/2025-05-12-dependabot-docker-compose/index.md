@@ -175,4 +175,4 @@ You can still manually update the `dependabot.yml` file at any time by running t
 
 With this setup, you can keep your Docker Compose dependencies up to date effortlessly — and ensure your `dependabot.yml` file stays in sync as your project evolves. It's a small automation that saves time, prevents surprises, and helps keep your stack secure. Happy automating! 🚀
 
-If you're interested in more GitHub Actions tips, check out my post on [Automating Cloudflare Pages deployments with GitHub Actions](https://svenvg93.github.io/posts/github-actions-cloudflare-pages/).
+If you're interested in more GitHub Actions tips, check out my post on [Automating Cloudflare Pages deployments with GitHub Actions](../how-i-use-github-actions-to-update-my-blog-daily/).

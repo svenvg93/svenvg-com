@@ -98,6 +98,7 @@ add action=accept chain=forward comment="Allow established,related,untracked" co
 add action=drop chain=forward comment="drop invalid traffic" connection-state=invalid
 add action=accept chain=forward comment="port forwarding" connection-nat-state=dstnat
 add action=accept chain=forward comment="internet traffic" in-interface-list=LAN out-interface-list=WAN
+add action=accept chain=forward comment="LAN to LAN" in-interface-list=LAN out-interface-list=LAN
 add action=drop chain=forward comment="drop all else"
 add action=accept chain=input comment="Allow established,related,untracked" connection-state=established,related,untracked
 add action=drop chain=input comment="Drop invalid" connection-state=invalid

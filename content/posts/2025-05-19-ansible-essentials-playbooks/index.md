@@ -153,5 +153,3 @@ You’ve now:
 - Organized your playbook for better scalability
 
 Next up: using **Ansible Vault** to manage secrets securely!
-
-> In the meantime check out my [git repro](https://github.com/svenvg93/ansible-homelab) that I use for my homelab

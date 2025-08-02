@@ -166,5 +166,3 @@ In the next parts of this series, we’ll cover:
 - Managing secrets securely with Ansible Vault
 
 You’re now ready to scale up your homelab automation. Let's continue. 
-
-> In the meantime check out my [git repro](https://github.com/svenvg93/ansible-homelab) that I use for my homelab

@@ -165,7 +165,3 @@ In this post, you:
 - Used Vault variables in a real playbook
 - Ran a playbook securely with password or file-based vault access
 - Updated your `.gitignore` to protect sensitive data
-
----
-
-> You can find the full source for my setup on [GitHub](https://github.com/svenvg93/ansible-homelab)

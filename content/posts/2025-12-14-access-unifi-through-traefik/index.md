@@ -17,7 +17,6 @@ While Traefik excels at auto-discovering Docker containers through labels, some 
 
 - Traefik installed and configured (see my [Traefik Essentials Setup]({{< ref "/posts/2024-05-21-traefik-essentials-setup" >}}) post)
 - Unifi Controller running and accessible on your network
-- Valid SSL certificate configuration (wildcard certificates recommended)
 
 ## Traefik Configuration
 

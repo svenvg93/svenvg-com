@@ -92,7 +92,7 @@ Navigate to the docs folder and create a new markdown file:
 
 ```bash 
 cd docs
-nane firstguide.md
+nano firstguide.md
 ```
 
 In this file, add a title and some content:

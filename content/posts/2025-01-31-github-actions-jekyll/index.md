@@ -41,7 +41,7 @@ We need to configure GitHub to use the Webhook for deployment. Since this inform
 4. Create the following secrets:
 - CLOUDFLARE_WEBHOOK
   - In the Name field, enter **CLOUDFLARE_WEBHOOK**.
-  - In the Value field, enter your wehbook you just make in between qouates like: `"https://api.cloudflare.com/client/v4/pages/webhooks/deploy_hooks/blablalbalbala"`
+  - In the Value field, enter your wehbook you must make sure it's between "": `"https://api.cloudflare.com/client/v4/pages/webhooks/deploy_hooks/blablalbalbala"`
 
 
 ## Github Action

@@ -141,7 +141,6 @@ loki.source.syslog "unifi" {
     use_incoming_timestamp = false
     labels        = {
       job      = "unifi",
-      platform = "network",
     }
   }
 

@@ -30,22 +30,22 @@ taxonomies:
 
 menus:
   main:
-    - name: nav.posts
+    - name: Posts
       pageRef: /posts
       weight: 20
       params:
         icon: posts
-    - name: nav.categories
+    - name: Categories
       pageRef: /categories
       weight: 30
       params:
         icon: categories
-    - name: nav.tags
+    - name: Tags
       pageRef: /tags
       weight: 40
       params:
         icon: tags
-    - name: nav.archives
+    - name: Archives
       pageRef: /archives
       weight: 50
       params:
@@ -87,11 +87,6 @@ menus:
       weight: 30
       params:
         icon: linkedin
-    - name: Email
-      url: mailto:svenvanginkel@icloud.com
-      weight: 40
-      params:
-        icon: email
 
 params:
   # Basic site info with SEO
@@ -101,7 +96,7 @@ params:
   language: "en-US"
   shortName: "Sven van Ginkel"  # PWA
   images:
-  - "/images/og-default.avif"
+  - "https://avatars.githubusercontent.com/u/4511676"
 
   logo:
     image: "https://avatars.githubusercontent.com/u/4511676"  # Logo path rel to static folder, leave empty use site title and primary color
@@ -122,9 +117,6 @@ params:
       - name: "Twitter"
         url: "https://x.com/svenvginkel"
         icon: "twitter"
-      - name: "Email"
-        url: "mailto:svenvanginkel@icloud.com"
-        icon: "email"
 
   # UI Components Control
   showThemeSwitch: false      # Set to false to hide theme style switcher (palette icon)

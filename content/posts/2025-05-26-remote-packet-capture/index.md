@@ -6,7 +6,9 @@ draft: false
 categories:
   - Networking
 tags:
-  - Wireshark
+  - wireshark
+  - ssh
+  - tcpdump
 cover: cover.jpg
 ---
 

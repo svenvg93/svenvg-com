@@ -8,6 +8,8 @@ categories:
   - CI/CD
 tags:
   - docker
+  - portainer
+  - git
 cover: cover.jpg
 ---
 

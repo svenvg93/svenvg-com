@@ -8,6 +8,8 @@ categories:
 tags:
   - ansible
 cover: cover.jpg
+series:
+  - Ansible Essentials
 ---
 
 In this part of the Ansible series, you’ll learn how to automate routine system maintenance tasks like updating packages and rebooting, while organizing your project using **roles** and **handlers** for better structure and reuse.

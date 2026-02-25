@@ -8,6 +8,8 @@ categories:
 tags:
   - ansible
 cover: cover.jpg
+series:
+  - Ansible Essentials
 ---
 
 Ansible is a powerful automation tool that lets you manage your infrastructure using simple, repeatable playbooks. In this first part of the series, you'll install Ansible, configure SSH access, and run your first task — laying the foundation for automating your homelab.

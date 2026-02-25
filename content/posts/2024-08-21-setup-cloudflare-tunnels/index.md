@@ -1,6 +1,6 @@
 ---
 title: Self-hosting securely with Cloudflare Tunnels
-description: Securely exposing your services with Cloudfare Tunnels.
+description: Securely expose your self-hosted services with Cloudflare Tunnels — no open ports, no firewall changes required.
 date: 2024-08-21
 draft: false
 categories:

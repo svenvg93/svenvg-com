@@ -11,6 +11,8 @@ tags:
   - prometheus
   - grafana
 cover: cover.jpg
+series:
+  - System Monitoring
 ---
 
 Monitoring your systems and containers is essential for maintaining a reliable homelab or home server. A popular setup involves Prometheus, Node Exporter, and cAdvisor for collecting metrics, combined with Grafana for creating insightful dashboards.

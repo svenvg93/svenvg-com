@@ -8,6 +8,8 @@ categories:
 tags:
   - umami
   - web analytics
+  - docker
+  - privacy
 cover: cover.jpg
 ---
 Umami is an open-source, privacy-focused web analytics tool that serves as an alternative to Google Analytics. It offers essential insights into website traffic, user behavior, and performance while prioritizing data privacy. Unlike many traditional analytics platforms, Umami does not collect or store personal data, ensuring compliance with GDPR and PECR, and eliminating the need for cookies.

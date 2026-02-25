@@ -11,6 +11,8 @@ tags:
   - authentik
   - sso
 cover: cover.jpg
+series:
+  - Authentik
 ---
 Enhancing the security and accessibility of your self-hosted applications is simplified with the right tools. By leveraging Cloudflare Tunnels and Authentik, you can create a powerful combination that fortifies your setup. Cloudflare Tunnels allow you to securely expose your local server to the internet, concealing your IP address and eliminating the need for port forwarding. In tandem, Authentik provides robust authentication and access control features.
 

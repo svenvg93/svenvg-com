@@ -1,0 +1,71 @@
+baseURL: https://svenvg.com/
+languageCode: en-US
+defaultContentLanguage: en
+defaultContentLanguageInSubdir: false
+title: Sven van Ginkel
+theme: "github.com/tom2almighty/hugo-narrow"
+
+hasCJKLanguage: true
+enableEmoji: true
+
+permalinks:
+  posts: /posts/:slug/
+  pages: /:slug/
+
+pagination:
+  pagerSize: 6
+  path: "page"
+
+languages:
+  en:
+    languageCode: en-US
+    languageName: "English"
+    weight: 1
+
+taxonomies:
+  category: categories
+  tag: tags
+  series: series
+
+mainSections: ["posts"]
+
+markup:
+  tableOfContents:
+    startLevel: 2
+    endLevel: 4
+    ordered: false
+  goldmark:
+    renderer:
+      unsafe: true
+    extensions:
+      extras:
+        delete:
+          enable: true
+        insert:
+          enable: true
+        mark:
+          enable: true
+  highlight:
+    codeFences: true
+    guessSyntax: false
+    lineNos: false
+    lineNumbersInTable: false
+    noClasses: false
+    style: github
+    tabWidth: 2
+
+outputs:
+  home: ["HTML", "RSS", "JSON", "WebAppManifest"]
+
+outputFormats:
+  WebAppManifest:
+    mediaType: "application/manifest+json"
+    baseName: "site"
+    isPlainText: true
+
+module:
+  hugoVersion:
+    extended: true
+    min: 0.146.0
+  imports:
+    - path: github.com/tom2almighty/hugo-narrow

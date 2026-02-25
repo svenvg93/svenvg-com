@@ -8,6 +8,8 @@ categories:
   - Reverse Proxy
 tags:
   - tailscale
+  - docker
+  - tsdproxy
 cover: cover.jpg
 ---
 > [!WARNING]

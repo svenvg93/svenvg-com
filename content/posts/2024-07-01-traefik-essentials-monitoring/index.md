@@ -11,6 +11,8 @@ tags:
   - metrics
   - logging
 cover: cover.jpg
+series:
+  - Traefik Essentials
 ---
 
 We all enjoy visually appealing graphs filled with data, especially for the services we host. Thankfully, Traefik exposes useful metrics on EntryPoints, Routers, Services, and more. By using Prometheus to scrape these metrics and integrating Promtail with Loki for log collection, we can create a complete monitoring solution.

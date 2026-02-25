@@ -11,6 +11,8 @@ tags:
   - cloudflare
   - lets encrypt
 cover: cover.jpg
+series:
+  - Traefik Essentials
 ---
 
 ## What is Traefik

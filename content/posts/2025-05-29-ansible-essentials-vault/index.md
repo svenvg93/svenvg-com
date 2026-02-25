@@ -9,6 +9,8 @@ tags:
   - ansible
   - secrets
 cover: cover.jpg
+series:
+  - Ansible Essentials
 ---
 
 Storing API keys, tokens, and passwords in your playbooks isn’t safe—especially if you keep your Ansible project in version control. That’s where **Ansible Vault** comes in. It lets you encrypt sensitive variables while still using them like any other part of your automation.

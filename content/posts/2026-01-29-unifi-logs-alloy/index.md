@@ -4,14 +4,15 @@ description: Send Unifi Syslog to Loki with Alloy
 date: 2026-01-29
 draft: false
 categories:
-  - Network
-  - Unifi
+  - Networking
 tags:
   - unifi
   - loki
   - logs
   - alloy
 cover: cover.jpg
+series:
+  - Unifi Homelab
 ---
 
 Unifi network devices generate valuable logs that can help you troubleshoot network issues and monitor your devices. By sending these syslog messages to Loki using Grafana Alloy, you can centralize your network logs alongside your application logs for unified observability.

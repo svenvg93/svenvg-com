@@ -10,6 +10,8 @@ tags:
   - cloudflare worker
   - zensical
 cover: cover.jpg
+series:
+  - Static Site Deployment
 ---
 
 After the announcement that Material for MkDocs is put on [maintenance mode](https://github.com/squidfunk/mkdocs-material/issues/8523). I had to search for an alternative to keep my documentation sites up to date and secure. Luckily the search was short. The team behind Material for MkDocs launched Zensical as a new modern replacement.

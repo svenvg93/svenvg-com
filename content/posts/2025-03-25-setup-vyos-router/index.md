@@ -10,6 +10,8 @@ tags:
   - vyos
   - firewall
 cover: cover.jpg
+series:
+  - Router
 ---
 
 Setting up a [VyOS](https://vyos.io) router for your homelab gives you enterprise-grade networking with open-source flexibility. In this post, we'll cover the essential steps to install and configure VyOS for a more secure and efficient network.

@@ -4,7 +4,7 @@ description: Route Tailscale domains through Tailscale DNS, while keeping local 
 date: 2025-07-30
 draft: false
 categories:
-  - networking
+  - Networking
 tags:
   - linux
   - tailscale

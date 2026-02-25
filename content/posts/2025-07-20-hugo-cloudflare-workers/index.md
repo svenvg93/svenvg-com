@@ -10,6 +10,8 @@ tags:
   - hugo
   - cloudflare workers
 cover: cover.jpg
+series:
+  - Static Site Deployment
 ---
 
 I recently migrated my blog from Jekyll to Hugo — more on that soon. As part of the migration, I needed to set up deployments to Cloudflare. I typically use Cloudflare Pages, but when I went to configure it, I was met with a notice recommending Cloudflare Workers for new projects.

@@ -4,11 +4,13 @@ description: Proxy Unifi Controller through Traefik using file-based configurati
 date: 2025-12-14
 draft: false
 categories:
-  - networking
+  - Networking
 tags:
   - unifi
   - traefik
 cover: cover.jpg
+series:
+  - Unifi Homelab
 ---
 
 While Traefik excels at auto-discovering Docker containers through labels, some services like the Unifi Controller require a different approach. The Unifi Controller uses self-signed certificates and runs on HTTPS, making it a perfect candidate for Traefik's file-based configuration with `insecureSkipVerify`.

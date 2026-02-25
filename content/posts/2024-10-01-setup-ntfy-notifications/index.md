@@ -1,6 +1,6 @@
 ---
 title: Setup ntfy for selfhosted notifications
-description: Selfhosted notifications for you homelab with ntfy & Cloudflare.
+description: Selfhosted notifications for your homelab with ntfy & Cloudflare.
 date: 2024-10-01 09:00:00 +0200
 draft: false
 categories:

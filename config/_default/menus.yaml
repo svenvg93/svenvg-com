@@ -1,0 +1,55 @@
+main:
+  - name: Posts
+    pageRef: /posts
+    weight: 20
+    params:
+      icon: posts
+  - name: Categories
+    pageRef: /categories
+    weight: 30
+    params:
+      icon: categories
+  - name: Series
+    pageRef: /series
+    weight: 40
+    params:
+      icon: series
+  - name: Archives
+    pageRef: /archives
+    weight: 50
+    params:
+      icon: archive
+
+footer:
+  - name: About
+    pageRef: /about
+    weight: 10
+    params:
+      icon: about
+  - name: Contact
+    url: mailto:svenvanginkel@icloud.com
+    weight: 20
+    params:
+      icon: contact
+  - name: RSS Feed
+    url: /index.xml
+    weight: 30
+    params:
+      icon: rss
+
+social:
+  - name: GitHub
+    url: https://github.com/svenvg93
+    weight: 10
+    params:
+      icon: github
+  - name: Twitter
+    url: https://x.com/svenvginkel
+    weight: 20
+    params:
+      icon: twitter
+  - name: LinkedIn
+    url: https://linkedin.com/in/svenvanginkel
+    weight: 30
+    params:
+      icon: linkedin

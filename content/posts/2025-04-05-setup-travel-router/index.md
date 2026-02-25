@@ -8,7 +8,11 @@ categories:
   - Router
 tags:
   - travel router
+  - gl-inet
+  - openwrt
 cover: cover.jpg
+series:
+  - Router
 ---
 
 Whether you're a digital nomad, a frequent traveler, or just someone who values a secure and stable internet connection on the go, a travel router can be a game-changer. In this guide, we'll walk you through everything you need to know about setting up your travel router—from choosing the right model securing your connection, and optimizing performance. Stay connected, stay secure, and make the most of your travel router wherever you go!

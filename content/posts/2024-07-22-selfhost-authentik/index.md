@@ -11,8 +11,7 @@ tags:
   - docker
   - sso
 cover: cover.jpg
-series:
-  - Authentik
+
 ---
 
 Managing authentication and access control for self-hosted applications can be complex. Authentik, an open-source identity provider, simplifies this with features like single sign-on (SSO), multi-factor authentication (MFA), and seamless integration with various apps, enhancing security and user management.

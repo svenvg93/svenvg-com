@@ -10,8 +10,7 @@ tags:
   - mikrotik
   - firewall
 cover: cover.jpg
-series:
-  - Router
+
 ---
 
 

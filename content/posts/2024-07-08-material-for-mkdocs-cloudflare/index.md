@@ -11,8 +11,6 @@ tags:
   - mkdocs
 cover: cover.jpg
 mermaid: true
-series:
-  - Static Site Deployment
 ---
 
 Material for MkDocs is a responsive, modern, and highly customizable theme that elevates the look and functionality of your MkDocs documentation site. Paired with Cloudflare Pages, it offers a fast, secure, and reliable hosting solution optimized for performance and scalability.

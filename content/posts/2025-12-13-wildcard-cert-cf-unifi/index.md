@@ -10,8 +10,7 @@ tags:
   - traefik
   - cloudflare
 cover: cover.jpg
-series:
-  - Unifi Homelab
+
 ---
 
 After recently installing a Unifi network in my homelab, I wanted a solution to access my services on domain names with valid certificates, no one likes the browser errors from self-signed certs. Unifi has the ability to create local DNS records, and with Traefik as a reverse proxy and Cloudflare as the DNS provider, a match made in heaven was born.

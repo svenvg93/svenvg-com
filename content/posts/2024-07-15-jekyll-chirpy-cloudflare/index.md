@@ -12,8 +12,6 @@ tags:
   - cloudflare pages
 cover: cover.jpg
 mermaid: true
-series:
-  - Static Site Deployment
 ---
 
 Jekyll is a versatile static site generator that turns plain text into beautifully designed static websites and blogs. It’s perfect for documentation sites, blogs, event sites, or any type of website you need. With Jekyll, you get a fast, secure, easy-to-use, and open-source tool for building static sites.

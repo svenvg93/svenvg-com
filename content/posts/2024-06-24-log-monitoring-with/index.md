@@ -11,8 +11,7 @@ tags:
   - grafana
   - loki
 cover: cover.jpg
-series:
-  - System Monitoring
+
 ---
 
 Monitoring isn’t just about metrics—it’s about ensuring application health. Centralized logging with Loki and Grafana provides deeper insights by visualizing and searching logs, helping you quickly identify and resolve issues.

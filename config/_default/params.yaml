@@ -5,7 +5,7 @@ defaultAuthor: "Sven van Ginkel"
 language: "en-US"
 shortName: "Sven van Ginkel"  # PWA
 images:
-- "https://avatars.githubusercontent.com/u/4511676"
+- "/image.png"
 
 favicon:
   svg: "/favicon.svg"
@@ -13,7 +13,7 @@ favicon:
 header:
   sticky: true
   logo:
-    image: "https://avatars.githubusercontent.com/u/4511676"
+    image: "/image.png"
     link: "/"
   showThemeSwitch: false
   showDarkModeSwitch: true
@@ -24,7 +24,7 @@ author:
   name: "Sven van Ginkel"
   title: "Homelab Enthusiast • Network Designer"
   description: "Sharing insights on networking, automation, and building reliable systems."
-  avatar: "https://avatars.githubusercontent.com/u/4511676"
+  avatar: "/image.png"
   social:
     - name: "GitHub"
       url: "https://github.com/svenvg93"
@@ -32,46 +32,14 @@ author:
     - name: "Twitter"
       url: "https://x.com/svenvginkel"
       icon: "twitter"
+    - name: "LinkedIn"
+      url: "https://linkedin.com/in/svenvanginkel"
+      icon: "linkedin"
 
-# default color scheme
 colorScheme: "default"
-themes:
-  default:
-    name: "Default"
-    order: 1
-  claude:
-    name: "Claude"
-    order: 2
-  bumblebee:
-    name: "Bumblebee"
-    order: 3
-  emerald:
-    name: "Emerald"
-    order: 4
-  nord:
-    name: "Nord"
-    order: 5
-  sunset:
-    name: "Sunset"
-    order: 6
-  abyss:
-    name: "Abyss"
-    order: 7
-  dracula:
-    name: "Dracula"
-    order: 8
-  amethyst:
-    name: "Amethyst"
-    order: 9
-  slate:
-    name: "Slate"
-    order: 10
-  twitter:
-    name: "Twitter"
-    order: 11
 
 home:
-  recentPostsCount: 5
+  recentPostsCount: 8
   contentOrder:
     - author-section
     - recent-posts
@@ -161,7 +129,7 @@ katex:
       display: true
 
 mermaid:
-  enabled: false
+  enabled: true
 
 gallery:
   enabled: true

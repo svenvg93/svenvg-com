@@ -1,8 +1,22 @@
 ---
 title: "About"
-date: 2023-01-01T08:00:00-07:00
+date: 2026-03-01
 ---
 
-Welcome to my corner of the internet! I'm Sven, A network designer, a HomeLab enthusiast and full time nerd. This blog is where I share my journey, blending professional insights with personal homelab adventures. Here, you’ll find lessons learned, challenges faced, and solutions uncovered from my tech projects.
+I’m Sven — a network designer at Odido Nederland by day, and a homelab enthusiast by night. I specialize in fixed access networks, CPE platforms, and infrastructure automation.
 
-With years of experience in telecommunications and network engineering, I specialize in fixed access networks and infrastructure. In my current role, I design innovative network solutions while optimizing and maintaining existing systems. I’m deeply passionate about the evolution of network infrastructure and the possibilities it unlocks.
+## What I write about
+
+This blog is where I document what I build and learn. You’ll find practical guides on:
+
+- **Networking** — Traefik, MikroTik, VyOS, UniFi, Tailscale
+- **Self-hosting** — Docker, Authentik, monitoring stacks
+- **Automation** — Ansible, GitHub Actions, GitOps
+- **Infrastructure** — Cloudflare, DNS, SSL, CI/CD
+
+My homelab is where I test ideas before they become guides. If something works well there, it usually ends up here.
+
+## More
+
+- [Resume](/resume) — my professional background
+- [Personal Projects](/projects) — things I’ve built

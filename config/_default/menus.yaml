@@ -4,26 +4,26 @@ main:
     weight: 20
     params:
       icon: posts
-  - name: Categories
-    pageRef: /categories
-    weight: 30
-    params:
-      icon: categories
+#  - name: Categories
+#    pageRef: /categories
+#    weight: 30
+#    params:
+#      icon: categories
   - name: Series
     pageRef: /series
-    weight: 40
+    weight: 30
     params:
       icon: series
   - name: Projects
     pageRef: /projects
-    weight: 50
+    weight: 40
     params:
       icon: projects
-  - name: Archives
-    pageRef: /archives
-    weight: 60
+  - name: Resume
+    pageRef: /resume
+    weight: 50
     params:
-      icon: archive
+      icon: changelog
 
 footer:
   - name: About

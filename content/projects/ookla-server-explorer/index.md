@@ -3,7 +3,7 @@ title: Ookla Server Explorer
 date: 2026-03-01T15:21:19Z
 slug: ookla-server-explorer
 description: A searchable web interface for discovering Speedtest servers worldwide, built with React and Cloudflare Workers.
-summary: Browse and discover Speedtest servers by ISP, city, or country with geolocation-aware results and one-click speed tests.
+summary: Browse and discover Ookla Speedtest servers by ISP, city, or country with geolocation-aware results and one-click speed tests.
 featured: true
 tags:
   - react
@@ -12,7 +12,7 @@ tags:
   - ookla
 categories:
   - projects
-cover: ""
+cover: cover.jpg
 status: "completed"
 ---
 

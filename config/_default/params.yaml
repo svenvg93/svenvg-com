@@ -22,14 +22,14 @@ header:
 
 author:
   name: "Sven van Ginkel"
-  title: "Homelab Enthusiast • Network Designer"
-  description: "Sharing insights on networking, automation, and building reliable systems."
+  title: "Self-Hosting • Homelab • Network Engineering"
+  description: "Sharing practical guides on self-hosting, homelab architecture, networking, and automation — building reliable, privacy-respecting infrastructure."
   avatar: "/image.png"
   social:
     - name: "GitHub"
       url: "https://github.com/svenvg93"
       icon: "github"
-    - name: "Twitter"
+    - name: "X"
       url: "https://x.com/svenvginkel"
       icon: "twitter"
     - name: "LinkedIn"

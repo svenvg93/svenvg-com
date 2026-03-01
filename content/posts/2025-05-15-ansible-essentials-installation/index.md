@@ -1,7 +1,8 @@
 ---
 title: Ansible Essentials Installation & Configuration
-description: Getting started with Ansible — from installation to your first automated task.
+description: Install and configure Ansible on Linux, set up your inventory, and run your first ad-hoc commands and playbooks to automate infrastructure tasks.
 date: 2025-05-15
+lastmod: 2025-05-15
 draft: false
 categories:
   - Automation

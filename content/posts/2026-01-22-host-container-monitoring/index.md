@@ -2,6 +2,7 @@
 title: Host & Container Monitoring with Grafana Alloy
 description: Collect host system and Docker container metrics using Grafana Alloy's built-in exporters, stored in Prometheus and visualized in Grafana.
 date: 2026-01-22
+lastmod: 2026-01-22
 draft: false
 categories:
   - Monitoring

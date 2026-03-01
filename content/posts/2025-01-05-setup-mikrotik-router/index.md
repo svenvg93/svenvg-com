@@ -1,7 +1,8 @@
 ---
 title: Setting up an Mikrotik Router
-description: Configure a Mikrotik Router for your homelab, with a secure and flexible configuration.
+description: Configure a MikroTik router from scratch for your homelab — covering initial setup, VLANs, firewall rules, and DHCP for a secure network.
 date: 2025-01-05
+lastmod: 2025-01-05
 draft: false
 categories:
   - Networking

@@ -2,6 +2,7 @@
 title: Log Monitoring with Grafana Alloy and Loki
 description: Collect system logs and Docker container logs using Grafana Alloy and forward them to Loki for centralized log management in Grafana.
 date: 2026-02-05
+lastmod: 2026-02-05
 draft: false
 categories:
   - Monitoring

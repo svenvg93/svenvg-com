@@ -2,6 +2,7 @@
 title: Automating Dependabot for Docker Compose
 description: Keep your Docker Compose dependencies secure and up to date by automating Dependabot configuration with a simple Bash script and GitHub Actions.
 date: 2025-05-12
+lastmod: 2025-05-12
 draft: false
 categories:
   - CI/CD

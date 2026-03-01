@@ -1,7 +1,8 @@
 ---
 title: Ansible Essentials Playbooks, Roles & Handlers
-description: Learn to organize your Ansible automation with playbooks, roles, and handlers for cleaner, scalable infrastructure.
+description: Structure your Ansible automation using playbooks, roles, and handlers to keep your infrastructure code clean, reusable, and easy to scale.
 date: 2025-05-19
+lastmod: 2025-05-19
 draft: false
 categories:
   - Automation

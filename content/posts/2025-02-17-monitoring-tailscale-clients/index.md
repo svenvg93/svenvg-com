@@ -1,7 +1,8 @@
 ---
 title: Monitoring Tailscale clients with Prometheus
-description: Learn how to track Tailscale traffic using Prometheus for real-time insights into your secure network.
+description: Monitor Tailscale client traffic and connection metrics using Prometheus to gain real-time visibility into your secure overlay network.
 date: 2025-02-17
+lastmod: 2025-02-17
 draft: false
 categories:
   - Monitoring

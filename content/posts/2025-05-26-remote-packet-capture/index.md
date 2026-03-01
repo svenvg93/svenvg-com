@@ -1,7 +1,8 @@
 ---
 title: Remote Packet Capture with Wireshark
-description: A guide to setting up Wireshark for secure remote packet capture via SSH.
+description: Capture network packets remotely using Wireshark over SSH — no local install needed on the target host, ideal for homelab troubleshooting.
 date: 2025-05-26
+lastmod: 2025-05-26
 draft: false
 categories:
   - Networking

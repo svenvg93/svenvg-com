@@ -8,6 +8,7 @@ theme: "github.com/tom2almighty/hugo-narrow"
 hasCJKLanguage: true
 enableEmoji: true
 enableGitInfo: true
+enableRobotsTXT: true
 timeZone: "Europe/Amsterdam"
 
 minify:
@@ -38,7 +39,6 @@ mainSections: ["posts"]
 frontmatter:
   lastmod:
     - lastmod
-    - :git
     - date
     - publishDate
 

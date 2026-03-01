@@ -1,7 +1,8 @@
 ---
 title: WireGuard VPN Server on MikroTik
-description: Set up a WireGuard VPN server on a MikroTik router for secure remote access to your homelab.
+description: Configure a WireGuard VPN server on a MikroTik router to enable secure, encrypted remote access to your homelab network from any device.
 date: 2026-02-03
+lastmod: 2026-02-03
 draft: true
 categories:
   - Networking

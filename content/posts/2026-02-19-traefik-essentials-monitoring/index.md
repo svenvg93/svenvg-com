@@ -1,7 +1,8 @@
 ---
 title: Traefik Essentials Monitoring with Grafana, Prometheus & Loki
-description: In Part 3 of the Traefik series, learn how to monitor your Traefik instance's performance using Prometheus, Loki, and Grafana.
+description: Monitor your Traefik reverse proxy with Prometheus metrics, Loki access logs, and Grafana dashboards for full request-level observability.
 date: 2026-02-19
+lastmod: 2026-02-19
 draft: false
 categories:
   - Networking

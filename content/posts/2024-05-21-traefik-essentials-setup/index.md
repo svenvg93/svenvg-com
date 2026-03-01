@@ -1,7 +1,8 @@
 ---
 title: Traefik Essentials Reverse Proxy with Docker & Let's Encrypt
-description: Master the art of deploying Traefik in your environment. This comprehensive guide covers everything from installation to advanced configuration for seamless traffic management in your homelab.
+description: Set up Traefik as a reverse proxy with Docker and Let's Encrypt — covering installation, routing, TLS, and middleware for your homelab.
 date: 2024-05-21
+lastmod: 2024-05-21
 draft: false
 categories:
   - Networking

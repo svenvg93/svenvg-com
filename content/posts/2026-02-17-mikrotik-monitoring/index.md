@@ -1,7 +1,8 @@
 ---
 title: Monitoring MikroTik with Grafana
-description: Collect MikroTik router metrics via SNMP and forward syslog to Loki using Grafana Alloy for full observability.
+description: Collect MikroTik router metrics via SNMP and forward syslog to Loki using Grafana Alloy for complete network observability in your homelab.
 date: 2026-02-17
+lastmod: 2026-02-17
 draft: true
 categories:
   - Networking

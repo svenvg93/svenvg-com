@@ -7,6 +7,12 @@ theme: "github.com/tom2almighty/hugo-narrow"
 
 hasCJKLanguage: true
 enableEmoji: true
+enableGitInfo: true
+timeZone: "Europe/Amsterdam"
+
+minify:
+  disableXML: true
+  minifyOutput: true
 
 permalinks:
   posts: /posts/:slug/
@@ -28,6 +34,28 @@ taxonomies:
   series: series
 
 mainSections: ["posts"]
+
+frontmatter:
+  lastmod:
+    - lastmod
+    - :git
+    - date
+    - publishDate
+
+related:
+  includeNewer: true
+  threshold: 80
+  indices:
+    - name: tags
+      weight: 100
+    - name: categories
+      weight: 70
+    - name: keywords
+      weight: 50
+
+sitemap:
+  changeFreq: monthly
+  priority: 0.5
 
 markup:
   tableOfContents:

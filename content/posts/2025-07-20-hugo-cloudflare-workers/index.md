@@ -4,7 +4,6 @@ description: Deploy your Hugo Website to Cloudflare Workers
 date: 2025-07-20
 draft: false
 categories:
-  - DevOps
   - CI/CD
 tags:
   - hugo

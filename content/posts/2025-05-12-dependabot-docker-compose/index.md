@@ -4,7 +4,6 @@ description: Keep your Docker Compose dependencies secure and up to date by auto
 date: 2025-05-12
 draft: false
 categories:
-  - DevOps
   - CI/CD
 tags:
   - dependabot

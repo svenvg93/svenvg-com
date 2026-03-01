@@ -1,6 +1,6 @@
 {
   "name": "svenvg-com",
-  "compatibility_date": "2025-07-20",
+  "compatibility_date": "2026-03-01",
   "assets": {
     "directory": "./public",
     "html_handling": "auto-trailing-slash",
@@ -10,12 +10,16 @@
   "build": {
     "command": "hugo build --gc --minify",
   },
-  "workers_dev": true,
+  "workers_dev": false,
   "preview_urls": true,
   "routes": [
     {
         "custom_domain": true,
         "pattern": "svenvg.com"
+    },
+    {
+        "custom_domain": true,
+        "pattern": "www.svenvg.com"
     }
   ]
 }

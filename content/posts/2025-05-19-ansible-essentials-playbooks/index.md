@@ -75,7 +75,7 @@ homelab-ansible/
 └── README.md
 ```
 
-## Create a Maintaince role
+## Create a Maintenance role
 
 To maintain a well-organized and reusable Ansible project, we've introduced a role called `maintenance` that handles system package updates across all hosts. By using roles, we can group related tasks and logic—in this case, routine system maintenance—into a dedicated, structured directory for better clarity and reusability.
 

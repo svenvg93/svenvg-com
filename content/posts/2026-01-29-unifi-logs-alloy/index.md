@@ -21,7 +21,7 @@ This guide we will only focus on device logs. Securtiy and firewall logs are out
 ## Prerequisites
 
 - Grafana Alloy installed (or can be deployed via Docker)
-- Grafana and Loki instance running (see my [Log Monitoring with Loki & Promtail]({{< ref "/posts/2024-06-24-log-monitoring-with" >}}) post)
+- Grafana and Loki instance running (see my [Log Monitoring with Grafana Alloy and Loki]({{< ref "/posts/2026-02-05-log-monitoring-with-alloy" >}}) post)
 - Unifi Controller with network devices configured
 
 ## Why Grafana Alloy?

@@ -77,7 +77,7 @@ homelab-ansible/
 └── README.md
 ```
 
-### Create the ansibile configuration file
+### Create the Ansible configuration file
 
 The `ansible.cfg` file is typically located either in your home directory or in the `/etc/ansible` directory.
 
@@ -100,11 +100,10 @@ Create a static inventory file to list your homelab machines. This file is typic
 
 ```yaml
 all:
-  children:
-    homelab:
-      hosts:
-        server01:
-        server02:
+  homelab:
+    hosts:
+      server01:
+      server02:
 ```
 
 Replace `server01` and `server02` with actual IPs or hostnames.

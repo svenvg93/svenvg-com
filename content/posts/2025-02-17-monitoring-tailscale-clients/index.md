@@ -5,7 +5,6 @@ date: 2025-02-17
 draft: false
 categories:
   - Monitoring
-  - Metrics
 tags:
   - prometheus
   - tailscale

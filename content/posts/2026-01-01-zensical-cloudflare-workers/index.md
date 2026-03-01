@@ -4,10 +4,9 @@ description: Build a documentation site with Zensical on Cloudflare Workers
 date: 2026-01-01
 draft: false
 categories:
-  - Documentation
   - CI/CD
 tags:
-  - cloudflare worker
+  - cloudflare workers
   - zensical
 cover: cover.jpg
 ---

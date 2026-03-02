@@ -1,5 +1,5 @@
 ---
-title: Setting up an Mikrotik Router
+title: Setting up a MikroTik Router
 description: Configure a MikroTik router from scratch for your homelab — covering initial setup, VLANs, firewall rules, and DHCP for a secure network.
 date: 2025-01-05
 lastmod: 2025-01-05
@@ -14,39 +14,43 @@ cover: cover.jpg
 
 ---
 
+MikroTik routers are a popular choice for homelabs thanks to their flexibility and affordability. This guide walks through a clean, from-scratch configuration covering LAN, WAN, NAT, and firewall rules.
 
-Setting up a MikroTik router for your homelab can be an exciting way to improve network performance, security, and management. MikroTik routers are known for their flexibility, power, and affordability, making them an ideal choice for homelab enthusiasts looking to build a robust network infrastructure. In this post, we’ll walk you through the essential steps to get your MikroTik router up and running.
+> [!TIP]
+> Replace the placeholder variables shown in `[BRACKETS]` with values that match your environment.
 
 ## Connect to the router
 
-To configure the MikroTik router, you’ll first need to establish a connection. We recommend using either a serial cable or an SSH connection. These methods allow you to easily copy and paste the configuration commands provided below, making the setup process more efficient and error-free.
+You'll need a terminal connection to paste the commands below. Two options:
 
-### Using a Serial Cable
+### Serial cable
 
-1. Connect the serial cable to the MikroTik router and your computer.
-2. Use terminal software like PuTTY (Windows), screen (Linux), or Serial (macOS).
-3. Configure the terminal software with the following settings:
-  - **Baud Rate** : 115200
-  - **Data Bits** : 8
-  - **Stop Bits** : 1
-  - **Parity** : None
-  - **Flow Control** : None
-4. Open the connection, and you’ll see the MikroTik console.
-5. When prompted, enter the default username `admin` and leave the password field blank (default).
+1. Connect the serial cable between the router and your computer.
+2. Open a terminal app: PuTTY (Windows), `screen` (Linux), or Serial (macOS).
+3. Use these settings: **Baud Rate** 115200 · **Data Bits** 8 · **Stop Bits** 1 · **Parity** None · **Flow Control** None.
+4. Log in with username `admin` and no password (default).
 
-### Using SSH
-1. Connect your computer to one of the LAN ports of the MikroTik router using an Ethernet cable.
-2. Ensure your computer is set to obtain an IP address automatically (DHCP). The router will assign your computer an IP address.
-3. Find the default IP address of the MikroTik router (usually 192.168.88.1) and use SSH to connect.
-4. When prompted, enter the default username `admin` and leave the password field blank (default).
+### SSH
 
-First, we’ll configure the LAN ports to establish a network connection for all your devices. This will ensure that both your homelab and internet access are set up properly, providing seamless connectivity throughout your network.
+1. Connect your computer to a LAN port on the router via Ethernet.
+2. Set your computer to obtain an IP address via DHCP.
+3. SSH to the router's default IP (`192.168.88.1`), username `admin`, no password.
+
+## Reset to a blank state
+
+MikroTik routers ship with a default configuration that includes firewall rules, a DHCP server, and NAT. To avoid conflicts, reset to a blank state before continuing:
+
+```bash
+/system reset-configuration no-defaults=yes
+```
+
+The router will reboot. After the reboot there is **no DHCP server**, so reconnect using a **serial cable** or set a **static IP** on your computer (e.g. `192.168.1.2/24`) before SSHing in. Log in again with `admin` and no password.
 
 ## LAN
 
-### Bridge Interface
+### Bridge interface
 
-we’ll create a bridge interface, allowing us to combine all the ports into a single network. This will enable seamless communication between all your devices on the same network.
+Create a bridge to combine the LAN ports into a single network. Adjust the port list to match your router model.
 
 ```bash
 /interface bridge
@@ -69,41 +73,92 @@ add address=192.168.1.1/24 interface=bridge1 network=192.168.1.0
 
 ### DHCP
 
-Now, we’ll set up a DHCP server to automatically assign IP addresses to all the devices connected to your network.
+Set up a DHCP server to automatically assign IP addresses to connected devices.
 
 ```bash
-/ip dhcp-server network
-add address=192.168.1.0/24 dns-server=192.168.1.1 gateway=192.168.1.1 netmask=24
 /ip pool
 add name=dhcp_pool0 ranges=192.168.1.100-192.168.1.254
+/ip dhcp-server network
+add address=192.168.1.0/24 dns-server=192.168.1.1 gateway=192.168.1.1 netmask=24
 /ip dhcp-server
 add address-pool=dhcp_pool0 interface=bridge1 lease-time=1d name=dhcp1
 ```
 
 ### DNS
 
-Next, we’ll enable DNS queries on the router and configure it to forward those queries to the upstream DNS server. This will ensure that your devices can resolve domain names and access websites without any issues.
+Allow devices on your network to use the router as a DNS resolver.
 
 ```bash
 /ip dns
 set allow-remote-requests=yes
 ```
 
+If your WAN connection uses a **static IP**, no upstream DNS is provided automatically. Set one manually:
+```bash
+/ip dns set servers=1.1.1.1,8.8.8.8
+```
+
+## WAN
+
+`ether1` is used as the WAN port in this setup. Pick the block that matches your ISP connection type and run it, then run the common step at the bottom.
+
+```bash {filename="DHCP with VLAN"}
+/interface vlan add interface=ether1 name=internet vlan-id=[VLAN_ID]
+/ip dhcp-client add interface=internet disabled=no use-peer-ntp=no add-default-route=yes
+```
+
+```bash {filename="DHCP"}
+/interface ethernet set ether1 name=internet
+/ip dhcp-client add interface=internet add-default-route=yes disabled=no use-peer-ntp=no
+```
+
+```bash {filename="PPPoE with VLAN"}
+/interface vlan add interface=ether1 name=vlan_int vlan-id=[VLAN_ID]
+/interface pppoe-client add add-default-route=yes disabled=no interface=vlan_int name=internet use-peer-dns=yes user=[USERNAME] password=[PASSWORD]
+```
+
+```bash {filename="PPPoE"}
+/interface pppoe-client add add-default-route=yes disabled=no interface=ether1 name=internet use-peer-dns=yes user=[USERNAME] password=[PASSWORD]
+```
+
+```bash {filename="Static IP"}
+/interface ethernet set ether1 name=internet
+/ip address add address=[IP_ADDRESS] interface=internet
+/ip route add gateway=[GATEWAY]
+/ip dns set servers=[DNS_SERVER]
+```
+
+After running the block for your connection type, add the WAN interface to the interface list:
+
+```bash
+/interface list add name=WAN
+/interface list member add interface=internet list=WAN
+```
+
+## NAT
+
+Masquerade outgoing traffic so devices on your LAN can reach the internet using the router's public IP.
+
+```bash
+/ip firewall nat
+add action=masquerade chain=srcnat comment="Enable NAT on WAN interface" out-interface-list=WAN
+```
+
 ## Firewall
 
-The firewall will be configured to block all incoming traffic by default, only allowing connections that are established, related, or untracked. Outgoing traffic will be permitted solely from the LAN side, ensuring secure and controlled communication between your devices and the internet.
+Rules are processed top-down. This configuration allows established connections and LAN-initiated traffic, and drops everything else.
 
 ```bash
 /ip firewall filter
 add action=accept chain=forward comment="Allow established,related,untracked" connection-state=established,related,untracked
-add action=drop chain=forward comment="drop invalid traffic" connection-state=invalid
-add action=accept chain=forward comment="port forwarding" connection-nat-state=dstnat
-add action=accept chain=forward comment="internet traffic" in-interface-list=LAN out-interface-list=WAN
+add action=drop chain=forward comment="Drop invalid traffic" connection-state=invalid
+add action=accept chain=forward comment="Port forwarding" connection-nat-state=dstnat
+add action=accept chain=forward comment="LAN to WAN" in-interface-list=LAN out-interface-list=WAN
 add action=accept chain=forward comment="LAN to LAN" in-interface-list=LAN out-interface-list=LAN
-add action=drop chain=forward comment="drop all else"
+add action=drop chain=forward comment="Drop all else"
 add action=accept chain=input comment="Allow established,related,untracked" connection-state=established,related,untracked
 add action=drop chain=input comment="Drop invalid" connection-state=invalid
-add action=accept chain=input comment="Allow traffic from LAN interface list to the router" in-interface-list=LAN
+add action=accept chain=input comment="Allow LAN to router" in-interface-list=LAN
 add action=drop chain=input comment="Drop all else"
 /ip firewall service-port
 set ftp disabled=yes
@@ -112,82 +167,27 @@ set h323 disabled=yes
 set sip disabled=yes
 ```
 
-## WAN
-
-We’ll need to configure the WAN interface to obtain an IP address from your ISP. In this setup, the physical interface `ether1` will be used to connect to your ISP. 
-
-Be sure to replace the placeholder variables [inside brackets] with values specific to your setup.
-
-```bash {filename="DHCP with VLAN"}
-/interface vlan add interface=ether1 name=internet vlan-id=[ISP VLAN ID]
-/ip dhcp-client add interface=internet disabled=no use-peer-ntp=no add-default-route=yes 
-/interface list add name=WAN 
-/interface list member add interface=internet list=WAN
-```
-
-```bash {filename="DHCP"}
-/interface ethernet set ether1 name=internet 
-/ip dhcp-client add interface=internet add-default-route=yes disabled=no use-peer-ntp=no 
-/interface list add name=WAN 
-/interface list member add interface=internet list=WAN`
-```
-
-```bash {filename="PPPoE with VLAN"}
-/interface add interface=ether1 name=vlan_int vlan-id=[ISP VLAN ID]
-/interface pppoe-client add add-default-route=yes disabled=no interface=vlan_int name=internet use-peer-dns=yes user=[username] password=[password]
-/interface list add name=WAN 
-/interface list member add interface=internet list=WAN`
-```
-
-```bash {filename="PPPoE"}
-/interface pppoe-client add add-default-route=yes disabled=no interface=ether1 name=internet use-peer-dns=yes user=[username] password=[password]
-/interface list add name=WAN 
-/interface list member add interface=internet list=WAN`
-```
-
-```bash {filename="Static IP"}
-/interface ethernet set ether1 name=internet 
-/ip address add address=[IP Address] interface=internet 
-/ip route add gateway=[IP Gateway]
-/ip dns set servers=[DNS Server]
-/interface list add name=WAN 
-/interface list member add interface=internet list=WAN`
-```
-
-
-## NAT
-
-We’ll now set up a NAT rule to translate all outgoing traffic from your local network to your public IP address. This will enable devices in your homelab to access the internet using the router’s public IP, ensuring proper routing and security for all outgoing connections.
-
-```bash
-/ip firewall nat
-add action=masquerade chain=srcnat comment="Enable NAT on WAN interface" out-interface-list=WAN
-```
-
 ## System
 
-We’ll create a new user account with the necessary privileges and then disable the default user account. This will help prevent unauthorized access and ensure that only trusted users can manage the router. As well we you can change the hostname for the router.
+### User account
 
-### User Account
+Create a new admin user, then disable the default `admin` account to prevent unauthorized access.
 
 ```bash
-/user add name=[YourUsername] password=[YourPassword] group=full
+/user add name=[USERNAME] password=[PASSWORD] group=full
 /user disable admin
 ```
-
-* Replace [YourUsername] to your new username
-* Replace [YourPassword] to your new password
 
 ### Hostname
 
 ```bash
 /system identity
-set name=<Your hostname>
+set name=[HOSTNAME]
 ```
 
 ### NTP
 
-To ensure the router displays the accurate time, we’ll configure the correct timezone.
+Enable NTP to keep the router's clock in sync and set your local timezone.
 
 ```bash
 /system ntp client
@@ -195,8 +195,24 @@ set enabled=yes
 /system ntp client servers
 add address=time.cloudflare.com
 /system clock
-set time-zone-name=Your Timezone
+set time-zone-name=[TIMEZONE]
 ```
-Replace `Your Timezone` this to your timezone
 
-Now your MikroTik router is fully configured and ready to power your homelab! 🎉 With a secure and efficient network in place, you can focus on building and exploring your homelab projects. Happy networking! 🤝
+### Restrict management services
+
+MikroTik enables several management interfaces by default (API, Winbox, web UI, Telnet) that are accessible from all interfaces. Disable unused ones and restrict the rest to your LAN subnet.
+
+```bash
+/ip service
+set api disabled=yes
+set api-ssl disabled=yes
+set telnet disabled=yes
+set www disabled=yes
+set www-ssl disabled=yes
+set ssh address=192.168.1.0/24
+set winbox address=192.168.1.0/24
+```
+
+---
+
+Your MikroTik router is now configured with a secure baseline. From here you can expand with VLANs, more granular firewall rules, or additional services like a VPN.

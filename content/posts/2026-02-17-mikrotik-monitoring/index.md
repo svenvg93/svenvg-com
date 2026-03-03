@@ -15,7 +15,6 @@ tags:
   - grafana
   - prometheus
 cover: cover.jpg
-
 ---
 
 MikroTik routers don't expose a native Prometheus endpoint, but they support both SNMP and remote syslog — making it straightforward to integrate them into a Grafana observability stack. This guide covers collecting system metrics via SNMP and centralizing logs in Loki, both using Grafana Alloy.

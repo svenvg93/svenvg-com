@@ -1,5 +1,5 @@
 ---
-title: Setting Up Your Travel Router | Secure and Reliable Internet Anywhere
+title: Setting Up Your Travel Router
 description: Configure your travel router for secure, reliable internet on the go — covering VPN setup, Wi-Fi settings, and network isolation for public networks.
 date: 2025-04-05
 lastmod: 2025-04-05
@@ -12,7 +12,6 @@ tags:
   - gl-inet
   - openwrt
 cover: cover.jpg
-
 ---
 
 Whether you're a digital nomad, a frequent traveler, or just someone who values a secure and stable internet connection on the go, a travel router can be a game-changer. In this guide, we'll walk you through everything you need to know about setting up your travel router—from choosing the right model securing your connection, and optimizing performance. Stay connected, stay secure, and make the most of your travel router wherever you go!

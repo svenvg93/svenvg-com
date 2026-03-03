@@ -1,5 +1,5 @@
 ---
-title: Setting up a MikroTik Router
+title: Setting Up a MikroTik Router
 description: Configure a MikroTik router from scratch for your homelab — covering initial setup, VLANs, firewall rules, and DHCP for a secure network.
 date: 2025-01-05
 lastmod: 2025-01-05
@@ -11,7 +11,6 @@ tags:
   - mikrotik
   - firewall
 cover: cover.jpg
-
 ---
 
 MikroTik routers are a popular choice for homelabs thanks to their flexibility and affordability. This guide walks through a clean, from-scratch configuration covering LAN, WAN, NAT, and firewall rules.

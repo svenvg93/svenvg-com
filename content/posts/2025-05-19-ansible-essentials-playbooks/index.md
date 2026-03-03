@@ -1,5 +1,5 @@
 ---
-title: Ansible Essentials Playbooks, Roles & Handlers
+title: "Ansible Essentials: Playbooks, Roles & Handlers"
 description: Structure your Ansible automation using playbooks, roles, and handlers to keep your infrastructure code clean, reusable, and easy to scale.
 date: 2025-05-19
 lastmod: 2025-05-19
@@ -11,6 +11,7 @@ tags:
 cover: cover.jpg
 series:
   - Ansible Essentials
+series_order: 2
 ---
 
 In this part of the Ansible series, you’ll learn how to automate routine system maintenance tasks like updating packages and rebooting, while organizing your project using **roles** and **handlers** for better structure and reuse.

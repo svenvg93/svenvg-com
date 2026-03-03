@@ -1,5 +1,5 @@
 ---
-title: Ansible Essentials Installation & Configuration
+title: "Ansible Essentials: Installation & Configuration"
 description: Install and configure Ansible on Linux, set up your inventory, and run your first ad-hoc commands and playbooks to automate infrastructure tasks.
 date: 2025-05-15
 lastmod: 2025-05-15
@@ -11,6 +11,7 @@ tags:
 cover: cover.jpg
 series:
   - Ansible Essentials
+series_order: 1
 ---
 
 Ansible is a powerful automation tool that lets you manage your infrastructure using simple, repeatable playbooks. In this first part of the series, you'll install Ansible, configure SSH access, and run your first task — laying the foundation for automating your homelab.

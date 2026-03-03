@@ -13,7 +13,6 @@ tags:
   - loki
   - alloy
 cover: cover.jpg
-
 ---
 
 Before you can collect metrics or centralize logs, you need somewhere to store and visualize them — and an agent to collect the data. This post sets up all four components of a Grafana observability stack:

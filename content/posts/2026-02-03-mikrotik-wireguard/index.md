@@ -12,7 +12,6 @@ tags:
   - wireguard
   - vpn
 cover: cover.jpg
-
 ---
 
 WireGuard is a modern, high-performance VPN protocol that is simple to configure and provides excellent security. MikroTik routers running RouterOS v7 and above have built-in WireGuard support, making it easy to set up a VPN server for secure remote access to your homelab network.

@@ -1,5 +1,5 @@
 ---
-title: Traefik Essentials Monitoring with Grafana, Prometheus & Loki
+title: "Traefik Essentials: Monitoring with Grafana, Prometheus & Loki"
 description: Monitor your Traefik reverse proxy with Prometheus metrics, Loki access logs, and Grafana dashboards for full request-level observability.
 date: 2026-02-19
 lastmod: 2026-02-19
@@ -7,12 +7,16 @@ draft: false
 categories:
   - Networking
   - Reverse Proxy
+  - Monitoring
 tags:
   - traefik
-  - logs
+  - prometheus
+  - grafana
+  - loki
 cover: cover.jpg
 series:
   - Traefik Essentials
+series_order: 2
 ---
 
 Traefik exposes metrics on EntryPoints, Routers, Services, and more. This guide shows you how to collect these metrics with Prometheus and aggregate logs with Loki via Grafana Alloy for a complete monitoring solution.

@@ -1,5 +1,5 @@
 ---
-title: Self-hosting securely with Cloudflare Tunnels
+title: Self-Hosting with Cloudflare Tunnels
 description: Expose your self-hosted services securely with Cloudflare Tunnels — no open ports or firewall rules needed, with built-in DDoS protection.
 date: 2024-08-21
 lastmod: 2024-08-21

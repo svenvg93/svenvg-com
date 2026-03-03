@@ -15,7 +15,6 @@ tags:
   - grafana
   - openwrt
 cover: cover.jpg
-
 ---
 
 GL.iNet routers run OpenWRT, which has native Prometheus exporter packages and remote syslog support. This guide covers installing the Lua-based node exporter for metrics and forwarding syslog to Loki via Grafana Alloy — giving you full observability of your GL.iNet router.

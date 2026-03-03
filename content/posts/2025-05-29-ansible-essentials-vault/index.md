@@ -1,5 +1,5 @@
 ---
-title: Ansible Essentials Managing Secrets with Vault
+title: "Ansible Essentials: Managing Secrets with Vault"
 description: Use Ansible Vault to encrypt sensitive data like passwords and API keys in your playbooks, keeping secrets safely out of version control.
 date: 2025-05-29
 lastmod: 2025-05-29
@@ -12,6 +12,7 @@ tags:
 cover: cover.jpg
 series:
   - Ansible Essentials
+series_order: 3
 ---
 
 Storing API keys, tokens, and passwords in your playbooks isn’t safe—especially if you keep your Ansible project in version control. That’s where **Ansible Vault** comes in. It lets you encrypt sensitive variables while still using them like any other part of your automation.

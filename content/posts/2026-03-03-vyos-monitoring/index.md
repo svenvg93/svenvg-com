@@ -14,7 +14,6 @@ tags:
   - alloy
   - grafana
 cover: cover.jpg
-
 ---
 
 VyOS has built-in support for Prometheus exporters, making it easy to integrate your router into an existing monitoring stack. This guide covers collecting system metrics via Node Exporter, connection metrics via Blackbox Exporter, and centralizing syslog in Loki — all using Grafana Alloy.

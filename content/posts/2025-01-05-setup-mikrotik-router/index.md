@@ -15,9 +15,6 @@ cover: cover.jpg
 
 MikroTik routers are a popular choice for homelabs thanks to their flexibility and affordability. This guide walks through a clean, from-scratch configuration covering LAN, WAN, NAT, and firewall rules.
 
-> [!TIP]
-> Replace the placeholder variables shown in `[BRACKETS]` with values that match your environment.
-
 ## Connect to the router
 
 You'll need a terminal connection to paste the commands below. Two options:
@@ -39,11 +36,13 @@ You'll need a terminal connection to paste the commands below. Two options:
 
 MikroTik routers ship with a default configuration that includes firewall rules, a DHCP server, and NAT. To avoid conflicts, reset to a blank state before continuing:
 
-```bash
+```bash {filename="Reset Configuration"}
 /system reset-configuration no-defaults=yes
 ```
 
 The router will reboot. After the reboot there is **no DHCP server**, so reconnect using a **serial cable** or set a **static IP** on your computer (e.g. `192.168.1.2/24`) before SSHing in. Log in again with `admin` and no password.
+
+> Replace the placeholder variables shown in `[BRACKETS]` with values that match your environment.
 
 ## LAN
 
@@ -51,7 +50,7 @@ The router will reboot. After the reboot there is **no DHCP server**, so reconne
 
 Create a bridge to combine the LAN ports into a single network. Adjust the port list to match your router model.
 
-```bash
+```bash {filename="Bridge Interface Setup"}
 /interface bridge
 add name=bridge1 protocol-mode=none
 /interface bridge port
@@ -74,7 +73,7 @@ add address=192.168.1.1/24 interface=bridge1 network=192.168.1.0
 
 Set up a DHCP server to automatically assign IP addresses to connected devices.
 
-```bash
+```bash {filename="DHCP Server Setup"}
 /ip pool
 add name=dhcp_pool0 ranges=192.168.1.100-192.168.1.254
 /ip dhcp-server network
@@ -87,13 +86,13 @@ add address-pool=dhcp_pool0 interface=bridge1 lease-time=1d name=dhcp1
 
 Allow devices on your network to use the router as a DNS resolver.
 
-```bash
+```bash {filename="Allow Remote DNS"}
 /ip dns
 set allow-remote-requests=yes
 ```
 
 If your WAN connection uses a **static IP**, no upstream DNS is provided automatically. Set one manually:
-```bash
+```bash {filename="Set DNS Servers"}
 /ip dns set servers=1.1.1.1,8.8.8.8
 ```
 
@@ -129,7 +128,7 @@ If your WAN connection uses a **static IP**, no upstream DNS is provided automat
 
 After running the block for your connection type, add the WAN interface to the interface list:
 
-```bash
+```bash {filename="Add WAN Interface List"}
 /interface list add name=WAN
 /interface list member add interface=internet list=WAN
 ```
@@ -138,7 +137,7 @@ After running the block for your connection type, add the WAN interface to the i
 
 Masquerade outgoing traffic so devices on your LAN can reach the internet using the router's public IP.
 
-```bash
+```bash {filename="NAT Configuration"}
 /ip firewall nat
 add action=masquerade chain=srcnat comment="Enable NAT on WAN interface" out-interface-list=WAN
 ```
@@ -147,7 +146,7 @@ add action=masquerade chain=srcnat comment="Enable NAT on WAN interface" out-int
 
 Rules are processed top-down. This configuration allows established connections and LAN-initiated traffic, and drops everything else.
 
-```bash
+```bash {filename="Firewall Rules"}
 /ip firewall filter
 add action=accept chain=forward comment="Allow established,related,untracked" connection-state=established,related,untracked
 add action=drop chain=forward comment="Drop invalid traffic" connection-state=invalid
@@ -172,14 +171,14 @@ set sip disabled=yes
 
 Create a new admin user, then disable the default `admin` account to prevent unauthorized access.
 
-```bash
+```bash {filename="Create User Account"}
 /user add name=[USERNAME] password=[PASSWORD] group=full
 /user disable admin
 ```
 
 ### Hostname
 
-```bash
+```bash {filename="Set Hostname"}
 /system identity
 set name=[HOSTNAME]
 ```
@@ -188,7 +187,7 @@ set name=[HOSTNAME]
 
 Enable NTP to keep the router's clock in sync and set your local timezone.
 
-```bash
+```bash {filename="NTP Configuration"}
 /system ntp client
 set enabled=yes
 /system ntp client servers
@@ -201,7 +200,7 @@ set time-zone-name=[TIMEZONE]
 
 MikroTik enables several management interfaces by default (API, Winbox, web UI, Telnet) that are accessible from all interfaces. Disable unused ones and restrict the rest to your LAN subnet.
 
-```bash
+```bash {filename="Restrict Management Services"}
 /ip service
 set api disabled=yes
 set api-ssl disabled=yes

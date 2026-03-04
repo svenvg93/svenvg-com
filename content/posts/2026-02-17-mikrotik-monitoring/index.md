@@ -221,7 +221,7 @@ modules:
 
 The OIDs cover system uptime, interface traffic (64-bit RX/TX counters), interface status, CPU load, memory/storage, and MikroTik-specific board temperature and voltage.
 
-> **Tip:** If you followed the Install Alloy guide, files in the `config/` directory are already mounted at `/etc/alloy/config/` inside the container.
+> If you followed the Install Alloy guide, files in the `config/` directory are already mounted at `/etc/alloy/config/` inside the container.
 
 ## Logs via Syslog
 

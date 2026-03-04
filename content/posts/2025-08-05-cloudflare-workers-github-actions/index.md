@@ -33,7 +33,7 @@ GitHub Actions needs an API token to authenticate with Cloudflare.
 
 You will also need your **Account ID**, found on the **Workers & Pages** overview page in the Cloudflare Dashboard.
 
-> **Warning:** The API token grants access to your Cloudflare account. Never commit it directly to your repository.
+>  The API token grants access to your Cloudflare account. Never commit it directly to your repository.
 
 ## GitHub Secrets
 

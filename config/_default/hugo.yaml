@@ -42,6 +42,8 @@ frontmatter:
     - date
     - publishDate
 
+enableGitInfo: true
+
 related:
   includeNewer: true
   threshold: 80

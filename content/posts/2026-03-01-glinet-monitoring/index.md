@@ -19,7 +19,7 @@ cover: cover.jpg
 
 GL.iNet routers run OpenWRT, which has native Prometheus exporter packages and remote syslog support. This guide covers installing the Lua-based node exporter for metrics and forwarding syslog to Loki via Grafana Alloy — giving you full observability of your GL.iNet router.
 
-> **Note:** This guide is written for GL.iNet routers, but the same steps apply to any router running standard OpenWRT.
+>  This guide is written for GL.iNet routers, but the same steps apply to any router running standard OpenWRT.
 
 ## Prerequisites
 
@@ -117,7 +117,7 @@ The `conloglevel` controls verbosity: `7` = debug, `6` = info, `4` = warning, `3
 
 #### Via LuCI
 
-> **Tip:** LuCI is not installed by default on GL.iNet routers. Enable it under **Admin Panel** → **System** → **Advanced Settings**.
+> LuCI is not installed by default on GL.iNet routers. Enable it under **Admin Panel** → **System** → **Advanced Settings**.
 
 1. Navigate to **System** → **System** → **Logging**
 2. Set **External system log server** to your Alloy instance IP

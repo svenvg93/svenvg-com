@@ -93,7 +93,7 @@ command:
   - "--log.format=json"
 ```
 
-> **Note:** Setting a `filepath` redirects logs to a file — they will no longer appear in `docker logs`.
+>  Setting a `filepath` redirects logs to a file — they will no longer appear in `docker logs`.
 
 Also add a volume mapping for the log directory:
 

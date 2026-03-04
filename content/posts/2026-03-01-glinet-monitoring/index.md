@@ -2,7 +2,6 @@
 title: Monitoring GL.iNet with Grafana
 description: Monitor your GL.iNet OpenWRT router with Prometheus node metrics and Grafana Alloy to forward syslog events to Loki for full observability.
 date: 2026-03-01
-lastmod: 2026-03-01
 draft: false
 categories:
   - Networking

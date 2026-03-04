@@ -2,7 +2,6 @@
 title: Deploying to Cloudflare Workers with GitHub Actions
 description: Automate Cloudflare Workers deployments with GitHub Actions and Wrangler for a fully controlled CI/CD pipeline, without using Cloudflare's dashboard.
 date: 2025-08-05
-lastmod: 2025-08-05
 draft: true
 categories:
   - CI/CD

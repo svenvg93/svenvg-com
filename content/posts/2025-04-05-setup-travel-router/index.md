@@ -2,7 +2,7 @@
 title: Setting Up Your Travel Router
 description: Configure your travel router for secure, reliable internet on the go — covering VPN setup, Wi-Fi settings, and network isolation for public networks.
 date: 2025-04-05
-lastmod: 2025-04-05
+# lastmod: 2025-04-05
 draft: false
 categories:
   - Networking

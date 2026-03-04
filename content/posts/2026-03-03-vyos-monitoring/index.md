@@ -2,7 +2,6 @@
 title: Monitoring VyOS with Grafana
 description: Monitor your VyOS router with Prometheus for real-time system and connection metrics, and collect syslog events with Grafana Alloy and Loki.
 date: 2026-03-03
-lastmod: 2026-03-03
 draft: true
 categories:
   - Networking

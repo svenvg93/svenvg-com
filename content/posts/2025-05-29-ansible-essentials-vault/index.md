@@ -2,7 +2,6 @@
 title: "Ansible Essentials: Managing Secrets with Vault"
 description: Use Ansible Vault to encrypt sensitive data like passwords and API keys in your playbooks, keeping secrets safely out of version control.
 date: 2025-05-29
-lastmod: 2025-05-29
 draft: false
 categories:
   - Automation

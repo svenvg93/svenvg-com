@@ -2,7 +2,6 @@
 title: Deploying Zensical on Cloudflare Workers
 description: Deploy a Zensical documentation site to Cloudflare Workers for fast, globally distributed hosting with minimal setup and zero server costs.
 date: 2026-01-01
-lastmod: 2026-01-01
 draft: false
 categories:
   - CI/CD

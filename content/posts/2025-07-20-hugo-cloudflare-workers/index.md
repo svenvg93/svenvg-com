@@ -2,7 +2,6 @@
 title: Deploying a Hugo Site with Cloudflare Workers
 description: Deploy your Hugo static site to Cloudflare Workers using wrangler.jsonc — covering build config, custom domains, and GitHub-based deployments.
 date: 2025-07-20
-lastmod: 2025-07-20
 draft: false
 categories:
   - CI/CD

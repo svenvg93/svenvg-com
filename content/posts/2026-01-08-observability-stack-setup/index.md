@@ -2,7 +2,6 @@
 title: Setting Up Your Observability Stack
 description: Install Prometheus, Loki, Grafana, and Grafana Alloy with Docker Compose to build a complete homelab monitoring and observability stack from scratch.
 date: 2026-01-08
-lastmod: 2026-01-08
 draft: false
 categories:
   - Monitoring

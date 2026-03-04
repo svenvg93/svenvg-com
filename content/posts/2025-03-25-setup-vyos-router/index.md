@@ -2,7 +2,6 @@
 title: Setting Up a VyOS Router
 description: Set up a VyOS router for your home network with full control over firewall rules, VLANs, and routing — enterprise-grade networking, open-source.
 date: 2025-03-25
-lastmod: 2025-03-25
 draft: false
 categories:
   - Networking

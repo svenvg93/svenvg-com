@@ -2,7 +2,6 @@
 title: Unifi Syslog with Alloy and Loki
 description: Forward UniFi syslog events to Loki using Grafana Alloy for centralized log collection and analysis in your homelab observability stack.
 date: 2026-01-29
-lastmod: 2026-01-29
 draft: false
 categories:
   - Networking

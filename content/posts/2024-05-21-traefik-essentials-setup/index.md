@@ -2,7 +2,6 @@
 title: "Traefik Essentials: Reverse Proxy with Docker & Let's Encrypt"
 description: Set up Traefik as a reverse proxy with Docker and Let's Encrypt — covering installation, routing, TLS, and middleware for your homelab.
 date: 2024-05-21
-lastmod: 2024-05-21
 draft: false
 categories:
   - Networking

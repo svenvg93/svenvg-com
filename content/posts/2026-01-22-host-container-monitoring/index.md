@@ -11,6 +11,9 @@ tags:
   - grafana
   - alloy
 cover: cover.jpg
+aliases:
+  - /posts/host-container-monitoring-with-prometheus
+  - /host-container-monitoring-with-prometheus
 ---
 
 Monitoring your systems and containers is essential for maintaining a reliable homelab or home server. This guide uses Grafana Alloy's built-in exporters to collect host and container metrics, with Prometheus for storage and Grafana for visualization — all managed through a single agent instead of separate containers per exporter.

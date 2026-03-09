@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /index.json
+Disallow: /index.xml
+Disallow: /*/index.xml
+
+Sitemap: {{ .Site.BaseURL }}sitemap.xml

@@ -1,12 +1,10 @@
 ---
-title: Ookla Server Explorer
+title: Speedtest Server Explorer
 date: 2026-03-01T15:21:19Z
-slug: ookla-server-explorer
 description: A searchable web interface for discovering Speedtest servers worldwide, built with React and Cloudflare Workers.
 summary: Browse and discover Ookla Speedtest servers by ISP, city, or country with geolocation-aware results and one-click speed tests.
 featured: true
 tags:
-  - react
   - typescript
   - cloudflare
   - ookla
@@ -14,6 +12,7 @@ categories:
   - projects
 cover: cover.jpg
 status: "completed"
+link: https://ookla-server-explorer.svenvanginkel.workers.dev/
 ---
 
 ## Project Overview
@@ -21,8 +20,6 @@ status: "completed"
 Ookla Server Explorer is a web application for browsing and discovering Speedtest servers worldwide. It provides a clean, searchable interface to explore servers by ISP, city, or country — and launch a speed test directly from the app.
 
 The idea came from wanting a better way to find and compare Speedtest servers without having to dig through the Speedtest interface itself. I wanted something fast, filterable, and shareable.
-
-**[Try it live →](https://ookla-server-explorer.svenvanginkel.workers.dev/)**
 
 ## Features
 

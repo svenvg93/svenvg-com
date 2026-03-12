@@ -92,7 +92,7 @@ Restart Prometheus to apply both scrape jobs:
 docker restart prometheus
 ```
 
-You can use the pre-built [VyOS Dashboard](https://github.com/svenvg93/Grafana-Dashboard/tree/master/vyos) from GitHub to visualize the collected metrics.
+You can use the pre-built [VyOS Dashboard][1] from GitHub to visualize the collected metrics.
 
 ## Logs via Syslog
 
@@ -173,3 +173,5 @@ node_cpu_seconds_total{router="vyos"}
 ```logql
 {job="vyos"}
 ```
+
+[1]: https://github.com/svenvg93/Grafana-Dashboard/tree/master/vyos

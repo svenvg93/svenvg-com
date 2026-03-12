@@ -23,7 +23,7 @@ Instead of relying on Cloudflare's built-in Git integration, you can use GitHub 
 
 GitHub Actions needs an API token to authenticate with Cloudflare.
 
-1. Log in to the [Cloudflare Dashboard](https://dash.cloudflare.com/)
+1. Log in to the [Cloudflare Dashboard][1]
 2. Go to **My Profile** → **API Tokens**
 3. Click **Create Token**
 4. Use the **Edit Cloudflare Workers** template
@@ -90,3 +90,5 @@ This workflow:
 - Installs **Wrangler v4** and deploys to Cloudflare Workers using the official action
 
 Push the workflow file to your repository and GitHub Actions will handle all future deployments automatically.
+
+[1]: https://dash.cloudflare.com/

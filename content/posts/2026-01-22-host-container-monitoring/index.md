@@ -136,5 +136,8 @@ container_cpu_usage_seconds_total{job="docker"}
 
 You can create your own dashboards or use these as a starting point:
 
-- [System Dashboard](https://github.com/svenvg93/Grafana-Dashboard/tree/master/systems) — host metrics
-- [Docker Dashboard](https://github.com/svenvg93/Grafana-Dashboard/tree/master/docker) — container metrics
+- [System Dashboard][1] — host metrics
+- [Docker Dashboard][2] — container metrics
+
+[1]: https://github.com/svenvg93/Grafana-Dashboard/tree/master/systems
+[2]: https://github.com/svenvg93/Grafana-Dashboard/tree/master/docker

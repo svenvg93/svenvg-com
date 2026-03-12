@@ -93,7 +93,7 @@ Add the following to your `prometheus.yml`, then restart Prometheus:
 docker restart prometheus
 ```
 
-Use the pre-built [GL.iNet / OpenWRT Dashboard](https://github.com/svenvg93/Grafana-Dashboard/tree/master/openwrt) to visualize the metrics in Grafana.
+Use the pre-built [GL.iNet / OpenWRT Dashboard][1] to visualize the metrics in Grafana.
 
 ## Logs via Syslog
 
@@ -187,3 +187,5 @@ node_cpu_seconds_total{router="glinet"}
 ```logql
 {job="glinet"}
 ```
+
+[1]: https://github.com/svenvg93/Grafana-Dashboard/tree/master/openwrt

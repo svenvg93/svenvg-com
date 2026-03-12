@@ -12,7 +12,7 @@ tags:
 cover: cover.jpg
 ---
 
-Setting up a [VyOS](https://vyos.io) router for your homelab gives you enterprise-grade networking with open-source flexibility. In this post, we'll cover the essential steps to install and configure VyOS for a more secure and efficient network.
+Setting up a [VyOS][1] router for your homelab gives you enterprise-grade networking with open-source flexibility. In this post, we'll cover the essential steps to install and configure VyOS for a more secure and efficient network.
 
 VyOS provides a free routing platform that competes directly with other commercially available solutions from well-known network providers. Because VyOS is run on standard amd64 systems, it can be used as a router and firewall platform for cloud deployments.
 
@@ -24,7 +24,7 @@ VyOS offers powerful routing, firewalling, making it an excellent choice for hom
 
 VyOS can run on various diffrent platforms. Both baremetal as well als cloud platforms. In this guide we will use the "bare metal" installation inside of a VM.
 
-After you [download](https://github.com/vyos/vyos-nightly-build/releases) the latests version, boot from the image using the appropriate method for your platform (USB, virtual machine, or PXE).
+After you [download][2] the latests version, boot from the image using the appropriate method for your platform (USB, virtual machine, or PXE).
 
 Once the image loads, log in with the default credentials (`vyos/vyos`). In operational mode, run `install image` and follow the wizard. It will guide you through partitioning the disk and configuring the root password. After installation, remove the live USB or CD and reboot the system.
 
@@ -300,3 +300,6 @@ commit; save
 ```
 
 Now your VyOS router is fully configured and ready to power your homelab! 🎉 With a secure and efficient network in place, you can focus on building and exploring your homelab projects. Happy networking! 🤝
+
+[1]: https://vyos.io
+[2]: https://github.com/vyos/vyos-nightly-build/releases

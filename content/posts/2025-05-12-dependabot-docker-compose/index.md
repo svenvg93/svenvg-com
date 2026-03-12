@@ -15,7 +15,7 @@ cover: cover.jpg
 Keeping dependencies up to date is essential for security and maintainability—but manually managing updates across multiple `docker-compose.yml` files in a project can be tedious. In this post, I’ll show you a small Bash script I wrote to automate the generation of a `dependabot.yml` file. It scans your repo for all Docker Compose files and configures Dependabot to check them for updates monthly. It’s lightweight, efficient, and ensures you never miss a patch. Let’s dive in. We will automate the updating the `dependabot.yml` with Github Actions.
 
 ## What is dependabot?
-[Dependabot](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates) is a built-in GitHub tool that automatically checks your project dependencies for updates. It can open pull requests when new versions of your dependencies are available - helping you stay secure and up to date with minimal effort. For Docker Compose projects, it monitors container image tags and notifies you when a newer version is published.
+[Dependabot][1] is a built-in GitHub tool that automatically checks your project dependencies for updates. It can open pull requests when new versions of your dependencies are available - helping you stay secure and up to date with minimal effort. For Docker Compose projects, it monitors container image tags and notifies you when a newer version is published.
 
 ## Create generate-dependabot.sh
 
@@ -175,3 +175,5 @@ You can still manually update the `dependabot.yml` file at any time by running t
 With this setup, you can keep your Docker Compose dependencies up to date effortlessly — and ensure your `dependabot.yml` file stays in sync as your project evolves. It's a small automation that saves time, prevents surprises, and helps keep your stack secure. Happy automating! 🚀
 
 If you're interested in more GitHub Actions tips, check out my post on [Automating Cloudflare Pages deployments with GitHub Actions](../how-i-use-github-actions-to-update-my-blog-daily/).
+
+[1]: https://docs.github.com/en/code-security/dependabot/dependabot-version-updates

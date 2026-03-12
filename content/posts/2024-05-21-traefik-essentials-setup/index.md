@@ -93,7 +93,7 @@ networks:
 
 ## Cloudflare API
 
-This guide uses Cloudflare as the DNS provider for the DNS-01 challenge. You can follow similar steps for other providers — see the [lego docs](https://go-acme.github.io/lego/dns/) for the full list.
+This guide uses Cloudflare as the DNS provider for the DNS-01 challenge. You can follow similar steps for other providers — see the [lego docs][1] for the full list.
 
 1. **Create an API token** in your Cloudflare dashboard with `DNS:Edit` permissions.
 
@@ -160,3 +160,5 @@ networks:
    ```bash
    docker compose -f whoami/docker-compose.yml down
    ```
+
+[1]: https://go-acme.github.io/lego/dns/

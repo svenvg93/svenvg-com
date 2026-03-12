@@ -39,7 +39,7 @@ ansible --version
 
 Ansible connects to remote machines via SSH. To avoid typing passwords every time, set up SSH key authentication.
 
-If you already use [Tailscale](https://tailscale.com) to access your nodes, you can use **Tailscale SSH** instead of managing your own SSH keys.
+If you already use [Tailscale][1] to access your nodes, you can use **Tailscale SSH** instead of managing your own SSH keys.
 
 
 ### Generate a key pair
@@ -167,4 +167,6 @@ In the next parts of this series, we’ll cover:
 - Reacting to changes using handlers
 - Managing secrets securely with Ansible Vault
 
-You’re now ready to scale up your homelab automation. Let's continue. 
+You’re now ready to scale up your homelab automation. Let’s continue.
+
+[1]: https://tailscale.com

@@ -51,7 +51,7 @@ Before we can run the tunnel, you need to create a Tunnel in your Cloudflare acc
 
 To do so:
 
-*   Go to [Cloudflare Dashboard](https://dash.cloudflare.com/)
+*   Go to [Cloudflare Dashboard][1]
 *   Go to **Zero Trust**
 *   Click **Networks** -> **Tunnels**
 *   Click on **Add a Tunnel**
@@ -86,7 +86,7 @@ If everything is correct you will see your tunnel connected within a couple of s
 
 ## Add a service
 
-To verify that everything is functioning correctly, let’s start a simple service to test the tunnel using the [whoami application](https://github.com/traefik/whoami). This is a basic HTTP service that displays information about the browser and operating system.
+To verify that everything is functioning correctly, let’s start a simple service to test the tunnel using the [whoami application][2]. This is a basic HTTP service that displays information about the browser and operating system.
 
 First, create a new directory called whoami and add a `docker-compose.yml` file:
 
@@ -128,3 +128,6 @@ If the application is on the same docker network as the cloudflare tunnel you ca
 Finally, click **Save Tunnel**. This will configure the tunnel, allowing you to access your service via Cloudflare.
 
 If you perform an nslookup and traceroute for the specified domain name, you’ll notice that all traffic is routed through Cloudflare, and your own IP address will not be visible. This demonstrates that the Cloudflare Tunnel effectively masks your server’s true IP, enhancing your security by protecting it from direct exposure to the internet.
+
+[1]: https://dash.cloudflare.com/
+[2]: https://github.com/traefik/whoami

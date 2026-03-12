@@ -11,7 +11,7 @@ tags:
 cover: cover.jpg
 ---
 
-After the announcement that Material for MkDocs is put on [maintenance mode](https://github.com/squidfunk/mkdocs-material/issues/8523). I had to search for an alternative to keep my documentation sites up to date and secure. Luckily the search was short. The team behind Material for MkDocs launched Zensical as a new modern replacement.
+After the announcement that Material for MkDocs is put on [maintenance mode][1]. I had to search for an alternative to keep my documentation sites up to date and secure. Luckily the search was short. The team behind Material for MkDocs launched Zensical as a new modern replacement.
 
 In this guide, we’ll walk through installing and configuring Zensical. We’ll set up the site, create pages using Markdown, and deploy it for free on Cloudflare Workers.
 
@@ -19,7 +19,7 @@ In this guide, we’ll walk through installing and configuring Zensical. We’ll
 
 To kickstart your Zensical deployment you can use the template I created, by following the steps below.
 
-1.	Go to my [zensical-starter-template](https://github.com/svenvg93/zensical-starter-template) repository.
+1.	Go to my [zensical-starter-template][2] repository.
 2.	Click on **Use this template** at the top of the repository page.
 3.	Select **Create a new repository** from the dropdown.
 4.	Give your new repository a unique name and click Create repository to finish.
@@ -30,7 +30,7 @@ This will create a copy of the template in your GitHub account, ready for custom
 
 Once you’ve prepared the repository, it’s time to deploy your site on Cloudflare Pages. Here’s how:
 
-1.	Visit [Cloudflare Dashboard](https://dash.cloudflare.com/).
+1.	Visit [Cloudflare Dashboard][3].
 2.	Go to **Compute & AI** -> **Workers & Pages**.
 3.	Click on **Create Application**.
 4.	Select **Continue with Git** and, if prompted, link your GitHub account.
@@ -100,7 +100,7 @@ title: Lorem ipsum dolor sit amet
 Lorem ipsum dolor sit amet
 ```
 
-Zensical offers a wide range of layout and customization options for your pages. You can explore the [Zensical Reference Guide](https://zensical.org/docs/setup/basics/) for additional styling and layout options.
+Zensical offers a wide range of layout and customization options for your pages. You can explore the [Zensical Reference Guide][4] for additional styling and layout options.
 
 ### Publish post
 
@@ -118,3 +118,8 @@ Cloudflare will detect the changes, rebuild your site, and publish the latest ve
 
 
 Congrats! You’ve now set up and published documentation using Zensical and Cloudflare Workers.
+
+[1]: https://github.com/squidfunk/mkdocs-material/issues/8523
+[2]: https://github.com/svenvg93/zensical-starter-template
+[3]: https://dash.cloudflare.com/
+[4]: https://zensical.org/docs/setup/basics/

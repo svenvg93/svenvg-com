@@ -18,7 +18,7 @@ Setting up Prometheus and Grafana is beyond the scope of this post. If you're in
 
 
 ## Configure Tailscale
-Tailscale offers clients [metrics](https://tailscale.com/kb/1482/client-metrics) which can scraped by Prometheus. These are metrics as the amount of advertised routes in case of a subnet router, throughput for in and outbound packets. Both direct traffic as via the Tailscale DERP relay. 
+Tailscale offers clients [metrics][1] which can scraped by Prometheus. These are metrics as the amount of advertised routes in case of a subnet router, throughput for in and outbound packets. Both direct traffic as via the Tailscale DERP relay. 
 
 Lets check out the metics by simple running the command below on your tailscale machine. This will display all the metrics ones. 
 
@@ -95,4 +95,7 @@ scrape_configs:
 ## Grafana Dashboard
 
 Now that Prometheus is scraping all the metrics. We can use Grafana to display them. All the tailscale metrics are starting with `tailscaled_*`. 
-Or you can import this [dashboard](https://github.com/svenvg93/Grafana-Dashboard/tree/master/tailscale).
+Or you can import this [dashboard][2].
+
+[1]: https://tailscale.com/kb/1482/client-metrics
+[2]: https://github.com/svenvg93/Grafana-Dashboard/tree/master/tailscale

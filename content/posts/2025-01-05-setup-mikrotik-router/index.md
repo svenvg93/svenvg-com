@@ -149,16 +149,31 @@ Rules are processed top-down. This configuration allows established connections 
 
 ```bash {filename="Firewall Rules"}
 /ip firewall filter
-add action=accept chain=forward comment="Allow established,related,untracked" connection-state=established,related,untracked
-add action=drop chain=forward comment="Drop invalid traffic" connection-state=invalid
-add action=accept chain=forward comment="Port forwarding" connection-nat-state=dstnat
-add action=accept chain=forward comment="LAN to WAN" in-interface-list=LAN out-interface-list=WAN
-add action=accept chain=forward comment="LAN to LAN" in-interface-list=LAN out-interface-list=LAN
-add action=drop chain=forward comment="Drop all else"
-add action=accept chain=input comment="Allow established,related,untracked" connection-state=established,related,untracked
+add action=accept chain=forward comment="Allow established,related" connection-state=established,related
+add action=drop chain=forward comment="Drop FIN+SYN" connection-state=new protocol=tcp tcp-flags=fin,syn
+add action=drop chain=forward comment="Drop SYN+RST" connection-state=new protocol=tcp tcp-flags=syn,rst
+add action=drop chain=forward comment="drop invalid traffic" connection-state=invalid
+add action=accept chain=forward comment="internet traffic" in-interface-list=LAN out-interface-list=WAN
+add action=accept chain=forward comment="port forwarding" connection-nat-state=dstnat
+add action=accept chain=forward comment="Allow LAN to LAN" in-interface-list=LAN out-interface-list=LAN
+add action=drop chain=forward comment="drop all else"
+add action=accept chain=input comment="Allow established,related" connection-state=established,related
 add action=drop chain=input comment="Drop invalid" connection-state=invalid
-add action=accept chain=input comment="Allow LAN to router" in-interface-list=LAN
+add action=drop chain=input comment="Drop SYN+RST" connection-state=new protocol=tcp tcp-flags=syn,rst
+add action=drop chain=input comment="Drop FIN+SYN" connection-state=new protocol=tcp tcp-flags=fin,syn
+add action=accept chain=input comment="Allow WireGuard" dst-port=13231 in-interface-list=WAN protocol=udp
+add action=accept chain=input comment="Allow traffic from LAN interface list to the router" in-interface-list=LAN
 add action=drop chain=input comment="Drop all else"
+add action=accept chain=output comment="Allow established,related" connection-state=established,related
+add action=drop chain=output comment="Drop invalid" connection-state=invalid
+add action=accept chain=output comment="Router DHCP client to WAN" dst-port=67 out-interface-list=WAN protocol=udp
+add action=accept chain=output comment="Router DNS to WAN" dst-port=53 out-interface-list=WAN protocol=udp
+add action=accept chain=output comment="Router DNS to WAN (TCP)" dst-port=53 out-interface-list=WAN protocol=tcp
+add action=accept chain=output comment="Router NTP to WAN" dst-port=123 out-interface-list=WAN protocol=udp
+add action=accept chain=output comment="Router HTTP/HTTPS to WAN (updates)" dst-port=80,443 out-interface-list=WAN protocol=tcp
+add action=accept chain=output comment="Router ICMP to WAN" out-interface-list=WAN protocol=icmp
+add action=accept chain=output comment="Router to LAN" out-interface-list=LAN
+add action=drop chain=output comment="Drop all else"
 /ip firewall service-port
 set ftp disabled=yes
 set tftp disabled=yes

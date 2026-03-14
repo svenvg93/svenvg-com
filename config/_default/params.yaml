@@ -96,7 +96,7 @@ comments:
     lang: "en"
 
 analytics:
-  enabled: false
+  enabled: true
   baidu:
     enabled: false
     id: "your-baidu-analytics-id"
@@ -104,8 +104,8 @@ analytics:
     enabled: false
     id: "your-clarity-analytics-id"
   google:
-    enabled: false
-    id: "your-google-analytics-id"
+    enabled: true
+    id: "G-TY2X9VQNYT"
   umami:
     enabled: false
     id: "your-umami-website-id"
@@ -170,4 +170,4 @@ dock: "always" # scroll | always | float
 
 toc:
   enabled: true
-  position: "side" # center | side
+  position: "center" # center | side

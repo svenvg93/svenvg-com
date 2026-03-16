@@ -9,6 +9,8 @@ tags:
   - cloudflare workers
   - zensical
 cover: cover.jpg
+aliases:
+  - /posts/deploy-zensical-on-cloudflare-workers/
 ---
 
 After the announcement that Material for MkDocs is put on [maintenance mode][1]. I had to search for an alternative to keep my documentation sites up to date and secure. Luckily the search was short. The team behind Material for MkDocs launched Zensical as a new modern replacement.

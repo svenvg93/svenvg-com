@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:hugo-narrow-docs.vercel.app)"
+      "WebFetch(domain:hugo-narrow-docs.vercel.app)",
+      "Bash(pip3 install:*)",
+      "Bash(curl:*)"
     ]
   }
 }

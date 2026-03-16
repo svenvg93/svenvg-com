@@ -19,3 +19,12 @@ go.sum
 yarn.lock
 .prettierrc
 .prettierignore
+
+# Google Search Console API credentials
+search-console-credentials.json
+
+# SEO tools (keep scripts, ignore sensitive data)
+# seo-tools/ folder is tracked, but credentials are not
+seo-tools/URLS_TO_REMOVE.txt
+seo-tools/*ACTION_PLAN.md
+seo-tools/FINAL_ACTION_SUMMARY.md

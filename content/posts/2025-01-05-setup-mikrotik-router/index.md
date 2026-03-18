@@ -101,31 +101,39 @@ If your WAN connection uses a **static IP**, no upstream DNS is provided automat
 
 `ether1` is used as the WAN port in this setup. Pick the block that matches your ISP connection type and run it, then run the common step at the bottom.
 
-```bash {filename="DHCP with VLAN"}
+{{< tabs >}}
+{{< tab label="DHCP with VLAN" >}}
+```bash
 /interface vlan add interface=ether1 name=internet vlan-id=[VLAN_ID]
 /ip dhcp-client add interface=internet disabled=no use-peer-ntp=no add-default-route=yes
 ```
-
-```bash {filename="DHCP"}
+{{< /tab >}}
+{{< tab label="DHCP" >}}
+```bash
 /interface ethernet set ether1 name=internet
 /ip dhcp-client add interface=internet add-default-route=yes disabled=no use-peer-ntp=no
 ```
-
-```bash {filename="PPPoE with VLAN"}
+{{< /tab >}}
+{{< tab label="PPPoE with VLAN" >}}
+```bash
 /interface vlan add interface=ether1 name=vlan_int vlan-id=[VLAN_ID]
 /interface pppoe-client add add-default-route=yes disabled=no interface=vlan_int name=internet use-peer-dns=yes user=[USERNAME] password=[PASSWORD]
 ```
-
-```bash {filename="PPPoE"}
+{{< /tab >}}
+{{< tab label="PPPoE" >}}
+```bash
 /interface pppoe-client add add-default-route=yes disabled=no interface=ether1 name=internet use-peer-dns=yes user=[USERNAME] password=[PASSWORD]
 ```
-
-```bash {filename="Static IP"}
+{{< /tab >}}
+{{< tab label="Static IP" >}}
+```bash
 /interface ethernet set ether1 name=internet
 /ip address add address=[IP_ADDRESS] interface=internet
 /ip route add gateway=[GATEWAY]
 /ip dns set servers=[DNS_SERVER]
 ```
+{{< /tab >}}
+{{< /tabs >}}
 
 After running the block for your connection type, add the WAN interface to the interface list:
 

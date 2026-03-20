@@ -1,29 +1,54 @@
 main:
   - name: Posts
     pageRef: /posts
-    weight: 20
+    weight: 10
     params:
       icon: posts
-#  - name: Categories
-#    pageRef: /categories
-#    weight: 30
-#    params:
-#      icon: categories
   - name: Series
     pageRef: /series
-    weight: 30
+    weight: 20
     params:
       icon: series
   - name: Projects
     pageRef: /projects
-    weight: 40
+    weight: 30
     params:
       icon: projects
+  - name: More
+    weight: 40
+    params:
+      icon: layers
+
+  - name: About
+    pageRef: /about
+    weight: 5
+    parent: More
+    params:
+      icon: about
   - name: Resume
     pageRef: /resume
-    weight: 50
+    weight: 1
+    parent: More
     params:
-      icon: changelog
+      icon: file-text
+  - name: Archives
+    pageRef: /archives
+    weight: 2
+    parent: More
+    params:
+      icon: archive
+  - name: Categories
+    pageRef: /categories
+    weight: 3
+    parent: More
+    params:
+      icon: categories
+  - name: Tags
+    pageRef: /tags
+    weight: 4
+    parent: More
+    params:
+      icon: tags
 
 footer:
   - name: About
@@ -48,7 +73,7 @@ social:
     weight: 10
     params:
       icon: github
-  - name: Twitter
+  - name: X
     url: https://x.com/svenvginkel
     weight: 20
     params:

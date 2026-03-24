@@ -1,0 +1,14 @@
+{
+	"name": "Ubuntu",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/base:jammy",
+	"features": {
+		"ghcr.io/devcontainers/features/go:1": {
+			"version": "1.24.5"
+		},
+		"ghcr.io/devcontainers/features/hugo:1": {
+			"extended": true,
+			"version": "0.157.0"
+		}
+	}
+}

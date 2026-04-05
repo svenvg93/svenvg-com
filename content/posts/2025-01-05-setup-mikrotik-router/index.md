@@ -60,6 +60,15 @@ add bridge=bridge1 interface=ether5
 add bridge=bridge1 interface=ether6
 add bridge=bridge1 interface=ether7
 add bridge=bridge1 interface=ether8
+add bridge=bridge1 interface=ether9
+add bridge=bridge1 interface=ether10
+add bridge=bridge1 interface=ether11
+add bridge=bridge1 interface=ether12
+add bridge=bridge1 interface=ether13
+add bridge=bridge1 interface=ether14
+add bridge=bridge1 interface=ether15
+add bridge=bridge1 interface=ether16
+/interface bridge settings set use-ip-firewall=no
 /interface list
 add name=LAN
 /interface list member
@@ -161,7 +170,6 @@ add action=drop chain=forward comment="Drop SYN+RST" connection-state=new protoc
 add action=drop chain=forward comment="drop invalid traffic" connection-state=invalid
 add action=accept chain=forward comment="internet traffic" in-interface-list=LAN out-interface-list=WAN
 add action=accept chain=forward comment="port forwarding" connection-nat-state=dstnat
-add action=accept chain=forward comment="Allow LAN to LAN" in-interface-list=LAN out-interface-list=LAN
 add action=drop chain=forward comment="drop all else"
 add action=accept chain=input comment="Allow established,related" connection-state=established,related
 add action=drop chain=input comment="Drop invalid" connection-state=invalid
@@ -177,6 +185,7 @@ add action=accept chain=output comment="Router DNS to WAN" dst-port=53 out-inter
 add action=accept chain=output comment="Router DNS to WAN (TCP)" dst-port=53 out-interface-list=WAN protocol=tcp
 add action=accept chain=output comment="Router NTP to WAN" dst-port=123 out-interface-list=WAN protocol=udp
 add action=accept chain=output comment="Router HTTP/HTTPS to WAN (updates)" dst-port=80,443 out-interface-list=WAN protocol=tcp
+add action=accept chain=output comment="Router Allow Cloud DDNS" dst-port=15252 out-interface-list=WAN protocol=udp
 add action=accept chain=output comment="Router ICMP to WAN" out-interface-list=WAN protocol=icmp
 add action=accept chain=output comment="Router to LAN" out-interface-list=LAN
 add action=drop chain=output comment="Drop all else"

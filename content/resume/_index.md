@@ -1,17 +1,18 @@
 ---
 title: "Resume"
-date: 2026-03-01
 layout: "timeline"
 ---
+
+Network professional with 8+ years in Dutch ISP environments, specializing in fixed access networks, CPE lifecycle management, and Zero-Touch Provisioning. Progressed from customer support through network engineering to architecture and design roles at T-Mobile Nederland and Odido.
+
+[Linkedin](https://www.linkedin.com/in/svenvanginkel)
 
 ## 2023 – Present
 
 ### Designer Fixed Access
 #### Odido Nederland
-*Den Haag, Netherlands*
+*Full-time · Den Haag, Netherlands*
 
-Responsible for the design, integration, and lifecycle management of ISP Customer Premises Equipment (CPE) platforms and remote management systems.
- 
 - Evaluated and onboarded ISP-grade CPE devices including residential gateways, WiFi 6/7 routers, mesh systems, and access points
 - Designed and validated WAN configurations (PPPoE, DHCP, VLAN tagging, IPTV, VoIP) on customer equipment
 - Managed and optimized ACS platforms using TR-069 for zero-touch provisioning, remote configuration, firmware management, diagnostics, and large-scale device rollouts
@@ -33,8 +34,6 @@ CPE | ACS | TR-069 | TR-369 | WAN | PPPoE | DHCP | VLAN | IPv6 | WiFi 6/7 | ZTP 
 #### T-Mobile Nederland *(rebranded to Odido in 2023)*
 *Full-time · Den Haag, Netherlands*
 
-Responsible for the daily operations, testing, and maintenance of CPE and access point hardware and software across the fixed access network, spanning fiber and xDSL platforms.
-
 - Monitored and maintained the health of CPE devices across the live fixed access network using ACS (TR-069) for remote diagnostics, configuration, and firmware management
 - Performed hands-on testing and validation of fiber and broadband CPE devices, access points, and mesh systems ahead of production rollouts
 - Investigated and resolved network incidents related to CPE behavior, WAN connectivity, provisioning failures, and access point performance
@@ -51,10 +50,7 @@ CPE | ACS | TR-069 | Fiber | xDSL | DHCP | PPPoE | VLAN | Mesh | Firmware | Diag
 
 ### Technical Service Agent
 #### T-Mobile Nederland
-
-*Full-time · 1 year 7 months*
-
-Responsible for coordinating and resolving customer-impacting network incidents across fixed access (fiber and DSL) infrastructure.
+*Full-time · Den Haag, Netherlands*
 
 - Coordinated large-scale and multiple customer incidents across network/IT and customer support teams
 - Monitored and participated in the change management process to ensure a stable network and consistent customer experience
@@ -69,18 +65,23 @@ Fiber | DSL | Incident Management | Change Management | ITIL
 ## 2016 – 2018
 
 ### Second Line Customer Support Agent
-#### Vodafone *(rebranded to T-Mobile in 2016)*
+#### Vodafone Netherlands
 
-*Full-time · Bodegraven*
+*Full-time · Bodegraven, Netherlands*
 
-Responsible for handling second-line customer support tickets for residential fixed access services including Internet, VoIP, and TV.
-
-- Troubleshooted and resolved second-line customer tickets for Internet, VoIP, and TV services
-- Coordinated with third-party access providers for ticket resolution and fault escalation
-- Coordinated with third-party passive infrastructure operators for ticket resolution
+- Troubleshot and resolved second-line customer tickets for Internet, VoIP, and TV services across fiber and DSL platforms
+- Coordinated with third-party access providers and passive infrastructure operators for fault escalation and ticket resolution
 
 **Technical Stack**
 
 Fiber | DSL | VoIP | IPTV | Incident Management | Ticket Management
 
 ---
+
+## Training
+
+#### CCNA (Cisco Certified Network Associate)
+Completed training covering routing, switching, and network fundamentals.
+
+#### CWNA (Certified Wireless Network Administrator)
+Completed training covering enterprise Wi-Fi design, security, and troubleshooting.

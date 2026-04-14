@@ -42,7 +42,7 @@ Monitor two resolvers and compare them:
 
 ### TCP
 
-CDN edge nodes are the best option — they have port 80/443 open, stable IPs, and are anchored close to your region. Covered in depth in the [next post]({{< ref "/posts/2026-04-16-smokeping-essentials-cdn-targets" >}}).
+CDN edge nodes are the best option — they have port 80/443 open, stable IPs, and are anchored close to your region. Covered in depth in the next post.
 
 ## Multi-Target Strategy
 

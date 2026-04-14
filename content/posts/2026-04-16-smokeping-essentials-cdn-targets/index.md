@@ -112,7 +112,7 @@ You should now have a set of verified IPs covering different network distances:
 
 Combined with the ISP gateway and DNS targets from the [previous post]({{< ref "/posts/2026-04-09-smokeping-essentials-targets" >}}), these give you complete coverage to isolate exactly where a problem is.
 
-In the [next post]({{< ref "/posts/2026-04-30-smokeping-essentials-setup" >}}) we set up Smokeping to monitor all of these targets continuously and graph latency and packet loss over time.
+In the next post we set up Smokeping to monitor all of these targets continuously and graph latency and packet loss over time.
 
 [1]: https://bgp.tools
 [2]: https://fast.com

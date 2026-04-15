@@ -57,12 +57,9 @@ The `setcap` command grants the binary permission to bind to privileged ports (8
 
 ```bash
 sudo useradd -r -s /sbin/nologin -M traefik
-sudo setcap 'cap_net_bind_service=+ep' /usr/local/bin/traefik
 sudo chown -R traefik:traefik /etc/traefik
 sudo chown -R traefik:traefik /var/log/traefik
 ```
-
-> `setcap` must be re-run after every binary update — the capability is tied to the specific file on disk, not the path.
 
 ## Cloudflare API Token
 
@@ -133,7 +130,7 @@ accessLog:
 
 ## systemd Service
 
-The service unit loads the Cloudflare token from the env file, runs as the `traefik` user, and restarts automatically on failure. `NoNewPrivileges` and `PrivateTmp` add extra sandboxing on top of the non-root user.
+The service unit loads the Cloudflare token from the env file, runs as the `traefik` user, and restarts automatically on failure. `AmbientCapabilities` and `CapabilityBoundingSet` grant the process permission to bind to privileged ports (80 and 443) without root — and because these are systemd directives, they apply automatically on every start, including after a binary update. `NoNewPrivileges` and `PrivateTmp` add extra sandboxing on top of the non-root user.
 
 ```ini {filename="/etc/systemd/system/traefik.service"}
 [Unit]
@@ -149,6 +146,8 @@ EnvironmentFile=/etc/traefik/traefik.env
 ExecStart=/usr/local/bin/traefik --configFile=/etc/traefik/traefik.yml
 Restart=on-failure
 RestartSec=5s
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+CapabilityBoundingSet=CAP_NET_BIND_SERVICE
 NoNewPrivileges=true
 PrivateTmp=true
 
@@ -203,7 +202,6 @@ tar -xzf traefik_v${TRAEFIK_VERSION}_linux_${ARCH}.tar.gz
 sudo systemctl stop traefik
 sudo mv traefik /usr/local/bin/traefik
 sudo chmod +x /usr/local/bin/traefik
-sudo setcap 'cap_net_bind_service=+ep' /usr/local/bin/traefik
 sudo systemctl start traefik
 ```
 

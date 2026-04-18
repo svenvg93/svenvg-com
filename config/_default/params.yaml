@@ -107,10 +107,10 @@ analytics:
     enabled: true
     id: "G-TY2X9VQNYT"
   umami:
-    enabled: false
-    id: "your-umami-website-id"
+    enabled: true
+    id: "9c123874-4534-4290-9af2-76179151baba"
     src: "https://umami.com/myscript.js"
-    domains: "example.domain.com"
+    domains: "svenvg.com"
 
 katex:
   enabled: false

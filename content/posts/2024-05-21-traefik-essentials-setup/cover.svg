@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <linearGradient id="hex-fill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0e3040"/>
+      <stop offset="100%" stop-color="#071e2a"/>
+    </linearGradient>
+    <linearGradient id="textbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#080c14" stop-opacity="0"/>
+      <stop offset="60%" stop-color="#080c14" stop-opacity="0.93"/>
+      <stop offset="100%" stop-color="#080c14" stop-opacity="1"/>
+    </linearGradient>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#37BEC3"/>
+    </marker>
+    <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#4ade80"/>
+    </marker>
+    <marker id="arr-dim" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#37BEC3" fill-opacity="0.4"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Subtle grid -->
+  <g stroke="#0d1a2a" stroke-width="1">
+    <line x1="0" y1="100" x2="1200" y2="100"/>
+    <line x1="0" y1="200" x2="1200" y2="200"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/>
+    <line x1="0" y1="400" x2="1200" y2="400"/>
+    <line x1="200" y1="0" x2="200" y2="500"/>
+    <line x1="400" y1="0" x2="400" y2="500"/>
+    <line x1="600" y1="0" x2="600" y2="500"/>
+    <line x1="800" y1="0" x2="800" y2="500"/>
+    <line x1="1000" y1="0" x2="1000" y2="500"/>
+  </g>
+
+  <!-- === Internet label (left) === -->
+  <text x="105" y="200" text-anchor="middle" font-size="12" fill="#475569" letter-spacing="2">INTERNET</text>
+  <!-- Globe circle -->
+  <circle cx="105" cy="255" r="38" fill="none" stroke="#1e3a52" stroke-width="2"/>
+  <ellipse cx="105" cy="255" rx="18" ry="38" fill="none" stroke="#1e3a52" stroke-width="1.5"/>
+  <line x1="67" y1="255" x2="143" y2="255" stroke="#1e3a52" stroke-width="1.5"/>
+  <line x1="72" y1="230" x2="138" y2="230" stroke="#1e3a52" stroke-width="1"/>
+  <line x1="72" y1="280" x2="138" y2="280" stroke="#1e3a52" stroke-width="1"/>
+
+  <!-- Incoming request paths (3 arrows) -->
+  <!-- Top request — HTTP (will be redirected) -->
+  <path d="M 148,215 C 270,215 370,255 503,255" fill="none" stroke="#37BEC3" stroke-width="2.5" stroke-opacity="0.5" marker-end="url(#arr-dim)"/>
+  <text x="290" y="207" text-anchor="middle" font-size="11" fill="#475569">HTTP</text>
+
+  <!-- Mid request — HTTPS -->
+  <path d="M 148,255 L 503,255" fill="none" stroke="#37BEC3" stroke-width="3" marker-end="url(#arr)"/>
+  <text x="300" y="247" text-anchor="middle" font-size="11" fill="#37BEC3" font-weight="600">HTTPS</text>
+
+  <!-- Bot request — HTTPS -->
+  <path d="M 148,295 C 270,295 370,255 503,255" fill="none" stroke="#37BEC3" stroke-width="2.5" stroke-opacity="0.5" marker-end="url(#arr-dim)"/>
+  <text x="290" y="313" text-anchor="middle" font-size="11" fill="#475569">HTTPS</text>
+
+  <!-- === Traefik Hexagon (flat-top) center (600,255) radius 95 === -->
+  <!-- cx=600 cy=255 r=95: right=(695,255) tr=(647,172) tl=(553,172) left=(505,255) bl=(553,338) br=(647,338) -->
+  <polygon points="695,255 647,172 553,172 505,255 553,338 647,338"
+           fill="url(#hex-fill)" stroke="#37BEC3" stroke-width="2.5"/>
+
+  <!-- Converging flow mark -->
+  <path d="M 538,233 C 568,233 588,253 600,255" fill="none" stroke="#ffffff" stroke-width="3" stroke-opacity="0.55" stroke-linecap="round"/>
+  <path d="M 538,255 L 600,255"               fill="none" stroke="#ffffff" stroke-width="3.5" stroke-opacity="0.75" stroke-linecap="round"/>
+  <path d="M 538,277 C 568,277 588,257 600,255" fill="none" stroke="#ffffff" stroke-width="3" stroke-opacity="0.55" stroke-linecap="round"/>
+  <circle cx="600" cy="255" r="9" fill="#37BEC3" fill-opacity="0.25"/>
+  <circle cx="600" cy="255" r="4.5" fill="#ffffff"/>
+  <path d="M 600,255 C 612,253 632,233 662,233" fill="none" stroke="#37BEC3" stroke-width="3" stroke-opacity="0.75" stroke-linecap="round"/>
+  <path d="M 600,255 L 662,255"               fill="none" stroke="#37BEC3" stroke-width="3.5" stroke-opacity="1" stroke-linecap="round"/>
+  <path d="M 600,255 C 612,257 632,277 662,277" fill="none" stroke="#37BEC3" stroke-width="3" stroke-opacity="0.75" stroke-linecap="round"/>
+
+  <!-- "traefik" wordmark below hex -->
+  <text x="600" y="362" text-anchor="middle" font-size="15" font-weight="700" fill="#37BEC3" letter-spacing="4">traefik</text>
+
+  <!-- Outgoing paths to services -->
+  <!-- Top → service A -->
+  <path d="M 697,255 C 800,255 860,175 970,175" fill="none" stroke="#37BEC3" stroke-width="2.5" marker-end="url(#arr)"/>
+  <!-- Mid → service B -->
+  <path d="M 697,255 L 970,255" fill="none" stroke="#37BEC3" stroke-width="2.5" marker-end="url(#arr)"/>
+  <!-- Bot → service C -->
+  <path d="M 697,255 C 800,255 860,335 970,335" fill="none" stroke="#37BEC3" stroke-width="2.5" marker-end="url(#arr)"/>
+
+  <!-- === Service containers (right) === -->
+  <!-- Container A -->
+  <rect x="970" y="145" width="160" height="60" fill="#0d1e30" stroke="#37BEC3" stroke-width="1.5" rx="8"/>
+  <rect x="970" y="145" width="6" height="60" fill="#37BEC3" rx="4"/>
+  <text x="1060" y="170" text-anchor="middle" font-size="12" font-weight="600" fill="#e2e8f0">web frontend</text>
+  <text x="1060" y="188" text-anchor="middle" font-size="10" fill="#64748b">:80</text>
+
+  <!-- Container B -->
+  <rect x="970" y="225" width="160" height="60" fill="#0d1e30" stroke="#37BEC3" stroke-width="1.5" rx="8"/>
+  <rect x="970" y="225" width="6" height="60" fill="#37BEC3" rx="4"/>
+  <text x="1060" y="250" text-anchor="middle" font-size="12" font-weight="600" fill="#e2e8f0">api service</text>
+  <text x="1060" y="268" text-anchor="middle" font-size="10" fill="#64748b">:8080</text>
+
+  <!-- Container C -->
+  <rect x="970" y="305" width="160" height="60" fill="#0d1e30" stroke="#37BEC3" stroke-width="1.5" rx="8"/>
+  <rect x="970" y="305" width="6" height="60" fill="#37BEC3" rx="4"/>
+  <text x="1060" y="330" text-anchor="middle" font-size="12" font-weight="600" fill="#e2e8f0">dashboard</text>
+  <text x="1060" y="348" text-anchor="middle" font-size="10" fill="#64748b">:3000</text>
+
+  <!-- TLS / Let's Encrypt badge -->
+  <rect x="484" y="96" width="232" height="32" fill="#052e16" stroke="#4ade80" stroke-width="1.5" rx="16"/>
+  <text x="600" y="117" text-anchor="middle" font-size="12" fill="#4ade80" font-weight="600" letter-spacing="1">🔒 Let's Encrypt TLS</text>
+
+  <!-- Docker badge -->
+  <rect x="484" y="380" width="232" height="30" fill="#0c1a2e" stroke="#2563eb" stroke-width="1.5" rx="15"/>
+  <text x="600" y="400" text-anchor="middle" font-size="12" fill="#60a5fa" font-weight="600" letter-spacing="1">Docker Labels · Middleware</text>
+
+  <!-- Bottom gradient overlay -->
+  <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
+
+  <!-- Series label -->
+  <text x="600" y="572" text-anchor="middle" font-size="13" fill="#37BEC3" letter-spacing="3" font-weight="600">Traefik Essentials</text>
+
+  <!-- Title -->
+  <text x="600" y="608" text-anchor="middle" font-size="34" font-weight="700" fill="#f0f6fc">Reverse Proxy with Docker &amp; Let's Encrypt</text>
+</svg>

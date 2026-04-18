@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#020d0a"/>
+      <stop offset="100%" stop-color="#071a12"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="46%" r="38%">
+      <stop offset="0%" stop-color="#059669" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#059669" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="shield-fill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d2f1f"/>
+      <stop offset="100%" stop-color="#052010"/>
+    </linearGradient>
+    <linearGradient id="textbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#020d0a" stop-opacity="0"/>
+      <stop offset="65%" stop-color="#020d0a" stop-opacity="0.93"/>
+      <stop offset="100%" stop-color="#020d0a" stop-opacity="1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Subtle hex grid pattern (background texture) -->
+  <g stroke="#0a2016" stroke-width="1" fill="none" opacity="0.7">
+    <polygon points="600,60 660,95 660,165 600,200 540,165 540,95"/>
+    <polygon points="720,95 780,130 780,200 720,235 660,200 660,130"/>
+    <polygon points="480,95 540,130 540,200 480,235 420,200 420,130"/>
+    <polygon points="600,200 660,235 660,305 600,340 540,305 540,235"/>
+    <polygon points="840,60 900,95 900,165 840,200 780,165 780,95"/>
+    <polygon points="360,60 420,95 420,165 360,200 300,165 300,95"/>
+    <polygon points="720,235 780,270 780,340 720,375 660,340 660,270"/>
+    <polygon points="480,235 540,270 540,340 480,375 420,340 420,270"/>
+    <polygon points="960,95 1020,130 1020,200 960,235 900,200 900,130"/>
+    <polygon points="240,95 300,130 300,200 240,235 180,200 180,130"/>
+    <polygon points="600,340 660,375 660,445 600,480 540,445 540,375"/>
+    <polygon points="840,200 900,235 900,305 840,340 780,305 780,235"/>
+    <polygon points="360,200 420,235 420,305 360,340 300,305 300,235"/>
+  </g>
+
+  <!-- Glow radial -->
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- Radiating connection lines from shield center -->
+  <g stroke="#10b981" stroke-width="1" stroke-dasharray="5,8" stroke-opacity="0.3">
+    <line x1="600" y1="290" x2="120" y2="120"/>
+    <line x1="600" y1="290" x2="80" y2="290"/>
+    <line x1="600" y1="290" x2="160" y2="470"/>
+    <line x1="600" y1="290" x2="1080" y2="120"/>
+    <line x1="600" y1="290" x2="1120" y2="290"/>
+    <line x1="600" y1="290" x2="1040" y2="470"/>
+    <line x1="600" y1="290" x2="380" y2="60"/>
+    <line x1="600" y1="290" x2="820" y2="60"/>
+    <line x1="600" y1="290" x2="300" y2="490"/>
+    <line x1="600" y1="290" x2="900" y2="490"/>
+  </g>
+
+  <!-- Small endpoint dots on connection lines -->
+  <g fill="#10b981" fill-opacity="0.5">
+    <circle cx="120" cy="120" r="5"/>
+    <circle cx="80" cy="290" r="5"/>
+    <circle cx="160" cy="470" r="5"/>
+    <circle cx="1080" cy="120" r="5"/>
+    <circle cx="1120" cy="290" r="5"/>
+    <circle cx="1040" cy="470" r="5"/>
+    <circle cx="380" cy="60" r="4"/>
+    <circle cx="820" cy="60" r="4"/>
+    <circle cx="300" cy="490" r="4"/>
+    <circle cx="900" cy="490" r="4"/>
+  </g>
+
+  <!-- Shield body -->
+  <path d="M 600,100 L 760,140 L 760,290 Q 760,410 600,470 Q 440,410 440,290 L 440,140 Z"
+        fill="url(#shield-fill)" stroke="#059669" stroke-width="2.5"/>
+
+  <!-- Shield inner border -->
+  <path d="M 600,120 L 742,156 L 742,292 Q 742,398 600,450 Q 458,398 458,292 L 458,156 Z"
+        fill="none" stroke="#10b981" stroke-width="1" stroke-opacity="0.4"/>
+
+  <!-- Lock body -->
+  <rect x="558" y="278" width="84" height="72" fill="#059669" rx="8"/>
+  <!-- Lock shackle -->
+  <path d="M 574,278 L 574,252 Q 574,224 600,224 Q 626,224 626,252 L 626,278"
+        fill="none" stroke="#10b981" stroke-width="10" stroke-linecap="round"/>
+  <!-- Keyhole -->
+  <circle cx="600" cy="308" r="10" fill="#021a0e"/>
+  <rect x="595" y="308" width="10" height="18" fill="#021a0e" rx="2"/>
+
+  <!-- Check marks / SAE label -->
+  <text x="600" y="168" text-anchor="middle" font-size="13" fill="#34d399" letter-spacing="2" font-weight="600">SAE · PMF · OWE</text>
+
+  <!-- Bottom gradient overlay -->
+  <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
+
+  <!-- Series label -->
+  <text x="600" y="572" text-anchor="middle" font-size="13" fill="#10b981" letter-spacing="3" font-weight="600">WiFi Explained</text>
+
+  <!-- Title -->
+  <text x="600" y="610" text-anchor="middle" font-size="38" font-weight="700" fill="#f0fdf4">WPA3, SAE, and PMF</text>
+</svg>

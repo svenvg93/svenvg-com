@@ -8,7 +8,7 @@ categories:
 tags:
   - ansible
   - secrets
-cover: cover.jpg
+cover: cover.svg
 series:
   - Ansible Essentials
 series_order: 3

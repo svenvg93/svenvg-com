@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <linearGradient id="textbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#080c14" stop-opacity="0"/>
+      <stop offset="60%" stop-color="#080c14" stop-opacity="0.93"/>
+      <stop offset="100%" stop-color="#080c14" stop-opacity="1"/>
+    </linearGradient>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#0ea5e9"/>
+    </marker>
+    <marker id="arr-teal" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#0ea5e9" fill-opacity="0.7"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <g stroke="#0d1a2a" stroke-width="1">
+    <line x1="0" y1="100" x2="1200" y2="100"/>
+    <line x1="0" y1="200" x2="1200" y2="200"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/>
+    <line x1="0" y1="400" x2="1200" y2="400"/>
+    <line x1="200" y1="0" x2="200" y2="500"/>
+    <line x1="400" y1="0" x2="400" y2="500"/>
+    <line x1="600" y1="0" x2="600" y2="500"/>
+    <line x1="800" y1="0" x2="800" y2="500"/>
+    <line x1="1000" y1="0" x2="1000" y2="500"/>
+  </g>
+
+  <!-- === Your Home === -->
+  <rect x="60" y="218" width="145" height="54" fill="#0a1628" stroke="#0ea5e9" stroke-width="1.5" rx="6"/>
+  <rect x="60" y="218" width="5" height="54" fill="#0ea5e9" rx="3"/>
+  <text x="140" y="241" text-anchor="middle" font-size="12" font-weight="600" fill="#e2e8f0">Your Home</text>
+  <text x="140" y="258" text-anchor="middle" font-size="9" fill="#64748b">SmokePing</text>
+
+  <!-- Arrow: Home → ISP -->
+  <path d="M 207,245 L 278,245" fill="none" stroke="#0ea5e9" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- === ISP === -->
+  <rect x="280" y="218" width="145" height="54" fill="#0a1628" stroke="#0ea5e9" stroke-width="1.5" rx="6"/>
+  <rect x="280" y="218" width="5" height="54" fill="#0ea5e9" rx="3"/>
+  <text x="360" y="241" text-anchor="middle" font-size="12" font-weight="600" fill="#e2e8f0">Your ISP</text>
+  <text x="360" y="258" text-anchor="middle" font-size="9" fill="#64748b">access network</text>
+
+  <!-- Arrow: ISP → IXP -->
+  <path d="M 427,245 L 462,245" fill="none" stroke="#0ea5e9" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- === IXP hub (circle) center (530, 245) r=58 === -->
+  <circle cx="530" cy="245" r="72" fill="#0ea5e9" fill-opacity="0.04" stroke="#0ea5e9" stroke-width="1" stroke-opacity="0.3"/>
+  <circle cx="530" cy="245" r="55" fill="#0d1e30" stroke="#0ea5e9" stroke-width="2"/>
+  <text x="530" y="238" text-anchor="middle" font-size="16" font-weight="800" fill="#0ea5e9" letter-spacing="1">IXP</text>
+  <text x="530" y="256" text-anchor="middle" font-size="8" fill="#64748b" letter-spacing="1">PEERING POINT</text>
+
+  <!-- === Spoke lines: IXP to CDN boxes === -->
+  <!-- IXP right: exit points calculated from center (530,245) toward each box center -->
+  <!-- Netflix center (970, 140): direction (440,-105), norm≈451, unit=(0.976,-0.233) → exit (530+54,245-13)=(584,232) -->
+  <path d="M 584,232 L 798,140" fill="none" stroke="#0ea5e9" stroke-width="1.8" stroke-opacity="0.7" marker-end="url(#arr-teal)"/>
+
+  <!-- Cloudflare center (970, 245): direction (440,0) → exit (585,245) -->
+  <path d="M 585,245 L 798,245" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-opacity="0.9" marker-end="url(#arr-teal)"/>
+
+  <!-- Akamai center (970, 350): direction (440,105) → exit (584,258) -->
+  <path d="M 584,258 L 798,350" fill="none" stroke="#0ea5e9" stroke-width="1.8" stroke-opacity="0.7" marker-end="url(#arr-teal)"/>
+
+  <!-- === CDN boxes === -->
+  <!-- Netflix Open Connect -->
+  <rect x="800" y="113" width="190" height="54" fill="#0a1628" stroke="#0ea5e9" stroke-width="1.5" rx="6"/>
+  <rect x="800" y="113" width="5" height="54" fill="#0ea5e9" rx="3"/>
+  <text x="900" y="136" text-anchor="middle" font-size="11" font-weight="700" fill="#e2e8f0">Netflix OCA</text>
+  <text x="900" y="153" text-anchor="middle" font-family="'Courier New',monospace" font-size="8" fill="#64748b">nflxvideo.net</text>
+
+  <!-- Cloudflare -->
+  <rect x="800" y="218" width="190" height="54" fill="#0a1628" stroke="#0ea5e9" stroke-width="1.5" rx="6"/>
+  <rect x="800" y="218" width="5" height="54" fill="#0ea5e9" rx="3"/>
+  <text x="900" y="241" text-anchor="middle" font-size="11" font-weight="700" fill="#e2e8f0">Cloudflare</text>
+  <text x="900" y="258" text-anchor="middle" font-family="'Courier New',monospace" font-size="8" fill="#64748b">speed.cloudflare.com</text>
+
+  <!-- Akamai -->
+  <rect x="800" y="323" width="190" height="54" fill="#0a1628" stroke="#0ea5e9" stroke-width="1.5" rx="6"/>
+  <rect x="800" y="323" width="5" height="54" fill="#0ea5e9" rx="3"/>
+  <text x="900" y="346" text-anchor="middle" font-size="11" font-weight="700" fill="#e2e8f0">Akamai</text>
+  <text x="900" y="363" text-anchor="middle" font-family="'Courier New',monospace" font-size="8" fill="#64748b">akamaiedge.net</text>
+
+  <!-- SmokePing target badges -->
+  <rect x="1002" y="125" width="148" height="22" fill="#052e16" stroke="#4ade80" stroke-width="1" rx="11"/>
+  <text x="1076" y="140" text-anchor="middle" font-size="9" fill="#4ade80" font-weight="600">✓ SmokePing target</text>
+
+  <rect x="1002" y="230" width="148" height="22" fill="#052e16" stroke="#4ade80" stroke-width="1" rx="11"/>
+  <text x="1076" y="245" text-anchor="middle" font-size="9" fill="#4ade80" font-weight="600">✓ SmokePing target</text>
+
+  <rect x="1002" y="335" width="148" height="22" fill="#052e16" stroke="#4ade80" stroke-width="1" rx="11"/>
+  <text x="1076" y="350" text-anchor="middle" font-size="9" fill="#4ade80" font-weight="600">✓ SmokePing target</text>
+
+  <!-- Latency callout on middle line -->
+  <text x="693" y="238" text-anchor="middle" font-size="10" fill="#0ea5e9" font-weight="600">~4 ms</text>
+
+  <!-- "Peered at IXP" label -->
+  <text x="530" y="320" text-anchor="middle" font-size="9" fill="#475569" letter-spacing="1">ISP-HOSTED CACHE</text>
+
+  <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
+
+  <text x="600" y="572" text-anchor="middle" font-size="13" fill="#0ea5e9" letter-spacing="3" font-weight="600">Smokeping Essentials</text>
+  <text x="600" y="608" text-anchor="middle" font-size="34" font-weight="700" fill="#f0f6fc">CDN Targets</text>
+</svg>

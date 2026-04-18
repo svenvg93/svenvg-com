@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#060a1a"/>
+      <stop offset="100%" stop-color="#0d1530"/>
+    </linearGradient>
+    <radialGradient id="glow-left" cx="22%" cy="50%" r="30%">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-right" cx="78%" cy="50%" r="30%">
+      <stop offset="0%" stop-color="#f97316" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="textbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#060a1a" stop-opacity="0"/>
+      <stop offset="65%" stop-color="#060a1a" stop-opacity="0.93"/>
+      <stop offset="100%" stop-color="#060a1a" stop-opacity="1"/>
+    </linearGradient>
+    <!-- Path gradient for roaming arc -->
+    <linearGradient id="path-grad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="50%" stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow-left)"/>
+  <rect width="1200" height="630" fill="url(#glow-right)"/>
+
+  <!-- Subtle dot grid -->
+  <g fill="#0f1f44" opacity="0.8">
+    <circle cx="200" cy="100" r="1.5"/><circle cx="300" cy="100" r="1.5"/><circle cx="400" cy="100" r="1.5"/>
+    <circle cx="500" cy="100" r="1.5"/><circle cx="600" cy="100" r="1.5"/><circle cx="700" cy="100" r="1.5"/>
+    <circle cx="800" cy="100" r="1.5"/><circle cx="900" cy="100" r="1.5"/><circle cx="1000" cy="100" r="1.5"/>
+    <circle cx="200" cy="180" r="1.5"/><circle cx="300" cy="180" r="1.5"/><circle cx="400" cy="180" r="1.5"/>
+    <circle cx="500" cy="180" r="1.5"/><circle cx="600" cy="180" r="1.5"/><circle cx="700" cy="180" r="1.5"/>
+    <circle cx="800" cy="180" r="1.5"/><circle cx="900" cy="180" r="1.5"/><circle cx="1000" cy="180" r="1.5"/>
+    <circle cx="200" cy="260" r="1.5"/><circle cx="300" cy="260" r="1.5"/><circle cx="400" cy="260" r="1.5"/>
+    <circle cx="500" cy="260" r="1.5"/><circle cx="700" cy="260" r="1.5"/><circle cx="800" cy="260" r="1.5"/>
+    <circle cx="900" cy="260" r="1.5"/><circle cx="1000" cy="260" r="1.5"/>
+    <circle cx="200" cy="340" r="1.5"/><circle cx="300" cy="340" r="1.5"/><circle cx="400" cy="340" r="1.5"/>
+    <circle cx="800" cy="340" r="1.5"/><circle cx="900" cy="340" r="1.5"/><circle cx="1000" cy="340" r="1.5"/>
+  </g>
+
+  <!-- === Left AP — blue WiFi symbol === -->
+  <!-- Signal arcs centered at (230, 310) -->
+  <g fill="none" stroke="#3b82f6" stroke-linecap="round">
+    <!-- Outer arc -->
+    <path d="M 100,220 Q 100,310 230,390 Q 360,310 360,220" stroke-width="3" stroke-opacity="0.25"/>
+    <!-- Mid arc -->
+    <path d="M 140,248 Q 140,310 230,370 Q 320,310 320,248" stroke-width="3" stroke-opacity="0.5"/>
+    <!-- Inner arc -->
+    <path d="M 178,274 Q 178,310 230,350 Q 282,310 282,274" stroke-width="3.5" stroke-opacity="0.8"/>
+    <!-- Innermost arc -->
+    <path d="M 210,295 Q 210,310 230,325 Q 250,310 250,295" stroke-width="4" stroke-opacity="1"/>
+  </g>
+  <!-- AP dot -->
+  <circle cx="230" cy="310" r="10" fill="#3b82f6"/>
+  <circle cx="230" cy="310" r="5" fill="#bfdbfe"/>
+  <!-- AP label -->
+  <text x="230" y="430" text-anchor="middle" font-size="14" fill="#60a5fa" font-weight="600" letter-spacing="1">AP 1</text>
+
+  <!-- === Right AP — orange WiFi symbol === -->
+  <g fill="none" stroke="#f97316" stroke-linecap="round">
+    <path d="M 840,220 Q 840,310 970,390 Q 1100,310 1100,220" stroke-width="3" stroke-opacity="0.25"/>
+    <path d="M 880,248 Q 880,310 970,370 Q 1060,310 1060,248" stroke-width="3" stroke-opacity="0.5"/>
+    <path d="M 918,274 Q 918,310 970,350 Q 1022,310 1022,274" stroke-width="3.5" stroke-opacity="0.8"/>
+    <path d="M 950,295 Q 950,310 970,325 Q 990,310 990,295" stroke-width="4" stroke-opacity="1"/>
+  </g>
+  <circle cx="970" cy="310" r="10" fill="#f97316"/>
+  <circle cx="970" cy="310" r="5" fill="#fed7aa"/>
+  <text x="970" y="430" text-anchor="middle" font-size="14" fill="#fb923c" font-weight="600" letter-spacing="1">AP 2</text>
+
+  <!-- Roaming arc path from AP1 to AP2 via top -->
+  <path d="M 240,300 Q 600,110 960,300"
+        fill="none" stroke="url(#path-grad)" stroke-width="3" stroke-dasharray="12,8"/>
+
+  <!-- Moving device icon on the path (at approx midpoint) -->
+  <!-- Device body -->
+  <rect x="570" y="148" width="60" height="96" fill="#1e1b4b" stroke="#a78bfa" stroke-width="2" rx="8"/>
+  <!-- Screen -->
+  <rect x="578" y="158" width="44" height="60" fill="#2e1065" rx="4"/>
+  <!-- Screen glow content -->
+  <rect x="582" y="162" width="36" height="6" fill="#c084fc" rx="2" opacity="0.7"/>
+  <rect x="582" y="172" width="28" height="4" fill="#818cf8" rx="2" opacity="0.5"/>
+  <rect x="582" y="180" width="32" height="4" fill="#818cf8" rx="2" opacity="0.5"/>
+  <!-- Home button -->
+  <circle cx="600" cy="232" r="5" fill="#4c1d95" stroke="#a78bfa" stroke-width="1.5"/>
+  <!-- WiFi icon on screen -->
+  <g fill="none" stroke="#a78bfa" stroke-linecap="round" stroke-width="1.5">
+    <path d="M 594,173 Q 594,178 600,183 Q 606,178 606,173"/>
+    <path d="M 590,169 Q 590,178 600,186 Q 610,178 610,169"/>
+  </g>
+  <!-- Motion arrows -->
+  <path d="M 548,192 L 568,192" fill="none" stroke="#a78bfa" stroke-width="2" stroke-dasharray="3,3" marker-end="url(#arrow-purple)"/>
+  <path d="M 632,192 L 652,192" fill="none" stroke="#a78bfa" stroke-width="2" stroke-dasharray="3,3" marker-end="url(#arrow-purple)"/>
+
+  <defs>
+    <marker id="arrow-purple" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L6,3 z" fill="#a78bfa"/>
+    </marker>
+  </defs>
+
+  <!-- 802.11r label on arc -->
+  <text x="600" y="105" text-anchor="middle" font-size="12" fill="#a78bfa" letter-spacing="2" font-weight="600">802.11 k · r · v</text>
+
+  <!-- Bottom gradient overlay -->
+  <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
+
+  <!-- Series label -->
+  <text x="600" y="572" text-anchor="middle" font-size="13" fill="#60a5fa" letter-spacing="3" font-weight="600">WiFi Explained</text>
+
+  <!-- Title -->
+  <text x="600" y="610" text-anchor="middle" font-size="38" font-weight="700" fill="#f1f5f9">Roaming &amp; Client Management</text>
+</svg>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 260" width="700" height="260" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <marker id="arr-r" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#3b82f6"/>
+    </marker>
+    <marker id="arr-l" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="8,0 0,3 8,6" fill="#f97316"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="700" height="260" fill="#f8fafc" rx="12"/>
+
+  <!-- Title -->
+  <text x="350" y="26" text-anchor="middle" font-size="14" font-weight="700" fill="#111827">Transmit Power Asymmetry</text>
+
+  <!-- ── Coverage circles ── -->
+  <!-- AP large coverage (blue) -->
+  <circle cx="190" cy="138" r="108" fill="#dbeafe" fill-opacity="0.3" stroke="#93c5fd" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <!-- Client smaller coverage (orange) -->
+  <circle cx="490" cy="138" r="90" fill="#ffedd5" fill-opacity="0.3" stroke="#fdba74" stroke-width="1.5" stroke-dasharray="6,3"/>
+
+  <!-- ── AP node ── -->
+  <circle cx="190" cy="138" r="26" fill="#eff6ff" stroke="#3b82f6" stroke-width="2.5"/>
+  <text x="190" y="133" text-anchor="middle" font-size="11" font-weight="700" fill="#1d4ed8">AP</text>
+  <text x="190" y="147" text-anchor="middle" font-size="10" fill="#3b82f6">23 dBm</text>
+
+  <!-- ── Client node ── -->
+  <circle cx="490" cy="138" r="26" fill="#fff7ed" stroke="#f97316" stroke-width="2.5"/>
+  <text x="490" y="133" text-anchor="middle" font-size="11" font-weight="700" fill="#c2410c">Client</text>
+  <text x="490" y="147" text-anchor="middle" font-size="10" fill="#f97316">17 dBm</text>
+
+  <!-- ── Downlink arrow (AP → Client) — straight line above nodes ── -->
+  <line x1="218" y1="116" x2="462" y2="116" stroke="#3b82f6" stroke-width="2.5" marker-end="url(#arr-r)"/>
+  <!-- label box above the arrow with clear gap -->
+  <rect x="281" y="90" width="138" height="22" fill="#eff6ff" stroke="#93c5fd" stroke-width="1" rx="4"/>
+  <text x="350" y="105" text-anchor="middle" font-size="10" font-weight="600" fill="#1d4ed8">–63 dBm at client  ✓ strong</text>
+
+  <!-- ── Uplink arrow (Client → AP) — straight dashed line below nodes ── -->
+  <line x1="462" y1="162" x2="218" y2="162" stroke="#f97316" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arr-l)"/>
+  <!-- label box below the arrow with clear gap -->
+  <rect x="272" y="170" width="156" height="22" fill="#fff7ed" stroke="#fdba74" stroke-width="1" rx="4"/>
+  <text x="350" y="185" text-anchor="middle" font-size="10" font-weight="600" fill="#c2410c">–77 dBm at AP  ⚠ weak uplink</text>
+
+  <!-- Coverage labels -->
+  <text x="100" y="88" text-anchor="middle" font-size="9" fill="#3b82f6" font-style="italic">AP coverage</text>
+  <text x="100" y="100" text-anchor="middle" font-size="9" fill="#3b82f6" font-style="italic">(~130 m radius)</text>
+  <text x="576" y="90" text-anchor="middle" font-size="9" fill="#f97316" font-style="italic">Client coverage</text>
+  <text x="576" y="102" text-anchor="middle" font-size="9" fill="#f97316" font-style="italic">(~90 m radius)</text>
+
+  <!-- Key insight box -->
+  <rect x="160" y="200" width="380" height="40" fill="#fef9c3" stroke="#fde047" stroke-width="1.5" rx="6"/>
+  <text x="350" y="216" text-anchor="middle" font-size="10" font-weight="600" fill="#713f12">The client's signal bar shows the downlink (AP → Client)</text>
+  <text x="350" y="232" text-anchor="middle" font-size="10" fill="#713f12">It does not show what the AP receives — which may be much weaker</text>
+</svg>

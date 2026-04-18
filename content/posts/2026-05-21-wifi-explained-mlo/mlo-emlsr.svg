@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 290" width="700" height="290" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <marker id="emlsr-ag-l" markerWidth="12" markerHeight="8" refX="0" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="12,0 0,4 12,8" fill="#10b981"/>
+    </marker>
+    <marker id="emlsr-ag-r" markerWidth="12" markerHeight="8" refX="12" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 12,4 0,8" fill="#10b981"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="700" height="290" fill="#f8fafc" rx="12"/>
+
+  <!-- Title -->
+  <text x="350" y="30" text-anchor="middle" font-size="14" font-weight="700" fill="#111827">eMLSR — Enhanced Multi-Link Single Radio</text>
+
+  <!-- CLIENT box -->
+  <text x="120" y="50" text-anchor="middle" font-size="11" font-weight="600" fill="#9ca3af">CLIENT</text>
+  <rect x="20" y="56" width="200" height="200" fill="white" stroke="#e5e7eb" stroke-width="1.5" rx="8"/>
+
+  <!-- Single radio, vertically centered -->
+  <rect x="36" y="138" width="168" height="48" fill="#f0fdf4" stroke="#10b981" stroke-width="2" rx="5" stroke-dasharray="5,3"/>
+  <text x="120" y="158" text-anchor="middle" font-size="13" font-weight="600" fill="#065f46">Single Radio</text>
+  <text x="120" y="176" text-anchor="middle" font-size="10" fill="#10b981">time-division switching</text>
+
+  <!-- ACCESS POINT box -->
+  <text x="580" y="50" text-anchor="middle" font-size="11" font-weight="600" fill="#9ca3af">ACCESS POINT</text>
+  <rect x="480" y="56" width="200" height="200" fill="white" stroke="#e5e7eb" stroke-width="1.5" rx="8"/>
+
+  <!-- AP: 2.4 GHz (standby) -->
+  <rect x="496" y="70" width="168" height="48" fill="#f9fafb" stroke="#d1d5db" stroke-width="1.5" rx="5"/>
+  <text x="580" y="90" text-anchor="middle" font-size="13" font-weight="500" fill="#9ca3af">2.4 GHz</text>
+  <text x="580" y="108" text-anchor="middle" font-size="10" fill="#d1d5db">standby</text>
+
+  <!-- AP: 5 GHz (active) -->
+  <rect x="496" y="128" width="168" height="48" fill="#ecfdf5" stroke="#10b981" stroke-width="2" rx="5"/>
+  <text x="580" y="148" text-anchor="middle" font-size="13" font-weight="700" fill="#065f46">5 GHz</text>
+  <text x="580" y="166" text-anchor="middle" font-size="10" font-weight="600" fill="#10b981">● active</text>
+
+  <!-- AP: 6 GHz (standby) -->
+  <rect x="496" y="186" width="168" height="48" fill="#f9fafb" stroke="#d1d5db" stroke-width="1.5" rx="5"/>
+  <text x="580" y="206" text-anchor="middle" font-size="13" font-weight="500" fill="#9ca3af">6 GHz</text>
+  <text x="580" y="224" text-anchor="middle" font-size="10" fill="#d1d5db">standby</text>
+
+  <!-- Dashed line to 2.4 GHz (standby) -->
+  <line x1="220" y1="162" x2="494" y2="94" stroke="#d1d5db" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+  <!-- Solid line to 5 GHz (active) -->
+  <line x1="220" y1="162" x2="480" y2="152" stroke="#10b981" stroke-width="2.5" marker-start="url(#emlsr-ag-l)" marker-end="url(#emlsr-ag-r)"/>
+
+  <!-- Dashed line to 6 GHz (standby) -->
+  <line x1="220" y1="162" x2="494" y2="210" stroke="#d1d5db" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+  <!-- Caption -->
+  <text x="350" y="275" text-anchor="middle" font-size="11" fill="#6b7280">One radio switches to whichever band has traffic — standby links are monitored, not active</text>
+</svg>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" width="700" height="300" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <marker id="wh-arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#64748b"/>
+    </marker>
+    <marker id="wh-arr-red" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#ef4444"/>
+    </marker>
+    <marker id="wh-arr-green" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#10b981"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="700" height="300" fill="#f8fafc" rx="12"/>
+
+  <!-- Title -->
+  <text x="350" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#111827">WPA2 4-Way Handshake vs WPA3 SAE</text>
+
+  <!-- Divider -->
+  <line x1="350" y1="42" x2="350" y2="272" stroke="#e5e7eb" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- ════ LEFT — WPA2 ════ -->
+  <text x="175" y="52" text-anchor="middle" font-size="12" font-weight="700" fill="#374151">WPA2 — 4-Way Handshake</text>
+
+  <!-- Actors -->
+  <rect x="20" y="62" width="72" height="28" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5" rx="5"/>
+  <text x="56" y="80" text-anchor="middle" font-size="11" font-weight="600" fill="#374151">Client</text>
+
+  <rect x="138" y="62" width="72" height="28" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5" rx="5"/>
+  <text x="174" y="80" text-anchor="middle" font-size="11" font-weight="600" fill="#374151">AP</text>
+
+  <rect x="256" y="62" width="72" height="28" fill="#fee2e2" stroke="#fca5a5" stroke-width="1.5" rx="5"/>
+  <text x="292" y="80" text-anchor="middle" font-size="11" font-weight="600" fill="#dc2626">Attacker</text>
+
+  <!-- Lifelines -->
+  <line x1="56" y1="90" x2="56" y2="240" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="174" y1="90" x2="174" y2="240" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="292" y1="90" x2="292" y2="240" stroke="#fca5a5" stroke-width="1" stroke-dasharray="3,3"/>
+
+  <!-- Message 1: ANonce -->
+  <line x1="174" y1="110" x2="64" y2="110" stroke="#64748b" stroke-width="1.5" marker-end="url(#wh-arr)"/>
+  <text x="115" y="107" text-anchor="middle" font-size="9" fill="#64748b">ANonce</text>
+
+  <!-- Message 2: SNonce + MIC -->
+  <line x1="56" y1="138" x2="166" y2="138" stroke="#64748b" stroke-width="1.5" marker-end="url(#wh-arr)"/>
+  <text x="111" y="135" text-anchor="middle" font-size="9" fill="#64748b">SNonce + MIC</text>
+
+  <!-- Message 3: GTK -->
+  <line x1="174" y1="166" x2="64" y2="166" stroke="#64748b" stroke-width="1.5" marker-end="url(#wh-arr)"/>
+  <text x="115" y="163" text-anchor="middle" font-size="9" fill="#64748b">GTK + MIC</text>
+
+  <!-- Message 4: ACK -->
+  <line x1="56" y1="194" x2="166" y2="194" stroke="#64748b" stroke-width="1.5" marker-end="url(#wh-arr)"/>
+  <text x="111" y="191" text-anchor="middle" font-size="9" fill="#64748b">ACK</text>
+
+  <!-- Attacker captures all -->
+  <line x1="292" y1="105" x2="292" y2="200" stroke="#ef4444" stroke-width="2"/>
+  <text x="305" y="130" font-size="9" fill="#ef4444">captures</text>
+  <text x="305" y="143" font-size="9" fill="#ef4444">all frames</text>
+  <!-- Capture brackets -->
+  <line x1="200" y1="108" x2="284" y2="108" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="200" y1="136" x2="284" y2="136" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="200" y1="164" x2="284" y2="164" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="200" y1="192" x2="284" y2="192" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,2"/>
+
+  <!-- Result label -->
+  <rect x="20" y="212" width="308" height="24" fill="#fee2e2" stroke="#fca5a5" stroke-width="1" rx="4"/>
+  <text x="174" y="228" text-anchor="middle" font-size="10" font-weight="600" fill="#dc2626">captured handshake → crackable offline</text>
+
+  <!-- ════ RIGHT — WPA3 SAE ════ -->
+  <text x="525" y="52" text-anchor="middle" font-size="12" font-weight="700" fill="#374151">WPA3 — SAE (Dragonfly)</text>
+
+  <!-- Actors -->
+  <rect x="372" y="62" width="72" height="28" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5" rx="5"/>
+  <text x="408" y="80" text-anchor="middle" font-size="11" font-weight="600" fill="#374151">Client</text>
+
+  <rect x="490" y="62" width="72" height="28" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5" rx="5"/>
+  <text x="526" y="80" text-anchor="middle" font-size="11" font-weight="600" fill="#374151">AP</text>
+
+  <rect x="606" y="62" width="72" height="28" fill="#f1f5f9" stroke="#d1d5db" stroke-width="1.5" rx="5"/>
+  <text x="642" y="80" text-anchor="middle" font-size="11" font-weight="500" fill="#9ca3af">Attacker</text>
+
+  <!-- Lifelines -->
+  <line x1="408" y1="90" x2="408" y2="240" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="526" y1="90" x2="526" y2="240" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="642" y1="90" x2="642" y2="240" stroke="#d1d5db" stroke-width="1" stroke-dasharray="3,3"/>
+
+  <!-- Commit phase -->
+  <line x1="408" y1="115" x2="518" y2="115" stroke="#10b981" stroke-width="1.5" marker-end="url(#wh-arr-green)"/>
+  <text x="463" y="112" text-anchor="middle" font-size="9" fill="#10b981">Commit (scalar, element)</text>
+
+  <line x1="526" y1="138" x2="416" y2="138" stroke="#10b981" stroke-width="1.5" marker-end="url(#wh-arr-green)"/>
+  <text x="471" y="135" text-anchor="middle" font-size="9" fill="#10b981">Commit (scalar, element)</text>
+
+  <!-- Confirm phase -->
+  <line x1="408" y1="166" x2="518" y2="166" stroke="#10b981" stroke-width="1.5" marker-end="url(#wh-arr-green)"/>
+  <text x="463" y="163" text-anchor="middle" font-size="9" fill="#10b981">Confirm</text>
+
+  <line x1="526" y1="189" x2="416" y2="189" stroke="#10b981" stroke-width="1.5" marker-end="url(#wh-arr-green)"/>
+  <text x="471" y="186" text-anchor="middle" font-size="9" fill="#10b981">Confirm</text>
+
+  <!-- Attacker gets nothing -->
+  <text x="642" y="155" text-anchor="middle" font-size="9" fill="#9ca3af">nothing</text>
+  <text x="642" y="168" text-anchor="middle" font-size="9" fill="#9ca3af">to crack</text>
+  <text x="642" y="181" text-anchor="middle" font-size="24" fill="#d1d5db">∅</text>
+
+  <!-- Result label -->
+  <rect x="372" y="212" width="308" height="24" fill="#dcfce7" stroke="#86efac" stroke-width="1" rx="4"/>
+  <text x="526" y="228" text-anchor="middle" font-size="10" font-weight="600" fill="#16a34a">password never transmitted — forward secrecy</text>
+
+  <!-- Caption -->
+  <text x="350" y="285" text-anchor="middle" font-size="11" fill="#6b7280">SAE's Dragonfly exchange derives a session key without ever exposing the password</text>
+</svg>

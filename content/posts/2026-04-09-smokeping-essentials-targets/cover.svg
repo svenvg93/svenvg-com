@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <linearGradient id="textbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#080c14" stop-opacity="0"/>
+      <stop offset="60%" stop-color="#080c14" stop-opacity="0.93"/>
+      <stop offset="100%" stop-color="#080c14" stop-opacity="1"/>
+    </linearGradient>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#0ea5e9"/>
+    </marker>
+    <marker id="arr-dim" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#0ea5e9" fill-opacity="0.5"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <g stroke="#0d1a2a" stroke-width="1">
+    <line x1="0" y1="100" x2="1200" y2="100"/>
+    <line x1="0" y1="200" x2="1200" y2="200"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/>
+    <line x1="0" y1="400" x2="1200" y2="400"/>
+    <line x1="200" y1="0" x2="200" y2="500"/>
+    <line x1="400" y1="0" x2="400" y2="500"/>
+    <line x1="600" y1="0" x2="600" y2="500"/>
+    <line x1="800" y1="0" x2="800" y2="500"/>
+    <line x1="1000" y1="0" x2="1000" y2="500"/>
+  </g>
+
+  <!-- === Probe source (left) === -->
+  <rect x="60" y="195" width="210" height="120" fill="#0a1628" stroke="#0ea5e9" stroke-width="1.5" rx="8"/>
+  <rect x="60" y="195" width="6" height="120" fill="#0ea5e9" rx="3"/>
+  <text x="142" y="222" text-anchor="middle" font-size="12" font-weight="700" fill="#e2e8f0">Probe Host</text>
+  <text x="142" y="240" text-anchor="middle" font-size="9" fill="#64748b">SmokePing</text>
+  <text x="142" y="262" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" fill="#0ea5e9">ping -c 20 target</text>
+  <text x="142" y="278" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" fill="#0ea5e9">fping -C 20 target</text>
+  <text x="142" y="296" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" fill="#64748b">curl -o /dev/null</text>
+
+  <!-- Three diverging arrows from probe to protocols -->
+  <path d="M 272,230 C 390,230 460,175 558,175" fill="none" stroke="#0ea5e9" stroke-width="2" marker-end="url(#arr)"/>
+  <path d="M 272,255 L 558,255"               fill="none" stroke="#0ea5e9" stroke-width="2.5" marker-end="url(#arr)"/>
+  <path d="M 272,280 C 390,280 460,335 558,335" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-opacity="0.6" marker-end="url(#arr-dim)"/>
+
+  <!-- === Protocol labels (center) === -->
+  <!-- ICMP box -->
+  <rect x="560" y="148" width="130" height="54" fill="#0d1e30" stroke="#0ea5e9" stroke-width="1.5" rx="6"/>
+  <text x="625" y="170" text-anchor="middle" font-size="11" font-weight="700" fill="#0ea5e9">ICMP</text>
+  <text x="625" y="187" text-anchor="middle" font-size="9" fill="#64748b">ping / fping</text>
+  <!-- TCP box -->
+  <rect x="560" y="228" width="130" height="54" fill="#0d1e30" stroke="#0ea5e9" stroke-width="1.5" rx="6"/>
+  <text x="625" y="250" text-anchor="middle" font-size="11" font-weight="700" fill="#0ea5e9">TCP</text>
+  <text x="625" y="267" text-anchor="middle" font-size="9" fill="#64748b">port 443</text>
+  <!-- HTTP box -->
+  <rect x="560" y="308" width="130" height="54" fill="#0d1e30" stroke="#475569" stroke-width="1.5" rx="6"/>
+  <text x="625" y="330" text-anchor="middle" font-size="11" font-weight="700" fill="#64748b">HTTP</text>
+  <text x="625" y="347" text-anchor="middle" font-size="9" fill="#475569">avoid — noisy</text>
+
+  <!-- Arrows protocol → target -->
+  <path d="M 692,175 C 770,175 820,160 918,160" fill="none" stroke="#0ea5e9" stroke-width="2" marker-end="url(#arr)"/>
+  <path d="M 692,255 L 918,255"                fill="none" stroke="#0ea5e9" stroke-width="2.5" marker-end="url(#arr)"/>
+  <path d="M 692,335 C 770,335 820,350 918,350" fill="none" stroke="#475569" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arr-dim)"/>
+
+  <!-- === Target boxes (right) === -->
+  <!-- ISP Gateway -->
+  <rect x="920" y="130" width="220" height="60" fill="#0d1e30" stroke="#0ea5e9" stroke-width="1.5" rx="6"/>
+  <rect x="920" y="130" width="5" height="60" fill="#0ea5e9" rx="3"/>
+  <text x="1032" y="154" text-anchor="middle" font-size="11" font-weight="600" fill="#e2e8f0">ISP Gateway</text>
+  <text x="1032" y="172" text-anchor="middle" font-size="9" fill="#64748b">first hop · always responds</text>
+
+  <!-- CDN Cache -->
+  <rect x="920" y="225" width="220" height="60" fill="#0d1e30" stroke="#0ea5e9" stroke-width="1.5" rx="6"/>
+  <rect x="920" y="225" width="5" height="60" fill="#0ea5e9" rx="3"/>
+  <text x="1032" y="249" text-anchor="middle" font-size="11" font-weight="600" fill="#e2e8f0">CDN Cache</text>
+  <text x="1032" y="267" text-anchor="middle" font-size="9" fill="#64748b">ISP-hosted · stable target</text>
+
+  <!-- Public DNS -->
+  <rect x="920" y="320" width="220" height="60" fill="#0d1e30" stroke="#475569" stroke-width="1" rx="6"/>
+  <rect x="920" y="320" width="5" height="60" fill="#475569" rx="3"/>
+  <text x="1032" y="344" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8">Public DNS</text>
+  <text x="1032" y="362" text-anchor="middle" font-size="9" fill="#475569">rate-limited · avoid</text>
+
+  <!-- MTR badge -->
+  <rect x="440" y="96" width="320" height="32" fill="#0c1a2e" stroke="#0ea5e9" stroke-width="1.5" rx="16"/>
+  <text x="600" y="117" text-anchor="middle" font-size="12" fill="#0ea5e9" font-weight="600" letter-spacing="1">Verify targets with MTR</text>
+
+  <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
+
+  <text x="600" y="572" text-anchor="middle" font-size="13" fill="#0ea5e9" letter-spacing="3" font-weight="600">Smokeping Essentials</text>
+  <text x="600" y="608" text-anchor="middle" font-size="34" font-weight="700" fill="#f0f6fc">The Right Targets</text>
+</svg>

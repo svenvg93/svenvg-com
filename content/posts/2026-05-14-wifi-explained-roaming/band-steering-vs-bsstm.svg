@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 280" width="700" height="280" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+
+  <!-- Background -->
+  <rect width="700" height="280" fill="#f8fafc" rx="12"/>
+
+  <!-- Title -->
+  <text x="350" y="26" text-anchor="middle" font-size="14" font-weight="700" fill="#111827">Band Steering vs 802.11v BSS Transition — Mechanism Comparison</text>
+
+  <!-- === Left column: Band Steering === -->
+  <rect x="40" y="44" width="290" height="200" fill="#fff7ed" stroke="#fb923c" stroke-width="1.5" rx="8"/>
+  <text x="185" y="64" text-anchor="middle" font-size="12" font-weight="700" fill="#c2410c">Band Steering</text>
+  <text x="185" y="78" text-anchor="middle" font-size="10" fill="#9a3412">(vendor-specific, no standard)</text>
+
+  <!-- Step 1 -->
+  <rect x="56" y="88" width="258" height="34" fill="#fed7aa" stroke="#fb923c" stroke-width="1" rx="4"/>
+  <text x="185" y="104" text-anchor="middle" font-size="10" font-weight="600" fill="#7c2d12">Client probes 2.4 GHz</text>
+  <text x="185" y="116" text-anchor="middle" font-size="9" fill="#7c2d12">AP suppresses or rejects the probe</text>
+
+  <text x="185" y="136" text-anchor="middle" font-size="16" fill="#9ca3af">↓</text>
+
+  <!-- Step 2 -->
+  <rect x="56" y="142" width="258" height="34" fill="#fed7aa" stroke="#fb923c" stroke-width="1" rx="4"/>
+  <text x="185" y="158" text-anchor="middle" font-size="10" font-weight="600" fill="#7c2d12">Client retries on 5 GHz</text>
+  <text x="185" y="170" text-anchor="middle" font-size="9" fill="#7c2d12">Finds AP there, associates</text>
+
+  <text x="185" y="190" text-anchor="middle" font-size="16" fill="#9ca3af">↓</text>
+
+  <!-- Risk -->
+  <rect x="56" y="196" width="258" height="34" fill="#fecaca" stroke="#f87171" stroke-width="1" rx="4"/>
+  <text x="185" y="212" text-anchor="middle" font-size="10" font-weight="600" fill="#991b1b">Risk: IoT devices may fail</text>
+  <text x="185" y="224" text-anchor="middle" font-size="9" fill="#991b1b">Connection loops, timeouts on strict clients</text>
+
+  <!-- === Right column: 802.11v BSS TM === -->
+  <rect x="370" y="44" width="290" height="200" fill="#f0fdf4" stroke="#4ade80" stroke-width="1.5" rx="8"/>
+  <text x="515" y="64" text-anchor="middle" font-size="12" font-weight="700" fill="#15803d">802.11v BSS Transition</text>
+  <text x="515" y="78" text-anchor="middle" font-size="10" fill="#166534">(standardised, post-association)</text>
+
+  <!-- Step 1 -->
+  <rect x="386" y="88" width="258" height="34" fill="#bbf7d0" stroke="#4ade80" stroke-width="1" rx="4"/>
+  <text x="515" y="104" text-anchor="middle" font-size="10" font-weight="600" fill="#14532d">Client already associated</text>
+  <text x="515" y="116" text-anchor="middle" font-size="9" fill="#14532d">AP detects it could be on a better band/AP</text>
+
+  <text x="515" y="136" text-anchor="middle" font-size="16" fill="#9ca3af">↓</text>
+
+  <!-- Step 2 -->
+  <rect x="386" y="142" width="258" height="34" fill="#bbf7d0" stroke="#4ade80" stroke-width="1" rx="4"/>
+  <text x="515" y="158" text-anchor="middle" font-size="10" font-weight="600" fill="#14532d">AP sends BSS TM Request</text>
+  <text x="515" y="170" text-anchor="middle" font-size="9" fill="#14532d">Suggests target AP; client can accept or ignore</text>
+
+  <text x="515" y="190" text-anchor="middle" font-size="16" fill="#9ca3af">↓</text>
+
+  <!-- Result -->
+  <rect x="386" y="196" width="258" height="34" fill="#dcfce7" stroke="#4ade80" stroke-width="1" rx="4"/>
+  <text x="515" y="212" text-anchor="middle" font-size="10" font-weight="600" fill="#14532d">Client roams gracefully</text>
+  <text x="515" y="224" text-anchor="middle" font-size="9" fill="#14532d">No failed associations, no loops</text>
+
+  <!-- Caption -->
+  <text x="350" y="258" text-anchor="middle" font-size="11" fill="#6b7280">802.11v BSS TM steers already-connected clients with no risk of broken associations —</text>
+  <text x="350" y="272" text-anchor="middle" font-size="11" fill="#6b7280">prefer it over probe-suppression band steering where possible</text>
+</svg>

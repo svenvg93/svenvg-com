@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 220" width="700" height="220" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+
+  <!-- Background -->
+  <rect width="700" height="220" fill="#f8fafc" rx="12"/>
+
+  <!-- Title -->
+  <text x="350" y="26" text-anchor="middle" font-size="14" font-weight="700" fill="#111827">OFDM — One 20 MHz Channel, Many Subcarriers</text>
+
+  <!-- Y axis label -->
+  <text x="24" y="130" text-anchor="middle" font-size="10" fill="#6b7280" transform="rotate(-90,24,130)">signal</text>
+
+  <!-- Axis lines -->
+  <line x1="52" y1="50" x2="52" y2="158" stroke="#d1d5db" stroke-width="1.5"/>
+  <line x1="52" y1="158" x2="664" y2="158" stroke="#d1d5db" stroke-width="1.5"/>
+
+  <!-- X axis label -->
+  <text x="358" y="178" text-anchor="middle" font-size="10" fill="#6b7280">frequency →    20 MHz channel</text>
+
+  <!-- Subcarriers — 52 bars, all blue (one device) -->
+  <!-- Bar width ~11px, gap 1px, starting at x=58 -->
+  <!-- 52 bars × 12px = 624px total, fits in 52..664 -->
+
+  <rect x="58"  y="78" width="10" height="80" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="70"  y="62" width="10" height="96" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="82"  y="72" width="10" height="86" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="94"  y="58" width="10" height="100" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="106" y="68" width="10" height="90" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="118" y="55" width="10" height="103" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="130" y="65" width="10" height="93" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="142" y="74" width="10" height="84" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="154" y="60" width="10" height="98" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="166" y="70" width="10" height="88" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="178" y="56" width="10" height="102" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="190" y="66" width="10" height="92" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="202" y="76" width="10" height="82" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="214" y="62" width="10" height="96" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="226" y="72" width="10" height="86" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="238" y="58" width="10" height="100" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="250" y="68" width="10" height="90" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="262" y="54" width="10" height="104" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="274" y="64" width="10" height="94" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="286" y="74" width="10" height="84" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="298" y="60" width="10" height="98" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="310" y="70" width="10" height="88" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="322" y="56" width="10" height="102" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="334" y="66" width="10" height="92" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="346" y="76" width="10" height="82" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="358" y="62" width="10" height="96" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="370" y="72" width="10" height="86" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="382" y="58" width="10" height="100" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="394" y="68" width="10" height="90" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="406" y="54" width="10" height="104" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="418" y="64" width="10" height="94" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="430" y="74" width="10" height="84" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="442" y="60" width="10" height="98" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="454" y="70" width="10" height="88" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="466" y="56" width="10" height="102" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="478" y="66" width="10" height="92" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="490" y="76" width="10" height="82" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="502" y="62" width="10" height="96" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="514" y="72" width="10" height="86" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="526" y="58" width="10" height="100" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="538" y="68" width="10" height="90" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="550" y="55" width="10" height="103" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="562" y="65" width="10" height="93" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="574" y="74" width="10" height="84" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="586" y="60" width="10" height="98" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="598" y="70" width="10" height="88" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="610" y="56" width="10" height="102" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="622" y="66" width="10" height="92" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="634" y="76" width="10" height="82" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="646" y="62" width="10" height="96" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <rect x="658" y="70" width="10" height="88" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+
+  <!-- Label: all one device -->
+  <rect x="200" y="50" width="300" height="20" fill="#eff6ff" stroke="#93c5fd" stroke-width="1" rx="4"/>
+  <text x="350" y="64" text-anchor="middle" font-size="10" font-weight="600" fill="#1d4ed8">All subcarriers → one device per transmission</text>
+
+  <!-- Caption -->
+  <text x="350" y="200" text-anchor="middle" font-size="11" fill="#6b7280">Subcarriers are orthogonal — no interference despite overlapping in frequency</text>
+  <text x="350" y="214" text-anchor="middle" font-size="11" fill="#6b7280">But the entire channel still serves one device at a time</text>
+</svg>

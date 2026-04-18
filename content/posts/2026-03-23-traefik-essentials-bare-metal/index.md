@@ -11,7 +11,7 @@ tags:
   - cloudflare
   - let's encrypt
   - linux
-cover: cover.jpg
+cover: cover.svg
 series:
   - Traefik Essentials
 series_order: 3

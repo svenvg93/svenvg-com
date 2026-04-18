@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 250" width="700" height="250" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+
+  <!-- Background -->
+  <rect width="700" height="250" fill="#f8fafc" rx="12"/>
+
+  <!-- Title -->
+  <text x="350" y="26" text-anchor="middle" font-size="14" font-weight="700" fill="#111827">Preamble Puncturing — Wide Channel Around Interference</text>
+
+  <!-- === Without Puncturing === -->
+  <text x="62" y="50" font-size="11" font-weight="600" fill="#374151">Without Puncturing</text>
+
+  <!-- Full 320 MHz outline -->
+  <rect x="62" y="58" width="601" height="38" fill="none" stroke="#d1d5db" stroke-width="1.5" rx="4" stroke-dasharray="4,4"/>
+
+  <!-- Active portion (160 MHz = first half) -->
+  <rect x="62" y="58" width="300" height="38" fill="#bfdbfe" stroke="#93c5fd" stroke-width="1.5" rx="4"/>
+  <text x="212" y="81" text-anchor="middle" font-size="11" font-weight="600" fill="#1d4ed8">Active — 160 MHz</text>
+
+  <!-- Interference zone (160-240 MHz, orange) -->
+  <rect x="362" y="58" width="150" height="38" fill="#fecaca" stroke="#f87171" stroke-width="1.5" rx="0"/>
+  <text x="437" y="75" text-anchor="middle" font-size="10" font-weight="600" fill="#b91c1c">Interference</text>
+  <text x="437" y="88" text-anchor="middle" font-size="9" fill="#b91c1c">80 MHz</text>
+
+  <!-- Unused zone (240-320 MHz) -->
+  <rect x="512" y="58" width="151" height="38" fill="#f3f4f6" stroke="#d1d5db" stroke-width="1.5" rx="0"/>
+  <text x="588" y="75" text-anchor="middle" font-size="10" fill="#9ca3af">Unused</text>
+  <text x="588" y="88" text-anchor="middle" font-size="9" fill="#9ca3af">80 MHz</text>
+
+  <!-- Without label -->
+  <text x="663" y="81" font-size="10" font-weight="600" fill="#ef4444" x="660">→ 160 MHz</text>
+
+  <!-- === With Puncturing === -->
+  <text x="62" y="128" font-size="11" font-weight="600" fill="#374151">With Preamble Puncturing</text>
+
+  <!-- Left active block (0-160 MHz) -->
+  <rect x="62"  y="136" width="300" height="38" fill="#bfdbfe" stroke="#93c5fd" stroke-width="1.5" rx="4"/>
+  <text x="212" y="159" text-anchor="middle" font-size="11" font-weight="600" fill="#1d4ed8">Active — 160 MHz</text>
+
+  <!-- Punctured block (160-240 MHz, grey with diagonal hatch) -->
+  <rect x="362" y="136" width="150" height="38" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.5" rx="0"/>
+  <!-- Diagonal hatch lines -->
+  <line x1="362" y1="136" x2="412" y2="174" stroke="#d1d5db" stroke-width="1"/>
+  <line x1="382" y1="136" x2="432" y2="174" stroke="#d1d5db" stroke-width="1"/>
+  <line x1="402" y1="136" x2="452" y2="174" stroke="#d1d5db" stroke-width="1"/>
+  <line x1="422" y1="136" x2="472" y2="174" stroke="#d1d5db" stroke-width="1"/>
+  <line x1="442" y1="136" x2="492" y2="174" stroke="#d1d5db" stroke-width="1"/>
+  <line x1="462" y1="136" x2="512" y2="174" stroke="#d1d5db" stroke-width="1"/>
+  <text x="437" y="153" text-anchor="middle" font-size="10" font-weight="600" fill="#6b7280">PUNCTURED</text>
+  <text x="437" y="166" text-anchor="middle" font-size="9" fill="#6b7280">80 MHz skipped</text>
+
+  <!-- Right active block (240-320 MHz) -->
+  <rect x="512" y="136" width="151" height="38" fill="#bfdbfe" stroke="#93c5fd" stroke-width="1.5" rx="4"/>
+  <text x="588" y="153" text-anchor="middle" font-size="11" font-weight="600" fill="#1d4ed8">Active</text>
+  <text x="588" y="166" text-anchor="middle" font-size="10" fill="#1d4ed8">80 MHz</text>
+
+  <!-- Brace / label showing total active -->
+  <text x="287" y="200" text-anchor="middle" font-size="10" fill="#6b7280">← 240 MHz active →</text>
+
+  <!-- Frequency axis -->
+  <line x1="62" y1="210" x2="663" y2="210" stroke="#d1d5db" stroke-width="1"/>
+  <text x="62"  y="222" text-anchor="middle" font-size="9" fill="#9ca3af">0</text>
+  <text x="212" y="222" text-anchor="middle" font-size="9" fill="#9ca3af">80 MHz</text>
+  <text x="362" y="222" text-anchor="middle" font-size="9" fill="#9ca3af">160 MHz</text>
+  <text x="512" y="222" text-anchor="middle" font-size="9" fill="#9ca3af">240 MHz</text>
+  <text x="663" y="222" text-anchor="middle" font-size="9" fill="#9ca3af">320 MHz</text>
+
+  <!-- Caption -->
+  <text x="350" y="240" text-anchor="middle" font-size="11" fill="#6b7280">The preamble bitmap signals which 20 MHz sub-channels are active — clients skip the punctured region entirely</text>
+</svg>

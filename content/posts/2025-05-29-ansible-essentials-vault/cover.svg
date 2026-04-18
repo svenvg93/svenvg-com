@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <linearGradient id="textbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#080c14" stop-opacity="0"/>
+      <stop offset="60%" stop-color="#080c14" stop-opacity="0.93"/>
+      <stop offset="100%" stop-color="#080c14" stop-opacity="1"/>
+    </linearGradient>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#dc2626"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Grid -->
+  <g stroke="#0d1a2a" stroke-width="1">
+    <line x1="0" y1="100" x2="1200" y2="100"/>
+    <line x1="0" y1="200" x2="1200" y2="200"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/>
+    <line x1="0" y1="400" x2="1200" y2="400"/>
+    <line x1="200" y1="0" x2="200" y2="500"/>
+    <line x1="400" y1="0" x2="400" y2="500"/>
+    <line x1="600" y1="0" x2="600" y2="500"/>
+    <line x1="800" y1="0" x2="800" y2="500"/>
+    <line x1="1000" y1="0" x2="1000" y2="500"/>
+  </g>
+
+  <!-- === Left: Plaintext secrets file === -->
+  <rect x="60" y="120" width="310" height="240" fill="#0a1628" stroke="#7f1d1d" stroke-width="1.5" rx="8"/>
+  <rect x="60" y="120" width="310" height="24" fill="#3b0808" rx="8"/>
+  <rect x="60" y="132" width="310" height="12" fill="#3b0808"/>
+  <text x="215" y="136" text-anchor="middle" font-size="9" fill="#f87171">vars/secrets.yml  ⚠ PLAINTEXT</text>
+
+  <g font-family="'Courier New',monospace" font-size="9.5">
+    <text x="76" y="163" fill="#7dd3fc">---</text>
+    <text x="76" y="182" fill="#e2e8f0">tailscale_auth_key:</text>
+    <text x="84" y="198" fill="#f87171">"tskey-auth-kXXXXXXXX"</text>
+    <text x="76" y="217" fill="#e2e8f0">db_password:</text>
+    <text x="84" y="233" fill="#f87171">"hunter2"</text>
+    <text x="76" y="252" fill="#e2e8f0">api_token:</text>
+    <text x="84" y="268" fill="#f87171">"sk-live-abc123xyz"</text>
+    <text x="76" y="287" fill="#e2e8f0">grafana_admin_pass:</text>
+    <text x="84" y="303" fill="#f87171">"s3cr3tp@ss!"</text>
+    <text x="76" y="330" fill="#64748b"># DO NOT COMMIT</text>
+  </g>
+  <text x="215" y="375" text-anchor="middle" font-size="11" fill="#64748b">Unencrypted</text>
+
+  <!-- Arrow left → center -->
+  <path d="M 372,245 L 455,245" fill="none" stroke="#dc2626" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- === Center: Vault lock === -->
+  <!-- Vault box background -->
+  <rect x="457" y="155" width="286" height="180" fill="#0a1628" stroke="#475569" stroke-width="1" rx="8"/>
+
+  <!-- Lock shackle (arc) -->
+  <path d="M 565,220 C 565,185 635,185 635,220" fill="none" stroke="#dc2626" stroke-width="10" stroke-linecap="round"/>
+  <!-- Lock body -->
+  <rect x="548" y="218" width="104" height="80" fill="#1e1e2e" stroke="#dc2626" stroke-width="3" rx="6"/>
+  <!-- Keyhole circle -->
+  <circle cx="600" cy="248" r="12" fill="#dc2626" fill-opacity="0.2" stroke="#dc2626" stroke-width="2"/>
+  <circle cx="600" cy="248" r="5" fill="#dc2626"/>
+  <!-- Keyhole stem -->
+  <rect x="596" y="252" width="8" height="16" rx="2" fill="#dc2626"/>
+
+  <!-- Command label -->
+  <text x="600" y="325" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#dc2626">ansible-vault encrypt</text>
+  <text x="600" y="342" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#dc2626">vars/secrets.yml</text>
+
+  <text x="600" y="375" text-anchor="middle" font-size="11" fill="#64748b">Ansible Vault</text>
+
+  <!-- Arrow center → right -->
+  <path d="M 745,245 L 828,245" fill="none" stroke="#4ade80" stroke-width="2">
+    <animate attributeName="stroke-opacity" values="1;0.4;1" dur="2s" repeatCount="indefinite"/>
+  </path>
+  <polygon points="828,242 836,245 828,248" fill="#4ade80"/>
+
+  <!-- === Right: Encrypted vault file === -->
+  <rect x="838" y="120" width="302" height="240" fill="#0a1628" stroke="#14532d" stroke-width="1.5" rx="8"/>
+  <rect x="838" y="120" width="302" height="24" fill="#052e16" rx="8"/>
+  <rect x="838" y="132" width="302" height="12" fill="#052e16"/>
+  <text x="989" y="136" text-anchor="middle" font-size="9" fill="#4ade80">vars/secrets.yml  🔒 ENCRYPTED</text>
+
+  <g font-family="'Courier New',monospace" font-size="8.5" fill="#475569">
+    <text x="854" y="162">$ANSIBLE_VAULT;1.1;AES256</text>
+    <text x="854" y="178">3236623933363730323831383534</text>
+    <text x="854" y="194">6332663839613634373362376664</text>
+    <text x="854" y="210">3230376261363066626139396231</text>
+    <text x="854" y="226">6634633438613863666163373835</text>
+    <text x="854" y="242">3336333761643630353235376162</text>
+    <text x="854" y="258">6239656661376330376534323631</text>
+    <text x="854" y="274">3039306239393462336434333864</text>
+    <text x="854" y="290">6161363163373232623666353530</text>
+    <text x="854" y="306">3665623337356434323763633032</text>
+    <text x="854" y="322">3965346434323763633032373965</text>
+    <text x="854" y="338">3664656664316264343130343434</text>
+  </g>
+  <text x="989" y="375" text-anchor="middle" font-size="11" fill="#64748b">Encrypted</text>
+
+  <!-- Bottom gradient -->
+  <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
+
+  <!-- Series label -->
+  <text x="600" y="572" text-anchor="middle" font-size="13" fill="#dc2626" letter-spacing="3" font-weight="600">Ansible Essentials</text>
+
+  <!-- Title -->
+  <text x="600" y="608" text-anchor="middle" font-size="34" font-weight="700" fill="#f0f6fc">Managing Secrets with Vault</text>
+</svg>

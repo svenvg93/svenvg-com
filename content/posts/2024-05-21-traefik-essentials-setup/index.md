@@ -10,7 +10,7 @@ tags:
   - traefik
   - cloudflare
   - let's encrypt
-cover: cover.jpg
+cover: cover.svg
 series:
   - Traefik Essentials
 series_order: 1

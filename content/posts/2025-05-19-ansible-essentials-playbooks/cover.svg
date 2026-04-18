@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <linearGradient id="textbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#080c14" stop-opacity="0"/>
+      <stop offset="60%" stop-color="#080c14" stop-opacity="0.93"/>
+      <stop offset="100%" stop-color="#080c14" stop-opacity="1"/>
+    </linearGradient>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#dc2626"/>
+    </marker>
+    <marker id="arr-notify" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#f59e0b"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Grid -->
+  <g stroke="#0d1a2a" stroke-width="1">
+    <line x1="0" y1="100" x2="1200" y2="100"/>
+    <line x1="0" y1="200" x2="1200" y2="200"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/>
+    <line x1="0" y1="400" x2="1200" y2="400"/>
+    <line x1="200" y1="0" x2="200" y2="500"/>
+    <line x1="400" y1="0" x2="400" y2="500"/>
+    <line x1="600" y1="0" x2="600" y2="500"/>
+    <line x1="800" y1="0" x2="800" y2="500"/>
+    <line x1="1000" y1="0" x2="1000" y2="500"/>
+  </g>
+
+  <!-- === Left: Playbook file === -->
+  <rect x="60" y="120" width="280" height="240" fill="#0a1628" stroke="#334155" stroke-width="1.5" rx="8"/>
+  <rect x="60" y="120" width="280" height="24" fill="#1e293b" rx="8"/>
+  <rect x="60" y="132" width="280" height="12" fill="#1e293b"/>
+  <text x="200" y="136" text-anchor="middle" font-size="9" fill="#64748b">site.yml</text>
+
+  <g font-family="'Courier New',monospace" font-size="9.5">
+    <text x="76" y="163" fill="#7dd3fc">---</text>
+    <text x="76" y="179" fill="#e2e8f0">- name: <tspan fill="#a3e635">Deploy servers</tspan></text>
+    <text x="76" y="195" fill="#e2e8f0">  hosts: <tspan fill="#a3e635">all</tspan></text>
+    <text x="76" y="211" fill="#e2e8f0">  become: <tspan fill="#fb923c">true</tspan></text>
+    <text x="76" y="227" fill="#e2e8f0">  roles:</text>
+    <text x="76" y="243" fill="#94a3b8">    - common</text>
+    <text x="76" y="259" fill="#94a3b8">    - nginx</text>
+    <text x="76" y="275" fill="#94a3b8">    - security</text>
+    <text x="76" y="299" fill="#e2e8f0">  vars:</text>
+    <text x="76" y="315" fill="#94a3b8">    env: production</text>
+    <text x="76" y="331" fill="#94a3b8">    domain: example.com</text>
+  </g>
+  <text x="200" y="375" text-anchor="middle" font-size="11" fill="#64748b">Playbook</text>
+
+  <!-- Arrow playbook → role -->
+  <path d="M 342,245 L 410,245" fill="none" stroke="#dc2626" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- === Center: Role directory tree === -->
+  <rect x="412" y="120" width="260" height="240" fill="#0a1628" stroke="#334155" stroke-width="1.5" rx="8"/>
+  <rect x="412" y="120" width="260" height="24" fill="#1e293b" rx="8"/>
+  <rect x="412" y="132" width="260" height="12" fill="#1e293b"/>
+  <text x="542" y="136" text-anchor="middle" font-size="9" fill="#64748b">roles/common/</text>
+
+  <g font-family="'Courier New',monospace" font-size="9.5" fill="#94a3b8">
+    <text x="428" y="163" fill="#dc2626">roles/common/</text>
+    <text x="428" y="179">├── <tspan fill="#7dd3fc">tasks/</tspan></text>
+    <text x="428" y="195">│   └── main.yml</text>
+    <text x="428" y="211">├── <tspan fill="#f59e0b">handlers/</tspan></text>
+    <text x="428" y="227">│   └── main.yml</text>
+    <text x="428" y="243">├── <tspan fill="#a3e635">defaults/</tspan></text>
+    <text x="428" y="259">│   └── main.yml</text>
+    <text x="428" y="275">├── <tspan fill="#a78bfa">templates/</tspan></text>
+    <text x="428" y="291">│   └── nginx.conf.j2</text>
+    <text x="428" y="307">└── <tspan fill="#64748b">meta/</tspan></text>
+    <text x="428" y="323">    └── main.yml</text>
+  </g>
+  <text x="542" y="375" text-anchor="middle" font-size="11" fill="#64748b">Role</text>
+
+  <!-- Arrow role → execution -->
+  <path d="M 674,245 L 740,245" fill="none" stroke="#dc2626" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- === Right: Execution output === -->
+  <rect x="742" y="120" width="398" height="240" fill="#0a1628" stroke="#334155" stroke-width="1.5" rx="8"/>
+  <rect x="742" y="120" width="398" height="24" fill="#1e293b" rx="8"/>
+  <rect x="742" y="132" width="398" height="12" fill="#1e293b"/>
+  <text x="941" y="136" text-anchor="middle" font-size="9" fill="#64748b">ansible-playbook site.yml</text>
+
+  <g font-family="'Courier New',monospace" font-size="9">
+    <text x="758" y="162" fill="#475569">PLAY [Deploy servers] *****</text>
+
+    <text x="758" y="182" fill="#94a3b8">TASK [common: Install packages]</text>
+    <!-- ok badge -->
+    <rect x="1040" y="170" width="36" height="16" fill="#14532d" rx="3"/>
+    <text x="1058" y="181" text-anchor="middle" font-size="9" fill="#4ade80">ok</text>
+
+    <text x="758" y="204" fill="#94a3b8">TASK [common: Deploy nginx.conf]</text>
+    <!-- changed badge -->
+    <rect x="1026" y="192" width="54" height="16" fill="#78350f" rx="3"/>
+    <text x="1053" y="203" text-anchor="middle" font-size="9" fill="#f59e0b">changed</text>
+
+    <!-- notify arrow -->
+    <text x="1086" y="204" fill="#f59e0b" font-size="9"> notify →</text>
+
+    <text x="758" y="226" fill="#94a3b8">TASK [common: Enable service]</text>
+    <!-- ok badge -->
+    <rect x="1040" y="214" width="36" height="16" fill="#14532d" rx="3"/>
+    <text x="1058" y="225" text-anchor="middle" font-size="9" fill="#4ade80">ok</text>
+
+    <!-- Separator -->
+    <line x1="758" y1="238" x2="1128" y2="238" stroke="#1e3040" stroke-width="1"/>
+
+    <text x="758" y="255" fill="#7dd3fc">RUNNING HANDLERS</text>
+
+    <text x="758" y="274" fill="#94a3b8">HANDLER [Restart nginx]</text>
+    <!-- changed badge -->
+    <rect x="1026" y="262" width="54" height="16" fill="#78350f" rx="3"/>
+    <text x="1053" y="273" text-anchor="middle" font-size="9" fill="#f59e0b">changed</text>
+
+    <!-- Summary -->
+    <line x1="758" y1="287" x2="1128" y2="287" stroke="#1e3040" stroke-width="1"/>
+    <text x="758" y="306" fill="#475569">PLAY RECAP</text>
+    <text x="758" y="325" fill="#94a3b8">ok=<tspan fill="#4ade80">3</tspan>  changed=<tspan fill="#f59e0b">2</tspan>  failed=<tspan fill="#ef4444">0</tspan></text>
+  </g>
+  <text x="941" y="375" text-anchor="middle" font-size="11" fill="#64748b">Execution</text>
+
+  <!-- Bottom gradient -->
+  <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
+
+  <!-- Series label -->
+  <text x="600" y="572" text-anchor="middle" font-size="13" fill="#dc2626" letter-spacing="3" font-weight="600">Ansible Essentials</text>
+
+  <!-- Title -->
+  <text x="600" y="608" text-anchor="middle" font-size="34" font-weight="700" fill="#f0f6fc">Playbooks, Roles &amp; Handlers</text>
+</svg>

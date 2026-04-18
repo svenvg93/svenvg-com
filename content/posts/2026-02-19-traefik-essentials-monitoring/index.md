@@ -13,7 +13,7 @@ tags:
   - prometheus
   - grafana
   - loki
-cover: cover.jpg
+cover: cover.svg
 series:
   - Traefik Essentials
 series_order: 2

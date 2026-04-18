@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 260" width="700" height="260" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#9ca3af"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="700" height="260" fill="#f8fafc" rx="12"/>
+
+  <!-- Title -->
+  <text x="350" y="26" text-anchor="middle" font-size="14" font-weight="700" fill="#111827">CSMA/CA — Contention and Frame Exchange</text>
+
+  <!-- ── Device A ── -->
+  <text x="16" y="60" font-size="11" font-weight="600" fill="#374151">Device A</text>
+
+  <!-- Channel busy (grey) -->
+  <rect x="90" y="44" width="80" height="30" fill="#f3f4f6" stroke="#d1d5db" stroke-width="1.5" rx="4"/>
+  <text x="130" y="62" text-anchor="middle" font-size="10" fill="#6b7280">Busy</text>
+
+  <!-- DIFS -->
+  <rect x="174" y="44" width="36" height="30" fill="#ede9fe" stroke="#c4b5fd" stroke-width="1.5" rx="4"/>
+  <text x="192" y="62" text-anchor="middle" font-size="9" font-weight="600" fill="#7c3aed">DIFS</text>
+
+  <!-- Backoff (Device A — shorter) -->
+  <rect x="214" y="44" width="48" height="30" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.5" rx="4"/>
+  <text x="238" y="59" text-anchor="middle" font-size="9" font-weight="600" fill="#92400e">Backoff</text>
+  <text x="238" y="70" text-anchor="middle" font-size="8" fill="#92400e">3 slots</text>
+
+  <!-- DATA -->
+  <rect x="266" y="44" width="120" height="30" fill="#dbeafe" stroke="#93c5fd" stroke-width="1.5" rx="4"/>
+  <text x="326" y="59" text-anchor="middle" font-size="11" font-weight="600" fill="#1d4ed8">DATA</text>
+  <text x="326" y="70" text-anchor="middle" font-size="9" fill="#1d4ed8">frame transmission</text>
+
+  <!-- SIFS -->
+  <rect x="390" y="44" width="28" height="30" fill="#ede9fe" stroke="#c4b5fd" stroke-width="1.5" rx="4"/>
+  <text x="404" y="62" text-anchor="middle" font-size="9" font-weight="600" fill="#7c3aed">SIFS</text>
+
+  <!-- ACK -->
+  <rect x="422" y="44" width="52" height="30" fill="#dcfce7" stroke="#86efac" stroke-width="1.5" rx="4"/>
+  <text x="448" y="62" text-anchor="middle" font-size="10" font-weight="600" fill="#15803d">ACK ✓</text>
+
+  <!-- ── Device B ── -->
+  <text x="16" y="118" font-size="11" font-weight="600" fill="#374151">Device B</text>
+
+  <!-- Channel busy (grey — same period) -->
+  <rect x="90" y="102" width="80" height="30" fill="#f3f4f6" stroke="#d1d5db" stroke-width="1.5" rx="4"/>
+  <text x="130" y="120" text-anchor="middle" font-size="10" fill="#6b7280">Busy</text>
+
+  <!-- DIFS -->
+  <rect x="174" y="102" width="36" height="30" fill="#ede9fe" stroke="#c4b5fd" stroke-width="1.5" rx="4"/>
+  <text x="192" y="120" text-anchor="middle" font-size="9" font-weight="600" fill="#7c3aed">DIFS</text>
+
+  <!-- Backoff (Device B — longer, must wait) -->
+  <rect x="214" y="102" width="88" height="30" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.5" rx="4"/>
+  <text x="258" y="117" text-anchor="middle" font-size="9" font-weight="600" fill="#92400e">Backoff</text>
+  <text x="258" y="128" text-anchor="middle" font-size="8" fill="#92400e">7 slots</text>
+
+  <!-- Device B deferred while A transmits -->
+  <rect x="306" y="102" width="118" height="30" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1.5" rx="4" stroke-dasharray="4,2"/>
+  <text x="365" y="120" text-anchor="middle" font-size="10" fill="#9ca3af">deferred (channel busy)</text>
+
+  <!-- Device B resumes backoff after A's ACK -->
+  <rect x="428" y="102" width="36" height="30" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.5" rx="4"/>
+  <text x="446" y="117" text-anchor="middle" font-size="9" font-weight="600" fill="#92400e">Back-</text>
+  <text x="446" y="128" text-anchor="middle" font-size="9" font-weight="600" fill="#92400e">off</text>
+
+  <!-- Device B DATA -->
+  <rect x="468" y="102" width="100" height="30" fill="#dbeafe" stroke="#93c5fd" stroke-width="1.5" rx="4"/>
+  <text x="518" y="120" text-anchor="middle" font-size="11" font-weight="600" fill="#1d4ed8">DATA</text>
+
+  <!-- Vertical divider — start of Device A transmission -->
+  <line x1="266" y1="38" x2="266" y2="138" stroke="#6b7280" stroke-width="1" stroke-dasharray="3,2"/>
+
+  <!-- Time axis -->
+  <line x1="90" y1="155" x2="672" y2="155" stroke="#9ca3af" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="677" y="159" font-size="10" fill="#9ca3af">time</text>
+  <line x1="90" y1="151" x2="90" y2="159" stroke="#9ca3af" stroke-width="1.5"/>
+  <text x="90" y="170" text-anchor="middle" font-size="9" fill="#9ca3af">0</text>
+
+  <!-- Legend -->
+  <rect x="90" y="185" width="14" height="12" fill="#f3f4f6" stroke="#d1d5db" stroke-width="1" rx="2"/>
+  <text x="110" y="195" font-size="10" fill="#6b7280">Busy / deferred</text>
+
+  <rect x="210" y="185" width="14" height="12" fill="#ede9fe" stroke="#c4b5fd" stroke-width="1" rx="2"/>
+  <text x="230" y="195" font-size="10" fill="#7c3aed">IFS gaps</text>
+
+  <rect x="310" y="185" width="14" height="12" fill="#fef3c7" stroke="#fcd34d" stroke-width="1" rx="2"/>
+  <text x="330" y="195" font-size="10" fill="#92400e">Backoff</text>
+
+  <rect x="400" y="185" width="14" height="12" fill="#dbeafe" stroke="#93c5fd" stroke-width="1" rx="2"/>
+  <text x="420" y="195" font-size="10" fill="#1d4ed8">DATA</text>
+
+  <rect x="460" y="185" width="14" height="12" fill="#dcfce7" stroke="#86efac" stroke-width="1" rx="2"/>
+  <text x="480" y="195" font-size="10" fill="#15803d">ACK</text>
+
+  <!-- Caption -->
+  <text x="350" y="230" text-anchor="middle" font-size="11" fill="#6b7280">Device B draws a longer backoff and must pause again while Device A transmits</text>
+  <text x="350" y="246" text-anchor="middle" font-size="11" fill="#6b7280">Only one device transmits at a time — the rest wait</text>
+</svg>

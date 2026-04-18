@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 310" width="700" height="310" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <marker id="kvr-arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#64748b"/>
+    </marker>
+    <marker id="kvr-arr-b" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#3b82f6"/>
+    </marker>
+    <marker id="kvr-arr-g" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#10b981"/>
+    </marker>
+    <marker id="kvr-arr-v" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#8b5cf6"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="700" height="310" fill="#f8fafc" rx="12"/>
+
+  <!-- Title -->
+  <text x="350" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#111827">How 802.11k, r, and v Work Together</text>
+
+  <!-- Actors -->
+  <rect x="20" y="44" width="80" height="28" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5" rx="5"/>
+  <text x="60" y="62" text-anchor="middle" font-size="11" font-weight="600" fill="#374151">Client</text>
+
+  <rect x="286" y="44" width="80" height="28" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5" rx="5"/>
+  <text x="326" y="62" text-anchor="middle" font-size="11" font-weight="600" fill="#1d4ed8">AP 1</text>
+
+  <rect x="552" y="44" width="80" height="28" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5" rx="5"/>
+  <text x="592" y="62" text-anchor="middle" font-size="11" font-weight="600" fill="#16a34a">AP 2</text>
+
+  <!-- Lifelines -->
+  <line x1="60" y1="72" x2="60" y2="266" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="326" y1="72" x2="326" y2="266" stroke="#bfdbfe" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="592" y1="72" x2="592" y2="266" stroke="#bbf7d0" stroke-width="1" stroke-dasharray="3,3"/>
+
+  <!-- Step 1: 802.11v — AP1 suggests roam -->
+  <rect x="14" y="78" width="42" height="16" fill="#ede9fe" stroke="#a78bfa" stroke-width="1" rx="3"/>
+  <text x="35" y="90" text-anchor="middle" font-size="8" font-weight="600" fill="#7c3aed">802.11v</text>
+
+  <line x1="326" y1="100" x2="68" y2="100" stroke="#8b5cf6" stroke-width="1.5" marker-end="url(#kvr-arr-v)"/>
+  <text x="193" y="96" text-anchor="middle" font-size="9" fill="#7c3aed">BSS Transition Request → "move to AP 2"</text>
+
+  <!-- Step 2: 802.11k — Client requests neighbor report -->
+  <rect x="14" y="116" width="42" height="16" fill="#dbeafe" stroke="#93c5fd" stroke-width="1" rx="3"/>
+  <text x="35" y="128" text-anchor="middle" font-size="8" font-weight="600" fill="#1d4ed8">802.11k</text>
+
+  <line x1="68" y1="138" x2="318" y2="138" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#kvr-arr-b)"/>
+  <text x="193" y="134" text-anchor="middle" font-size="9" fill="#3b82f6">Neighbor Report Request</text>
+
+  <line x1="318" y1="158" x2="68" y2="158" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#kvr-arr-b)"/>
+  <text x="193" y="154" text-anchor="middle" font-size="9" fill="#3b82f6">Neighbor Report → AP 2 on ch 36</text>
+
+  <!-- Step 3: 802.11r — Pre-auth via AP1 -->
+  <rect x="14" y="172" width="42" height="16" fill="#dcfce7" stroke="#86efac" stroke-width="1" rx="3"/>
+  <text x="35" y="184" text-anchor="middle" font-size="8" font-weight="600" fill="#16a34a">802.11r</text>
+
+  <line x1="68" y1="196" x2="318" y2="196" stroke="#10b981" stroke-width="1.5" marker-end="url(#kvr-arr-g)"/>
+  <text x="193" y="192" text-anchor="middle" font-size="9" fill="#10b981">FT Auth Request (to AP2, via AP1)</text>
+
+  <!-- AP1 forwards to AP2 -->
+  <line x1="334" y1="196" x2="544" y2="196" stroke="#10b981" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#kvr-arr-g)"/>
+  <text x="439" y="192" text-anchor="middle" font-size="9" fill="#10b981">forwarded</text>
+
+  <line x1="544" y1="212" x2="334" y2="212" stroke="#10b981" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#kvr-arr-g)"/>
+  <line x1="318" y1="212" x2="68" y2="212" stroke="#10b981" stroke-width="1.5" marker-end="url(#kvr-arr-g)"/>
+  <text x="193" y="224" text-anchor="middle" font-size="9" fill="#10b981">FT Auth Response — keys ready</text>
+
+  <!-- Step 4: Fast handoff -->
+  <line x1="68" y1="244" x2="544" y2="244" stroke="#374151" stroke-width="2" marker-end="url(#kvr-arr)"/>
+  <text x="306" y="240" text-anchor="middle" font-size="9" font-weight="600" fill="#374151">FT Reassociation → connected to AP 2 (&lt;50ms)</text>
+
+  <!-- Connected indicator -->
+  <rect x="544" y="250" width="104" height="16" fill="#dcfce7" stroke="#86efac" stroke-width="1" rx="3"/>
+  <text x="596" y="262" text-anchor="middle" font-size="9" font-weight="600" fill="#16a34a">✓ handoff complete</text>
+
+  <!-- Caption -->
+  <text x="350" y="292" text-anchor="middle" font-size="11" fill="#6b7280">v triggers the roam · k provides the candidate · r makes the handoff fast</text>
+</svg>

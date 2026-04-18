@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 310" width="700" height="310" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+
+  <!-- Background -->
+  <rect width="700" height="310" fill="#f8fafc" rx="12"/>
+
+  <!-- Title -->
+  <text x="350" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#111827">MLO vs. Link Aggregation — Where Each Operates</text>
+
+  <!-- ── DIVIDER ── -->
+  <line x1="350" y1="42" x2="350" y2="262" stroke="#e5e7eb" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- ════ LEFT STACK — WiFi / MLO ════ -->
+  <text x="175" y="52" text-anchor="middle" font-size="12" font-weight="700" fill="#374151">WiFi 7 / MLO</text>
+
+  <!-- "Single interface to OS" badge -->
+  <rect x="60" y="58" width="230" height="22" fill="#f0fdf4" stroke="#10b981" stroke-width="1" rx="4"/>
+  <text x="175" y="73" text-anchor="middle" font-size="10" fill="#065f46">OS sees one interface · one IP address</text>
+
+  <!-- Layer 1: Application -->
+  <rect x="45" y="86" width="260" height="38" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1" rx="5"/>
+  <text x="175" y="107" text-anchor="middle" font-size="12" fill="#475569">Application</text>
+
+  <!-- Layer 2: IP -->
+  <rect x="45" y="128" width="260" height="38" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1" rx="5"/>
+  <text x="175" y="149" text-anchor="middle" font-size="12" fill="#475569">IP / TCP / UDP</text>
+
+  <!-- Layer 3: 802.11 MAC — MLO highlighted -->
+  <rect x="45" y="170" width="260" height="40" fill="#dcfce7" stroke="#10b981" stroke-width="2" rx="5"/>
+  <text x="155" y="187" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">802.11 MAC</text>
+  <rect x="238" y="174" width="58" height="20" fill="#10b981" rx="3"/>
+  <text x="267" y="188" text-anchor="middle" font-size="9" font-weight="700" fill="white">MLO here</text>
+
+  <!-- Layer 4: PHY — 3 bands -->
+  <rect x="45" y="214" width="80" height="36" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5" rx="5"/>
+  <text x="85" y="235" text-anchor="middle" font-size="11" font-weight="600" fill="#1d4ed8">2.4 GHz</text>
+
+  <rect x="130" y="214" width="80" height="36" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5" rx="5"/>
+  <text x="170" y="235" text-anchor="middle" font-size="11" font-weight="600" fill="#065f46">5 GHz</text>
+
+  <rect x="215" y="214" width="80" height="36" fill="#fffbeb" stroke="#f59e0b" stroke-width="1.5" rx="5"/>
+  <text x="255" y="235" text-anchor="middle" font-size="11" font-weight="600" fill="#92400e">6 GHz</text>
+
+  <!-- PHY label -->
+  <text x="175" y="263" text-anchor="middle" font-size="10" fill="#9ca3af">Physical — wireless radios</text>
+
+  <!-- ════ RIGHT STACK — Ethernet / LACP ════ -->
+  <text x="525" y="52" text-anchor="middle" font-size="12" font-weight="700" fill="#374151">Ethernet / LACP</text>
+
+  <!-- "Single interface to OS" badge -->
+  <rect x="410" y="58" width="230" height="22" fill="#eff6ff" stroke="#3b82f6" stroke-width="1" rx="4"/>
+  <text x="525" y="73" text-anchor="middle" font-size="10" fill="#1d4ed8">OS sees one interface · one IP address</text>
+
+  <!-- Layer 1: Application -->
+  <rect x="395" y="86" width="260" height="38" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1" rx="5"/>
+  <text x="525" y="107" text-anchor="middle" font-size="12" fill="#475569">Application</text>
+
+  <!-- Layer 2: IP -->
+  <rect x="395" y="128" width="260" height="38" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1" rx="5"/>
+  <text x="525" y="149" text-anchor="middle" font-size="12" fill="#475569">IP / TCP / UDP</text>
+
+  <!-- Layer 3: Ethernet MAC — LACP highlighted -->
+  <rect x="395" y="170" width="260" height="40" fill="#dbeafe" stroke="#3b82f6" stroke-width="2" rx="5"/>
+  <text x="500" y="187" text-anchor="middle" font-size="12" font-weight="700" fill="#1d4ed8">Ethernet MAC</text>
+  <rect x="582" y="174" width="62" height="20" fill="#3b82f6" rx="3"/>
+  <text x="613" y="188" text-anchor="middle" font-size="9" font-weight="700" fill="white">LACP here</text>
+
+  <!-- Layer 4: PHY — 2 ports -->
+  <rect x="395" y="214" width="122" height="36" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5" rx="5"/>
+  <text x="456" y="235" text-anchor="middle" font-size="11" font-weight="600" fill="#475569">Port 1</text>
+
+  <rect x="523" y="214" width="122" height="36" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5" rx="5"/>
+  <text x="584" y="235" text-anchor="middle" font-size="11" font-weight="600" fill="#475569">Port 2</text>
+
+  <!-- PHY label -->
+  <text x="525" y="263" text-anchor="middle" font-size="10" fill="#9ca3af">Physical — Ethernet ports</text>
+
+  <!-- Overall caption -->
+  <text x="350" y="292" text-anchor="middle" font-size="11" fill="#6b7280">Both create one logical interface — but MLO is wireless-only and operates below the IP layer</text>
+</svg>

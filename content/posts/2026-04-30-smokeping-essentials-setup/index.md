@@ -9,7 +9,7 @@ categories:
 tags:
   - smokeping
   - docker
-cover: cover.jpg
+cover: cover.svg
 series:
   - Smokeping Essentials
 series_order: 3

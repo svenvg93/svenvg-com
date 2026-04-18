@@ -109,7 +109,7 @@ analytics:
   umami:
     enabled: true
     id: "9c123874-4534-4290-9af2-76179151baba"
-    src: "https://umami.com/myscript.js"
+    src: "https://cloud.umami.is/script.js"
     domains: "svenvg.com"
 
 katex:

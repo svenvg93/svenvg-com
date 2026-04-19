@@ -91,6 +91,6 @@
 
   <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
 
-  <text x="600" y="572" text-anchor="middle" font-size="13" fill="#0ea5e9" letter-spacing="3" font-weight="600">Smokeping Essentials</text>
-  <text x="600" y="608" text-anchor="middle" font-size="34" font-weight="700" fill="#f0f6fc">The Right Targets</text>
+  <text x="600" y="500" text-anchor="middle" font-size="13" fill="#0ea5e9" letter-spacing="3" font-weight="600">Smokeping Essentials</text>
+  <text x="600" y="538" text-anchor="middle" font-size="34" font-weight="700" fill="#f1f5f9">The Right Targets</text>
 </svg>

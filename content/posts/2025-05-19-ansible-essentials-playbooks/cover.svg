@@ -103,7 +103,7 @@
     <text x="1053" y="203" text-anchor="middle" font-size="9" fill="#f59e0b">changed</text>
 
     <!-- notify arrow -->
-    <text x="1086" y="204" fill="#f59e0b" font-size="9"> notify →</text>
+    <text x="1083" y="204" fill="#f59e0b" font-size="9">↓ notify</text>
 
     <text x="758" y="226" fill="#94a3b8">TASK [common: Enable service]</text>
     <!-- ok badge -->
@@ -131,8 +131,8 @@
   <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
 
   <!-- Series label -->
-  <text x="600" y="572" text-anchor="middle" font-size="13" fill="#dc2626" letter-spacing="3" font-weight="600">Ansible Essentials</text>
+  <text x="600" y="500" text-anchor="middle" font-size="13" fill="#dc2626" letter-spacing="3" font-weight="600">Ansible Essentials</text>
 
   <!-- Title -->
-  <text x="600" y="608" text-anchor="middle" font-size="34" font-weight="700" fill="#f0f6fc">Playbooks, Roles &amp; Handlers</text>
+  <text x="600" y="538" text-anchor="middle" font-size="34" font-weight="700" fill="#f1f5f9">Playbooks, Roles &amp; Handlers</text>
 </svg>

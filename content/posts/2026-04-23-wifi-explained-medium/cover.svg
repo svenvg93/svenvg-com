@@ -109,15 +109,15 @@
   <rect x="1054" y="319" width="40" height="5" fill="#e9d5ff" rx="2"/>
   <text x="958" y="100" text-anchor="middle" font-size="14" font-weight="600" fill="#c084fc" letter-spacing="2">DEVICE D</text>
 
-  <!-- OFDMA label -->
-  <text x="600" y="494" text-anchor="middle" font-size="12" fill="#334155" letter-spacing="5">← OFDMA — ONE CHANNEL, FOUR DEVICES →</text>
+  <!-- OFDMA label — positioned at top so it clears the bottom gradient -->
+  <text x="600" y="76" text-anchor="middle" font-size="12" fill="#475569" letter-spacing="5">← OFDMA — ONE CHANNEL, FOUR DEVICES →</text>
 
   <!-- Bottom gradient overlay -->
   <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
 
   <!-- Series label -->
-  <text x="600" y="572" text-anchor="middle" font-size="13" fill="#38bdf8" letter-spacing="3" font-weight="600">WiFi Explained</text>
+  <text x="600" y="500" text-anchor="middle" font-size="13" fill="#38bdf8" letter-spacing="3" font-weight="600">WiFi Explained</text>
 
   <!-- Title -->
-  <text x="600" y="610" text-anchor="middle" font-size="38" font-weight="700" fill="#f1f5f9">How Devices Share the Air</text>
+  <text x="600" y="538" text-anchor="middle" font-size="34" font-weight="700" fill="#f1f5f9">How Devices Share the Air</text>
 </svg>

@@ -86,8 +86,8 @@
   <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
 
   <!-- Series label -->
-  <text x="600" y="572" text-anchor="middle" font-size="13" fill="#dc2626" letter-spacing="3" font-weight="600">Ansible Essentials</text>
+  <text x="600" y="500" text-anchor="middle" font-size="13" fill="#dc2626" letter-spacing="3" font-weight="600">Ansible Essentials</text>
 
   <!-- Title -->
-  <text x="600" y="608" text-anchor="middle" font-size="34" font-weight="700" fill="#f0f6fc">Installation &amp; Configuration</text>
+  <text x="600" y="538" text-anchor="middle" font-size="34" font-weight="700" fill="#f1f5f9">Installation &amp; Configuration</text>
 </svg>

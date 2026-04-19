@@ -52,8 +52,7 @@
   <g font-family="'Courier New',monospace" font-size="9.5">
     <text x="76" y="138" fill="#7dd3fc">services:</text>
     <text x="76" y="155" fill="#a3e635">  smokeping:</text>
-    <text x="76" y="172" fill="#94a3b8">    image: <tspan fill="#fb923c">lscr.io/linuxserver/</tspan></text>
-    <text x="76" y="188" fill="#fb923c">      smokeping:latest</text>
+    <text x="76" y="180" fill="#94a3b8" font-size="8.5">    image: <tspan fill="#fb923c">linuxserver/smokeping:latest</tspan></text>
     <text x="76" y="205" fill="#94a3b8">    container_name: smokeping</text>
     <text x="76" y="222" fill="#94a3b8">    environment:</text>
     <text x="76" y="238" fill="#64748b">      - PUID=1000</text>
@@ -149,6 +148,6 @@
 
   <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
 
-  <text x="600" y="572" text-anchor="middle" font-size="13" fill="#0ea5e9" letter-spacing="3" font-weight="600">Smokeping Essentials</text>
-  <text x="600" y="608" text-anchor="middle" font-size="34" font-weight="700" fill="#f0f6fc">Setup</text>
+  <text x="600" y="500" text-anchor="middle" font-size="13" fill="#0ea5e9" letter-spacing="3" font-weight="600">Smokeping Essentials</text>
+  <text x="600" y="538" text-anchor="middle" font-size="34" font-weight="700" fill="#f1f5f9">Setup</text>
 </svg>

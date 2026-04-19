@@ -14,6 +14,9 @@
     <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
       <polygon points="0,0 8,3 0,6" fill="#dc2626"/>
     </marker>
+    <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#4ade80"/>
+    </marker>
   </defs>
 
   <!-- Background -->
@@ -76,10 +79,7 @@
   <text x="600" y="375" text-anchor="middle" font-size="11" fill="#64748b">Ansible Vault</text>
 
   <!-- Arrow center → right -->
-  <path d="M 745,245 L 828,245" fill="none" stroke="#4ade80" stroke-width="2">
-    <animate attributeName="stroke-opacity" values="1;0.4;1" dur="2s" repeatCount="indefinite"/>
-  </path>
-  <polygon points="828,242 836,245 828,248" fill="#4ade80"/>
+  <path d="M 745,245 L 828,245" fill="none" stroke="#4ade80" stroke-width="2" marker-end="url(#arr-green)"/>
 
   <!-- === Right: Encrypted vault file === -->
   <rect x="838" y="120" width="302" height="240" fill="#0a1628" stroke="#14532d" stroke-width="1.5" rx="8"/>
@@ -107,8 +107,8 @@
   <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
 
   <!-- Series label -->
-  <text x="600" y="572" text-anchor="middle" font-size="13" fill="#dc2626" letter-spacing="3" font-weight="600">Ansible Essentials</text>
+  <text x="600" y="500" text-anchor="middle" font-size="13" fill="#dc2626" letter-spacing="3" font-weight="600">Ansible Essentials</text>
 
   <!-- Title -->
-  <text x="600" y="608" text-anchor="middle" font-size="34" font-weight="700" fill="#f0f6fc">Managing Secrets with Vault</text>
+  <text x="600" y="538" text-anchor="middle" font-size="34" font-weight="700" fill="#f1f5f9">Managing Secrets with Vault</text>
 </svg>

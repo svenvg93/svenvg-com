@@ -34,7 +34,7 @@
   <!-- Background -->
   <rect width="1200" height="630" fill="url(#bg)"/>
 
-  <!-- Background subtle diagonal lines -->
+  <!-- Background subtle grid lines -->
   <g stroke="#0d1535" stroke-width="1">
     <line x1="0" y1="100" x2="1200" y2="100"/>
     <line x1="0" y1="200" x2="1200" y2="200"/>
@@ -47,76 +47,80 @@
     <line x1="1000" y1="0" x2="1000" y2="500"/>
   </g>
 
-  <!-- === Three incoming band streams from left === -->
+  <!-- === Three incoming band streams from left ===
+       Widths proportional to max bandwidth:
+         2.4 GHz (40 MHz)  → stroke-width 16
+         5 GHz   (160 MHz) → stroke-width 26
+         6 GHz   (320 MHz) → stroke-width 36
+       Vertical positions: 2.4GHz y=130, 5GHz y=255, 6GHz y=370
+  -->
 
-  <!-- 2.4 GHz stream (orange) — top lane, y center=170 -->
-  <!-- Horizontal beam with wave-like oscillation represented by thick path -->
-  <path d="M 60,170 C 200,170 200,170 380,170" fill="none" stroke="#f97316" stroke-width="22" stroke-opacity="0.7" stroke-linecap="round"/>
-  <path d="M 60,170 C 200,170 200,170 380,170" fill="none" stroke="#fed7aa" stroke-width="4" stroke-linecap="round"/>
-  <!-- Band label -->
-  <text x="40" y="165" text-anchor="end" font-size="16" font-weight="700" fill="#f97316">2.4</text>
-  <text x="40" y="182" text-anchor="end" font-size="11" fill="#f97316" opacity="0.7">GHz</text>
+  <!-- 2.4 GHz stream (orange) — top lane -->
+  <path d="M 60,130 C 200,130 200,130 380,130" fill="none" stroke="#f97316" stroke-width="16" stroke-opacity="0.7" stroke-linecap="round"/>
+  <path d="M 60,130 C 200,130 200,130 380,130" fill="none" stroke="#fed7aa" stroke-width="3" stroke-linecap="round"/>
+  <text x="40" y="125" text-anchor="end" font-size="16" font-weight="700" fill="#f97316">2.4</text>
+  <text x="40" y="142" text-anchor="end" font-size="11" fill="#f97316" opacity="0.7">GHz</text>
 
-  <!-- 5 GHz stream (blue) — middle lane, y center=315 -->
-  <path d="M 60,315 C 200,315 200,315 380,315" fill="none" stroke="#38bdf8" stroke-width="30" stroke-opacity="0.7" stroke-linecap="round"/>
-  <path d="M 60,315 C 200,315 200,315 380,315" fill="none" stroke="#bae6fd" stroke-width="5" stroke-linecap="round"/>
-  <text x="40" y="309" text-anchor="end" font-size="16" font-weight="700" fill="#38bdf8">5</text>
-  <text x="40" y="326" text-anchor="end" font-size="11" fill="#38bdf8" opacity="0.7">GHz</text>
+  <!-- 5 GHz stream (blue) — middle lane -->
+  <path d="M 60,255 C 200,255 200,255 380,255" fill="none" stroke="#38bdf8" stroke-width="26" stroke-opacity="0.7" stroke-linecap="round"/>
+  <path d="M 60,255 C 200,255 200,255 380,255" fill="none" stroke="#bae6fd" stroke-width="5" stroke-linecap="round"/>
+  <text x="40" y="249" text-anchor="end" font-size="16" font-weight="700" fill="#38bdf8">5</text>
+  <text x="40" y="266" text-anchor="end" font-size="11" fill="#38bdf8" opacity="0.7">GHz</text>
 
-  <!-- 6 GHz stream (green) — bottom lane, y center=460 -->
-  <path d="M 60,460 C 200,460 200,460 380,460" fill="none" stroke="#34d399" stroke-width="20" stroke-opacity="0.7" stroke-linecap="round"/>
-  <path d="M 60,460 C 200,460 200,460 380,460" fill="none" stroke="#a7f3d0" stroke-width="3.5" stroke-linecap="round"/>
-  <text x="40" y="454" text-anchor="end" font-size="16" font-weight="700" fill="#34d399">6</text>
-  <text x="40" y="471" text-anchor="end" font-size="11" fill="#34d399" opacity="0.7">GHz</text>
+  <!-- 6 GHz stream (green) — bottom lane -->
+  <path d="M 60,370 C 200,370 200,370 380,370" fill="none" stroke="#34d399" stroke-width="36" stroke-opacity="0.7" stroke-linecap="round"/>
+  <path d="M 60,370 C 200,370 200,370 380,370" fill="none" stroke="#a7f3d0" stroke-width="6" stroke-linecap="round"/>
+  <text x="40" y="364" text-anchor="end" font-size="16" font-weight="700" fill="#34d399">6</text>
+  <text x="40" y="381" text-anchor="end" font-size="11" fill="#34d399" opacity="0.7">GHz</text>
 
-  <!-- === Converging curves toward merge point (700, 315) === -->
+  <!-- === Converging curves toward merge point (700, 255) === -->
 
   <!-- 2.4 GHz converging -->
-  <path d="M 380,170 C 540,170 560,315 700,315"
-        fill="none" stroke="#f97316" stroke-width="22" stroke-opacity="0.6" stroke-linecap="round"/>
-  <path d="M 380,170 C 540,170 560,315 700,315"
-        fill="none" stroke="#fed7aa" stroke-width="4" stroke-linecap="round"/>
+  <path d="M 380,130 C 540,130 560,255 700,255"
+        fill="none" stroke="#f97316" stroke-width="16" stroke-opacity="0.6" stroke-linecap="round"/>
+  <path d="M 380,130 C 540,130 560,255 700,255"
+        fill="none" stroke="#fed7aa" stroke-width="3" stroke-linecap="round"/>
 
   <!-- 5 GHz straight through -->
-  <path d="M 380,315 L 700,315"
-        fill="none" stroke="#38bdf8" stroke-width="30" stroke-opacity="0.6" stroke-linecap="round"/>
-  <path d="M 380,315 L 700,315"
+  <path d="M 380,255 L 700,255"
+        fill="none" stroke="#38bdf8" stroke-width="26" stroke-opacity="0.6" stroke-linecap="round"/>
+  <path d="M 380,255 L 700,255"
         fill="none" stroke="#bae6fd" stroke-width="5" stroke-linecap="round"/>
 
   <!-- 6 GHz converging -->
-  <path d="M 380,460 C 540,460 560,315 700,315"
-        fill="none" stroke="#34d399" stroke-width="20" stroke-opacity="0.6" stroke-linecap="round"/>
-  <path d="M 380,460 C 540,460 560,315 700,315"
-        fill="none" stroke="#a7f3d0" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M 380,370 C 540,370 560,255 700,255"
+        fill="none" stroke="#34d399" stroke-width="36" stroke-opacity="0.6" stroke-linecap="round"/>
+  <path d="M 380,370 C 540,370 560,255 700,255"
+        fill="none" stroke="#a7f3d0" stroke-width="6" stroke-linecap="round"/>
 
   <!-- Merge point glow -->
-  <circle cx="700" cy="315" r="50" fill="#1e3a5f" fill-opacity="0.6"/>
-  <circle cx="700" cy="315" r="35" fill="#0f2a4a" fill-opacity="0.8"/>
-  <circle cx="700" cy="315" r="20" fill="#172554" stroke="#38bdf8" stroke-width="2" stroke-opacity="0.6"/>
+  <circle cx="700" cy="255" r="50" fill="#1e3a5f" fill-opacity="0.6"/>
+  <circle cx="700" cy="255" r="35" fill="#0f2a4a" fill-opacity="0.8"/>
+  <circle cx="700" cy="255" r="20" fill="#172554" stroke="#38bdf8" stroke-width="2" stroke-opacity="0.6"/>
   <!-- MLO label in circle -->
-  <text x="700" y="320" text-anchor="middle" font-size="13" font-weight="800" fill="#e0f2fe" letter-spacing="1">MLO</text>
+  <text x="700" y="260" text-anchor="middle" font-size="13" font-weight="800" fill="#e0f2fe" letter-spacing="1">MLO</text>
 
   <!-- === Merged stream to the right === -->
-  <path d="M 700,315 L 1140,315"
-        fill="none" stroke="url(#merged)" stroke-width="36" stroke-opacity="0.85" stroke-linecap="round"/>
+  <path d="M 700,255 L 1140,255"
+        fill="none" stroke="url(#merged)" stroke-width="40" stroke-opacity="0.85" stroke-linecap="round"/>
   <!-- Bright core of merged stream -->
-  <path d="M 720,315 L 1140,315"
-        fill="none" stroke="#f8fafc" stroke-width="6" stroke-opacity="0.9" stroke-linecap="round"/>
+  <path d="M 720,255 L 1140,255"
+        fill="none" stroke="#f8fafc" stroke-width="7" stroke-opacity="0.9" stroke-linecap="round"/>
 
   <!-- "Single logical link" label -->
-  <text x="920" y="272" text-anchor="middle" font-size="13" fill="#94a3b8" letter-spacing="2">SINGLE LOGICAL LINK</text>
-  <line x1="760" y1="280" x2="1100" y2="280" stroke="#334155" stroke-width="1" stroke-dasharray="4,4"/>
+  <text x="920" y="212" text-anchor="middle" font-size="13" fill="#94a3b8" letter-spacing="2">SINGLE LOGICAL LINK</text>
+  <line x1="760" y1="220" x2="1100" y2="220" stroke="#334155" stroke-width="1" stroke-dasharray="4,4"/>
 
   <!-- Throughput + latency callouts -->
-  <text x="1100" y="298" text-anchor="middle" font-size="11" fill="#38bdf8">↑ throughput</text>
-  <text x="1100" y="336" text-anchor="middle" font-size="11" fill="#34d399">↓ latency</text>
+  <text x="1100" y="238" text-anchor="middle" font-size="11" fill="#38bdf8">↑ throughput</text>
+  <text x="1100" y="276" text-anchor="middle" font-size="11" fill="#34d399">↓ latency</text>
 
   <!-- Bottom gradient overlay -->
   <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
 
   <!-- Series label -->
-  <text x="600" y="572" text-anchor="middle" font-size="13" fill="#7dd3fc" letter-spacing="3" font-weight="600">WiFi Explained</text>
+  <text x="600" y="500" text-anchor="middle" font-size="13" fill="#38bdf8" letter-spacing="3" font-weight="600">WiFi Explained</text>
 
   <!-- Title -->
-  <text x="600" y="610" text-anchor="middle" font-size="38" font-weight="700" fill="#f1f5f9">WiFi 7: Multi-Link Operation</text>
+  <text x="600" y="538" text-anchor="middle" font-size="34" font-weight="700" fill="#f1f5f9">WiFi 7: Multi-Link Operation</text>
 </svg>

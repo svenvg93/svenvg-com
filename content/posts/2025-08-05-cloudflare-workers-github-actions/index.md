@@ -6,9 +6,8 @@ draft: false
 categories:
   - CI/CD
 tags:
-  - cloudflare workers
-  - github actions
-  - wrangler
+  - cloudflare-workers
+  - github-actions
 cover: cover.jpg
 ---
 

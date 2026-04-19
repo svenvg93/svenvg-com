@@ -6,9 +6,7 @@ draft: false
 categories:
   - Networking
 tags:
-  - wireshark
-  - ssh
-  - tcpdump
+  - docker
 cover: cover.jpg
 ---
 

@@ -7,7 +7,6 @@ categories:
   - Monitoring
   - Networking
 tags:
-  - smokeping
   - docker
 cover: cover.svg
 series:

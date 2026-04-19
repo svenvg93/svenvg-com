@@ -8,8 +8,6 @@ categories:
   - Homelab
 tags:
   - cloudflare
-  - ddns
-  - homelab
 cover: cover.jpg
 ---
 

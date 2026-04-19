@@ -6,9 +6,8 @@ draft: false
 categories:
   - CI/CD
 tags:
-  - dependabot
   - docker
-  - github actions
+  - github-actions
 cover: cover.jpg
 ---
 

@@ -8,9 +8,6 @@ categories:
   - Networking
 tags:
   - wifi
-  - roaming
-  - 802.11
-  - band-steering
 series:
   - WiFi Explained
 lightbox:

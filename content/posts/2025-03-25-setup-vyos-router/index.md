@@ -8,7 +8,6 @@ categories:
   - Router
 tags:
   - vyos
-  - firewall
 cover: cover.jpg
 ---
 

@@ -9,8 +9,6 @@ categories:
   - Security
 tags:
   - wifi
-  - wpa3
-  - security
 series:
   - WiFi Explained
 lightbox:

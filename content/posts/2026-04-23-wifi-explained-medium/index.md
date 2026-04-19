@@ -8,10 +8,6 @@ categories:
   - Networking
 tags:
   - wifi
-  - ofdma
-  - csma
-  - wifi6
-  - wifi7
 series:
   - WiFi Explained
 lightbox:

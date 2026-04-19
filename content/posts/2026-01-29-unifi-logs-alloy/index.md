@@ -7,9 +7,7 @@ categories:
   - Networking
   - Monitoring
 tags:
-  - unifi
   - loki
-  - logs
   - alloy
 cover: cover.jpg
 ---

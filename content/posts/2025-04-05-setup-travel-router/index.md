@@ -8,7 +8,6 @@ categories:
   - Networking
   - Router
 tags:
-  - travel router
   - gl-inet
   - openwrt
 cover: cover.jpg

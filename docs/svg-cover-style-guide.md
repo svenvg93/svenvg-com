@@ -58,7 +58,7 @@ Both elements are horizontally centered at `x="600"` with `text-anchor="middle"`
 
 All covers use a diagonal dark gradient. Pick the variant closest to your series accent color.
 
-**Dark navy (Traefik, Smokeping, neutral)**
+**Dark navy (Traefik, Smokeping, MikroTik, neutral)**
 ```xml
 <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
   <stop offset="0%" stop-color="#080c14"/>
@@ -123,6 +123,159 @@ Every cover must include this gradient. It fades to opaque at the bottom to ensu
 | Text block | `500` – `538` | Series label and title only |
 | Dead zone | `538` – `630` | Background only, nothing rendered here |
 
+### Vertical centering
+
+The visual "center" of the safe zone (y=0–390) is y=195. For flow-based covers (left → center → right), aim for the primary element (router, central node) to be centered around **y=210–260** — slightly below mathematical center — so the composition doesn't feel top-heavy when viewed with the title block below.
+
+> **Rule**: Don't place the center of the main diagram element above y=180 or below y=280.
+
+---
+
+## Horizontal layout & centering
+
+For flow-based covers with a central element (router/hexagon) and flanking elements (devices, branches):
+
+1. **The central element is always at `x=600`** (canvas center).
+2. **Equal edge padding**: leftmost content and rightmost content should have roughly equal distance from the canvas edges — aim for ~100–170px on each side.
+3. **Measure the content span**: add up the left half (left edge → x=600) and right half (x=600 → right edge). They should be within ~40px of each other.
+
+```
+Left padding  ≈  Right padding  ≈  100–170px
+Left span     ≈  Right span     (within ~40px)
+```
+
+**How to balance an asymmetric layout:**
+- If left span > right span: move the left element(s) rightward (closer to center).
+- If right span > left span: move the right element(s) leftward, or widen them.
+- Never move the central element away from x=600 to compensate.
+
+---
+
+## Zone color coding (topology covers)
+
+When a cover shows a network flow across zones (e.g. Internet → Router → LAN), use consistent zone colors so readers can orient immediately:
+
+| Zone | Color | Hex | Usage |
+|------|-------|-----|-------|
+| Internet / WAN / external client | Red | `#ef4444` | Globe, device frame, WAN badge |
+| Router / central device | Blue | `#38bdf8` | Hexagon border, text, config pills |
+| LAN / trusted network | Green | `#34d399` | Bridge block, device nodes, LAN labels |
+| VPN / encrypted tunnel | Orange | `#f97316` | Tunnel body, packet dashes, lock icon |
+| VPN subnet / overlay network | Purple | `#8b5cf6` | Route branch, subnet box |
+
+**Light variants** for text inside colored elements:
+
+| Zone color | Light text variant |
+|------------|-------------------|
+| Red `#ef4444` | `#fca5a5` |
+| Blue `#38bdf8` | `#bae6fd` |
+| Green `#34d399` | `#86efac` / `#4ade80` |
+| Orange `#f97316` | `#fed7aa` |
+| Purple `#8b5cf6` | `#c4b5fd` / `#a78bfa` |
+
+> **Rule**: Never use a zone color that matches the diagram content as the series label color. Series label color is always the series accent (see below).
+
+### Gradient arrows between zones
+
+When an arrow crosses two color zones, use a `linearGradient` with `gradientUnits="userSpaceOnUse"` matching the line's exact coordinates:
+
+```xml
+<!-- In <defs> — matches line from x=265,y=210 to x=519,y=210 -->
+<linearGradient id="arr-wan" x1="265" y1="210" x2="519" y2="210" gradientUnits="userSpaceOnUse">
+  <stop offset="0%" stop-color="#ef4444"/>   <!-- source zone color -->
+  <stop offset="100%" stop-color="#38bdf8"/> <!-- destination zone color -->
+</linearGradient>
+<marker id="arr-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+  <polygon points="0,0 8,3 0,6" fill="#38bdf8"/> <!-- destination zone color -->
+</marker>
+
+<!-- Usage -->
+<line x1="265" y1="210" x2="519" y2="210"
+      stroke="url(#arr-wan)" stroke-width="2" marker-end="url(#arr-blue)"/>
+```
+
+### Zone glows
+
+Add one `radialGradient` glow per zone, positioned at the zone's horizontal center:
+
+```xml
+<radialGradient id="glow-red" cx="16%" cy="50%" r="22%">
+  <stop offset="0%" stop-color="#ef4444" stop-opacity="0.14"/>
+  <stop offset="100%" stop-color="#ef4444" stop-opacity="0"/>
+</radialGradient>
+<radialGradient id="glow-blue" cx="50%" cy="50%" r="22%">
+  <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.10"/>
+  <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+</radialGradient>
+<radialGradient id="glow-green" cx="82%" cy="50%" r="22%">
+  <stop offset="0%" stop-color="#34d399" stop-opacity="0.10"/>
+  <stop offset="100%" stop-color="#34d399" stop-opacity="0"/>
+</radialGradient>
+```
+
+Keep glow `stop-opacity` ≤ 0.15 — subtle texture only, not a spotlight.
+
+---
+
+## Router / node hexagon pattern
+
+Used for MikroTik and any central router/device node.
+
+```xml
+<!-- Outer hex, pointy-top, center (600,Y), circumradius r -->
+<!-- Vertices: (cx, cy-r), (cx+r*0.866, cy-r*0.5), (cx+r*0.866, cy+r*0.5),
+               (cx, cy+r), (cx-r*0.866, cy+r*0.5), (cx-r*0.866, cy-r*0.5) -->
+<polygon points="600,120 671,161 671,243 600,284 529,243 529,161"
+         fill="url(#hex-fill)" stroke="ACCENT" stroke-width="2.5"/>
+<!-- Inner border ring (~10px inset) -->
+<polygon points="600,132 661,168 661,236 600,272 539,236 539,168"
+         fill="none" stroke="ACCENT" stroke-width="0.8" stroke-opacity="0.3"/>
+
+<!-- Labels -->
+<text x="600" y="Y+some" text-anchor="middle" font-size="20"
+      font-weight="700" fill="LIGHT_ACCENT" letter-spacing="1">Device Name</text>
+<text x="600" y="Y+some" text-anchor="middle" font-size="10"
+      fill="ACCENT" letter-spacing="3" opacity="0.8">subtitle</text>
+```
+
+The hex-fill gradient is a dark tinted version of the accent color:
+```xml
+<!-- Blue (MikroTik) -->
+<linearGradient id="hex-fill" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0%" stop-color="#0e2040"/>
+  <stop offset="100%" stop-color="#071428"/>
+</linearGradient>
+```
+
+---
+
+## Symmetric branch layout
+
+When showing multiple route/output branches from a central node, branches **must be placed symmetrically** around the node's vertical center. Equal vertical offset above and below:
+
+```
+node center y = Y
+branch 1 end y = Y - offset
+branch 2 end y = Y + offset   ← same offset value
+```
+
+Use cubic bezier curves for clean arcs:
+```xml
+<!-- Branch arcing UP from node right edge -->
+<path d="M Rx,Y-17 C Cx,Y-17 Cx,Y-offset Bx,Y-offset"
+      fill="none" stroke="COLOR" stroke-width="2" marker-end="url(#arr)"/>
+
+<!-- Branch arcing DOWN — mirror of above -->
+<path d="M Rx,Y+17 C Cx,Y+17 Cx,Y+offset Bx,Y+offset"
+      fill="none" stroke="COLOR" stroke-width="2" marker-end="url(#arr)"/>
+```
+
+Branch destination boxes should share the same `x` start position and the same `width`:
+```xml
+<rect x="Bx+4" y="Y-offset-14" width="168" height="28" fill="..." rx="4"/>
+<rect x="Bx+4" y="Y+offset-14" width="168" height="28" fill="..." rx="4"/>
+```
+
 ---
 
 ## Series accent colors
@@ -135,6 +288,7 @@ Each series has one accent color used for: series label text, primary glows, key
 | Traefik Essentials | Teal | `#37BEC3` |
 | Smokeping Essentials | Sky 500 | `#0ea5e9` |
 | Ansible Essentials | Red 600 | `#dc2626` |
+| MikroTik (standalone) | Red 500 | `#ef4444` |
 
 > **Rule**: The series label `fill` must always use the series accent color. Never use a color from the diagram content itself as the series label color.
 
@@ -280,6 +434,20 @@ Use `font-size="8"` for chart annotations, `font-size="10"–"13"` for section l
 
 ---
 
+## Text contrast
+
+Labels inside or adjacent to colored elements must be legible against dark backgrounds. Never use a zone's base color as text — always use its light variant:
+
+| Background | Avoid | Use instead |
+|------------|-------|-------------|
+| Purple element | `#5b21b6`, `#4c1d95` | `#c4b5fd`, `#a78bfa` |
+| Orange element | `#c2410c`, `#7c2d12` | `#fed7aa`, `#fb923c` |
+| Blue element | `#075985`, `#0e2040` | `#bae6fd`, `#7dd3fc` |
+| Green element | `#064e3b`, `#166534` | `#86efac`, `#4ade80` |
+| Red element | `#7f1d1d`, `#450a0a` | `#fca5a5`, `#f87171` |
+
+---
+
 ## Checklist for new covers
 
 - [ ] Canvas is exactly 1200×630
@@ -287,6 +455,12 @@ Use `font-size="8"` for chart annotations, `font-size="10"–"13"` for section l
 - [ ] All gradients and markers are inside a single top-level `<defs>` block
 - [ ] `textbg` gradient rect is at `y="390"` with `height="240"`
 - [ ] All diagram content ends above `y=390`
+- [ ] Main diagram element is centered at `x=600`
+- [ ] Left edge padding ≈ right edge padding (within ~40px)
+- [ ] Diagram vertical center is between `y=180` and `y=280`
+- [ ] Zone colors follow the red/blue/green/orange/purple convention
+- [ ] Branch routes from a central node are placed symmetrically (equal y offset above and below)
+- [ ] All text labels use light variants of zone colors, not the dark base colors
 - [ ] Series label: `x="600" y="500"`, `font-size="13"`, `letter-spacing="3"`, `font-weight="600"`, correct series accent color
 - [ ] Post title: `x="600" y="538"`, `font-size="34"`, `font-weight="700"`, `fill="#f1f5f9"`
 - [ ] No `<animate>` elements

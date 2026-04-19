@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <linearGradient id="textbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#080c14" stop-opacity="0"/>
+      <stop offset="60%" stop-color="#080c14" stop-opacity="0.93"/>
+      <stop offset="100%" stop-color="#080c14" stop-opacity="1"/>
+    </linearGradient>
+    <linearGradient id="hex-fill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0e2040"/>
+      <stop offset="100%" stop-color="#071428"/>
+    </linearGradient>
+    <linearGradient id="tunnel-grad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#f97316" stop-opacity="0.2"/>
+      <stop offset="30%"  stop-color="#f97316" stop-opacity="0.65"/>
+      <stop offset="70%"  stop-color="#f97316" stop-opacity="0.65"/>
+      <stop offset="100%" stop-color="#f97316" stop-opacity="0.2"/>
+    </linearGradient>
+    <radialGradient id="glow-red" cx="13%" cy="55%" r="20%">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#ef4444" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-orange" cx="44%" cy="55%" r="28%">
+      <stop offset="0%" stop-color="#f97316" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-blue" cx="50%" cy="55%" r="22%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+    </radialGradient>
+    <marker id="arr-purple" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#8b5cf6"/>
+    </marker>
+    <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#34d399"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow-red)"/>
+  <rect width="1200" height="630" fill="url(#glow-orange)"/>
+  <rect width="1200" height="630" fill="url(#glow-blue)"/>
+
+  <!-- Subtle grid -->
+  <g stroke="#0d1a2a" stroke-width="1">
+    <line x1="0"   y1="140" x2="1200" y2="140"/>
+    <line x1="0"   y1="355" x2="1200" y2="355"/>
+    <line x1="300" y1="0"   x2="300"  y2="390"/>
+    <line x1="740" y1="0"   x2="740"  y2="390"/>
+  </g>
+
+  <!-- === Remote Client / Laptop — center x=218, flow center y=255 === -->
+  <rect x="158" y="203" width="120" height="84" fill="#150808" stroke="#7f1d1d" stroke-width="1.5" rx="4"/>
+  <rect x="167" y="212" width="102" height="67" fill="#0a0404" rx="2"/>
+  <rect x="167" y="212" width="102" height="13" fill="#2d0a0a" rx="2"/>
+  <text x="174" y="222" font-size="6" fill="#f87171" font-weight="600" letter-spacing="1">WireGuard</text>
+  <circle cx="260" cy="219" r="3" fill="#ef4444"/>
+  <rect x="174" y="232" width="62" height="4" fill="#2d0a0a" rx="2"/>
+  <rect x="174" y="241" width="48" height="4" fill="#2d0a0a" rx="2"/>
+  <rect x="174" y="250" width="56" height="4" fill="#2d0a0a" rx="2"/>
+  <rect x="174" y="259" width="38" height="4" fill="#2d0a0a" rx="2"/>
+  <rect x="146" y="287" width="144" height="10" fill="#1a0808" stroke="#7f1d1d" stroke-width="1.5" rx="2"/>
+  <text x="218" y="314" text-anchor="middle" font-size="11" fill="#ef4444" opacity="0.8" letter-spacing="1">Remote Client</text>
+  <text x="218" y="330" text-anchor="middle" font-size="9"  fill="#ef4444" opacity="0.5" letter-spacing="1">192.168.100.2/32</text>
+
+  <!-- === WireGuard Tunnel — x=282 to x=518, center y=255, ORANGE === -->
+  <rect x="282" y="233" width="236" height="44" fill="url(#tunnel-grad)" rx="7"/>
+  <!-- Dashed packet lines -->
+  <line x1="292" y1="250" x2="518" y2="250" stroke="#fb923c" stroke-width="1.5" stroke-dasharray="12,8" stroke-opacity="0.45"/>
+  <line x1="292" y1="264" x2="518" y2="264" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="12,8" stroke-dashoffset="10" stroke-opacity="0.28"/>
+  <!-- Bright edges -->
+  <line x1="282" y1="235" x2="518" y2="235" stroke="#f97316" stroke-width="1.5" stroke-opacity="0.4"/>
+  <line x1="282" y1="275" x2="518" y2="275" stroke="#c2410c" stroke-width="1"   stroke-opacity="0.3"/>
+  <!-- Central label backing -->
+  <rect x="295" y="237" width="206" height="36" fill="#180800" fill-opacity="0.65" rx="4"/>
+  <!-- Lock shackle -->
+  <path d="M 307,258 L 307,251 Q 307,243 315,243 Q 323,243 323,251 L 323,258"
+        fill="none" stroke="#f97316" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Lock body -->
+  <rect x="303" y="258" width="24" height="16" fill="#7c2d12" rx="3"/>
+  <circle cx="315" cy="265" r="3"  fill="#431407"/>
+  <rect x="313"  y="265" width="4" height="5" fill="#431407" rx="1"/>
+  <!-- Labels on tunnel -->
+  <text x="336" y="254" font-size="11" fill="#fed7aa" font-weight="700" letter-spacing="2">WireGuard</text>
+  <text x="336" y="269" font-size="8"  fill="#f97316" letter-spacing="1">AES-256-GCM · UDP :13231</text>
+
+  <!-- === MikroTik Router hexagon — center (600,255), r=82 (BLUE) === -->
+  <polygon points="600,173 671,214 671,296 600,337 529,296 529,214"
+           fill="url(#hex-fill)" stroke="#38bdf8" stroke-width="2.5"/>
+  <polygon points="600,185 661,221 661,289 600,325 539,289 539,221"
+           fill="none" stroke="#38bdf8" stroke-width="0.8" stroke-opacity="0.3"/>
+  <text x="600" y="244" text-anchor="middle" font-size="20" font-weight="700" fill="#bae6fd" letter-spacing="1">MikroTik</text>
+  <text x="600" y="267" text-anchor="middle" font-size="10" fill="#38bdf8" letter-spacing="3" opacity="0.8">RouterOS v7</text>
+
+  <!-- === Route branches — symmetric ±65px around center y=255 === -->
+  <!-- Branch 1: VPN subnet (purple) — arcs UP to y=190 -->
+  <path d="M 673,238 C 760,238 760,190 858,190"
+        fill="none" stroke="#8b5cf6" stroke-width="2" marker-end="url(#arr-purple)"/>
+  <rect x="862" y="176" width="168" height="28" fill="#0c0a1e" stroke="#7c3aed" stroke-width="1" rx="4"/>
+  <text x="946" y="188" text-anchor="middle" font-size="9" fill="#c4b5fd" letter-spacing="1">VPN Subnet</text>
+  <text x="946" y="200" text-anchor="middle" font-size="9" fill="#a78bfa">192.168.100.0/24</text>
+
+  <!-- Branch 2: LAN access (green) — arcs DOWN to y=320 — equal offset -->
+  <path d="M 673,272 C 760,272 760,320 858,320"
+        fill="none" stroke="#34d399" stroke-width="2" marker-end="url(#arr-green)"/>
+  <rect x="862" y="306" width="168" height="28" fill="#071810" stroke="#166534" stroke-width="1" rx="4"/>
+  <text x="946" y="318" text-anchor="middle" font-size="9" fill="#86efac" letter-spacing="1">LAN Access</text>
+  <text x="946" y="330" text-anchor="middle" font-size="9" fill="#4ade80">192.168.1.0/24</text>
+
+  <!-- Bottom gradient overlay -->
+  <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
+
+  <!-- Series label -->
+  <text x="600" y="500" text-anchor="middle" font-size="13" fill="#ef4444" letter-spacing="3" font-weight="600">MikroTik</text>
+
+  <!-- Title -->
+  <text x="600" y="538" text-anchor="middle" font-size="34" font-weight="700" fill="#f1f5f9">WireGuard VPN Server on MikroTik</text>
+</svg>

@@ -8,7 +8,6 @@ categories:
   - Networking
 tags:
   - smokeping
-  - mtr
 cover: cover.svg
 series:
   - Smokeping Essentials

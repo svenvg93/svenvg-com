@@ -6,8 +6,7 @@ draft: false
 categories:
   - CI/CD
 tags:
-  - hugo
-  - cloudflare workers
+  - cloudflare-workers
 cover: cover.jpg
 ---
 

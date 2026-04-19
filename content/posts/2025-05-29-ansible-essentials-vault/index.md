@@ -7,7 +7,6 @@ categories:
   - Automation
 tags:
   - ansible
-  - secrets
 cover: cover.svg
 series:
   - Ansible Essentials

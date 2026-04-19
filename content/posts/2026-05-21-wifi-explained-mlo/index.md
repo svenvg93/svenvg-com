@@ -8,8 +8,6 @@ categories:
   - Networking
 tags:
   - wifi
-  - wifi7
-  - mlo
 series:
   - WiFi Explained
 lightbox:

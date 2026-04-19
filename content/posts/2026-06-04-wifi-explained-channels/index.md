@@ -8,8 +8,6 @@ categories:
   - Networking
 tags:
   - wifi
-  - channels
-  - transmit-power
 series:
   - WiFi Explained
 lightbox:

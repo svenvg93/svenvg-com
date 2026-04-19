@@ -9,7 +9,6 @@ categories:
 tags:
   - traefik
   - cloudflare
-  - let's encrypt
 cover: cover.svg
 series:
   - Traefik Essentials

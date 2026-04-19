@@ -6,8 +6,7 @@ draft: false
 categories:
   - CI/CD
 tags:
-  - cloudflare workers
-  - zensical
+  - cloudflare-workers
 cover: cover.jpg
 ---
 

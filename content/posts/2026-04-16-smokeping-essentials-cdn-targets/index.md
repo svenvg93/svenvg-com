@@ -8,7 +8,6 @@ categories:
   - Networking
 tags:
   - smokeping
-  - cdn
 cover: cover.svg
 series:
   - Smokeping Essentials

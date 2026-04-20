@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <linearGradient id="hex-fill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0e2040"/>
+      <stop offset="100%" stop-color="#071428"/>
+    </linearGradient>
+    <linearGradient id="textbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#080c14" stop-opacity="0"/>
+      <stop offset="60%" stop-color="#080c14" stop-opacity="0.93"/>
+      <stop offset="100%" stop-color="#080c14" stop-opacity="1"/>
+    </linearGradient>
+    <linearGradient id="prom-grad" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.0"/>
+      <stop offset="100%" stop-color="#ef4444" stop-opacity="0.55"/>
+    </linearGradient>
+    <!-- Left-to-Alloy gradient arrows (green → blue) -->
+    <linearGradient id="arr-infra-alloy" x1="290" y1="215" x2="529" y2="215" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+    <!-- Alloy-to-right gradient arrows (blue → destination color) -->
+    <linearGradient id="arr-alloy-prom" x1="671" y1="192" x2="720" y2="158" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#ef4444"/>
+    </linearGradient>
+    <linearGradient id="arr-alloy-loki" x1="671" y1="215" x2="720" y2="215" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+    <linearGradient id="arr-alloy-graf" x1="671" y1="238" x2="720" y2="298" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+    <!-- Zone glows -->
+    <radialGradient id="glow-green" cx="17%" cy="50%" r="22%">
+      <stop offset="0%" stop-color="#34d399" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#34d399" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-blue" cx="50%" cy="50%" r="18%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-red" cx="83%" cy="50%" r="22%">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.09"/>
+      <stop offset="100%" stop-color="#ef4444" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Arrow markers -->
+    <marker id="arr-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#38bdf8"/>
+    </marker>
+    <marker id="arr-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#ef4444"/>
+    </marker>
+    <marker id="arr-purple" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#a78bfa"/>
+    </marker>
+    <marker id="arr-amber" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#f59e0b"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow-green)"/>
+  <rect width="1200" height="630" fill="url(#glow-blue)"/>
+  <rect width="1200" height="630" fill="url(#glow-red)"/>
+
+  <!-- Subtle line grid -->
+  <g stroke="#0d1a2a" stroke-width="1">
+    <line x1="0"    y1="100" x2="1200" y2="100"/>
+    <line x1="0"    y1="200" x2="1200" y2="200"/>
+    <line x1="0"    y1="300" x2="1200" y2="300"/>
+    <line x1="200"  y1="0"   x2="200"  y2="500"/>
+    <line x1="400"  y1="0"   x2="400"  y2="500"/>
+    <line x1="600"  y1="0"   x2="600"  y2="500"/>
+    <line x1="800"  y1="0"   x2="800"  y2="500"/>
+    <line x1="1000" y1="0"   x2="1000" y2="500"/>
+  </g>
+
+  <!-- ===== LEFT ZONE — source infrastructure ===== -->
+
+  <!-- Infrastructure card -->
+  <rect x="80" y="108" width="210" height="220" fill="#0d1e30" stroke="#34d399" stroke-width="1.5" rx="8"/>
+  <rect x="80" y="108" width="6"   height="220" fill="#34d399" rx="4"/>
+  <text x="120" y="130" font-size="11" font-weight="700" fill="#34d399" letter-spacing="2">YOUR INFRA</text>
+  <text x="120" y="143" font-size="8"  fill="#64748b" font-family="'Courier New',monospace">host · containers · services</text>
+  <!-- CPU row -->
+  <rect x="96" y="150" width="178" height="22" fill="#0a1a2c" stroke="#1e3a50" stroke-width="1" rx="3"/>
+  <text x="104" y="165" font-size="8" fill="#94a3b8" font-family="'Courier New',monospace">CPU </text>
+  <rect x="128" y="154" width="90" height="5" fill="#1e3a50" rx="2"/>
+  <rect x="128" y="154" width="34" height="5" fill="#38bdf8" rx="2"/>
+  <text x="226" y="165" font-size="8" fill="#7dd3fc" font-family="'Courier New',monospace">38%</text>
+  <!-- MEM row -->
+  <rect x="96" y="177" width="178" height="22" fill="#0a1a2c" stroke="#1e3a50" stroke-width="1" rx="3"/>
+  <text x="104" y="192" font-size="8" fill="#94a3b8" font-family="'Courier New',monospace">MEM </text>
+  <rect x="128" y="181" width="90" height="5" fill="#1e3a50" rx="2"/>
+  <rect x="128" y="181" width="67" height="5" fill="#38bdf8" rx="2"/>
+  <text x="226" y="192" font-size="8" fill="#7dd3fc" font-family="'Courier New',monospace">74%</text>
+  <!-- Containers -->
+  <line x1="96" y1="207" x2="274" y2="207" stroke="#1e3a50" stroke-width="1"/>
+  <text x="104" y="222" font-size="8" font-weight="700" fill="#34d399" font-family="'Courier New',monospace">CONTAINERS</text>
+  <g font-size="8.5" font-family="'Courier New',monospace">
+    <circle cx="103" cy="238" r="4" fill="#4ade80" fill-opacity="0.85"/>
+    <text x="113" y="241" fill="#94a3b8">nginx</text>
+    <circle cx="103" cy="256" r="4" fill="#4ade80" fill-opacity="0.85"/>
+    <text x="113" y="259" fill="#94a3b8">traefik</text>
+    <circle cx="175" cy="238" r="4" fill="#4ade80" fill-opacity="0.85"/>
+    <text x="185" y="241" fill="#94a3b8">grafana</text>
+    <circle cx="175" cy="256" r="4" fill="#4ade80" fill-opacity="0.85"/>
+    <text x="185" y="259" fill="#94a3b8">alloy</text>
+  </g>
+  <!-- collector labels -->
+  <text x="185" y="322" text-anchor="middle" font-size="8" fill="#334155" font-family="'Courier New',monospace">exporter.unix · source.file</text>
+
+  <!-- Arrow: infrastructure → Alloy -->
+  <path d="M 290,215 C 390,215 468,215 529,215"
+        fill="none" stroke="url(#arr-infra-alloy)" stroke-width="2" marker-end="url(#arr-blue)"/>
+
+  <!-- ===== CENTER ZONE — Alloy hexagon (pointy-top, center 600,215, r=82) ===== -->
+  <!-- Vertices: top(600,133) top-right(671,174) bottom-right(671,256) bottom(600,297) bottom-left(529,256) top-left(529,174) -->
+  <polygon points="600,133 671,174 671,256 600,297 529,256 529,174"
+           fill="url(#hex-fill)" stroke="#38bdf8" stroke-width="2.5"/>
+  <polygon points="600,141 663,179 663,251 600,289 537,251 537,179"
+           fill="none" stroke="#38bdf8" stroke-width="0.8" stroke-opacity="0.3"/>
+  <!-- Converging lines from left face -->
+  <path d="M 529,200 C 548,200 560,213 572,215" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-opacity="0.55" stroke-linecap="round"/>
+  <path d="M 529,215 L 572,215"                  fill="none" stroke="#ffffff" stroke-width="3"   stroke-opacity="0.75" stroke-linecap="round"/>
+  <path d="M 529,230 C 548,230 560,217 572,215" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-opacity="0.55" stroke-linecap="round"/>
+  <circle cx="572" cy="215" r="8" fill="#38bdf8" fill-opacity="0.25"/>
+  <circle cx="572" cy="215" r="4" fill="#ffffff"/>
+  <!-- Diverging lines to right face -->
+  <path d="M 572,215 C 584,213 614,200 671,200" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-opacity="0.75" stroke-linecap="round"/>
+  <path d="M 572,215 L 671,215"                  fill="none" stroke="#38bdf8" stroke-width="3"   stroke-linecap="round"/>
+  <path d="M 572,215 C 584,217 614,230 671,230" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-opacity="0.75" stroke-linecap="round"/>
+  <text x="600" y="318" text-anchor="middle" font-size="13" font-weight="700" fill="#38bdf8" letter-spacing="4">ALLOY</text>
+
+  <!-- Arrows: Alloy → right panels -->
+  <path d="M 671,192 C 690,168 705,155 720,152"
+        fill="none" stroke="url(#arr-alloy-prom)" stroke-width="2" marker-end="url(#arr-red)"/>
+  <path d="M 671,215 L 720,215"
+        fill="none" stroke="url(#arr-alloy-loki)" stroke-width="2" marker-end="url(#arr-purple)"/>
+  <path d="M 671,238 C 690,270 705,296 720,298"
+        fill="none" stroke="url(#arr-alloy-graf)" stroke-width="2" marker-end="url(#arr-amber)"/>
+
+  <!-- ===== RIGHT ZONE — Prometheus + Loki + Grafana ===== -->
+
+  <!-- Prometheus panel — y=68 to 183 -->
+  <rect x="720" y="68" width="390" height="115" fill="#0d1e30" stroke="#ef4444" stroke-width="1.5" rx="8"/>
+  <rect x="720" y="68" width="6"   height="115" fill="#ef4444" rx="4"/>
+  <text x="758" y="90" font-size="11" font-weight="700" fill="#ef4444" letter-spacing="1">PROMETHEUS</text>
+  <text x="758" y="103" font-size="8"  fill="#64748b" font-family="'Courier New',monospace">metrics storage · tsdb · remote write</text>
+  <!-- Sparkline area -->
+  <polygon points="738,170 738,140 756,137 772,144 788,128 804,135 820,122 836,130 852,117 868,126 884,113 900,122 916,108 932,117 948,104 964,114 980,100 1100,170"
+           fill="url(#prom-grad)"/>
+  <polyline points="738,140 756,137 772,144 788,128 804,135 820,122 836,130 852,117 868,126 884,113 900,122 916,108 932,117 948,104 964,114 980,100"
+            fill="none" stroke="#ef4444" stroke-width="2" stroke-linejoin="round"/>
+  <line x1="738" y1="170" x2="1100" y2="170" stroke="#1e3040" stroke-width="1"/>
+
+  <!-- Loki panel — y=193 to 283 -->
+  <rect x="720" y="193" width="390" height="90" fill="#0d1e30" stroke="#a78bfa" stroke-width="1.5" rx="8"/>
+  <rect x="720" y="193" width="6"   height="90" fill="#a78bfa" rx="4"/>
+  <text x="758" y="213" font-size="11" font-weight="700" fill="#a78bfa" letter-spacing="1">LOKI</text>
+  <text x="758" y="226" font-size="8"  fill="#64748b" font-family="'Courier New',monospace">log storage · label-indexed · push receiver</text>
+  <g font-size="8.5" font-family="'Courier New',monospace">
+    <text x="738" y="242" fill="#64748b"><tspan fill="#4ade80">INFO </tspan> component started  comp=loki.write.default</text>
+    <text x="738" y="256" fill="#64748b"><tspan fill="#7dd3fc">INFO </tspan> component started  comp=prometheus.remote_write</text>
+    <text x="738" y="270" fill="#64748b"><tspan fill="#c4b5fd">DEBUG</tspan> flush complete  streams=12  bytes=4821</text>
+  </g>
+
+  <!-- Grafana panel — y=298 to 373 -->
+  <rect x="720" y="298" width="390" height="75" fill="#0d1e30" stroke="#f59e0b" stroke-width="1.5" rx="8"/>
+  <rect x="720" y="298" width="6"   height="75" fill="#f59e0b" rx="4"/>
+  <text x="758" y="318" font-size="11" font-weight="700" fill="#f59e0b" letter-spacing="1">GRAFANA</text>
+  <text x="758" y="331" font-size="8"  fill="#64748b" font-family="'Courier New',monospace">visualization · datasources: prometheus  loki</text>
+  <!-- Mini bar chart growing upward from baseline y=366 -->
+  <g fill="#f59e0b" fill-opacity="0.65">
+    <rect x="738" y="352" width="13" height="14"/>
+    <rect x="755" y="346" width="13" height="20"/>
+    <rect x="772" y="349" width="13" height="17"/>
+    <rect x="789" y="343" width="13" height="23"/>
+    <rect x="806" y="347" width="13" height="19"/>
+    <rect x="823" y="340" width="13" height="26"/>
+    <rect x="840" y="344" width="13" height="22"/>
+    <rect x="857" y="337" width="13" height="29"/>
+    <rect x="874" y="342" width="13" height="24"/>
+    <rect x="891" y="334" width="13" height="32"/>
+    <rect x="908" y="339" width="13" height="27"/>
+    <rect x="925" y="331" width="13" height="35"/>
+    <rect x="942" y="336" width="13" height="30"/>
+    <rect x="959" y="328" width="13" height="38"/>
+    <rect x="976" y="333" width="13" height="33"/>
+    <rect x="993" y="325" width="13" height="41"/>
+    <rect x="1010" y="330" width="13" height="36"/>
+    <rect x="1027" y="322" width="13" height="44"/>
+    <rect x="1044" y="328" width="13" height="38"/>
+    <rect x="1061" y="319" width="13" height="47"/>
+    <rect x="1078" y="325" width="13" height="41"/>
+  </g>
+  <line x1="738" y1="366" x2="1100" y2="366" stroke="#1e3040" stroke-width="1"/>
+
+  <!-- Bottom gradient overlay -->
+  <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
+
+  <!-- Series label -->
+  <text x="600" y="500" text-anchor="middle" font-size="13" fill="#f97316" letter-spacing="3" font-weight="600">GRAFANA OBSERVABILITY</text>
+
+  <!-- Post title -->
+  <text x="600" y="538" text-anchor="middle" font-size="34" font-weight="700" fill="#f1f5f9">Setting Up Your Observability Stack</text>
+</svg>

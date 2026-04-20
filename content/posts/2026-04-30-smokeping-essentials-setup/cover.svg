@@ -31,7 +31,7 @@
     <line x1="0" y1="100" x2="1200" y2="100"/>
     <line x1="0" y1="200" x2="1200" y2="200"/>
     <line x1="0" y1="300" x2="1200" y2="300"/>
-    <line x1="0" y1="400" x2="1200" y2="400"/>
+
     <line x1="200" y1="0" x2="200" y2="500"/>
     <line x1="400" y1="0" x2="400" y2="500"/>
     <line x1="600" y1="0" x2="600" y2="500"/>
@@ -148,6 +148,6 @@
 
   <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
 
-  <text x="600" y="500" text-anchor="middle" font-size="13" fill="#0ea5e9" letter-spacing="3" font-weight="600">Smokeping Essentials</text>
+  <text x="600" y="500" text-anchor="middle" font-size="13" fill="#0ea5e9" letter-spacing="3" font-weight="600">SMOKEPING ESSENTIALS</text>
   <text x="600" y="538" text-anchor="middle" font-size="34" font-weight="700" fill="#f1f5f9">Setup</text>
 </svg>

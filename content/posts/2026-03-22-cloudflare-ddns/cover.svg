@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    
+    <!-- Text overlay gradient -->
+    <linearGradient id="textbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#080c14" stop-opacity="0"/>
+      <stop offset="60%"  stop-color="#080c14" stop-opacity="0.93"/>
+      <stop offset="100%" stop-color="#080c14" stop-opacity="1"/>
+    </linearGradient>
+    
+    <!-- Zone glows -->
+    <radialGradient id="glow-red" cx="16%" cy="50%" r="22%">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#ef4444" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-blue" cx="50%" cy="50%" r="22%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-green" cx="82%" cy="50%" r="22%">
+      <stop offset="0%" stop-color="#34d399" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#34d399" stop-opacity="0"/>
+    </radialGradient>
+    
+    <!-- Arrow gradient (WAN to Worker) -->
+    <linearGradient id="arrow-flow" x1="240" y1="200" x2="450" y2="200" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+    
+    <!-- Arrow gradient (Worker to DNS) -->
+    <linearGradient id="arrow-update" x1="750" y1="200" x2="960" y2="200" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+    
+    <!-- Arrow markers -->
+    <marker id="arrow-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#38bdf8"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#34d399"/>
+    </marker>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  
+  <!-- Zone glows -->
+  <ellipse cx="240" cy="200" rx="280" ry="200" fill="url(#glow-red)"/>
+  <ellipse cx="600" cy="200" rx="400" ry="200" fill="url(#glow-blue)"/>
+  <ellipse cx="960" cy="200" rx="280" ry="200" fill="url(#glow-green)"/>
+  
+  <!-- ===== LEFT: HOME ROUTER ===== -->
+  <!-- Router box -->
+  <rect x="140" y="190" width="200" height="120" rx="8" fill="none" stroke="#ef4444" stroke-width="2.5"/>
+  <rect x="148" y="198" width="184" height="104" rx="6" fill="none" stroke="#ef4444" stroke-width="0.8" stroke-opacity="0.3"/>
+  
+  <!-- Router label -->
+  <text x="240" y="225" text-anchor="middle" font-size="13" font-weight="700" fill="#fca5a5" letter-spacing="1">ROUTER</text>
+  <text x="240" y="242" text-anchor="middle" font-size="9" fill="#ef4444" opacity="0.8">Public IP</text>
+  
+  <!-- IP address display in router -->
+  <text x="240" y="268" text-anchor="middle" font-size="10" font-family="'Courier New',monospace" fill="#fca5a5" opacity="0.9">203.0.113.42</text>
+  
+  <!-- ===== CENTER: IP UPDATE ANIMATION ===== -->
+  <!-- IP change indicator (left side) -->
+  <g>
+    <rect x="405" y="200" width="90" height="100" rx="4" fill="#0a0f1a" stroke="#ef4444" stroke-width="1.5" stroke-opacity="0.6"/>
+    <text x="450" y="225" text-anchor="middle" font-size="10" font-family="'Courier New',monospace" fill="#ef4444" opacity="0.8">203.0.113.42</text>
+    <text x="450" y="245" text-anchor="middle" font-size="12" fill="#ef4444" opacity="0.5">↓</text>
+    <text x="450" y="275" text-anchor="middle" font-size="10" font-family="'Courier New',monospace" fill="#38bdf8" opacity="0.9">203.0.113.99</text>
+  </g>
+  
+  <!-- Arrow from router to IP update -->
+  <line x1="340" y1="250" x2="405" y2="250" stroke="url(#arrow-flow)" stroke-width="2.5" marker-end="url(#arrow-blue)"/>
+  
+  <!-- ===== CENTER-RIGHT: CLOUDFLARE WORKER ===== -->
+  <!-- Worker hexagon -->
+  <polygon points="600,170 671,211 671,293 600,334 529,293 529,211"
+           fill="#0e2040" stroke="#38bdf8" stroke-width="2.5"/>
+  <polygon points="600,182 661,218 661,286 600,322 539,286 539,218"
+           fill="none" stroke="#38bdf8" stroke-width="0.8" stroke-opacity="0.3"/>
+  
+  <!-- Worker label -->
+  <text x="600" y="245" text-anchor="middle" font-size="14" font-weight="700" fill="#bae6fd" letter-spacing="0.5">CF</text>
+  <text x="600" y="268" text-anchor="middle" font-size="9" fill="#38bdf8" letter-spacing="2">WORKER</text>
+  
+  <!-- Arrow from IP to Worker -->
+  <line x1="495" y1="250" x2="529" y2="250" stroke="#38bdf8" stroke-width="2.5" stroke-opacity="0.8"/>
+  
+  <!-- ===== RIGHT: DNS RECORDS ===== -->
+  <!-- DNS box -->
+  <rect x="860" y="190" width="200" height="120" rx="8" fill="none" stroke="#34d399" stroke-width="2.5"/>
+  <rect x="868" y="198" width="184" height="104" rx="6" fill="none" stroke="#34d399" stroke-width="0.8" stroke-opacity="0.3"/>
+  
+  <!-- DNS label -->
+  <text x="960" y="225" text-anchor="middle" font-size="13" font-weight="700" fill="#86efac" letter-spacing="1">DNS</text>
+  <text x="960" y="242" text-anchor="middle" font-size="9" fill="#34d399" opacity="0.8">A Record</text>
+  
+  <!-- DNS record content -->
+  <text x="960" y="268" text-anchor="middle" font-size="10" font-family="'Courier New',monospace" fill="#86efac" opacity="0.9">example.com</text>
+  <text x="960" y="283" text-anchor="middle" font-size="9" font-family="'Courier New',monospace" fill="#34d399" opacity="0.7">203.0.113.99</text>
+  
+  <!-- Arrow from Worker to DNS -->
+  <line x1="671" y1="250" x2="860" y2="250" stroke="url(#arrow-update)" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+  
+  
+  <!-- Text overlay gradient -->
+  <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
+  
+  <!-- Series label -->
+  <text x="600" y="500" text-anchor="middle" font-size="13" fill="#38bdf8" letter-spacing="3" font-weight="600">NETWORKING</text>
+  
+  <!-- Title -->
+  <text x="600" y="538" text-anchor="middle" font-size="34" font-weight="700" fill="#f1f5f9">Cloudflare DDNS Updater</text>
+</svg>

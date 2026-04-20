@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <linearGradient id="textbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#080c14" stop-opacity="0"/>
+      <stop offset="60%" stop-color="#080c14" stop-opacity="0.93"/>
+      <stop offset="100%" stop-color="#080c14" stop-opacity="1"/>
+    </linearGradient>
+    <radialGradient id="ctrl-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#dc2626" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#dc2626" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <g stroke="#0d1a2a" stroke-width="1">
+    <line x1="0" y1="100" x2="1200" y2="100"/>
+    <line x1="0" y1="200" x2="1200" y2="200"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/>
+    <line x1="0" y1="400" x2="1200" y2="400"/>
+    <line x1="200" y1="0" x2="200" y2="500"/>
+    <line x1="400" y1="0" x2="400" y2="500"/>
+    <line x1="600" y1="0" x2="600" y2="500"/>
+    <line x1="800" y1="0" x2="800" y2="500"/>
+    <line x1="1000" y1="0" x2="1000" y2="500"/>
+  </g>
+
+  <!-- === LEFT PANEL: Orbital network === -->
+  <!-- Glow behind control center -->
+  <circle cx="300" cy="210" r="180" fill="url(#ctrl-glow)"/>
+
+  <!-- Orbit rings -->
+  <circle cx="300" cy="210" r="150" fill="none" stroke="#dc2626" stroke-width="1" stroke-opacity="0.2" stroke-dasharray="5,5"/>
+  <circle cx="300" cy="210" r="152" fill="none" stroke="#dc2626" stroke-width="0.5" stroke-opacity="0.1"/>
+
+  <!-- Connection lines to hosts (dashed) -->
+  <!-- Host positions on ring r=150: top(300,60), upper-right(430,285) corrected -->
+  <!-- 5 hosts at 72° intervals starting top: 270°,342°,54°,126°,198° in standard math -->
+  <!-- top: (300, 60) -->
+  <!-- upper-right: (300+150*sin72, 210-150*cos72) = (300+143, 210-46) = (443, 164) -->
+  <!-- lower-right: (300+150*sin144, 210-150*cos144) = (300+88, 210+121) = (388, 331) -->
+  <!-- lower-left: (300-88, 210+121) = (212, 331) -->
+  <!-- upper-left: (300-143, 164) = (157, 164) -->
+  <line x1="300" y1="210" x2="300" y2="60"  stroke="#dc2626" stroke-width="1.5" stroke-opacity="0.5" stroke-dasharray="6,3"/>
+  <line x1="300" y1="210" x2="443" y2="164" stroke="#dc2626" stroke-width="1.5" stroke-opacity="0.5" stroke-dasharray="6,3"/>
+  <line x1="300" y1="210" x2="388" y2="331" stroke="#dc2626" stroke-width="1.5" stroke-opacity="0.5" stroke-dasharray="6,3"/>
+  <line x1="300" y1="210" x2="212" y2="331" stroke="#dc2626" stroke-width="1.5" stroke-opacity="0.5" stroke-dasharray="6,3"/>
+  <line x1="300" y1="210" x2="157" y2="164" stroke="#dc2626" stroke-width="1.5" stroke-opacity="0.5" stroke-dasharray="6,3"/>
+
+  <!-- Host nodes -->
+  <circle cx="300" cy="60"  r="28" fill="#0d1e30" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="300" y="57"  text-anchor="middle" font-size="8" fill="#94a3b8" font-family="'Courier New',monospace">web</text>
+  <text x="300" y="68"  text-anchor="middle" font-size="8" fill="#94a3b8" font-family="'Courier New',monospace">server</text>
+
+  <circle cx="443" cy="164" r="28" fill="#0d1e30" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="443" y="161" text-anchor="middle" font-size="8" fill="#94a3b8" font-family="'Courier New',monospace">app</text>
+  <text x="443" y="172" text-anchor="middle" font-size="8" fill="#94a3b8" font-family="'Courier New',monospace">server</text>
+
+  <circle cx="388" cy="331" r="28" fill="#0d1e30" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="388" y="328" text-anchor="middle" font-size="8" fill="#94a3b8" font-family="'Courier New',monospace">db</text>
+  <text x="388" y="339" text-anchor="middle" font-size="8" fill="#94a3b8" font-family="'Courier New',monospace">server</text>
+
+  <circle cx="212" cy="331" r="28" fill="#0d1e30" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="212" y="328" text-anchor="middle" font-size="8" fill="#94a3b8" font-family="'Courier New',monospace">cache</text>
+  <text x="212" y="339" text-anchor="middle" font-size="8" fill="#94a3b8" font-family="'Courier New',monospace">server</text>
+
+  <circle cx="157" cy="164" r="28" fill="#0d1e30" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="157" y="161" text-anchor="middle" font-size="8" fill="#94a3b8" font-family="'Courier New',monospace">mon</text>
+  <text x="157" y="172" text-anchor="middle" font-size="8" fill="#94a3b8" font-family="'Courier New',monospace">itor</text>
+
+  <!-- Control center -->
+  <circle cx="300" cy="210" r="48" fill="#130609" stroke="#dc2626" stroke-width="2.5"/>
+  <circle cx="300" cy="210" r="42" fill="none" stroke="#dc2626" stroke-width="0.8" stroke-opacity="0.4"/>
+  <text x="300" y="205" text-anchor="middle" font-size="11" font-weight="700" fill="#dc2626" letter-spacing="2">ANSIBLE</text>
+  <text x="300" y="221" text-anchor="middle" font-size="9" fill="#64748b">control</text>
+
+  <!-- Vertical divider -->
+  <line x1="600" y1="60" x2="600" y2="375" stroke="#1e3a52" stroke-width="1.5"/>
+
+  <!-- === RIGHT PANEL: Post list === -->
+  <line x1="640" y1="75" x2="1155" y2="75" stroke="#1e3a52" stroke-width="1"/>
+
+  <text x="640" y="105" font-size="11" fill="#dc2626" font-weight="700" font-family="'Courier New',monospace">01</text>
+  <text x="680" y="105" font-size="16" fill="#e2e8f0" font-weight="600">Installation &amp; Configuration</text>
+  <line x1="640" y1="130" x2="1155" y2="130" stroke="#1e3a52" stroke-width="1"/>
+
+  <text x="640" y="160" font-size="11" fill="#dc2626" font-weight="700" font-family="'Courier New',monospace">02</text>
+  <text x="680" y="160" font-size="16" fill="#e2e8f0" font-weight="600">Playbooks, Roles &amp; Handlers</text>
+  <line x1="640" y1="185" x2="1155" y2="185" stroke="#1e3a52" stroke-width="1"/>
+
+  <text x="640" y="215" font-size="11" fill="#dc2626" font-weight="700" font-family="'Courier New',monospace">03</text>
+  <text x="680" y="215" font-size="16" fill="#e2e8f0" font-weight="600">Managing Secrets with Vault</text>
+  <line x1="640" y1="240" x2="1155" y2="240" stroke="#1e3a52" stroke-width="1"/>
+
+  <!-- Bottom overlay -->
+  <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
+
+  <rect x="250" y="418" width="220" height="30" fill="#0c1a2e" stroke="#dc2626" stroke-width="1.5" rx="15"/>
+  <text x="360" y="438" text-anchor="middle" font-size="11" fill="#dc2626" font-weight="600" letter-spacing="1">Installation · Setup</text>
+  <rect x="490" y="418" width="220" height="30" fill="#0c1a2e" stroke="#f59e0b" stroke-width="1.5" rx="15"/>
+  <text x="600" y="438" text-anchor="middle" font-size="11" fill="#f59e0b" font-weight="600" letter-spacing="1">Playbooks · Roles · Handlers</text>
+  <rect x="730" y="418" width="220" height="30" fill="#0c1a2e" stroke="#4ade80" stroke-width="1.5" rx="15"/>
+  <text x="840" y="438" text-anchor="middle" font-size="11" fill="#4ade80" font-weight="600" letter-spacing="1">Vault · Secrets</text>
+
+  <text x="600" y="524" text-anchor="middle" font-size="42" font-weight="700" fill="#f1f5f9">Ansible Essentials</text>
+</svg>

@@ -1,5 +1,5 @@
 ---
-title: Setting Up Your Observability Stack
+title: "Grafana Observability: Setting Up Your Observability Stack"
 description: Install Prometheus, Loki, Grafana, and Grafana Alloy with Docker Compose to build a complete homelab monitoring and observability stack from scratch.
 date: 2026-01-08
 draft: false
@@ -11,7 +11,10 @@ tags:
   - prometheus
   - loki
   - alloy
-cover: cover.jpg
+cover: cover.svg
+series:
+  - Grafana Observability
+series_order: 1
 ---
 
 Before you can collect metrics or centralize logs, you need somewhere to store and visualize them — and an agent to collect the data. This post sets up all four components of a Grafana observability stack:
@@ -346,5 +349,5 @@ Open the Alloy web UI at `http://<HOST_IP>:12345` to verify all components are g
 
 With the full stack running, start adding collectors:
 
-- [Host & Container Monitoring]({{< ref "/posts/2026-01-22-host-container-monitoring" >}}) — CPU, memory, disk, and Docker container metrics
-- [Log Monitoring with Loki]({{< ref "/posts/2026-02-05-log-monitoring-with-alloy" >}}) — system logs and Docker container logs
+- [Host & Container Monitoring]({{< ref "/posts/2026-01-22-grafana-observability-host-container-monitoring" >}}) — CPU, memory, disk, and Docker container metrics
+- [Log Monitoring with Loki]({{< ref "/posts/2026-02-05-grafana-observability-log-monitoring" >}}) — system logs and Docker container logs

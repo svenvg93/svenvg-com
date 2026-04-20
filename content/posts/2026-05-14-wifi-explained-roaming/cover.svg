@@ -66,7 +66,7 @@
   <circle cx="230" cy="310" r="10" fill="#3b82f6"/>
   <circle cx="230" cy="310" r="5" fill="#bfdbfe"/>
   <!-- AP label -->
-  <text x="230" y="430" text-anchor="middle" font-size="14" fill="#60a5fa" font-weight="600" letter-spacing="1">AP 1</text>
+  <text x="230" y="375" text-anchor="middle" font-size="14" fill="#60a5fa" font-weight="600" letter-spacing="1">AP 1</text>
 
   <!-- === Right AP — orange WiFi symbol === -->
   <g fill="none" stroke="#f97316" stroke-linecap="round">
@@ -77,7 +77,7 @@
   </g>
   <circle cx="970" cy="310" r="10" fill="#f97316"/>
   <circle cx="970" cy="310" r="5" fill="#fed7aa"/>
-  <text x="970" y="430" text-anchor="middle" font-size="14" fill="#fb923c" font-weight="600" letter-spacing="1">AP 2</text>
+  <text x="970" y="375" text-anchor="middle" font-size="14" fill="#fb923c" font-weight="600" letter-spacing="1">AP 2</text>
 
   <!-- Roaming arc path from AP1 to AP2 via top -->
   <path d="M 240,300 Q 600,110 960,300"
@@ -110,7 +110,7 @@
   <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
 
   <!-- Series label -->
-  <text x="600" y="500" text-anchor="middle" font-size="13" fill="#38bdf8" letter-spacing="3" font-weight="600">WiFi Explained</text>
+  <text x="600" y="500" text-anchor="middle" font-size="13" fill="#38bdf8" letter-spacing="3" font-weight="600">WIFI EXPLAINED</text>
 
   <!-- Title -->
   <text x="600" y="538" text-anchor="middle" font-size="34" font-weight="700" fill="#f1f5f9">Roaming &amp; Client Management</text>

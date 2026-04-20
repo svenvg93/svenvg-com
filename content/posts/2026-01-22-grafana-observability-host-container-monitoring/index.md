@@ -1,5 +1,5 @@
 ---
-title: Host & Container Monitoring with Grafana Alloy
+title: "Grafana Observability: Host & Container Monitoring with Grafana Alloy"
 description: Collect host system and Docker container metrics using Grafana Alloy's built-in exporters, stored in Prometheus and visualized in Grafana.
 date: 2026-01-22
 draft: false
@@ -10,7 +10,10 @@ tags:
   - prometheus
   - grafana
   - alloy
-cover: cover.jpg
+cover: cover.svg
+series:
+  - Grafana Observability
+series_order: 2
 ---
 
 Monitoring your systems and containers is essential for maintaining a reliable homelab or home server. This guide uses Grafana Alloy's built-in exporters to collect host and container metrics, with Prometheus for storage and Grafana for visualization — all managed through a single agent instead of separate containers per exporter.
@@ -19,7 +22,7 @@ Monitoring your systems and containers is essential for maintaining a reliable h
 
 - Prometheus running and reachable
 - Grafana running with Prometheus added as a datasource
-- Grafana Alloy installed and running — see [Setting Up Your Observability Stack]({{< ref "/posts/2026-01-08-observability-stack-setup" >}})
+- Grafana Alloy installed and running — see [Setting Up Your Observability Stack]({{< ref "/posts/2026-01-08-grafana-observability-setup" >}})
 
 ## Host Metrics
 

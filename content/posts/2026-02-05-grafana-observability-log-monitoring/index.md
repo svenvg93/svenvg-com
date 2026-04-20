@@ -1,5 +1,5 @@
 ---
-title: Log Monitoring with Grafana Alloy and Loki
+title: "Grafana Observability: Log Monitoring with Grafana Alloy and Loki"
 description: Collect system logs and Docker container logs using Grafana Alloy and forward them to Loki for centralized log management in Grafana.
 date: 2026-02-05
 draft: false
@@ -10,7 +10,10 @@ tags:
   - grafana
   - loki
   - alloy
-cover: cover.jpg
+cover: cover.svg
+series:
+  - Grafana Observability
+series_order: 3
 ---
 
 Monitoring isn't just about metrics — centralized logging provides deeper insights by letting you search and correlate events across your entire infrastructure. This guide uses Grafana Alloy to collect both system logs and Docker container logs, forwarding them to Loki for querying in Grafana.
@@ -19,7 +22,7 @@ Monitoring isn't just about metrics — centralized logging provides deeper insi
 
 - Loki running and reachable
 - Grafana running with Loki added as a datasource
-- Grafana Alloy installed and running — see [Setting Up Your Observability Stack]({{< ref "/posts/2026-01-08-observability-stack-setup" >}})
+- Grafana Alloy installed and running — see [Setting Up Your Observability Stack]({{< ref "/posts/2026-01-08-grafana-observability-setup" >}})
 
 ## System Logs
 

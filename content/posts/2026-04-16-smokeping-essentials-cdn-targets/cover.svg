@@ -25,7 +25,7 @@
     <line x1="0" y1="100" x2="1200" y2="100"/>
     <line x1="0" y1="200" x2="1200" y2="200"/>
     <line x1="0" y1="300" x2="1200" y2="300"/>
-    <line x1="0" y1="400" x2="1200" y2="400"/>
+
     <line x1="200" y1="0" x2="200" y2="500"/>
     <line x1="400" y1="0" x2="400" y2="500"/>
     <line x1="600" y1="0" x2="600" y2="500"/>
@@ -89,13 +89,13 @@
 
   <!-- SmokePing target badges -->
   <rect x="1002" y="125" width="148" height="22" fill="#052e16" stroke="#4ade80" stroke-width="1" rx="11"/>
-  <text x="1076" y="140" text-anchor="middle" font-size="9" fill="#4ade80" font-weight="600">✓ SmokePing target</text>
+  <text x="1076" y="140" text-anchor="middle" font-size="9" fill="#4ade80" font-weight="600">SmokePing target</text>
 
   <rect x="1002" y="230" width="148" height="22" fill="#052e16" stroke="#4ade80" stroke-width="1" rx="11"/>
-  <text x="1076" y="245" text-anchor="middle" font-size="9" fill="#4ade80" font-weight="600">✓ SmokePing target</text>
+  <text x="1076" y="245" text-anchor="middle" font-size="9" fill="#4ade80" font-weight="600">SmokePing target</text>
 
   <rect x="1002" y="335" width="148" height="22" fill="#052e16" stroke="#4ade80" stroke-width="1" rx="11"/>
-  <text x="1076" y="350" text-anchor="middle" font-size="9" fill="#4ade80" font-weight="600">✓ SmokePing target</text>
+  <text x="1076" y="350" text-anchor="middle" font-size="9" fill="#4ade80" font-weight="600">SmokePing target</text>
 
   <!-- Latency callout on IXP → Cloudflare line -->
   <text x="693" y="228" text-anchor="middle" font-size="9" fill="#0ea5e9">IXP → CDN</text>
@@ -106,6 +106,6 @@
 
   <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
 
-  <text x="600" y="500" text-anchor="middle" font-size="13" fill="#0ea5e9" letter-spacing="3" font-weight="600">Smokeping Essentials</text>
+  <text x="600" y="500" text-anchor="middle" font-size="13" fill="#0ea5e9" letter-spacing="3" font-weight="600">SMOKEPING ESSENTIALS</text>
   <text x="600" y="538" text-anchor="middle" font-size="34" font-weight="700" fill="#f1f5f9">CDN Targets</text>
 </svg>

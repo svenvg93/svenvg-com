@@ -8,7 +8,7 @@ categories:
   - Homelab
 tags:
   - cloudflare
-cover: cover.jpg
+cover: cover.svg
 ---
 
 If you self-host services at home, your ISP probably gives you a dynamic IP. When it changes, your DNS records go stale and your services go unreachable.

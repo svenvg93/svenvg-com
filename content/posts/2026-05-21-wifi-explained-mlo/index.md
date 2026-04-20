@@ -39,41 +39,61 @@ The AP and client can then:
 
 The result is lower latency (always use the best available path), higher aggregate throughput (multiple channels active simultaneously), and better reliability.
 
+There is a common misconception that MLO is a single feature that either works or doesn't. In practice, MLO is a family of modes — and an AP and a client device can both advertise WiFi 7 with MLO support while using entirely different modes. The mode with the highest capability, STR, is rarely found on client devices: fitting multiple fully isolated radios into a thin laptop or phone is a genuine hardware challenge, and running them all simultaneously carries a real battery cost. Most client devices implement eMLSR instead, which delivers MLO's latency benefits at much lower power and hardware cost. Understanding which mode a device actually uses matters more than whether it supports MLO at all.
+
 ## The Main MLO Modes
 
-Not all MLO is equal. The standard defines several operating modes based on hardware capability — this post covers the three you're most likely to encounter in current hardware. The full 802.11be spec includes additional variants (MLSR, EMLMR) that are less common today.
+Not all MLO is equal. The standard defines five operating modes based on hardware capability, ordered here from simplest to most capable.
+
+### MLSR — Multi-Link Single Radio
+
+The baseline MLO mode. The device uses a single radio that can only be tuned to one channel at a time and must perform a full channel switch when moving between links. It cannot monitor multiple links simultaneously, and switching decisions are reactive — the device has no visibility of a secondary link while its radio is parked on another.
+
+MLSR enables basic multi-link functionality such as link fallback and simple load distribution, but the switching overhead limits how quickly it can react to changing conditions. It is primarily a baseline implementation for devices with strict cost or hardware constraints.
+
+![MLSR — a single radio switches fully between bands, one at a time, with overhead on each switch](mlo-mlsr.svg)
+
+### eMLSR — Enhanced Multi-Link Single Radio
+
+eMLSR uses a single transmit radio like MLSR, but adds multiple receive chains that can passively listen on more than one band at the same time. The radio can monitor several links simultaneously for incoming frames and switch its transmit path to whichever link has pending traffic, without waiting for a full channel scan. This is the key improvement over MLSR: eMLSR never loses sight of secondary links while the transmitter is elsewhere, so it reacts to incoming traffic much faster.
+
+eMLSR doesn't deliver parallel throughput — only one link carries active data at a time. But its ability to listen on multiple bands simultaneously gives it noticeably better latency than MLSR, at similar hardware cost. It's the primary MLO mode for power-constrained devices like phones and laptops.
+
+![eMLSR — a single radio time-slices between bands, switching to whichever link has pending traffic](mlo-emlsr.svg)
+
+### NSTR — Non-Simultaneous Transmit and Receive
+
+NSTR introduces a second radio, but with a constraint: the device cannot transmit on one link while receiving on another simultaneously. The transmit signal from one radio leaks into the receive chain of the other — a hardware limitation that RF isolation alone can't fully solve. To avoid this, the protocol coordinates both links so that neither is receiving while the other is transmitting: both transmit together, or both are idle.
+
+NSTR provides better channel utilization, dynamic load distribution, and redundancy compared to single-radio modes. But throughput gains are lower than STR because the two links can't independently carry bidirectional traffic at the same time.
+
+![NSTR — multiple radios coordinated so transmissions on one link align with idle periods on the other](mlo-nstr.svg)
 
 ### STR — Simultaneous Transmit and Receive
 
-The device has independent radios for each band and can transmit on one while receiving on another simultaneously. This is the highest-capability mode and delivers the full MLO benefit: true concurrent use of all links.
+The device has independent radios for each band and can transmit on one while receiving on another simultaneously — with no coordination constraint between links. This is the highest-capability single-mode and delivers the full MLO benefit: true concurrent use of all links.
 
 The constraint is RF isolation. If the 2.4GHz and 5GHz radios are physically too close, transmitting on one can interfere with reception on the other. STR requires that the AP and client hardware achieve adequate isolation between bands — a non-trivial design challenge, especially for thin client devices.
 
 ![STR — all three radios active concurrently, independent TX and RX on each band](mlo-str.svg)
 
-### NSTR — Non-Simultaneous Transmit and Receive
+### eMLMR — Enhanced Multi-Link Multi-Radio
 
-The device cannot truly transmit and receive at the same time across links due to RF constraints. Instead, the links are coordinated so they don't interfere with each other — transmissions on one link are synchronized with idle periods on the other.
+eMLMR builds on multi-radio operation by adding smarter scheduling, interference awareness, and dynamic traffic steering across links. Where STR and NSTR treat all links equally, eMLMR can adapt in real time to changing RF conditions — prioritizing lower-latency or higher-throughput links depending on traffic type and steering frames accordingly.
 
-NSTR still provides benefits over single-band operation: better channel utilization, dynamic load distribution, and redundancy. But throughput gains are lower than STR because the links can't be fully concurrent.
+This mode targets higher-end devices that have multiple radios and the processing capability to intelligently manage them.
 
-![NSTR — multiple radios coordinated so transmissions on one link align with idle periods on the other](mlo-nstr.svg)
-
-### eMLSR — Enhanced Multi-Link Single Radio
-
-A single radio switches rapidly between multiple links. Because there is only one physical radio, it cannot monitor multiple channels at the same time — instead, the protocol defines scheduled listening windows during which the radio checks a secondary link, then switches back. It responds on whichever link has pending traffic during its active window. This is the lowest-hardware-cost MLO mode — it doesn't require multiple independent radios.
-
-eMLSR improves responsiveness and reduces latency by avoiding the delay of full channel scans, but it doesn't deliver parallel throughput. It's mainly targeted at power-constrained devices that want MLO's latency benefits without the cost of multiple radios.
-
-![eMLSR — a single radio time-slices between bands, switching to whichever link has pending traffic](mlo-emlsr.svg)
+![eMLMR — multiple radios active simultaneously, with intelligent scheduling coordinating traffic across links](mlo-emlmr.svg)
 
 ## Mode Comparison
 
 | Mode | Radios required | Concurrent TX/RX | Throughput gain | Latency gain |
 |------|----------------|------------------|-----------------|--------------|
-| STR | Multiple (isolated) | Yes | High | High |
-| NSTR | Multiple (coordinated) | No | Medium | Medium |
+| MLSR | Single | No | Low | Low |
 | eMLSR | Single | No | Low | Medium |
+| NSTR | Multiple (coordinated) | No | Medium | Medium |
+| STR | Multiple (isolated) | Yes | High | High |
+| eMLMR | Multiple (coordinated/intelligent) | Yes (flexible) | High | High |
 
 ## What MLO Requires
 

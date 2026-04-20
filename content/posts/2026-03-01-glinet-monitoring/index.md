@@ -13,7 +13,7 @@ tags:
   - alloy
   - grafana
   - openwrt
-cover: cover.jpg
+cover: cover.svg
 ---
 
 GL.iNet routers run OpenWRT, which has native Prometheus exporter packages and remote syslog support. This guide covers installing the Lua-based node exporter for metrics and forwarding syslog to Loki via Grafana Alloy — giving you full observability of your GL.iNet router.
@@ -22,7 +22,7 @@ GL.iNet routers run OpenWRT, which has native Prometheus exporter packages and r
 
 ## Prerequisites
 
-- Grafana, Alloy, Prometheus, and Loki already running. See the [Log Monitoring with Grafana Alloy and Loki]({{< ref "/posts/2026-02-05-log-monitoring-with-alloy" >}}) post for the observability stack setup.
+- Grafana, Alloy, Prometheus, and Loki already running. See the [Log Monitoring with Grafana Alloy and Loki]({{< ref "/posts/2026-02-05-grafana-observability-log-monitoring" >}}) post for the observability stack setup.
 - A GL.iNet router set up as per the [GL.iNet Travel Router Setup]({{< ref "/posts/2025-04-05-setup-travel-router" >}}) guide.
 
 ## Metrics

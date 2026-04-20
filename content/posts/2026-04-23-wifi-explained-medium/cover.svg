@@ -39,12 +39,7 @@
     <line x1="80" y1="240" x2="1120" y2="240"/>
     <line x1="80" y1="300" x2="1120" y2="300"/>
     <line x1="80" y1="360" x2="1120" y2="360"/>
-    <line x1="80" y1="420" x2="1120" y2="420"/>
-    <line x1="80" y1="460" x2="1120" y2="460"/>
   </g>
-
-  <!-- Baseline -->
-  <line x1="80" y1="461" x2="1120" y2="461" stroke="#1e3a5f" stroke-width="2"/>
 
   <!-- === Client A — blue (bars x: 106,154,202,250,298) === -->
   <rect x="106" y="261" width="40" height="199" fill="url(#ga)" rx="3"/>
@@ -116,7 +111,7 @@
   <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
 
   <!-- Series label -->
-  <text x="600" y="500" text-anchor="middle" font-size="13" fill="#38bdf8" letter-spacing="3" font-weight="600">WiFi Explained</text>
+  <text x="600" y="500" text-anchor="middle" font-size="13" fill="#38bdf8" letter-spacing="3" font-weight="600">WIFI EXPLAINED</text>
 
   <!-- Title -->
   <text x="600" y="538" text-anchor="middle" font-size="34" font-weight="700" fill="#f1f5f9">How Devices Share the Air</text>

@@ -23,7 +23,7 @@ Traefik exposes metrics on EntryPoints, Routers, Services, and more. This guide 
 
 ## Prerequisites
 
-- Grafana, Prometheus, Loki, and Alloy already running — see [Setting Up Your Observability Stack]({{< ref "/posts/2026-01-08-observability-stack-setup" >}})
+- Grafana, Prometheus, Loki, and Alloy already running — see [Setting Up Your Observability Stack]({{< ref "/posts/2026-01-08-grafana-observability-setup" >}})
 - Traefik set up as per the [Traefik Essentials Setup]({{< ref "/posts/2024-05-21-traefik-essentials-setup" >}}) guide
 
 ## Metrics

@@ -289,6 +289,7 @@ Each series has one accent color used for: series label text, primary glows, key
 | Smokeping Essentials | Sky 500 | `#0ea5e9` |
 | Ansible Essentials | Red 600 | `#dc2626` |
 | MikroTik (standalone) | Red 500 | `#ef4444` |
+| Grafana Observability | Orange | `#f97316` |
 
 > **Rule**: The series label `fill` must always use the series accent color. Never use a color from the diagram content itself as the series label color.
 

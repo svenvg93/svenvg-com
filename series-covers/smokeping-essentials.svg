@@ -11,21 +11,14 @@
       <stop offset="60%" stop-color="#080c14" stop-opacity="0.93"/>
       <stop offset="100%" stop-color="#080c14" stop-opacity="1"/>
     </linearGradient>
-    <linearGradient id="zone-green" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#4ade80" stop-opacity="0.08"/>
-      <stop offset="100%" stop-color="#4ade80" stop-opacity="0.03"/>
-    </linearGradient>
-    <linearGradient id="zone-yellow" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.10"/>
-      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.03"/>
-    </linearGradient>
-    <linearGradient id="zone-red" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.12"/>
-      <stop offset="100%" stop-color="#ef4444" stop-opacity="0.03"/>
-    </linearGradient>
+    <radialGradient id="panel-glow" cx="25%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#0ea5e9" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#0ea5e9" stop-opacity="0"/>
+    </radialGradient>
   </defs>
 
   <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#panel-glow)"/>
 
   <g stroke="#0d1a2a" stroke-width="1">
     <line x1="0" y1="100" x2="1200" y2="100"/>
@@ -39,91 +32,69 @@
     <line x1="1000" y1="0" x2="1000" y2="500"/>
   </g>
 
-  <!-- === LEFT PANEL: Latency graph as hero === -->
-  <rect x="55" y="70" width="520" height="300" fill="#050a12" rx="4"/>
+  <!-- === Centered latency dashboard === -->
+  <rect x="230" y="72" width="740" height="112" fill="#0a1628" stroke="#334155" stroke-width="1.5" rx="8"/>
+  <text x="256" y="98" font-size="10" fill="#64748b" letter-spacing="1">PROBE PATH</text>
+  <circle cx="312" cy="132" r="9" fill="#0ea5e9"/>
+  <text x="312" y="136" text-anchor="middle" font-size="8" fill="#08131f" font-weight="700">SRC</text>
+  <path d="M 326,132 L 456,132" fill="none" stroke="#0ea5e9" stroke-width="2.5" stroke-dasharray="6,6"/>
+  <circle cx="476" cy="132" r="8" fill="#4ade80"/>
+  <text x="476" y="157" text-anchor="middle" font-size="9" fill="#4ade80" font-weight="600">gateway</text>
+  <path d="M 490,132 L 620,132" fill="none" stroke="#0ea5e9" stroke-width="2.5" stroke-dasharray="6,6"/>
+  <circle cx="640" cy="132" r="8" fill="#f59e0b"/>
+  <text x="640" y="157" text-anchor="middle" font-size="9" fill="#f59e0b" font-weight="600">cdn</text>
+  <path d="M 654,132 L 784,132" fill="none" stroke="#0ea5e9" stroke-width="2.5" stroke-dasharray="6,6"/>
+  <circle cx="804" cy="132" r="8" fill="#ef4444"/>
+  <text x="804" y="157" text-anchor="middle" font-size="9" fill="#ef4444" font-weight="600">loss</text>
+  <path d="M 818,132 L 948,132" fill="none" stroke="#0ea5e9" stroke-width="2.5" stroke-dasharray="6,6"/>
 
-  <!-- Zone bands -->
-  <rect x="55" y="298" width="520" height="72"  fill="url(#zone-green)"/>
-  <rect x="55" y="210" width="520" height="88"  fill="url(#zone-yellow)"/>
-  <rect x="55" y="70"  width="520" height="140" fill="url(#zone-red)"/>
-
-  <!-- Chart grid -->
-  <g stroke="#0d1a2a" stroke-width="1">
-    <line x1="55"  y1="298" x2="575" y2="298"/>
-    <line x1="55"  y1="210" x2="575" y2="210"/>
-    <line x1="55"  y1="122" x2="575" y2="122"/>
-    <line x1="160" y1="70"  x2="160" y2="370"/>
-    <line x1="265" y1="70"  x2="265" y2="370"/>
-    <line x1="370" y1="70"  x2="370" y2="370"/>
-    <line x1="475" y1="70"  x2="475" y2="370"/>
+  <rect x="230" y="202" width="740" height="84" fill="#0b1624" stroke="#12324a" stroke-width="1.5" rx="6"/>
+  <text x="256" y="220" font-size="10" fill="#64748b" letter-spacing="1">RTT DISTRIBUTION</text>
+  <g fill="#0ea5e9" fill-opacity="0.75">
+    <rect x="256" y="254" width="20" height="10" rx="2"/>
+    <rect x="282" y="248" width="20" height="16" rx="2"/>
+    <rect x="308" y="242" width="20" height="22" rx="2"/>
+    <rect x="334" y="232" width="20" height="32" rx="2"/>
+    <rect x="360" y="226" width="20" height="38" rx="2"/>
+    <rect x="386" y="234" width="20" height="30" rx="2"/>
+    <rect x="412" y="244" width="20" height="20" rx="2"/>
+    <rect x="438" y="251" width="20" height="13" rx="2"/>
   </g>
+  <g fill="#f59e0b" fill-opacity="0.8">
+    <rect x="560" y="244" width="24" height="20" rx="2"/>
+    <rect x="590" y="232" width="24" height="32" rx="2"/>
+    <rect x="620" y="240" width="24" height="24" rx="2"/>
+  </g>
+  <g fill="#ef4444" fill-opacity="0.85">
+    <rect x="800" y="228" width="24" height="36" rx="2"/>
+    <rect x="830" y="236" width="24" height="28" rx="2"/>
+  </g>
+  <line x1="256" y1="264" x2="896" y2="264" stroke="#1f3142" stroke-width="1"/>
+  <text x="256" y="277" font-size="8" fill="#475569">0ms</text>
+  <text x="430" y="277" font-size="8" fill="#475569">20ms</text>
+  <text x="640" y="277" font-size="8" fill="#475569">80ms</text>
+  <text x="870" y="277" font-size="8" fill="#475569">loss</text>
 
-  <!-- Y-axis labels -->
-  <text x="50" y="302" text-anchor="end" font-size="9" fill="#4ade80">30ms</text>
-  <text x="50" y="214" text-anchor="end" font-size="9" fill="#f59e0b">80ms</text>
-  <text x="50" y="126" text-anchor="end" font-size="9" fill="#ef4444">130ms</text>
-  <text x="50" y="374" text-anchor="end" font-size="9" fill="#475569">0ms</text>
-
-  <!-- X-axis labels -->
-  <text x="55"  y="385" font-size="9" fill="#475569" text-anchor="middle">Mon</text>
-  <text x="160" y="385" font-size="9" fill="#475569" text-anchor="middle">Tue</text>
-  <text x="265" y="385" font-size="9" fill="#475569" text-anchor="middle">Wed</text>
-  <text x="370" y="385" font-size="9" fill="#475569" text-anchor="middle">Thu</text>
-  <text x="475" y="385" font-size="9" fill="#475569" text-anchor="middle">Fri</text>
-  <text x="570" y="385" font-size="9" fill="#475569" text-anchor="middle">Sat</text>
-
-  <!-- Smoke polygon -->
-  <polygon
-    points="75,320 118,318 160,322 200,316 240,308 280,285 320,252 360,218 400,185 440,162 480,148 520,156 555,170 575,182
-            575,210 555,200 520,186 480,178 440,152 400,165 360,198 320,232 280,265 240,288 200,306 160,312 118,308 75,315"
-    fill="#0ea5e9" fill-opacity="0.18"/>
-
-  <!-- Median line -->
-  <polyline
-    points="75,318 118,313 160,317 200,311 240,298 280,275 320,242 360,208 400,175 440,152 480,140 520,171 555,185 575,196"
-    fill="none" stroke="#0ea5e9" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-
-  <!-- Packet loss dots -->
-  <circle cx="480" cy="140" r="5" fill="#ef4444"/>
-  <circle cx="500" cy="145" r="5" fill="#ef4444"/>
-  <circle cx="520" cy="152" r="5" fill="#ef4444"/>
-
-  <!-- Zone labels -->
-  <text x="568" y="348" text-anchor="end" font-size="9" fill="#4ade80" font-weight="600">normal</text>
-  <text x="568" y="245" text-anchor="end" font-size="9" fill="#f59e0b" font-weight="600">elevated</text>
-  <text x="568" y="115" text-anchor="end" font-size="9" fill="#ef4444" font-weight="600">congested</text>
-
-  <!-- Callouts -->
-  <line x1="480" y1="112" x2="480" y2="136" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,2"/>
-  <text x="480" y="107" text-anchor="middle" font-size="9" fill="#ef4444">● packet loss</text>
-
-  <!-- Vertical divider -->
-  <line x1="600" y1="60" x2="600" y2="375" stroke="#1e3a52" stroke-width="1.5"/>
-
-  <!-- === RIGHT PANEL: Post list === -->
-  <line x1="640" y1="75" x2="1155" y2="75" stroke="#1e3a52" stroke-width="1"/>
-
-  <text x="640" y="105" font-size="11" fill="#0ea5e9" font-weight="700" font-family="'Courier New',monospace">01</text>
-  <text x="680" y="105" font-size="16" fill="#e2e8f0" font-weight="600">Setup</text>
-  <line x1="640" y1="130" x2="1155" y2="130" stroke="#1e3a52" stroke-width="1"/>
-
-  <text x="640" y="160" font-size="11" fill="#0ea5e9" font-weight="700" font-family="'Courier New',monospace">02</text>
-  <text x="680" y="160" font-size="16" fill="#e2e8f0" font-weight="600">The Right Targets</text>
-  <line x1="640" y1="185" x2="1155" y2="185" stroke="#1e3a52" stroke-width="1"/>
-
-  <text x="640" y="215" font-size="11" fill="#0ea5e9" font-weight="700" font-family="'Courier New',monospace">03</text>
-  <text x="680" y="215" font-size="16" fill="#e2e8f0" font-weight="600">CDN Targets</text>
-  <line x1="640" y1="240" x2="1155" y2="240" stroke="#1e3a52" stroke-width="1"/>
+  <rect x="230" y="298" width="740" height="70" fill="#0b1624" stroke="#12324a" stroke-width="1.5" rx="6"/>
+  <text x="256" y="321" font-size="10" fill="#64748b" letter-spacing="1">LATENCY STATES</text>
+  <rect x="256" y="330" width="170" height="16" fill="#052e16" rx="8"/>
+  <rect x="442" y="330" width="180" height="16" fill="#3a2505" rx="8"/>
+  <rect x="638" y="330" width="210" height="16" fill="#3b1010" rx="8"/>
+  <text x="341" y="342" text-anchor="middle" font-size="9" fill="#4ade80" font-weight="600">baseline</text>
+  <text x="532" y="342" text-anchor="middle" font-size="9" fill="#f59e0b" font-weight="600">congestion</text>
+  <text x="743" y="342" text-anchor="middle" font-size="9" fill="#ef4444" font-weight="600">packet loss</text>
+  <text x="256" y="361" font-size="9" fill="#64748b">find clean targets, then watch drift over time</text>
 
   <!-- Bottom overlay -->
   <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
 
-  <rect x="250" y="418" width="220" height="30" fill="#0c1a2e" stroke="#0ea5e9" stroke-width="1.5" rx="15"/>
-  <text x="360" y="438" text-anchor="middle" font-size="11" fill="#0ea5e9" font-weight="600" letter-spacing="1">Setup · Docker</text>
-  <rect x="490" y="418" width="220" height="30" fill="#0c1a2e" stroke="#4ade80" stroke-width="1.5" rx="15"/>
-  <text x="600" y="438" text-anchor="middle" font-size="11" fill="#4ade80" font-weight="600" letter-spacing="1">Target Selection</text>
-  <rect x="730" y="418" width="220" height="30" fill="#0c1a2e" stroke="#f59e0b" stroke-width="1.5" rx="15"/>
-  <text x="840" y="438" text-anchor="middle" font-size="11" fill="#f59e0b" font-weight="600" letter-spacing="1">CDN Targets</text>
+  <rect x="250" y="418" width="220" height="30" fill="#0c1a2e" stroke="#4ade80" stroke-width="1.5" rx="15"/>
+  <text x="360" y="438" text-anchor="middle" font-size="11" fill="#4ade80" font-weight="600" letter-spacing="1">Target Selection</text>
+  <rect x="490" y="418" width="220" height="30" fill="#0c1a2e" stroke="#f59e0b" stroke-width="1.5" rx="15"/>
+  <text x="600" y="438" text-anchor="middle" font-size="11" fill="#f59e0b" font-weight="600" letter-spacing="1">CDN Targets</text>
+  <rect x="730" y="418" width="220" height="30" fill="#0c1a2e" stroke="#0ea5e9" stroke-width="1.5" rx="15"/>
+  <text x="840" y="438" text-anchor="middle" font-size="11" fill="#0ea5e9" font-weight="600" letter-spacing="1">Setup · Docker</text>
 
-  <text x="600" y="524" text-anchor="middle" font-size="42" font-weight="700" fill="#f1f5f9">Smokeping Essentials</text>
+  <text x="600" y="500" text-anchor="middle" font-size="13" fill="#0ea5e9" letter-spacing="3" font-weight="600">LATENCY MONITORING</text>
+  <text x="600" y="538" text-anchor="middle" font-size="34" font-weight="700" fill="#f1f5f9">Smokeping Essentials</text>
 </svg>

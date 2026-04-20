@@ -11,7 +11,7 @@
       <stop offset="60%" stop-color="#0a0800" stop-opacity="0.93"/>
       <stop offset="100%" stop-color="#0a0800" stop-opacity="1"/>
     </linearGradient>
-    <radialGradient id="signal-glow" cx="50%" cy="90%" r="60%">
+    <radialGradient id="signal-glow" cx="25%" cy="40%" r="55%">
       <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.12"/>
       <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
     </radialGradient>
@@ -32,77 +32,63 @@
     <line x1="1000" y1="0" x2="1000" y2="500"/>
   </g>
 
-  <!-- === LEFT PANEL: Large WiFi signal arcs === -->
-  <!-- Origin point at bottom-center of left panel: (300, 340) -->
+  <!-- === Centered access point + band branches === -->
+  <circle cx="420" cy="215" r="165" fill="#38bdf8" fill-opacity="0.05"/>
+  <circle cx="420" cy="215" r="118" fill="#38bdf8" fill-opacity="0.04" stroke="#223040" stroke-width="1"/>
 
-  <!-- 2.4 GHz arcs (orange) — innermost, widest beam angle -->
-  <path d="M 145,340 A 155,155 0 0 1 455,340" fill="none" stroke="#f97316" stroke-width="3" stroke-opacity="0.25" stroke-linecap="round"/>
-  <path d="M 165,300 A 145,145 0 0 1 435,300" fill="none" stroke="#f97316" stroke-width="3" stroke-opacity="0.45" stroke-linecap="round"/>
-  <path d="M 195,255 A 120,120 0 0 1 405,255" fill="none" stroke="#f97316" stroke-width="3.5" stroke-opacity="0.7" stroke-linecap="round"/>
-  <path d="M 222,210 A 90,90 0 0 1 378,210"   fill="none" stroke="#f97316" stroke-width="4" stroke-opacity="0.9" stroke-linecap="round"/>
-  <text x="155" y="298" font-size="11" font-weight="700" fill="#f97316" fill-opacity="0.8">2.4</text>
+  <rect x="362" y="146" width="116" height="116" fill="#0c1623" stroke="#38bdf8" stroke-width="2" rx="18"/>
+  <rect x="377" y="161" width="86" height="86" fill="none" stroke="#38bdf8" stroke-width="1" stroke-opacity="0.35" rx="14"/>
+  <line x1="420" y1="120" x2="420" y2="146" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="420" cy="112" r="6" fill="#38bdf8"/>
+  <circle cx="420" cy="112" r="13" fill="none" stroke="#38bdf8" stroke-opacity="0.25" stroke-width="1.5"/>
+  <line x1="392" y1="188" x2="448" y2="188" stroke="#bae6fd" stroke-width="4" stroke-linecap="round"/>
+  <line x1="390" y1="208" x2="450" y2="208" stroke="#bae6fd" stroke-width="4" stroke-linecap="round"/>
+  <line x1="396" y1="228" x2="444" y2="228" stroke="#bae6fd" stroke-width="4" stroke-linecap="round"/>
+  <text x="420" y="284" text-anchor="middle" font-size="11" fill="#38bdf8" font-weight="700" letter-spacing="2">ACCESS POINT</text>
 
-  <!-- 5 GHz arcs (cyan) — medium -->
-  <path d="M 125,340 A 175,175 0 0 1 475,340" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-opacity="0.2" stroke-linecap="round"/>
-  <path d="M 148,285 A 162,162 0 0 1 452,285" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-opacity="0.4" stroke-linecap="round"/>
-  <path d="M 175,230 A 135,135 0 0 1 425,230" fill="none" stroke="#38bdf8" stroke-width="3" stroke-opacity="0.65" stroke-linecap="round"/>
-  <path d="M 205,173 A 102,102 0 0 1 395,173"  fill="none" stroke="#38bdf8" stroke-width="3.5" stroke-opacity="0.85" stroke-linecap="round"/>
-  <path d="M 232,122 A 72,72 0 0 1 368,122"    fill="none" stroke="#38bdf8" stroke-width="4" stroke-linecap="round"/>
-  <text x="133" y="283" font-size="11" font-weight="700" fill="#38bdf8" fill-opacity="0.8">5</text>
+  <path d="M 478,178 C 540,150 584,132 660,132" fill="none" stroke="#f97316" stroke-width="10" stroke-linecap="round" stroke-opacity="0.8"/>
+  <path d="M 478,208 C 552,208 586,208 660,208" fill="none" stroke="#38bdf8" stroke-width="16" stroke-linecap="round" stroke-opacity="0.8"/>
+  <path d="M 478,238 C 540,266 584,284 660,284" fill="none" stroke="#34d399" stroke-width="22" stroke-linecap="round" stroke-opacity="0.8"/>
 
-  <!-- 6 GHz arcs (green) — outermost, tightest beam -->
-  <path d="M 105,340 A 195,195 0 0 1 495,340" fill="none" stroke="#34d399" stroke-width="2" stroke-opacity="0.15" stroke-linecap="round"/>
-  <path d="M 125,272 A 182,182 0 0 1 475,272" fill="none" stroke="#34d399" stroke-width="2" stroke-opacity="0.3" stroke-linecap="round"/>
-  <path d="M 152,200 A 155,155 0 0 1 448,200" fill="none" stroke="#34d399" stroke-width="2.5" stroke-opacity="0.5" stroke-linecap="round"/>
-  <path d="M 180,135 A 125,125 0 0 1 420,135" fill="none" stroke="#34d399" stroke-width="3" stroke-opacity="0.7" stroke-linecap="round"/>
-  <path d="M 210,78"  fill="none"/>
-  <path d="M 210,78 A 94,94 0 0 1 390,78"     fill="none" stroke="#34d399" stroke-width="3.5" stroke-opacity="0.9" stroke-linecap="round"/>
-  <text x="110" y="270" font-size="11" font-weight="700" fill="#34d399" fill-opacity="0.8">6</text>
+  <path d="M 478,178 C 540,150 584,132 660,132" fill="none" stroke="#fed7aa" stroke-width="2" stroke-linecap="round"/>
+  <path d="M 478,208 C 552,208 586,208 660,208" fill="none" stroke="#bae6fd" stroke-width="3" stroke-linecap="round"/>
+  <path d="M 478,238 C 540,266 584,284 660,284" fill="none" stroke="#a7f3d0" stroke-width="4" stroke-linecap="round"/>
 
-  <!-- GHz label below the arcs -->
-  <text x="300" y="370" text-anchor="middle" font-size="11" fill="#475569" letter-spacing="3">GHz</text>
+  <rect x="610" y="114" width="115" height="36" fill="#19120c" stroke="#f97316" stroke-width="1.5" rx="18"/>
+  <text x="667" y="129" text-anchor="middle" font-size="10" fill="#f97316" font-weight="700">2.4 GHz</text>
+  <text x="667" y="141" text-anchor="middle" font-size="8" fill="#fed7aa">range · 20/40</text>
 
-  <!-- Origin dot -->
-  <circle cx="300" cy="340" r="6" fill="#38bdf8"/>
-  <circle cx="300" cy="340" r="12" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-opacity="0.4"/>
+  <rect x="610" y="190" width="115" height="36" fill="#0c1623" stroke="#38bdf8" stroke-width="1.5" rx="18"/>
+  <text x="667" y="205" text-anchor="middle" font-size="10" fill="#38bdf8" font-weight="700">5 GHz</text>
+  <text x="667" y="217" text-anchor="middle" font-size="8" fill="#bae6fd">speed · 80/160</text>
 
-  <!-- Vertical divider -->
-  <line x1="600" y1="60" x2="600" y2="375" stroke="#3a2800" stroke-width="1.5"/>
+  <rect x="610" y="266" width="115" height="36" fill="#0a1816" stroke="#34d399" stroke-width="1.5" rx="18"/>
+  <text x="667" y="281" text-anchor="middle" font-size="10" fill="#34d399" font-weight="700">6 GHz</text>
+  <text x="667" y="293" text-anchor="middle" font-size="8" fill="#a7f3d0">capacity · 320</text>
 
-  <!-- === RIGHT PANEL: Post list (5 posts, tighter spacing) === -->
-  <line x1="640" y1="75" x2="1155" y2="75" stroke="#3a2800" stroke-width="1"/>
-
-  <text x="640" y="100" font-size="11" fill="#38bdf8" font-weight="700" font-family="'Courier New',monospace">01</text>
-  <text x="680" y="100" font-size="15" fill="#e2e8f0" font-weight="600">How Devices Share the Air</text>
-  <line x1="640" y1="120" x2="1155" y2="120" stroke="#3a2800" stroke-width="1"/>
-
-  <text x="640" y="145" font-size="11" fill="#38bdf8" font-weight="700" font-family="'Courier New',monospace">02</text>
-  <text x="680" y="145" font-size="15" fill="#e2e8f0" font-weight="600">WPA3 Security</text>
-  <line x1="640" y1="165" x2="1155" y2="165" stroke="#3a2800" stroke-width="1"/>
-
-  <text x="640" y="190" font-size="11" fill="#38bdf8" font-weight="700" font-family="'Courier New',monospace">03</text>
-  <text x="680" y="190" font-size="15" fill="#e2e8f0" font-weight="600">Roaming</text>
-  <line x1="640" y1="210" x2="1155" y2="210" stroke="#3a2800" stroke-width="1"/>
-
-  <text x="640" y="235" font-size="11" fill="#38bdf8" font-weight="700" font-family="'Courier New',monospace">04</text>
-  <text x="680" y="235" font-size="15" fill="#e2e8f0" font-weight="600">WiFi 7: Multi-Link Operation</text>
-  <line x1="640" y1="255" x2="1155" y2="255" stroke="#3a2800" stroke-width="1"/>
-
-  <text x="640" y="280" font-size="11" fill="#38bdf8" font-weight="700" font-family="'Courier New',monospace">05</text>
-  <text x="680" y="280" font-size="15" fill="#e2e8f0" font-weight="600">Channels and Channel Width</text>
-  <line x1="640" y1="300" x2="1155" y2="300" stroke="#3a2800" stroke-width="1"/>
+  <rect x="285" y="316" width="470" height="40" fill="#0b1320" stroke="#223040" stroke-width="1.5" rx="20"/>
+  <text x="313" y="332" font-size="9" fill="#64748b" letter-spacing="1">SERIES THEMES</text>
+  <rect x="313" y="339" width="88" height="8" fill="#f97316" rx="4"/>
+  <rect x="415" y="339" width="92" height="8" fill="#38bdf8" rx="4"/>
+  <rect x="521" y="339" width="106" height="8" fill="#f59e0b" rx="4"/>
+  <rect x="641" y="339" width="86" height="8" fill="#34d399" rx="4"/>
+  <text x="357" y="360" text-anchor="middle" font-size="8" fill="#fed7aa">security</text>
+  <text x="461" y="360" text-anchor="middle" font-size="8" fill="#bae6fd">roaming</text>
+  <text x="574" y="360" text-anchor="middle" font-size="8" fill="#fdba74">channels</text>
+  <text x="684" y="360" text-anchor="middle" font-size="8" fill="#a7f3d0">WiFi 7</text>
 
   <!-- Bottom overlay -->
   <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
 
-  <rect x="200" y="418" width="185" height="30" fill="#052e16" stroke="#34d399" stroke-width="1.5" rx="15"/>
-  <text x="292" y="438" text-anchor="middle" font-size="11" fill="#34d399" font-weight="600" letter-spacing="1">MLO</text>
+  <rect x="200" y="418" width="185" height="30" fill="#0c1a2e" stroke="#f97316" stroke-width="1.5" rx="15"/>
+  <text x="292" y="438" text-anchor="middle" font-size="11" fill="#f97316" font-weight="600" letter-spacing="1">WPA3 Security</text>
   <rect x="405" y="418" width="185" height="30" fill="#0c1a2e" stroke="#38bdf8" stroke-width="1.5" rx="15"/>
   <text x="497" y="438" text-anchor="middle" font-size="11" fill="#38bdf8" font-weight="600" letter-spacing="1">Roaming</text>
-  <rect x="610" y="418" width="185" height="30" fill="#0c1a2e" stroke="#fb923c" stroke-width="1.5" rx="15"/>
-  <text x="702" y="438" text-anchor="middle" font-size="11" fill="#fb923c" font-weight="600" letter-spacing="1">WPA3 Security</text>
-  <rect x="815" y="418" width="185" height="30" fill="#0c1a2e" stroke="#a78bfa" stroke-width="1.5" rx="15"/>
-  <text x="907" y="438" text-anchor="middle" font-size="11" fill="#a78bfa" font-weight="600" letter-spacing="1">OFDMA</text>
+  <rect x="610" y="418" width="185" height="30" fill="#0c1a2e" stroke="#f59e0b" stroke-width="1.5" rx="15"/>
+  <text x="702" y="438" text-anchor="middle" font-size="11" fill="#f59e0b" font-weight="600" letter-spacing="1">Channels</text>
+  <rect x="815" y="418" width="185" height="30" fill="#052e16" stroke="#34d399" stroke-width="1.5" rx="15"/>
+  <text x="907" y="438" text-anchor="middle" font-size="11" fill="#34d399" font-weight="600" letter-spacing="1">MLO</text>
 
-  <text x="600" y="524" text-anchor="middle" font-size="42" font-weight="700" fill="#f1f5f9">WiFi Explained</text>
+  <text x="600" y="500" text-anchor="middle" font-size="13" fill="#38bdf8" letter-spacing="3" font-weight="600">WIRELESS NETWORKING</text>
+  <text x="600" y="538" text-anchor="middle" font-size="34" font-weight="700" fill="#f1f5f9">WiFi Explained</text>
 </svg>

@@ -36,71 +36,51 @@
     <line x1="1000" y1="0" x2="1000" y2="500"/>
   </g>
 
-  <!-- === LEFT PANEL: Large hexagon art === -->
-  <circle cx="300" cy="205" r="220" fill="url(#hex-glow)"/>
+  <!-- === Centered hexagon art === -->
+  <circle cx="600" cy="205" r="220" fill="url(#hex-glow)"/>
 
   <!-- Outer faint rings -->
   <!-- flat-top hex, cx=300, cy=205 -->
-  <polygon points="490,205 425,88 295,88 230,205 295,322 425,322"
+  <polygon points="790,205 725,88 595,88 530,205 595,322 725,322"
            fill="none" stroke="#37BEC3" stroke-width="1" stroke-opacity="0.08"/>
-  <polygon points="460,205 400,98 270,98 210,205 270,312 400,312"
+  <polygon points="760,205 700,98 570,98 510,205 570,312 700,312"
            fill="none" stroke="#37BEC3" stroke-width="1" stroke-opacity="0.13"/>
-  <polygon points="430,205 370,105 240,105 180,205 240,305 370,305"
+  <polygon points="730,205 670,105 540,105 480,205 540,305 670,305"
            fill="none" stroke="#37BEC3" stroke-width="1" stroke-opacity="0.2"/>
 
   <!-- Main hexagon r=120 -->
-  <polygon points="420,205 360,97 240,97 180,205 240,313 360,313"
+  <polygon points="720,205 660,97 540,97 480,205 540,313 660,313"
            fill="url(#hex-fill)" stroke="#37BEC3" stroke-width="2.5"/>
   <!-- Inner double ring -->
-  <polygon points="400,205 344,105 256,105 200,205 256,305 344,305"
+  <polygon points="700,205 644,105 556,105 500,205 556,305 644,305"
            fill="none" stroke="#37BEC3" stroke-width="0.8" stroke-opacity="0.3"/>
 
   <!-- Corner dots -->
-  <circle cx="420" cy="205" r="5" fill="#37BEC3"/>
-  <circle cx="360" cy="97"  r="5" fill="#37BEC3" fill-opacity="0.8"/>
-  <circle cx="240" cy="97"  r="5" fill="#37BEC3" fill-opacity="0.8"/>
-  <circle cx="180" cy="205" r="5" fill="#37BEC3"/>
-  <circle cx="240" cy="313" r="5" fill="#37BEC3" fill-opacity="0.8"/>
-  <circle cx="360" cy="313" r="5" fill="#37BEC3" fill-opacity="0.8"/>
+  <circle cx="720" cy="205" r="5" fill="#37BEC3"/>
+  <circle cx="660" cy="97"  r="5" fill="#37BEC3" fill-opacity="0.8"/>
+  <circle cx="540" cy="97"  r="5" fill="#37BEC3" fill-opacity="0.8"/>
+  <circle cx="480" cy="205" r="5" fill="#37BEC3"/>
+  <circle cx="540" cy="313" r="5" fill="#37BEC3" fill-opacity="0.8"/>
+  <circle cx="660" cy="313" r="5" fill="#37BEC3" fill-opacity="0.8"/>
 
   <!-- Radiating spokes from corners -->
-  <line x1="420" y1="205" x2="490" y2="205" stroke="#37BEC3" stroke-width="1.5" stroke-opacity="0.5"/>
-  <line x1="360" y1="97"  x2="400" y2="50"  stroke="#37BEC3" stroke-width="1.5" stroke-opacity="0.4"/>
-  <line x1="240" y1="97"  x2="200" y2="50"  stroke="#37BEC3" stroke-width="1.5" stroke-opacity="0.4"/>
-  <line x1="180" y1="205" x2="110" y2="205" stroke="#37BEC3" stroke-width="1.5" stroke-opacity="0.5"/>
-  <line x1="240" y1="313" x2="200" y2="360" stroke="#37BEC3" stroke-width="1.5" stroke-opacity="0.4"/>
-  <line x1="360" y1="313" x2="400" y2="360" stroke="#37BEC3" stroke-width="1.5" stroke-opacity="0.4"/>
+  <line x1="720" y1="205" x2="790" y2="205" stroke="#37BEC3" stroke-width="1.5" stroke-opacity="0.5"/>
+  <line x1="660" y1="97"  x2="700" y2="50"  stroke="#37BEC3" stroke-width="1.5" stroke-opacity="0.4"/>
+  <line x1="540" y1="97"  x2="500" y2="50"  stroke="#37BEC3" stroke-width="1.5" stroke-opacity="0.4"/>
+  <line x1="480" y1="205" x2="410" y2="205" stroke="#37BEC3" stroke-width="1.5" stroke-opacity="0.5"/>
+  <line x1="540" y1="313" x2="500" y2="360" stroke="#37BEC3" stroke-width="1.5" stroke-opacity="0.4"/>
+  <line x1="660" y1="313" x2="700" y2="360" stroke="#37BEC3" stroke-width="1.5" stroke-opacity="0.4"/>
 
   <!-- Spoke endpoint dots -->
-  <circle cx="490" cy="205" r="3" fill="#37BEC3" fill-opacity="0.6"/>
-  <circle cx="400" cy="50"  r="3" fill="#37BEC3" fill-opacity="0.5"/>
-  <circle cx="200" cy="50"  r="3" fill="#37BEC3" fill-opacity="0.5"/>
-  <circle cx="110" cy="205" r="3" fill="#37BEC3" fill-opacity="0.6"/>
-  <circle cx="200" cy="360" r="3" fill="#37BEC3" fill-opacity="0.5"/>
-  <circle cx="400" cy="360" r="3" fill="#37BEC3" fill-opacity="0.5"/>
+  <circle cx="790" cy="205" r="3" fill="#37BEC3" fill-opacity="0.6"/>
+  <circle cx="700" cy="50"  r="3" fill="#37BEC3" fill-opacity="0.5"/>
+  <circle cx="500" cy="50"  r="3" fill="#37BEC3" fill-opacity="0.5"/>
+  <circle cx="410" cy="205" r="3" fill="#37BEC3" fill-opacity="0.6"/>
+  <circle cx="500" cy="360" r="3" fill="#37BEC3" fill-opacity="0.5"/>
+  <circle cx="700" cy="360" r="3" fill="#37BEC3" fill-opacity="0.5"/>
 
   <!-- Wordmark -->
-  <text x="300" y="215" text-anchor="middle" font-size="30" font-weight="700" fill="#37BEC3" letter-spacing="6">traefik</text>
-
-  <!-- Vertical divider -->
-  <line x1="600" y1="60" x2="600" y2="375" stroke="#1e3a52" stroke-width="1.5"/>
-
-  <!-- === RIGHT PANEL: Post list === -->
-  <line x1="640" y1="75" x2="1155" y2="75" stroke="#1e3a52" stroke-width="1"/>
-
-  <text x="640" y="105" font-size="11" fill="#37BEC3" font-weight="700" font-family="'Courier New',monospace">01</text>
-  <text x="680" y="105" font-size="16" fill="#e2e8f0" font-weight="600">Reverse Proxy with Docker</text>
-  <text x="680" y="125" font-size="13" fill="#475569">&amp; Let's Encrypt</text>
-  <line x1="640" y1="148" x2="1155" y2="148" stroke="#1e3a52" stroke-width="1"/>
-
-  <text x="640" y="178" font-size="11" fill="#37BEC3" font-weight="700" font-family="'Courier New',monospace">02</text>
-  <text x="680" y="178" font-size="16" fill="#e2e8f0" font-weight="600">Monitoring with Grafana,</text>
-  <text x="680" y="198" font-size="13" fill="#475569">Prometheus &amp; Loki</text>
-  <line x1="640" y1="221" x2="1155" y2="221" stroke="#1e3a52" stroke-width="1"/>
-
-  <text x="640" y="251" font-size="11" fill="#37BEC3" font-weight="700" font-family="'Courier New',monospace">03</text>
-  <text x="680" y="251" font-size="16" fill="#e2e8f0" font-weight="600">Bare Metal Install</text>
-  <line x1="640" y1="280" x2="1155" y2="280" stroke="#1e3a52" stroke-width="1"/>
+  <text x="600" y="215" text-anchor="middle" font-size="30" font-weight="700" fill="#37BEC3" letter-spacing="6">traefik</text>
 
   <!-- Bottom overlay -->
   <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
@@ -112,5 +92,6 @@
   <rect x="730" y="418" width="220" height="30" fill="#0c1a2e" stroke="#37BEC3" stroke-width="1.5" rx="15"/>
   <text x="840" y="438" text-anchor="middle" font-size="11" fill="#37BEC3" font-weight="600" letter-spacing="1">Bare Metal · systemd</text>
 
-  <text x="600" y="524" text-anchor="middle" font-size="42" font-weight="700" fill="#f1f5f9">Traefik Essentials</text>
+  <text x="600" y="500" text-anchor="middle" font-size="13" fill="#37BEC3" letter-spacing="3" font-weight="600">EDGE ROUTING</text>
+  <text x="600" y="538" text-anchor="middle" font-size="34" font-weight="700" fill="#f1f5f9">Traefik Essentials</text>
 </svg>

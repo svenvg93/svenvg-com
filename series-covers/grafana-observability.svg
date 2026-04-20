@@ -35,80 +35,59 @@
     <line x1="1000" y1="0" x2="1000" y2="500"/>
   </g>
 
-  <!-- === LEFT PANEL: Mini dashboard (3 stacked panels) === -->
+  <!-- === Centered dashboard (3 stacked panels) === -->
 
   <!-- Panel 1: Prometheus metrics (red) -->
-  <rect x="55" y="68" width="520" height="90" fill="#0d1e30" stroke="#ef4444" stroke-width="1.5" rx="6"/>
-  <rect x="55" y="68" width="6" height="90" fill="#ef4444" rx="4"/>
-  <text x="76" y="86" font-size="10" font-weight="700" fill="#ef4444" letter-spacing="1">PROMETHEUS</text>
-  <text x="76" y="99" font-size="8" fill="#64748b" font-family="'Courier New',monospace">metrics · tsdb · alerting</text>
+  <rect x="220" y="68" width="760" height="90" fill="#0d1e30" stroke="#ef4444" stroke-width="1.5" rx="6"/>
+  <rect x="220" y="68" width="6" height="90" fill="#ef4444" rx="4"/>
+  <text x="241" y="86" font-size="10" font-weight="700" fill="#ef4444" letter-spacing="1">PROMETHEUS</text>
+  <text x="241" y="99" font-size="8" fill="#64748b" font-family="'Courier New',monospace">metrics · tsdb · alerting</text>
   <!-- Sparkline -->
-  <polygon points="76,148 76,128 98,124 120,131 142,116 164,123 186,109 208,117 230,104 252,113 274,100 296,109 318,96 340,105 362,92 384,102 406,88 428,96 450,84 472,92 494,148"
+  <polygon points="241,148 241,128 273,124 305,131 337,116 369,123 401,109 433,117 465,104 497,113 529,100 561,109 593,96 625,105 657,92 689,102 721,88 753,96 785,84 817,92 949,148"
            fill="url(#prom-grad)"/>
-  <polyline points="76,128 98,124 120,131 142,116 164,123 186,109 208,117 230,104 252,113 274,100 296,109 318,96 340,105 362,92 384,102 406,88 428,96 450,84 472,92 494,88"
+  <polyline points="241,128 273,124 305,131 337,116 369,123 401,109 433,117 465,104 497,113 529,100 561,109 593,96 625,105 657,92 689,102 721,88 753,96 785,84 817,92 949,88"
             fill="none" stroke="#ef4444" stroke-width="2" stroke-linejoin="round"/>
-  <line x1="76" y1="148" x2="568" y2="148" stroke="#1e3040" stroke-width="1"/>
+  <line x1="241" y1="148" x2="949" y2="148" stroke="#1e3040" stroke-width="1"/>
 
   <!-- Panel 2: Loki logs (purple) -->
-  <rect x="55" y="172" width="520" height="95" fill="#0d1e30" stroke="#a78bfa" stroke-width="1.5" rx="6"/>
-  <rect x="55" y="172" width="6" height="95" fill="#a78bfa" rx="4"/>
-  <text x="76" y="190" font-size="10" font-weight="700" fill="#a78bfa" letter-spacing="1">LOKI</text>
-  <text x="76" y="203" font-size="8" fill="#64748b" font-family="'Courier New',monospace">log storage · label-indexed</text>
+  <rect x="220" y="172" width="760" height="95" fill="#0d1e30" stroke="#a78bfa" stroke-width="1.5" rx="6"/>
+  <rect x="220" y="172" width="6" height="95" fill="#a78bfa" rx="4"/>
+  <text x="241" y="190" font-size="10" font-weight="700" fill="#a78bfa" letter-spacing="1">LOKI</text>
+  <text x="241" y="203" font-size="8" fill="#64748b" font-family="'Courier New',monospace">log storage · label-indexed</text>
   <g font-size="8.5" font-family="'Courier New',monospace">
-    <text x="76" y="220" fill="#64748b"><tspan fill="#4ade80">INFO </tspan> component started  comp=loki.write.default</text>
-    <text x="76" y="234" fill="#64748b"><tspan fill="#7dd3fc">INFO </tspan> flush complete  streams=12  bytes=4821</text>
-    <text x="76" y="248" fill="#64748b"><tspan fill="#c4b5fd">DEBUG</tspan> write batch  entries=230  duration=4ms</text>
-    <text x="76" y="260" fill="#64748b"><tspan fill="#ef4444">WARN </tspan> slow query  duration=2.3s  query=rate</text>
+    <text x="241" y="220" fill="#64748b"><tspan fill="#4ade80">INFO </tspan> component started  comp=loki.write.default</text>
+    <text x="241" y="234" fill="#64748b"><tspan fill="#7dd3fc">INFO </tspan> flush complete  streams=12  bytes=4821</text>
+    <text x="241" y="248" fill="#64748b"><tspan fill="#c4b5fd">DEBUG</tspan> write batch  entries=230  duration=4ms</text>
+    <text x="241" y="260" fill="#64748b"><tspan fill="#ef4444">WARN </tspan> slow query  duration=2.3s  query=rate</text>
   </g>
 
   <!-- Panel 3: Grafana dashboard (amber) -->
-  <rect x="55" y="281" width="520" height="90" fill="#0d1e30" stroke="#f59e0b" stroke-width="1.5" rx="6"/>
-  <rect x="55" y="281" width="6" height="90" fill="#f59e0b" rx="4"/>
-  <text x="76" y="299" font-size="10" font-weight="700" fill="#f59e0b" letter-spacing="1">GRAFANA</text>
-  <text x="76" y="312" font-size="8" fill="#64748b" font-family="'Courier New',monospace">dashboards · panels · alerts</text>
+  <rect x="220" y="281" width="760" height="90" fill="#0d1e30" stroke="#f59e0b" stroke-width="1.5" rx="6"/>
+  <rect x="220" y="281" width="6" height="90" fill="#f59e0b" rx="4"/>
+  <text x="241" y="299" font-size="10" font-weight="700" fill="#f59e0b" letter-spacing="1">GRAFANA</text>
+  <text x="241" y="312" font-size="8" fill="#64748b" font-family="'Courier New',monospace">dashboards · panels · alerts</text>
   <!-- Bar chart growing left to right -->
   <g fill="#f59e0b" fill-opacity="0.7">
-    <rect x="76"  y="346" width="14" height="18" rx="1"/>
-    <rect x="94"  y="340" width="14" height="24" rx="1"/>
-    <rect x="112" y="343" width="14" height="21" rx="1"/>
-    <rect x="130" y="335" width="14" height="29" rx="1"/>
-    <rect x="148" y="338" width="14" height="26" rx="1"/>
-    <rect x="166" y="330" width="14" height="34" rx="1"/>
-    <rect x="184" y="333" width="14" height="31" rx="1"/>
-    <rect x="202" y="325" width="14" height="39" rx="1"/>
-    <rect x="220" y="328" width="14" height="36" rx="1"/>
-    <rect x="238" y="320" width="14" height="44" rx="1"/>
-    <rect x="256" y="323" width="14" height="41" rx="1"/>
-    <rect x="274" y="315" width="14" height="49" rx="1"/>
-    <rect x="292" y="319" width="14" height="45" rx="1"/>
-    <rect x="310" y="311" width="14" height="53" rx="1"/>
-    <rect x="328" y="315" width="14" height="49" rx="1"/>
-    <rect x="346" y="307" width="14" height="57" rx="1"/>
-    <rect x="364" y="311" width="14" height="53" rx="1"/>
-    <rect x="382" y="303" width="14" height="61" rx="1"/>
+    <rect x="241" y="346" width="20" height="18" rx="1"/>
+    <rect x="266" y="340" width="20" height="24" rx="1"/>
+    <rect x="291" y="343" width="20" height="21" rx="1"/>
+    <rect x="316" y="335" width="20" height="29" rx="1"/>
+    <rect x="341" y="338" width="20" height="26" rx="1"/>
+    <rect x="366" y="330" width="20" height="34" rx="1"/>
+    <rect x="391" y="333" width="20" height="31" rx="1"/>
+    <rect x="416" y="325" width="20" height="39" rx="1"/>
+    <rect x="441" y="328" width="20" height="36" rx="1"/>
+    <rect x="466" y="320" width="20" height="44" rx="1"/>
+    <rect x="491" y="323" width="20" height="41" rx="1"/>
+    <rect x="516" y="315" width="20" height="49" rx="1"/>
+    <rect x="541" y="319" width="20" height="45" rx="1"/>
+    <rect x="566" y="311" width="20" height="53" rx="1"/>
+    <rect x="591" y="315" width="20" height="49" rx="1"/>
+    <rect x="616" y="307" width="20" height="57" rx="1"/>
+    <rect x="641" y="311" width="20" height="53" rx="1"/>
+    <rect x="666" y="303" width="20" height="61" rx="1"/>
   </g>
-  <line x1="76" y1="364" x2="568" y2="364" stroke="#1e3040" stroke-width="1"/>
-
-  <!-- Vertical divider -->
-  <line x1="600" y1="60" x2="600" y2="375" stroke="#1e3a52" stroke-width="1.5"/>
-
-  <!-- === RIGHT PANEL: Post list === -->
-  <line x1="640" y1="75" x2="1155" y2="75" stroke="#1e3a52" stroke-width="1"/>
-
-  <text x="640" y="105" font-size="11" fill="#f97316" font-weight="700" font-family="'Courier New',monospace">01</text>
-  <text x="680" y="105" font-size="16" fill="#e2e8f0" font-weight="600">Setting Up Your</text>
-  <text x="680" y="125" font-size="13" fill="#475569">Observability Stack</text>
-  <line x1="640" y1="148" x2="1155" y2="148" stroke="#1e3a52" stroke-width="1"/>
-
-  <text x="640" y="178" font-size="11" fill="#f97316" font-weight="700" font-family="'Courier New',monospace">02</text>
-  <text x="680" y="178" font-size="16" fill="#e2e8f0" font-weight="600">Host &amp; Container Monitoring</text>
-  <text x="680" y="198" font-size="13" fill="#475569">with Grafana Alloy</text>
-  <line x1="640" y1="221" x2="1155" y2="221" stroke="#1e3a52" stroke-width="1"/>
-
-  <text x="640" y="251" font-size="11" fill="#f97316" font-weight="700" font-family="'Courier New',monospace">03</text>
-  <text x="680" y="251" font-size="16" fill="#e2e8f0" font-weight="600">Log Monitoring</text>
-  <text x="680" y="271" font-size="13" fill="#475569">with Alloy and Loki</text>
-  <line x1="640" y1="294" x2="1155" y2="294" stroke="#1e3a52" stroke-width="1"/>
+  <line x1="241" y1="364" x2="949" y2="364" stroke="#1e3040" stroke-width="1"/>
 
   <!-- Bottom overlay -->
   <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
@@ -120,5 +99,6 @@
   <rect x="730" y="418" width="220" height="30" fill="#0c1a2e" stroke="#a78bfa" stroke-width="1.5" rx="15"/>
   <text x="840" y="438" text-anchor="middle" font-size="11" fill="#a78bfa" font-weight="600" letter-spacing="1">Log Monitoring</text>
 
-  <text x="600" y="524" text-anchor="middle" font-size="42" font-weight="700" fill="#f1f5f9">Grafana Observability</text>
+  <text x="600" y="500" text-anchor="middle" font-size="13" fill="#f97316" letter-spacing="3" font-weight="600">OBSERVABILITY</text>
+  <text x="600" y="538" text-anchor="middle" font-size="34" font-weight="700" fill="#f1f5f9">Grafana Observability</text>
 </svg>

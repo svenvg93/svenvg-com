@@ -3,7 +3,8 @@ title: "Resume"
 layout: "timeline"
 ---
 
-Network professional with 8+ years in Dutch ISP environments, specializing in fixed access networks, CPE lifecycle management, and Zero-Touch Provisioning. Progressed from customer support through network engineering to architecture and design roles at T-Mobile Nederland and Odido.
+Experienced network designer with over 10 years of expertise in delivering customer-focused network solutions, including custom-designed implementations tailored to client requirements. 
+Strong background in translating complex technical requirements into reliable, production-ready customer solutions, with a focus on stability, interoperability, and service quality. Committed to continuous professional development through self-directed learning and hands-on technical exploration.
 
 [Linkedin](https://www.linkedin.com/in/svenvanginkel)
 
@@ -14,6 +15,7 @@ Network professional with 8+ years in Dutch ISP environments, specializing in fi
 *Full-time · Den Haag, Netherlands*
 
 - Evaluated and onboarded ISP-grade CPE devices including residential gateways, WiFi 6/7 routers, mesh systems, and access points
+- Designed end-to-end customer network and CPE solutions tailored to service requirements, focusing on scalability and reliability
 - Designed and validated WAN configurations (PPPoE, DHCP, VLAN tagging, IPTV, VoIP) on customer equipment
 - Managed and optimized ACS platforms using TR-069 for zero-touch provisioning, remote configuration, firmware management, diagnostics, and large-scale device rollouts
 - Conducted firmware validation, interoperability testing, and performance benchmarking prior to production release

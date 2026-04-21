@@ -3,7 +3,7 @@ title: "About"
 date: 2026-03-01
 ---
 
-I’m Sven — a network designer with 8+ years in fixed access networks at Dutch ISPs. I specialize in CPE platforms, TR-069/TR-369, and Zero-Touch Provisioning (ZTP). By night, I run a homelab where I test the things I can’t experiment with at work.
+I’m Sven — a network designer with 8+ years in fixed access networks at Dutch ISPs. I specialize in CPE platforms, TR-069, and Zero-Touch Provisioning (ZTP). By night, I run a homelab where I test the things I can’t experiment with at work.
 
 Based in the Netherlands.
 

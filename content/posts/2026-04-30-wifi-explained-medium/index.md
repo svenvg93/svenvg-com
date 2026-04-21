@@ -1,7 +1,7 @@
 ---
 title: "WiFi Explained: How Devices Share the Air"
 description: WiFi is a shared medium — every device on a channel competes for the same airtime. Here's how CSMA/CA manages that contention, how OFDMA in WiFi 6 changes the model, and how WiFi 7 pushes further with Multi-RU and Preamble Puncturing.
-date: 2026-04-23
+date: 2026-04-30
 draft: true
 cover: cover.svg
 categories:

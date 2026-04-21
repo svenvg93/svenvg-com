@@ -1,7 +1,7 @@
 ---
 title: "Smokeping Essentials: Setup"
 description: A step-by-step guide to deploying Smokeping with Docker to monitor your internet connection latency and packet loss over time.
-date: 2026-04-30
+date: 2026-04-23
 draft: false
 categories:
   - Monitoring

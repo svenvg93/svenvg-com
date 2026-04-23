@@ -11,89 +11,91 @@
       <stop offset="60%" stop-color="#080c14" stop-opacity="0.93"/>
       <stop offset="100%" stop-color="#080c14" stop-opacity="1"/>
     </linearGradient>
-    <radialGradient id="panel-glow" cx="25%" cy="30%" r="65%">
-      <stop offset="0%" stop-color="#0ea5e9" stop-opacity="0.12"/>
+    <linearGradient id="hex-fill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#071a2e"/>
+      <stop offset="100%" stop-color="#0a1828"/>
+    </linearGradient>
+    <radialGradient id="hub-glow" cx="50%" cy="36%" r="40%">
+      <stop offset="0%" stop-color="#0ea5e9" stop-opacity="0.10"/>
       <stop offset="100%" stop-color="#0ea5e9" stop-opacity="0"/>
     </radialGradient>
   </defs>
 
   <rect width="1200" height="630" fill="url(#bg)"/>
-  <rect width="1200" height="630" fill="url(#panel-glow)"/>
+  <rect width="1200" height="630" fill="url(#hub-glow)"/>
 
+  <!-- Line grid texture -->
   <g stroke="#0d1a2a" stroke-width="1">
     <line x1="0" y1="100" x2="1200" y2="100"/>
     <line x1="0" y1="200" x2="1200" y2="200"/>
     <line x1="0" y1="300" x2="1200" y2="300"/>
-    <line x1="0" y1="400" x2="1200" y2="400"/>
-    <line x1="200" y1="0" x2="200" y2="500"/>
-    <line x1="400" y1="0" x2="400" y2="500"/>
-    <line x1="600" y1="0" x2="600" y2="500"/>
-    <line x1="800" y1="0" x2="800" y2="500"/>
-    <line x1="1000" y1="0" x2="1000" y2="500"/>
+    <line x1="200" y1="0" x2="200" y2="400"/>
+    <line x1="400" y1="0" x2="400" y2="400"/>
+    <line x1="600" y1="0" x2="600" y2="400"/>
+    <line x1="800" y1="0" x2="800" y2="400"/>
+    <line x1="1000" y1="0" x2="1000" y2="400"/>
   </g>
 
-  <!-- === Centered latency dashboard === -->
-  <rect x="230" y="72" width="740" height="112" fill="#0a1628" stroke="#334155" stroke-width="1.5" rx="8"/>
-  <text x="256" y="98" font-size="10" fill="#64748b" letter-spacing="1">PROBE PATH</text>
-  <circle cx="312" cy="132" r="9" fill="#0ea5e9"/>
-  <text x="312" y="136" text-anchor="middle" font-size="8" fill="#08131f" font-weight="700">SRC</text>
-  <path d="M 326,132 L 456,132" fill="none" stroke="#0ea5e9" stroke-width="2.5" stroke-dasharray="6,6"/>
-  <circle cx="476" cy="132" r="8" fill="#4ade80"/>
-  <text x="476" y="157" text-anchor="middle" font-size="9" fill="#4ade80" font-weight="600">gateway</text>
-  <path d="M 490,132 L 620,132" fill="none" stroke="#0ea5e9" stroke-width="2.5" stroke-dasharray="6,6"/>
-  <circle cx="640" cy="132" r="8" fill="#f59e0b"/>
-  <text x="640" y="157" text-anchor="middle" font-size="9" fill="#f59e0b" font-weight="600">cdn</text>
-  <path d="M 654,132 L 784,132" fill="none" stroke="#0ea5e9" stroke-width="2.5" stroke-dasharray="6,6"/>
-  <circle cx="804" cy="132" r="8" fill="#ef4444"/>
-  <text x="804" y="157" text-anchor="middle" font-size="9" fill="#ef4444" font-weight="600">loss</text>
-  <path d="M 818,132 L 948,132" fill="none" stroke="#0ea5e9" stroke-width="2.5" stroke-dasharray="6,6"/>
+  <!-- Orbit ring — center (600,220), r=130 -->
+  <circle cx="600" cy="220" r="130" fill="none" stroke="#0ea5e9" stroke-width="1" stroke-opacity="0.10" stroke-dasharray="4,10"/>
 
-  <rect x="230" y="202" width="740" height="84" fill="#0b1624" stroke="#12324a" stroke-width="1.5" rx="6"/>
-  <text x="256" y="220" font-size="10" fill="#64748b" letter-spacing="1">RTT DISTRIBUTION</text>
-  <g fill="#0ea5e9" fill-opacity="0.75">
-    <rect x="256" y="254" width="20" height="10" rx="2"/>
-    <rect x="282" y="248" width="20" height="16" rx="2"/>
-    <rect x="308" y="242" width="20" height="22" rx="2"/>
-    <rect x="334" y="232" width="20" height="32" rx="2"/>
-    <rect x="360" y="226" width="20" height="38" rx="2"/>
-    <rect x="386" y="234" width="20" height="30" rx="2"/>
-    <rect x="412" y="244" width="20" height="20" rx="2"/>
-    <rect x="438" y="251" width="20" height="13" rx="2"/>
-  </g>
-  <g fill="#f59e0b" fill-opacity="0.8">
-    <rect x="560" y="244" width="24" height="20" rx="2"/>
-    <rect x="590" y="232" width="24" height="32" rx="2"/>
-    <rect x="620" y="240" width="24" height="24" rx="2"/>
-  </g>
-  <g fill="#ef4444" fill-opacity="0.85">
-    <rect x="800" y="228" width="24" height="36" rx="2"/>
-    <rect x="830" y="236" width="24" height="28" rx="2"/>
-  </g>
-  <line x1="256" y1="264" x2="896" y2="264" stroke="#1f3142" stroke-width="1"/>
-  <text x="256" y="277" font-size="8" fill="#475569">0ms</text>
-  <text x="430" y="277" font-size="8" fill="#475569">20ms</text>
-  <text x="640" y="277" font-size="8" fill="#475569">80ms</text>
-  <text x="870" y="277" font-size="8" fill="#475569">loss</text>
+  <!-- Probe lines: hex edge → node circle edge
+       Nodes at 72° apart from -90°:
+         1 (600,90)   2 (724,180)   3 (676,325)   4 (524,325)   5 (476,180)
+       Hex outer vertices: top(600,178) tr(636,199) br(636,241) b(600,262) bl(564,241) tl(564,199) -->
+  <!-- Node 1 up -->
+  <line x1="600" y1="178" x2="600" y2="114" stroke="#4ade80" stroke-width="2" stroke-dasharray="7,5"/>
+  <!-- Node 2 up-right -->
+  <line x1="636" y1="199" x2="701" y2="183" stroke="#4ade80" stroke-width="2" stroke-dasharray="7,5"/>
+  <!-- Node 3 down-right -->
+  <line x1="636" y1="241" x2="666" y2="302" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,4"/>
+  <!-- Node 4 down-left -->
+  <line x1="564" y1="241" x2="534" y2="302" stroke="#ef4444" stroke-width="2" stroke-dasharray="3,3"/>
+  <!-- Node 5 up-left -->
+  <line x1="564" y1="199" x2="499" y2="183" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,4"/>
 
-  <rect x="230" y="298" width="740" height="70" fill="#0b1624" stroke="#12324a" stroke-width="1.5" rx="6"/>
-  <text x="256" y="321" font-size="10" fill="#64748b" letter-spacing="1">LATENCY STATES</text>
-  <rect x="256" y="330" width="170" height="16" fill="#052e16" rx="8"/>
-  <rect x="442" y="330" width="180" height="16" fill="#3a2505" rx="8"/>
-  <rect x="638" y="330" width="210" height="16" fill="#3b1010" rx="8"/>
-  <text x="341" y="342" text-anchor="middle" font-size="9" fill="#4ade80" font-weight="600">baseline</text>
-  <text x="532" y="342" text-anchor="middle" font-size="9" fill="#f59e0b" font-weight="600">congestion</text>
-  <text x="743" y="342" text-anchor="middle" font-size="9" fill="#ef4444" font-weight="600">packet loss</text>
-  <text x="256" y="361" font-size="9" fill="#64748b">find clean targets, then watch drift over time</text>
+  <!-- === Target nodes (r=24) === -->
+
+  <!-- Node 1: (600, 90) — green -->
+  <circle cx="600" cy="90" r="24" fill="#071f0f" stroke="#4ade80" stroke-width="2.5"/>
+  <circle cx="600" cy="90" r="8"  fill="#4ade80" fill-opacity="0.9"/>
+  <text x="600" y="125" text-anchor="middle" font-size="10" fill="#4ade80" font-weight="700">8.8.8.8</text>
+  <text x="600" y="138" text-anchor="middle" font-size="9"  fill="#86efac">4ms · GOOD</text>
+
+  <!-- Node 2: (724, 180) — green -->
+  <circle cx="724" cy="180" r="24" fill="#071f0f" stroke="#4ade80" stroke-width="2.5"/>
+  <circle cx="724" cy="180" r="8"  fill="#4ade80" fill-opacity="0.9"/>
+  <text x="758" y="177" font-size="10" fill="#4ade80" font-weight="700">gateway</text>
+  <text x="758" y="190" font-size="9"  fill="#86efac">1ms · GOOD</text>
+
+  <!-- Node 3: (676, 325) — amber -->
+  <circle cx="676" cy="325" r="24" fill="#1a1204" stroke="#f59e0b" stroke-width="2.5"/>
+  <circle cx="676" cy="325" r="8"  fill="#f59e0b" fill-opacity="0.9"/>
+  <text x="710" y="322" font-size="10" fill="#f59e0b" font-weight="700">cdn-eu</text>
+  <text x="710" y="335" font-size="9"  fill="#fde68a">42ms · JITTER</text>
+
+  <!-- Node 4: (524, 325) — red -->
+  <circle cx="524" cy="325" r="24" fill="#1a0404" stroke="#ef4444" stroke-width="2.5"/>
+  <circle cx="524" cy="325" r="8"  fill="#ef4444" fill-opacity="0.9"/>
+  <text x="490" y="322" text-anchor="end" font-size="10" fill="#ef4444" font-weight="700">asia-1</text>
+  <text x="490" y="335" text-anchor="end" font-size="9"  fill="#fca5a5">PACKET LOSS</text>
+
+  <!-- Node 5: (476, 180) — amber -->
+  <circle cx="476" cy="180" r="24" fill="#1a1204" stroke="#f59e0b" stroke-width="2.5"/>
+  <circle cx="476" cy="180" r="8"  fill="#f59e0b" fill-opacity="0.9"/>
+  <text x="442" y="177" text-anchor="end" font-size="10" fill="#f59e0b" font-weight="700">isp-hop</text>
+  <text x="442" y="190" text-anchor="end" font-size="9"  fill="#fde68a">18ms · WARN</text>
+
+  <!-- Central probe hexagon — pointy-top, r=42, center (600,220) -->
+  <polygon points="600,178 636,199 636,241 600,262 564,241 564,199"
+           fill="url(#hex-fill)" stroke="#0ea5e9" stroke-width="2"/>
+  <polygon points="600,188 628,204 628,236 600,252 572,236 572,204"
+           fill="none" stroke="#0ea5e9" stroke-width="0.8" stroke-opacity="0.35"/>
+  <text x="600" y="217" text-anchor="middle" font-size="11" fill="#7dd3fc" font-weight="700" letter-spacing="1">PROBE</text>
+  <text x="600" y="230" text-anchor="middle" font-size="8"  fill="#0ea5e9" letter-spacing="3" opacity="0.8">smokeping</text>
 
   <!-- Bottom overlay -->
   <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
-
-  <rect x="250" y="418" width="220" height="30" fill="#0c1a2e" stroke="#4ade80" stroke-width="1.5" rx="15"/>
-  <text x="360" y="438" text-anchor="middle" font-size="11" fill="#4ade80" font-weight="600" letter-spacing="1">Target Selection</text>
-  <rect x="490" y="418" width="220" height="30" fill="#0c1a2e" stroke="#f59e0b" stroke-width="1.5" rx="15"/>
-  <text x="600" y="438" text-anchor="middle" font-size="11" fill="#f59e0b" font-weight="600" letter-spacing="1">CDN Targets</text>
-  <rect x="730" y="418" width="220" height="30" fill="#0c1a2e" stroke="#0ea5e9" stroke-width="1.5" rx="15"/>
-  <text x="840" y="438" text-anchor="middle" font-size="11" fill="#0ea5e9" font-weight="600" letter-spacing="1">Setup · Docker</text>
 
   <text x="600" y="500" text-anchor="middle" font-size="13" fill="#0ea5e9" letter-spacing="3" font-weight="600">LATENCY MONITORING</text>
   <text x="600" y="538" text-anchor="middle" font-size="34" font-weight="700" fill="#f1f5f9">Smokeping Essentials</text>

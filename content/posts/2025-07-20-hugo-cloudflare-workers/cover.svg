@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <linearGradient id="textbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#080c14" stop-opacity="0"/>
+      <stop offset="60%" stop-color="#080c14" stop-opacity="0.93"/>
+      <stop offset="100%" stop-color="#080c14" stop-opacity="1"/>
+    </linearGradient>
+    <linearGradient id="hex-fill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1f0e04"/>
+      <stop offset="100%" stop-color="#130800"/>
+    </linearGradient>
+    <radialGradient id="worker-glow" cx="62%" cy="34%" r="40%">
+      <stop offset="0%" stop-color="#f97316" stop-opacity="0.13"/>
+      <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
+    </radialGradient>
+    <marker id="arr-orange" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#f97316"/>
+    </marker>
+    <marker id="arr-slate" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#worker-glow)"/>
+
+  <!-- Line grid -->
+  <g stroke="#0d1a2a" stroke-width="1">
+    <line x1="0"    y1="100" x2="1200" y2="100"/>
+    <line x1="0"    y1="200" x2="1200" y2="200"/>
+    <line x1="0"    y1="300" x2="1200" y2="300"/>
+    <line x1="200"  y1="0"   x2="200"  y2="390"/>
+    <line x1="400"  y1="0"   x2="400"  y2="390"/>
+    <line x1="600"  y1="0"   x2="600"  y2="390"/>
+    <line x1="800"  y1="0"   x2="800"  y2="390"/>
+    <line x1="1000" y1="0"   x2="1000" y2="390"/>
+  </g>
+
+  <!-- ── Step 1: Hugo local (cx=210, r=68) ── -->
+  <circle cx="210" cy="210" r="68" fill="#060e1c" stroke="#38bdf8" stroke-width="2"/>
+  <circle cx="210" cy="210" r="52" fill="#081220" stroke="#38bdf8" stroke-width="1" stroke-opacity="0.4" stroke-dasharray="4,3"/>
+  <text x="210" y="204" text-anchor="middle" font-size="30" fill="#7dd3fc" font-weight="700">H</text>
+  <text x="210" y="222" text-anchor="middle" font-size="9"   fill="#7dd3fc" letter-spacing="3">HUGO</text>
+
+  <!-- Arrow: hugo → github -->
+  <line x1="279" y1="210" x2="411" y2="210"
+        stroke="#64748b" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arr-slate)"/>
+  <text x="345" y="198" text-anchor="middle" font-size="10" fill="#94a3b8" letter-spacing="1">git push</text>
+
+  <!-- ── Step 2: GitHub (cx=480, r=68) ── -->
+  <circle cx="480" cy="210" r="68" fill="#060e1c" stroke="#64748b" stroke-width="2"/>
+  <circle cx="480" cy="210" r="52" fill="#0a1020" stroke="#64748b" stroke-width="1" stroke-opacity="0.4" stroke-dasharray="4,3"/>
+  <text x="480" y="205" text-anchor="middle" font-size="28" fill="#cbd5e1" font-weight="700">GH</text>
+  <text x="480" y="222" text-anchor="middle" font-size="9"   fill="#94a3b8" letter-spacing="3">GITHUB</text>
+
+  <!-- Arrow: github → cf workers -->
+  <line x1="549" y1="210" x2="680" y2="210"
+        stroke="#64748b" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arr-slate)"/>
+  <text x="614" y="198" text-anchor="middle" font-size="10" fill="#94a3b8" letter-spacing="1">auto deploy</text>
+
+  <!-- ── Central CF Worker hexagon — center (750,210), r=78 ──
+       Pointy-top: top(750,132) tr(818,171) br(818,249) b(750,288) bl(682,249) tl(682,171) -->
+  <circle cx="750" cy="210" r="128" fill="none" stroke="#f97316" stroke-width="1" stroke-opacity="0.10" stroke-dasharray="4,10"/>
+
+  <polygon points="750,132 818,171 818,249 750,288 682,249 682,171"
+           fill="url(#hex-fill)" stroke="#f97316" stroke-width="2.5"/>
+  <polygon points="750,148 804,179 804,241 750,272 696,241 696,179"
+           fill="none" stroke="#f97316" stroke-width="0.8" stroke-opacity="0.35"/>
+
+  <text x="750" y="205" text-anchor="middle" font-size="14" fill="#fb923c" font-weight="700" letter-spacing="1">CF WORKER</text>
+  <text x="750" y="223" text-anchor="middle" font-size="10" fill="#f97316" letter-spacing="2" opacity="0.8">workers.dev</text>
+
+  <!-- Edge count badge -->
+  <rect x="662" y="300" width="176" height="22" fill="#120800" stroke="#f97316" stroke-width="1" rx="11" stroke-opacity="0.45"/>
+  <text x="750" y="315" text-anchor="middle" font-size="9" fill="#fb923c" letter-spacing="1">300+ edge locations</text>
+
+  <!-- ── Arrows: worker → edge regions ── -->
+  <line x1="818" y1="171" x2="916" y2="154" stroke="#f97316" stroke-width="1.5" marker-end="url(#arr-orange)"/>
+  <line x1="818" y1="210" x2="952" y2="210" stroke="#f97316" stroke-width="1.5" marker-end="url(#arr-orange)"/>
+  <line x1="818" y1="249" x2="916" y2="266" stroke="#f97316" stroke-width="1.5" marker-end="url(#arr-orange)"/>
+
+  <!-- ── Edge region nodes ── -->
+  <!-- Americas (948, 148) -->
+  <circle cx="948" cy="148" r="32" fill="#1a0c04" stroke="#f97316" stroke-width="2"/>
+  <circle cx="948" cy="148" r="10" fill="#f97316" fill-opacity="0.85"/>
+  <text x="990" y="144" font-size="11" fill="#f97316" font-weight="700">Americas</text>
+  <text x="990" y="158" font-size="9"  fill="#fed7aa">US · CA · SA</text>
+
+  <!-- Europe (984, 210) -->
+  <circle cx="984" cy="210" r="32" fill="#1a0c04" stroke="#f97316" stroke-width="2"/>
+  <circle cx="984" cy="210" r="10" fill="#f97316" fill-opacity="0.85"/>
+  <text x="1026" y="206" font-size="11" fill="#f97316" font-weight="700">Europe</text>
+  <text x="1026" y="220" font-size="9"  fill="#fed7aa">EU · UK · ME</text>
+
+  <!-- Asia Pacific (948, 272) -->
+  <circle cx="948" cy="272" r="32" fill="#1a0c04" stroke="#f97316" stroke-width="2"/>
+  <circle cx="948" cy="272" r="10" fill="#f97316" fill-opacity="0.85"/>
+  <text x="990" y="268" font-size="11" fill="#f97316" font-weight="700">Asia Pacific</text>
+  <text x="990" y="282" font-size="9"  fill="#fed7aa">AP · AU · IN</text>
+
+  <!-- Bottom overlay -->
+  <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
+
+  <text x="600" y="500" text-anchor="middle" font-size="13" fill="#f97316" letter-spacing="3" font-weight="600">CLOUDFLARE WORKERS</text>
+  <text x="600" y="538" text-anchor="middle" font-size="34" font-weight="700" fill="#f1f5f9">Deploying a Hugo Site with Cloudflare Workers</text>
+</svg>

@@ -7,7 +7,7 @@ categories:
   - CI/CD
 tags:
   - cloudflare-workers
-cover: cover.jpg
+cover: cover.svg
 ---
 
 After the announcement that Material for MkDocs is put on [maintenance mode][1]. I had to search for an alternative to keep my documentation sites up to date and secure. Luckily the search was short. The team behind Material for MkDocs launched Zensical as a new modern replacement.
@@ -39,7 +39,7 @@ Once you’ve prepared the repository, it’s time to deploy your site on Cloudf
 
 Cloudflare will now clone your GitHub repository, build your Zensical site, and publish it.
 
-Once the deployment succeeds, click **Continue Project**. Cloudflare assigns a domain to your site, like zensical-em9.pages.dev.
+Once the deployment succeeds, click **Continue Project**. Cloudflare assigns a domain to your site, like zensical-em9.workes.dev.
 
 - The free plan allows up to 500 builds per month.
 - DNS propagation may take a few minutes, so be patient as your site becomes accessible.

@@ -72,7 +72,7 @@
 
   <circle cx="457" cy="164" r="28" fill="#0d1e30" stroke="#dc2626" stroke-width="1.5"/>
   <text x="457" y="161" text-anchor="middle" font-size="8" fill="#94a3b8" font-family="'Courier New',monospace">mon</text>
-  <text x="457" y="172" text-anchor="middle" font-size="8" fill="#94a3b8" font-family="'Courier New',monospace">itor</text>
+  <text x="457" y="172" text-anchor="middle" font-size="8" fill="#94a3b8" font-family="'Courier New',monospace">agent</text>
 
   <!-- Control center -->
   <circle cx="600" cy="210" r="48" fill="#130609" stroke="#dc2626" stroke-width="2.5"/>
@@ -82,13 +82,6 @@
 
   <!-- Bottom overlay -->
   <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
-
-  <rect x="250" y="418" width="220" height="30" fill="#0c1a2e" stroke="#dc2626" stroke-width="1.5" rx="15"/>
-  <text x="360" y="438" text-anchor="middle" font-size="11" fill="#dc2626" font-weight="600" letter-spacing="1">Installation · Setup</text>
-  <rect x="490" y="418" width="220" height="30" fill="#0c1a2e" stroke="#f59e0b" stroke-width="1.5" rx="15"/>
-  <text x="600" y="438" text-anchor="middle" font-size="11" fill="#f59e0b" font-weight="600" letter-spacing="1">Playbooks · Roles · Handlers</text>
-  <rect x="730" y="418" width="220" height="30" fill="#0c1a2e" stroke="#4ade80" stroke-width="1.5" rx="15"/>
-  <text x="840" y="438" text-anchor="middle" font-size="11" fill="#4ade80" font-weight="600" letter-spacing="1">Vault · Secrets</text>
 
   <text x="600" y="500" text-anchor="middle" font-size="13" fill="#dc2626" letter-spacing="3" font-weight="600">AUTOMATION</text>
   <text x="600" y="538" text-anchor="middle" font-size="34" font-weight="700" fill="#f1f5f9">Ansible Essentials</text>

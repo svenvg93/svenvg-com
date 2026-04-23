@@ -3,91 +3,141 @@
      font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0a0800"/>
-      <stop offset="100%" stop-color="#190f00"/>
+      <stop offset="0%" stop-color="#050814"/>
+      <stop offset="100%" stop-color="#0a1028"/>
     </linearGradient>
     <linearGradient id="textbg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#0a0800" stop-opacity="0"/>
-      <stop offset="60%" stop-color="#0a0800" stop-opacity="0.93"/>
-      <stop offset="100%" stop-color="#0a0800" stop-opacity="1"/>
+      <stop offset="0%" stop-color="#050814" stop-opacity="0"/>
+      <stop offset="60%" stop-color="#050814" stop-opacity="0.93"/>
+      <stop offset="100%" stop-color="#050814" stop-opacity="1"/>
     </linearGradient>
-    <radialGradient id="signal-glow" cx="25%" cy="40%" r="55%">
-      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.12"/>
-      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
-    </radialGradient>
   </defs>
 
   <rect width="1200" height="630" fill="url(#bg)"/>
-  <rect width="1200" height="630" fill="url(#signal-glow)"/>
 
-  <g stroke="#1a1000" stroke-width="1">
-    <line x1="0" y1="100" x2="1200" y2="100"/>
-    <line x1="0" y1="200" x2="1200" y2="200"/>
-    <line x1="0" y1="300" x2="1200" y2="300"/>
-    <line x1="0" y1="400" x2="1200" y2="400"/>
-    <line x1="200" y1="0" x2="200" y2="500"/>
-    <line x1="400" y1="0" x2="400" y2="500"/>
-    <line x1="600" y1="0" x2="600" y2="500"/>
-    <line x1="800" y1="0" x2="800" y2="500"/>
-    <line x1="1000" y1="0" x2="1000" y2="500"/>
+  <!-- Dot grid -->
+  <g fill="#0f1f44" opacity="0.55">
+    <circle cx="150" cy="60" r="1.5"/><circle cx="300" cy="60" r="1.5"/><circle cx="450" cy="60" r="1.5"/><circle cx="600" cy="60" r="1.5"/><circle cx="750" cy="60" r="1.5"/><circle cx="900" cy="60" r="1.5"/><circle cx="1050" cy="60" r="1.5"/>
+    <circle cx="150" cy="160" r="1.5"/><circle cx="300" cy="160" r="1.5"/><circle cx="450" cy="160" r="1.5"/><circle cx="600" cy="160" r="1.5"/><circle cx="750" cy="160" r="1.5"/><circle cx="900" cy="160" r="1.5"/><circle cx="1050" cy="160" r="1.5"/>
+    <circle cx="150" cy="260" r="1.5"/><circle cx="300" cy="260" r="1.5"/><circle cx="450" cy="260" r="1.5"/><circle cx="600" cy="260" r="1.5"/><circle cx="750" cy="260" r="1.5"/><circle cx="900" cy="260" r="1.5"/><circle cx="1050" cy="260" r="1.5"/>
+    <circle cx="150" cy="360" r="1.5"/><circle cx="300" cy="360" r="1.5"/><circle cx="450" cy="360" r="1.5"/><circle cx="600" cy="360" r="1.5"/><circle cx="750" cy="360" r="1.5"/><circle cx="900" cy="360" r="1.5"/><circle cx="1050" cy="360" r="1.5"/>
   </g>
 
-  <!-- === Centered access point + band branches === -->
-  <circle cx="420" cy="215" r="165" fill="#38bdf8" fill-opacity="0.05"/>
-  <circle cx="420" cy="215" r="118" fill="#38bdf8" fill-opacity="0.04" stroke="#223040" stroke-width="1"/>
+  <!-- ═══ 2.4 GHz band (y=76 to y=168) ═══ -->
+  <rect x="130" y="76" width="940" height="92" fill="#150b03" stroke="#f97316" stroke-width="1" stroke-opacity="0.35" rx="4"/>
+  <!-- Baseline tick -->
+  <line x1="130" y1="166" x2="1070" y2="166" stroke="#f97316" stroke-width="0.5" stroke-opacity="0.25"/>
 
-  <rect x="362" y="146" width="116" height="116" fill="#0c1623" stroke="#38bdf8" stroke-width="2" rx="18"/>
-  <rect x="377" y="161" width="86" height="86" fill="none" stroke="#38bdf8" stroke-width="1" stroke-opacity="0.35" rx="14"/>
-  <line x1="420" y1="120" x2="420" y2="146" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
-  <circle cx="420" cy="112" r="6" fill="#38bdf8"/>
-  <circle cx="420" cy="112" r="13" fill="none" stroke="#38bdf8" stroke-opacity="0.25" stroke-width="1.5"/>
-  <line x1="392" y1="188" x2="448" y2="188" stroke="#bae6fd" stroke-width="4" stroke-linecap="round"/>
-  <line x1="390" y1="208" x2="450" y2="208" stroke="#bae6fd" stroke-width="4" stroke-linecap="round"/>
-  <line x1="396" y1="228" x2="444" y2="228" stroke="#bae6fd" stroke-width="4" stroke-linecap="round"/>
-  <text x="420" y="284" text-anchor="middle" font-size="11" fill="#38bdf8" font-weight="700" letter-spacing="2">ACCESS POINT</text>
+  <!-- Bright bars: CH1, CH6, CH11 (r=0 is i=0, pitch=72, w=55, baseline y=164) -->
+  <rect x="134" y="90"  width="55" height="74" fill="#f97316" fill-opacity="0.82" rx="3"/>
+  <rect x="494" y="88"  width="55" height="76" fill="#f97316" fill-opacity="0.82" rx="3"/>
+  <rect x="854" y="92"  width="55" height="72" fill="#f97316" fill-opacity="0.82" rx="3"/>
 
-  <path d="M 478,178 C 540,150 584,132 660,132" fill="none" stroke="#f97316" stroke-width="10" stroke-linecap="round" stroke-opacity="0.8"/>
-  <path d="M 478,208 C 552,208 586,208 660,208" fill="none" stroke="#38bdf8" stroke-width="16" stroke-linecap="round" stroke-opacity="0.8"/>
-  <path d="M 478,238 C 540,266 584,284 660,284" fill="none" stroke="#34d399" stroke-width="22" stroke-linecap="round" stroke-opacity="0.8"/>
+  <!-- Dim bars: channels 2-5, 7-10, 12-13 -->
+  <rect x="206" y="140" width="55" height="24" fill="#f97316" fill-opacity="0.26" rx="3"/>
+  <rect x="278" y="145" width="55" height="19" fill="#f97316" fill-opacity="0.26" rx="3"/>
+  <rect x="350" y="138" width="55" height="26" fill="#f97316" fill-opacity="0.26" rx="3"/>
+  <rect x="422" y="133" width="55" height="31" fill="#f97316" fill-opacity="0.26" rx="3"/>
+  <rect x="566" y="143" width="55" height="21" fill="#f97316" fill-opacity="0.26" rx="3"/>
+  <rect x="638" y="148" width="55" height="16" fill="#f97316" fill-opacity="0.26" rx="3"/>
+  <rect x="710" y="141" width="55" height="23" fill="#f97316" fill-opacity="0.26" rx="3"/>
+  <rect x="782" y="135" width="55" height="29" fill="#f97316" fill-opacity="0.26" rx="3"/>
+  <rect x="926" y="143" width="55" height="21" fill="#f97316" fill-opacity="0.26" rx="3"/>
+  <rect x="998" y="147" width="55" height="17" fill="#f97316" fill-opacity="0.26" rx="3"/>
 
-  <path d="M 478,178 C 540,150 584,132 660,132" fill="none" stroke="#fed7aa" stroke-width="2" stroke-linecap="round"/>
-  <path d="M 478,208 C 552,208 586,208 660,208" fill="none" stroke="#bae6fd" stroke-width="3" stroke-linecap="round"/>
-  <path d="M 478,238 C 540,266 584,284 660,284" fill="none" stroke="#a7f3d0" stroke-width="4" stroke-linecap="round"/>
+  <!-- CH labels above bright bars -->
+  <text x="161"  y="84"  text-anchor="middle" font-size="9" fill="#f97316" font-weight="700">CH 1</text>
+  <text x="521"  y="82"  text-anchor="middle" font-size="9" fill="#f97316" font-weight="700">CH 6</text>
+  <text x="881"  y="86"  text-anchor="middle" font-size="9" fill="#f97316" font-weight="700">CH 11</text>
 
-  <rect x="610" y="114" width="115" height="36" fill="#19120c" stroke="#f97316" stroke-width="1.5" rx="18"/>
-  <text x="667" y="129" text-anchor="middle" font-size="10" fill="#f97316" font-weight="700">2.4 GHz</text>
-  <text x="667" y="141" text-anchor="middle" font-size="8" fill="#fed7aa">range · 20/40</text>
+  <!-- Band name + spec -->
+  <text x="120" y="113" text-anchor="end" font-size="16" fill="#f97316" font-weight="700">2.4</text>
+  <text x="120" y="127" text-anchor="end" font-size="9"  fill="#f97316" letter-spacing="1" opacity="0.8">GHz</text>
+  <text x="1080" y="108" font-size="9" fill="#fed7aa">20 / 40 MHz</text>
+  <text x="1080" y="120" font-size="9" fill="#fed7aa" opacity="0.7">3 non-overlap</text>
 
-  <rect x="610" y="190" width="115" height="36" fill="#0c1623" stroke="#38bdf8" stroke-width="1.5" rx="18"/>
-  <text x="667" y="205" text-anchor="middle" font-size="10" fill="#38bdf8" font-weight="700">5 GHz</text>
-  <text x="667" y="217" text-anchor="middle" font-size="8" fill="#bae6fd">speed · 80/160</text>
+  <!-- ═══ 5 GHz band (y=188 to y=282) ═══ -->
+  <rect x="130" y="188" width="940" height="94" fill="#040f1c" stroke="#38bdf8" stroke-width="1" stroke-opacity="0.35" rx="4"/>
+  <line x1="130" y1="280" x2="1070" y2="280" stroke="#38bdf8" stroke-width="0.5" stroke-opacity="0.25"/>
 
-  <rect x="610" y="266" width="115" height="36" fill="#0a1816" stroke="#34d399" stroke-width="1.5" rx="18"/>
-  <text x="667" y="281" text-anchor="middle" font-size="10" fill="#34d399" font-weight="700">6 GHz</text>
-  <text x="667" y="293" text-anchor="middle" font-size="8" fill="#a7f3d0">capacity · 320</text>
+  <!-- UNII-1 bright bars (i=0-3, pitch=52, w=43, baseline y=278) -->
+  <rect x="134" y="202" width="43" height="76" fill="#38bdf8" fill-opacity="0.82" rx="3"/>
+  <rect x="186" y="208" width="43" height="70" fill="#38bdf8" fill-opacity="0.82" rx="3"/>
+  <rect x="238" y="205" width="43" height="73" fill="#38bdf8" fill-opacity="0.82" rx="3"/>
+  <rect x="290" y="210" width="43" height="68" fill="#38bdf8" fill-opacity="0.82" rx="3"/>
 
-  <rect x="285" y="316" width="470" height="40" fill="#0b1320" stroke="#223040" stroke-width="1.5" rx="20"/>
-  <text x="313" y="332" font-size="9" fill="#64748b" letter-spacing="1">SERIES THEMES</text>
-  <rect x="313" y="339" width="88" height="8" fill="#f97316" rx="4"/>
-  <rect x="415" y="339" width="92" height="8" fill="#38bdf8" rx="4"/>
-  <rect x="521" y="339" width="106" height="8" fill="#f59e0b" rx="4"/>
-  <rect x="641" y="339" width="86" height="8" fill="#34d399" rx="4"/>
-  <text x="357" y="360" text-anchor="middle" font-size="8" fill="#fed7aa">security</text>
-  <text x="461" y="360" text-anchor="middle" font-size="8" fill="#bae6fd">roaming</text>
-  <text x="574" y="360" text-anchor="middle" font-size="8" fill="#fdba74">channels</text>
-  <text x="684" y="360" text-anchor="middle" font-size="8" fill="#a7f3d0">WiFi 7</text>
+  <!-- DFS dim bars (i=4-12) -->
+  <rect x="342" y="242" width="43" height="36" fill="#38bdf8" fill-opacity="0.20" rx="3"/>
+  <rect x="394" y="247" width="43" height="31" fill="#38bdf8" fill-opacity="0.20" rx="3"/>
+  <rect x="446" y="244" width="43" height="34" fill="#38bdf8" fill-opacity="0.20" rx="3"/>
+  <rect x="498" y="252" width="43" height="26" fill="#38bdf8" fill-opacity="0.20" rx="3"/>
+  <rect x="550" y="249" width="43" height="29" fill="#38bdf8" fill-opacity="0.20" rx="3"/>
+  <rect x="602" y="254" width="43" height="24" fill="#38bdf8" fill-opacity="0.20" rx="3"/>
+  <rect x="654" y="250" width="43" height="28" fill="#38bdf8" fill-opacity="0.20" rx="3"/>
+  <rect x="706" y="256" width="43" height="22" fill="#38bdf8" fill-opacity="0.20" rx="3"/>
+  <rect x="758" y="252" width="43" height="26" fill="#38bdf8" fill-opacity="0.20" rx="3"/>
+
+  <!-- UNII-3 bright bars (i=13-17) -->
+  <rect x="810" y="200" width="43" height="78" fill="#38bdf8" fill-opacity="0.82" rx="3"/>
+  <rect x="862" y="196" width="43" height="82" fill="#38bdf8" fill-opacity="0.82" rx="3"/>
+  <rect x="914" y="204" width="43" height="74" fill="#38bdf8" fill-opacity="0.82" rx="3"/>
+  <rect x="966" y="202" width="43" height="76" fill="#38bdf8" fill-opacity="0.82" rx="3"/>
+  <rect x="1018" y="208" width="43" height="70" fill="#38bdf8" fill-opacity="0.82" rx="3"/>
+
+  <!-- Group labels -->
+  <text x="213" y="196" text-anchor="middle" font-size="8" fill="#38bdf8" font-weight="700" letter-spacing="1">UNII-1</text>
+  <text x="550" y="238" text-anchor="middle" font-size="8" fill="#38bdf8" fill-opacity="0.55" letter-spacing="1">DFS</text>
+  <text x="916" y="194" text-anchor="middle" font-size="8" fill="#38bdf8" font-weight="700" letter-spacing="1">UNII-3</text>
+
+  <!-- Band name + spec -->
+  <text x="120" y="225" text-anchor="end" font-size="16" fill="#38bdf8" font-weight="700">5</text>
+  <text x="120" y="239" text-anchor="end" font-size="9"  fill="#38bdf8" letter-spacing="1" opacity="0.8">GHz</text>
+  <text x="1080" y="220" font-size="9" fill="#bae6fd">up to 160 MHz</text>
+  <text x="1080" y="232" font-size="9" fill="#bae6fd" opacity="0.7">DFS available</text>
+
+  <!-- ═══ 6 GHz band (y=302 to y=376) ═══ -->
+  <rect x="130" y="302" width="940" height="74" fill="#041210" stroke="#34d399" stroke-width="1" stroke-opacity="0.35" rx="4"/>
+  <line x1="130" y1="372" x2="1070" y2="372" stroke="#34d399" stroke-width="0.5" stroke-opacity="0.25"/>
+
+  <!-- 24 bars, all bright emerald (w=30, pitch=39, baseline y=370) -->
+  <g fill="#34d399" fill-opacity="0.78" rx="3">
+    <rect x="134" y="312" width="30" height="58" rx="3"/>
+    <rect x="173" y="316" width="30" height="54" rx="3"/>
+    <rect x="212" y="309" width="30" height="61" rx="3"/>
+    <rect x="251" y="314" width="30" height="56" rx="3"/>
+    <rect x="290" y="310" width="30" height="60" rx="3"/>
+    <rect x="329" y="317" width="30" height="53" rx="3"/>
+    <rect x="368" y="312" width="30" height="58" rx="3"/>
+    <rect x="407" y="307" width="30" height="63" rx="3"/>
+    <rect x="446" y="313" width="30" height="57" rx="3"/>
+    <rect x="485" y="309" width="30" height="61" rx="3"/>
+    <rect x="524" y="314" width="30" height="56" rx="3"/>
+    <rect x="563" y="317" width="30" height="53" rx="3"/>
+    <rect x="602" y="311" width="30" height="59" rx="3"/>
+    <rect x="641" y="307" width="30" height="63" rx="3"/>
+    <rect x="680" y="313" width="30" height="57" rx="3"/>
+    <rect x="719" y="317" width="30" height="53" rx="3"/>
+    <rect x="758" y="309" width="30" height="61" rx="3"/>
+    <rect x="797" y="314" width="30" height="56" rx="3"/>
+    <rect x="836" y="310" width="30" height="60" rx="3"/>
+    <rect x="875" y="316" width="30" height="54" rx="3"/>
+    <rect x="914" y="311" width="30" height="59" rx="3"/>
+    <rect x="953" y="307" width="30" height="63" rx="3"/>
+    <rect x="992" y="313" width="30" height="57" rx="3"/>
+    <rect x="1031" y="317" width="30" height="53" rx="3"/>
+  </g>
+
+  <!-- 6 GHz annotation -->
+  <text x="600" y="298" text-anchor="middle" font-size="8" fill="#34d399" font-weight="700" letter-spacing="1">59 NON-OVERLAPPING CHANNELS</text>
+
+  <!-- Band name + spec -->
+  <text x="120" y="334" text-anchor="end" font-size="16" fill="#34d399" font-weight="700">6</text>
+  <text x="120" y="348" text-anchor="end" font-size="9"  fill="#34d399" letter-spacing="1" opacity="0.8">GHz</text>
+  <text x="1080" y="330" font-size="9" fill="#a7f3d0">up to 320 MHz</text>
+  <text x="1080" y="342" font-size="9" fill="#a7f3d0" opacity="0.7">WiFi 6E / 7</text>
 
   <!-- Bottom overlay -->
   <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
-
-  <rect x="200" y="418" width="185" height="30" fill="#0c1a2e" stroke="#f97316" stroke-width="1.5" rx="15"/>
-  <text x="292" y="438" text-anchor="middle" font-size="11" fill="#f97316" font-weight="600" letter-spacing="1">WPA3 Security</text>
-  <rect x="405" y="418" width="185" height="30" fill="#0c1a2e" stroke="#38bdf8" stroke-width="1.5" rx="15"/>
-  <text x="497" y="438" text-anchor="middle" font-size="11" fill="#38bdf8" font-weight="600" letter-spacing="1">Roaming</text>
-  <rect x="610" y="418" width="185" height="30" fill="#0c1a2e" stroke="#f59e0b" stroke-width="1.5" rx="15"/>
-  <text x="702" y="438" text-anchor="middle" font-size="11" fill="#f59e0b" font-weight="600" letter-spacing="1">Channels</text>
-  <rect x="815" y="418" width="185" height="30" fill="#052e16" stroke="#34d399" stroke-width="1.5" rx="15"/>
-  <text x="907" y="438" text-anchor="middle" font-size="11" fill="#34d399" font-weight="600" letter-spacing="1">MLO</text>
 
   <text x="600" y="500" text-anchor="middle" font-size="13" fill="#38bdf8" letter-spacing="3" font-weight="600">WIRELESS NETWORKING</text>
   <text x="600" y="538" text-anchor="middle" font-size="34" font-weight="700" fill="#f1f5f9">WiFi Explained</text>

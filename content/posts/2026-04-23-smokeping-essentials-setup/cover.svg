@@ -23,20 +23,28 @@
       <stop offset="0%" stop-color="#ef4444" stop-opacity="0.12"/>
       <stop offset="100%" stop-color="#ef4444" stop-opacity="0.03"/>
     </linearGradient>
+    <radialGradient id="panel-glow" cx="68%" cy="40%" r="45%">
+      <stop offset="0%" stop-color="#0ea5e9" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#0ea5e9" stop-opacity="0"/>
+    </radialGradient>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#334155"/>
+    </marker>
   </defs>
 
   <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#panel-glow)"/>
 
   <g stroke="#0d1a2a" stroke-width="1">
     <line x1="0" y1="100" x2="1200" y2="100"/>
     <line x1="0" y1="200" x2="1200" y2="200"/>
     <line x1="0" y1="300" x2="1200" y2="300"/>
 
-    <line x1="200" y1="0" x2="200" y2="500"/>
-    <line x1="400" y1="0" x2="400" y2="500"/>
-    <line x1="600" y1="0" x2="600" y2="500"/>
-    <line x1="800" y1="0" x2="800" y2="500"/>
-    <line x1="1000" y1="0" x2="1000" y2="500"/>
+    <line x1="200" y1="0" x2="200" y2="370"/>
+    <line x1="400" y1="0" x2="400" y2="370"/>
+    <line x1="600" y1="0" x2="600" y2="370"/>
+    <line x1="800" y1="0" x2="800" y2="370"/>
+    <line x1="1000" y1="0" x2="1000" y2="370"/>
   </g>
 
   <!-- ===== LEFT: docker-compose config panel ===== -->
@@ -66,7 +74,7 @@
   </g>
 
   <!-- Produces arrow -->
-  <text x="398" y="238" text-anchor="middle" font-size="11" fill="#334155">→</text>
+  <line x1="392" y1="235" x2="416" y2="235" stroke="#334155" stroke-width="1.5" marker-end="url(#arr)"/>
 
   <!-- ===== RIGHT: Smokeping latency graph ===== -->
   <!-- Chart area: x=420 to x=1140, y=95 to y=370 (720×275) -->
@@ -96,13 +104,13 @@
   <text x="416" y="374" text-anchor="end" font-size="8" fill="#475569">0</text>
 
   <!-- X-axis time labels -->
-  <text x="420"  y="385" font-size="8" fill="#475569" text-anchor="middle">18:00</text>
-  <text x="564"  y="385" font-size="8" fill="#475569" text-anchor="middle">19:00</text>
-  <text x="677"  y="385" font-size="8" fill="#475569" text-anchor="middle">20:00</text>
-  <text x="791"  y="385" font-size="8" fill="#475569" text-anchor="middle">21:00</text>
-  <text x="904"  y="385" font-size="8" fill="#475569" text-anchor="middle">22:00</text>
-  <text x="1018" y="385" font-size="8" fill="#475569" text-anchor="middle">23:00</text>
-  <text x="1130" y="385" font-size="8" fill="#475569" text-anchor="middle">00:00</text>
+  <text x="420"  y="375" font-size="8" fill="#475569" text-anchor="middle">18:00</text>
+  <text x="564"  y="375" font-size="8" fill="#475569" text-anchor="middle">19:00</text>
+  <text x="677"  y="375" font-size="8" fill="#475569" text-anchor="middle">20:00</text>
+  <text x="791"  y="375" font-size="8" fill="#475569" text-anchor="middle">21:00</text>
+  <text x="904"  y="375" font-size="8" fill="#475569" text-anchor="middle">22:00</text>
+  <text x="1018" y="375" font-size="8" fill="#475569" text-anchor="middle">23:00</text>
+  <text x="1130" y="375" font-size="8" fill="#475569" text-anchor="middle">00:00</text>
 
   <!-- Smoke polygon -->
   <polygon
@@ -141,7 +149,8 @@
   <text x="874" y="123" text-anchor="middle" font-size="8" fill="#ef4444">evening congestion</text>
 
   <!-- Callout: packet loss -->
-  <text x="858" y="110" text-anchor="middle" font-size="8" fill="#ef4444">● packet loss</text>
+  <circle cx="843" cy="107" r="3" fill="#ef4444"/>
+  <text x="850" y="110" font-size="8" fill="#ef4444">packet loss</text>
 
   <!-- Graph title -->
   <text x="432" y="110" font-size="8" fill="#475569">Target: ISP Gateway · fping · Last 6h</text>

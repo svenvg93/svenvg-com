@@ -41,11 +41,11 @@
 
   <!-- Outer faint rings -->
   <!-- flat-top hex, cx=300, cy=205 -->
-  <polygon points="790,205 725,88 595,88 530,205 595,322 725,322"
+  <polygon points="760,205 680,61 520,61 440,205 520,349 680,349"
            fill="none" stroke="#37BEC3" stroke-width="1" stroke-opacity="0.08"/>
-  <polygon points="760,205 700,98 570,98 510,205 570,312 700,312"
+  <polygon points="745,205 672,79 528,79 455,205 528,331 672,331"
            fill="none" stroke="#37BEC3" stroke-width="1" stroke-opacity="0.13"/>
-  <polygon points="730,205 670,105 540,105 480,205 540,305 670,305"
+  <polygon points="730,205 665,88 535,88 470,205 535,322 665,322"
            fill="none" stroke="#37BEC3" stroke-width="1" stroke-opacity="0.2"/>
 
   <!-- Main hexagon r=120 -->
@@ -79,18 +79,16 @@
   <circle cx="500" cy="360" r="3" fill="#37BEC3" fill-opacity="0.5"/>
   <circle cx="700" cy="360" r="3" fill="#37BEC3" fill-opacity="0.5"/>
 
+  <!-- Spoke endpoint labels -->
+  <text x="800" y="209" font-size="9" fill="#37BEC3" fill-opacity="0.8" font-weight="600">Docker</text>
+  <text x="703" y="46" text-anchor="middle" font-size="9" fill="#37BEC3" fill-opacity="0.8" font-weight="600">TLS</text>
+  <text x="402" y="209" text-anchor="end" font-size="9" fill="#37BEC3" fill-opacity="0.8" font-weight="600">Bare Metal</text>
+
   <!-- Wordmark -->
   <text x="600" y="215" text-anchor="middle" font-size="30" font-weight="700" fill="#37BEC3" letter-spacing="6">traefik</text>
 
   <!-- Bottom overlay -->
   <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
-
-  <rect x="250" y="418" width="220" height="30" fill="#052e16" stroke="#4ade80" stroke-width="1.5" rx="15"/>
-  <text x="360" y="438" text-anchor="middle" font-size="11" fill="#4ade80" font-weight="600" letter-spacing="1">TLS · Let's Encrypt</text>
-  <rect x="490" y="418" width="220" height="30" fill="#0c1a2e" stroke="#f59e0b" stroke-width="1.5" rx="15"/>
-  <text x="600" y="438" text-anchor="middle" font-size="11" fill="#f59e0b" font-weight="600" letter-spacing="1">Prometheus · Grafana</text>
-  <rect x="730" y="418" width="220" height="30" fill="#0c1a2e" stroke="#37BEC3" stroke-width="1.5" rx="15"/>
-  <text x="840" y="438" text-anchor="middle" font-size="11" fill="#37BEC3" font-weight="600" letter-spacing="1">Bare Metal · systemd</text>
 
   <text x="600" y="500" text-anchor="middle" font-size="13" fill="#37BEC3" letter-spacing="3" font-weight="600">EDGE ROUTING</text>
   <text x="600" y="538" text-anchor="middle" font-size="34" font-weight="700" fill="#f1f5f9">Traefik Essentials</text>

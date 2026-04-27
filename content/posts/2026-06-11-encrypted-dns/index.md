@@ -2,7 +2,7 @@
 title: "Encrypted DNS: DoH, DoT, and DoQ Explained"
 description: Unencrypted DNS leaks every domain you visit to your ISP and any on-path observer. Here's how DNS-over-TLS, DNS-over-HTTPS, and DNS-over-QUIC fix that — and how they differ.
 date: 2026-06-11
-draft: true
+draft: false
 cover: cover.svg
 categories:
   - Networking
@@ -29,6 +29,8 @@ This matters in several scenarios:
 
 DNSSEC addresses a different problem: it signs DNS records so a client can verify the answer came from the authoritative source. It doesn't encrypt queries. Your ISP still sees every hostname you look up — they just can't tamper with the response without detection.
 
+Encrypted DNS also doesn't hide the hostname from the TLS layer. When a browser connects to a site over HTTPS, the hostname is transmitted in the **TLS SNI (Server Name Indication)** field during the handshake — in plaintext, visible to any on-path observer. Encrypting the DNS query removes one leak but not both. **ECH (Encrypted Client Hello)** is the mechanism designed to close the SNI gap; it encrypts the ClientHello using a public key fetched from DNS (via HTTPS records), so the hostname is hidden end-to-end. ECH support is still rolling out across browsers and CDNs as of 2026.
+
 ## DNS-over-TLS (DoT)
 
 DoT ([RFC 7858][1]) wraps DNS in a standard TLS connection. Queries and responses are encrypted, and the connection is authenticated by the resolver's certificate — the same model as HTTPS. It runs on a dedicated port: **853/TCP**.
@@ -36,6 +38,11 @@ DoT ([RFC 7858][1]) wraps DNS in a standard TLS connection. Queries and response
 The dedicated port is both its strength and its weakness. It makes DoT easy to configure and monitor — a firewall rule on port 853 is enough to block or allow it. For network administrators who want to enforce a specific resolver for all clients, that predictability is valuable. For users trying to bypass restrictive network policies, a firewall that blocks port 853 is enough to stop DoT entirely.
 
 DoT uses a persistent TCP connection rather than opening a new connection per query, which amortizes the TLS handshake cost. In practice, latency is comparable to plain DNS once the connection is established.
+
+Like DoH, DoT supports two privacy profiles (RFC 8310):
+
+- **Opportunistic** — the client upgrades to DoT if the resolver supports it, falls back to plain DNS if not.
+- **Strict** — the client requires a verified TLS connection and refuses to fall back. Queries fail rather than leak unencrypted.
 
 ![DoT — DNS queries wrapped in TLS on port 853](dot-diagram.svg)
 
@@ -87,7 +94,7 @@ The right place to configure encrypted DNS depends on how broadly you want it to
 
 **OS stub resolver** — covers all traffic on the device. Most modern operating systems support DoT or DoH natively; configuration is typically one setting in network preferences or in `systemd-resolved` on Linux.
 
-**Local resolver or router** — covers all devices on the network without any per-device configuration. Clients still query the local resolver, so ad blocking and split-horizon DNS keep working. Only the upstream hop from the resolver to the authoritative infrastructure is encrypted.
+**Local resolver or router** — covers all devices on the network without any per-device configuration. Clients still query the local resolver, so ad blocking and split-horizon DNS keep working. Only the upstream hop from the local resolver to the upstream recursive resolver (e.g. Cloudflare, Quad9) is encrypted — the recursive resolver's own queries to authoritative nameservers remain unencrypted standard DNS.
 
 For a homelab the resolver level is the right choice. One place to configure, full network coverage, and local DNS behavior is unchanged.
 

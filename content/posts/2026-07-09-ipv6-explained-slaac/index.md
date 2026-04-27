@@ -2,7 +2,7 @@
 title: "IPv6 Explained: SLAAC and DHCPv6"
 description: IPv6 devices can configure their own addresses without a DHCP server. Here's how SLAAC works, where DHCPv6 fits in, and when you actually need one versus the other.
 date: 2026-07-09
-draft: true
+draft: false
 cover: cover.svg
 categories:
   - Networking
@@ -35,12 +35,19 @@ No server is needed for any of this. The router also advertises its own link-loc
 
 ![SLAAC flow — RS, RA, and address construction from prefix + interface ID](slaac-flow.svg)
 
-The RA also carries flags that tell the device whether to use SLAAC, DHCPv6, or both:
+The RA carries two sets of flags. The router-level flags control which address mechanism to use:
 
 - **M flag (Managed)** — use DHCPv6 for address assignment
 - **O flag (Other)** — use DHCPv6 for other configuration (DNS, domain search) but not addresses
 
 With both flags unset, pure SLAAC is in effect.
+
+Each prefix in the RA is carried in a **Prefix Information Option (PIO)**, which has its own per-prefix flags:
+
+- **A flag (Autonomous)** — if set, the device may use this prefix to form a SLAAC address. If unset, the prefix is advertised but SLAAC does not trigger for it.
+- **L flag (on-link)** — if set, the prefix is declared on-link: the device can communicate directly with other addresses in this prefix without going through the router. If unset, the device sends all traffic — even to addresses in the same prefix — via the default gateway.
+
+Both flags default to 1 in most deployments. But they can be set independently: a prefix can be advertised as on-link without triggering SLAAC (A=0, L=1), or used for SLAAC without being on-link (A=1, L=0). The M and O flags tell the device *how* to get an address; the A flag controls *whether this prefix is used for SLAAC*.
 
 ## Interface Identifier in SLAAC
 

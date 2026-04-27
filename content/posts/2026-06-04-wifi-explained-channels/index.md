@@ -2,7 +2,7 @@
 title: "WiFi Explained: Transmit Power, Channel Width, and Channel Selection"
 description: Three settings that most people leave on auto — and shouldn't. Here's what transmit power, channel width, and channel selection actually do, and how they interact.
 date: 2026-06-04
-draft: true
+draft: false
 cover: cover.svg
 categories:
   - Networking
@@ -54,13 +54,21 @@ The 5 GHz band offers up to 25 non-overlapping 20 MHz channels in most regions. 
 
 - **UNII-1 (channels 36–48)** — available everywhere, no restrictions, no DFS required. Use these first.
 - **UNII-2 (channels 52–144)** — require **DFS** (Dynamic Frequency Selection). The AP must scan for radar and vacate the channel within 10 seconds if detected. DFS channel changes cause a 30–60 second service interruption on that radio.
-- **UNII-3 (channels 149–177)** — available without DFS in most regions. Good second option after UNII-1.
+- **UNII-3 (channels 149–165, with 169–177 available in some regions)** — available without DFS in most regions. Good second option after UNII-1.
 
 Auto channel selection works well on 5 GHz because the band has enough channels that APs can find clean ones without user help.
 
 ### 6 GHz — The Cleanest Band
 
-WiFi 6E and WiFi 7 add the 6 GHz band (5.925–7.125 GHz), providing up to 59 non-overlapping 20 MHz channels depending on region. No legacy devices use it, no DFS is required in most regions, and the band is effectively empty compared to the crowded 2.4 and 5 GHz bands. The trade-off is range — 6 GHz attenuates faster through walls and with distance.
+WiFi 6E and WiFi 7 add the 6 GHz band (5.925–7.125 GHz), providing up to 59 non-overlapping 20 MHz channels depending on region. No legacy devices use it, and the band is effectively empty compared to the crowded 2.4 and 5 GHz bands. The trade-off is range — 6 GHz attenuates faster through walls and with distance.
+
+The regulatory picture in 6 GHz is more layered than 5 GHz:
+
+- **Low Power Indoor (LPI)** — the default class for consumer APs. No DFS, no AFC. Max 30 dBm EIRP. Indoor use only.
+- **Standard Power** — higher transmit power (up to 36 dBm EIRP) for outdoor and long-range use, but requires **AFC (Automated Frequency Coordination)**: the AP queries a cloud service that checks whether any licensed incumbent (fixed satellite, point-to-point microwave) is present on the requested channel at the device's location. If clear, the channel is granted. If not, the AP uses a different one.
+- **Very Low Power (VLP)** — no AFC, no DFS, max 21 dBm EIRP. Designed for wearables and IoT.
+
+Most home and office APs operate as LPI devices, which is why the "no DFS, no AFC" experience is the norm for consumer equipment. Standard Power and AFC are relevant mainly for outdoor enterprise deployments.
 
 ![Channel selection across 2.4, 5, and 6 GHz — usable channels, overlap zones, and DFS](channel-selection.svg)
 
@@ -82,11 +90,11 @@ The 6 GHz band is wide enough that 160 MHz channels still leave meaningful non-o
 
 **Non-overlapping channel availability by width:**
 
-| Band | 20 MHz | 40 MHz | 80 MHz | 160 MHz |
-|------|--------|--------|--------|---------|
-| 2.4 GHz | 3 | 1–2 | — | — |
-| 5 GHz | ~25 | ~12 | ~6 | ~2–3 (DFS) |
-| 6 GHz | ~59 | ~29 | ~14 | ~7 |
+| Band | 20 MHz | 40 MHz | 80 MHz | 160 MHz | 320 MHz |
+|------|--------|--------|--------|---------|---------|
+| 2.4 GHz | 3 | 1–2 | — | — | — |
+| 5 GHz | ~25 | ~12 | ~6 | ~2–3 (DFS) | — |
+| 6 GHz | ~59 | ~29 | ~14 | ~7 | ~3–4 |
 
 ![Channel width trade-off — how wider channels consume available spectrum in 5 and 6 GHz](channel-width.svg)
 

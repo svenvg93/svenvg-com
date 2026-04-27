@@ -2,7 +2,7 @@
 title: "WiFi Explained: How Devices Share the Air"
 description: WiFi is a shared medium — every device on a channel competes for the same airtime. Here's how CSMA/CA manages that contention, how OFDMA in WiFi 6 changes the model, and how WiFi 7 pushes further with Multi-RU and Preamble Puncturing.
 date: 2026-04-30
-draft: true
+draft: false
 cover: cover.svg
 categories:
   - Networking
@@ -35,6 +35,25 @@ The structure around every data frame is fixed overhead:
 At low client counts, this overhead is manageable. At high client counts, devices spend more time waiting than transmitting. The channel is mostly idle — not because there's no traffic, but because all devices are in their backoff period simultaneously.
 
 ![CSMA/CA timeline — DIFS, backoff, and ACK overhead for two competing devices](csma-ca-timeline.svg)
+
+## EDCA: QoS Queues on Top of CSMA/CA
+
+The CSMA/CA description above is DCF (Distributed Coordination Function) — the baseline access mechanism. All modern WiFi (since 802.11e, now part of every WiFi 4+ device) runs EDCA (Enhanced Distributed Channel Access), which layers four priority queues on top of DCF.
+
+Instead of a single contention window for all traffic, EDCA defines four **Access Categories (ACs)**, each with its own AIFSN (Arbitration Inter-Frame Space Number) and contention window size:
+
+| Access Category | Traffic type | AIFSN | CWmin | CWmax |
+|----------------|-------------|-------|-------|-------|
+| AC_VO (Voice) | VoIP, real-time audio | 2 | 3 | 7 |
+| AC_VI (Video) | Video streaming | 2 | 7 | 15 |
+| AC_BE (Best Effort) | Default — web, data | 3 | 15 | 1023 |
+| AC_BK (Background) | Bulk transfers, backups | 7 | 15 | 1023 |
+
+A lower AIFSN means a shorter mandatory idle period before the backoff starts. A smaller CWmin means a shorter average backoff. Both together give high-priority queues a statistical advantage in winning channel access over lower-priority traffic.
+
+The DIFS described in the CSMA/CA section is the inter-frame space for AC_BE (best effort) in the default configuration. Voice and video traffic use AIFS[AC_VO] and AIFS[AC_VI], which are shorter — they get to start their backoff sooner.
+
+In practice: on a congested network, a VoIP packet waits less than a file download packet for the same channel. The mechanism is probabilistic, not a hard reservation, but it is effective at keeping latency down for time-sensitive traffic.
 
 ## The Hidden Node Problem
 
@@ -69,6 +88,22 @@ A 20 MHz channel in WiFi 6 can be divided into RUs as small as 26 subcarriers, a
 **Uplink OFDMA**: The AP sends a **Trigger Frame** to schedule which clients transmit on which RUs and when. Clients transmit simultaneously on their assigned RUs. The AP coordinates uplink access instead of leaving it to per-device CSMA/CA contention.
 
 ![OFDMA — the same channel split into Resource Units, each assigned to a different client simultaneously](ofdma-resource-units.svg)
+
+## A-MPDU: Filling the TXOP
+
+OFDMA addresses the contention problem at scale — many devices sharing the channel. But there is an equally important mechanism for single-device throughput: **A-MPDU** (Aggregated MAC Protocol Data Unit), available since 802.11n.
+
+The core idea: once a device wins channel access, it doesn't have to send one frame and go back to contention. It can fill the entire TXOP with a burst of aggregated frames bundled into a single physical transmission.
+
+- A single A-MPDU can carry up to 64 sub-frames in 802.11n, and up to 256 in 802.11ac and 802.11ax.
+- Each sub-frame carries its own sequence number. The receiver sends a **Block ACK** with a bitmap indicating which sub-frames were received and which need retransmission.
+- Lost sub-frames are selectively retransmitted — without re-winning the channel for each retry.
+
+The result: the CSMA/CA overhead described earlier (DIFS + backoff + ACK) is paid once per aggregated burst, not once per frame. At 802.11ax rates on a 80 MHz channel, a single TXOP can move hundreds of kilobytes. CSMA/CA overhead becomes nearly irrelevant for single-client throughput.
+
+This is why modern WiFi can achieve close to its theoretical throughput on a clear channel even with CSMA/CA in place. The contention mechanism protects shared access but doesn't throttle performance when a device has exclusive access to the channel.
+
+A-MPDU and OFDMA address different layers of the same problem: A-MPDU maximises throughput per device per TXOP; OFDMA maximises how many devices are served per TXOP.
 
 ## OFDMA vs CSMA/CA: Where It Helps
 

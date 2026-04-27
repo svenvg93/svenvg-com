@@ -2,7 +2,7 @@
 title: "IPv6 Explained: Neighbor Discovery"
 description: IPv6 has no ARP. Neighbor Discovery Protocol replaces it — and does more. Here's how NDP resolves addresses, finds routers, and detects duplicates, all using ICMPv6 multicast.
 date: 2026-07-16
-draft: true
+draft: false
 cover: cover.svg
 categories:
   - Networking
@@ -45,7 +45,7 @@ The solicited-node multicast address is the key improvement over ARP broadcast. 
 
 ![NDP address resolution — NS to solicited-node multicast, NA unicast reply](ndp-resolution.svg)
 
-Resolved mappings are stored in the **neighbor cache**, equivalent to ARP's cache. Entries have states: Incomplete, Reachable, Stale, Delay, Probe. A stale entry is verified with a new NS before use.
+Resolved mappings are stored in the **neighbor cache**, equivalent to ARP's cache. Entries have states: Incomplete, Reachable, Stale, Delay, Probe. A STALE entry can still be used for sending immediately — it is not discarded. Using a STALE entry starts a DELAY timer (5 seconds). If no upper-layer reachability confirmation arrives (e.g., a TCP ACK confirming the path is live), the entry moves to PROBE state and the device sends Neighbor Solicitations to actively verify the neighbor is still reachable. Only if those probes go unanswered is the entry removed.
 
 ## Router Discovery
 

@@ -2,7 +2,7 @@
 title: "WiFi Explained: How MLO Works"
 description: Multi-Link Operation is the biggest architectural change in WiFi 7. Here's what it actually does, how the three modes differ, and what it requires.
 date: 2026-05-21
-draft: true
+draft: false
 cover: cover.svg
 categories:
   - Networking
@@ -78,14 +78,6 @@ The constraint is RF isolation. If the 2.4GHz and 5GHz radios are physically too
 
 ![STR — all three radios active concurrently, independent TX and RX on each band](mlo-str.svg)
 
-### eMLMR — Enhanced Multi-Link Multi-Radio
-
-eMLMR builds on multi-radio operation by adding smarter scheduling, interference awareness, and dynamic traffic steering across links. Where STR and NSTR treat all links equally, eMLMR can adapt in real time to changing RF conditions — prioritizing lower-latency or higher-throughput links depending on traffic type and steering frames accordingly.
-
-This mode targets higher-end devices that have multiple radios and the processing capability to intelligently manage them.
-
-![eMLMR — multiple radios active simultaneously, with intelligent scheduling coordinating traffic across links](mlo-emlmr.svg)
-
 ## Mode Comparison
 
 | Mode | Radios required | Concurrent TX/RX | Throughput gain | Latency gain |
@@ -94,7 +86,8 @@ This mode targets higher-end devices that have multiple radios and the processin
 | eMLSR | Single | No | Low | Medium |
 | NSTR | Multiple (coordinated) | No | Medium | Medium |
 | STR | Multiple (isolated) | Yes | High | High |
-| eMLMR | Multiple (coordinated/intelligent) | Yes (flexible) | High | High |
+
+These four modes are the ones formally defined in the 802.11be amendment. In practice, higher-end multi-radio devices may implement smarter link scheduling and dynamic traffic steering on top of STR — adapting in real time to RF conditions, prioritising latency-sensitive flows, and steering frames across links — but this is vendor firmware territory rather than a distinct standard mode.
 
 ## What MLO Requires
 
@@ -136,4 +129,4 @@ The three features address different layers of the same problem: MLO bonds multi
 
 ![WiFi 7 — MLO, Multi-RU, and Preamble Puncturing as a system](wifi7-features.svg)
 
-For the full explanation of Multi-RU and Preamble Puncturing, see [How Devices Share the Air](/posts/2026-04-23-wifi-explained-medium) in this series.
+For the full explanation of Multi-RU and Preamble Puncturing, see [How Devices Share the Air](/posts/2026-04-30-wifi-explained-medium) in this series.

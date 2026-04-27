@@ -2,7 +2,7 @@
 title: "WiFi Explained: Roaming and Client Management"
 description: Sticky clients, band steering, and why 802.11k/r/v are the right tools. How APs guide clients between radios and access points — and what to do when the defaults cause problems.
 date: 2026-05-14
-draft: true
+draft: false
 cover: cover.svg
 categories:
   - Networking
@@ -165,4 +165,4 @@ These recommendations are ordered from most impactful to most specific:
 
 **If you're on WiFi 7, let MLO handle band selection.** Multi-Link Operation makes band steering largely obsolete for WiFi 7 clients — the device maintains links on multiple bands simultaneously and the AP distributes traffic dynamically. MLO is a structural solution rather than a heuristic one. See the [WiFi 7: Multi-Link Operation](/posts/2026-05-21-wifi-explained-mlo) post for details.
 
-[1]: https://support.apple.com/nl-nl/guide/deployment/dep98f116c0f/web
+[1]: https://support.apple.com/en-us/guide/deployment/dep98f116c0f/web

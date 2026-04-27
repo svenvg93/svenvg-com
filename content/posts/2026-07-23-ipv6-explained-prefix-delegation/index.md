@@ -2,7 +2,7 @@
 title: "IPv6 Explained: Prefix Delegation"
 description: ISPs don't just give your router a single IPv6 address — they delegate an entire prefix. Here's how DHCPv6-PD works, what prefix sizes mean, and how a router subdivides the block for its networks.
 date: 2026-07-23
-draft: true
+draft: false
 cover: cover.svg
 categories:
   - Networking

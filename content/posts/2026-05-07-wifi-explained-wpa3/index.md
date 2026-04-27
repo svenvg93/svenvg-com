@@ -2,7 +2,7 @@
 title: "WiFi Explained: WPA3, SAE, and PMF"
 description: WPA3 fixes real weaknesses in WPA2 — but not the ones most people think. Here's what SAE, Protected Management Frames, and OWE actually do under the hood.
 date: 2026-05-07
-draft: true
+draft: false
 cover: cover.svg
 categories:
   - Networking
@@ -65,6 +65,18 @@ OWE (RFC 8110) addresses this without requiring a password. During association, 
 
 OWE doesn't provide authentication. You still don't know if you're on the legitimate AP or an evil twin. But it eliminates passive sniffing by other clients on the same network, which is the most common threat on open networks.
 
+## FILS: Fast Initial Link Setup
+
+OWE improves open networks; FILS (802.11ai, included in WPA3 certification) improves how fast devices reconnect to networks they already know.
+
+On 802.1X/RADIUS enterprise networks, a full EAP exchange on every reconnect adds 300–500 ms before traffic can flow. For a phone moving between APs in a large building, this latency is noticeable on VoIP calls and video streams. FILS shortens this significantly for returning clients:
+
+- The first association is a full EAP exchange. FILS derives and caches a **FILS key** from that session.
+- On subsequent associations to any AP in the same mobility domain, the client presents the cached FILS key material. Most of the EAP exchange is skipped.
+- Authentication completes in 1–2 RTTs rather than a multi-step EAP ladder.
+
+FILS is most relevant in high-density environments — stadiums, hospitals, transit hubs — where many devices reconnect frequently and 802.1X is already in use. It requires support on both the AP and the RADIUS server/supplicant stack. Adoption is narrower than SAE or PMF because it only matters for enterprise networks with 802.1X, not for home WPA3-Personal deployments.
+
 ## WPA3-Enterprise
 
 WPA3-Personal (SAE) is for home and small business use. WPA3-Enterprise targets environments that already use 802.1X authentication (RADIUS) and adds a 192-bit security suite:
@@ -90,7 +102,7 @@ A WPA3-only network gives the full benefit. Transition mode is a practical compr
 | Problem | WPA3 helps? | Why not |
 |---------|-------------|---------|
 | Weak passwords | No | SAE raises the cost of cracking, but a short password is still guessable |
-| Evil twin / rogue AP | No | WPA3 authenticates AP to client and client to AP, but not the AP's real-world identity to the user |
+| Evil twin / rogue AP | No | SAE proves both sides know the password, but anyone who knows the password can impersonate the AP. There is no certificate-based identity. |
 | Client implementation bugs | No | Dragonblood showed correct-spec implementations can still have exploitable side-channels |
 | Traffic analysis | No | Metadata — timing, packet sizes, destinations — is still visible regardless of encryption |
 | Insider threats | No | Anyone with the password can still observe their own session traffic |

@@ -7,7 +7,7 @@ categories:
   - Networking
   - Homelab
 tags:
-  - cloudflare
+  - cloudflare-workers
 cover: cover.svg
 ---
 

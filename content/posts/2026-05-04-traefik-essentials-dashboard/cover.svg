@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <linearGradient id="hex-fill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0e3040"/>
+      <stop offset="100%" stop-color="#071e2a"/>
+    </linearGradient>
+    <linearGradient id="textbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#080c14" stop-opacity="0"/>
+      <stop offset="60%"  stop-color="#080c14" stop-opacity="0.93"/>
+      <stop offset="100%" stop-color="#080c14" stop-opacity="1"/>
+    </linearGradient>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#37BEC3"/>
+    </marker>
+    <marker id="arr-dim" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#37BEC3" fill-opacity="0.4"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Subtle grid -->
+  <g stroke="#0d1a2a" stroke-width="1">
+    <line x1="0"    y1="100" x2="1200" y2="100"/>
+    <line x1="0"    y1="200" x2="1200" y2="200"/>
+    <line x1="0"    y1="300" x2="1200" y2="300"/>
+    <line x1="0"    y1="400" x2="1200" y2="400"/>
+    <line x1="200"  y1="0"   x2="200"  y2="500"/>
+    <line x1="400"  y1="0"   x2="400"  y2="500"/>
+    <line x1="600"  y1="0"   x2="600"  y2="500"/>
+    <line x1="800"  y1="0"   x2="800"  y2="500"/>
+    <line x1="1000" y1="0"   x2="1000" y2="500"/>
+  </g>
+
+  <!-- CLIENT globe — bright blue so it reads on the dark background -->
+  <text x="165" y="162" text-anchor="middle" font-size="11" fill="#60a5fa" letter-spacing="2">CLIENT</text>
+  <circle cx="165" cy="215" r="38" fill="#0a1828" stroke="#3b82f6" stroke-width="2"/>
+  <ellipse cx="165" cy="215" rx="18" ry="38" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
+  <line x1="127" y1="215" x2="203" y2="215" stroke="#3b82f6" stroke-width="1.5"/>
+  <line x1="132" y1="190" x2="198" y2="190" stroke="#3b82f6" stroke-width="1"/>
+  <line x1="132" y1="240" x2="198" y2="240" stroke="#3b82f6" stroke-width="1"/>
+
+  <!-- Incoming request arrows → hex left vertex (503,215) -->
+  <path d="M 208,175 C 310,175 400,215 503,215" fill="none" stroke="#37BEC3" stroke-width="2.5" stroke-opacity="0.5" marker-end="url(#arr-dim)"/>
+  <text x="340" y="167" text-anchor="middle" font-size="11" fill="#475569">HTTP</text>
+  <path d="M 208,215 L 503,215" fill="none" stroke="#37BEC3" stroke-width="3" marker-end="url(#arr)"/>
+  <text x="350" y="207" text-anchor="middle" font-size="11" fill="#37BEC3" font-weight="600">HTTPS</text>
+  <path d="M 208,255 C 310,255 400,215 503,215" fill="none" stroke="#37BEC3" stroke-width="2.5" stroke-opacity="0.5" marker-end="url(#arr-dim)"/>
+
+  <!-- TRAEFIK HEX: flat-top, center (600,215), r=95 — same as all other covers -->
+  <polygon points="695,215 648,133 552,133 505,215 552,297 648,297"
+           fill="url(#hex-fill)" stroke="#37BEC3" stroke-width="2.5"/>
+  <text x="600" y="209" text-anchor="middle" font-size="22" font-weight="700" fill="#67e8f9" letter-spacing="2">traefik</text>
+  <text x="600" y="230" text-anchor="middle" font-size="11" fill="#37BEC3" letter-spacing="3" opacity="0.8">dashboard</text>
+
+  <!-- Arrow: Traefik → dashboard card -->
+  <path d="M 697,215 L 723,215" fill="none" stroke="#37BEC3" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- DASHBOARD CARD: x=730, right edge=1105, margin=95px -->
+  <rect x="730" y="95" width="375" height="232" fill="#0d1520" stroke="#37BEC3" stroke-width="1.5" rx="8"/>
+  <rect x="730" y="95" width="6"   height="232" fill="#37BEC3" rx="4"/>
+
+  <!-- Card header -->
+  <text x="750" y="119" font-size="12" font-weight="700" fill="#37BEC3" letter-spacing="2">DASHBOARD</text>
+  <rect x="1007" y="107" width="80" height="20" fill="#052e16" stroke="#4ade80" stroke-width="1" rx="3"/>
+  <text x="1047" y="121" text-anchor="middle" font-size="10" fill="#4ade80" font-weight="700" letter-spacing="1">SECURED</text>
+
+  <!-- Row 1: Routers -->
+  <rect x="746" y="130" width="343" height="44" fill="#0a1020" stroke="#1e3a52" stroke-width="1" rx="4"/>
+  <text x="758" y="150" font-size="12" font-weight="700" fill="#67e8f9">Routers</text>
+  <text x="758" y="167" font-size="10" fill="#64748b" font-family="'Courier New',monospace">rules · TLS · middlewares</text>
+  <rect x="1041" y="138" width="40" height="20" fill="#052e16" stroke="#4ade80" stroke-width="1" rx="3"/>
+  <text x="1061" y="152" text-anchor="middle" font-size="10" fill="#4ade80">OK</text>
+
+  <!-- Row 2: Services -->
+  <rect x="746" y="182" width="343" height="44" fill="#0a1020" stroke="#1e3a52" stroke-width="1" rx="4"/>
+  <text x="758" y="202" font-size="12" font-weight="700" fill="#67e8f9">Services</text>
+  <text x="758" y="219" font-size="10" fill="#64748b" font-family="'Courier New',monospace">backends · health checks</text>
+  <rect x="1041" y="190" width="40" height="20" fill="#052e16" stroke="#4ade80" stroke-width="1" rx="3"/>
+  <text x="1061" y="204" text-anchor="middle" font-size="10" fill="#4ade80">OK</text>
+
+  <!-- Row 3: Middlewares -->
+  <rect x="746" y="234" width="343" height="44" fill="#0a1020" stroke="#1e3a52" stroke-width="1" rx="4"/>
+  <text x="758" y="254" font-size="12" font-weight="700" fill="#67e8f9">Middlewares</text>
+  <text x="758" y="271" font-size="10" fill="#64748b" font-family="'Courier New',monospace">IPAllowList · BasicAuth</text>
+  <rect x="1041" y="242" width="40" height="20" fill="#052e16" stroke="#4ade80" stroke-width="1" rx="3"/>
+  <text x="1061" y="256" text-anchor="middle" font-size="10" fill="#4ade80">OK</text>
+
+  <!-- Footer: api@internal -->
+  <rect x="746" y="286" width="343" height="26" fill="#071e2a" stroke="#37BEC3" stroke-width="1" rx="3"/>
+  <text x="917" y="303" text-anchor="middle" font-size="10" fill="#37BEC3" font-family="'Courier New',monospace" font-weight="600">api@internal</text>
+
+  <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
+  <text x="600" y="500" text-anchor="middle" font-size="13"
+        fill="#37BEC3" letter-spacing="3" font-weight="600">TRAEFIK ESSENTIALS</text>
+  <text x="600" y="538" text-anchor="middle" font-size="34"
+        font-weight="700" fill="#f1f5f9">Dashboard &amp; API</text>
+</svg>

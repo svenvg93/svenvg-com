@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <linearGradient id="textbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#080c14" stop-opacity="0"/>
+      <stop offset="60%"  stop-color="#080c14" stop-opacity="0.93"/>
+      <stop offset="100%" stop-color="#080c14" stop-opacity="1"/>
+    </linearGradient>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#dc2626"/>
+    </marker>
+    <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#4ade80"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Grid -->
+  <g stroke="#0d1a2a" stroke-width="1">
+    <line x1="0"    y1="100" x2="1200" y2="100"/>
+    <line x1="0"    y1="200" x2="1200" y2="200"/>
+    <line x1="0"    y1="300" x2="1200" y2="300"/>
+    <line x1="0"    y1="400" x2="1200" y2="400"/>
+    <line x1="200"  y1="0"   x2="200"  y2="500"/>
+    <line x1="400"  y1="0"   x2="400"  y2="500"/>
+    <line x1="600"  y1="0"   x2="600"  y2="500"/>
+    <line x1="800"  y1="0"   x2="800"  y2="500"/>
+    <line x1="1000" y1="0"   x2="1000" y2="500"/>
+  </g>
+
+  <!-- Left: .j2 template source -->
+  <rect x="60" y="110" width="310" height="250" fill="#0a1628" stroke="#7f1d1d" stroke-width="1.5" rx="8"/>
+  <rect x="60" y="110" width="310" height="24" fill="#3b0808" rx="8"/>
+  <rect x="60" y="122" width="310" height="12" fill="#3b0808"/>
+  <text x="215" y="126" text-anchor="middle" font-size="9" fill="#f87171">prometheus-targets.j2</text>
+
+  <g font-family="'Courier New',monospace" font-size="9.5">
+    <text x="76" y="156" fill="#94a3b8"># Managed by Ansible</text>
+    <text x="76" y="175" fill="#7dd3fc">scrape_configs:</text>
+    <text x="76" y="194" fill="#7dd3fc">  - job_name: </text><text x="186" y="194" fill="#fb923c">node_exporter</text>
+    <text x="76" y="213" fill="#7dd3fc">    static_configs:</text>
+    <text x="76" y="232" fill="#7dd3fc">      - targets:</text>
+    <text x="76" y="256" fill="#dc2626">{% for host in</text>
+    <text x="76" y="272" fill="#dc2626">  groups['homelab'] %}</text>
+    <text x="76" y="291" fill="#e2e8f0">        - "{{ </text><text x="158" y="291" fill="#fb923c">ansible_host</text><text x="232" y="291" fill="#e2e8f0"> }}</text>
+    <text x="76" y="307" fill="#e2e8f0">:9100"</text>
+    <text x="76" y="328" fill="#dc2626">{% endfor %}</text>
+  </g>
+  <text x="215" y="378" text-anchor="middle" font-size="11" fill="#64748b">Template</text>
+
+  <!-- Arrow left → center -->
+  <path d="M 372,240 L 453,240" fill="none" stroke="#dc2626" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Center: Jinja2 engine box -->
+  <rect x="455" y="145" width="290" height="200" fill="#0a1628" stroke="#475569" stroke-width="1" rx="8"/>
+  <rect x="455" y="145" width="290" height="26" fill="#1a0808" rx="8"/>
+  <rect x="455" y="159" width="290" height="12" fill="#1a0808"/>
+  <text x="600" y="162" text-anchor="middle" font-size="9" fill="#dc2626">ansible.builtin.template</text>
+  <!-- Big {{ }} -->
+  <text x="600" y="255" text-anchor="middle" font-family="'Courier New',monospace"
+        font-size="60" font-weight="700" fill="#dc2626" opacity="0.85">{{ }}</text>
+  <!-- src / dest hint -->
+  <text x="600" y="302" text-anchor="middle" font-family="'Courier New',monospace"
+        font-size="9" fill="#64748b">src: config.j2 · dest: /etc/config</text>
+  <text x="600" y="378" text-anchor="middle" font-size="11" fill="#64748b">Jinja2</text>
+
+  <!-- Arrow center → right -->
+  <path d="M 747,240 L 828,240" fill="none" stroke="#4ade80" stroke-width="2" marker-end="url(#arr-green)"/>
+
+  <!-- Right: rendered output -->
+  <rect x="838" y="110" width="302" height="250" fill="#0a1628" stroke="#14532d" stroke-width="1.5" rx="8"/>
+  <rect x="838" y="110" width="302" height="24" fill="#052e16" rx="8"/>
+  <rect x="838" y="122" width="302" height="12" fill="#052e16"/>
+  <text x="989" y="126" text-anchor="middle" font-size="9" fill="#4ade80">targets.yml  RENDERED</text>
+
+  <g font-family="'Courier New',monospace" font-size="9.5">
+    <text x="854" y="156" fill="#94a3b8"># Managed by Ansible</text>
+    <text x="854" y="175" fill="#7dd3fc">scrape_configs:</text>
+    <text x="854" y="194" fill="#7dd3fc">  - job_name: </text><text x="964" y="194" fill="#fb923c">node_exporter</text>
+    <text x="854" y="213" fill="#7dd3fc">    static_configs:</text>
+    <text x="854" y="232" fill="#7dd3fc">      - targets:</text>
+    <text x="854" y="254" fill="#4ade80">        - "192.168.1.10:9100"</text>
+    <text x="854" y="272" fill="#4ade80">        - "192.168.1.11:9100"</text>
+    <text x="854" y="290" fill="#4ade80">        - "192.168.1.12:9100"</text>
+    <text x="854" y="308" fill="#4ade80">        - "192.168.1.13:9100"</text>
+    <text x="854" y="326" fill="#475569">        ...</text>
+  </g>
+  <text x="989" y="378" text-anchor="middle" font-size="11" fill="#64748b">Rendered</text>
+
+  <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
+  <text x="600" y="500" text-anchor="middle" font-size="13"
+        fill="#dc2626" letter-spacing="3" font-weight="600">Ansible Essentials</text>
+  <text x="600" y="538" text-anchor="middle" font-size="34"
+        font-weight="700" fill="#f1f5f9">Jinja2 Templates</text>
+</svg>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <linearGradient id="textbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#080c14" stop-opacity="0"/>
+      <stop offset="60%" stop-color="#080c14" stop-opacity="0.93"/>
+      <stop offset="100%" stop-color="#080c14" stop-opacity="1"/>
+    </linearGradient>
+    <linearGradient id="hex-fill-purple" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0a2e"/>
+      <stop offset="100%" stop-color="#0f051e"/>
+    </linearGradient>
+    <linearGradient id="hex-fill-red" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#200808"/>
+      <stop offset="100%" stop-color="#140404"/>
+    </linearGradient>
+    <linearGradient id="hex-fill-orange" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1f0e04"/>
+      <stop offset="100%" stop-color="#130800"/>
+    </linearGradient>
+    <radialGradient id="glow-purple" cx="16%" cy="50%" r="22%">
+      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-red" cx="50%" cy="50%" r="22%">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#ef4444" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-orange" cx="82%" cy="50%" r="22%">
+      <stop offset="0%" stop-color="#f97316" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="arr-purple-red" x1="281" y1="215" x2="529" y2="215" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#ef4444"/>
+    </linearGradient>
+    <linearGradient id="arr-red-orange" x1="671" y1="215" x2="879" y2="215" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </linearGradient>
+    <marker id="arr-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#ef4444"/>
+    </marker>
+    <marker id="arr-orange" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#f97316"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow-purple)"/>
+  <rect width="1200" height="630" fill="url(#glow-red)"/>
+  <rect width="1200" height="630" fill="url(#glow-orange)"/>
+
+  <!-- Grid -->
+  <g stroke="#0d1a2a" stroke-width="1">
+    <line x1="0"   y1="95"  x2="1200" y2="95"/>
+    <line x1="0"   y1="315" x2="1200" y2="315"/>
+    <line x1="400" y1="0"   x2="400"  y2="390"/>
+    <line x1="800" y1="0"   x2="800"  y2="390"/>
+  </g>
+
+  <!-- === Tailscale (left, PURPLE) cx=220, cy=215, r=70 === -->
+  <polygon points="220,145 281,180 281,250 220,285 159,250 159,180"
+           fill="url(#hex-fill-purple)" stroke="#8b5cf6" stroke-width="2.5"/>
+  <polygon points="220,153 274,184 274,246 220,277 166,246 166,184"
+           fill="none" stroke="#8b5cf6" stroke-width="0.8" stroke-opacity="0.3"/>
+  <text x="220" y="208" text-anchor="middle" font-size="13" font-weight="700" fill="#c4b5fd" letter-spacing="1">TAILSCALE</text>
+  <text x="220" y="226" text-anchor="middle" font-size="9" fill="#8b5cf6" letter-spacing="2">mesh nodes</text>
+  <rect x="158" y="298" width="124" height="22" fill="#0f051e" stroke="#8b5cf6" stroke-width="1" stroke-opacity="0.6" rx="3"/>
+  <text x="220" y="313" text-anchor="middle" font-size="10" fill="#8b5cf6" letter-spacing="1">100.x.x.x</text>
+
+  <!-- Arrow Tailscale → Prometheus -->
+  <line x1="281" y1="215" x2="529" y2="215"
+        stroke="url(#arr-purple-red)" stroke-width="2" marker-end="url(#arr-red)"/>
+  <text x="405" y="203" text-anchor="middle" font-size="9" fill="#64748b" letter-spacing="1">scrape :9100</text>
+
+  <!-- === Prometheus (center, RED) cx=600, cy=215, r=82 === -->
+  <polygon points="600,133 671,174 671,256 600,297 529,256 529,174"
+           fill="url(#hex-fill-red)" stroke="#ef4444" stroke-width="2.5"/>
+  <polygon points="600,141 663,179 663,251 600,289 537,251 537,179"
+           fill="none" stroke="#ef4444" stroke-width="0.8" stroke-opacity="0.35"/>
+  <text x="600" y="208" text-anchor="middle" font-size="18" font-weight="700" fill="#fca5a5" letter-spacing="1">Prometheus</text>
+  <text x="600" y="228" text-anchor="middle" font-size="9" fill="#ef4444" letter-spacing="2">scrape · store</text>
+
+  <!-- Arrow Prometheus → Grafana -->
+  <line x1="671" y1="215" x2="879" y2="215"
+        stroke="url(#arr-red-orange)" stroke-width="2" marker-end="url(#arr-orange)"/>
+  <text x="775" y="203" text-anchor="middle" font-size="9" fill="#64748b" letter-spacing="1">query</text>
+
+  <!-- === Grafana (right, ORANGE) cx=940, cy=215, r=70 === -->
+  <polygon points="940,145 1001,180 1001,250 940,285 879,250 879,180"
+           fill="url(#hex-fill-orange)" stroke="#f97316" stroke-width="2.5"/>
+  <polygon points="940,153 994,184 994,246 940,277 886,246 886,184"
+           fill="none" stroke="#f97316" stroke-width="0.8" stroke-opacity="0.3"/>
+  <text x="940" y="208" text-anchor="middle" font-size="16" font-weight="700" fill="#fed7aa" letter-spacing="1">Grafana</text>
+  <text x="940" y="226" text-anchor="middle" font-size="9" fill="#f97316" letter-spacing="2">dashboard</text>
+
+  <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
+
+  <text x="600" y="500" text-anchor="middle" font-size="13" fill="#f97316" letter-spacing="3" font-weight="600">MONITORING</text>
+  <text x="600" y="538" text-anchor="middle" font-size="34" font-weight="700" fill="#f1f5f9">Monitoring Tailscale Clients with Prometheus</text>
+</svg>

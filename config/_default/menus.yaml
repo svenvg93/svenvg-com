@@ -4,51 +4,58 @@ main:
     weight: 10
     params:
       icon: posts
+
   - name: Series
     pageRef: /series
     weight: 20
     params:
       icon: series
-  - name: Projects
-    pageRef: /projects
+
+  - name: Categories
+    pageRef: /categories
     weight: 30
     params:
-      icon: projects
+      icon: categories
+
   - name: More
     weight: 40
     params:
       icon: layers
 
-  - name: About
-    pageRef: /about
-    weight: 5
-    parent: More
-    params:
-      icon: about
-  - name: Resume
-    pageRef: /resume
-    weight: 1
-    parent: More
-    params:
-      icon: file-text
-  - name: Archives
-    pageRef: /archives
-    weight: 2
-    parent: More
-    params:
-      icon: archive
-  - name: Categories
-    pageRef: /categories
-    weight: 3
-    parent: More
-    params:
-      icon: categories
   - name: Tags
     pageRef: /tags
-    weight: 4
+    weight: 10
     parent: More
     params:
       icon: tags
+
+  - name: Archives
+    pageRef: /archives
+    weight: 20
+    parent: More
+    params:
+      icon: archive
+
+  - name: Projects
+    pageRef: /projects
+    weight: 30
+    parent: More
+    params:
+      icon: projects
+
+  - name: Resume
+    pageRef: /resume
+    weight: 40
+    parent: More
+    params:
+      icon: file-text
+
+  - name: About
+    pageRef: /about
+    weight: 50
+    parent: More
+    params:
+      icon: about
 
 footer:
   - name: About

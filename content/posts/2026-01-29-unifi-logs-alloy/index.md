@@ -9,7 +9,7 @@ categories:
 tags:
   - loki
   - alloy
-cover: cover.jpg
+cover: cover.svg
 ---
 
 Unifi network devices generate valuable logs that can help you troubleshoot network issues and monitor your devices. By sending these syslog messages to Loki using Grafana Alloy, you can centralize your network logs alongside your application logs for unified observability.

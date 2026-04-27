@@ -8,7 +8,7 @@ categories:
 tags:
   - cloudflare-workers
   - github-actions
-cover: cover.jpg
+cover: cover.svg
 ---
 
 Instead of relying on Cloudflare's built-in Git integration, you can use GitHub Actions with Wrangler to deploy your site to Cloudflare Workers. This gives you full control over the build pipeline, allowing you to add steps like link checking or testing before deployment.

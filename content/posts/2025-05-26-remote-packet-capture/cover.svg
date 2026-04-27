@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <linearGradient id="textbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#080c14" stop-opacity="0"/>
+      <stop offset="60%"  stop-color="#080c14" stop-opacity="0.93"/>
+      <stop offset="100%" stop-color="#080c14" stop-opacity="1"/>
+    </linearGradient>
+    <linearGradient id="hex-fill-blue" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0e2040"/>
+      <stop offset="100%" stop-color="#071428"/>
+    </linearGradient>
+    <linearGradient id="hex-fill-orange" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1f0e04"/>
+      <stop offset="100%" stop-color="#130800"/>
+    </linearGradient>
+    <radialGradient id="glow-blue" cx="22%" cy="50%" r="22%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-orange" cx="50%" cy="50%" r="25%">
+      <stop offset="0%" stop-color="#f97316" stop-opacity="0.11"/>
+      <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-green" cx="80%" cy="50%" r="22%">
+      <stop offset="0%" stop-color="#34d399" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#34d399" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="arr-blue-orange" x1="293" y1="215" x2="527" y2="215" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </linearGradient>
+    <linearGradient id="arr-orange-green" x1="673" y1="215" x2="778" y2="215" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+    <marker id="arr-orange" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#f97316"/>
+    </marker>
+    <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#34d399"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow-blue)"/>
+  <rect width="1200" height="630" fill="url(#glow-orange)"/>
+  <rect width="1200" height="630" fill="url(#glow-green)"/>
+
+  <!-- Line grid -->
+  <g stroke="#0d1a2a" stroke-width="1">
+    <line x1="0"    y1="100" x2="1200" y2="100"/>
+    <line x1="0"    y1="200" x2="1200" y2="200"/>
+    <line x1="0"    y1="300" x2="1200" y2="300"/>
+    <line x1="200"  y1="0"   x2="200"  y2="390"/>
+    <line x1="400"  y1="0"   x2="400"  y2="390"/>
+    <line x1="600"  y1="0"   x2="600"  y2="390"/>
+    <line x1="800"  y1="0"   x2="800"  y2="390"/>
+    <line x1="1000" y1="0"   x2="1000" y2="390"/>
+  </g>
+
+  <!-- ── Left: Remote host hex — center (220, 215), r=82
+       top(220,133) tr(291,174) br(291,256) bot(220,297) bl(149,256) tl(149,174) -->
+  <polygon points="220,133 291,174 291,256 220,297 149,256 149,174"
+           fill="url(#hex-fill-blue)" stroke="#38bdf8" stroke-width="2.5"/>
+  <polygon points="220,141 284,178 284,252 220,289 156,252 156,178"
+           fill="none" stroke="#38bdf8" stroke-width="0.8" stroke-opacity="0.3"/>
+  <text x="220" y="208" text-anchor="middle" font-size="14" font-weight="700" fill="#bae6fd" letter-spacing="1">REMOTE</text>
+  <text x="220" y="226" text-anchor="middle" font-size="9"  fill="#38bdf8" letter-spacing="3">tcpdump</text>
+  <text x="220" y="316" text-anchor="middle" font-size="13" font-weight="700" fill="#38bdf8" letter-spacing="3">REMOTE HOST</text>
+
+  <!-- Arrow: remote host → SSH hex -->
+  <line x1="293" y1="215" x2="527" y2="215"
+        stroke="url(#arr-blue-orange)" stroke-width="2" marker-end="url(#arr-orange)"/>
+  <text x="410" y="203" text-anchor="middle" font-size="10" fill="#64748b" letter-spacing="1">ssh pipe</text>
+
+  <!-- ── Center: SSH hexagon — center (600, 215), r=82
+       top(600,133) tr(671,174) br(671,256) bot(600,297) bl(529,256) tl(529,174) -->
+  <circle cx="600" cy="215" r="115" fill="none" stroke="#f97316" stroke-width="1" stroke-opacity="0.08" stroke-dasharray="4,10"/>
+  <polygon points="600,133 671,174 671,256 600,297 529,256 529,174"
+           fill="url(#hex-fill-orange)" stroke="#f97316" stroke-width="2.5"/>
+  <polygon points="600,141 663,179 663,251 600,289 537,251 537,179"
+           fill="none" stroke="#f97316" stroke-width="0.8" stroke-opacity="0.35"/>
+  <text x="600" y="207" text-anchor="middle" font-size="24" font-weight="700" fill="#fb923c">SSH</text>
+  <text x="600" y="230" text-anchor="middle" font-size="10" fill="#f97316" letter-spacing="3" opacity="0.85">TUNNEL</text>
+
+  <!-- Arrow: SSH hex → Wireshark panel -->
+  <line x1="673" y1="215" x2="778" y2="215"
+        stroke="url(#arr-orange-green)" stroke-width="2" marker-end="url(#arr-green)"/>
+  <text x="726" y="203" text-anchor="middle" font-size="10" fill="#64748b" letter-spacing="1">live stream</text>
+
+  <!-- ── Right: Wireshark panel -->
+  <rect x="780" y="80" width="280" height="270" fill="#0a1628" stroke="#34d399" stroke-width="1.5" rx="8"/>
+  <rect x="780" y="80" width="280" height="24" fill="#1e293b" rx="8"/>
+  <rect x="780" y="92"  width="280" height="12" fill="#1e293b"/>
+  <circle cx="802" cy="92" r="5" fill="#ef4444" fill-opacity="0.7"/>
+  <circle cx="817" cy="92" r="5" fill="#f59e0b" fill-opacity="0.7"/>
+  <circle cx="832" cy="92" r="5" fill="#4ade80" fill-opacity="0.7"/>
+  <text x="920" y="96" text-anchor="middle" font-size="9" fill="#64748b">Wireshark — Live Capture</text>
+
+  <!-- Column headers -->
+  <text x="796" y="116" font-size="10" font-family="'Courier New',monospace" fill="#475569">No  Protocol  Source          Info</text>
+  <line x1="780" y1="122" x2="1060" y2="122" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- Packet rows — font-size=10, row height=22 -->
+  <rect x="780" y="123" width="280" height="22" fill="#0d1b2a"/>
+  <text font-size="10" font-family="'Courier New',monospace">
+    <tspan x="796" y="138" fill="#64748b">1  </tspan><tspan fill="#38bdf8">TCP     </tspan><tspan fill="#94a3b8">192.168.1.5  </tspan><tspan fill="#64748b">SYN Seq=0</tspan>
+  </text>
+
+  <rect x="780" y="145" width="280" height="22" fill="#0a1222"/>
+  <text font-size="10" font-family="'Courier New',monospace">
+    <tspan x="796" y="160" fill="#64748b">2  </tspan><tspan fill="#a78bfa">DNS     </tspan><tspan fill="#94a3b8">192.168.1.5  </tspan><tspan fill="#64748b">A? github.com</tspan>
+  </text>
+
+  <rect x="780" y="167" width="280" height="22" fill="#0d1b2a"/>
+  <text font-size="10" font-family="'Courier New',monospace">
+    <tspan x="796" y="182" fill="#64748b">3  </tspan><tspan fill="#34d399">TLS     </tspan><tspan fill="#94a3b8">192.168.1.5  </tspan><tspan fill="#64748b">Client Hello</tspan>
+  </text>
+
+  <rect x="780" y="189" width="280" height="22" fill="#0a1222"/>
+  <text font-size="10" font-family="'Courier New',monospace">
+    <tspan x="796" y="204" fill="#64748b">4  </tspan><tspan fill="#38bdf8">TCP     </tspan><tspan fill="#94a3b8">140.82.121.4 </tspan><tspan fill="#64748b">ACK Seq=1</tspan>
+  </text>
+
+  <rect x="780" y="211" width="280" height="22" fill="#0d1b2a"/>
+  <text font-size="10" font-family="'Courier New',monospace">
+    <tspan x="796" y="226" fill="#64748b">5  </tspan><tspan fill="#fb923c">HTTP    </tspan><tspan fill="#94a3b8">192.168.1.5  </tspan><tspan fill="#64748b">GET / HTTP/1.1</tspan>
+  </text>
+
+  <rect x="780" y="233" width="280" height="22" fill="#0a1222"/>
+  <text font-size="10" font-family="'Courier New',monospace">
+    <tspan x="796" y="248" fill="#64748b">6  </tspan><tspan fill="#a78bfa">DNS     </tspan><tspan fill="#94a3b8">8.8.8.8      </tspan><tspan fill="#64748b">A 140.82.121.4</tspan>
+  </text>
+
+  <rect x="780" y="255" width="280" height="22" fill="#0d1b2a"/>
+  <text font-size="10" font-family="'Courier New',monospace">
+    <tspan x="796" y="270" fill="#64748b">7  </tspan><tspan fill="#34d399">TLS     </tspan><tspan fill="#94a3b8">140.82.121.4 </tspan><tspan fill="#64748b">Server Hello</tspan>
+  </text>
+
+  <rect x="780" y="277" width="280" height="22" fill="#0a1222"/>
+  <text font-size="10" font-family="'Courier New',monospace">
+    <tspan x="796" y="292" fill="#64748b">8  </tspan><tspan fill="#fb923c">HTTP    </tspan><tspan fill="#94a3b8">140.82.121.4 </tspan><tspan fill="#64748b">200 OK</tspan>
+  </text>
+
+  <!-- Status bar -->
+  <rect x="780" y="326" width="280" height="24" fill="#111c2e" rx="8"/>
+  <rect x="780" y="326" width="280" height="12" fill="#111c2e"/>
+  <text x="796" y="342" font-size="10" font-family="'Courier New',monospace" fill="#34d399">Capturing eth0 (remote)  8 pkts</text>
+
+  <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
+
+  <text x="600" y="500" text-anchor="middle" font-size="13" fill="#38bdf8" letter-spacing="3" font-weight="600">NETWORKING</text>
+  <text x="600" y="538" text-anchor="middle" font-size="34" font-weight="700" fill="#f1f5f9">Remote Packet Capture with Wireshark</text>
+</svg>

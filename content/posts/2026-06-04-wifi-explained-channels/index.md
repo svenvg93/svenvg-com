@@ -8,6 +8,7 @@ categories:
   - Networking
 tags:
   - wifi
+  - wifi7
 series:
   - WiFi Explained
 lightbox:
@@ -19,9 +20,13 @@ Three settings sit on every AP's radio configuration page: transmit power, chann
 
 ## Transmit Power and the Asymmetric Link
 
-An AP typically transmits at 20–23 dBm (100–200 mW). A smartphone transmits at 15–20 dBm (30–100 mW), often less under battery saving. A laptop sits somewhere in between.
+A Wi-Fi access point typically transmits around 20–23 dBm (100–200 mW) on 2.4 GHz. On 5 GHz, transmit power is often slightly lower indoors, commonly around 17–21 dBm, while 6 GHz devices are typically in the 14–18 dBm range indoors, depending on regional regulations and device class.
 
-This asymmetry creates a link that's stronger in one direction than the other. A client at 25 metres from the AP may decode the AP's beacon at -65 dBm and show a full signal bar. The AP, receiving the client's weaker uplink, may see that same device at -80 dBm — at the edge of reliable decode.
+Smartphones usually transmit at lower power levels, often around 10–18 dBm (sometimes peaking near 20 dBm), with transmit power dynamically reduced for battery savings and thermal management. Laptops generally fall somewhere in between, commonly around 15–20 dBm depending on the Wi-Fi chipset and antenna design.
+
+It’s also important to remember that Wi-Fi performance is often limited by the client device’s transmit power rather than the AP itself. Even if the AP can transmit strongly, the phone or laptop still needs enough transmit power for the AP to reliably receive the response.
+
+This asymmetry can create a link that appears stronger in one direction than the other. A client located 25 metres from the AP may decode the AP’s beacon at −65 dBm and display a strong signal indicator. Meanwhile, the AP — receiving the client’s weaker uplink transmission — may see that same device at −80 dBm, near the edge of reliable reception.
 
 **The RSSI shown on the client is downlink signal** — what the AP transmits and the client receives. It says nothing about what the AP can hear back. A client with a full signal bar but a poor uplink retransmits constantly, holds a low data rate, and consumes airtime — without the user seeing any obvious problem.
 

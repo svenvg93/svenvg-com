@@ -69,18 +69,8 @@
   <polygon points="695,255 647,172 553,172 505,255 553,338 647,338"
            fill="url(#hex-fill)" stroke="#37BEC3" stroke-width="2.5"/>
 
-  <!-- Converging flow mark -->
-  <path d="M 538,233 C 568,233 588,253 600,255" fill="none" stroke="#ffffff" stroke-width="3" stroke-opacity="0.55" stroke-linecap="round"/>
-  <path d="M 538,255 L 600,255"               fill="none" stroke="#ffffff" stroke-width="3.5" stroke-opacity="0.75" stroke-linecap="round"/>
-  <path d="M 538,277 C 568,277 588,257 600,255" fill="none" stroke="#ffffff" stroke-width="3" stroke-opacity="0.55" stroke-linecap="round"/>
-  <circle cx="600" cy="255" r="9" fill="#37BEC3" fill-opacity="0.25"/>
-  <circle cx="600" cy="255" r="4.5" fill="#ffffff"/>
-  <path d="M 600,255 C 612,253 632,233 662,233" fill="none" stroke="#37BEC3" stroke-width="3" stroke-opacity="0.75" stroke-linecap="round"/>
-  <path d="M 600,255 L 662,255"               fill="none" stroke="#37BEC3" stroke-width="3.5" stroke-opacity="1" stroke-linecap="round"/>
-  <path d="M 600,255 C 612,257 632,277 662,277" fill="none" stroke="#37BEC3" stroke-width="3" stroke-opacity="0.75" stroke-linecap="round"/>
-
-  <!-- "traefik" wordmark below hex -->
-  <text x="600" y="362" text-anchor="middle" font-size="15" font-weight="700" fill="#37BEC3" letter-spacing="4">traefik</text>
+  <text x="600" y="249" text-anchor="middle" font-size="22" font-weight="700" fill="#67e8f9" letter-spacing="2">traefik</text>
+  <text x="600" y="270" text-anchor="middle" font-size="11" fill="#37BEC3" letter-spacing="3" opacity="0.8">reverse proxy</text>
 
   <!-- Outgoing paths to services -->
   <!-- Top → service A -->
@@ -114,8 +104,8 @@
   <text x="600" y="117" text-anchor="middle" font-size="12" fill="#4ade80" font-weight="600" letter-spacing="1">TLS · Let's Encrypt</text>
 
   <!-- Docker badge -->
-  <rect x="484" y="380" width="232" height="30" fill="#0c1a2e" stroke="#2563eb" stroke-width="1.5" rx="15"/>
-  <text x="600" y="400" text-anchor="middle" font-size="12" fill="#60a5fa" font-weight="600" letter-spacing="1">Docker Labels · Middleware</text>
+  <rect x="484" y="355" width="232" height="30" fill="#0c1a2e" stroke="#2563eb" stroke-width="1.5" rx="15"/>
+  <text x="600" y="375" text-anchor="middle" font-size="12" fill="#60a5fa" font-weight="600" letter-spacing="1">Docker Labels · Middleware</text>
 
   <!-- Bottom gradient overlay -->
   <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>

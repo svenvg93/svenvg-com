@@ -20,20 +20,20 @@
       <stop offset="100%" stop-color="#080c14" stop-opacity="1"/>
     </linearGradient>
     <!-- Left-to-Alloy gradient arrows (green → blue) -->
-    <linearGradient id="arr-host-alloy" x1="290" y1="195" x2="531" y2="205" gradientUnits="userSpaceOnUse">
+    <linearGradient id="arr-host-alloy" x1="330" y1="195" x2="531" y2="205" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#34d399"/>
       <stop offset="100%" stop-color="#38bdf8"/>
     </linearGradient>
-    <linearGradient id="arr-ctr-alloy" x1="290" y1="328" x2="531" y2="248" gradientUnits="userSpaceOnUse">
+    <linearGradient id="arr-ctr-alloy" x1="330" y1="328" x2="531" y2="248" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#34d399"/>
       <stop offset="100%" stop-color="#38bdf8"/>
     </linearGradient>
     <!-- Alloy-to-right gradient arrows (blue → destination color) -->
-    <linearGradient id="arr-alloy-prom" x1="669" y1="192" x2="720" y2="158" gradientUnits="userSpaceOnUse">
+    <linearGradient id="arr-alloy-prom" x1="671" y1="192" x2="850" y2="155" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#38bdf8"/>
       <stop offset="100%" stop-color="#ef4444"/>
     </linearGradient>
-    <linearGradient id="arr-alloy-graf" x1="669" y1="228" x2="720" y2="298" gradientUnits="userSpaceOnUse">
+    <linearGradient id="arr-alloy-graf" x1="671" y1="238" x2="850" y2="275" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#38bdf8"/>
       <stop offset="100%" stop-color="#f59e0b"/>
     </linearGradient>
@@ -83,58 +83,58 @@
   <!-- ===== LEFT ZONE — source infrastructure ===== -->
 
   <!-- Host server card -->
-  <rect x="80" y="108" width="210" height="172" fill="#0d1e30" stroke="#34d399" stroke-width="1.5" rx="8"/>
-  <rect x="80" y="108" width="6"   height="172" fill="#34d399" rx="4"/>
-  <text x="120" y="130" font-size="11" font-weight="700" fill="#34d399" letter-spacing="2">HOST</text>
-  <text x="120" y="143" font-size="8"  fill="#64748b" font-family="'Courier New',monospace">ubuntu 24.04 · x86_64</text>
+  <rect x="120" y="108" width="210" height="172" fill="#0d1e30" stroke="#34d399" stroke-width="1.5" rx="8"/>
+  <rect x="120" y="108" width="6"   height="172" fill="#34d399" rx="4"/>
+  <text x="160" y="130" font-size="11" font-weight="700" fill="#34d399" letter-spacing="2">HOST</text>
+  <text x="160" y="143" font-size="8"  fill="#64748b" font-family="'Courier New',monospace">ubuntu 24.04 · x86_64</text>
   <!-- CPU row -->
-  <rect x="96" y="150" width="178" height="22" fill="#0a1a2c" stroke="#1e3a50" stroke-width="1" rx="3"/>
-  <text x="104" y="165" font-size="8" fill="#94a3b8" font-family="'Courier New',monospace">CPU </text>
-  <rect x="128" y="154" width="90" height="5" fill="#1e3a50" rx="2"/>
-  <rect x="128" y="154" width="34" height="5" fill="#38bdf8" rx="2"/>
-  <text x="226" y="165" font-size="8" fill="#7dd3fc" font-family="'Courier New',monospace">38%</text>
+  <rect x="136" y="150" width="178" height="22" fill="#0a1a2c" stroke="#1e3a50" stroke-width="1" rx="3"/>
+  <text x="144" y="165" font-size="8" fill="#94a3b8" font-family="'Courier New',monospace">CPU </text>
+  <rect x="168" y="154" width="90" height="5" fill="#1e3a50" rx="2"/>
+  <rect x="168" y="154" width="34" height="5" fill="#38bdf8" rx="2"/>
+  <text x="266" y="165" font-size="8" fill="#7dd3fc" font-family="'Courier New',monospace">38%</text>
   <!-- MEM row -->
-  <rect x="96" y="177" width="178" height="22" fill="#0a1a2c" stroke="#1e3a50" stroke-width="1" rx="3"/>
-  <text x="104" y="192" font-size="8" fill="#94a3b8" font-family="'Courier New',monospace">MEM </text>
-  <rect x="128" y="181" width="90" height="5" fill="#1e3a50" rx="2"/>
-  <rect x="128" y="181" width="67" height="5" fill="#38bdf8" rx="2"/>
-  <text x="226" y="192" font-size="8" fill="#7dd3fc" font-family="'Courier New',monospace">74%</text>
+  <rect x="136" y="177" width="178" height="22" fill="#0a1a2c" stroke="#1e3a50" stroke-width="1" rx="3"/>
+  <text x="144" y="192" font-size="8" fill="#94a3b8" font-family="'Courier New',monospace">MEM </text>
+  <rect x="168" y="181" width="90" height="5" fill="#1e3a50" rx="2"/>
+  <rect x="168" y="181" width="67" height="5" fill="#38bdf8" rx="2"/>
+  <text x="266" y="192" font-size="8" fill="#7dd3fc" font-family="'Courier New',monospace">74%</text>
   <!-- DISK row -->
-  <rect x="96" y="204" width="178" height="22" fill="#0a1a2c" stroke="#1e3a50" stroke-width="1" rx="3"/>
-  <text x="104" y="219" font-size="8" fill="#94a3b8" font-family="'Courier New',monospace">DISK</text>
-  <rect x="128" y="208" width="90" height="5" fill="#1e3a50" rx="2"/>
-  <rect x="128" y="208" width="38" height="5" fill="#38bdf8" rx="2"/>
-  <text x="226" y="219" font-size="8" fill="#7dd3fc" font-family="'Courier New',monospace">42%</text>
+  <rect x="136" y="204" width="178" height="22" fill="#0a1a2c" stroke="#1e3a50" stroke-width="1" rx="3"/>
+  <text x="144" y="219" font-size="8" fill="#94a3b8" font-family="'Courier New',monospace">DISK</text>
+  <rect x="168" y="208" width="90" height="5" fill="#1e3a50" rx="2"/>
+  <rect x="168" y="208" width="38" height="5" fill="#38bdf8" rx="2"/>
+  <text x="266" y="219" font-size="8" fill="#7dd3fc" font-family="'Courier New',monospace">42%</text>
   <!-- NET row -->
-  <rect x="96" y="231" width="178" height="22" fill="#0a1a2c" stroke="#1e3a50" stroke-width="1" rx="3"/>
-  <text x="104" y="246" font-size="8" fill="#94a3b8" font-family="'Courier New',monospace">NET </text>
-  <text x="128" y="246" font-size="8" fill="#4ade80" font-family="'Courier New',monospace">12 MB/s  48 MB/s</text>
+  <rect x="136" y="231" width="178" height="22" fill="#0a1a2c" stroke="#1e3a50" stroke-width="1" rx="3"/>
+  <text x="144" y="246" font-size="8" fill="#94a3b8" font-family="'Courier New',monospace">NET </text>
+  <text x="168" y="246" font-size="8" fill="#4ade80" font-family="'Courier New',monospace">12 MB/s  48 MB/s</text>
   <!-- node_exporter label -->
-  <text x="185" y="275" text-anchor="middle" font-size="8" fill="#334155" font-family="'Courier New',monospace">prometheus.exporter.unix</text>
+  <text x="225" y="275" text-anchor="middle" font-size="8" fill="#334155" font-family="'Courier New',monospace">prometheus.exporter.unix</text>
 
   <!-- Docker containers card -->
-  <rect x="80" y="295" width="210" height="82" fill="#0d1e30" stroke="#34d399" stroke-width="1.5" rx="8"/>
-  <rect x="80" y="295" width="6"   height="82" fill="#34d399" rx="4"/>
-  <text x="120" y="315" font-size="11" font-weight="700" fill="#34d399" letter-spacing="2">CONTAINERS</text>
+  <rect x="120" y="295" width="210" height="82" fill="#0d1e30" stroke="#34d399" stroke-width="1.5" rx="8"/>
+  <rect x="120" y="295" width="6"   height="82" fill="#34d399" rx="4"/>
+  <text x="160" y="315" font-size="11" font-weight="700" fill="#34d399" letter-spacing="2">CONTAINERS</text>
   <g font-size="8.5" font-family="'Courier New',monospace">
-    <circle cx="103" cy="331" r="4" fill="#4ade80" fill-opacity="0.85"/>
-    <text x="113" y="334" fill="#94a3b8">nginx</text>
-    <circle cx="103" cy="349" r="4" fill="#4ade80" fill-opacity="0.85"/>
-    <text x="113" y="352" fill="#94a3b8">traefik</text>
-    <circle cx="185" cy="331" r="4" fill="#4ade80" fill-opacity="0.85"/>
-    <text x="195" y="334" fill="#94a3b8">grafana</text>
-    <circle cx="185" cy="349" r="4" fill="#4ade80" fill-opacity="0.85"/>
-    <text x="195" y="352" fill="#94a3b8">alloy</text>
+    <circle cx="143" cy="331" r="4" fill="#4ade80" fill-opacity="0.85"/>
+    <text x="153" y="334" fill="#94a3b8">nginx</text>
+    <circle cx="143" cy="349" r="4" fill="#4ade80" fill-opacity="0.85"/>
+    <text x="153" y="352" fill="#94a3b8">traefik</text>
+    <circle cx="225" cy="331" r="4" fill="#4ade80" fill-opacity="0.85"/>
+    <text x="235" y="334" fill="#94a3b8">grafana</text>
+    <circle cx="225" cy="349" r="4" fill="#4ade80" fill-opacity="0.85"/>
+    <text x="235" y="352" fill="#94a3b8">alloy</text>
   </g>
   <!-- cadvisor label -->
-  <text x="185" y="372" text-anchor="middle" font-size="8" fill="#334155" font-family="'Courier New',monospace">prometheus.exporter.cadvisor</text>
+  <text x="225" y="372" text-anchor="middle" font-size="8" fill="#334155" font-family="'Courier New',monospace">prometheus.exporter.cadvisor</text>
 
   <!-- Arrows: left sources → Alloy (pointy-top hex, left face at x=531) -->
   <!-- Host → Alloy -->
-  <path d="M 290,195 C 390,195 470,206 531,208"
+  <path d="M 330,195 C 390,195 470,206 531,208"
         fill="none" stroke="url(#arr-host-alloy)" stroke-width="2" marker-end="url(#arr-blue)"/>
   <!-- Containers → Alloy -->
-  <path d="M 290,328 C 390,328 470,248 531,226"
+  <path d="M 330,328 C 390,328 470,248 531,226"
         fill="none" stroke="url(#arr-ctr-alloy)" stroke-width="2" marker-end="url(#arr-blue)"/>
 
   <!-- ===== CENTER ZONE — Alloy hexagon (pointy-top, center 600,215, r=82) ===== -->
@@ -143,74 +143,34 @@
            fill="url(#hex-fill)" stroke="#38bdf8" stroke-width="2.5"/>
   <polygon points="600,141 663,179 663,251 600,289 537,251 537,179"
            fill="none" stroke="#38bdf8" stroke-width="0.8" stroke-opacity="0.3"/>
-  <!-- Converging lines from left face -->
-  <path d="M 529,200 C 548,200 560,213 572,215" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-opacity="0.55" stroke-linecap="round"/>
-  <path d="M 529,215 L 572,215"                  fill="none" stroke="#ffffff" stroke-width="3"   stroke-opacity="0.75" stroke-linecap="round"/>
-  <path d="M 529,230 C 548,230 560,217 572,215" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-opacity="0.55" stroke-linecap="round"/>
-  <circle cx="572" cy="215" r="8" fill="#38bdf8" fill-opacity="0.25"/>
-  <circle cx="572" cy="215" r="4" fill="#ffffff"/>
-  <!-- Diverging lines to right face -->
-  <path d="M 572,215 C 584,213 614,200 671,200" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-opacity="0.75" stroke-linecap="round"/>
-  <path d="M 572,215 L 671,215"                  fill="none" stroke="#38bdf8" stroke-width="3"   stroke-linecap="round"/>
-  <path d="M 572,215 C 584,217 614,230 671,230" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-opacity="0.75" stroke-linecap="round"/>
-  <text x="600" y="318" text-anchor="middle" font-size="13" font-weight="700" fill="#38bdf8" letter-spacing="4">ALLOY</text>
+  <text x="600" y="209" text-anchor="middle" font-size="22" font-weight="700" fill="#7dd3fc" letter-spacing="2">ALLOY</text>
+  <text x="600" y="230" text-anchor="middle" font-size="11" fill="#38bdf8" letter-spacing="3" opacity="0.8">collector</text>
 
-  <!-- Arrows: Alloy → right panels -->
-  <!-- Alloy → Prometheus -->
-  <path d="M 671,192 C 690,168 705,155 720,152"
+  <!-- Arrows: Alloy → right tool hexagons -->
+  <path d="M 671,192 C 730,180 780,155 850,155"
         fill="none" stroke="url(#arr-alloy-prom)" stroke-width="2" marker-end="url(#arr-red)"/>
-  <!-- Alloy → Grafana -->
-  <path d="M 671,238 C 690,270 705,296 720,298"
+  <path d="M 671,238 C 730,250 780,275 850,275"
         fill="none" stroke="url(#arr-alloy-graf)" stroke-width="2" marker-end="url(#arr-amber)"/>
 
-  <!-- ===== RIGHT ZONE — Prometheus + Grafana ===== -->
+  <!-- ===== RIGHT ZONE: tool nodes as mini hexagons (pointy-top, r=35) ===== -->
 
-  <!-- Prometheus panel — y=80 to 235 -->
-  <rect x="720" y="80" width="390" height="155" fill="#0d1e30" stroke="#ef4444" stroke-width="1.5" rx="8"/>
-  <rect x="720" y="80" width="6"   height="155" fill="#ef4444" rx="4"/>
-  <text x="758" y="102" font-size="11" font-weight="700" fill="#ef4444" letter-spacing="1">PROMETHEUS</text>
-  <text x="758" y="115" font-size="8"  fill="#64748b" font-family="'Courier New',monospace">node_cpu_seconds_total{job="host"}</text>
-  <!-- Sparkline area -->
-  <polygon points="738,222 738,175 756,172 772,179 788,161 804,168 820,155 836,163 852,149 868,157 884,144 900,152 916,140 932,148 948,136 964,144 980,132 996,140 1012,128 1100,222"
-           fill="url(#prom-area)"/>
-  <polyline points="738,175 756,172 772,179 788,161 804,168 820,155 836,163 852,149 868,157 884,144 900,152 916,140 932,148 948,136 964,144 980,132 996,140 1012,128"
-            fill="none" stroke="#ef4444" stroke-width="2" stroke-linejoin="round"/>
-  <line x1="738" y1="222" x2="1100" y2="222" stroke="#1e3040" stroke-width="1"/>
-  <!-- Second series (container CPU) -->
-  <polyline points="738,188 756,190 772,184 788,192 804,180 820,187 836,175 852,182 868,170 884,178 900,165 916,173 932,161 948,169 964,158 980,166 996,154 1012,162"
-            fill="none" stroke="#fca5a5" stroke-width="1.5" stroke-opacity="0.5" stroke-dasharray="4,3" stroke-linejoin="round"/>
-  <text x="738" y="170" font-size="7" fill="#ef4444" font-family="'Courier New',monospace">host</text>
-  <text x="738" y="185" font-size="7" fill="#fca5a5" font-family="'Courier New',monospace">container</text>
+  <!-- Prometheus (cx=880, cy=155) — vertices: 880,120 910,138 910,172 880,190 850,172 850,138 -->
+  <polygon points="880,120 910,138 910,172 880,190 850,172 850,138"
+           fill="#200808" stroke="#ef4444" stroke-width="2"/>
+  <polygon points="880,125 906,140 906,170 880,185 854,170 854,140"
+           fill="none" stroke="#ef4444" stroke-width="0.7" stroke-opacity="0.3"/>
+  <text x="880" y="160" text-anchor="middle" font-size="18" font-weight="800" fill="#ef4444">P</text>
+  <text x="922" y="152" font-size="12" font-weight="700" fill="#ef4444" letter-spacing="1">PROMETHEUS</text>
+  <text x="922" y="166" font-size="9" fill="#64748b" font-family="'Courier New',monospace">metrics · time-series db</text>
 
-  <!-- Grafana panel — y=248 to 373 -->
-  <rect x="720" y="248" width="390" height="125" fill="#0d1e30" stroke="#f59e0b" stroke-width="1.5" rx="8"/>
-  <rect x="720" y="248" width="6"   height="125" fill="#f59e0b" rx="4"/>
-  <text x="758" y="268" font-size="11" font-weight="700" fill="#f59e0b" letter-spacing="1">GRAFANA</text>
-  <text x="758" y="281" font-size="8"  fill="#64748b" font-family="'Courier New',monospace">container_cpu_usage_seconds_total{job="docker"}</text>
-  <!-- Mini bar chart — bars grow upward from baseline y=364 -->
-  <g fill="#f59e0b" fill-opacity="0.65">
-    <rect x="738" y="345" width="14" height="19"/>
-    <rect x="756" y="337" width="14" height="27"/>
-    <rect x="774" y="342" width="14" height="22"/>
-    <rect x="792" y="334" width="14" height="30"/>
-    <rect x="810" y="338" width="14" height="26"/>
-    <rect x="828" y="330" width="14" height="34"/>
-    <rect x="846" y="335" width="14" height="29"/>
-    <rect x="864" y="326" width="14" height="38"/>
-    <rect x="882" y="331" width="14" height="33"/>
-    <rect x="900" y="322" width="14" height="42"/>
-    <rect x="918" y="328" width="14" height="36"/>
-    <rect x="936" y="319" width="14" height="45"/>
-    <rect x="954" y="325" width="14" height="39"/>
-    <rect x="972" y="316" width="14" height="48"/>
-    <rect x="990" y="322" width="14" height="42"/>
-    <rect x="1008" y="312" width="14" height="52"/>
-    <rect x="1026" y="319" width="14" height="45"/>
-    <rect x="1044" y="309" width="14" height="55"/>
-    <rect x="1062" y="316" width="14" height="48"/>
-    <rect x="1080" y="306" width="14" height="58"/>
-  </g>
-  <line x1="738" y1="364" x2="1100" y2="364" stroke="#1e3040" stroke-width="1"/>
+  <!-- Grafana (cx=880, cy=275) — vertices: 880,240 910,258 910,292 880,310 850,292 850,258 -->
+  <polygon points="880,240 910,258 910,292 880,310 850,292 850,258"
+           fill="#1a1000" stroke="#f59e0b" stroke-width="2"/>
+  <polygon points="880,245 906,260 906,290 880,305 854,290 854,260"
+           fill="none" stroke="#f59e0b" stroke-width="0.7" stroke-opacity="0.3"/>
+  <text x="880" y="281" text-anchor="middle" font-size="18" font-weight="800" fill="#f59e0b">G</text>
+  <text x="922" y="272" font-size="12" font-weight="700" fill="#f59e0b" letter-spacing="1">GRAFANA</text>
+  <text x="922" y="286" font-size="9" fill="#64748b" font-family="'Courier New',monospace">visualization · dashboards</text>
 
   <!-- Bottom gradient overlay -->
   <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <linearGradient id="hex-fill-blue" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0e2040"/>
+      <stop offset="100%" stop-color="#071428"/>
+    </linearGradient>
+    <radialGradient id="glow-red" cx="16%" cy="50%" r="22%">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#ef4444" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-center" cx="50%" cy="50%" r="22%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-right" cx="82%" cy="50%" r="22%">
+      <stop offset="0%" stop-color="#34d399" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#34d399" stop-opacity="0"/>
+    </radialGradient>
+    <!-- ISP (red) → Router (blue) -->
+    <linearGradient id="arr-isp-router" x1="265" y1="210" x2="519" y2="210" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+    <linearGradient id="textbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#080c14" stop-opacity="0"/>
+      <stop offset="60%"  stop-color="#080c14" stop-opacity="0.93"/>
+      <stop offset="100%" stop-color="#080c14" stop-opacity="1"/>
+    </linearGradient>
+    <marker id="arr-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#38bdf8"/>
+    </marker>
+    <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#34d399"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow-red)"/>
+  <rect width="1200" height="630" fill="url(#glow-center)"/>
+  <rect width="1200" height="630" fill="url(#glow-right)"/>
+
+  <!-- ISP Globe (left, red — zone convention: Internet/WAN = red) -->
+  <circle cx="190" cy="210" r="74" fill="#150808" stroke="#7f1d1d" stroke-width="1.5"/>
+  <ellipse cx="190" cy="210" rx="37" ry="74" fill="none" stroke="#7f1d1d" stroke-width="1"/>
+  <line x1="116" y1="210" x2="264" y2="210" stroke="#7f1d1d" stroke-width="1"/>
+  <line x1="122" y1="173" x2="258" y2="173" stroke="#7f1d1d" stroke-width="1" opacity="0.4"/>
+  <line x1="122" y1="247" x2="258" y2="247" stroke="#7f1d1d" stroke-width="1" opacity="0.4"/>
+  <text x="190" y="207" text-anchor="middle" font-size="12" fill="#f87171" font-weight="600">ISP</text>
+  <text x="190" y="224" text-anchor="middle" font-size="9" fill="#f87171" font-family="'Courier New',monospace">/48 · /56</text>
+  <rect x="130" y="299" width="120" height="22" fill="#150808" stroke="#7f1d1d" stroke-width="1" rx="3"/>
+  <text x="190" y="314" text-anchor="middle" font-size="10" fill="#f87171" letter-spacing="1">DHCPv6-PD</text>
+
+  <!-- Router hex (center, r=90, cy=210 — blue: zone convention: router = blue) -->
+  <polygon points="600,120 678,165 678,255 600,300 522,255 522,165"
+           fill="url(#hex-fill-blue)" stroke="#38bdf8" stroke-width="2.5"/>
+  <polygon points="600,134 666,172 666,248 600,286 534,248 534,172"
+           fill="none" stroke="#38bdf8" stroke-width="0.8" stroke-opacity="0.3"/>
+  <text x="600" y="199" text-anchor="middle" font-size="16" font-weight="700" fill="#bae6fd" letter-spacing="1">ROUTER</text>
+  <text x="600" y="218" text-anchor="middle" font-size="9" fill="#38bdf8" letter-spacing="3" opacity="0.8">PREFIX</text>
+  <text x="600" y="234" text-anchor="middle" font-size="9" fill="#38bdf8" letter-spacing="3" opacity="0.8">DELEGATION</text>
+
+  <!-- Config pills -->
+  <g font-size="10" font-weight="600" letter-spacing="1" text-anchor="middle">
+    <rect x="468" y="318" width="76" height="22" fill="#071428" stroke="#38bdf8" stroke-width="1" stroke-opacity="0.5" rx="3"/>
+    <text x="506" y="333" fill="#bae6fd">/56 PD</text>
+    <rect x="554" y="318" width="76" height="22" fill="#071428" stroke="#38bdf8" stroke-width="1" stroke-opacity="0.5" rx="3"/>
+    <text x="592" y="333" fill="#bae6fd">/64 LAN</text>
+    <rect x="640" y="318" width="90" height="22" fill="#071428" stroke="#38bdf8" stroke-width="1" stroke-opacity="0.5" rx="3"/>
+    <text x="685" y="333" fill="#bae6fd">RA PREFIX</text>
+  </g>
+
+  <!-- LAN subnets (right, green) -->
+  <rect x="874" y="158" width="168" height="30" fill="#072a1e" stroke="#166534" stroke-width="1.5" rx="4"/>
+  <text x="958" y="178" text-anchor="middle" font-size="11" fill="#86efac" font-weight="600">:0001::/64</text>
+
+  <rect x="874" y="198" width="168" height="30" fill="#072a1e" stroke="#166534" stroke-width="1.5" rx="4"/>
+  <text x="958" y="218" text-anchor="middle" font-size="11" fill="#86efac" font-weight="600">:0002::/64</text>
+
+  <rect x="874" y="238" width="168" height="30" fill="#072a1e" stroke="#166534" stroke-width="1.5" rx="4"/>
+  <text x="958" y="258" text-anchor="middle" font-size="11" fill="#86efac" font-weight="600">:0003::/64</text>
+
+  <!-- ISP → Router arrow (gradient red → blue) -->
+  <line x1="265" y1="210" x2="519" y2="210"
+        stroke="url(#arr-isp-router)" stroke-width="2" stroke-dasharray="6,4"
+        marker-end="url(#arr-blue)"/>
+  <text x="392" y="200" text-anchor="middle" font-size="9" fill="#6b2020" letter-spacing="1">delegate /56</text>
+
+  <!-- Router → subnets arrows (blue → green) -->
+  <line x1="680" y1="197" x2="869" y2="173" stroke="#34d399" stroke-width="1.5" marker-end="url(#arr-green)"/>
+  <line x1="680" y1="210" x2="869" y2="213" stroke="#34d399" stroke-width="1.5" marker-end="url(#arr-green)"/>
+  <line x1="680" y1="223" x2="869" y2="253" stroke="#34d399" stroke-width="1.5" marker-end="url(#arr-green)"/>
+
+  <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
+  <text x="600" y="500" text-anchor="middle" font-size="13"
+        fill="#34d399" letter-spacing="3" font-weight="600">IPv6 EXPLAINED</text>
+  <text x="600" y="538" text-anchor="middle" font-size="34"
+        font-weight="700" fill="#f1f5f9">Prefix Delegation</text>
+</svg>

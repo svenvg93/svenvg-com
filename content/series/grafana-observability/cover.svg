@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <linearGradient id="hex-fill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0e2040"/>
+      <stop offset="100%" stop-color="#071428"/>
+    </linearGradient>
+    <linearGradient id="textbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#080c14" stop-opacity="0"/>
+      <stop offset="60%" stop-color="#080c14" stop-opacity="0.93"/>
+      <stop offset="100%" stop-color="#080c14" stop-opacity="1"/>
+    </linearGradient>
+    <linearGradient id="arr-infra-alloy" x1="330" y1="215" x2="529" y2="215" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+    <linearGradient id="arr-alloy-prom" x1="671" y1="192" x2="850" y2="120" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#ef4444"/>
+    </linearGradient>
+    <linearGradient id="arr-alloy-loki" x1="671" y1="215" x2="850" y2="215" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+    <linearGradient id="arr-alloy-graf" x1="671" y1="238" x2="850" y2="310" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+    <radialGradient id="glow-green" cx="17%" cy="50%" r="22%">
+      <stop offset="0%" stop-color="#34d399" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#34d399" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-blue" cx="50%" cy="50%" r="18%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-orange" cx="83%" cy="50%" r="22%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0"/>
+    </radialGradient>
+    <marker id="arr-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#38bdf8"/>
+    </marker>
+    <marker id="arr-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#ef4444"/>
+    </marker>
+    <marker id="arr-purple" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#a78bfa"/>
+    </marker>
+    <marker id="arr-amber" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#f59e0b"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow-green)"/>
+  <rect width="1200" height="630" fill="url(#glow-blue)"/>
+  <rect width="1200" height="630" fill="url(#glow-orange)"/>
+
+  <g stroke="#0d1a2a" stroke-width="1">
+    <line x1="0"    y1="100" x2="1200" y2="100"/>
+    <line x1="0"    y1="200" x2="1200" y2="200"/>
+    <line x1="0"    y1="300" x2="1200" y2="300"/>
+    <line x1="0"    y1="400" x2="1200" y2="400"/>
+    <line x1="200"  y1="0"   x2="200"  y2="500"/>
+    <line x1="400"  y1="0"   x2="400"  y2="500"/>
+    <line x1="600"  y1="0"   x2="600"  y2="500"/>
+    <line x1="800"  y1="0"   x2="800"  y2="500"/>
+    <line x1="1000" y1="0"   x2="1000" y2="500"/>
+  </g>
+
+  <!-- LEFT ZONE — source infrastructure -->
+  <rect x="120" y="108" width="210" height="220" fill="#0d1e30" stroke="#34d399" stroke-width="1.5" rx="8"/>
+  <rect x="120" y="108" width="6"   height="220" fill="#34d399" rx="4"/>
+  <text x="160" y="130" font-size="11" font-weight="700" fill="#34d399" letter-spacing="2">YOUR INFRA</text>
+  <text x="160" y="143" font-size="8"  fill="#64748b" font-family="'Courier New',monospace">host · containers · services</text>
+  <rect x="136" y="150" width="178" height="22" fill="#0a1a2c" stroke="#1e3a50" stroke-width="1" rx="3"/>
+  <text x="144" y="165" font-size="8" fill="#94a3b8" font-family="'Courier New',monospace">CPU </text>
+  <rect x="168" y="154" width="90" height="5" fill="#1e3a50" rx="2"/>
+  <rect x="168" y="154" width="34" height="5" fill="#38bdf8" rx="2"/>
+  <text x="266" y="165" font-size="8" fill="#7dd3fc" font-family="'Courier New',monospace">38%</text>
+  <rect x="136" y="177" width="178" height="22" fill="#0a1a2c" stroke="#1e3a50" stroke-width="1" rx="3"/>
+  <text x="144" y="192" font-size="8" fill="#94a3b8" font-family="'Courier New',monospace">MEM </text>
+  <rect x="168" y="181" width="90" height="5" fill="#1e3a50" rx="2"/>
+  <rect x="168" y="181" width="67" height="5" fill="#38bdf8" rx="2"/>
+  <text x="266" y="192" font-size="8" fill="#7dd3fc" font-family="'Courier New',monospace">74%</text>
+  <line x1="136" y1="207" x2="314" y2="207" stroke="#1e3a50" stroke-width="1"/>
+  <text x="144" y="222" font-size="8" font-weight="700" fill="#34d399" font-family="'Courier New',monospace">CONTAINERS</text>
+  <g font-size="8.5" font-family="'Courier New',monospace">
+    <circle cx="143" cy="238" r="4" fill="#4ade80" fill-opacity="0.85"/>
+    <text x="153" y="241" fill="#94a3b8">nginx</text>
+    <circle cx="143" cy="256" r="4" fill="#4ade80" fill-opacity="0.85"/>
+    <text x="153" y="259" fill="#94a3b8">traefik</text>
+    <circle cx="215" cy="238" r="4" fill="#4ade80" fill-opacity="0.85"/>
+    <text x="225" y="241" fill="#94a3b8">grafana</text>
+    <circle cx="215" cy="256" r="4" fill="#4ade80" fill-opacity="0.85"/>
+    <text x="225" y="259" fill="#94a3b8">alloy</text>
+  </g>
+
+  <!-- Arrow: infrastructure → Alloy -->
+  <path d="M 330,215 C 390,215 468,215 529,215"
+        fill="none" stroke="url(#arr-infra-alloy)" stroke-width="2" marker-end="url(#arr-blue)"/>
+
+  <!-- CENTER ZONE — Alloy hexagon (pointy-top, cx=600, cy=215, r=82) -->
+  <polygon points="600,133 671,174 671,256 600,297 529,256 529,174"
+           fill="url(#hex-fill)" stroke="#38bdf8" stroke-width="2.5"/>
+  <polygon points="600,141 663,179 663,251 600,289 537,251 537,179"
+           fill="none" stroke="#38bdf8" stroke-width="0.8" stroke-opacity="0.3"/>
+  <path d="M 529,200 C 548,200 560,213 572,215" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-opacity="0.55" stroke-linecap="round"/>
+  <path d="M 529,215 L 572,215"                  fill="none" stroke="#ffffff" stroke-width="3"   stroke-opacity="0.75" stroke-linecap="round"/>
+  <path d="M 529,230 C 548,230 560,217 572,215" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-opacity="0.55" stroke-linecap="round"/>
+  <circle cx="572" cy="215" r="8" fill="#38bdf8" fill-opacity="0.25"/>
+  <circle cx="572" cy="215" r="4" fill="#ffffff"/>
+  <path d="M 572,215 C 584,213 614,200 671,200" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-opacity="0.75" stroke-linecap="round"/>
+  <path d="M 572,215 L 671,215"                  fill="none" stroke="#38bdf8" stroke-width="3"   stroke-linecap="round"/>
+  <path d="M 572,215 C 584,217 614,230 671,230" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-opacity="0.75" stroke-linecap="round"/>
+  <text x="600" y="318" text-anchor="middle" font-size="13" font-weight="700" fill="#38bdf8" letter-spacing="4">ALLOY</text>
+
+  <!-- Arrows: Alloy → tool hexagons -->
+  <path d="M 671,192 C 730,180 780,120 850,120"
+        fill="none" stroke="url(#arr-alloy-prom)" stroke-width="2" marker-end="url(#arr-red)"/>
+  <path d="M 671,215 L 850,215"
+        fill="none" stroke="url(#arr-alloy-loki)" stroke-width="2" marker-end="url(#arr-purple)"/>
+  <path d="M 671,238 C 730,250 780,310 850,310"
+        fill="none" stroke="url(#arr-alloy-graf)" stroke-width="2" marker-end="url(#arr-amber)"/>
+
+  <!-- RIGHT ZONE — tool hexagons (pointy-top, r=35) -->
+
+  <!-- Prometheus (cx=880, cy=120) -->
+  <polygon points="880,85 910,103 910,137 880,155 850,137 850,103"
+           fill="#200808" stroke="#ef4444" stroke-width="2"/>
+  <polygon points="880,90 906,105 906,135 880,150 854,135 854,105"
+           fill="none" stroke="#ef4444" stroke-width="0.7" stroke-opacity="0.3"/>
+  <text x="880" y="125" text-anchor="middle" font-size="18" font-weight="800" fill="#ef4444">P</text>
+  <text x="922" y="117" font-size="12" font-weight="700" fill="#ef4444" letter-spacing="1">PROMETHEUS</text>
+  <text x="922" y="131" font-size="9" fill="#64748b" font-family="'Courier New',monospace">metrics · time-series db</text>
+
+  <!-- Loki (cx=880, cy=215) -->
+  <polygon points="880,180 910,198 910,232 880,250 850,232 850,198"
+           fill="#160a2a" stroke="#a78bfa" stroke-width="2"/>
+  <polygon points="880,185 906,200 906,230 880,245 854,230 854,200"
+           fill="none" stroke="#a78bfa" stroke-width="0.7" stroke-opacity="0.3"/>
+  <text x="880" y="221" text-anchor="middle" font-size="18" font-weight="800" fill="#a78bfa">L</text>
+  <text x="922" y="212" font-size="12" font-weight="700" fill="#a78bfa" letter-spacing="1">LOKI</text>
+  <text x="922" y="226" font-size="9" fill="#64748b" font-family="'Courier New',monospace">logs · label-indexed</text>
+
+  <!-- Grafana (cx=880, cy=310) -->
+  <polygon points="880,275 910,293 910,327 880,345 850,327 850,293"
+           fill="#1a1000" stroke="#f59e0b" stroke-width="2"/>
+  <polygon points="880,280 906,295 906,325 880,340 854,325 854,295"
+           fill="none" stroke="#f59e0b" stroke-width="0.7" stroke-opacity="0.3"/>
+  <text x="880" y="316" text-anchor="middle" font-size="18" font-weight="800" fill="#f59e0b">G</text>
+  <text x="922" y="307" font-size="12" font-weight="700" fill="#f59e0b" letter-spacing="1">GRAFANA</text>
+  <text x="922" y="321" font-size="9" fill="#64748b" font-family="'Courier New',monospace">visualization · dashboards</text>
+
+  <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
+
+  <text x="600" y="500" text-anchor="middle" font-size="13" fill="#f97316" letter-spacing="3" font-weight="600">GRAFANA OBSERVABILITY</text>
+  <text x="600" y="538" text-anchor="middle" font-size="34" font-weight="700" fill="#f1f5f9">Grafana Observability</text>
+</svg>

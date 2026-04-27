@@ -8,6 +8,7 @@ categories:
   - Networking
 tags:
   - wifi
+  - wifi7
 series:
   - WiFi Explained
 lightbox:

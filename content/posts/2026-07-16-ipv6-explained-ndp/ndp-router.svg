@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 220" width="700" height="220"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <marker id="arr-r" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto">
+      <polygon points="0,0 7,2.5 0,5" fill="#10b981"/>
+    </marker>
+    <marker id="arr-l" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto">
+      <polygon points="0,0 7,2.5 0,5" fill="#10b981"/>
+    </marker>
+  </defs>
+  <rect width="700" height="220" fill="#f8fafc" rx="12"/>
+  <text x="350" y="24" text-anchor="middle" font-size="13" font-weight="700" fill="#111827">NDP Router Discovery — RS and RA Exchange</text>
+
+  <text x="130" y="44" text-anchor="middle" font-size="11" font-weight="700" fill="#374151">HOST</text>
+  <text x="570" y="44" text-anchor="middle" font-size="11" font-weight="700" fill="#374151">ROUTER</text>
+
+  <line x1="130" y1="50" x2="130" y2="205" stroke="#d1d5db" stroke-width="2"/>
+  <line x1="570" y1="50" x2="570" y2="205" stroke="#d1d5db" stroke-width="2"/>
+
+  <!-- RS -->
+  <circle cx="130" cy="75" r="4" fill="#3b82f6"/>
+  <line x1="134" y1="75" x2="558" y2="75" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arr-r)"/>
+  <text x="350" y="68" text-anchor="middle" font-size="10" font-weight="600" fill="#1d4ed8">Router Solicitation (RS · type 133)</text>
+  <text x="350" y="85" text-anchor="middle" font-size="9" fill="#64748b">dst ff02::2 — are there any routers?</text>
+
+  <!-- RA -->
+  <circle cx="570" cy="130" r="4" fill="#10b981"/>
+  <line x1="142" y1="130" x2="566" y2="130" stroke="#10b981" stroke-width="2"/>
+  <text x="350" y="123" text-anchor="middle" font-size="10" font-weight="600" fill="#065f46">Router Advertisement (RA · type 134)</text>
+  <text x="350" y="142" text-anchor="middle" font-size="9" fill="#64748b">prefix 2001:db8::/64 · gateway fe80::1 · MTU 1500 · M=0 O=0</text>
+
+  <!-- RA content box -->
+  <rect x="290" y="155" width="260" height="50" fill="#f0fdf4" stroke="#10b981" stroke-width="1" rx="5"/>
+  <text x="310" y="170" font-size="9" fill="#065f46" font-weight="600">RA carries:</text>
+  <text x="310" y="184" font-size="9" fill="#374151">• Network prefix + prefix length</text>
+  <text x="310" y="197" font-size="9" fill="#374151">• Router link-local (default gateway)</text>
+</svg>

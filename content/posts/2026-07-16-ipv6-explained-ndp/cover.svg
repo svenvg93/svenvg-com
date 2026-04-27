@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <linearGradient id="hex-fill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0e4030"/>
+      <stop offset="100%" stop-color="#072a1e"/>
+    </linearGradient>
+    <linearGradient id="hex-fill-center" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a2a20"/>
+      <stop offset="100%" stop-color="#061810"/>
+    </linearGradient>
+    <radialGradient id="glow-left" cx="16%" cy="50%" r="22%">
+      <stop offset="0%" stop-color="#34d399" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#34d399" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-right" cx="82%" cy="50%" r="22%">
+      <stop offset="0%" stop-color="#34d399" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#34d399" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-center" cx="50%" cy="46%" r="18%">
+      <stop offset="0%" stop-color="#34d399" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#34d399" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="textbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#080c14" stop-opacity="0"/>
+      <stop offset="60%"  stop-color="#080c14" stop-opacity="0.93"/>
+      <stop offset="100%" stop-color="#080c14" stop-opacity="1"/>
+    </linearGradient>
+    <marker id="arr-right" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#34d399"/>
+    </marker>
+
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow-left)"/>
+  <rect width="1200" height="630" fill="url(#glow-right)"/>
+  <rect width="1200" height="630" fill="url(#glow-center)"/>
+
+  <!-- Subtle hex grid texture -->
+  <g stroke="#0a2016" stroke-width="1" fill="none" opacity="0.5">
+    <polygon points="600,60 660,95 660,165 600,200 540,165 540,95"/>
+    <polygon points="480,95 540,130 540,200 480,235 420,200 420,130"/>
+    <polygon points="720,95 780,130 780,200 720,235 660,200 660,130"/>
+    <polygon points="600,200 660,235 660,305 600,340 540,305 540,235"/>
+    <polygon points="360,60 420,95 420,165 360,200 300,165 300,95"/>
+    <polygon points="840,60 900,95 900,165 840,200 780,165 780,95"/>
+  </g>
+
+  <!-- Left hex: DEVICE A -->
+  <polygon points="220,145 281,180 281,250 220,285 159,250 159,180"
+           fill="url(#hex-fill)" stroke="#34d399" stroke-width="2.5"/>
+  <polygon points="220,153 274,184 274,246 220,277 166,246 166,184"
+           fill="none" stroke="#34d399" stroke-width="0.8" stroke-opacity="0.3"/>
+  <text x="220" y="207" text-anchor="middle" font-size="12" font-weight="700" fill="#86efac">DEVICE A</text>
+  <text x="220" y="226" text-anchor="middle" font-size="8" fill="#34d399" letter-spacing="1" font-family="'Courier New',monospace" opacity="0.8">fe80::1</text>
+
+  <!-- Right hex: DEVICE B -->
+  <polygon points="940,145 1001,180 1001,250 940,285 879,250 879,180"
+           fill="url(#hex-fill)" stroke="#34d399" stroke-width="2.5"/>
+  <polygon points="940,153 994,184 994,246 940,277 886,246 886,184"
+           fill="none" stroke="#34d399" stroke-width="0.8" stroke-opacity="0.3"/>
+  <text x="940" y="207" text-anchor="middle" font-size="12" font-weight="700" fill="#86efac">DEVICE B</text>
+  <text x="940" y="226" text-anchor="middle" font-size="8" fill="#34d399" letter-spacing="1" font-family="'Courier New',monospace" opacity="0.8">fe80::2</text>
+
+  <!-- Center: multicast indicator -->
+  <circle cx="600" cy="215" r="36" fill="#072a1e" stroke="#34d399" stroke-width="1.5"/>
+  <circle cx="600" cy="215" r="28" fill="none" stroke="#34d399" stroke-width="0.8" stroke-opacity="0.3"/>
+  <text x="600" y="211" text-anchor="middle" font-size="9" font-weight="700" fill="#86efac" letter-spacing="1">ff02::</text>
+  <text x="600" y="224" text-anchor="middle" font-size="7" fill="#34d399" letter-spacing="0.5" opacity="0.8">1:ff.../NS</text>
+
+  <!-- NS: Device A → circle left edge -->
+  <line x1="282" y1="204" x2="562" y2="204" stroke="#34d399" stroke-width="2"
+        marker-end="url(#arr-right)"/>
+  <!-- NS: circle right edge → Device B (dashed, multicast delivery) -->
+  <line x1="638" y1="204" x2="878" y2="204" stroke="#34d399" stroke-width="1.5" stroke-dasharray="4,3"
+        marker-end="url(#arr-right)"/>
+  <text x="422" y="195" text-anchor="middle" font-size="9" fill="#64748b" letter-spacing="1">NS · ff02::1:ff…</text>
+
+  <!-- NA: Device B → circle right edge -->
+  <line x1="878" y1="226" x2="638" y2="226" stroke="#34d399" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <!-- NA: circle left edge → Device A (arrowhead at A end, auto-orients left) -->
+  <line x1="562" y1="226" x2="282" y2="226" stroke="#34d399" stroke-width="1.5" stroke-dasharray="5,3"
+        marker-end="url(#arr-right)"/>
+  <text x="760" y="240" text-anchor="middle" font-size="9" fill="#64748b" letter-spacing="1">NA · MAC</text>
+
+  <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
+  <text x="600" y="500" text-anchor="middle" font-size="13"
+        fill="#34d399" letter-spacing="3" font-weight="600">IPv6 EXPLAINED</text>
+  <text x="600" y="538" text-anchor="middle" font-size="34"
+        font-weight="700" fill="#f1f5f9">Neighbor Discovery</text>
+</svg>

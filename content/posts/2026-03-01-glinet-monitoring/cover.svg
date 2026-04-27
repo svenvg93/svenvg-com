@@ -6,30 +6,64 @@
       <stop offset="0%" stop-color="#080c14"/>
       <stop offset="100%" stop-color="#0d1520"/>
     </linearGradient>
-    <linearGradient id="router-fill" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#0e4040"/>
-      <stop offset="100%" stop-color="#072a2a"/>
+    <linearGradient id="hex-fill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0e4030"/>
+      <stop offset="100%" stop-color="#072a1e"/>
     </linearGradient>
-    <linearGradient id="prom-grad" x1="0" y1="1" x2="0" y2="0">
-      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.0"/>
-      <stop offset="100%" stop-color="#ef4444" stop-opacity="0.6"/>
+    <linearGradient id="hex-fill-alloy" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0e2040"/>
+      <stop offset="100%" stop-color="#071428"/>
     </linearGradient>
-    <linearGradient id="loki-grad" x1="0" y1="1" x2="0" y2="0">
-      <stop offset="0%" stop-color="#a78bfa" stop-opacity="0.0"/>
-      <stop offset="100%" stop-color="#a78bfa" stop-opacity="0.5"/>
+    <radialGradient id="glow-green" cx="18%" cy="50%" r="22%">
+      <stop offset="0%" stop-color="#34d399" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#34d399" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-sky" cx="50%" cy="50%" r="18%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+    </radialGradient>
+    <!-- GL.iNet → Alloy gradient (green → sky), horizontal -->
+    <linearGradient id="arr-gl-alloy" x1="281" y1="255" x2="529" y2="255" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
     </linearGradient>
+    <!-- Alloy → tool gradients (sky → tool color) -->
+    <linearGradient id="arr-alloy-prom" x1="671" y1="240" x2="850" y2="165" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#ef4444"/>
+    </linearGradient>
+    <linearGradient id="arr-alloy-loki" x1="671" y1="255" x2="850" y2="255" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+    <linearGradient id="arr-alloy-graf" x1="671" y1="270" x2="850" y2="345" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </linearGradient>
+    <!-- Arrow markers -->
+    <marker id="arr-sky" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#38bdf8"/>
+    </marker>
+    <marker id="arr-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#ef4444"/>
+    </marker>
+    <marker id="arr-purple" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#a78bfa"/>
+    </marker>
+    <marker id="arr-orange" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#f97316"/>
+    </marker>
     <linearGradient id="textbg" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#080c14" stop-opacity="0"/>
       <stop offset="60%" stop-color="#080c14" stop-opacity="0.93"/>
       <stop offset="100%" stop-color="#080c14" stop-opacity="1"/>
     </linearGradient>
-    <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-      <polygon points="0,0 8,3 0,6" fill="#34d399"/>
-    </marker>
   </defs>
 
   <!-- Background -->
   <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow-green)"/>
+  <rect width="1200" height="630" fill="url(#glow-sky)"/>
 
   <!-- Subtle grid -->
   <g stroke="#0d1a2a" stroke-width="1">
@@ -44,108 +78,61 @@
     <line x1="1000" y1="0" x2="1000" y2="500"/>
   </g>
 
-  <!-- === GL.iNet Router Icon (flat design) center (220,255) === -->
-  <!-- Router body -->
-  <rect x="150" y="200" width="140" height="110" rx="14" fill="url(#router-fill)" stroke="#34d399" stroke-width="2.5"/>
+  <!-- === GL.iNet hexagon (pointy-top, center 220,255, r=70) === -->
+  <!-- Vertices: top(220,185) tr(281,220) br(281,290) bot(220,325) bl(159,290) tl(159,220) -->
+  <polygon points="220,185 281,220 281,290 220,325 159,290 159,220"
+           fill="url(#hex-fill)" stroke="#34d399" stroke-width="2.5"/>
+  <polygon points="220,193 274,224 274,286 220,317 166,286 166,224"
+           fill="none" stroke="#34d399" stroke-width="0.8" stroke-opacity="0.3"/>
+  <text x="220" y="249" text-anchor="middle" font-size="18" font-weight="700" fill="#86efac" letter-spacing="1">GL.iNet</text>
+  <text x="220" y="268" text-anchor="middle" font-size="10" fill="#34d399" letter-spacing="3" opacity="0.8">OpenWrt</text>
 
-  <!-- Router front panel -->
-  <rect x="160" y="210" width="120" height="40" rx="8" fill="#0a2a2a" stroke="#34d399" stroke-width="1.5"/>
+  <!-- Arrow: GL.iNet → Alloy (horizontal) -->
+  <path d="M 281,255 L 529,255"
+        fill="none" stroke="url(#arr-gl-alloy)" stroke-width="2" marker-end="url(#arr-sky)"/>
 
-  <!-- WAN port (red) -->
-  <circle cx="175" cy="225" r="5" fill="#ef4444" stroke="#ef4444" stroke-width="1"/>
-  <text x="175" y="245" text-anchor="middle" font-size="7" fill="#ef4444" font-weight="600">WAN</text>
+  <!-- === CENTER ZONE — Alloy hexagon (pointy-top, center 600,255, r=82) === -->
+  <!-- Vertices: top(600,173) tr(671,214) br(671,296) bot(600,337) bl(529,296) tl(529,214) -->
+  <polygon points="600,173 671,214 671,296 600,337 529,296 529,214"
+           fill="url(#hex-fill-alloy)" stroke="#38bdf8" stroke-width="2.5"/>
+  <polygon points="600,181 663,219 663,291 600,329 537,291 537,219"
+           fill="none" stroke="#38bdf8" stroke-width="0.8" stroke-opacity="0.3"/>
+  <text x="600" y="249" text-anchor="middle" font-size="22" font-weight="700" fill="#7dd3fc" letter-spacing="2">ALLOY</text>
+  <text x="600" y="270" text-anchor="middle" font-size="11" fill="#38bdf8" letter-spacing="3" opacity="0.8">collector</text>
 
-  <!-- LAN ports (green) -->
-  <circle cx="200" cy="225" r="5" fill="#34d399" stroke="#34d399" stroke-width="1"/>
-  <circle cx="220" cy="225" r="5" fill="#34d399" stroke="#34d399" stroke-width="1"/>
-  <circle cx="240" cy="225" r="5" fill="#34d399" stroke="#34d399" stroke-width="1"/>
-  <text x="220" y="245" text-anchor="middle" font-size="7" fill="#34d399" font-weight="600">LAN x3</text>
+  <!-- Diverging arrows: Alloy → tool hexagons (symmetric ±90px from cy=255) -->
+  <path d="M 671,240 C 720,210 780,165 850,165" fill="none" stroke="url(#arr-alloy-prom)" stroke-width="2" marker-end="url(#arr-red)"/>
+  <path d="M 671,255 L 850,255"                 fill="none" stroke="url(#arr-alloy-loki)" stroke-width="2" marker-end="url(#arr-purple)"/>
+  <path d="M 671,270 C 720,300 780,345 850,345" fill="none" stroke="url(#arr-alloy-graf)" stroke-width="2" marker-end="url(#arr-orange)"/>
 
-  <!-- Status LEDs -->
-  <circle cx="170" cy="280" r="3" fill="#4ade80" opacity="0.8"/>
-  <circle cx="185" cy="280" r="3" fill="#34d399" opacity="0.8"/>
-  <circle cx="200" cy="280" r="3" fill="#f97316" opacity="0.8"/>
-  <circle cx="215" cy="280" r="3" fill="#64748b" opacity="0.5"/>
+  <!-- === RIGHT ZONE: tool nodes as mini hexagons (pointy-top, r=35) === -->
 
-  <!-- Antennas -->
-  <line x1="160" y1="200" x2="140" y2="165" stroke="#34d399" stroke-width="3" stroke-linecap="round"/>
-  <circle cx="140" cy="160" r="4" fill="none" stroke="#34d399" stroke-width="2"/>
+  <!-- Prometheus (cx=880, cy=165) -->
+  <polygon points="880,130 910,148 910,182 880,200 850,182 850,148"
+           fill="#200808" stroke="#ef4444" stroke-width="2"/>
+  <polygon points="880,135 906,150 906,180 880,195 854,180 854,150"
+           fill="none" stroke="#ef4444" stroke-width="0.7" stroke-opacity="0.3"/>
+  <text x="880" y="170" text-anchor="middle" font-size="18" font-weight="800" fill="#ef4444">P</text>
+  <text x="922" y="162" font-size="12" font-weight="700" fill="#ef4444" letter-spacing="1">PROMETHEUS</text>
+  <text x="922" y="176" font-size="9" fill="#64748b" font-family="'Courier New',monospace">metrics · time-series db</text>
 
-  <line x1="290" y1="200" x2="310" y2="165" stroke="#34d399" stroke-width="3" stroke-linecap="round"/>
-  <circle cx="310" cy="160" r="4" fill="none" stroke="#34d399" stroke-width="2"/>
+  <!-- Loki (cx=880, cy=255) -->
+  <polygon points="880,220 910,238 910,272 880,290 850,272 850,238"
+           fill="#160a2a" stroke="#a78bfa" stroke-width="2"/>
+  <polygon points="880,225 906,240 906,270 880,285 854,270 854,240"
+           fill="none" stroke="#a78bfa" stroke-width="0.7" stroke-opacity="0.3"/>
+  <text x="880" y="261" text-anchor="middle" font-size="18" font-weight="800" fill="#a78bfa">L</text>
+  <text x="922" y="252" font-size="12" font-weight="700" fill="#a78bfa" letter-spacing="1">LOKI</text>
+  <text x="922" y="266" font-size="9" fill="#64748b" font-family="'Courier New',monospace">logs · label-indexed</text>
 
-  <!-- Router label -->
-  <text x="220" y="325" text-anchor="middle" font-size="12" font-weight="700" fill="#34d399" letter-spacing="2">GL.iNet</text>
-
-  <!-- Diverging flow marks (to monitoring panels) -->
-  <!-- To Prometheus (top) -->
-  <path d="M 290,220 C 420,180 500,165 600,165" fill="none" stroke="#34d399" stroke-width="2" marker-end="url(#arr)"/>
-  <!-- To Loki (middle) -->
-  <path d="M 290,255 L 600,255" fill="none" stroke="#34d399" stroke-width="2" marker-end="url(#arr)"/>
-  <!-- To Grafana (bottom) -->
-  <path d="M 290,290 C 420,330 500,345 600,345" fill="none" stroke="#34d399" stroke-width="2" marker-end="url(#arr)"/>
-
-  <!-- === Prometheus panel === -->
-  <rect x="600" y="100" width="460" height="120" fill="#0d1e30" stroke="#ef4444" stroke-width="1.5" rx="8"/>
-  <rect x="600" y="100" width="6" height="120" fill="#ef4444" rx="4"/>
-  <text x="640" y="122" font-size="11" font-weight="700" fill="#ef4444" letter-spacing="1">PROMETHEUS</text>
-  <text x="640" y="140" font-size="8" fill="#64748b" font-family="'Courier New',monospace">cpu_temp / mem_usage / eth0_packets</text>
-  <!-- Metric sparkline area fill -->
-  <polygon points="620,195 620,185 640,183 660,193 680,173 700,180 720,167 740,175 760,160 780,169 800,155 820,164 840,150 860,159 880,143 900,153 920,136 940,145 960,130 980,139 1000,123 1020,133 1040,115 1050,195"
-           fill="url(#prom-grad)"/>
-  <!-- Metric sparkline -->
-  <polyline points="620,185 640,183 660,193 680,173 700,180 720,167 740,175 760,160 780,169 800,155 820,164 840,150 860,159 880,143 900,153 920,136 940,145 960,130 980,139 1000,123 1020,133 1040,115"
-            fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linejoin="round"/>
-  <!-- Baseline -->
-  <line x1="620" y1="195" x2="1050" y2="195" stroke="#1e3040" stroke-width="1"/>
-  <!-- Y-axis ticks -->
-  <line x1="620" y1="148" x2="625" y2="148" stroke="#334155" stroke-width="1"/>
-  <line x1="620" y1="172" x2="625" y2="172" stroke="#334155" stroke-width="1"/>
-  <text x="630" y="152" font-size="8" fill="#475569">100</text>
-  <text x="630" y="176" font-size="8" fill="#475569">50</text>
-
-  <!-- === Loki panel === -->
-  <rect x="600" y="195" width="460" height="120" fill="#0d1e30" stroke="#a78bfa" stroke-width="1.5" rx="8"/>
-  <rect x="600" y="195" width="6" height="120" fill="#a78bfa" rx="4"/>
-  <text x="640" y="217" font-size="11" font-weight="700" fill="#a78bfa" letter-spacing="1">LOKI</text>
-  <!-- Syslog stream -->
-  <g font-size="9" fill="#64748b" font-family="'Courier New',monospace">
-    <text x="620" y="233">time=2026-03-01T14:22:15Z level=info msg="Interface eth0 up"</text>
-    <text x="620" y="247"><tspan fill="#4ade80">[INFO]</tspan> dnsmasq[1234]: DHCP request from 192.168.1.50</text>
-    <text x="620" y="261"><tspan fill="#f97316">[WARN]</tspan> hostapd[5678]: STA 00:11:22:33:44:55 connected</text>
-    <text x="620" y="275"><tspan fill="#34d399">[STAT]</tspan> connection established to 116.202.176.68:443</text>
-    <text x="620" y="289"><tspan fill="#4ade80">[INFO]</tspan> reboot: Reboot initiated at 14:30:00</text>
-    <text x="620" y="303"><tspan fill="#4ade80">[INFO]</tspan> syslog: OpenWRT system operational</text>
-  </g>
-
-  <!-- === Grafana panel === -->
-  <rect x="600" y="290" width="460" height="120" fill="#0d1e30" stroke="#f97316" stroke-width="1.5" rx="8"/>
-  <rect x="600" y="290" width="6" height="120" fill="#f97316" rx="4"/>
-  <text x="640" y="312" font-size="11" font-weight="700" fill="#f97316" letter-spacing="1">GRAFANA</text>
-  <text x="640" y="326" font-size="8" fill="#64748b" font-family="'Courier New',monospace">Router Health Dashboard</text>
-  <!-- Dashboard mini bars -->
-  <g fill="#f97316" fill-opacity="0.7">
-    <rect x="620" y="360" width="18" height="25"/>
-    <rect x="644" y="352" width="18" height="33"/>
-    <rect x="668" y="355" width="18" height="30"/>
-    <rect x="692" y="348" width="18" height="37"/>
-    <rect x="716" y="358" width="18" height="27"/>
-    <rect x="740" y="344" width="18" height="41"/>
-    <rect x="764" y="350" width="18" height="35"/>
-    <rect x="788" y="338" width="18" height="47"/>
-    <rect x="812" y="345" width="18" height="40"/>
-    <rect x="836" y="332" width="18" height="53"/>
-    <rect x="860" y="340" width="18" height="45"/>
-    <rect x="884" y="328" width="18" height="57"/>
-    <rect x="908" y="335" width="18" height="50"/>
-    <rect x="932" y="320" width="18" height="65"/>
-    <rect x="956" y="328" width="18" height="57"/>
-    <rect x="980" y="315" width="18" height="70"/>
-    <rect x="1004" y="325" width="18" height="60"/>
-    <rect x="1028" y="310" width="18" height="75"/>
-  </g>
-  <!-- Baseline -->
-  <line x1="620" y1="392" x2="1050" y2="392" stroke="#1e3040" stroke-width="1"/>
+  <!-- Grafana (cx=880, cy=345) -->
+  <polygon points="880,310 910,328 910,362 880,380 850,362 850,328"
+           fill="#1a0c00" stroke="#f97316" stroke-width="2"/>
+  <polygon points="880,315 906,330 906,360 880,375 854,360 854,330"
+           fill="none" stroke="#f97316" stroke-width="0.7" stroke-opacity="0.3"/>
+  <text x="880" y="351" text-anchor="middle" font-size="18" font-weight="800" fill="#f97316">G</text>
+  <text x="922" y="342" font-size="12" font-weight="700" fill="#f97316" letter-spacing="1">GRAFANA</text>
+  <text x="922" y="356" font-size="9" fill="#64748b" font-family="'Courier New',monospace">visualization · dashboards</text>
 
   <!-- Bottom gradient overlay -->
   <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>

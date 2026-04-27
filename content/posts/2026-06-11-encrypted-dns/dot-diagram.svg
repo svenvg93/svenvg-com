@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 190" width="700" height="190"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+
+  <!-- Background -->
+  <rect width="700" height="190" fill="#f8fafc" rx="12"/>
+
+  <!-- Title -->
+  <text x="350" y="24" text-anchor="middle" font-size="13" font-weight="700" fill="#111827">DNS-over-TLS (DoT) — dedicated port, TLS wrapper</text>
+
+  <!-- ── CLIENT ── -->
+  <rect x="40" y="58" width="120" height="56" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5" rx="6"/>
+  <text x="100" y="84" text-anchor="middle" font-size="13" font-weight="700" fill="#1d4ed8">CLIENT</text>
+  <text x="100" y="101" text-anchor="middle" font-size="9" fill="#3b82f6">stub resolver</text>
+
+  <!-- ── ARROW client → tunnel ── -->
+  <line x1="160" y1="86" x2="228" y2="86" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- ── TLS TUNNEL ── -->
+  <!-- Outer TLS box -->
+  <rect x="232" y="44" width="236" height="84" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2" rx="8"/>
+  <!-- Port badge -->
+  <rect x="312" y="36" width="76" height="18" fill="#7c3aed" rx="4"/>
+  <text x="350" y="49" text-anchor="middle" font-size="9" font-weight="700" fill="white">853 / TCP</text>
+  <!-- TLS label -->
+  <text x="248" y="62" font-size="9" font-weight="700" fill="#7c3aed" letter-spacing="1">TLS</text>
+  <!-- Inner DNS packet box -->
+  <rect x="258" y="66" width="184" height="40" fill="white" stroke="#a78bfa" stroke-width="1" rx="5"/>
+  <text x="350" y="84" text-anchor="middle" font-size="11" font-weight="600" fill="#4c1d95">DNS Query</text>
+  <text x="350" y="98" text-anchor="middle" font-size="8" fill="#7c3aed" font-family="'Courier New',monospace">example.com A?</text>
+
+  <!-- ── ARROW tunnel → resolver ── -->
+  <line x1="468" y1="86" x2="536" y2="86" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- ── RESOLVER ── -->
+  <rect x="540" y="58" width="120" height="56" fill="#f0fdf4" stroke="#10b981" stroke-width="1.5" rx="6"/>
+  <text x="600" y="84" text-anchor="middle" font-size="13" font-weight="700" fill="#065f46">RESOLVER</text>
+  <text x="600" y="101" text-anchor="middle" font-size="9" fill="#10b981">1.1.1.1</text>
+
+  <!-- ── Caption ── -->
+  <text x="350" y="152" text-anchor="middle" font-size="10" fill="#6b7280">Dedicated port — easy to identify, monitor, and allow or block at the firewall</text>
+  <text x="350" y="166" text-anchor="middle" font-size="10" fill="#6b7280">TLS authenticates the resolver; traffic is encrypted end-to-end</text>
+</svg>

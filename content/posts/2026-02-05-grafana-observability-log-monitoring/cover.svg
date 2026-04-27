@@ -16,16 +16,16 @@
       <stop offset="100%" stop-color="#080c14" stop-opacity="1"/>
     </linearGradient>
     <!-- Left-to-Alloy gradient arrows (green → blue) -->
-    <linearGradient id="arr-syslog-alloy" x1="290" y1="190" x2="529" y2="205" gradientUnits="userSpaceOnUse">
+    <linearGradient id="arr-syslog-alloy" x1="330" y1="190" x2="529" y2="205" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#34d399"/>
       <stop offset="100%" stop-color="#38bdf8"/>
     </linearGradient>
-    <linearGradient id="arr-docker-alloy" x1="290" y1="325" x2="529" y2="248" gradientUnits="userSpaceOnUse">
+    <linearGradient id="arr-docker-alloy" x1="330" y1="325" x2="529" y2="248" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#34d399"/>
       <stop offset="100%" stop-color="#38bdf8"/>
     </linearGradient>
     <!-- Alloy-to-Loki gradient arrow (blue → purple) -->
-    <linearGradient id="arr-alloy-loki" x1="671" y1="215" x2="720" y2="215" gradientUnits="userSpaceOnUse">
+    <linearGradient id="arr-alloy-loki" x1="671" y1="215" x2="850" y2="215" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#38bdf8"/>
       <stop offset="100%" stop-color="#a78bfa"/>
     </linearGradient>
@@ -72,48 +72,48 @@
   <!-- ===== LEFT ZONE — log sources ===== -->
 
   <!-- System logs card (syslog / auth.log) -->
-  <rect x="80" y="108" width="210" height="158" fill="#0d1e30" stroke="#34d399" stroke-width="1.5" rx="8"/>
-  <rect x="80" y="108" width="6"   height="158" fill="#34d399" rx="4"/>
-  <text x="120" y="130" font-size="11" font-weight="700" fill="#34d399" letter-spacing="2">SYSTEM LOGS</text>
-  <text x="120" y="143" font-size="8"  fill="#64748b" font-family="'Courier New',monospace">/var/log</text>
+  <rect x="120" y="108" width="210" height="158" fill="#0d1e30" stroke="#34d399" stroke-width="1.5" rx="8"/>
+  <rect x="120" y="108" width="6"   height="158" fill="#34d399" rx="4"/>
+  <text x="160" y="130" font-size="11" font-weight="700" fill="#34d399" letter-spacing="2">SYSTEM LOGS</text>
+  <text x="160" y="143" font-size="8"  fill="#64748b" font-family="'Courier New',monospace">/var/log</text>
   <!-- File rows -->
-  <rect x="96" y="150" width="178" height="20" fill="#0a1a2c" stroke="#1e3a50" stroke-width="1" rx="3"/>
-  <text x="104" y="164" font-size="8" fill="#94a3b8" font-family="'Courier New',monospace">auth.log</text>
-  <text x="236" y="164" font-size="7" fill="#4ade80" font-family="'Courier New',monospace" text-anchor="end">active</text>
-  <rect x="96" y="175" width="178" height="20" fill="#0a1a2c" stroke="#1e3a50" stroke-width="1" rx="3"/>
-  <text x="104" y="189" font-size="8" fill="#94a3b8" font-family="'Courier New',monospace">syslog</text>
-  <text x="236" y="189" font-size="7" fill="#4ade80" font-family="'Courier New',monospace" text-anchor="end">active</text>
+  <rect x="136" y="150" width="178" height="20" fill="#0a1a2c" stroke="#1e3a50" stroke-width="1" rx="3"/>
+  <text x="144" y="164" font-size="8" fill="#94a3b8" font-family="'Courier New',monospace">auth.log</text>
+  <text x="276" y="164" font-size="7" fill="#4ade80" font-family="'Courier New',monospace" text-anchor="end">active</text>
+  <rect x="136" y="175" width="178" height="20" fill="#0a1a2c" stroke="#1e3a50" stroke-width="1" rx="3"/>
+  <text x="144" y="189" font-size="8" fill="#94a3b8" font-family="'Courier New',monospace">syslog</text>
+  <text x="276" y="189" font-size="7" fill="#4ade80" font-family="'Courier New',monospace" text-anchor="end">active</text>
   <!-- Sample log preview -->
   <g font-size="7.5" fill="#475569" font-family="'Courier New',monospace">
-    <text x="96" y="211">Apr 19 08:14:33 sshd: Accepted</text>
-    <text x="96" y="224">Apr 19 08:14:34 systemd: Started</text>
-    <text x="96" y="237">Apr 19 08:14:35 kernel: eth0 up</text>
-    <text x="96" y="250">Apr 19 08:14:36 sshd: session open</text>
+    <text x="136" y="211">Apr 19 08:14:33 sshd: Accepted</text>
+    <text x="136" y="224">Apr 19 08:14:34 systemd: Started</text>
+    <text x="136" y="237">Apr 19 08:14:35 kernel: eth0 up</text>
+    <text x="136" y="250">Apr 19 08:14:36 sshd: session open</text>
   </g>
   <!-- collector label -->
-  <text x="185" y="263" text-anchor="middle" font-size="8" fill="#334155" font-family="'Courier New',monospace">loki.source.file</text>
+  <text x="225" y="263" text-anchor="middle" font-size="8" fill="#334155" font-family="'Courier New',monospace">loki.source.file</text>
 
   <!-- Docker container logs card -->
-  <rect x="80" y="280" width="210" height="88" fill="#0d1e30" stroke="#34d399" stroke-width="1.5" rx="8"/>
-  <rect x="80" y="280" width="6"   height="88" fill="#34d399" rx="4"/>
-  <text x="120" y="300" font-size="11" font-weight="700" fill="#34d399" letter-spacing="2">DOCKER LOGS</text>
+  <rect x="120" y="280" width="210" height="88" fill="#0d1e30" stroke="#34d399" stroke-width="1.5" rx="8"/>
+  <rect x="120" y="280" width="6"   height="88" fill="#34d399" rx="4"/>
+  <text x="160" y="300" font-size="11" font-weight="700" fill="#34d399" letter-spacing="2">DOCKER LOGS</text>
   <g font-size="8.5" font-family="'Courier New',monospace">
-    <circle cx="103" cy="318" r="4" fill="#4ade80" fill-opacity="0.85"/>
-    <text x="113" y="321" fill="#94a3b8">nginx</text>
-    <circle cx="103" cy="338" r="4" fill="#4ade80" fill-opacity="0.85"/>
-    <text x="113" y="341" fill="#94a3b8">traefik</text>
-    <circle cx="185" cy="318" r="4" fill="#4ade80" fill-opacity="0.85"/>
-    <text x="195" y="321" fill="#94a3b8">alloy</text>
-    <circle cx="185" cy="338" r="4" fill="#4ade80" fill-opacity="0.85"/>
-    <text x="195" y="341" fill="#94a3b8">grafana</text>
+    <circle cx="143" cy="318" r="4" fill="#4ade80" fill-opacity="0.85"/>
+    <text x="153" y="321" fill="#94a3b8">nginx</text>
+    <circle cx="143" cy="338" r="4" fill="#4ade80" fill-opacity="0.85"/>
+    <text x="153" y="341" fill="#94a3b8">traefik</text>
+    <circle cx="225" cy="318" r="4" fill="#4ade80" fill-opacity="0.85"/>
+    <text x="235" y="321" fill="#94a3b8">alloy</text>
+    <circle cx="225" cy="338" r="4" fill="#4ade80" fill-opacity="0.85"/>
+    <text x="235" y="341" fill="#94a3b8">grafana</text>
   </g>
   <!-- collector label -->
-  <text x="185" y="365" text-anchor="middle" font-size="8" fill="#334155" font-family="'Courier New',monospace">loki.source.docker</text>
+  <text x="225" y="365" text-anchor="middle" font-size="8" fill="#334155" font-family="'Courier New',monospace">loki.source.docker</text>
 
   <!-- Arrows: left sources → Alloy -->
-  <path d="M 290,187 C 390,187 468,204 529,208"
+  <path d="M 330,187 C 390,187 468,204 529,208"
         fill="none" stroke="url(#arr-syslog-alloy)" stroke-width="2" marker-end="url(#arr-blue)"/>
-  <path d="M 290,324 C 390,324 468,248 529,228"
+  <path d="M 330,324 C 390,324 468,248 529,228"
         fill="none" stroke="url(#arr-docker-alloy)" stroke-width="2" marker-end="url(#arr-blue)"/>
 
   <!-- ===== CENTER ZONE — Alloy hexagon (pointy-top, center 600,215, r=82) ===== -->
@@ -121,128 +121,31 @@
            fill="url(#hex-fill)" stroke="#38bdf8" stroke-width="2.5"/>
   <polygon points="600,141 663,179 663,251 600,289 537,251 537,179"
            fill="none" stroke="#38bdf8" stroke-width="0.8" stroke-opacity="0.3"/>
-  <!-- Converging lines from left face -->
-  <path d="M 529,200 C 548,200 560,213 572,215" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-opacity="0.55" stroke-linecap="round"/>
-  <path d="M 529,215 L 572,215"                  fill="none" stroke="#ffffff" stroke-width="3"   stroke-opacity="0.75" stroke-linecap="round"/>
-  <path d="M 529,230 C 548,230 560,217 572,215" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-opacity="0.55" stroke-linecap="round"/>
-  <circle cx="572" cy="215" r="8" fill="#38bdf8" fill-opacity="0.25"/>
-  <circle cx="572" cy="215" r="4" fill="#ffffff"/>
-  <!-- Diverging lines to right face -->
-  <path d="M 572,215 C 584,213 614,200 671,200" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-opacity="0.75" stroke-linecap="round"/>
-  <path d="M 572,215 L 671,215"                  fill="none" stroke="#38bdf8" stroke-width="3"   stroke-linecap="round"/>
-  <path d="M 572,215 C 584,217 614,230 671,230" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-opacity="0.75" stroke-linecap="round"/>
-  <text x="600" y="318" text-anchor="middle" font-size="13" font-weight="700" fill="#38bdf8" letter-spacing="4">ALLOY</text>
+  <text x="600" y="209" text-anchor="middle" font-size="22" font-weight="700" fill="#7dd3fc" letter-spacing="2">ALLOY</text>
+  <text x="600" y="230" text-anchor="middle" font-size="11" fill="#38bdf8" letter-spacing="3" opacity="0.8">collector</text>
 
-  <!-- Arrow: Alloy → Loki (right face to panel left edge) -->
-  <path d="M 671,215 L 720,215"
+  <!-- Arrow: Alloy → Loki hexagon -->
+  <path d="M 671,215 L 850,215"
         fill="none" stroke="url(#arr-alloy-loki)" stroke-width="2.5" marker-end="url(#arr-purple)"/>
 
-  <!-- ===== RIGHT ZONE — Loki log panel ===== -->
-  <rect x="720" y="68" width="390" height="308" fill="#0d1e30" stroke="#a78bfa" stroke-width="1.5" rx="8"/>
-  <rect x="720" y="68" width="6"   height="308" fill="#a78bfa" rx="4"/>
-  <text x="758" y="90" font-size="11" font-weight="700" fill="#a78bfa" letter-spacing="1">LOKI</text>
-  <text x="758" y="103" font-size="8" fill="#64748b" font-family="'Courier New',monospace">log storage · label-indexed</text>
+  <!-- ===== RIGHT ZONE: Loki as mini hexagon (pointy-top, r=45, larger since it's solo) ===== -->
 
-  <!-- LogQL label badges -->
-  <rect x="738" y="112" width="70" height="16" fill="#1e1040" stroke="#a78bfa" stroke-width="1" rx="3"/>
-  <text x="773" y="124" text-anchor="middle" font-size="8" fill="#c4b5fd" font-family="'Courier New',monospace">{job="authlog"}</text>
-  <rect x="814" y="112" width="65" height="16" fill="#1e1040" stroke="#a78bfa" stroke-width="1" rx="3"/>
-  <text x="846" y="124" text-anchor="middle" font-size="8" fill="#c4b5fd" font-family="'Courier New',monospace">{job="syslog"}</text>
-  <rect x="885" y="112" width="65" height="16" fill="#1e1040" stroke="#a78bfa" stroke-width="1" rx="3"/>
-  <text x="917" y="124" text-anchor="middle" font-size="8" fill="#c4b5fd" font-family="'Courier New',monospace">{job="docker"}</text>
-
-  <!-- Divider -->
-  <line x1="738" y1="133" x2="1100" y2="133" stroke="#1e2040" stroke-width="1"/>
-
-  <!-- Log stream lines -->
-  <g font-size="8.5" font-family="'Courier New',monospace">
-    <text x="738" y="150" fill="#64748b">
-      <tspan fill="#c4b5fd">authlog</tspan>
-      <tspan fill="#475569"> | </tspan>
-      <tspan fill="#4ade80">INFO </tspan>
-      <tspan>sshd: Accepted publickey for deploy</tspan>
-    </text>
-    <text x="738" y="166" fill="#64748b">
-      <tspan fill="#c4b5fd">syslog </tspan>
-      <tspan fill="#475569"> | </tspan>
-      <tspan fill="#7dd3fc">INFO </tspan>
-      <tspan>systemd: Started docker.service</tspan>
-    </text>
-    <text x="738" y="182" fill="#64748b">
-      <tspan fill="#c4b5fd">docker </tspan>
-      <tspan fill="#475569"> | </tspan>
-      <tspan fill="#4ade80">INFO </tspan>
-      <tspan>nginx: 200 GET /api/health</tspan>
-    </text>
-    <text x="738" y="198" fill="#64748b">
-      <tspan fill="#c4b5fd">docker </tspan>
-      <tspan fill="#475569"> | </tspan>
-      <tspan fill="#fb923c">WARN </tspan>
-      <tspan>traefik: 404 GET /favicon.ico</tspan>
-    </text>
-    <text x="738" y="214" fill="#64748b">
-      <tspan fill="#c4b5fd">syslog </tspan>
-      <tspan fill="#475569"> | </tspan>
-      <tspan fill="#7dd3fc">INFO </tspan>
-      <tspan>kernel: eth0: renamed to ens3</tspan>
-    </text>
-    <text x="738" y="230" fill="#64748b">
-      <tspan fill="#c4b5fd">authlog</tspan>
-      <tspan fill="#475569"> | </tspan>
-      <tspan fill="#4ade80">INFO </tspan>
-      <tspan>sshd: Disconnected from user deploy</tspan>
-    </text>
-    <text x="738" y="246" fill="#64748b">
-      <tspan fill="#c4b5fd">docker </tspan>
-      <tspan fill="#475569"> | </tspan>
-      <tspan fill="#c4b5fd">DEBUG</tspan>
-      <tspan> alloy: flush complete  streams=8</tspan>
-    </text>
-    <text x="738" y="262" fill="#64748b">
-      <tspan fill="#c4b5fd">docker </tspan>
-      <tspan fill="#475569"> | </tspan>
-      <tspan fill="#4ade80">INFO </tspan>
-      <tspan>grafana: HTTP server listen</tspan>
-    </text>
-    <text x="738" y="278" fill="#64748b">
-      <tspan fill="#c4b5fd">syslog </tspan>
-      <tspan fill="#475569"> | </tspan>
-      <tspan fill="#f87171">ERROR</tspan>
-      <tspan> kernel: NFS: server not responding</tspan>
-    </text>
-    <text x="738" y="294" fill="#64748b">
-      <tspan fill="#c4b5fd">authlog</tspan>
-      <tspan fill="#475569"> | </tspan>
-      <tspan fill="#4ade80">INFO </tspan>
-      <tspan>sshd: Accepted publickey for sven</tspan>
-    </text>
-    <text x="738" y="310" fill="#64748b">
-      <tspan fill="#c4b5fd">docker </tspan>
-      <tspan fill="#475569"> | </tspan>
-      <tspan fill="#4ade80">INFO </tspan>
-      <tspan>traefik: 200 POST /api/v1/write</tspan>
-    </text>
-    <text x="738" y="326" fill="#64748b">
-      <tspan fill="#c4b5fd">syslog </tspan>
-      <tspan fill="#475569"> | </tspan>
-      <tspan fill="#7dd3fc">INFO </tspan>
-      <tspan>cron: pam_unix session opened</tspan>
-    </text>
-    <text x="738" y="342" fill="#64748b">
-      <tspan fill="#c4b5fd">docker </tspan>
-      <tspan fill="#475569"> | </tspan>
-      <tspan fill="#4ade80">INFO </tspan>
-      <tspan>nginx: 200 GET /dashboard</tspan>
-    </text>
-    <text x="738" y="358" fill="#64748b">
-      <tspan fill="#c4b5fd">authlog</tspan>
-      <tspan fill="#475569"> | </tspan>
-      <tspan fill="#c4b5fd">DEBUG</tspan>
-      <tspan> sshd: userauth-request  user=sven</tspan>
-    </text>
-  </g>
-  <!-- Cursor blink indicator (static) -->
-  <rect x="738" y="364" width="6" height="11" fill="#a78bfa" fill-opacity="0.7" rx="1"/>
+  <!-- Loki (cx=900, cy=215, r=45) — vertices: 900,170 939,192 939,238 900,260 861,238 861,192 -->
+  <polygon points="900,170 939,192 939,238 900,260 861,238 861,192"
+           fill="#160a2a" stroke="#a78bfa" stroke-width="2.5"/>
+  <polygon points="900,176 934,195 934,235 900,254 866,235 866,195"
+           fill="none" stroke="#a78bfa" stroke-width="0.8" stroke-opacity="0.3"/>
+  <text x="900" y="222" text-anchor="middle" font-size="22" font-weight="800" fill="#a78bfa">L</text>
+  <!-- Label and subtitle to the right -->
+  <text x="952" y="209" font-size="13" font-weight="700" fill="#a78bfa" letter-spacing="1">LOKI</text>
+  <text x="952" y="224" font-size="9" fill="#64748b" font-family="'Courier New',monospace">logs · label-indexed</text>
+  <!-- LogQL badges below label -->
+  <rect x="952" y="234" width="70" height="15" fill="#1e1040" stroke="#a78bfa" stroke-width="1" rx="3"/>
+  <text x="987" y="245" text-anchor="middle" font-size="7.5" fill="#c4b5fd" font-family="'Courier New',monospace">{job="authlog"}</text>
+  <rect x="1030" y="234" width="65" height="15" fill="#1e1040" stroke="#a78bfa" stroke-width="1" rx="3"/>
+  <text x="1062" y="245" text-anchor="middle" font-size="7.5" fill="#c4b5fd" font-family="'Courier New',monospace">{job="syslog"}</text>
+  <rect x="952" y="254" width="65" height="15" fill="#1e1040" stroke="#a78bfa" stroke-width="1" rx="3"/>
+  <text x="984" y="265" text-anchor="middle" font-size="7.5" fill="#c4b5fd" font-family="'Courier New',monospace">{job="docker"}</text>
 
   <!-- Bottom gradient overlay -->
   <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>

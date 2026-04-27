@@ -10,10 +10,28 @@
       <stop offset="0%" stop-color="#0e3040"/>
       <stop offset="100%" stop-color="#071e2a"/>
     </linearGradient>
-    <linearGradient id="prom-grad" x1="0" y1="1" x2="0" y2="0">
-      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.0"/>
-      <stop offset="100%" stop-color="#ef4444" stop-opacity="0.6"/>
+    <!-- Gradient arrows: Traefik teal → tool colors -->
+    <linearGradient id="arr-trf-prom" x1="697" y1="243" x2="850" y2="165" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#37BEC3"/>
+      <stop offset="100%" stop-color="#ef4444"/>
     </linearGradient>
+    <linearGradient id="arr-trf-loki" x1="697" y1="255" x2="850" y2="255" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#37BEC3"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+    <linearGradient id="arr-trf-graf" x1="697" y1="267" x2="850" y2="345" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#37BEC3"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </linearGradient>
+    <marker id="arr-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#ef4444"/>
+    </marker>
+    <marker id="arr-purple" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#a78bfa"/>
+    </marker>
+    <marker id="arr-orange" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#f97316"/>
+    </marker>
     <linearGradient id="textbg" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#080c14" stop-opacity="0"/>
       <stop offset="60%" stop-color="#080c14" stop-opacity="0.93"/>
@@ -62,72 +80,42 @@
   <!-- === Traefik Hexagon (flat-top) center (600,255) radius 95 === -->
   <polygon points="695,255 647,172 553,172 505,255 553,338 647,338"
            fill="url(#hex-fill)" stroke="#37BEC3" stroke-width="2.5"/>
-  <!-- Converging flow mark -->
-  <path d="M 538,233 C 568,233 588,253 600,255" fill="none" stroke="#ffffff" stroke-width="3" stroke-opacity="0.55" stroke-linecap="round"/>
-  <path d="M 538,255 L 600,255"               fill="none" stroke="#ffffff" stroke-width="3.5" stroke-opacity="0.75" stroke-linecap="round"/>
-  <path d="M 538,277 C 568,277 588,257 600,255" fill="none" stroke="#ffffff" stroke-width="3" stroke-opacity="0.55" stroke-linecap="round"/>
-  <circle cx="600" cy="255" r="9" fill="#37BEC3" fill-opacity="0.25"/>
-  <circle cx="600" cy="255" r="4.5" fill="#ffffff"/>
-  <path d="M 600,255 C 612,253 632,233 662,233" fill="none" stroke="#37BEC3" stroke-width="3" stroke-opacity="0.75" stroke-linecap="round"/>
-  <path d="M 600,255 L 662,255"               fill="none" stroke="#37BEC3" stroke-width="3.5" stroke-opacity="1" stroke-linecap="round"/>
-  <path d="M 600,255 C 612,257 632,277 662,277" fill="none" stroke="#37BEC3" stroke-width="3" stroke-opacity="0.75" stroke-linecap="round"/>
-  <!-- wordmark -->
-  <text x="600" y="356" text-anchor="middle" font-size="14" font-weight="700" fill="#37BEC3" letter-spacing="4">traefik</text>
+  <text x="600" y="249" text-anchor="middle" font-size="22" font-weight="700" fill="#67e8f9" letter-spacing="2">traefik</text>
+  <text x="600" y="270" text-anchor="middle" font-size="11" fill="#37BEC3" letter-spacing="3" opacity="0.8">reverse proxy</text>
 
-  <!-- Arrows from Traefik to monitoring panels -->
-  <path d="M 697,243 C 718,243 718,165 748,165" fill="none" stroke="#37BEC3" stroke-width="2" marker-end="url(#arr)"/>
-  <path d="M 697,255 L 748,255"               fill="none" stroke="#37BEC3" stroke-width="2" marker-end="url(#arr)"/>
-  <path d="M 697,267 C 718,267 718,347 748,347" fill="none" stroke="#37BEC3" stroke-width="2" marker-end="url(#arr)"/>
+  <!-- Arrows from Traefik to tool hexagons -->
+  <path d="M 697,243 C 730,220 780,165 850,165" fill="none" stroke="url(#arr-trf-prom)" stroke-width="2" marker-end="url(#arr-red)"/>
+  <path d="M 697,255 L 850,255"                 fill="none" stroke="url(#arr-trf-loki)" stroke-width="2" marker-end="url(#arr-purple)"/>
+  <path d="M 697,267 C 730,290 780,345 850,345" fill="none" stroke="url(#arr-trf-graf)" stroke-width="2" marker-end="url(#arr-orange)"/>
 
-  <!-- === Prometheus panel (y=123, height=83) === -->
-  <rect x="750" y="123" width="380" height="83" fill="#0d1e30" stroke="#ef4444" stroke-width="1.5" rx="8"/>
-  <rect x="750" y="123" width="6" height="83" fill="#ef4444" rx="4"/>
-  <text x="770" y="139" font-size="11" font-weight="700" fill="#ef4444" letter-spacing="1">PROMETHEUS</text>
-  <!-- Sparkline fill -->
-  <polygon points="764,200 764,195 788,192 812,189 836,182 860,185 884,177 908,180 932,171 956,174 980,166 1004,169 1028,161 1052,163 1076,157 1100,153 1122,150 1122,200"
-           fill="url(#prom-grad)"/>
-  <!-- Sparkline -->
-  <polyline points="764,195 788,192 812,189 836,182 860,185 884,177 908,180 932,171 956,174 980,166 1004,169 1028,161 1052,163 1076,157 1100,153 1122,150"
-            fill="none" stroke="#ef4444" stroke-width="2" stroke-linejoin="round"/>
-  <!-- Baseline -->
-  <line x1="764" y1="200" x2="1122" y2="200" stroke="#1e3040" stroke-width="1"/>
+  <!-- === RIGHT ZONE: tool nodes as mini hexagons (pointy-top, r=35) === -->
 
-  <!-- === Loki panel (y=214, height=83) === -->
-  <rect x="750" y="214" width="380" height="83" fill="#0d1e30" stroke="#a78bfa" stroke-width="1.5" rx="8"/>
-  <rect x="750" y="214" width="6" height="83" fill="#a78bfa" rx="4"/>
-  <text x="770" y="230" font-size="11" font-weight="700" fill="#a78bfa" letter-spacing="1">LOKI</text>
-  <g font-size="8.5" fill="#64748b" font-family="'Courier New',monospace">
-    <text x="764" y="245">level=info  msg="Started listening"  entryPoints=[web,websecure]</text>
-    <text x="764" y="259"><tspan fill="#4ade80">200</tspan> GET /api/health  router=web@docker  service=frontend</text>
-    <text x="764" y="273"><tspan fill="#37BEC3">302</tspan> GET /  router=http-catchall  middleware=redirect-to-https</text>
-  </g>
+  <!-- Prometheus (cx=880, cy=165) — vertices: 880,130 910,148 910,182 880,200 850,182 850,148 -->
+  <polygon points="880,130 910,148 910,182 880,200 850,182 850,148"
+           fill="#200808" stroke="#ef4444" stroke-width="2"/>
+  <polygon points="880,135 906,150 906,180 880,195 854,180 854,150"
+           fill="none" stroke="#ef4444" stroke-width="0.7" stroke-opacity="0.3"/>
+  <text x="880" y="170" text-anchor="middle" font-size="18" font-weight="800" fill="#ef4444">P</text>
+  <text x="922" y="162" font-size="12" font-weight="700" fill="#ef4444" letter-spacing="1">PROMETHEUS</text>
+  <text x="922" y="176" font-size="9" fill="#64748b" font-family="'Courier New',monospace">metrics · time-series db</text>
 
-  <!-- === Grafana panel (y=305, height=83) === -->
-  <rect x="750" y="305" width="380" height="83" fill="#0d1e30" stroke="#f97316" stroke-width="1.5" rx="8"/>
-  <rect x="750" y="305" width="6" height="83" fill="#f97316" rx="4"/>
-  <text x="770" y="321" font-size="11" font-weight="700" fill="#f97316" letter-spacing="1">GRAFANA</text>
-  <text x="764" y="332" font-size="8" fill="#64748b" font-family="'Courier New',monospace">traefik_requests_total / s</text>
-  <!-- Bar chart (baseline y=383) -->
-  <g fill="#f97316" fill-opacity="0.7">
-    <rect x="764" y="368" width="14" height="15"/>
-    <rect x="785" y="365" width="14" height="18"/>
-    <rect x="806" y="367" width="14" height="16"/>
-    <rect x="827" y="361" width="14" height="22"/>
-    <rect x="848" y="363" width="14" height="20"/>
-    <rect x="869" y="357" width="14" height="26"/>
-    <rect x="890" y="360" width="14" height="23"/>
-    <rect x="911" y="354" width="14" height="29"/>
-    <rect x="932" y="356" width="14" height="27"/>
-    <rect x="953" y="350" width="14" height="33"/>
-    <rect x="974" y="353" width="14" height="30"/>
-    <rect x="995" y="347" width="14" height="36"/>
-    <rect x="1016" y="349" width="14" height="34"/>
-    <rect x="1037" y="343" width="14" height="40"/>
-    <rect x="1058" y="339" width="14" height="44"/>
-    <rect x="1079" y="340" width="14" height="43"/>
-    <rect x="1100" y="336" width="14" height="47"/>
-  </g>
-  <line x1="764" y1="383" x2="1122" y2="383" stroke="#1e3040" stroke-width="1"/>
+  <!-- Loki (cx=880, cy=255) — vertices: 880,220 910,238 910,272 880,290 850,272 850,238 -->
+  <polygon points="880,220 910,238 910,272 880,290 850,272 850,238"
+           fill="#160a2a" stroke="#a78bfa" stroke-width="2"/>
+  <polygon points="880,225 906,240 906,270 880,285 854,270 854,240"
+           fill="none" stroke="#a78bfa" stroke-width="0.7" stroke-opacity="0.3"/>
+  <text x="880" y="261" text-anchor="middle" font-size="18" font-weight="800" fill="#a78bfa">L</text>
+  <text x="922" y="252" font-size="12" font-weight="700" fill="#a78bfa" letter-spacing="1">LOKI</text>
+  <text x="922" y="266" font-size="9" fill="#64748b" font-family="'Courier New',monospace">logs · label-indexed</text>
+
+  <!-- Grafana (cx=880, cy=345) — vertices: 880,310 910,328 910,362 880,380 850,362 850,328 -->
+  <polygon points="880,310 910,328 910,362 880,380 850,362 850,328"
+           fill="#1a0c00" stroke="#f97316" stroke-width="2"/>
+  <polygon points="880,315 906,330 906,360 880,375 854,360 854,330"
+           fill="none" stroke="#f97316" stroke-width="0.7" stroke-opacity="0.3"/>
+  <text x="880" y="351" text-anchor="middle" font-size="18" font-weight="800" fill="#f97316">G</text>
+  <text x="922" y="342" font-size="12" font-weight="700" fill="#f97316" letter-spacing="1">GRAFANA</text>
+  <text x="922" y="356" font-size="9" fill="#64748b" font-family="'Courier New',monospace">visualization · dashboards</text>
 
   <!-- Bottom gradient overlay -->
   <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>

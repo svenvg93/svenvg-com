@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <linearGradient id="textbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#080c14" stop-opacity="0"/>
+      <stop offset="60%" stop-color="#080c14" stop-opacity="0.93"/>
+      <stop offset="100%" stop-color="#080c14" stop-opacity="1"/>
+    </linearGradient>
+    <linearGradient id="hex-fill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1f0e04"/>
+      <stop offset="100%" stop-color="#130800"/>
+    </linearGradient>
+    <radialGradient id="worker-glow" cx="50%" cy="34%" r="40%">
+      <stop offset="0%" stop-color="#f97316" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
+    </radialGradient>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#f97316"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#worker-glow)"/>
+
+  <!-- Line grid -->
+  <g stroke="#0d1a2a" stroke-width="1">
+    <line x1="0"    y1="100" x2="1200" y2="100"/>
+    <line x1="0"    y1="200" x2="1200" y2="200"/>
+    <line x1="0"    y1="300" x2="1200" y2="300"/>
+    <line x1="200"  y1="0"   x2="200"  y2="390"/>
+    <line x1="400"  y1="0"   x2="400"  y2="390"/>
+    <line x1="600"  y1="0"   x2="600"  y2="390"/>
+    <line x1="800"  y1="0"   x2="800"  y2="390"/>
+    <line x1="1000" y1="0"   x2="1000" y2="390"/>
+  </g>
+
+  <!-- Left panel: deploy.yml -->
+  <rect x="60" y="80" width="260" height="270" fill="#0a1628" stroke="#334155" stroke-width="1.5" rx="8"/>
+  <rect x="60" y="80" width="260" height="24" fill="#1e293b" rx="8"/>
+  <rect x="60" y="92"  width="260" height="12" fill="#1e293b"/>
+  <circle cx="82" cy="92" r="5" fill="#ef4444" fill-opacity="0.7"/>
+  <circle cx="97" cy="92" r="5" fill="#f59e0b" fill-opacity="0.7"/>
+  <circle cx="112" cy="92" r="5" fill="#4ade80" fill-opacity="0.7"/>
+  <text x="190" y="96" text-anchor="middle" font-size="9" fill="#64748b">deploy.yml</text>
+
+  <!-- YAML content -->
+  <text font-size="9" font-family="'Courier New',monospace">
+    <tspan x="76" y="120" fill="#7dd3fc">name</tspan><tspan fill="#64748b">: </tspan><tspan fill="#fb923c">Deploy</tspan>
+  </text>
+  <text font-size="9" font-family="'Courier New',monospace">
+    <tspan x="76" y="134" fill="#7dd3fc">on</tspan><tspan fill="#64748b">:</tspan>
+  </text>
+  <text font-size="9" font-family="'Courier New',monospace">
+    <tspan x="76" y="148" fill="#64748b">  </tspan><tspan fill="#7dd3fc">push</tspan><tspan fill="#64748b">:</tspan>
+  </text>
+  <text font-size="9" font-family="'Courier New',monospace">
+    <tspan x="76" y="162" fill="#64748b">    branches: </tspan><tspan fill="#fb923c">[main]</tspan>
+  </text>
+  <text font-size="9" font-family="'Courier New',monospace">
+    <tspan x="76" y="176" fill="#7dd3fc">jobs</tspan><tspan fill="#64748b">:</tspan>
+  </text>
+  <text font-size="9" font-family="'Courier New',monospace">
+    <tspan x="76" y="190" fill="#a3e635">  deploy</tspan><tspan fill="#64748b">:</tspan>
+  </text>
+  <text font-size="9" font-family="'Courier New',monospace">
+    <tspan x="76" y="204" fill="#64748b">    runs-on: </tspan><tspan fill="#fb923c">ubuntu-latest</tspan>
+  </text>
+  <text font-size="9" font-family="'Courier New',monospace">
+    <tspan x="76" y="218" fill="#64748b">    steps:</tspan>
+  </text>
+  <text font-size="9" font-family="'Courier New',monospace">
+    <tspan x="76" y="232" fill="#64748b">      - </tspan><tspan fill="#94a3b8">uses: checkout@v4</tspan>
+  </text>
+  <text font-size="9" font-family="'Courier New',monospace">
+    <tspan x="76" y="246" fill="#64748b">      - </tspan><tspan fill="#7dd3fc">run</tspan><tspan fill="#64748b">: </tspan><tspan fill="#fb923c">wrangler deploy</tspan>
+  </text>
+  <text x="76" y="266" font-size="9" font-family="'Courier New',monospace" fill="#64748b">      env:</text>
+  <text font-size="9" font-family="'Courier New',monospace">
+    <tspan x="76" y="280" fill="#64748b">        CF_API_TOKEN: </tspan><tspan fill="#a78bfa">$&#123;&#123; secrets.CF_TOKEN &#125;&#125;</tspan>
+  </text>
+
+  <!-- Arrow: left panel → hex -->
+  <path d="M 320,215 C 390,215 450,215 527,215"
+        fill="none" stroke="#f97316" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="424" y="203" text-anchor="middle" font-size="10" fill="#94a3b8" letter-spacing="1">GitHub Actions</text>
+
+  <!-- Central CF Worker hexagon — center (600, 215), r=82
+       top(600,133) tr(671,174) br(671,256) bot(600,297) bl(529,256) tl(529,174) -->
+  <circle cx="600" cy="215" r="128" fill="none" stroke="#f97316" stroke-width="1" stroke-opacity="0.10" stroke-dasharray="4,10"/>
+
+  <polygon points="600,133 671,174 671,256 600,297 529,256 529,174"
+           fill="url(#hex-fill)" stroke="#f97316" stroke-width="2.5"/>
+  <polygon points="600,141 663,179 663,251 600,289 537,251 537,179"
+           fill="none" stroke="#f97316" stroke-width="0.8" stroke-opacity="0.35"/>
+
+  <text x="600" y="210" text-anchor="middle" font-size="14" fill="#fb923c" font-weight="700" letter-spacing="1">CF WORKER</text>
+  <text x="600" y="228" text-anchor="middle" font-size="10" fill="#f97316" letter-spacing="2" opacity="0.8">workers.dev</text>
+
+  <!-- Arrow: hex → right panel -->
+  <path d="M 673,215 C 750,215 810,215 878,215"
+        fill="none" stroke="#f97316" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="776" y="203" text-anchor="middle" font-size="10" fill="#94a3b8" letter-spacing="1">wrangler deploy</text>
+
+  <!-- Right panel: deployment output -->
+  <rect x="880" y="80" width="260" height="270" fill="#0a1628" stroke="#334155" stroke-width="1.5" rx="8"/>
+  <rect x="880" y="80" width="260" height="24" fill="#1e293b" rx="8"/>
+  <rect x="880" y="92"  width="260" height="12" fill="#1e293b"/>
+  <circle cx="902" cy="92" r="5" fill="#ef4444" fill-opacity="0.7"/>
+  <circle cx="917" cy="92" r="5" fill="#f59e0b" fill-opacity="0.7"/>
+  <circle cx="932" cy="92" r="5" fill="#4ade80" fill-opacity="0.7"/>
+  <text x="1010" y="96" text-anchor="middle" font-size="9" fill="#64748b">bash</text>
+
+  <!-- Shell output -->
+  <text font-size="9" font-family="'Courier New',monospace">
+    <tspan x="896" y="120" fill="#64748b">$ </tspan><tspan fill="#7dd3fc">wrangler deploy</tspan>
+  </text>
+  <text x="896" y="148" font-size="9" font-family="'Courier New',monospace" fill="#64748b">Checking configuration...</text>
+  <text x="896" y="162" font-size="9" font-family="'Courier New',monospace" fill="#64748b">Uploading assets...</text>
+  <text x="896" y="176" font-size="9" font-family="'Courier New',monospace" fill="#64748b">Building worker...</text>
+  <text x="896" y="204" font-size="9" font-family="'Courier New',monospace" fill="#4ade80">Deployed successfully!</text>
+  <text x="896" y="232" font-size="9" font-family="'Courier New',monospace" fill="#7dd3fc">https://site.workers.dev</text>
+  <text font-size="9" font-family="'Courier New',monospace">
+    <tspan x="896" y="256" fill="#64748b">Status: </tspan><tspan fill="#4ade80">active</tspan>
+  </text>
+  <text font-size="9" font-family="'Courier New',monospace">
+    <tspan x="896" y="270" fill="#64748b">Locations: </tspan><tspan fill="#fb923c">300+</tspan>
+  </text>
+
+  <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
+
+  <text x="600" y="500" text-anchor="middle" font-size="13" fill="#f97316" letter-spacing="3" font-weight="600">CLOUDFLARE WORKERS</text>
+  <text x="600" y="538" text-anchor="middle" font-size="34" font-weight="700" fill="#f1f5f9">Deploying to Cloudflare Workers with GitHub Actions</text>
+</svg>

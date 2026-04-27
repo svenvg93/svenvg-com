@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 210" width="700" height="210"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <rect width="700" height="210" fill="#f8fafc" rx="12"/>
+  <text x="350" y="24" text-anchor="middle" font-size="13" font-weight="700" fill="#111827">IPv6 Address Notation — Three Forms of the Same Address</text>
+
+  <!-- Full form -->
+  <rect x="40" y="38" width="620" height="38" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1" rx="5"/>
+  <text x="60" y="54" font-size="9" fill="#64748b" font-weight="600" letter-spacing="1">FULL</text>
+  <text x="350" y="63" text-anchor="middle" font-size="13" font-family="'Courier New',monospace" fill="#1e293b">2001:0db8:0000:0000:0000:0000:0000:0001</text>
+
+  <!-- Arrow + rule -->
+  <text x="350" y="96" text-anchor="middle" font-size="10" fill="#94a3b8">↓  drop leading zeros within each group</text>
+
+  <!-- Compressed zeros -->
+  <rect x="40" y="104" width="620" height="38" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1" rx="5"/>
+  <text x="60" y="120" font-size="9" fill="#3b82f6" font-weight="600" letter-spacing="1">LEADING ZEROS REMOVED</text>
+  <text x="350" y="129" text-anchor="middle" font-size="13" font-family="'Courier New',monospace" fill="#1e40af">2001:db8:0:0:0:0:0:1</text>
+
+  <!-- Arrow + rule -->
+  <text x="350" y="157" text-anchor="middle" font-size="10" fill="#94a3b8">↓  replace one run of all-zero groups with ::</text>
+
+  <!-- Double-colon form -->
+  <rect x="40" y="165" width="620" height="38" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1" rx="5"/>
+  <text x="60" y="181" font-size="9" fill="#16a34a" font-weight="600" letter-spacing="1">DOUBLE-COLON SHORTHAND</text>
+  <text x="350" y="190" text-anchor="middle" font-size="13" font-family="'Courier New',monospace" fill="#15803d">2001:db8::1</text>
+</svg>

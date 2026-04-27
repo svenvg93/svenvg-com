@@ -7,7 +7,7 @@ categories:
   - Networking
 tags:
   - docker
-cover: cover.jpg
+cover: cover.svg
 ---
 
 This guide shows how to set up **Wireshark** to remotely capture traffic via **SSH** using `tcpdump`.

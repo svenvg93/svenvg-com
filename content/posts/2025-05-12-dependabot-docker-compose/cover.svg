@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <linearGradient id="textbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#080c14" stop-opacity="0"/>
+      <stop offset="60%" stop-color="#080c14" stop-opacity="0.93"/>
+      <stop offset="100%" stop-color="#080c14" stop-opacity="1"/>
+    </linearGradient>
+    <linearGradient id="hex-fill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0a2e"/>
+      <stop offset="100%" stop-color="#0f051e"/>
+    </linearGradient>
+    <radialGradient id="glow-purple-left" cx="16%" cy="50%" r="22%">
+      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-purple-center" cx="50%" cy="50%" r="22%">
+      <stop offset="0%" stop-color="#a78bfa" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-green" cx="82%" cy="50%" r="22%">
+      <stop offset="0%" stop-color="#34d399" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#34d399" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="arr-left" x1="380" y1="215" x2="529" y2="215" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+    <linearGradient id="arr-right" x1="671" y1="215" x2="820" y2="215" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+    <marker id="arr-purple" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#a78bfa"/>
+    </marker>
+    <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#34d399"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow-purple-left)"/>
+  <rect width="1200" height="630" fill="url(#glow-purple-center)"/>
+  <rect width="1200" height="630" fill="url(#glow-green)"/>
+
+  <!-- Grid -->
+  <g stroke="#0d1a2a" stroke-width="1">
+    <line x1="0"   y1="95"  x2="1200" y2="95"/>
+    <line x1="0"   y1="315" x2="1200" y2="315"/>
+    <line x1="400" y1="0"   x2="400"  y2="390"/>
+    <line x1="800" y1="0"   x2="800"  y2="390"/>
+  </g>
+
+  <!-- === Left terminal: generate-dependabot.sh === -->
+  <rect x="120" y="80" width="260" height="270" fill="#0a1628" stroke="#a78bfa" stroke-width="1.5" rx="8"/>
+  <rect x="120" y="80" width="260" height="24" fill="#1e293b" rx="8"/>
+  <rect x="120" y="92" width="260" height="12" fill="#1e293b"/>
+  <circle cx="142" cy="92" r="5" fill="#ef4444" fill-opacity="0.7"/>
+  <circle cx="157" cy="92" r="5" fill="#f59e0b" fill-opacity="0.7"/>
+  <circle cx="172" cy="92" r="5" fill="#4ade80" fill-opacity="0.7"/>
+  <text x="250" y="96" text-anchor="middle" font-size="9" fill="#64748b">generate-dependabot.sh</text>
+  <line x1="120" y1="104" x2="380" y2="104" stroke="#1e293b" stroke-width="1"/>
+
+  <text font-size="9" font-family="'Courier New',monospace">
+    <tspan x="136" y="118" fill="#64748b">#!/bin/bash</tspan>
+    <tspan x="136" dy="14" fill="#38bdf8">find . -name "docker-compose*" \</tspan>
+    <tspan x="136" dy="14" fill="#94a3b8">  -exec dirname {} \; | \</tspan>
+    <tspan x="136" dy="14" fill="#38bdf8">while read dir; do</tspan>
+    <tspan x="136" dy="14" fill="#4ade80">  echo "- package-ecosystem:</tspan>
+    <tspan x="136" dy="14" fill="#4ade80">        docker"</tspan>
+    <tspan x="136" dy="14" fill="#4ade80">  echo "  directory: $dir"</tspan>
+    <tspan x="136" dy="14" fill="#38bdf8">done</tspan>
+  </text>
+
+  <!-- Arrow left panel → hex -->
+  <line x1="380" y1="215" x2="529" y2="215"
+        stroke="url(#arr-left)" stroke-width="2" marker-end="url(#arr-purple)"/>
+  <text x="455" y="203" text-anchor="middle" font-size="9" fill="#64748b" letter-spacing="1">GitHub Actions</text>
+
+  <!-- === Dependabot hex, center (600,215), r=82 (PURPLE) === -->
+  <polygon points="600,133 671,174 671,256 600,297 529,256 529,174"
+           fill="url(#hex-fill)" stroke="#a78bfa" stroke-width="2.5"/>
+  <polygon points="600,141 663,179 663,251 600,289 537,251 537,179"
+           fill="none" stroke="#a78bfa" stroke-width="0.8" stroke-opacity="0.3"/>
+  <text x="600" y="208" text-anchor="middle" font-size="16" font-weight="700" fill="#ddd6fe" letter-spacing="1">Dependabot</text>
+  <text x="600" y="228" text-anchor="middle" font-size="9" fill="#a78bfa" letter-spacing="2">Docker Compose</text>
+
+  <!-- Arrow hex → right panel -->
+  <line x1="671" y1="215" x2="820" y2="215"
+        stroke="url(#arr-right)" stroke-width="2" marker-end="url(#arr-green)"/>
+  <text x="746" y="203" text-anchor="middle" font-size="9" fill="#64748b" letter-spacing="1">auto PRs</text>
+
+  <!-- === Right terminal: dependabot.yml === -->
+  <rect x="820" y="80" width="260" height="270" fill="#0a1628" stroke="#34d399" stroke-width="1.5" rx="8"/>
+  <rect x="820" y="80" width="260" height="24" fill="#1e293b" rx="8"/>
+  <rect x="820" y="92" width="260" height="12" fill="#1e293b"/>
+  <circle cx="842" cy="92" r="5" fill="#ef4444" fill-opacity="0.7"/>
+  <circle cx="857" cy="92" r="5" fill="#f59e0b" fill-opacity="0.7"/>
+  <circle cx="872" cy="92" r="5" fill="#4ade80" fill-opacity="0.7"/>
+  <text x="950" y="96" text-anchor="middle" font-size="9" fill="#64748b">dependabot.yml</text>
+  <line x1="820" y1="104" x2="1080" y2="104" stroke="#1e293b" stroke-width="1"/>
+
+  <text font-size="9" font-family="'Courier New',monospace">
+    <tspan x="836" y="118" fill="#38bdf8">version: </tspan><tspan fill="#4ade80">2</tspan>
+    <tspan x="836" dy="14" fill="#38bdf8">updates:</tspan>
+    <tspan x="836" dy="14" fill="#a78bfa">- package-ecosystem: </tspan><tspan fill="#4ade80">docker</tspan>
+    <tspan x="836" dy="14" fill="#38bdf8">  directory: </tspan><tspan fill="#94a3b8">/app</tspan>
+    <tspan x="836" dy="14" fill="#38bdf8">  schedule:</tspan>
+    <tspan x="836" dy="14" fill="#38bdf8">    interval: </tspan><tspan fill="#4ade80">weekly</tspan>
+    <tspan x="836" dy="14" fill="#a78bfa">- package-ecosystem: </tspan><tspan fill="#4ade80">docker</tspan>
+    <tspan x="836" dy="14" fill="#38bdf8">  directory: </tspan><tspan fill="#94a3b8">/monitoring</tspan>
+    <tspan x="836" dy="14" fill="#38bdf8">  schedule:</tspan>
+    <tspan x="836" dy="14" fill="#38bdf8">    interval: </tspan><tspan fill="#4ade80">weekly</tspan>
+  </text>
+
+  <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
+
+  <text x="600" y="500" text-anchor="middle" font-size="13" fill="#a78bfa" letter-spacing="3" font-weight="600">CI/CD</text>
+  <text x="600" y="538" text-anchor="middle" font-size="34" font-weight="700" fill="#f1f5f9">Automating Dependabot for Docker Compose</text>
+</svg>

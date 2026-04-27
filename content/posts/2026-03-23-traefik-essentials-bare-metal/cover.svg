@@ -62,17 +62,8 @@
   <!-- === Traefik Hexagon center (600,275) radius 95 === -->
   <polygon points="695,275 647,192 553,192 505,275 553,358 647,358"
            fill="url(#hex-fill)" stroke="#37BEC3" stroke-width="2.5"/>
-  <!-- Converging flow mark -->
-  <path d="M 538,253 C 568,253 588,273 600,275" fill="none" stroke="#ffffff" stroke-width="3" stroke-opacity="0.55" stroke-linecap="round"/>
-  <path d="M 538,275 L 600,275"               fill="none" stroke="#ffffff" stroke-width="3.5" stroke-opacity="0.75" stroke-linecap="round"/>
-  <path d="M 538,297 C 568,297 588,277 600,275" fill="none" stroke="#ffffff" stroke-width="3" stroke-opacity="0.55" stroke-linecap="round"/>
-  <circle cx="600" cy="275" r="9" fill="#37BEC3" fill-opacity="0.25"/>
-  <circle cx="600" cy="275" r="4.5" fill="#ffffff"/>
-  <path d="M 600,275 C 612,273 632,253 662,253" fill="none" stroke="#37BEC3" stroke-width="3" stroke-opacity="0.75" stroke-linecap="round"/>
-  <path d="M 600,275 L 662,275"               fill="none" stroke="#37BEC3" stroke-width="3.5" stroke-opacity="1" stroke-linecap="round"/>
-  <path d="M 600,275 C 612,277 632,297 662,297" fill="none" stroke="#37BEC3" stroke-width="3" stroke-opacity="0.75" stroke-linecap="round"/>
-  <!-- wordmark -->
-  <text x="600" y="370" text-anchor="middle" font-size="13" font-weight="700" fill="#37BEC3" letter-spacing="4">traefik</text>
+  <text x="600" y="269" text-anchor="middle" font-size="22" font-weight="700" fill="#67e8f9" letter-spacing="2">traefik</text>
+  <text x="600" y="290" text-anchor="middle" font-size="11" fill="#37BEC3" letter-spacing="3" opacity="0.8">reverse proxy</text>
 
   <!-- Arrow Traefik → systemctl status box -->
   <path d="M 697,275 L 818,275" fill="none" stroke="#37BEC3" stroke-width="2" marker-end="url(#arr)"/>

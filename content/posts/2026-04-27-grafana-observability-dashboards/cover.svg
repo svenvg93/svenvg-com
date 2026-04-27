@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <linearGradient id="hex-fill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0c00"/>
+      <stop offset="100%" stop-color="#130800"/>
+    </linearGradient>
+    <linearGradient id="sparkline-fill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f97316" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#f97316" stop-opacity="0.03"/>
+    </linearGradient>
+    <linearGradient id="textbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#080c14" stop-opacity="0"/>
+      <stop offset="60%"  stop-color="#080c14" stop-opacity="0.93"/>
+      <stop offset="100%" stop-color="#080c14" stop-opacity="1"/>
+    </linearGradient>
+    <linearGradient id="arr-left" x1="330" y1="215" x2="521" y2="215" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </linearGradient>
+    <linearGradient id="arr-right" x1="671" y1="215" x2="854" y2="215" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </linearGradient>
+    <radialGradient id="glow-left" cx="18%" cy="50%" r="22%">
+      <stop offset="0%" stop-color="#f97316" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-center" cx="50%" cy="50%" r="20%">
+      <stop offset="0%" stop-color="#f97316" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-right" cx="82%" cy="50%" r="22%">
+      <stop offset="0%" stop-color="#f97316" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
+    </radialGradient>
+    <marker id="arr-orange" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#f97316"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow-left)"/>
+  <rect width="1200" height="630" fill="url(#glow-center)"/>
+  <rect width="1200" height="630" fill="url(#glow-right)"/>
+
+  <!-- Subtle line grid -->
+  <g stroke="#0d1a2a" stroke-width="1">
+    <line x1="0"    y1="100" x2="1200" y2="100"/>
+    <line x1="0"    y1="200" x2="1200" y2="200"/>
+    <line x1="0"    y1="300" x2="1200" y2="300"/>
+    <line x1="200"  y1="0"   x2="200"  y2="500"/>
+    <line x1="400"  y1="0"   x2="400"  y2="500"/>
+    <line x1="600"  y1="0"   x2="600"  y2="500"/>
+    <line x1="800"  y1="0"   x2="800"  y2="500"/>
+    <line x1="1000" y1="0"   x2="1000" y2="500"/>
+  </g>
+
+  <!-- ===== LEFT: Provisioning config card ===== -->
+  <rect x="88" y="100" width="238" height="228" fill="#0d1520" stroke="#f97316" stroke-width="1.5" rx="8"/>
+  <rect x="88" y="100" width="6" height="228" fill="#f97316" rx="4"/>
+  <text x="130" y="123" font-size="12" font-weight="700" fill="#f97316" letter-spacing="2">PROVISIONING</text>
+
+  <!-- Provider row 1: Systems (active / highlighted) -->
+  <rect x="106" y="136" width="204" height="46" fill="#0a1020" stroke="#7c3a00" stroke-width="1" rx="4"/>
+  <text x="118" y="155" font-size="11" font-weight="700" fill="#fb923c">Systems</text>
+  <text x="118" y="172" font-size="9" fill="#64748b" font-family="'Courier New',monospace">dashboards/systems/</text>
+  <rect x="262" y="140" width="40" height="18" fill="#1a0800" stroke="#f97316" stroke-width="1" rx="3"/>
+  <text x="282" y="153" text-anchor="middle" font-size="9" fill="#fb923c">1 JSON</text>
+
+  <!-- Provider row 2: Docker -->
+  <rect x="106" y="190" width="204" height="46" fill="#0a1020" stroke="#374151" stroke-width="1" rx="4"/>
+  <text x="118" y="209" font-size="11" font-weight="700" fill="#94a3b8">Docker</text>
+  <text x="118" y="226" font-size="9" fill="#64748b" font-family="'Courier New',monospace">dashboards/docker/</text>
+  <rect x="262" y="194" width="40" height="18" fill="#0a1020" stroke="#374151" stroke-width="1" rx="3"/>
+  <text x="282" y="207" text-anchor="middle" font-size="9" fill="#64748b">1 JSON</text>
+
+  <!-- Provider row 3: Infrastructure -->
+  <rect x="106" y="244" width="204" height="46" fill="#0a1020" stroke="#374151" stroke-width="1" rx="4"/>
+  <text x="118" y="263" font-size="11" font-weight="700" fill="#94a3b8">Infrastructure</text>
+  <text x="118" y="280" font-size="9" fill="#64748b" font-family="'Courier New',monospace">dashboards/infrastructure/</text>
+  <rect x="262" y="248" width="40" height="18" fill="#0a1020" stroke="#374151" stroke-width="1" rx="3"/>
+  <text x="282" y="261" text-anchor="middle" font-size="9" fill="#64748b">1 JSON</text>
+
+  <!-- Auto-reload badge -->
+  <rect x="106" y="298" width="204" height="22" fill="#0a1020" stroke="#374151" stroke-width="1" rx="3"/>
+  <text x="208" y="313" text-anchor="middle" font-size="9" fill="#64748b" font-family="'Courier New',monospace">updateIntervalSeconds: 30</text>
+
+  <!-- Arrow: config → Grafana -->
+  <path d="M 330,215 L 521,215"
+        fill="none" stroke="url(#arr-left)" stroke-width="2" marker-end="url(#arr-orange)"/>
+
+  <!-- ===== CENTER: Grafana hexagon (r=82, cy=215) ===== -->
+  <polygon points="600,133 671,174 671,256 600,297 529,256 529,174"
+           fill="url(#hex-fill)" stroke="#f97316" stroke-width="2.5"/>
+  <polygon points="600,141 663,179 663,251 600,289 537,251 537,179"
+           fill="none" stroke="#f97316" stroke-width="0.8" stroke-opacity="0.3"/>
+  <text x="600" y="207" text-anchor="middle" font-size="20" font-weight="700" fill="#fed7aa" letter-spacing="2">GRAFANA</text>
+  <text x="600" y="230" text-anchor="middle" font-size="11" fill="#f97316" letter-spacing="3" opacity="0.8">provisioning</text>
+
+  <!-- Arrow: Grafana → dashboards -->
+  <path d="M 671,215 L 854,215"
+        fill="none" stroke="url(#arr-right)" stroke-width="2" marker-end="url(#arr-orange)"/>
+
+  <!-- ===== RIGHT: Dashboard output card ===== -->
+  <rect x="862" y="100" width="242" height="228" fill="#0d1520" stroke="#f97316" stroke-width="1.5" rx="8"/>
+  <rect x="862" y="100" width="6" height="228" fill="#f97316" rx="4"/>
+  <text x="904" y="123" font-size="12" font-weight="700" fill="#f97316" letter-spacing="2">DASHBOARDS</text>
+
+  <!-- Folder tabs -->
+  <text x="910" y="146" text-anchor="middle" font-size="10" fill="#f97316" font-weight="600">Systems</text>
+  <line x1="878" y1="150" x2="942" y2="150" stroke="#f97316" stroke-width="1.5"/>
+  <text x="978" y="146" text-anchor="middle" font-size="10" fill="#64748b">Docker</text>
+  <text x="1060" y="146" text-anchor="middle" font-size="10" fill="#64748b">Infrastructure</text>
+
+  <!-- Graph panel: CPU Usage sparkline -->
+  <rect x="878" y="158" width="210" height="70" fill="#0a1020" stroke="#1e3a50" stroke-width="1" rx="3"/>
+  <text x="884" y="171" font-size="8" fill="#94a3b8" font-family="'Courier New',monospace">CPU Usage</text>
+  <text x="1082" y="171" text-anchor="end" font-size="10" font-weight="700" fill="#fed7aa" font-family="'Courier New',monospace">38%</text>
+  <!-- Sparkline area fill -->
+  <path d="M 882,208 L 899,202 L 916,209 L 933,196 L 950,204 L 967,198 L 984,193 L 1001,200 L 1018,206 L 1035,195 L 1052,201 L 1052,225 L 882,225 Z"
+        fill="url(#sparkline-fill)"/>
+  <!-- Sparkline line -->
+  <polyline points="882,208 899,202 916,209 933,196 950,204 967,198 984,193 1001,200 1018,206 1035,195 1052,201"
+            fill="none" stroke="#f97316" stroke-width="1.5"/>
+
+  <!-- Stat panels row: Memory + Disk -->
+  <rect x="878" y="238" width="98" height="46" fill="#0a1020" stroke="#1e3a50" stroke-width="1" rx="3"/>
+  <text x="927" y="255" text-anchor="middle" font-size="8" fill="#64748b" font-family="'Courier New',monospace">MEMORY</text>
+  <text x="927" y="277" text-anchor="middle" font-size="16" font-weight="700" fill="#7dd3fc" font-family="'Courier New',monospace">74%</text>
+
+  <rect x="984" y="238" width="98" height="46" fill="#0a1020" stroke="#1e3a50" stroke-width="1" rx="3"/>
+  <text x="1033" y="255" text-anchor="middle" font-size="8" fill="#64748b" font-family="'Courier New',monospace">DISK</text>
+  <text x="1033" y="277" text-anchor="middle" font-size="16" font-weight="700" fill="#4ade80" font-family="'Courier New',monospace">42%</text>
+
+  <!-- Bottom gradient overlay -->
+  <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
+  <text x="600" y="500" text-anchor="middle" font-size="13"
+        fill="#f97316" letter-spacing="3" font-weight="600">GRAFANA OBSERVABILITY</text>
+  <text x="600" y="538" text-anchor="middle" font-size="34"
+        font-weight="700" fill="#f1f5f9">Dashboard Provisioning as Code</text>
+</svg>

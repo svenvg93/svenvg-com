@@ -7,7 +7,7 @@ theme: "github.com/tom2almighty/hugo-narrow"
 
 hasCJKLanguage: true
 enableEmoji: true
-enableGitInfo: false
+enableGitInfo: true
 enableRobotsTXT: true
 timeZone: "Europe/Amsterdam"
 

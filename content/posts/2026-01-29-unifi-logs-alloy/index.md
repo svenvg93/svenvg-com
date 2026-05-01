@@ -9,6 +9,7 @@ categories:
 tags:
   - loki
   - alloy
+  - unifi
 cover: cover.svg
 ---
 

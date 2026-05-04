@@ -1,7 +1,7 @@
 ---
 title: "WiFi Explained: Roaming and Client Management"
 description: Sticky clients, band steering, and why 802.11k/r/v are the right tools. How APs guide clients between radios and access points — and what to do when the defaults cause problems.
-date: 2026-05-14
+date: 2026-05-11
 draft: false
 cover: cover.svg
 categories:

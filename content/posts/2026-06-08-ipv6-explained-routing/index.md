@@ -1,7 +1,7 @@
 ---
 title: "IPv6 Explained: Routing and Firewalling"
 description: IPv6 was designed without NAT — every device gets a public address and is reachable end-to-end. Here's what that means for routing, why NAT isn't security, and what a correct IPv6 firewall looks like.
-date: 2026-07-30
+date: 2026-06-08
 draft: false
 cover: cover.svg
 categories:

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <linearGradient id="textbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#080c14" stop-opacity="0"/>
+      <stop offset="60%"  stop-color="#080c14" stop-opacity="0.93"/>
+      <stop offset="100%" stop-color="#080c14" stop-opacity="1"/>
+    </linearGradient>
+    <linearGradient id="hex-fill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0e1a3a"/>
+      <stop offset="100%" stop-color="#07102a"/>
+    </linearGradient>
+    <radialGradient id="glow-blue" cx="50%" cy="50%" r="30%">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
+    </radialGradient>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#3b82f6"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow-blue)"/>
+
+  <g stroke="#0d1a2a" stroke-width="1">
+    <line x1="0"    y1="100" x2="1200" y2="100"/>
+    <line x1="0"    y1="200" x2="1200" y2="200"/>
+    <line x1="0"    y1="300" x2="1200" y2="300"/>
+    <line x1="400"  y1="0"   x2="400"  y2="390"/>
+    <line x1="800"  y1="0"   x2="800"  y2="390"/>
+  </g>
+
+  <!-- Left panel: capture settings -->
+  <rect x="60" y="80" width="260" height="270" fill="#0a1628" stroke="#334155" stroke-width="1.5" rx="8"/>
+  <rect x="60" y="80" width="260" height="24" fill="#1e293b" rx="8"/>
+  <rect x="60" y="92"  width="260" height="12" fill="#1e293b"/>
+  <circle cx="82"  cy="92" r="5" fill="#ef4444" fill-opacity="0.7"/>
+  <circle cx="97"  cy="92" r="5" fill="#f59e0b" fill-opacity="0.7"/>
+  <circle cx="112" cy="92" r="5" fill="#4ade80" fill-opacity="0.7"/>
+  <text x="190" y="96" text-anchor="middle" font-size="9" fill="#64748b">unifi · packet capture</text>
+
+  <g font-family="'Courier New',monospace" font-size="11">
+    <text x="82" y="128" fill="#64748b">interface</text>
+    <text x="200" y="128" fill="#fb923c">ath0</text>
+    <text x="82" y="148" fill="#64748b">band</text>
+    <text x="200" y="148" fill="#a3e635">5 GHz</text>
+    <text x="82" y="168" fill="#64748b">channel</text>
+    <text x="200" y="168" fill="#fb923c">36</text>
+    <text x="82" y="188" fill="#64748b">duration</text>
+    <text x="200" y="188" fill="#fb923c">30s</text>
+    <text x="82" y="208" fill="#64748b">format</text>
+    <text x="200" y="208" fill="#a3e635">pcap</text>
+    <text x="82" y="228" fill="#64748b">filter</text>
+    <text x="200" y="228" fill="#7dd3fc">mgmt</text>
+    <text x="82" y="260" fill="#4ade80">[ Start Capture ]</text>
+    <text x="82" y="280" fill="#64748b">output: capture.pcap</text>
+    <text x="82" y="300" fill="#64748b">frames: 0...</text>
+    <text x="82" y="320" fill="#64748b">size:   0 bytes</text>
+    <text x="82" y="340" fill="#64748b">elapsed: 0s / 30s</text>
+  </g>
+
+  <!-- Arrow: left panel → hex -->
+  <path d="M 320,215 C 400,215 460,215 529,215"
+        fill="none" stroke="#3b82f6" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Center: UniFi AP hex, r=82, (600,215) -->
+  <polygon points="600,133 671,174 671,256 600,297 529,256 529,174"
+           fill="url(#hex-fill)" stroke="#3b82f6" stroke-width="2.5"/>
+  <polygon points="600,141 663,179 663,251 600,289 537,251 537,179"
+           fill="none" stroke="#3b82f6" stroke-width="0.8" stroke-opacity="0.3"/>
+  <!-- WiFi arcs -->
+  <path d="M 583,204 Q 600,194 617,204" fill="none" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M 574,196 Q 600,182 626,196" fill="none" stroke="#60a5fa" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+  <path d="M 565,188 Q 600,170 635,188" fill="none" stroke="#60a5fa" stroke-width="1" stroke-linecap="round" opacity="0.4"/>
+  <text x="600" y="228" text-anchor="middle" font-size="20" font-weight="700" fill="#93c5fd" letter-spacing="1">UniFi</text>
+  <text x="600" y="248" text-anchor="middle" font-size="11" font-weight="600" fill="#60a5fa" letter-spacing="3">AP</text>
+
+  <!-- Arrow: hex → right panel -->
+  <path d="M 671,215 C 740,215 800,215 880,215"
+        fill="none" stroke="#3b82f6" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Right panel: pcap output -->
+  <rect x="880" y="80" width="260" height="270" fill="#0a1628" stroke="#334155" stroke-width="1.5" rx="8"/>
+  <rect x="880" y="80" width="260" height="24" fill="#1e293b" rx="8"/>
+  <rect x="880" y="92"  width="260" height="12" fill="#1e293b"/>
+  <circle cx="902" cy="92" r="5" fill="#ef4444" fill-opacity="0.7"/>
+  <circle cx="917" cy="92" r="5" fill="#f59e0b" fill-opacity="0.7"/>
+  <circle cx="932" cy="92" r="5" fill="#4ade80" fill-opacity="0.7"/>
+  <text x="1010" y="96" text-anchor="middle" font-size="9" fill="#64748b">capture.pcap · Wireshark</text>
+
+  <g font-family="'Courier New',monospace" font-size="10">
+    <text x="898" y="128" fill="#64748b">No.  Time   Protocol</text>
+    <text x="898" y="148" fill="#4ade80">1    0.000  802.11</text>
+    <text x="898" y="162" fill="#94a3b8">     Probe Request</text>
+    <text x="898" y="178" fill="#4ade80">2    0.012  802.11</text>
+    <text x="898" y="192" fill="#94a3b8">     Probe Response</text>
+    <text x="898" y="208" fill="#4ade80">3    0.015  802.11</text>
+    <text x="898" y="222" fill="#94a3b8">     Auth Request</text>
+    <text x="898" y="238" fill="#4ade80">4    0.016  802.11</text>
+    <text x="898" y="252" fill="#94a3b8">     Auth Response</text>
+    <text x="898" y="268" fill="#4ade80">5    0.020  802.11</text>
+    <text x="898" y="282" fill="#94a3b8">     Assoc Request</text>
+    <text x="898" y="310" fill="#7dd3fc">RSSI: -62 dBm · ch 36</text>
+    <text x="898" y="326" fill="#7dd3fc">SSID: HomeNetwork</text>
+    <text x="898" y="342" fill="#64748b">frames: 247 · 38.4 KB</text>
+  </g>
+
+  <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
+  <text x="600" y="500" text-anchor="middle" font-size="13" fill="#60a5fa" letter-spacing="3" font-weight="600">UNIFI</text>
+  <text x="600" y="538" text-anchor="middle" font-size="34" font-weight="700" fill="#f1f5f9">Troubleshoot WiFi with Unifi Wireless Packet Capture</text>
+</svg>

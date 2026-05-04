@@ -1,7 +1,7 @@
 ---
 title: "IPv6 Explained: Addressing"
 description: IPv6 replaces 32-bit addresses with 128-bit ones — but the change goes deeper than size. Here's how IPv6 addresses are structured, what the different types mean, and how subnetting works.
-date: 2026-07-02
+date: 2026-05-25
 draft: false
 cover: cover.svg
 categories:

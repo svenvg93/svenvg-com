@@ -1,7 +1,7 @@
 ---
 title: "WiFi Explained: How MLO Works"
 description: Multi-Link Operation is the biggest architectural change in WiFi 7. Here's what it actually does, how the three modes differ, and what it requires.
-date: 2026-05-21
+date: 2026-05-14
 draft: false
 cover: cover.svg
 categories:

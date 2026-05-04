@@ -1,7 +1,7 @@
 ---
 title: "IPv6 Explained: SLAAC and DHCPv6"
 description: IPv6 devices can configure their own addresses without a DHCP server. Here's how SLAAC works, where DHCPv6 fits in, and when you actually need one versus the other.
-date: 2026-07-09
+date: 2026-05-28
 draft: false
 cover: cover.svg
 categories:

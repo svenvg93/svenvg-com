@@ -1,7 +1,7 @@
 ---
 title: "Encrypted DNS: DoH, DoT, and DoQ Explained"
 description: Unencrypted DNS leaks every domain you visit to your ISP and any on-path observer. Here's how DNS-over-TLS, DNS-over-HTTPS, and DNS-over-QUIC fix that — and how they differ.
-date: 2026-06-11
+date: 2026-05-21
 draft: false
 cover: cover.svg
 categories:

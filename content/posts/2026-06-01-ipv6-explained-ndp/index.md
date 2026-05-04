@@ -1,7 +1,7 @@
 ---
 title: "IPv6 Explained: Neighbor Discovery"
 description: IPv6 has no ARP. Neighbor Discovery Protocol replaces it — and does more. Here's how NDP resolves addresses, finds routers, and detects duplicates, all using ICMPv6 multicast.
-date: 2026-07-16
+date: 2026-06-01
 draft: false
 cover: cover.svg
 categories:

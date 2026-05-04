@@ -1,7 +1,7 @@
 ---
 title: "WiFi Explained: Transmit Power, Channel Width, and Channel Selection"
 description: Three settings that most people leave on auto — and shouldn't. Here's what transmit power, channel width, and channel selection actually do, and how they interact.
-date: 2026-06-04
+date: 2026-05-18
 draft: false
 cover: cover.svg
 categories:

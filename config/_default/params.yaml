@@ -1,5 +1,5 @@
 # Basic site info with SEO
-description: "Personal blog by Sven van Ginkel, focused on self-hosting, homelab architecture, networking, and automation. Sharing practical insights, tools, and guides for building reliable and privacy-respecting infrastructure."
+description: "Personal blog by Sven van Ginkel, focused on homelab networking, self-hosting, observability, and automation. Sharing practical guides for building reliable, well-monitored infrastructure."
 keywords: ["Self-Hosting", "Homelab", "Networking", "Linux", "Automation", "Infrastructure", "Ansible", "Docker", "Tailscale"]
 defaultAuthor: "Sven van Ginkel"
 language: "en-US"
@@ -23,7 +23,7 @@ header:
 author:
   name: "Sven van Ginkel"
   title: "Self-Hosting • Homelab • Network Engineering"
-  description: "Sharing practical guides on self-hosting, homelab architecture, networking, and automation — building reliable, privacy-respecting infrastructure."
+  description: "Sharing practical guides on homelab networking, self-hosting, observability, and automation — building reliable, well-monitored infrastructure."
   avatar: "/image.png"
   social:
     - name: "GitHub"

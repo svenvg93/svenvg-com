@@ -1,0 +1,46 @@
+en:
+  locale: en
+  label: "English"
+  weight: 1
+  # 可选：按语言覆盖站点级 params.yaml 中的 dateFormat
+  params:
+    dateFormat:
+      long: "January 2, 2006"
+      medium: "Jan 2, 2006"
+      short: "01/02"
+
+#zh-hans:
+#  locale: zh-Hans
+#  label: "简体中文"
+#  weight: 2
+  # 可选：按语言覆盖站点级 params.yaml 中的 dateFormat
+  # params:
+  #   dateFormat:
+  #     long: "2006年1月2日"
+  #     medium: "2006-01-02"
+  #     short: "01-02"
+
+# ja:
+#   locale: ja-JP
+#   label: "日本語"
+#   weight: 3
+
+# fr:
+#   locale: fr-FR
+#   label: "Français"
+#   weight: 4
+
+# de:
+#   locale: de-DE
+#   label: "Deutsch"
+#   weight: 5
+
+# es:
+#   locale: es-ES
+#   label: "Español"
+#   weight: 6
+
+# ru:
+#   locale: ru-RU
+#   label: "Русский"
+#   weight: 7

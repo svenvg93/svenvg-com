@@ -1,5 +1,5 @@
 baseURL: https://svenvg.com/
-languageCode: en-US
+locale: en-US
 defaultContentLanguage: en
 defaultContentLanguageInSubdir: false
 title: Sven van Ginkel
@@ -25,8 +25,8 @@ pagination:
 
 languages:
   en:
-    languageCode: en-US
-    languageName: "English"
+    locale: en-US
+    label: "English"
     weight: 1
 
 taxonomies:
@@ -35,8 +35,6 @@ taxonomies:
   series: series
 
 mainSections: ["posts"]
-
-
 
 related:
   includeNewer: true
@@ -90,6 +88,6 @@ outputFormats:
 module:
   hugoVersion:
     extended: true
-    min: 0.157.0
+    min: 0.161.0
   imports:
     - path: github.com/tom2almighty/hugo-narrow

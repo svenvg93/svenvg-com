@@ -11,8 +11,6 @@ tags:
   - wifi7
 series:
   - WiFi Explained
-lightbox:
-  enabled: true
 series_order: 1
 ---
 
@@ -34,7 +32,7 @@ The structure around every data frame is fixed overhead:
 
 At low client counts, this overhead is manageable. At high client counts, devices spend more time waiting than transmitting. The channel is mostly idle — not because there's no traffic, but because all devices are in their backoff period simultaneously.
 
-![CSMA/CA timeline — DIFS, backoff, and ACK overhead for two competing devices](csma-ca-timeline.svg)
+![](csma-ca-timeline.svg "CSMA/CA timeline — DIFS, backoff, and ACK overhead for two competing devices")
 
 ## EDCA: QoS Queues on Top of CSMA/CA
 
@@ -63,7 +61,7 @@ This is the hidden node problem. The standard fix is **RTS/CTS**: the sending de
 
 RTS/CTS adds overhead for every exchange, so it's typically enabled only for large frames — small frames aren't worth the extra roundtrip. But when hidden nodes are causing repeated collisions and retransmissions, it's the right tool.
 
-![Hidden node problem — two clients in range of the AP but not each other, causing a collision](hidden-node.svg)
+![](hidden-node.svg "Hidden node problem — two clients in range of the AP but not each other, causing a collision")
 
 ## OFDM: One Channel, Many Subcarriers
 
@@ -75,7 +73,7 @@ The practical benefit is resilience. A single wideband carrier is vulnerable to 
 
 But in pre-WiFi 6 OFDM, all subcarriers still go to one device per transmission. The channel is shared between devices using CSMA/CA. One device wins the channel, uses all the subcarriers, finishes, and the contention cycle starts again.
 
-![OFDM — one 20 MHz channel divided into many subcarriers, all used by a single device per transmission](ofdm-subcarriers.svg)
+![](ofdm-subcarriers.svg "OFDM — one 20 MHz channel divided into many subcarriers, all used by a single device per transmission")
 
 ## OFDMA: Splitting the Channel Between Devices
 
@@ -87,7 +85,7 @@ A 20 MHz channel in WiFi 6 can be divided into RUs as small as 26 subcarriers, a
 
 **Uplink OFDMA**: The AP sends a **Trigger Frame** to schedule which clients transmit on which RUs and when. Clients transmit simultaneously on their assigned RUs. The AP coordinates uplink access instead of leaving it to per-device CSMA/CA contention.
 
-![OFDMA — the same channel split into Resource Units, each assigned to a different client simultaneously](ofdma-resource-units.svg)
+![](ofdma-resource-units.svg "OFDMA — the same channel split into Resource Units, each assigned to a different client simultaneously")
 
 ## A-MPDU: Filling the TXOP
 
@@ -116,7 +114,7 @@ OFDMA does not replace CSMA/CA. The AP still uses CSMA/CA to win the channel, bu
 | Dense deployments (offices, venues) | Contention scales poorly with client count | Parallelism reduces per-client wait time |
 | Legacy clients | Fully supported | Requires WiFi 6 on both AP and client; older clients fall back to CSMA/CA |
 
-![OFDMA vs CSMA/CA — sequential per-device transmissions vs parallel Resource Unit allocation](ofdma-vs-csma.svg)
+![](ofdma-vs-csma.svg "OFDMA vs CSMA/CA — sequential per-device transmissions vs parallel Resource Unit allocation")
 
 ## What This Means in Practice
 
@@ -141,7 +139,7 @@ Two key benefits follow from this:
 
 Multi-RU is negotiated through the same Trigger Frame mechanism as WiFi 6 OFDMA, extended to carry per-client RU lists rather than single RU assignments. The AP is in full control of the allocation — the client receives exactly the sub-bands the Trigger Frame specifies.
 
-![Multi-RU — WiFi 6 contiguous blocks vs WiFi 7 non-contiguous assignment across the same channel](multi-ru-allocation.svg)
+![](multi-ru-allocation.svg "Multi-RU — WiFi 6 contiguous blocks vs WiFi 7 non-contiguous assignment across the same channel")
 
 ## Preamble Puncturing: Wide Channels Around Interference
 
@@ -158,7 +156,7 @@ Puncturing is not arbitrary. The standard defines valid puncturing patterns — 
 - DFS environments where a radar detection on one sub-band would otherwise force the whole channel down
 - Coexistence scenarios where a neighbouring legacy network occupies a fixed portion of the spectrum
 
-![Preamble Puncturing — 320 MHz channel with interference zone skipped, 240 MHz remains active](preamble-puncturing.svg)
+![](preamble-puncturing.svg "Preamble Puncturing — 320 MHz channel with interference zone skipped, 240 MHz remains active")
 
 ## WiFi 7 Spectrum Features Together
 

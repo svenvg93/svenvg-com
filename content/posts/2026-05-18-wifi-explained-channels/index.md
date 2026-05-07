@@ -11,8 +11,6 @@ tags:
   - wifi7
 series:
   - WiFi Explained
-lightbox:
-  enabled: true
 series_order: 4
 ---
 
@@ -34,7 +32,7 @@ This asymmetry can create a link that appears stronger in one direction than the
 
 The right transmit power is set so that the -70 dBm downlink contour roughly matches the range at which client uplinks are still usable — typically 14–18 dBm in multi-AP environments rather than the 23 dBm maximum.
 
-![Transmit power asymmetry — AP and client TX power difference and resulting RSSI gap](power-asymmetry.svg)
+![](power-asymmetry.svg "Transmit power asymmetry — AP and client TX power difference and resulting RSSI gap")
 
 ## Channel Selection
 
@@ -70,7 +68,7 @@ The regulatory picture in 6 GHz is more layered than 5 GHz:
 
 Most home and office APs operate as LPI devices, which is why the "no DFS, no AFC" experience is the norm for consumer equipment. Standard Power and AFC are relevant mainly for outdoor enterprise deployments.
 
-![Channel selection across 2.4, 5, and 6 GHz — usable channels, overlap zones, and DFS](channel-selection.svg)
+![](channel-selection.svg "Channel selection across 2.4, 5, and 6 GHz — usable channels, overlap zones, and DFS")
 
 ## Channel Width
 
@@ -96,7 +94,7 @@ The 6 GHz band is wide enough that 160 MHz channels still leave meaningful non-o
 | 5 GHz | ~25 | ~12 | ~6 | ~2–3 (DFS) | — |
 | 6 GHz | ~59 | ~29 | ~14 | ~7 | ~3–4 |
 
-![Channel width trade-off — how wider channels consume available spectrum in 5 and 6 GHz](channel-width.svg)
+![](channel-width.svg "Channel width trade-off — how wider channels consume available spectrum in 5 and 6 GHz")
 
 ## How They Interact
 

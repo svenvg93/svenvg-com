@@ -1,102 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 240" width="700" height="240" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <linearGradient id="barA" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0c4a6e" stop-opacity="0.4"/>
+    </linearGradient>
+    <linearGradient id="barB" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6ee7b7"/>
+      <stop offset="100%" stop-color="#064e3b" stop-opacity="0.4"/>
+    </linearGradient>
+    <linearGradient id="barC" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fdba74"/>
+      <stop offset="100%" stop-color="#7c2d12" stop-opacity="0.4"/>
+    </linearGradient>
+    <linearGradient id="barD" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c084fc"/>
+      <stop offset="100%" stop-color="#3b0764" stop-opacity="0.4"/>
+    </linearGradient>
+  </defs>
 
   <!-- Background -->
-  <rect width="700" height="240" fill="#f8fafc" rx="12"/>
+  <rect width="700" height="240" fill="url(#bg)" rx="8"/>
 
-  <!-- Title -->
-  <text x="350" y="26" text-anchor="middle" font-size="14" font-weight="700" fill="#111827">OFDMA — Subcarriers Split Into Resource Units</text>
+  <!-- Grid line -->
+  <line x1="52" y1="118" x2="664" y2="118" stroke="#0d1a2a" stroke-width="1"/>
+
+  <!-- Header label -->
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">OFDMA — SUBCARRIERS SPLIT INTO RESOURCE UNITS</text>
 
   <!-- Y axis label -->
-  <text x="24" y="130" text-anchor="middle" font-size="10" fill="#6b7280" transform="rotate(-90,24,130)">signal</text>
+  <text x="24" y="130" text-anchor="middle" font-size="10" fill="#94a3b8" transform="rotate(-90,24,130)">signal</text>
 
   <!-- Axis lines -->
-  <line x1="52" y1="50" x2="52" y2="168" stroke="#d1d5db" stroke-width="1.5"/>
-  <line x1="52" y1="168" x2="664" y2="168" stroke="#d1d5db" stroke-width="1.5"/>
+  <line x1="52" y1="50" x2="52" y2="168" stroke="#1e3a5f" stroke-width="1.5"/>
+  <line x1="52" y1="168" x2="664" y2="168" stroke="#1e3a5f" stroke-width="1.5"/>
 
   <!-- X axis label -->
-  <text x="358" y="186" text-anchor="middle" font-size="10" fill="#6b7280">frequency →    20 MHz channel</text>
+  <text x="358" y="186" text-anchor="middle" font-size="10" fill="#94a3b8">frequency    20 MHz channel</text>
 
-  <!-- RU boundaries (4 RUs) at x: 58, 208, 358, 508, 658 -->
-
-  <!-- RU 1 — Client A (blue) x=58..207 — 12 bars -->
-  <rect x="58"  y="88" width="10" height="80" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
-  <rect x="70"  y="72" width="10" height="96" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
-  <rect x="82"  y="82" width="10" height="86" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
-  <rect x="94"  y="68" width="10" height="100" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
-  <rect x="106" y="78" width="10" height="90" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
-  <rect x="118" y="65" width="10" height="103" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
-  <rect x="130" y="75" width="10" height="93" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
-  <rect x="142" y="84" width="10" height="84" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
-  <rect x="154" y="70" width="10" height="98" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
-  <rect x="166" y="80" width="10" height="88" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
-  <rect x="178" y="66" width="10" height="102" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
-  <rect x="190" y="76" width="10" height="92" fill="#bfdbfe" stroke="#93c5fd" stroke-width="0.5" rx="1"/>
+  <!-- RU 1 — Client A (sky blue) x=58..207 -->
+  <rect x="58"  y="88" width="10" height="80" fill="url(#barA)" stroke="#38bdf8" stroke-width="0.5" rx="1"/>
+  <rect x="70"  y="72" width="10" height="96" fill="url(#barA)" stroke="#38bdf8" stroke-width="0.5" rx="1"/>
+  <rect x="82"  y="82" width="10" height="86" fill="url(#barA)" stroke="#38bdf8" stroke-width="0.5" rx="1"/>
+  <rect x="94"  y="68" width="10" height="100" fill="url(#barA)" stroke="#38bdf8" stroke-width="0.5" rx="1"/>
+  <rect x="106" y="78" width="10" height="90" fill="url(#barA)" stroke="#38bdf8" stroke-width="0.5" rx="1"/>
+  <rect x="118" y="65" width="10" height="103" fill="url(#barA)" stroke="#38bdf8" stroke-width="0.5" rx="1"/>
+  <rect x="130" y="75" width="10" height="93" fill="url(#barA)" stroke="#38bdf8" stroke-width="0.5" rx="1"/>
+  <rect x="142" y="84" width="10" height="84" fill="url(#barA)" stroke="#38bdf8" stroke-width="0.5" rx="1"/>
+  <rect x="154" y="70" width="10" height="98" fill="url(#barA)" stroke="#38bdf8" stroke-width="0.5" rx="1"/>
+  <rect x="166" y="80" width="10" height="88" fill="url(#barA)" stroke="#38bdf8" stroke-width="0.5" rx="1"/>
+  <rect x="178" y="66" width="10" height="102" fill="url(#barA)" stroke="#38bdf8" stroke-width="0.5" rx="1"/>
+  <rect x="190" y="76" width="10" height="92" fill="url(#barA)" stroke="#38bdf8" stroke-width="0.5" rx="1"/>
 
   <!-- RU 1 label -->
-  <rect x="60" y="52" width="142" height="18" fill="#eff6ff" stroke="#93c5fd" stroke-width="1" rx="3"/>
-  <text x="131" y="64" text-anchor="middle" font-size="10" font-weight="600" fill="#1d4ed8">RU 1 — Client A</text>
+  <rect x="60" y="52" width="142" height="18" fill="#0e1a3a" stroke="#38bdf8" stroke-width="1" rx="3"/>
+  <text x="131" y="64" text-anchor="middle" font-size="10" font-weight="600" fill="#7dd3fc">RU 1 — Client A</text>
 
   <!-- RU 2 — Client B (green) x=210..357 -->
-  <rect x="210" y="82" width="10" height="86" fill="#bbf7d0" stroke="#4ade80" stroke-width="0.5" rx="1"/>
-  <rect x="222" y="68" width="10" height="100" fill="#bbf7d0" stroke="#4ade80" stroke-width="0.5" rx="1"/>
-  <rect x="234" y="78" width="10" height="90" fill="#bbf7d0" stroke="#4ade80" stroke-width="0.5" rx="1"/>
-  <rect x="246" y="64" width="10" height="104" fill="#bbf7d0" stroke="#4ade80" stroke-width="0.5" rx="1"/>
-  <rect x="258" y="74" width="10" height="94" fill="#bbf7d0" stroke="#4ade80" stroke-width="0.5" rx="1"/>
-  <rect x="270" y="84" width="10" height="84" fill="#bbf7d0" stroke="#4ade80" stroke-width="0.5" rx="1"/>
-  <rect x="282" y="70" width="10" height="98" fill="#bbf7d0" stroke="#4ade80" stroke-width="0.5" rx="1"/>
-  <rect x="294" y="80" width="10" height="88" fill="#bbf7d0" stroke="#4ade80" stroke-width="0.5" rx="1"/>
-  <rect x="306" y="66" width="10" height="102" fill="#bbf7d0" stroke="#4ade80" stroke-width="0.5" rx="1"/>
-  <rect x="318" y="76" width="10" height="92" fill="#bbf7d0" stroke="#4ade80" stroke-width="0.5" rx="1"/>
-  <rect x="330" y="86" width="10" height="82" fill="#bbf7d0" stroke="#4ade80" stroke-width="0.5" rx="1"/>
-  <rect x="342" y="72" width="10" height="96" fill="#bbf7d0" stroke="#4ade80" stroke-width="0.5" rx="1"/>
+  <rect x="210" y="82" width="10" height="86" fill="url(#barB)" stroke="#6ee7b7" stroke-width="0.5" rx="1"/>
+  <rect x="222" y="68" width="10" height="100" fill="url(#barB)" stroke="#6ee7b7" stroke-width="0.5" rx="1"/>
+  <rect x="234" y="78" width="10" height="90" fill="url(#barB)" stroke="#6ee7b7" stroke-width="0.5" rx="1"/>
+  <rect x="246" y="64" width="10" height="104" fill="url(#barB)" stroke="#6ee7b7" stroke-width="0.5" rx="1"/>
+  <rect x="258" y="74" width="10" height="94" fill="url(#barB)" stroke="#6ee7b7" stroke-width="0.5" rx="1"/>
+  <rect x="270" y="84" width="10" height="84" fill="url(#barB)" stroke="#6ee7b7" stroke-width="0.5" rx="1"/>
+  <rect x="282" y="70" width="10" height="98" fill="url(#barB)" stroke="#6ee7b7" stroke-width="0.5" rx="1"/>
+  <rect x="294" y="80" width="10" height="88" fill="url(#barB)" stroke="#6ee7b7" stroke-width="0.5" rx="1"/>
+  <rect x="306" y="66" width="10" height="102" fill="url(#barB)" stroke="#6ee7b7" stroke-width="0.5" rx="1"/>
+  <rect x="318" y="76" width="10" height="92" fill="url(#barB)" stroke="#6ee7b7" stroke-width="0.5" rx="1"/>
+  <rect x="330" y="86" width="10" height="82" fill="url(#barB)" stroke="#6ee7b7" stroke-width="0.5" rx="1"/>
+  <rect x="342" y="72" width="10" height="96" fill="url(#barB)" stroke="#6ee7b7" stroke-width="0.5" rx="1"/>
 
   <!-- RU 2 label -->
-  <rect x="212" y="52" width="142" height="18" fill="#f0fdf4" stroke="#4ade80" stroke-width="1" rx="3"/>
-  <text x="283" y="64" text-anchor="middle" font-size="10" font-weight="600" fill="#15803d">RU 2 — Client B</text>
+  <rect x="212" y="52" width="142" height="18" fill="#071810" stroke="#86efac" stroke-width="1" rx="3"/>
+  <text x="283" y="64" text-anchor="middle" font-size="10" font-weight="600" fill="#86efac">RU 2 — Client B</text>
 
   <!-- RU 3 — Client C (orange) x=360..507 -->
-  <rect x="360" y="86" width="10" height="82" fill="#fed7aa" stroke="#fb923c" stroke-width="0.5" rx="1"/>
-  <rect x="372" y="72" width="10" height="96" fill="#fed7aa" stroke="#fb923c" stroke-width="0.5" rx="1"/>
-  <rect x="384" y="82" width="10" height="86" fill="#fed7aa" stroke="#fb923c" stroke-width="0.5" rx="1"/>
-  <rect x="396" y="68" width="10" height="100" fill="#fed7aa" stroke="#fb923c" stroke-width="0.5" rx="1"/>
-  <rect x="408" y="78" width="10" height="90" fill="#fed7aa" stroke="#fb923c" stroke-width="0.5" rx="1"/>
-  <rect x="420" y="64" width="10" height="104" fill="#fed7aa" stroke="#fb923c" stroke-width="0.5" rx="1"/>
-  <rect x="432" y="74" width="10" height="94" fill="#fed7aa" stroke="#fb923c" stroke-width="0.5" rx="1"/>
-  <rect x="444" y="84" width="10" height="84" fill="#fed7aa" stroke="#fb923c" stroke-width="0.5" rx="1"/>
-  <rect x="456" y="70" width="10" height="98" fill="#fed7aa" stroke="#fb923c" stroke-width="0.5" rx="1"/>
-  <rect x="468" y="80" width="10" height="88" fill="#fed7aa" stroke="#fb923c" stroke-width="0.5" rx="1"/>
-  <rect x="480" y="66" width="10" height="102" fill="#fed7aa" stroke="#fb923c" stroke-width="0.5" rx="1"/>
-  <rect x="492" y="76" width="10" height="92" fill="#fed7aa" stroke="#fb923c" stroke-width="0.5" rx="1"/>
+  <rect x="360" y="86" width="10" height="82" fill="url(#barC)" stroke="#fdba74" stroke-width="0.5" rx="1"/>
+  <rect x="372" y="72" width="10" height="96" fill="url(#barC)" stroke="#fdba74" stroke-width="0.5" rx="1"/>
+  <rect x="384" y="82" width="10" height="86" fill="url(#barC)" stroke="#fdba74" stroke-width="0.5" rx="1"/>
+  <rect x="396" y="68" width="10" height="100" fill="url(#barC)" stroke="#fdba74" stroke-width="0.5" rx="1"/>
+  <rect x="408" y="78" width="10" height="90" fill="url(#barC)" stroke="#fdba74" stroke-width="0.5" rx="1"/>
+  <rect x="420" y="64" width="10" height="104" fill="url(#barC)" stroke="#fdba74" stroke-width="0.5" rx="1"/>
+  <rect x="432" y="74" width="10" height="94" fill="url(#barC)" stroke="#fdba74" stroke-width="0.5" rx="1"/>
+  <rect x="444" y="84" width="10" height="84" fill="url(#barC)" stroke="#fdba74" stroke-width="0.5" rx="1"/>
+  <rect x="456" y="70" width="10" height="98" fill="url(#barC)" stroke="#fdba74" stroke-width="0.5" rx="1"/>
+  <rect x="468" y="80" width="10" height="88" fill="url(#barC)" stroke="#fdba74" stroke-width="0.5" rx="1"/>
+  <rect x="480" y="66" width="10" height="102" fill="url(#barC)" stroke="#fdba74" stroke-width="0.5" rx="1"/>
+  <rect x="492" y="76" width="10" height="92" fill="url(#barC)" stroke="#fdba74" stroke-width="0.5" rx="1"/>
 
   <!-- RU 3 label -->
-  <rect x="362" y="52" width="142" height="18" fill="#fff7ed" stroke="#fb923c" stroke-width="1" rx="3"/>
-  <text x="433" y="64" text-anchor="middle" font-size="10" font-weight="600" fill="#c2410c">RU 3 — Client C</text>
+  <rect x="362" y="52" width="142" height="18" fill="#150808" stroke="#f87171" stroke-width="1" rx="3"/>
+  <text x="433" y="64" text-anchor="middle" font-size="10" font-weight="600" fill="#fca5a5">RU 3 — Client C</text>
 
   <!-- RU 4 — Client D (purple) x=510..657 -->
-  <rect x="510" y="82" width="10" height="86" fill="#ddd6fe" stroke="#a78bfa" stroke-width="0.5" rx="1"/>
-  <rect x="522" y="68" width="10" height="100" fill="#ddd6fe" stroke="#a78bfa" stroke-width="0.5" rx="1"/>
-  <rect x="534" y="78" width="10" height="90" fill="#ddd6fe" stroke="#a78bfa" stroke-width="0.5" rx="1"/>
-  <rect x="546" y="65" width="10" height="103" fill="#ddd6fe" stroke="#a78bfa" stroke-width="0.5" rx="1"/>
-  <rect x="558" y="75" width="10" height="93" fill="#ddd6fe" stroke="#a78bfa" stroke-width="0.5" rx="1"/>
-  <rect x="570" y="84" width="10" height="84" fill="#ddd6fe" stroke="#a78bfa" stroke-width="0.5" rx="1"/>
-  <rect x="582" y="70" width="10" height="98" fill="#ddd6fe" stroke="#a78bfa" stroke-width="0.5" rx="1"/>
-  <rect x="594" y="80" width="10" height="88" fill="#ddd6fe" stroke="#a78bfa" stroke-width="0.5" rx="1"/>
-  <rect x="606" y="66" width="10" height="102" fill="#ddd6fe" stroke="#a78bfa" stroke-width="0.5" rx="1"/>
-  <rect x="618" y="76" width="10" height="92" fill="#ddd6fe" stroke="#a78bfa" stroke-width="0.5" rx="1"/>
-  <rect x="630" y="86" width="10" height="82" fill="#ddd6fe" stroke="#a78bfa" stroke-width="0.5" rx="1"/>
-  <rect x="642" y="72" width="10" height="96" fill="#ddd6fe" stroke="#a78bfa" stroke-width="0.5" rx="1"/>
+  <rect x="510" y="82" width="10" height="86" fill="url(#barD)" stroke="#c084fc" stroke-width="0.5" rx="1"/>
+  <rect x="522" y="68" width="10" height="100" fill="url(#barD)" stroke="#c084fc" stroke-width="0.5" rx="1"/>
+  <rect x="534" y="78" width="10" height="90" fill="url(#barD)" stroke="#c084fc" stroke-width="0.5" rx="1"/>
+  <rect x="546" y="65" width="10" height="103" fill="url(#barD)" stroke="#c084fc" stroke-width="0.5" rx="1"/>
+  <rect x="558" y="75" width="10" height="93" fill="url(#barD)" stroke="#c084fc" stroke-width="0.5" rx="1"/>
+  <rect x="570" y="84" width="10" height="84" fill="url(#barD)" stroke="#c084fc" stroke-width="0.5" rx="1"/>
+  <rect x="582" y="70" width="10" height="98" fill="url(#barD)" stroke="#c084fc" stroke-width="0.5" rx="1"/>
+  <rect x="594" y="80" width="10" height="88" fill="url(#barD)" stroke="#c084fc" stroke-width="0.5" rx="1"/>
+  <rect x="606" y="66" width="10" height="102" fill="url(#barD)" stroke="#c084fc" stroke-width="0.5" rx="1"/>
+  <rect x="618" y="76" width="10" height="92" fill="url(#barD)" stroke="#c084fc" stroke-width="0.5" rx="1"/>
+  <rect x="630" y="86" width="10" height="82" fill="url(#barD)" stroke="#c084fc" stroke-width="0.5" rx="1"/>
+  <rect x="642" y="72" width="10" height="96" fill="url(#barD)" stroke="#c084fc" stroke-width="0.5" rx="1"/>
 
   <!-- RU 4 label -->
-  <rect x="512" y="52" width="142" height="18" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1" rx="3"/>
-  <text x="583" y="64" text-anchor="middle" font-size="10" font-weight="600" fill="#6d28d9">RU 4 — Client D</text>
+  <rect x="512" y="52" width="142" height="18" fill="#150822" stroke="#a78bfa" stroke-width="1" rx="3"/>
+  <text x="583" y="64" text-anchor="middle" font-size="10" font-weight="600" fill="#c4b5fd">RU 4 — Client D</text>
 
   <!-- RU boundary lines -->
-  <line x1="206" y1="50" x2="206" y2="168" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="3,3"/>
-  <line x1="356" y1="50" x2="356" y2="168" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="3,3"/>
-  <line x1="506" y1="50" x2="506" y2="168" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <line x1="206" y1="50" x2="206" y2="168" stroke="#1e3a5f" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <line x1="356" y1="50" x2="356" y2="168" stroke="#1e3a5f" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <line x1="506" y1="50" x2="506" y2="168" stroke="#1e3a5f" stroke-width="1.5" stroke-dasharray="3,3"/>
 
-  <!-- Caption -->
-  <text x="350" y="214" text-anchor="middle" font-size="11" fill="#6b7280">Four clients transmit or receive simultaneously — one contention event, four deliveries</text>
-  <text x="350" y="228" text-anchor="middle" font-size="11" fill="#6b7280">The AP assigns Resource Units based on traffic demand</text>
+  <!-- Footer captions -->
+  <text x="350" y="212" text-anchor="middle" font-size="9" fill="#94a3b8">Four clients transmit or receive simultaneously — one contention event, four deliveries</text>
+  <text x="350" y="226" text-anchor="middle" font-size="9" fill="#94a3b8">The AP assigns Resource Units based on traffic demand</text>
 </svg>

@@ -13,8 +13,6 @@ cover: cover.svg
 series:
   - Grafana Observability
 series_order: 4
-lightbox:
-  enabled: true
 ---
 
 Collecting metrics is only half the picture — you also need to know when something breaks. Grafana Alerting evaluates rules against your Prometheus data and fires notifications to a contact point of your choice.

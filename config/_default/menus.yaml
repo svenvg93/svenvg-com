@@ -43,16 +43,9 @@ main:
     params:
       icon: projects
 
-  - name: Resume
-    pageRef: /resume
-    weight: 40
-    parent: More
-    params:
-      icon: file-text
-
   - name: About
     pageRef: /about
-    weight: 50
+    weight: 40
     parent: More
     params:
       icon: about
@@ -63,14 +56,22 @@ footer:
     weight: 10
     params:
       icon: about
+
   - name: Contact
     url: mailto:svenvanginkel@icloud.com
     weight: 20
     params:
       icon: contact
+
+  - name: Resume
+    pageRef: /resume
+    weight: 30
+    params:
+      icon: file-text
+
   - name: RSS Feed
     url: /index.xml
-    weight: 30
+    weight: 40
     params:
       icon: rss
 

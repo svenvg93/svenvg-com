@@ -1,56 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 240" width="700" height="240" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
-
-  <!-- Background -->
-  <rect width="700" height="240" fill="#f8fafc" rx="12"/>
-
-  <!-- Title -->
-  <text x="350" y="26" text-anchor="middle" font-size="14" font-weight="700" fill="#111827">WiFi 7 (802.11be) — Three Complementary Features</text>
-
-  <!-- === MLO Box === -->
-  <rect x="40" y="44" width="190" height="140" fill="#eff6ff" stroke="#93c5fd" stroke-width="2" rx="8"/>
-  <text x="135" y="68" text-anchor="middle" font-size="13" font-weight="700" fill="#1d4ed8">MLO</text>
-  <text x="135" y="84" text-anchor="middle" font-size="10" fill="#1e40af">Multi-Link Operation</text>
-  <line x1="60" y1="92" x2="210" y2="92" stroke="#bfdbfe" stroke-width="1"/>
-  <text x="135" y="110" text-anchor="middle" font-size="10" fill="#1e40af">Bonds 2.4 / 5 / 6 GHz</text>
-  <text x="135" y="124" text-anchor="middle" font-size="10" fill="#1e40af">into one logical link</text>
-  <text x="135" y="144" text-anchor="middle" font-size="10" fill="#1e40af">Lower latency +</text>
-  <text x="135" y="158" text-anchor="middle" font-size="10" fill="#1e40af">higher aggregate throughput</text>
-  <text x="135" y="172" text-anchor="middle" font-size="9" font-style="italic" fill="#6b7280">This post</text>
-
-  <!-- === Multi-RU Box === -->
-  <rect x="255" y="44" width="190" height="140" fill="#f0fdf4" stroke="#4ade80" stroke-width="2" rx="8"/>
-  <text x="350" y="68" text-anchor="middle" font-size="13" font-weight="700" fill="#15803d">Multi-RU</text>
-  <text x="350" y="84" text-anchor="middle" font-size="10" fill="#166534">Multi-Resource Unit</text>
-  <line x1="275" y1="92" x2="425" y2="92" stroke="#bbf7d0" stroke-width="1"/>
-  <text x="350" y="110" text-anchor="middle" font-size="10" fill="#166534">Non-contiguous sub-band</text>
-  <text x="350" y="124" text-anchor="middle" font-size="10" fill="#166534">assignment per client</text>
-  <text x="350" y="144" text-anchor="middle" font-size="10" fill="#166534">Better spectrum efficiency</text>
-  <text x="350" y="158" text-anchor="middle" font-size="10" fill="#166534">within one channel</text>
-  <text x="350" y="172" text-anchor="middle" font-size="9" font-style="italic" fill="#6b7280">See: How Devices Share the Air</text>
-
-  <!-- === Preamble Puncturing Box === -->
-  <rect x="470" y="44" width="190" height="140" fill="#fff7ed" stroke="#fb923c" stroke-width="2" rx="8"/>
-  <text x="565" y="68" text-anchor="middle" font-size="13" font-weight="700" fill="#c2410c">Puncturing</text>
-  <text x="565" y="84" text-anchor="middle" font-size="10" fill="#9a3412">Preamble Puncturing</text>
-  <line x1="490" y1="92" x2="640" y2="92" stroke="#fed7aa" stroke-width="1"/>
-  <text x="565" y="110" text-anchor="middle" font-size="10" fill="#9a3412">Skip busy 20 MHz sub-bands</text>
-  <text x="565" y="124" text-anchor="middle" font-size="10" fill="#9a3412">in a 320 MHz channel</text>
-  <text x="565" y="144" text-anchor="middle" font-size="10" fill="#9a3412">Keep wide channels usable</text>
-  <text x="565" y="158" text-anchor="middle" font-size="10" fill="#9a3412">despite partial interference</text>
-  <text x="565" y="172" text-anchor="middle" font-size="9" font-style="italic" fill="#6b7280">See: How Devices Share the Air</text>
-
-  <!-- Connecting arrows -->
-  <line x1="230" y1="114" x2="255" y2="114" stroke="#9ca3af" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <line x1="445" y1="114" x2="470" y2="114" stroke="#9ca3af" stroke-width="1.5" marker-end="url(#arrow)"/>
-
   <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
     <marker id="arrow" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
-      <path d="M0,0 L0,6 L6,3 z" fill="#9ca3af"/>
+      <path d="M0,0 L0,6 L6,3 z" fill="#94a3b8"/>
     </marker>
   </defs>
 
-  <!-- Caption -->
-  <text x="350" y="208" text-anchor="middle" font-size="11" fill="#6b7280">MLO works across bands; Multi-RU and Puncturing optimise spectrum use within each band</text>
-  <text x="350" y="222" text-anchor="middle" font-size="11" fill="#6b7280">All three require WiFi 7 on both AP and client</text>
+  <!-- Background -->
+  <rect width="700" height="240" fill="url(#bg)" rx="8"/>
+
+  <!-- Subtle grid -->
+  <line x1="0" y1="120" x2="700" y2="120" stroke="#0d1a2a" stroke-width="1"/>
+
+  <!-- Header label -->
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">WIFI 7 (802.11BE) — THREE COMPLEMENTARY FEATURES</text>
+
+  <!-- MLO Box -->
+  <rect x="40" y="36" width="190" height="148" fill="#0e1a3a" stroke="#38bdf8" stroke-width="2" rx="5"/>
+  <text x="135" y="60" text-anchor="middle" font-size="13" font-weight="700" fill="#38bdf8">MLO</text>
+  <text x="135" y="76" text-anchor="middle" font-size="10" fill="#bae6fd">Multi-Link Operation</text>
+  <line x1="60" y1="84" x2="210" y2="84" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="135" y="102" text-anchor="middle" font-size="10" fill="#94a3b8">Bonds 2.4 / 5 / 6 GHz</text>
+  <text x="135" y="116" text-anchor="middle" font-size="10" fill="#94a3b8">into one logical link</text>
+  <text x="135" y="136" text-anchor="middle" font-size="10" fill="#94a3b8">Lower latency +</text>
+  <text x="135" y="150" text-anchor="middle" font-size="10" fill="#94a3b8">higher aggregate throughput</text>
+  <text x="135" y="168" text-anchor="middle" font-size="9" font-style="italic" fill="#94a3b8">This post</text>
+
+  <!-- Multi-RU Box -->
+  <rect x="255" y="36" width="190" height="148" fill="#071810" stroke="#34d399" stroke-width="2" rx="5"/>
+  <text x="350" y="60" text-anchor="middle" font-size="13" font-weight="700" fill="#34d399">Multi-RU</text>
+  <text x="350" y="76" text-anchor="middle" font-size="10" fill="#a7f3d0">Multi-Resource Unit</text>
+  <line x1="275" y1="84" x2="425" y2="84" stroke="#0d3320" stroke-width="1"/>
+  <text x="350" y="102" text-anchor="middle" font-size="10" fill="#94a3b8">Non-contiguous sub-band</text>
+  <text x="350" y="116" text-anchor="middle" font-size="10" fill="#94a3b8">assignment per client</text>
+  <text x="350" y="136" text-anchor="middle" font-size="10" fill="#94a3b8">Better spectrum efficiency</text>
+  <text x="350" y="150" text-anchor="middle" font-size="10" fill="#94a3b8">within one channel</text>
+  <text x="350" y="168" text-anchor="middle" font-size="9" font-style="italic" fill="#94a3b8">See: How Devices Share the Air</text>
+
+  <!-- Preamble Puncturing Box -->
+  <rect x="470" y="36" width="190" height="148" fill="#150808" stroke="#f97316" stroke-width="2" rx="5"/>
+  <text x="565" y="60" text-anchor="middle" font-size="13" font-weight="700" fill="#f97316">Puncturing</text>
+  <text x="565" y="76" text-anchor="middle" font-size="10" fill="#fed7aa">Preamble Puncturing</text>
+  <line x1="490" y1="84" x2="640" y2="84" stroke="#2a1000" stroke-width="1"/>
+  <text x="565" y="102" text-anchor="middle" font-size="10" fill="#94a3b8">Skip busy 20 MHz sub-bands</text>
+  <text x="565" y="116" text-anchor="middle" font-size="10" fill="#94a3b8">in a 320 MHz channel</text>
+  <text x="565" y="136" text-anchor="middle" font-size="10" fill="#94a3b8">Keep wide channels usable</text>
+  <text x="565" y="150" text-anchor="middle" font-size="10" fill="#94a3b8">despite partial interference</text>
+  <text x="565" y="168" text-anchor="middle" font-size="9" font-style="italic" fill="#94a3b8">See: How Devices Share the Air</text>
+
+  <!-- Connecting arrows -->
+  <line x1="230" y1="110" x2="255" y2="110" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="445" y1="110" x2="470" y2="110" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Footer captions -->
+  <text x="350" y="202" text-anchor="middle" font-size="9" fill="#94a3b8">MLO works across bands; Multi-RU and Puncturing optimise spectrum use within each band</text>
+  <text x="350" y="216" text-anchor="middle" font-size="9" fill="#94a3b8">All three require WiFi 7 on both AP and client</text>
 </svg>

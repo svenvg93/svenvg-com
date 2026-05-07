@@ -2,51 +2,74 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 240" width="700" height="240"
      font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
   <defs>
-    <marker id="arr-r" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto">
-      <polygon points="0,0 7,2.5 0,5" fill="#10b981"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <linearGradient id="arr-ns" x1="160" y1="75" x2="430" y2="75" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#86efac"/>
+      <stop offset="100%" stop-color="#fcd34d"/>
+    </linearGradient>
+    <linearGradient id="arr-na" x1="540" y1="145" x2="165" y2="145" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#86efac"/>
+      <stop offset="100%" stop-color="#4ade80"/>
+    </linearGradient>
+    <marker id="arr-r" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#4ade80"/>
     </marker>
-    <marker id="arr-l" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto">
-      <polygon points="0,0 7,2.5 0,5" fill="#10b981"/>
+    <marker id="arr-amber" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#fcd34d"/>
+    </marker>
+    <marker id="arr-na-tip" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#86efac"/>
     </marker>
   </defs>
-  <rect width="700" height="240" fill="#f8fafc" rx="12"/>
-  <text x="350" y="24" text-anchor="middle" font-size="13" font-weight="700" fill="#111827">NDP Address Resolution — Neighbor Solicitation and Advertisement</text>
+
+  <rect width="700" height="240" fill="url(#bg)" rx="8"/>
+
+  <!-- subtle grid -->
+  <g stroke="#0d1a2a" stroke-width="1">
+    <line x1="0" y1="46" x2="700" y2="46"/>
+    <line x1="350" y1="0" x2="350" y2="240"/>
+  </g>
+
+  <!-- header -->
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">NDP ADDRESS RESOLUTION — NEIGHBOR SOLICITATION AND ADVERTISEMENT</text>
 
   <!-- Device A -->
-  <rect x="30" y="50" width="130" height="50" fill="#f0fdf4" stroke="#10b981" stroke-width="1.5" rx="6"/>
-  <text x="95" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">DEVICE A</text>
-  <text x="95" y="88" text-anchor="middle" font-size="8" fill="#10b981" font-family="'Courier New',monospace">2001:db8::1</text>
+  <rect x="30" y="54" width="130" height="50" fill="#071810" stroke="#166534" stroke-width="1.5" rx="5"/>
+  <text x="95" y="75" text-anchor="middle" font-size="11" font-weight="600" fill="#86efac">DEVICE A</text>
+  <text x="95" y="92" text-anchor="middle" font-size="8" fill="#4ade80" font-family="'Courier New',monospace">2001:db8::1</text>
 
   <!-- Solicited-node multicast -->
-  <rect x="270" y="50" width="160" height="50" fill="#fffbeb" stroke="#f59e0b" stroke-width="1.5" rx="6"/>
-  <text x="350" y="70" text-anchor="middle" font-size="9" font-weight="700" fill="#92400e">SOLICITED-NODE</text>
-  <text x="350" y="83" text-anchor="middle" font-size="8" fill="#92400e" font-family="'Courier New',monospace">ff02::1:ff00:0002</text>
-  <text x="350" y="96" text-anchor="middle" font-size="8" fill="#b45309">(last 24 bits of target)</text>
+  <rect x="270" y="54" width="160" height="50" fill="#1a1000" stroke="#92400e" stroke-width="1.5" rx="5"/>
+  <text x="350" y="73" text-anchor="middle" font-size="9" font-weight="600" fill="#fcd34d">SOLICITED-NODE</text>
+  <text x="350" y="86" text-anchor="middle" font-size="8" fill="#f59e0b" font-family="'Courier New',monospace">ff02::1:ff00:0002</text>
+  <text x="350" y="99" text-anchor="middle" font-size="8" fill="#92400e">(last 24 bits of target)</text>
 
   <!-- Device B -->
-  <rect x="540" y="50" width="130" height="50" fill="#f0fdf4" stroke="#10b981" stroke-width="1.5" rx="6"/>
-  <text x="605" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">DEVICE B</text>
-  <text x="605" y="88" text-anchor="middle" font-size="8" fill="#10b981" font-family="'Courier New',monospace">2001:db8::2</text>
+  <rect x="540" y="54" width="130" height="50" fill="#071810" stroke="#166534" stroke-width="1.5" rx="5"/>
+  <text x="605" y="75" text-anchor="middle" font-size="11" font-weight="600" fill="#86efac">DEVICE B</text>
+  <text x="605" y="92" text-anchor="middle" font-size="8" fill="#4ade80" font-family="'Courier New',monospace">2001:db8::2</text>
 
   <!-- NS: A → multicast -->
-  <line x1="160" y1="75" x2="265" y2="75" stroke="#10b981" stroke-width="1.5" marker-end="url(#arr-r)"/>
-  <text x="213" y="68" text-anchor="middle" font-size="9" fill="#374151">NS · who has ::2?</text>
+  <line x1="160" y1="75" x2="265" y2="75" stroke="url(#arr-ns)" stroke-width="1.5" marker-end="url(#arr-r)"/>
+  <text x="213" y="68" text-anchor="middle" font-size="9" fill="#86efac">NS · who has ::2?</text>
 
-  <!-- Multicast → B (B is listening) -->
-  <line x1="430" y1="75" x2="535" y2="75" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr-r)"/>
-  <text x="483" y="68" text-anchor="middle" font-size="9" fill="#374151">multicast</text>
+  <!-- Multicast → B (dashed) -->
+  <line x1="430" y1="75" x2="535" y2="75" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr-amber)"/>
+  <text x="483" y="68" text-anchor="middle" font-size="9" fill="#fcd34d">multicast</text>
 
   <!-- NA: B → A (unicast reply) -->
-  <line x1="540" y1="145" x2="165" y2="145" stroke="#10b981" stroke-width="2" marker-end="url(#arr-l)" transform="rotate(180,352.5,145)"/>
-  <line x1="165" y1="145" x2="540" y2="145" stroke="#10b981" stroke-width="2"/>
-  <text x="350" y="138" text-anchor="middle" font-size="10" font-weight="600" fill="#065f46">NA — Neighbor Advertisement (unicast)</text>
-  <text x="350" y="158" text-anchor="middle" font-size="9" fill="#64748b">I am ::2 · my MAC is aa:bb:cc:dd:ee:ff</text>
+  <line x1="540" y1="145" x2="165" y2="145" stroke="url(#arr-na)" stroke-width="2" marker-end="url(#arr-na-tip)"/>
+  <text x="350" y="138" text-anchor="middle" font-size="10" font-weight="600" fill="#86efac">NA — Neighbor Advertisement (unicast)</text>
+  <text x="350" y="160" text-anchor="middle" font-size="9" fill="#94a3b8">I am ::2 · my MAC is aa:bb:cc:dd:ee:ff</text>
 
   <!-- Neighbor cache -->
-  <rect x="30" y="180" width="200" height="42" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1" rx="5"/>
-  <text x="130" y="196" text-anchor="middle" font-size="10" font-weight="600" fill="#374151">Neighbor Cache (A)</text>
-  <text x="130" y="213" text-anchor="middle" font-size="9" fill="#64748b" font-family="'Courier New',monospace">2001:db8::2 → aa:bb:cc:dd:ee:ff</text>
+  <rect x="30" y="180" width="230" height="42" fill="#071810" stroke="#166534" stroke-width="1.5" rx="5"/>
+  <text x="145" y="197" text-anchor="middle" font-size="10" font-weight="600" fill="#86efac">Neighbor Cache (A)</text>
+  <text x="145" y="213" text-anchor="middle" font-size="9" fill="#4ade80" font-family="'Courier New',monospace">2001:db8::2 → aa:bb:cc:dd:ee:ff</text>
 
-  <text x="490" y="196" text-anchor="middle" font-size="10" fill="#94a3b8">A can now send frames</text>
-  <text x="490" y="212" text-anchor="middle" font-size="10" fill="#94a3b8">directly to B's MAC</text>
+  <text x="510" y="197" text-anchor="middle" font-size="10" fill="#94a3b8">A can now send frames</text>
+  <text x="510" y="213" text-anchor="middle" font-size="10" fill="#94a3b8">directly to B's MAC</text>
 </svg>

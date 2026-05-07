@@ -2,46 +2,61 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 250" width="700" height="250"
      font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
   <defs>
-    <marker id="arr-r" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto">
-      <polygon points="0,0 7,2.5 0,5" fill="#0ea5e9"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <!-- Arrow markers — indigo accent for client-to-server -->
+    <marker id="arr-r" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#818cf8"/>
     </marker>
-    <marker id="arr-l" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto">
-      <polygon points="0,0 7,2.5 0,5" fill="#0ea5e9"/>
+    <!-- Arrow markers — indigo accent for server-to-client -->
+    <marker id="arr-l" markerWidth="8" markerHeight="6" refX="1" refY="3" orient="auto-start-reverse">
+      <polygon points="8,0 0,3 8,6" fill="#818cf8"/>
     </marker>
   </defs>
 
-  <rect width="700" height="250" fill="#f8fafc" rx="12"/>
-  <text x="350" y="24" text-anchor="middle" font-size="13" font-weight="700" fill="#111827">DHCPv6 Stateful Exchange — Solicit · Advertise · Request · Reply</text>
+  <!-- Background -->
+  <rect width="700" height="250" fill="url(#bg)" rx="8"/>
 
-  <text x="130" y="44" text-anchor="middle" font-size="11" font-weight="700" fill="#374151">CLIENT</text>
-  <text x="570" y="44" text-anchor="middle" font-size="11" font-weight="700" fill="#374151">DHCPv6 SERVER</text>
+  <!-- Subtle grid line -->
+  <line x1="0" y1="125" x2="700" y2="125" stroke="#0d1a2a" stroke-width="1"/>
 
-  <line x1="130" y1="50" x2="130" y2="235" stroke="#d1d5db" stroke-width="2"/>
-  <line x1="570" y1="50" x2="570" y2="235" stroke="#d1d5db" stroke-width="2"/>
+  <!-- Header label -->
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">DHCPV6 STATEFUL EXCHANGE — SOLICIT · ADVERTISE · REQUEST · REPLY</text>
 
-  <!-- Solicit: CLIENT → SERVER -->
-  <circle cx="130" cy="72" r="4" fill="#0ea5e9"/>
-  <line x1="134" y1="72" x2="558" y2="72" stroke="#0ea5e9" stroke-width="1.5" marker-end="url(#arr-r)"/>
-  <text x="350" y="65" text-anchor="middle" font-size="10" font-weight="600" fill="#0369a1">Solicit</text>
-  <text x="350" y="81" text-anchor="middle" font-size="9" fill="#64748b">ff02::1:2 — requesting address (IA_NA)</text>
+  <!-- Column headers -->
+  <text x="130" y="44" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8">CLIENT</text>
+  <text x="570" y="44" text-anchor="middle" font-size="11" font-weight="600" fill="#c7d2fe">DHCPV6 SERVER</text>
 
-  <!-- Advertise: SERVER → CLIENT -->
-  <circle cx="570" cy="115" r="4" fill="#0ea5e9"/>
-  <line x1="566" y1="115" x2="142" y2="115" stroke="#0ea5e9" stroke-width="1.5" marker-end="url(#arr-l)"/>
-  <text x="350" y="108" text-anchor="middle" font-size="10" font-weight="600" fill="#0369a1">Advertise</text>
-  <text x="350" y="124" text-anchor="middle" font-size="9" fill="#64748b">here is an address: 2001:db8::a3f · T1/T2 lease</text>
+  <!-- Lifelines -->
+  <line x1="130" y1="50" x2="130" y2="232" stroke="#1e293b" stroke-width="2"/>
+  <line x1="570" y1="50" x2="570" y2="232" stroke="#1e293b" stroke-width="2"/>
 
-  <!-- Request: CLIENT → SERVER -->
-  <circle cx="130" cy="158" r="4" fill="#0ea5e9"/>
-  <line x1="134" y1="158" x2="558" y2="158" stroke="#0ea5e9" stroke-width="1.5" marker-end="url(#arr-r)"/>
-  <text x="350" y="151" text-anchor="middle" font-size="10" font-weight="600" fill="#0369a1">Request</text>
-  <text x="350" y="167" text-anchor="middle" font-size="9" fill="#64748b">I want 2001:db8::a3f · confirming server choice</text>
+  <!-- Solicit: CLIENT to SERVER (client zone: #334155, DHCP server zone: #818cf8) -->
+  <circle cx="130" cy="72" r="4" fill="#94a3b8"/>
+  <line x1="134" y1="72" x2="558" y2="72" stroke="#818cf8" stroke-width="1.5" marker-end="url(#arr-r)"/>
+  <text x="350" y="65" text-anchor="middle" font-size="10" font-weight="600" fill="#c7d2fe">Solicit</text>
+  <text x="350" y="82" text-anchor="middle" font-size="9" fill="#94a3b8">ff02::1:2 — requesting address (IA_NA)</text>
 
-  <!-- Reply: SERVER → CLIENT -->
-  <circle cx="570" cy="200" r="4" fill="#0ea5e9"/>
-  <line x1="566" y1="200" x2="142" y2="200" stroke="#0ea5e9" stroke-width="1.5" marker-end="url(#arr-l)"/>
-  <text x="350" y="193" text-anchor="middle" font-size="10" font-weight="600" fill="#0369a1">Reply</text>
-  <text x="350" y="209" text-anchor="middle" font-size="9" fill="#64748b">confirmed · DNS servers · domain · lease granted</text>
+  <!-- Advertise: SERVER to CLIENT -->
+  <circle cx="570" cy="115" r="4" fill="#818cf8"/>
+  <line x1="566" y1="115" x2="142" y2="115" stroke="#818cf8" stroke-width="1.5" marker-end="url(#arr-l)"/>
+  <text x="350" y="108" text-anchor="middle" font-size="10" font-weight="600" fill="#c7d2fe">Advertise</text>
+  <text x="350" y="125" text-anchor="middle" font-size="9" fill="#94a3b8">here is an address: 2001:db8::a3f · T1/T2 lease</text>
 
-  <text x="350" y="236" text-anchor="middle" font-size="10" fill="#94a3b8">Note: default gateway comes from RA, not DHCPv6</text>
+  <!-- Request: CLIENT to SERVER -->
+  <circle cx="130" cy="158" r="4" fill="#94a3b8"/>
+  <line x1="134" y1="158" x2="558" y2="158" stroke="#818cf8" stroke-width="1.5" marker-end="url(#arr-r)"/>
+  <text x="350" y="151" text-anchor="middle" font-size="10" font-weight="600" fill="#c7d2fe">Request</text>
+  <text x="350" y="168" text-anchor="middle" font-size="9" fill="#94a3b8">I want 2001:db8::a3f · confirming server choice</text>
+
+  <!-- Reply: SERVER to CLIENT -->
+  <circle cx="570" cy="200" r="4" fill="#818cf8"/>
+  <line x1="566" y1="200" x2="142" y2="200" stroke="#818cf8" stroke-width="1.5" marker-end="url(#arr-l)"/>
+  <text x="350" y="193" text-anchor="middle" font-size="10" font-weight="600" fill="#c7d2fe">Reply</text>
+  <text x="350" y="210" text-anchor="middle" font-size="9" fill="#94a3b8">confirmed · DNS servers · domain · lease granted</text>
+
+  <!-- Footer caption -->
+  <text x="350" y="242" text-anchor="middle" font-size="9" fill="#94a3b8">Note: default gateway comes from RA, not DHCPv6</text>
 </svg>

@@ -12,8 +12,6 @@ cover: cover.svg
 series:
   - Traefik Essentials
 series_order: 5
-lightbox:
-  enabled: true
 ---
 
 The Traefik dashboard gives you a live view of everything Traefik has loaded — routers, services, middlewares, and entry points. It is the first place to check when a service is not routing correctly, and the API that powers it can be queried directly from the terminal.

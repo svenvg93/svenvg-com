@@ -1,78 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 330" width="700" height="330" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
   <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
     <marker id="emlmr-ab-l" markerWidth="12" markerHeight="8" refX="0" refY="4" orient="auto" markerUnits="userSpaceOnUse">
-      <polygon points="12,0 0,4 12,8" fill="#3b82f6"/>
+      <polygon points="12,0 0,4 12,8" fill="#f97316"/>
     </marker>
     <marker id="emlmr-ab-r" markerWidth="12" markerHeight="8" refX="12" refY="4" orient="auto" markerUnits="userSpaceOnUse">
-      <polygon points="0,0 12,4 0,8" fill="#3b82f6"/>
+      <polygon points="0,0 12,4 0,8" fill="#f97316"/>
     </marker>
     <marker id="emlmr-ag-l" markerWidth="12" markerHeight="8" refX="0" refY="4" orient="auto" markerUnits="userSpaceOnUse">
-      <polygon points="12,0 0,4 12,8" fill="#10b981"/>
+      <polygon points="12,0 0,4 12,8" fill="#34d399"/>
     </marker>
     <marker id="emlmr-ag-r" markerWidth="12" markerHeight="8" refX="12" refY="4" orient="auto" markerUnits="userSpaceOnUse">
-      <polygon points="0,0 12,4 0,8" fill="#10b981"/>
+      <polygon points="0,0 12,4 0,8" fill="#34d399"/>
     </marker>
     <marker id="emlmr-aa-l" markerWidth="12" markerHeight="8" refX="0" refY="4" orient="auto" markerUnits="userSpaceOnUse">
-      <polygon points="12,0 0,4 12,8" fill="#f59e0b"/>
+      <polygon points="12,0 0,4 12,8" fill="#38bdf8"/>
     </marker>
     <marker id="emlmr-aa-r" markerWidth="12" markerHeight="8" refX="12" refY="4" orient="auto" markerUnits="userSpaceOnUse">
-      <polygon points="0,0 12,4 0,8" fill="#f59e0b"/>
+      <polygon points="0,0 12,4 0,8" fill="#38bdf8"/>
     </marker>
   </defs>
 
   <!-- Background -->
-  <rect width="700" height="330" fill="#f8fafc" rx="12"/>
+  <rect width="700" height="330" fill="url(#bg)" rx="8"/>
 
-  <!-- Title -->
-  <text x="350" y="30" text-anchor="middle" font-size="14" font-weight="700" fill="#111827">eMLMR — Enhanced Multi-Link Multi-Radio</text>
+  <!-- Subtle grid -->
+  <line x1="0" y1="165" x2="700" y2="165" stroke="#0d1a2a" stroke-width="1"/>
+
+  <!-- Header label -->
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">EMLMR — ENHANCED MULTI-LINK MULTI-RADIO</text>
 
   <!-- CLIENT box -->
-  <text x="120" y="50" text-anchor="middle" font-size="11" font-weight="600" fill="#9ca3af">CLIENT</text>
-  <rect x="20" y="56" width="200" height="200" fill="white" stroke="#e5e7eb" stroke-width="1.5" rx="8"/>
+  <text x="120" y="46" text-anchor="middle" font-size="10" font-weight="600" fill="#94a3b8">CLIENT</text>
+  <rect x="20" y="52" width="200" height="200" fill="#0a1628" stroke="#1e3a5f" stroke-width="1.5" rx="5"/>
 
-  <rect x="36" y="70" width="168" height="48" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5" rx="5"/>
-  <text x="120" y="90" text-anchor="middle" font-size="13" font-weight="600" fill="#1d4ed8">2.4 GHz</text>
-  <text x="120" y="108" text-anchor="middle" font-size="10" fill="#3b82f6">Radio 1</text>
+  <rect x="36" y="66" width="168" height="48" fill="#150808" stroke="#f97316" stroke-width="1.5" rx="5"/>
+  <text x="120" y="86" text-anchor="middle" font-size="13" font-weight="600" fill="#fed7aa">2.4 GHz</text>
+  <text x="120" y="104" text-anchor="middle" font-size="10" fill="#f97316">Radio 1</text>
 
-  <rect x="36" y="128" width="168" height="48" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5" rx="5"/>
-  <text x="120" y="148" text-anchor="middle" font-size="13" font-weight="600" fill="#065f46">5 GHz</text>
-  <text x="120" y="166" text-anchor="middle" font-size="10" fill="#10b981">Radio 2</text>
+  <rect x="36" y="124" width="168" height="48" fill="#071810" stroke="#34d399" stroke-width="1.5" rx="5"/>
+  <text x="120" y="144" text-anchor="middle" font-size="13" font-weight="600" fill="#a7f3d0">5 GHz</text>
+  <text x="120" y="162" text-anchor="middle" font-size="10" fill="#34d399">Radio 2</text>
 
-  <rect x="36" y="186" width="168" height="48" fill="#fffbeb" stroke="#f59e0b" stroke-width="1.5" rx="5"/>
-  <text x="120" y="206" text-anchor="middle" font-size="13" font-weight="600" fill="#92400e">6 GHz</text>
-  <text x="120" y="224" text-anchor="middle" font-size="10" fill="#f59e0b">Radio 3</text>
+  <rect x="36" y="182" width="168" height="48" fill="#0e1a3a" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
+  <text x="120" y="202" text-anchor="middle" font-size="13" font-weight="600" fill="#bae6fd">6 GHz</text>
+  <text x="120" y="220" text-anchor="middle" font-size="10" fill="#38bdf8">Radio 3</text>
 
   <!-- ACCESS POINT box -->
-  <text x="580" y="50" text-anchor="middle" font-size="11" font-weight="600" fill="#9ca3af">ACCESS POINT</text>
-  <rect x="480" y="56" width="200" height="200" fill="white" stroke="#e5e7eb" stroke-width="1.5" rx="8"/>
+  <text x="580" y="46" text-anchor="middle" font-size="10" font-weight="600" fill="#94a3b8">ACCESS POINT</text>
+  <rect x="480" y="52" width="200" height="200" fill="#0a1628" stroke="#1e3a5f" stroke-width="1.5" rx="5"/>
 
-  <rect x="496" y="70" width="168" height="48" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5" rx="5"/>
-  <text x="580" y="90" text-anchor="middle" font-size="13" font-weight="600" fill="#1d4ed8">2.4 GHz</text>
-  <text x="580" y="108" text-anchor="middle" font-size="10" fill="#3b82f6">Radio 1</text>
+  <rect x="496" y="66" width="168" height="48" fill="#150808" stroke="#f97316" stroke-width="1.5" rx="5"/>
+  <text x="580" y="86" text-anchor="middle" font-size="13" font-weight="600" fill="#fed7aa">2.4 GHz</text>
+  <text x="580" y="104" text-anchor="middle" font-size="10" fill="#f97316">Radio 1</text>
 
-  <rect x="496" y="128" width="168" height="48" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5" rx="5"/>
-  <text x="580" y="148" text-anchor="middle" font-size="13" font-weight="600" fill="#065f46">5 GHz</text>
-  <text x="580" y="166" text-anchor="middle" font-size="10" fill="#10b981">Radio 2</text>
+  <rect x="496" y="124" width="168" height="48" fill="#071810" stroke="#34d399" stroke-width="1.5" rx="5"/>
+  <text x="580" y="144" text-anchor="middle" font-size="13" font-weight="600" fill="#a7f3d0">5 GHz</text>
+  <text x="580" y="162" text-anchor="middle" font-size="10" fill="#34d399">Radio 2</text>
 
-  <rect x="496" y="186" width="168" height="48" fill="#fffbeb" stroke="#f59e0b" stroke-width="1.5" rx="5"/>
-  <text x="580" y="206" text-anchor="middle" font-size="13" font-weight="600" fill="#92400e">6 GHz</text>
-  <text x="580" y="224" text-anchor="middle" font-size="10" fill="#f59e0b">Radio 3</text>
+  <rect x="496" y="182" width="168" height="48" fill="#0e1a3a" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
+  <text x="580" y="202" text-anchor="middle" font-size="13" font-weight="600" fill="#bae6fd">6 GHz</text>
+  <text x="580" y="220" text-anchor="middle" font-size="10" fill="#38bdf8">Radio 3</text>
 
-  <!-- Bidirectional links — 5 GHz split around the scheduler block -->
-  <line x1="220" y1="94"  x2="480" y2="94"  stroke="#3b82f6" stroke-width="2.5" marker-start="url(#emlmr-ab-l)" marker-end="url(#emlmr-ab-r)"/>
-  <line x1="220" y1="152" x2="282" y2="152" stroke="#10b981" stroke-width="2.5" marker-start="url(#emlmr-ag-l)"/>
-  <line x1="418" y1="152" x2="480" y2="152" stroke="#10b981" stroke-width="2.5" marker-end="url(#emlmr-ag-r)"/>
-  <line x1="220" y1="210" x2="480" y2="210" stroke="#f59e0b" stroke-width="2.5" marker-start="url(#emlmr-aa-l)" marker-end="url(#emlmr-aa-r)"/>
+  <!-- Bidirectional links -->
+  <line x1="220" y1="90"  x2="480" y2="90"  stroke="#f97316" stroke-width="1.5" marker-start="url(#emlmr-ab-l)" marker-end="url(#emlmr-ab-r)"/>
+  <line x1="220" y1="148" x2="282" y2="148" stroke="#34d399" stroke-width="1.5" marker-start="url(#emlmr-ag-l)"/>
+  <line x1="418" y1="148" x2="480" y2="148" stroke="#34d399" stroke-width="1.5" marker-end="url(#emlmr-ag-r)"/>
+  <line x1="220" y1="206" x2="480" y2="206" stroke="#38bdf8" stroke-width="1.5" marker-start="url(#emlmr-aa-l)" marker-end="url(#emlmr-aa-r)"/>
 
-  <!-- Intelligent Scheduler block (drawn after lines so fill sits on top) -->
-  <rect x="284" y="118" width="132" height="68" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="1.5" rx="6"/>
-  <text x="350" y="141" text-anchor="middle" font-size="10" font-weight="700" fill="#6d28d9">Smart</text>
-  <text x="350" y="156" text-anchor="middle" font-size="10" font-weight="700" fill="#6d28d9">Scheduler</text>
-  <text x="350" y="172" text-anchor="middle" font-size="8" fill="#8b5cf6">interference-aware</text>
+  <!-- Smart Scheduler block -->
+  <rect x="284" y="114" width="132" height="68" fill="#0d1a2e" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
+  <text x="350" y="137" text-anchor="middle" font-size="10" font-weight="700" fill="#38bdf8">Smart</text>
+  <text x="350" y="152" text-anchor="middle" font-size="10" font-weight="700" fill="#38bdf8">Scheduler</text>
+  <text x="350" y="168" text-anchor="middle" font-size="8" fill="#94a3b8">interference-aware</text>
 
-  <!-- Caption -->
-  <text x="350" y="280" text-anchor="middle" font-size="11" fill="#6b7280">All links active — scheduler dynamically steers traffic by load and interference</text>
-
-
+  <!-- Footer caption -->
+  <text x="350" y="278" text-anchor="middle" font-size="9" fill="#94a3b8">All links active — scheduler dynamically steers traffic by load and interference</text>
 </svg>

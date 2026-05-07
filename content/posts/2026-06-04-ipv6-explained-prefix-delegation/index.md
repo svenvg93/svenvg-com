@@ -10,8 +10,6 @@ tags:
   - ipv6
 series:
   - IPv6 Explained
-lightbox:
-  enabled: true
 series_order: 4
 ---
 
@@ -32,7 +30,7 @@ The exchange:
 
 The router now owns that prefix for the duration of the lease and is responsible for routing all traffic destined to it.
 
-![DHCPv6-PD exchange — router requests prefix delegation from ISP, receives /48 or /56](pd-exchange.svg)
+![](pd-exchange.svg "DHCPv6-PD exchange — router requests prefix delegation from ISP, receives /48 or /56")
 
 ## Prefix Sizes
 
@@ -64,7 +62,7 @@ With a `/56` delegation of `2001:db8:abcd:ab00::/56`, the router has 8 bits of s
 2001:db8:abcd:abff::/64  ← subnet 255
 ```
 
-![Prefix subdivision — /56 from ISP split into /64 subnets per VLAN](pd-subdivision.svg)
+![](pd-subdivision.svg "Prefix subdivision — /56 from ISP split into /64 subnets per VLAN")
 
 The router adds a route for the entire delegated prefix pointing to itself on the WAN side, and routes individual `/64` subnets to the correct internal interfaces.
 

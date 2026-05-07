@@ -2,42 +2,70 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 190" width="700" height="190"
      font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
 
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <!-- Arrow: client → TLS tunnel (client slate → TLS green) -->
+    <linearGradient id="arrowLeft" x1="160" y1="86" x2="228" y2="86" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+    <!-- Arrow: TLS tunnel → resolver (TLS green → resolver blue) -->
+    <linearGradient id="arrowRight" x1="468" y1="86" x2="536" y2="86" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    <!-- Arrowhead markers -->
+    <marker id="arrowheadLeft" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#34d399"/>
+    </marker>
+    <marker id="arrowheadRight" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#3b82f6"/>
+    </marker>
+  </defs>
+
   <!-- Background -->
-  <rect width="700" height="190" fill="#f8fafc" rx="12"/>
+  <rect width="700" height="190" fill="url(#bg)" rx="8"/>
 
-  <!-- Title -->
-  <text x="350" y="24" text-anchor="middle" font-size="13" font-weight="700" fill="#111827">DNS-over-TLS (DoT) — dedicated port, TLS wrapper</text>
+  <!-- Subtle grid lines -->
+  <line x1="0" y1="95" x2="700" y2="95" stroke="#0d1a2a" stroke-width="1"/>
+  <line x1="350" y1="0" x2="350" y2="190" stroke="#0d1a2a" stroke-width="1"/>
 
-  <!-- ── CLIENT ── -->
-  <rect x="40" y="58" width="120" height="56" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5" rx="6"/>
-  <text x="100" y="84" text-anchor="middle" font-size="13" font-weight="700" fill="#1d4ed8">CLIENT</text>
-  <text x="100" y="101" text-anchor="middle" font-size="9" fill="#3b82f6">stub resolver</text>
+  <!-- Header label -->
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">DNS-OVER-TLS (DoT) — DEDICATED PORT, TLS WRAPPER</text>
 
-  <!-- ── ARROW client → tunnel ── -->
-  <line x1="160" y1="86" x2="228" y2="86" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <!-- CLIENT -->
+  <rect x="40" y="58" width="120" height="56" fill="#0a1020" stroke="#334155" stroke-width="1.5" rx="5"/>
+  <text x="100" y="84" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8">CLIENT</text>
+  <text x="100" y="101" text-anchor="middle" font-size="9" fill="#94a3b8">stub resolver</text>
 
-  <!-- ── TLS TUNNEL ── -->
-  <!-- Outer TLS box -->
-  <rect x="232" y="44" width="236" height="84" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2" rx="8"/>
+  <!-- ARROW client → tunnel (solid: encrypted) -->
+  <line x1="160" y1="86" x2="226" y2="86" stroke="url(#arrowLeft)" stroke-width="1.5" marker-end="url(#arrowheadLeft)"/>
+
+  <!-- TLS TUNNEL outer box -->
+  <rect x="232" y="44" width="236" height="84" fill="#071810" stroke="#34d399" stroke-width="1.5" rx="5"/>
   <!-- Port badge -->
-  <rect x="312" y="36" width="76" height="18" fill="#7c3aed" rx="4"/>
-  <text x="350" y="49" text-anchor="middle" font-size="9" font-weight="700" fill="white">853 / TCP</text>
+  <rect x="312" y="36" width="76" height="18" fill="#064e3b" rx="4"/>
+  <text x="350" y="49" text-anchor="middle" font-size="9" font-weight="700" fill="#86efac">853 / TCP</text>
   <!-- TLS label -->
-  <text x="248" y="62" font-size="9" font-weight="700" fill="#7c3aed" letter-spacing="1">TLS</text>
+  <text x="248" y="62" font-size="9" font-weight="700" fill="#34d399" letter-spacing="1">TLS</text>
   <!-- Inner DNS packet box -->
-  <rect x="258" y="66" width="184" height="40" fill="white" stroke="#a78bfa" stroke-width="1" rx="5"/>
-  <text x="350" y="84" text-anchor="middle" font-size="11" font-weight="600" fill="#4c1d95">DNS Query</text>
-  <text x="350" y="98" text-anchor="middle" font-size="8" fill="#7c3aed" font-family="'Courier New',monospace">example.com A?</text>
+  <rect x="258" y="66" width="184" height="40" fill="#0a2018" stroke="#6ee7b7" stroke-width="1" rx="5"/>
+  <text x="350" y="84" text-anchor="middle" font-size="11" font-weight="600" fill="#86efac">DNS Query</text>
+  <text x="350" y="98" text-anchor="middle" font-size="8" fill="#34d399" font-family="'Courier New',monospace">example.com A?</text>
 
-  <!-- ── ARROW tunnel → resolver ── -->
-  <line x1="468" y1="86" x2="536" y2="86" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <!-- ARROW tunnel → resolver (solid: encrypted) -->
+  <line x1="468" y1="86" x2="534" y2="86" stroke="url(#arrowRight)" stroke-width="1.5" marker-end="url(#arrowheadRight)"/>
 
-  <!-- ── RESOLVER ── -->
-  <rect x="540" y="58" width="120" height="56" fill="#f0fdf4" stroke="#10b981" stroke-width="1.5" rx="6"/>
-  <text x="600" y="84" text-anchor="middle" font-size="13" font-weight="700" fill="#065f46">RESOLVER</text>
-  <text x="600" y="101" text-anchor="middle" font-size="9" fill="#10b981">1.1.1.1</text>
+  <!-- RESOLVER -->
+  <rect x="540" y="58" width="120" height="56" fill="#0e1a3a" stroke="#3b82f6" stroke-width="1.5" rx="5"/>
+  <text x="600" y="84" text-anchor="middle" font-size="11" font-weight="600" fill="#93c5fd">RESOLVER</text>
+  <text x="600" y="101" text-anchor="middle" font-size="9" fill="#3b82f6">1.1.1.1</text>
 
-  <!-- ── Caption ── -->
-  <text x="350" y="152" text-anchor="middle" font-size="10" fill="#6b7280">Dedicated port — easy to identify, monitor, and allow or block at the firewall</text>
-  <text x="350" y="166" text-anchor="middle" font-size="10" fill="#6b7280">TLS authenticates the resolver; traffic is encrypted end-to-end</text>
+  <!-- Footer captions -->
+  <text x="350" y="152" text-anchor="middle" font-size="9" fill="#94a3b8">Dedicated port — easy to identify, monitor, and allow or block at the firewall</text>
+  <text x="350" y="166" text-anchor="middle" font-size="9" fill="#94a3b8">TLS authenticates the resolver; traffic is encrypted end-to-end</text>
 </svg>

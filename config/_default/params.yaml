@@ -16,7 +16,7 @@ header:
     image: "/image.png"
     link: "/"
   showThemeSwitch: false
-  showDarkModeSwitch: true
+  showDarkModeSwitch: false
   showLanguageSwitch: false
   languageSwitchMode: "dropdown"  # dropdown | cycle
 
@@ -140,7 +140,7 @@ gallery:
   columnWidth: 200
   columns: 4
   lightbox:
-    enabled: true
+    enabled: false
     bgOpacity: 0.8
     showHideAnimationType: zoom
     showAnimationDuration: 333

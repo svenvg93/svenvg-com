@@ -1,107 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 280" width="700" height="280" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 280" width="700" height="280"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
   <defs>
-    <marker id="arr2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto" markerUnits="userSpaceOnUse">
-      <polygon points="0,0 8,3 0,6" fill="#9ca3af"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <marker id="arr-time" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#94a3b8"/>
     </marker>
   </defs>
 
   <!-- Background -->
-  <rect width="700" height="280" fill="#f8fafc" rx="12"/>
+  <rect width="700" height="280" fill="url(#bg)" rx="8"/>
 
-  <!-- Title -->
-  <text x="350" y="26" text-anchor="middle" font-size="14" font-weight="700" fill="#111827">OFDMA vs CSMA/CA — Airtime Efficiency</text>
+  <!-- Header -->
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">OFDMA VS CSMA/CA — AIRTIME EFFICIENCY</text>
 
-  <!-- ─── LEFT: CSMA/CA ─── -->
-  <text x="170" y="48" text-anchor="middle" font-size="12" font-weight="700" fill="#374151">CSMA/CA (WiFi 5 and earlier)</text>
+  <!-- Section divider -->
+  <line x1="350" y1="36" x2="350" y2="256" stroke="#0d1a2a" stroke-width="1.5"/>
+  <line x1="0" y1="36" x2="700" y2="36" stroke="#0d1a2a" stroke-width="1"/>
 
-  <!-- Row labels -->
-  <text x="30" y="80" font-size="10" font-weight="600" fill="#6b7280">channel</text>
+  <!-- ═══════ LEFT: CSMA/CA ═══════ -->
+  <text x="175" y="52" text-anchor="middle" font-size="12" font-weight="700" fill="#7dd3fc">CSMA/CA (WiFi 5 and earlier)</text>
 
-  <!-- Contention gap 1 -->
-  <rect x="68" y="65" width="22" height="24" fill="#f3f4f6" stroke="#d1d5db" stroke-width="1" rx="3"/>
-  <text x="79" y="80" text-anchor="middle" font-size="8" fill="#9ca3af">C</text>
-
-  <!-- Client A transmit -->
-  <rect x="92" y="65" width="62" height="24" fill="#bfdbfe" stroke="#93c5fd" stroke-width="1.5" rx="3"/>
-  <text x="123" y="80" text-anchor="middle" font-size="10" font-weight="600" fill="#1d4ed8">Client A</text>
-
-  <!-- Contention gap 2 -->
-  <rect x="156" y="65" width="22" height="24" fill="#f3f4f6" stroke="#d1d5db" stroke-width="1" rx="3"/>
-  <text x="167" y="80" text-anchor="middle" font-size="8" fill="#9ca3af">C</text>
-
-  <!-- Client B transmit -->
-  <rect x="180" y="65" width="62" height="24" fill="#bbf7d0" stroke="#4ade80" stroke-width="1.5" rx="3"/>
-  <text x="211" y="80" text-anchor="middle" font-size="10" font-weight="600" fill="#15803d">Client B</text>
-
-  <!-- Contention gap 3 -->
-  <rect x="244" y="65" width="22" height="24" fill="#f3f4f6" stroke="#d1d5db" stroke-width="1" rx="3"/>
-  <text x="255" y="80" text-anchor="middle" font-size="8" fill="#9ca3af">C</text>
-
-  <!-- Client C transmit -->
-  <rect x="268" y="65" width="62" height="24" fill="#fed7aa" stroke="#fb923c" stroke-width="1.5" rx="3"/>
-  <text x="299" y="80" text-anchor="middle" font-size="10" font-weight="600" fill="#c2410c">Client C</text>
-
-  <!-- Contention gap 4 -->
-  <rect x="332" y="65" width="22" height="24" fill="#f3f4f6" stroke="#d1d5db" stroke-width="1" rx="3"/>
-  <text x="343" y="80" text-anchor="middle" font-size="8" fill="#9ca3af">C</text>
-
-  <!-- Client D transmit -->
-  <rect x="356" y="65" width="62" height="24" fill="#ddd6fe" stroke="#a78bfa" stroke-width="1.5" rx="3"/>
-  <text x="387" y="80" text-anchor="middle" font-size="10" font-weight="600" fill="#6d28d9">Client D</text>
+  <!-- Single channel row — one device at a time, sequential -->
+  <!-- C1 -->
+  <rect x="14"  y="64" width="14" height="28" fill="#0e1a2e" stroke="#334155" stroke-width="1" rx="2"/>
+  <text x="21"  y="81" text-anchor="middle" font-size="7" fill="#94a3b8">C</text>
+  <!-- Client A -->
+  <rect x="28"  y="64" width="64" height="28" fill="#0e1a3a" stroke="#38bdf8" stroke-width="1.5" rx="3"/>
+  <text x="60"  y="81" text-anchor="middle" font-size="10" font-weight="600" fill="#7dd3fc">Client A</text>
+  <!-- C2 -->
+  <rect x="92"  y="64" width="14" height="28" fill="#0e1a2e" stroke="#334155" stroke-width="1" rx="2"/>
+  <text x="99"  y="81" text-anchor="middle" font-size="7" fill="#94a3b8">C</text>
+  <!-- Client B -->
+  <rect x="106" y="64" width="64" height="28" fill="#071810" stroke="#86efac" stroke-width="1.5" rx="3"/>
+  <text x="138" y="81" text-anchor="middle" font-size="10" font-weight="600" fill="#86efac">Client B</text>
+  <!-- C3 -->
+  <rect x="170" y="64" width="14" height="28" fill="#0e1a2e" stroke="#334155" stroke-width="1" rx="2"/>
+  <text x="177" y="81" text-anchor="middle" font-size="7" fill="#94a3b8">C</text>
+  <!-- Client C -->
+  <rect x="184" y="64" width="64" height="28" fill="#150808" stroke="#f87171" stroke-width="1.5" rx="3"/>
+  <text x="216" y="81" text-anchor="middle" font-size="10" font-weight="600" fill="#fca5a5">Client C</text>
+  <!-- C4 -->
+  <rect x="248" y="64" width="14" height="28" fill="#0e1a2e" stroke="#334155" stroke-width="1" rx="2"/>
+  <text x="255" y="81" text-anchor="middle" font-size="7" fill="#94a3b8">C</text>
+  <!-- Client D -->
+  <rect x="262" y="64" width="64" height="28" fill="#150822" stroke="#a78bfa" stroke-width="1.5" rx="3"/>
+  <text x="294" y="81" text-anchor="middle" font-size="10" font-weight="600" fill="#c4b5fd">Client D</text>
 
   <!-- CSMA time axis -->
-  <line x1="68" y1="105" x2="428" y2="105" stroke="#9ca3af" stroke-width="1.5" marker-end="url(#arr2)"/>
-  <text x="432" y="109" font-size="10" fill="#9ca3af">time</text>
+  <line x1="14" y1="104" x2="334" y2="104" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-time)"/>
+  <text x="338" y="108" font-size="9" fill="#94a3b8">time</text>
 
-  <!-- CSMA caption: total time -->
-  <text x="248" y="122" text-anchor="middle" font-size="10" fill="#ef4444" font-weight="600">Sequential — 4 contention events, 4 separate transmissions</text>
+  <!-- CSMA caption -->
+  <text x="170" y="122" text-anchor="middle" font-size="10" font-weight="600" fill="#f87171">Sequential — 4 contention events</text>
+  <text x="170" y="137" text-anchor="middle" font-size="10" fill="#f87171">4 separate transmissions</text>
 
-  <!-- Contention legend -->
-  <rect x="68" y="135" width="12" height="10" fill="#f3f4f6" stroke="#d1d5db" stroke-width="1" rx="2"/>
-  <text x="86" y="144" font-size="9" fill="#9ca3af">C = contention overhead</text>
+  <!-- Legend -->
+  <rect x="14" y="154" width="14" height="10" fill="#0e1a2e" stroke="#334155" stroke-width="1" rx="2"/>
+  <text x="34" y="163" font-size="9" fill="#94a3b8">C = contention overhead</text>
 
-  <!-- ─── DIVIDER ─── -->
-  <line x1="350" y1="40" x2="350" y2="260" stroke="#e5e7eb" stroke-width="1.5"/>
+  <!-- ═══════ RIGHT: OFDMA ═══════ -->
+  <text x="525" y="52" text-anchor="middle" font-size="12" font-weight="700" fill="#7dd3fc">OFDMA (WiFi 6)</text>
 
-  <!-- ─── RIGHT: OFDMA ─── -->
-  <text x="530" y="48" text-anchor="middle" font-size="12" font-weight="700" fill="#374151">OFDMA (WiFi 6)</text>
+  <!-- Single contention block spanning all 4 RU rows -->
+  <rect x="368" y="64" width="14" height="110" fill="#0e1a2e" stroke="#334155" stroke-width="1" rx="2"/>
+  <text x="375" y="121" text-anchor="middle" font-size="7" fill="#94a3b8" transform="rotate(-90,375,121)">contention</text>
 
-  <!-- Row labels -->
-  <text x="368" y="80" font-size="10" font-weight="600" fill="#6b7280">RU1</text>
-  <text x="368" y="110" font-size="10" font-weight="600" fill="#6b7280">RU2</text>
-  <text x="368" y="140" font-size="10" font-weight="600" fill="#6b7280">RU3</text>
-  <text x="368" y="170" font-size="10" font-weight="600" fill="#6b7280">RU4</text>
-
-  <!-- Single contention event -->
-  <rect x="398" y="65" width="22" height="114" fill="#f3f4f6" stroke="#d1d5db" stroke-width="1" rx="3"/>
-  <text x="409" y="126" text-anchor="middle" font-size="8" fill="#9ca3af" transform="rotate(-90,409,126)">contention</text>
-
-  <!-- Parallel transmissions — all four RUs at same time -->
   <!-- RU1: Client A -->
-  <rect x="422" y="65" width="180" height="22" fill="#bfdbfe" stroke="#93c5fd" stroke-width="1.5" rx="3"/>
-  <text x="512" y="79" text-anchor="middle" font-size="10" font-weight="600" fill="#1d4ed8">Client A</text>
+  <rect x="384" y="64" width="252" height="26" fill="#0e1a3a" stroke="#38bdf8" stroke-width="1.5" rx="3"/>
+  <text x="394" y="80" font-size="8" fill="#38bdf8" font-weight="600">RU1</text>
+  <text x="510" y="80" text-anchor="middle" font-size="10" font-weight="600" fill="#7dd3fc">Client A</text>
 
   <!-- RU2: Client B -->
-  <rect x="422" y="89" width="180" height="22" fill="#bbf7d0" stroke="#4ade80" stroke-width="1.5" rx="3"/>
-  <text x="512" y="103" text-anchor="middle" font-size="10" font-weight="600" fill="#15803d">Client B</text>
+  <rect x="384" y="92" width="252" height="26" fill="#071810" stroke="#86efac" stroke-width="1.5" rx="3"/>
+  <text x="394" y="108" font-size="8" fill="#86efac" font-weight="600">RU2</text>
+  <text x="510" y="108" text-anchor="middle" font-size="10" font-weight="600" fill="#86efac">Client B</text>
 
   <!-- RU3: Client C -->
-  <rect x="422" y="113" width="180" height="22" fill="#fed7aa" stroke="#fb923c" stroke-width="1.5" rx="3"/>
-  <text x="512" y="127" text-anchor="middle" font-size="10" font-weight="600" fill="#c2410c">Client C</text>
+  <rect x="384" y="120" width="252" height="26" fill="#150808" stroke="#f87171" stroke-width="1.5" rx="3"/>
+  <text x="394" y="136" font-size="8" fill="#f87171" font-weight="600">RU3</text>
+  <text x="510" y="136" text-anchor="middle" font-size="10" font-weight="600" fill="#fca5a5">Client C</text>
 
   <!-- RU4: Client D -->
-  <rect x="422" y="137" width="180" height="22" fill="#ddd6fe" stroke="#a78bfa" stroke-width="1.5" rx="3"/>
-  <text x="512" y="151" text-anchor="middle" font-size="10" font-weight="600" fill="#6d28d9">Client D</text>
+  <rect x="384" y="148" width="252" height="26" fill="#150822" stroke="#a78bfa" stroke-width="1.5" rx="3"/>
+  <text x="394" y="164" font-size="8" fill="#a78bfa" font-weight="600">RU4</text>
+  <text x="510" y="164" text-anchor="middle" font-size="10" font-weight="600" fill="#c4b5fd">Client D</text>
 
   <!-- OFDMA time axis -->
-  <line x1="398" y1="175" x2="612" y2="175" stroke="#9ca3af" stroke-width="1.5" marker-end="url(#arr2)"/>
-  <text x="616" y="179" font-size="10" fill="#9ca3af">time</text>
+  <line x1="368" y1="184" x2="648" y2="184" stroke="#475569" stroke-width="1.5" marker-end="url(#arr-time)"/>
+  <text x="652" y="188" font-size="9" fill="#94a3b8">time</text>
 
   <!-- OFDMA caption -->
-  <text x="510" y="192" text-anchor="middle" font-size="10" fill="#16a34a" font-weight="600">Parallel — 1 contention event, 4 simultaneous transmissions</text>
+  <text x="510" y="204" text-anchor="middle" font-size="10" font-weight="600" fill="#86efac">Parallel — 1 contention event</text>
+  <text x="510" y="219" text-anchor="middle" font-size="10" fill="#86efac">4 simultaneous transmissions</text>
 
-  <!-- Bottom caption -->
-  <text x="350" y="225" text-anchor="middle" font-size="11" fill="#6b7280">OFDMA does not remove contention — the AP still wins the channel via CSMA/CA</text>
-  <text x="350" y="241" text-anchor="middle" font-size="11" fill="#6b7280">But one TXOP now serves multiple clients, reducing the per-client contention cost</text>
+  <!-- Footer -->
+  <text x="350" y="248" text-anchor="middle" font-size="9" fill="#94a3b8">OFDMA does not remove contention — the AP still wins the channel via CSMA/CA</text>
+  <text x="350" y="263" text-anchor="middle" font-size="9" fill="#94a3b8">But one TXOP now serves multiple clients, reducing the per-client contention cost</text>
 </svg>

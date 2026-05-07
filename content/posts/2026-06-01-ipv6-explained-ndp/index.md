@@ -10,8 +10,6 @@ tags:
   - ipv6
 series:
   - IPv6 Explained
-lightbox:
-  enabled: true
 series_order: 3
 ---
 
@@ -43,7 +41,7 @@ When a device wants to send a packet to another IPv6 address on the same link, i
 
 The solicited-node multicast address is the key improvement over ARP broadcast. Instead of every device processing the request, only devices whose address matches the last 24 bits receive it. On a large segment this significantly reduces interrupt load.
 
-![NDP address resolution — NS to solicited-node multicast, NA unicast reply](ndp-resolution.svg)
+![](ndp-resolution.svg "NDP address resolution — NS to solicited-node multicast, NA unicast reply")
 
 Resolved mappings are stored in the **neighbor cache**, equivalent to ARP's cache. Entries have states: Incomplete, Reachable, Stale, Delay, Probe. A STALE entry can still be used for sending immediately — it is not discarded. Using a STALE entry starts a DELAY timer (5 seconds). If no upper-layer reachability confirmation arrives (e.g., a TCP ACK confirming the path is live), the entry moves to PROBE state and the device sends Neighbor Solicitations to actively verify the neighbor is still reachable. Only if those probes go unanswered is the entry removed.
 
@@ -57,7 +55,7 @@ On startup, a device doesn't know which router to use. NDP handles this automati
 
 Routers also send periodic unsolicited RAs — RFC 4861 specifies the interval is chosen randomly between `MinRtrAdvInterval` (default 200 s) and `MaxRtrAdvInterval` (default 600 s) to prevent synchronisation across devices. A device that receives an RA with a lifetime of zero treats that router as no longer available.
 
-![NDP router discovery — RS from host to all-routers multicast, RA reply with prefix and gateway](ndp-router.svg)
+![](ndp-router.svg "NDP router discovery — RS from host to all-routers multicast, RA reply with prefix and gateway")
 
 ## Duplicate Address Detection
 
@@ -67,7 +65,7 @@ DAD uses a Neighbor Solicitation with the unspecified address (`::`) as the sour
 
 DAD happens for every new address, including link-local. The brief delay between interface up and address assignment is DAD in progress.
 
-![DAD flow — NS with source :: sent to solicited-node multicast, no reply means address is unique](ndp-dad.svg)
+![](ndp-dad.svg "DAD flow — NS with source :: sent to solicited-node multicast, no reply means address is unique")
 
 ## NDP vs ARP
 

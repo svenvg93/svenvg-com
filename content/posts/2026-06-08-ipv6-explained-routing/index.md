@@ -10,8 +10,6 @@ tags:
   - ipv6
 series:
   - IPv6 Explained
-lightbox:
-  enabled: true
 series_order: 5
 ---
 
@@ -25,7 +23,7 @@ The original internet model assumed every host had a globally routable address. 
 
 IPv6 restores end-to-end connectivity. A device with a GUA (Global Unicast Address) is directly reachable from anywhere on the internet — no port forwarding required. The router forwards packets to the correct internal host based on the destination address.
 
-![End-to-end reachability — IPv6 device reachable directly vs IPv4 behind NAT](e2e-reachability.svg)
+![](e2e-reachability.svg "End-to-end reachability — IPv6 device reachable directly vs IPv4 behind NAT")
 
 ## NAT Is Not Security
 
@@ -65,7 +63,7 @@ This mechanism is Path MTU Discovery (PMTUD). It requires Packet Too Big message
 
 IPv6 also mandates a minimum link MTU of **1280 bytes** (RFC 8200 §5). Any IPv6-capable link must support at least this size without fragmentation. Hosts that need to send larger packets must either use PMTUD or fragment at the source.
 
-![IPv6 fragmentation — source fragments only, routers send Packet Too Big and drop oversized packets](ipv6-fragmentation.svg)
+![](ipv6-fragmentation.svg "IPv6 fragmentation — source fragments only, routers send Packet Too Big and drop oversized packets")
 
 **ICMPv6:** Must not be blocked globally. Several ICMPv6 types are required for IPv6 to function:
 
@@ -82,7 +80,7 @@ IPv6 also mandates a minimum link MTU of **1280 bytes** (RFC 8200 §5). Any IPv6
 
 Blocking all ICMPv6 is a common mistake that breaks address autoconfiguration, neighbor discovery, and path MTU discovery.
 
-![IPv6 firewall policy — default-deny inbound, stateful return traffic, required ICMPv6 permitted](firewall-policy.svg)
+![](firewall-policy.svg "IPv6 firewall policy — default-deny inbound, stateful return traffic, required ICMPv6 permitted")
 
 ## ULA for Internal Services
 

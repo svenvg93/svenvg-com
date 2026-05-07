@@ -1,112 +1,117 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 360" width="700" height="360" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
   <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
     <marker id="mlsr-ag-l" markerWidth="12" markerHeight="8" refX="0" refY="4" orient="auto" markerUnits="userSpaceOnUse">
-      <polygon points="12,0 0,4 12,8" fill="#10b981"/>
+      <polygon points="12,0 0,4 12,8" fill="#34d399"/>
     </marker>
     <marker id="mlsr-ag-r" markerWidth="12" markerHeight="8" refX="12" refY="4" orient="auto" markerUnits="userSpaceOnUse">
-      <polygon points="0,0 12,4 0,8" fill="#10b981"/>
+      <polygon points="0,0 12,4 0,8" fill="#34d399"/>
     </marker>
     <marker id="mlsr-time-arr" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto" markerUnits="userSpaceOnUse">
-      <polygon points="0,0 10,3.5 0,7" fill="#6b7280"/>
+      <polygon points="0,0 10,3.5 0,7" fill="#94a3b8"/>
     </marker>
   </defs>
 
   <!-- Background -->
-  <rect width="700" height="360" fill="#f8fafc" rx="12"/>
+  <rect width="700" height="360" fill="url(#bg)" rx="8"/>
 
-  <!-- Title -->
-  <text x="350" y="30" text-anchor="middle" font-size="14" font-weight="700" fill="#111827">MLSR — Multi-Link Single Radio</text>
+  <!-- Subtle grid -->
+  <line x1="0" y1="180" x2="700" y2="180" stroke="#0d1a2a" stroke-width="1"/>
+
+  <!-- Header label -->
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">MLSR — MULTI-LINK SINGLE RADIO</text>
 
   <!-- CLIENT box -->
-  <text x="120" y="50" text-anchor="middle" font-size="11" font-weight="600" fill="#9ca3af">CLIENT</text>
-  <rect x="20" y="56" width="200" height="148" fill="white" stroke="#e5e7eb" stroke-width="1.5" rx="8"/>
+  <text x="120" y="46" text-anchor="middle" font-size="10" font-weight="600" fill="#94a3b8">CLIENT</text>
+  <rect x="20" y="52" width="200" height="148" fill="#0a1628" stroke="#1e3a5f" stroke-width="1.5" rx="5"/>
 
-  <!-- Single radio, vertically centered, solid border (not enhanced) -->
-  <rect x="36" y="112" width="168" height="48" fill="#f0fdf4" stroke="#10b981" stroke-width="1.5" rx="5"/>
-  <text x="120" y="132" text-anchor="middle" font-size="13" font-weight="600" fill="#065f46">Single Radio</text>
-  <text x="120" y="150" text-anchor="middle" font-size="10" fill="#10b981">full channel switch</text>
+  <!-- Single radio (solid border) -->
+  <rect x="36" y="108" width="168" height="48" fill="#071810" stroke="#34d399" stroke-width="1.5" rx="5"/>
+  <text x="120" y="128" text-anchor="middle" font-size="13" font-weight="600" fill="#a7f3d0">Single Radio</text>
+  <text x="120" y="146" text-anchor="middle" font-size="10" fill="#34d399">full channel switch</text>
 
   <!-- ACCESS POINT box -->
-  <text x="580" y="50" text-anchor="middle" font-size="11" font-weight="600" fill="#9ca3af">ACCESS POINT</text>
-  <rect x="480" y="56" width="200" height="148" fill="white" stroke="#e5e7eb" stroke-width="1.5" rx="8"/>
+  <text x="580" y="46" text-anchor="middle" font-size="10" font-weight="600" fill="#94a3b8">ACCESS POINT</text>
+  <rect x="480" y="52" width="200" height="148" fill="#0a1628" stroke="#1e3a5f" stroke-width="1.5" rx="5"/>
 
-  <!-- AP: 5 GHz (active) -->
-  <rect x="496" y="70" width="168" height="48" fill="#ecfdf5" stroke="#10b981" stroke-width="2" rx="5"/>
-  <text x="580" y="90" text-anchor="middle" font-size="13" font-weight="700" fill="#065f46">5 GHz</text>
-  <text x="580" y="108" text-anchor="middle" font-size="10" font-weight="600" fill="#10b981">● active</text>
+  <!-- AP: 5 GHz active -->
+  <rect x="496" y="66" width="168" height="48" fill="#071810" stroke="#34d399" stroke-width="2" rx="5"/>
+  <text x="580" y="86" text-anchor="middle" font-size="13" font-weight="700" fill="#a7f3d0">5 GHz</text>
+  <text x="580" y="104" text-anchor="middle" font-size="10" font-weight="600" fill="#34d399">active</text>
 
-  <!-- AP: 6 GHz (standby) -->
-  <rect x="496" y="128" width="168" height="48" fill="#f9fafb" stroke="#d1d5db" stroke-width="1.5" rx="5"/>
-  <text x="580" y="148" text-anchor="middle" font-size="13" font-weight="500" fill="#9ca3af">6 GHz</text>
-  <text x="580" y="166" text-anchor="middle" font-size="10" fill="#d1d5db">standby</text>
+  <!-- AP: 6 GHz standby -->
+  <rect x="496" y="124" width="168" height="48" fill="#0d1520" stroke="#1e3a5f" stroke-width="1.5" rx="5"/>
+  <text x="580" y="144" text-anchor="middle" font-size="13" font-weight="500" fill="#94a3b8">6 GHz</text>
+  <text x="580" y="162" text-anchor="middle" font-size="10" fill="#94a3b8">standby</text>
 
   <!-- Active link to 5 GHz -->
-  <line x1="220" y1="136" x2="480" y2="94" stroke="#10b981" stroke-width="2.5" marker-start="url(#mlsr-ag-l)" marker-end="url(#mlsr-ag-r)"/>
-
+  <line x1="220" y1="132" x2="480" y2="90" stroke="#34d399" stroke-width="1.5" marker-start="url(#mlsr-ag-l)" marker-end="url(#mlsr-ag-r)"/>
   <!-- Dashed line to standby 6 GHz -->
-  <line x1="220" y1="136" x2="494" y2="152" stroke="#d1d5db" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <line x1="220" y1="132" x2="494" y2="148" stroke="#1e3a5f" stroke-width="1.5" stroke-dasharray="6,4"/>
 
-  <!-- ── TIMING CHART ── -->
-  <text x="350" y="228" text-anchor="middle" font-size="12" font-weight="600" fill="#374151">Switching Timeline</text>
+  <!-- TIMING CHART -->
+  <text x="350" y="224" text-anchor="middle" font-size="12" font-weight="600" fill="#94a3b8">Switching Timeline</text>
 
   <!-- Row labels -->
-  <text x="212" y="257" text-anchor="end" font-size="11" font-weight="500" fill="#10b981">5 GHz</text>
-  <text x="212" y="292" text-anchor="end" font-size="11" font-weight="500" fill="#f59e0b">6 GHz</text>
+  <text x="212" y="253" text-anchor="end" font-size="11" font-weight="500" fill="#34d399">5 GHz</text>
+  <text x="212" y="288" text-anchor="end" font-size="11" font-weight="500" fill="#38bdf8">6 GHz</text>
 
-  <!-- 5 GHz: ON, OFF, ON, OFF — full switch, longer gaps for switching overhead -->
-  <rect x="218" y="241" width="60" height="24" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5" rx="3"/>
-  <text x="248" y="257" text-anchor="middle" font-size="10" font-weight="600" fill="#065f46">ON</text>
+  <!-- 5 GHz: ON, sw, OFF, sw, ON, sw, OFF -->
+  <rect x="218" y="237" width="60" height="24" fill="#071810" stroke="#34d399" stroke-width="1.5" rx="3"/>
+  <text x="248" y="253" text-anchor="middle" font-size="10" font-weight="600" fill="#a7f3d0">ON</text>
 
-  <!-- switch gap -->
-  <rect x="282" y="241" width="20" height="24" fill="#fef9c3" stroke="#fbbf24" stroke-width="1" rx="2"/>
-  <text x="292" y="257" text-anchor="middle" font-size="8" fill="#92400e">sw</text>
+  <rect x="282" y="237" width="20" height="24" fill="#1a1000" stroke="#f97316" stroke-width="1" rx="2"/>
+  <text x="292" y="253" text-anchor="middle" font-size="8" fill="#fed7aa">sw</text>
 
-  <rect x="306" y="241" width="20" height="24" fill="#f9fafb" stroke="#d1d5db" stroke-width="1.5" rx="3"/>
-  <text x="316" y="257" text-anchor="middle" font-size="10" fill="#9ca3af">—</text>
+  <rect x="306" y="237" width="20" height="24" fill="#0d1520" stroke="#1e3a5f" stroke-width="1.5" rx="3"/>
+  <text x="316" y="253" text-anchor="middle" font-size="10" fill="#94a3b8">—</text>
 
-  <rect x="330" y="241" width="20" height="24" fill="#fef9c3" stroke="#fbbf24" stroke-width="1" rx="2"/>
-  <text x="340" y="257" text-anchor="middle" font-size="8" fill="#92400e">sw</text>
+  <rect x="330" y="237" width="20" height="24" fill="#1a1000" stroke="#f97316" stroke-width="1" rx="2"/>
+  <text x="340" y="253" text-anchor="middle" font-size="8" fill="#fed7aa">sw</text>
 
-  <rect x="354" y="241" width="60" height="24" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5" rx="3"/>
-  <text x="384" y="257" text-anchor="middle" font-size="10" font-weight="600" fill="#065f46">ON</text>
+  <rect x="354" y="237" width="60" height="24" fill="#071810" stroke="#34d399" stroke-width="1.5" rx="3"/>
+  <text x="384" y="253" text-anchor="middle" font-size="10" font-weight="600" fill="#a7f3d0">ON</text>
 
-  <rect x="418" y="241" width="20" height="24" fill="#fef9c3" stroke="#fbbf24" stroke-width="1" rx="2"/>
-  <text x="428" y="257" text-anchor="middle" font-size="8" fill="#92400e">sw</text>
+  <rect x="418" y="237" width="20" height="24" fill="#1a1000" stroke="#f97316" stroke-width="1" rx="2"/>
+  <text x="428" y="253" text-anchor="middle" font-size="8" fill="#fed7aa">sw</text>
 
-  <rect x="442" y="241" width="20" height="24" fill="#f9fafb" stroke="#d1d5db" stroke-width="1.5" rx="3"/>
-  <text x="452" y="257" text-anchor="middle" font-size="10" fill="#9ca3af">—</text>
+  <rect x="442" y="237" width="20" height="24" fill="#0d1520" stroke="#1e3a5f" stroke-width="1.5" rx="3"/>
+  <text x="452" y="253" text-anchor="middle" font-size="10" fill="#94a3b8">—</text>
 
-  <!-- 6 GHz: OFF, ON, OFF, ON -->
-  <rect x="218" y="277" width="20" height="24" fill="#f9fafb" stroke="#d1d5db" stroke-width="1.5" rx="3"/>
-  <text x="228" y="293" text-anchor="middle" font-size="10" fill="#9ca3af">—</text>
+  <!-- 6 GHz: OFF, sw, ON, sw, OFF, sw, ON -->
+  <rect x="218" y="273" width="20" height="24" fill="#0d1520" stroke="#1e3a5f" stroke-width="1.5" rx="3"/>
+  <text x="228" y="289" text-anchor="middle" font-size="10" fill="#94a3b8">—</text>
 
-  <rect x="242" y="277" width="20" height="24" fill="#fef9c3" stroke="#fbbf24" stroke-width="1" rx="2"/>
-  <text x="252" y="293" text-anchor="middle" font-size="8" fill="#92400e">sw</text>
+  <rect x="242" y="273" width="20" height="24" fill="#1a1000" stroke="#f97316" stroke-width="1" rx="2"/>
+  <text x="252" y="289" text-anchor="middle" font-size="8" fill="#fed7aa">sw</text>
 
-  <rect x="266" y="277" width="60" height="24" fill="#fffbeb" stroke="#f59e0b" stroke-width="1.5" rx="3"/>
-  <text x="296" y="293" text-anchor="middle" font-size="10" font-weight="600" fill="#92400e">ON</text>
+  <rect x="266" y="273" width="60" height="24" fill="#0e1a3a" stroke="#38bdf8" stroke-width="1.5" rx="3"/>
+  <text x="296" y="289" text-anchor="middle" font-size="10" font-weight="600" fill="#bae6fd">ON</text>
 
-  <rect x="330" y="277" width="20" height="24" fill="#fef9c3" stroke="#fbbf24" stroke-width="1" rx="2"/>
-  <text x="340" y="293" text-anchor="middle" font-size="8" fill="#92400e">sw</text>
+  <rect x="330" y="273" width="20" height="24" fill="#1a1000" stroke="#f97316" stroke-width="1" rx="2"/>
+  <text x="340" y="289" text-anchor="middle" font-size="8" fill="#fed7aa">sw</text>
 
-  <rect x="354" y="277" width="20" height="24" fill="#f9fafb" stroke="#d1d5db" stroke-width="1.5" rx="3"/>
-  <text x="364" y="293" text-anchor="middle" font-size="10" fill="#9ca3af">—</text>
+  <rect x="354" y="273" width="20" height="24" fill="#0d1520" stroke="#1e3a5f" stroke-width="1.5" rx="3"/>
+  <text x="364" y="289" text-anchor="middle" font-size="10" fill="#94a3b8">—</text>
 
-  <rect x="378" y="277" width="20" height="24" fill="#fef9c3" stroke="#fbbf24" stroke-width="1" rx="2"/>
-  <text x="388" y="293" text-anchor="middle" font-size="8" fill="#92400e">sw</text>
+  <rect x="378" y="273" width="20" height="24" fill="#1a1000" stroke="#f97316" stroke-width="1" rx="2"/>
+  <text x="388" y="289" text-anchor="middle" font-size="8" fill="#fed7aa">sw</text>
 
-  <rect x="402" y="277" width="60" height="24" fill="#fffbeb" stroke="#f59e0b" stroke-width="1.5" rx="3"/>
-  <text x="432" y="293" text-anchor="middle" font-size="10" font-weight="600" fill="#92400e">ON</text>
+  <rect x="402" y="273" width="60" height="24" fill="#0e1a3a" stroke="#38bdf8" stroke-width="1.5" rx="3"/>
+  <text x="432" y="289" text-anchor="middle" font-size="10" font-weight="600" fill="#bae6fd">ON</text>
 
-  <!-- Legend: sw = switch overhead -->
-  <rect x="218" y="310" width="10" height="10" fill="#fef9c3" stroke="#fbbf24" stroke-width="1" rx="1"/>
-  <text x="233" y="319" font-size="9" fill="#6b7280">sw = channel-switch overhead</text>
+  <!-- Legend -->
+  <rect x="218" y="306" width="10" height="10" fill="#1a1000" stroke="#f97316" stroke-width="1" rx="1"/>
+  <text x="233" y="315" font-size="9" fill="#94a3b8">sw = channel-switch overhead</text>
 
   <!-- Time axis -->
-  <line x1="218" y1="326" x2="468" y2="326" stroke="#9ca3af" stroke-width="1.5" marker-end="url(#mlsr-time-arr)"/>
-  <text x="474" y="330" font-size="10" fill="#9ca3af">time</text>
+  <line x1="218" y1="322" x2="468" y2="322" stroke="#475569" stroke-width="1.5" marker-end="url(#mlsr-time-arr)"/>
+  <text x="474" y="326" font-size="10" fill="#94a3b8">time</text>
 
-  <!-- Caption -->
-  <text x="350" y="349" text-anchor="middle" font-size="11" fill="#6b7280">One band at a time — full channel switch required to change links</text>
+  <!-- Footer caption -->
+  <text x="350" y="349" text-anchor="middle" font-size="9" fill="#94a3b8">One band at a time — full channel switch required to change links</text>
 </svg>

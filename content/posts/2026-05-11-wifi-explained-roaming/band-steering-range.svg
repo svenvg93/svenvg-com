@@ -1,43 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 340" width="700" height="340" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+  </defs>
 
   <!-- Background -->
-  <rect width="700" height="340" fill="#f8fafc" rx="12"/>
+  <rect width="700" height="340" fill="url(#bg)" rx="8"/>
 
-  <!-- Title -->
-  <text x="350" y="26" text-anchor="middle" font-size="14" font-weight="700" fill="#111827">Band Steering — Range Mismatch Problem</text>
+  <!-- Subtle grid line -->
+  <line x1="0" y1="170" x2="700" y2="170" stroke="#0d1a2a" stroke-width="1"/>
 
-  <!-- 2.4 GHz coverage circle — r=130, centered at (350, 170) -->
-  <circle cx="350" cy="170" r="130" fill="#eff6ff" fill-opacity="0.5" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="8,4"/>
+  <!-- Header label -->
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">BAND STEERING — RANGE MISMATCH PROBLEM</text>
+
+  <!-- 2.4 GHz coverage circle — r=130, centered at (350, 175) -->
+  <circle cx="350" cy="175" r="130" fill="#0a1628" fill-opacity="0.6" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="8,4"/>
 
   <!-- 5 GHz coverage circle — r=75 -->
-  <circle cx="350" cy="170" r="75" fill="#ecfdf5" fill-opacity="0.7" stroke="#10b981" stroke-width="2"/>
+  <circle cx="350" cy="175" r="75" fill="#071810" fill-opacity="0.8" stroke="#34d399" stroke-width="2"/>
 
   <!-- AP icon -->
-  <circle cx="350" cy="170" r="18" fill="#1d4ed8" stroke="white" stroke-width="2"/>
-  <text x="350" y="174" text-anchor="middle" font-size="10" font-weight="700" fill="white">AP</text>
+  <circle cx="350" cy="175" r="18" fill="#0e1a3a" stroke="#3b82f6" stroke-width="2"/>
+  <text x="350" y="179" text-anchor="middle" font-size="10" font-weight="700" fill="#93c5fd">AP</text>
 
   <!-- Legend (top left) -->
-  <line x1="30" y1="46" x2="54" y2="46" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="6,3"/>
-  <text x="60" y="50" font-size="10" fill="#1d4ed8">2.4 GHz range</text>
-  <line x1="30" y1="64" x2="54" y2="64" stroke="#10b981" stroke-width="2"/>
-  <text x="60" y="68" font-size="10" fill="#065f46">5 GHz range</text>
+  <line x1="30" y1="46" x2="54" y2="46" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="60" y="50" font-size="10" fill="#38bdf8">2.4 GHz range</text>
+  <line x1="30" y1="64" x2="54" y2="64" stroke="#34d399" stroke-width="2"/>
+  <text x="60" y="68" font-size="10" fill="#34d399">5 GHz range</text>
 
-  <!-- Client A — inside 5 GHz (distance ≈ 65) -->
-  <circle cx="285" cy="170" r="10" fill="#10b981" stroke="white" stroke-width="2"/>
-  <text x="285" y="174" text-anchor="middle" font-size="8" font-weight="700" fill="white">A</text>
-  <rect x="218" y="188" width="134" height="36" fill="white" stroke="#10b981" stroke-width="1" rx="4"/>
-  <text x="285" y="201" text-anchor="middle" font-size="9" font-weight="600" fill="#065f46">Client A — steered to 5 GHz ✓</text>
-  <text x="285" y="216" text-anchor="middle" font-size="9" fill="#10b981">strong 5 GHz signal</text>
+  <!-- Client A — inside 5 GHz (distance ~65) -->
+  <circle cx="285" cy="175" r="10" fill="#071810" stroke="#34d399" stroke-width="2"/>
+  <text x="285" y="179" text-anchor="middle" font-size="8" font-weight="700" fill="#34d399">A</text>
+  <rect x="218" y="193" width="134" height="36" fill="#071810" stroke="#166534" stroke-width="1" rx="4"/>
+  <text x="285" y="206" text-anchor="middle" font-size="9" font-weight="600" fill="#86efac">Client A — steered to 5 GHz</text>
+  <text x="285" y="221" text-anchor="middle" font-size="9" fill="#34d399">strong 5 GHz signal</text>
 
-  <!-- Client B — outside 5 GHz, inside 2.4 GHz (distance ≈ 122) -->
-  <circle cx="450" cy="100" r="10" fill="#ef4444" stroke="white" stroke-width="2"/>
-  <text x="450" y="104" text-anchor="middle" font-size="8" font-weight="700" fill="white">B</text>
-  <rect x="466" y="60" width="162" height="52" fill="white" stroke="#ef4444" stroke-width="1" rx="4"/>
-  <text x="547" y="74" text-anchor="middle" font-size="9" font-weight="600" fill="#dc2626">Client B — steered to 5 GHz ✗</text>
-  <text x="547" y="88" text-anchor="middle" font-size="9" fill="#ef4444">outside 5 GHz, inside 2.4 GHz</text>
-  <text x="547" y="102" text-anchor="middle" font-size="9" fill="#ef4444">steering gives worse performance</text>
+  <!-- Client B — outside 5 GHz, inside 2.4 GHz (distance ~122) -->
+  <circle cx="450" cy="105" r="10" fill="#150808" stroke="#f87171" stroke-width="2"/>
+  <text x="450" y="109" text-anchor="middle" font-size="8" font-weight="700" fill="#f87171">B</text>
+  <rect x="466" y="60" width="162" height="52" fill="#150808" stroke="#7f1d1d" stroke-width="1" rx="4"/>
+  <text x="547" y="74" text-anchor="middle" font-size="9" font-weight="600" fill="#f87171">Client B — steered to 5 GHz</text>
+  <text x="547" y="88" text-anchor="middle" font-size="9" fill="#f87171">outside 5 GHz, inside 2.4 GHz</text>
+  <text x="547" y="102" text-anchor="middle" font-size="9" fill="#f87171">steering gives worse performance</text>
 
-  <!-- Caption -->
-  <text x="350" y="323" text-anchor="middle" font-size="11" fill="#6b7280">Steering pushes Client B to 5 GHz despite poor signal — 2.4 GHz would give better throughput</text>
+  <!-- Footer caption -->
+  <text x="350" y="323" text-anchor="middle" font-size="9" fill="#94a3b8">Steering pushes Client B to 5 GHz despite poor signal — 2.4 GHz would give better throughput</text>
 </svg>

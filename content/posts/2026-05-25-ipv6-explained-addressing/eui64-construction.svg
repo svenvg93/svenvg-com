@@ -1,42 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 290" width="700" height="290"
      font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+  </defs>
 
-  <rect width="700" height="290" fill="#f8fafc" rx="12"/>
-  <text x="350" y="22" text-anchor="middle" font-size="13" font-weight="700" fill="#111827">EUI-64 — Constructing the Interface Identifier from a MAC Address</text>
+  <!-- Background -->
+  <rect width="700" height="290" fill="url(#bg)" rx="8"/>
 
-  <!-- ① MAC ADDRESS -->
-  <text x="350" y="42" text-anchor="middle" font-size="10" font-weight="600" fill="#64748b" letter-spacing="1">① 48-BIT MAC ADDRESS</text>
-  <rect x="120" y="50" width="226" height="40" fill="#dbeafe" stroke="#93c5fd" stroke-width="1.5" rx="5"/>
-  <text x="233" y="66" text-anchor="middle" font-size="9" font-weight="600" fill="#1e40af">OUI — 24 bits (vendor)</text>
-  <text x="233" y="83" text-anchor="middle" font-size="12" font-family="'Courier New',monospace" fill="#1d4ed8">aa : bb : cc</text>
-  <rect x="352" y="50" width="226" height="40" fill="#dcfce7" stroke="#86efac" stroke-width="1.5" rx="5"/>
-  <text x="465" y="66" text-anchor="middle" font-size="9" font-weight="600" fill="#166534">NIC — 24 bits (device)</text>
-  <text x="465" y="83" text-anchor="middle" font-size="12" font-family="'Courier New',monospace" fill="#15803d">dd : ee : ff</text>
+  <!-- Subtle grid line -->
+  <line x1="0" y1="145" x2="700" y2="145" stroke="#0d1a2a" stroke-width="1"/>
+
+  <!-- Header label -->
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">EUI-64 — CONSTRUCTING THE INTERFACE IDENTIFIER FROM A MAC ADDRESS</text>
+
+  <!-- Step 1: 48-bit MAC address -->
+  <text x="350" y="42" text-anchor="middle" font-size="10" font-weight="600" fill="#94a3b8" letter-spacing="1">&#x2460; 48-BIT MAC ADDRESS</text>
+
+  <!-- OUI block: blue (router/prefix zone) -->
+  <rect x="120" y="50" width="226" height="40" fill="#0e1a3a" stroke="#3b82f6" stroke-width="1.5" rx="5"/>
+  <text x="233" y="66" text-anchor="middle" font-size="9" font-weight="600" fill="#93c5fd">OUI — 24 bits (vendor)</text>
+  <text x="233" y="83" text-anchor="middle" font-size="12" font-family="'Courier New',monospace" fill="#93c5fd">aa : bb : cc</text>
+
+  <!-- NIC block: green (interface ID / host part zone) -->
+  <rect x="352" y="50" width="226" height="40" fill="#071810" stroke="#34d399" stroke-width="1.5" rx="5"/>
+  <text x="465" y="66" text-anchor="middle" font-size="9" font-weight="600" fill="#86efac">NIC — 24 bits (device)</text>
+  <text x="465" y="83" text-anchor="middle" font-size="12" font-family="'Courier New',monospace" fill="#86efac">dd : ee : ff</text>
 
   <!-- Transition 1 -->
-  <text x="350" y="104" text-anchor="middle" font-size="9" fill="#94a3b8">insert  ff:fe  between OUI and NIC</text>
-  <text x="350" y="122" text-anchor="middle" font-size="16" fill="#cbd5e1">↓</text>
+  <text x="350" y="106" text-anchor="middle" font-size="9" fill="#94a3b8">insert  ff:fe  between OUI and NIC</text>
+  <text x="350" y="124" text-anchor="middle" font-size="16" fill="#94a3b8">&#x2193;</text>
 
-  <!-- ② 64-BIT WITH ff:fe INSERTED -->
-  <text x="350" y="140" text-anchor="middle" font-size="10" font-weight="600" fill="#64748b" letter-spacing="1">② INSERT ff:fe — NOW 64 BITS</text>
-  <rect x="130" y="148" width="156" height="40" fill="#dbeafe" stroke="#93c5fd" stroke-width="1.5" rx="5"/>
-  <text x="208" y="164" text-anchor="middle" font-size="9" font-weight="600" fill="#1e40af">OUI</text>
-  <text x="208" y="181" text-anchor="middle" font-size="11" font-family="'Courier New',monospace" fill="#1d4ed8">aa : bb : cc</text>
-  <rect x="292" y="148" width="114" height="40" fill="#fef9c3" stroke="#facc15" stroke-width="2" rx="5"/>
-  <text x="349" y="164" text-anchor="middle" font-size="9" font-weight="700" fill="#854d0e">INSERTED</text>
-  <text x="349" y="181" text-anchor="middle" font-size="11" font-family="'Courier New',monospace" fill="#92400e">ff : fe</text>
-  <rect x="412" y="148" width="156" height="40" fill="#dcfce7" stroke="#86efac" stroke-width="1.5" rx="5"/>
-  <text x="490" y="164" text-anchor="middle" font-size="9" font-weight="600" fill="#166534">NIC</text>
-  <text x="490" y="181" text-anchor="middle" font-size="11" font-family="'Courier New',monospace" fill="#15803d">dd : ee : ff</text>
+  <!-- Step 2: 64-bit with ff:fe inserted -->
+  <text x="350" y="142" text-anchor="middle" font-size="10" font-weight="600" fill="#94a3b8" letter-spacing="1">&#x2461; INSERT ff:fe — NOW 64 BITS</text>
+
+  <!-- OUI block -->
+  <rect x="130" y="150" width="156" height="40" fill="#0e1a3a" stroke="#3b82f6" stroke-width="1.5" rx="5"/>
+  <text x="208" y="166" text-anchor="middle" font-size="9" font-weight="600" fill="#93c5fd">OUI</text>
+  <text x="208" y="183" text-anchor="middle" font-size="11" font-family="'Courier New',monospace" fill="#93c5fd">aa : bb : cc</text>
+
+  <!-- Inserted ff:fe block: amber (link-local zone accent) -->
+  <rect x="292" y="150" width="114" height="40" fill="#1a1000" stroke="#f59e0b" stroke-width="2" rx="5"/>
+  <text x="349" y="166" text-anchor="middle" font-size="9" font-weight="700" fill="#fcd34d">INSERTED</text>
+  <text x="349" y="183" text-anchor="middle" font-size="11" font-family="'Courier New',monospace" fill="#fcd34d">ff : fe</text>
+
+  <!-- NIC block -->
+  <rect x="412" y="150" width="156" height="40" fill="#071810" stroke="#34d399" stroke-width="1.5" rx="5"/>
+  <text x="490" y="166" text-anchor="middle" font-size="9" font-weight="600" fill="#86efac">NIC</text>
+  <text x="490" y="183" text-anchor="middle" font-size="11" font-family="'Courier New',monospace" fill="#86efac">dd : ee : ff</text>
 
   <!-- Transition 2 -->
-  <text x="350" y="204" text-anchor="middle" font-size="9" fill="#94a3b8">flip bit 6 of first byte (Universal/Local bit):  0xaa (1010 1010) → 0xa8 (1010 1000)</text>
+  <text x="350" y="207" text-anchor="middle" font-size="9" fill="#94a3b8">flip bit 6 of first byte (Universal/Local bit):  0xaa (1010 1010) &#x2192; 0xa8 (1010 1000)</text>
   <text x="350" y="222" text-anchor="middle" font-size="9" fill="#94a3b8">combine into 16-bit groups</text>
-  <text x="350" y="240" text-anchor="middle" font-size="16" fill="#cbd5e1">↓</text>
+  <text x="350" y="240" text-anchor="middle" font-size="16" fill="#94a3b8">&#x2193;</text>
 
-  <!-- ③ INTERFACE IDENTIFIER -->
-  <text x="350" y="258" text-anchor="middle" font-size="10" font-weight="600" fill="#64748b" letter-spacing="1">③ 64-BIT INTERFACE IDENTIFIER</text>
-  <rect x="100" y="264" width="500" height="18" fill="#f0fdf4" stroke="#4ade80" stroke-width="2" rx="4"/>
-  <text x="350" y="277" text-anchor="middle" font-size="13" font-family="'Courier New',monospace" fill="#15803d">a8bb : ccff : fedd : eeff</text>
+  <!-- Step 3: 64-bit Interface Identifier -->
+  <text x="350" y="258" text-anchor="middle" font-size="10" font-weight="600" fill="#94a3b8" letter-spacing="1">&#x2462; 64-BIT INTERFACE IDENTIFIER</text>
+  <rect x="100" y="264" width="500" height="20" fill="#071810" stroke="#34d399" stroke-width="2" rx="4"/>
+  <text x="350" y="278" text-anchor="middle" font-size="13" font-family="'Courier New',monospace" fill="#86efac">a8bb : ccff : fedd : eeff</text>
+
+  <!-- Footer caption -->
+  <text x="350" y="288" text-anchor="middle" font-size="9" fill="#94a3b8">Privacy extensions (RFC 8981) use a random IID instead</text>
 </svg>

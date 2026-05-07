@@ -2,7 +2,7 @@
 title: "Ansible Essentials: Variables & Facts"
 description: Learn how Ansible variables and facts work — from host_vars and group_vars to gathered system facts — and use them to write smarter, host-aware playbooks.
 date: 2025-06-12
-draft: true
+draft: false
 categories:
   - Automation
 tags:
@@ -11,8 +11,6 @@ cover: cover.svg
 series:
   - Ansible Essentials
 series_order: 5
-lightbox:
-  enabled: true
 ---
 
 Instead of hardcoding values in every task, you define variables once and reference them everywhere. **Facts** go further — Ansible automatically discovers information about each host that you can use without defining anything manually.
@@ -26,7 +24,7 @@ Instead of hardcoding values in every task, you define variables once and refere
 | `host_vars/<host>.yml` | Single host | Per-host port |
 | Playbook `vars:` | Current play | One-off overrides |
 
-`host_vars` overrides `group_vars`, which overrides `all`.
+`host_vars` overrides `group_vars`, which overrides `all`. Playbook `vars:` overrides all of these.
 
 ## Defining Variables
 
@@ -106,7 +104,7 @@ Use `register` to capture a task result and act on it:
   ansible.builtin.systemd:
     name: nginx
     state: started
-  when: nginx_status.status.ActiveState != "active"
+  when: nginx_status.status is defined and nginx_status.status.ActiveState != "active"
 ```
 
 ## The debug Module

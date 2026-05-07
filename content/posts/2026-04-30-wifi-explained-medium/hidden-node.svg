@@ -1,57 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 280" width="700" height="280" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" width="700" height="300" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+  </defs>
 
   <!-- Background -->
-  <rect width="700" height="280" fill="#f8fafc" rx="12"/>
+  <rect width="700" height="300" fill="url(#bg)" rx="8"/>
 
-  <!-- Title -->
-  <text x="350" y="26" text-anchor="middle" font-size="14" font-weight="700" fill="#111827">The Hidden Node Problem</text>
+  <!-- Grid lines -->
+  <line x1="0" y1="100" x2="700" y2="100" stroke="#0d1a2a" stroke-width="1"/>
+  <line x1="0" y1="200" x2="700" y2="200" stroke="#0d1a2a" stroke-width="1"/>
 
-  <!-- ── Coverage circles ── -->
+  <!-- Header label -->
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">THE HIDDEN NODE PROBLEM</text>
 
-  <!-- Client A coverage (left, blue) -->
-  <circle cx="190" cy="150" r="140" fill="#dbeafe" fill-opacity="0.35" stroke="#93c5fd" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <!-- Client A coverage circle (blue) -->
+  <circle cx="190" cy="150" r="140" fill="#0e2040" fill-opacity="0.45" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="6,3"/>
 
-  <!-- Client B coverage (right, orange) -->
-  <circle cx="510" cy="150" r="140" fill="#ffedd5" fill-opacity="0.35" stroke="#fdba74" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <!-- Client B coverage circle (orange) -->
+  <circle cx="510" cy="150" r="140" fill="#1a0800" fill-opacity="0.45" stroke="#f97316" stroke-width="1.5" stroke-dasharray="6,3"/>
 
   <!-- Overlap zone label -->
-  <text x="350" y="220" text-anchor="middle" font-size="10" fill="#6b7280" font-style="italic">A and B both reach the AP</text>
-  <text x="350" y="234" text-anchor="middle" font-size="10" fill="#6b7280" font-style="italic">but cannot hear each other</text>
+  <text x="350" y="220" text-anchor="middle" font-size="10" fill="#94a3b8" font-style="italic">A and B both reach the AP</text>
+  <text x="350" y="234" text-anchor="middle" font-size="10" fill="#94a3b8" font-style="italic">but cannot hear each other</text>
 
-  <!-- ── Nodes ── -->
+  <!-- Client A node -->
+  <circle cx="150" cy="148" r="22" fill="#042a40" stroke="#38bdf8" stroke-width="2"/>
+  <text x="150" y="144" text-anchor="middle" font-size="10" font-weight="700" fill="#7dd3fc">Client</text>
+  <text x="150" y="157" text-anchor="middle" font-size="10" font-weight="700" fill="#7dd3fc">A</text>
 
-  <!-- Client A -->
-  <circle cx="150" cy="148" r="22" fill="#bfdbfe" stroke="#3b82f6" stroke-width="2"/>
-  <text x="150" y="144" text-anchor="middle" font-size="10" font-weight="700" fill="#1d4ed8">Client</text>
-  <text x="150" y="157" text-anchor="middle" font-size="10" font-weight="700" fill="#1d4ed8">A</text>
+  <!-- AP node -->
+  <circle cx="350" cy="148" r="24" fill="#0e2040" stroke="#38bdf8" stroke-width="2.5"/>
+  <text x="350" y="145" text-anchor="middle" font-size="10" font-weight="700" fill="#7dd3fc">AP</text>
+  <text x="350" y="158" text-anchor="middle" font-size="9" fill="#f97316">collision</text>
 
-  <!-- AP -->
-  <circle cx="350" cy="148" r="24" fill="#f0fdf4" stroke="#22c55e" stroke-width="2.5"/>
-  <text x="350" y="145" text-anchor="middle" font-size="10" font-weight="700" fill="#15803d">AP</text>
-  <text x="350" y="158" text-anchor="middle" font-size="9" fill="#15803d">⚡ collision</text>
+  <!-- Client B node -->
+  <circle cx="550" cy="148" r="22" fill="#1a0800" stroke="#f97316" stroke-width="2"/>
+  <text x="550" y="144" text-anchor="middle" font-size="10" font-weight="700" fill="#fed7aa">Client</text>
+  <text x="550" y="157" text-anchor="middle" font-size="10" font-weight="700" fill="#fed7aa">B</text>
 
-  <!-- Client B -->
-  <circle cx="550" cy="148" r="22" fill="#fed7aa" stroke="#f97316" stroke-width="2"/>
-  <text x="550" y="144" text-anchor="middle" font-size="10" font-weight="700" fill="#c2410c">Client</text>
-  <text x="550" y="157" text-anchor="middle" font-size="10" font-weight="700" fill="#c2410c">B</text>
+  <!-- A to AP arrow -->
+  <line x1="172" y1="143" x2="324" y2="143" stroke="#38bdf8" stroke-width="2.5"/>
+  <polygon points="324,143 314,138 314,148" fill="#38bdf8"/>
+  <text x="248" y="134" text-anchor="middle" font-size="10" font-weight="600" fill="#7dd3fc">transmit</text>
 
-  <!-- ── Transmission arrows ── -->
-
-  <!-- A → AP -->
-  <line x1="172" y1="143" x2="324" y2="143" stroke="#3b82f6" stroke-width="2.5"/>
-  <polygon points="324,143 314,138 314,148" fill="#3b82f6"/>
-  <text x="248" y="134" text-anchor="middle" font-size="10" font-weight="600" fill="#1d4ed8">transmit</text>
-
-  <!-- B → AP -->
+  <!-- B to AP arrow -->
   <line x1="528" y1="153" x2="376" y2="153" stroke="#f97316" stroke-width="2.5"/>
   <polygon points="376,153 386,148 386,158" fill="#f97316"/>
-  <text x="452" y="168" text-anchor="middle" font-size="10" font-weight="600" fill="#c2410c">transmit simultaneously</text>
+  <text x="452" y="168" text-anchor="middle" font-size="10" font-weight="600" fill="#fed7aa">transmit simultaneously</text>
 
-  <!-- No link between A and B -->
-  <line x1="172" y1="170" x2="528" y2="170" stroke="#d1d5db" stroke-width="1.5" stroke-dasharray="4,4"/>
-  <text x="350" y="185" text-anchor="middle" font-size="10" fill="#9ca3af">✗  cannot hear each other</text>
+  <!-- Cannot hear each other line -->
+  <line x1="172" y1="170" x2="528" y2="170" stroke="#1e3a5f" stroke-width="1.5" stroke-dasharray="4,4"/>
+  <text x="350" y="185" text-anchor="middle" font-size="10" fill="#94a3b8">cannot hear each other</text>
 
-  <!-- Caption -->
-  <text x="350" y="260" text-anchor="middle" font-size="11" fill="#6b7280">Both sense the channel as idle and transmit — the collision happens at the AP</text>
+  <!-- Footer caption -->
+  <text x="350" y="278" text-anchor="middle" font-size="9" fill="#94a3b8">Both sense the channel as idle and transmit — the collision happens at the AP</text>
 </svg>

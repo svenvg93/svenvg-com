@@ -2,7 +2,7 @@
 title: "Ansible Essentials: Jinja2 Templates"
 description: Use Jinja2 templates to generate dynamic configuration files from your Ansible variables, keeping your automation DRY and host-aware.
 date: 2025-06-05
-draft: true
+draft: false
 categories:
   - Automation
 tags:
@@ -11,8 +11,6 @@ cover: cover.svg
 series:
   - Ansible Essentials
 series_order: 4
-lightbox:
-  enabled: true
 ---
 
 Hardcoding values in config files works for one host — but when you manage ten servers with slightly different settings, you end up maintaining ten nearly identical files. **Jinja2 templates** let you write a single file with placeholders that Ansible fills in per host at deploy time.
@@ -65,9 +63,9 @@ scrape_configs:
   - job_name: node_exporter
     static_configs:
       - targets:
-{% for host in groups['homelab'] %}
+{%- for host in groups['homelab'] %}
           - "{{ hostvars[host]['ansible_host'] }}:9100"
-{% endfor %}
+{%- endfor %}
 ```
 
 Add a host to your inventory and the next run updates the config automatically.

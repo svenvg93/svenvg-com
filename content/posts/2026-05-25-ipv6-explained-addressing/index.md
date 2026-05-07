@@ -10,8 +10,6 @@ tags:
   - ipv6
 series:
   - IPv6 Explained
-lightbox:
-  enabled: true
 series_order: 1
 ---
 
@@ -41,7 +39,7 @@ Second, one contiguous run of all-zero groups can be replaced with `::`:
 
 The `::` can only appear once in an address. `::1` is the loopback address (equivalent to `127.0.0.1`). `::` alone is the unspecified address.
 
-![IPv6 address notation — full form, zero-compressed, and double-colon shorthand](address-notation.svg)
+![](address-notation.svg "IPv6 address notation — full form, zero-compressed, and double-colon shorthand")
 
 ## Address Types
 
@@ -65,7 +63,7 @@ Not all unicast addresses are the same. IPv6 defines several ranges with differe
 
 **Documentation prefix** — `2001:db8::/32` is reserved by IANA (RFC 3849) exclusively for documentation and examples. It is never routed on the internet. All address examples throughout this series use `2001:db8::` addresses for this reason — they cannot be confused with real addresses.
 
-![IPv6 address types — GUA, ULA, and link-local with their prefixes and scopes](address-types.svg)
+![](address-types.svg "IPv6 address types — GUA, ULA, and link-local with their prefixes and scopes")
 
 ## Address Structure
 
@@ -86,7 +84,7 @@ The interface identifier can be generated several ways:
 
 **EUI-64** — derived from the device's MAC address. The 48-bit MAC is split in two, `fffe` is inserted in the middle, and bit 6 of the first byte is flipped (the Universal/Local bit, signalling the address was derived from a MAC). This produces a globally unique 64-bit identifier — but also embeds the MAC, which is a privacy concern.
 
-![EUI-64 construction — MAC address split, fffe inserted, U/L bit flipped to produce the 64-bit interface ID](eui64-construction.svg)
+![](eui64-construction.svg "EUI-64 construction — MAC address split, fffe inserted, U/L bit flipped to produce the 64-bit interface ID")
 
 **Privacy extensions (RFC 4941)** — the interface ID is randomly generated and rotated periodically. Most modern operating systems use this by default for outbound connections to prevent tracking across networks.
 

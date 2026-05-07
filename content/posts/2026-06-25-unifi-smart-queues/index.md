@@ -1,7 +1,7 @@
 ---
 title: Fix Bufferbloat with Unifi Smart Queues
 description: Eliminate bufferbloat and prioritize latency-sensitive traffic on your Unifi network with Smart Queues and traffic shaping.
-date: 2026-06-29
+date: 2026-06-25
 draft: true
 categories:
   - Networking

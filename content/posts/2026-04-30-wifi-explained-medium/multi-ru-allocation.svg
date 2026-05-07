@@ -1,89 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 290" width="700" height="290" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+  </defs>
 
   <!-- Background -->
-  <rect width="700" height="290" fill="#f8fafc" rx="12"/>
+  <rect width="700" height="290" fill="url(#bg)" rx="8"/>
 
-  <!-- Title -->
-  <text x="350" y="26" text-anchor="middle" font-size="14" font-weight="700" fill="#111827">Multi-RU — Contiguous (WiFi 6) vs Non-Contiguous (WiFi 7) Assignment</text>
+  <!-- Grid lines -->
+  <line x1="62" y1="140" x2="669" y2="140" stroke="#0d1a2a" stroke-width="1"/>
 
-  <!-- === WiFi 6 OFDMA row === -->
-  <text x="62" y="50" font-size="11" font-weight="600" fill="#374151">WiFi 6 OFDMA — one contiguous block per client</text>
+  <!-- Header label -->
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">MULTI-RU — CONTIGUOUS (WIFI 6) VS NON-CONTIGUOUS (WIFI 7)</text>
 
-  <!-- Client A (blue) blocks 1-2 x=62..211 -->
-  <rect x="62"  y="58" width="150" height="44" fill="#bfdbfe" stroke="#93c5fd" stroke-width="1.5" rx="4"/>
-  <text x="137" y="84" text-anchor="middle" font-size="11" font-weight="600" fill="#1d4ed8">Client A</text>
+  <!-- WiFi 6 row label -->
+  <text x="62" y="50" font-size="11" font-weight="600" fill="#7dd3fc">WiFi 6 OFDMA — one contiguous block per client</text>
 
-  <!-- Client B (green) blocks 3-4 x=212..361 -->
-  <rect x="213" y="58" width="150" height="44" fill="#bbf7d0" stroke="#4ade80" stroke-width="1.5" rx="4"/>
-  <text x="288" y="84" text-anchor="middle" font-size="11" font-weight="600" fill="#15803d">Client B</text>
+  <!-- Client A blue blocks 1-2 -->
+  <rect x="62"  y="58" width="150" height="44" fill="#0e1a3a" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
+  <text x="137" y="84" text-anchor="middle" font-size="11" font-weight="600" fill="#7dd3fc">Client A</text>
 
-  <!-- Client C (orange) blocks 5-6 x=363..512 -->
-  <rect x="364" y="58" width="150" height="44" fill="#fed7aa" stroke="#fb923c" stroke-width="1.5" rx="4"/>
-  <text x="439" y="84" text-anchor="middle" font-size="11" font-weight="600" fill="#c2410c">Client C</text>
+  <!-- Client B green blocks 3-4 -->
+  <rect x="213" y="58" width="150" height="44" fill="#071810" stroke="#86efac" stroke-width="1.5" rx="5"/>
+  <text x="288" y="84" text-anchor="middle" font-size="11" font-weight="600" fill="#86efac">Client B</text>
 
-  <!-- Client D (purple) blocks 7-8 x=514..663 -->
-  <rect x="515" y="58" width="150" height="44" fill="#ddd6fe" stroke="#a78bfa" stroke-width="1.5" rx="4"/>
-  <text x="590" y="84" text-anchor="middle" font-size="11" font-weight="600" fill="#6d28d9">Client D</text>
+  <!-- Client C orange blocks 5-6 -->
+  <rect x="364" y="58" width="150" height="44" fill="#150808" stroke="#f87171" stroke-width="1.5" rx="5"/>
+  <text x="439" y="84" text-anchor="middle" font-size="11" font-weight="600" fill="#fca5a5">Client C</text>
+
+  <!-- Client D purple blocks 7-8 -->
+  <rect x="515" y="58" width="150" height="44" fill="#150822" stroke="#a78bfa" stroke-width="1.5" rx="5"/>
+  <text x="590" y="84" text-anchor="middle" font-size="11" font-weight="600" fill="#c4b5fd">Client D</text>
 
   <!-- WiFi 6 dividers -->
-  <line x1="212" y1="55" x2="212" y2="105" stroke="#6b7280" stroke-width="1" stroke-dasharray="3,3"/>
-  <line x1="363" y1="55" x2="363" y2="105" stroke="#6b7280" stroke-width="1" stroke-dasharray="3,3"/>
-  <line x1="514" y1="55" x2="514" y2="105" stroke="#6b7280" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="212" y1="55" x2="212" y2="105" stroke="#1e3a5f" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="363" y1="55" x2="363" y2="105" stroke="#1e3a5f" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="514" y1="55" x2="514" y2="105" stroke="#1e3a5f" stroke-width="1" stroke-dasharray="3,3"/>
 
   <!-- WiFi 6 sub-caption -->
-  <text x="350" y="120" text-anchor="middle" font-size="10" fill="#6b7280">Each client is assigned one contiguous block of sub-carriers — no flexibility in placement</text>
+  <text x="350" y="120" text-anchor="middle" font-size="9" fill="#94a3b8">Each client is assigned one contiguous block of sub-carriers — no flexibility in placement</text>
 
   <!-- Separator -->
-  <line x1="62" y1="133" x2="663" y2="133" stroke="#e5e7eb" stroke-width="1.5"/>
+  <line x1="62" y1="133" x2="663" y2="133" stroke="#0d1a2a" stroke-width="1.5"/>
 
-  <!-- === WiFi 7 Multi-RU row === -->
-  <text x="62" y="150" font-size="11" font-weight="600" fill="#374151">WiFi 7 Multi-RU — non-contiguous blocks, same transmission window</text>
+  <!-- WiFi 7 row label -->
+  <text x="62" y="150" font-size="11" font-weight="600" fill="#7dd3fc">WiFi 7 Multi-RU — non-contiguous blocks, same transmission window</text>
 
-  <!-- 8 sub-bands, each 75px wide, from x=62 -->
-  <!-- Sub-band 1 (Client A, blue) x=62 -->
-  <rect x="62"  y="160" width="75" height="44" fill="#bfdbfe" stroke="#93c5fd" stroke-width="1.5" rx="4"/>
-  <text x="100" y="186" text-anchor="middle" font-size="10" font-weight="600" fill="#1d4ed8">A</text>
+  <!-- Sub-band 1 (Client A, blue) -->
+  <rect x="62"  y="160" width="75" height="44" fill="#0e1a3a" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
+  <text x="100" y="186" text-anchor="middle" font-size="10" font-weight="600" fill="#7dd3fc">A</text>
 
-  <!-- Sub-band 2 (Client B, green) x=137 -->
-  <rect x="138" y="160" width="75" height="44" fill="#bbf7d0" stroke="#4ade80" stroke-width="1.5" rx="4"/>
-  <text x="176" y="186" text-anchor="middle" font-size="10" font-weight="600" fill="#15803d">B</text>
+  <!-- Sub-band 2 (Client B, green) -->
+  <rect x="138" y="160" width="75" height="44" fill="#071810" stroke="#86efac" stroke-width="1.5" rx="5"/>
+  <text x="176" y="186" text-anchor="middle" font-size="10" font-weight="600" fill="#86efac">B</text>
 
-  <!-- Sub-band 3 (Client A, blue) x=213 -->
-  <rect x="214" y="160" width="75" height="44" fill="#bfdbfe" stroke="#93c5fd" stroke-width="1.5" rx="4"/>
-  <text x="252" y="186" text-anchor="middle" font-size="10" font-weight="600" fill="#1d4ed8">A</text>
+  <!-- Sub-band 3 (Client A, blue) -->
+  <rect x="214" y="160" width="75" height="44" fill="#0e1a3a" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
+  <text x="252" y="186" text-anchor="middle" font-size="10" font-weight="600" fill="#7dd3fc">A</text>
 
-  <!-- Sub-band 4 (Client C, orange) x=289 -->
-  <rect x="290" y="160" width="75" height="44" fill="#fed7aa" stroke="#fb923c" stroke-width="1.5" rx="4"/>
-  <text x="328" y="186" text-anchor="middle" font-size="10" font-weight="600" fill="#c2410c">C</text>
+  <!-- Sub-band 4 (Client C, orange) -->
+  <rect x="290" y="160" width="75" height="44" fill="#150808" stroke="#f87171" stroke-width="1.5" rx="5"/>
+  <text x="328" y="186" text-anchor="middle" font-size="10" font-weight="600" fill="#fca5a5">C</text>
 
-  <!-- Sub-band 5 (Client B, green) x=365 -->
-  <rect x="366" y="160" width="75" height="44" fill="#bbf7d0" stroke="#4ade80" stroke-width="1.5" rx="4"/>
-  <text x="404" y="186" text-anchor="middle" font-size="10" font-weight="600" fill="#15803d">B</text>
+  <!-- Sub-band 5 (Client B, green) -->
+  <rect x="366" y="160" width="75" height="44" fill="#071810" stroke="#86efac" stroke-width="1.5" rx="5"/>
+  <text x="404" y="186" text-anchor="middle" font-size="10" font-weight="600" fill="#86efac">B</text>
 
-  <!-- Sub-band 6 (Client A, blue) x=441 -->
-  <rect x="442" y="160" width="75" height="44" fill="#bfdbfe" stroke="#93c5fd" stroke-width="1.5" rx="4"/>
-  <text x="480" y="186" text-anchor="middle" font-size="10" font-weight="600" fill="#1d4ed8">A</text>
+  <!-- Sub-band 6 (Client A, blue) -->
+  <rect x="442" y="160" width="75" height="44" fill="#0e1a3a" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
+  <text x="480" y="186" text-anchor="middle" font-size="10" font-weight="600" fill="#7dd3fc">A</text>
 
-  <!-- Sub-band 7 (Client C, orange) x=517 -->
-  <rect x="518" y="160" width="75" height="44" fill="#fed7aa" stroke="#fb923c" stroke-width="1.5" rx="4"/>
-  <text x="556" y="186" text-anchor="middle" font-size="10" font-weight="600" fill="#c2410c">C</text>
+  <!-- Sub-band 7 (Client C, orange) -->
+  <rect x="518" y="160" width="75" height="44" fill="#150808" stroke="#f87171" stroke-width="1.5" rx="5"/>
+  <text x="556" y="186" text-anchor="middle" font-size="10" font-weight="600" fill="#fca5a5">C</text>
 
-  <!-- Sub-band 8 (Client B, green) x=593 -->
-  <rect x="594" y="160" width="75" height="44" fill="#bbf7d0" stroke="#4ade80" stroke-width="1.5" rx="4"/>
-  <text x="632" y="186" text-anchor="middle" font-size="10" font-weight="600" fill="#15803d">B</text>
+  <!-- Sub-band 8 (Client B, green) -->
+  <rect x="594" y="160" width="75" height="44" fill="#071810" stroke="#86efac" stroke-width="1.5" rx="5"/>
+  <text x="632" y="186" text-anchor="middle" font-size="10" font-weight="600" fill="#86efac">B</text>
 
   <!-- WiFi 7 legend -->
-  <rect x="62"  y="220" width="12" height="12" fill="#bfdbfe" stroke="#93c5fd" stroke-width="1" rx="2"/>
-  <text x="80"  y="231" font-size="10" fill="#374151">Client A — sub-bands 1, 3, 6</text>
+  <rect x="62"  y="220" width="12" height="12" fill="#0e1a3a" stroke="#38bdf8" stroke-width="1" rx="2"/>
+  <text x="80"  y="231" font-size="10" fill="#7dd3fc">Client A — sub-bands 1, 3, 6</text>
 
-  <rect x="230" y="220" width="12" height="12" fill="#bbf7d0" stroke="#4ade80" stroke-width="1" rx="2"/>
-  <text x="248" y="231" font-size="10" fill="#374151">Client B — sub-bands 2, 5, 8</text>
+  <rect x="230" y="220" width="12" height="12" fill="#071810" stroke="#86efac" stroke-width="1" rx="2"/>
+  <text x="248" y="231" font-size="10" fill="#86efac">Client B — sub-bands 2, 5, 8</text>
 
-  <rect x="430" y="220" width="12" height="12" fill="#fed7aa" stroke="#fb923c" stroke-width="1" rx="2"/>
-  <text x="448" y="231" font-size="10" fill="#374151">Client C — sub-bands 4, 7</text>
+  <rect x="430" y="220" width="12" height="12" fill="#150808" stroke="#f87171" stroke-width="1" rx="2"/>
+  <text x="448" y="231" font-size="10" fill="#fca5a5">Client C — sub-bands 4, 7</text>
 
-  <!-- Caption -->
-  <text x="350" y="260" text-anchor="middle" font-size="11" fill="#6b7280">All three clients are served in one transmission window — non-contiguous RUs fill the channel more efficiently</text>
-  <text x="350" y="275" text-anchor="middle" font-size="11" fill="#6b7280">and allow the AP to work around interference on individual sub-bands</text>
+  <!-- Footer captions -->
+  <text x="350" y="260" text-anchor="middle" font-size="9" fill="#94a3b8">All three clients are served in one transmission window — non-contiguous RUs fill the channel more efficiently</text>
+  <text x="350" y="275" text-anchor="middle" font-size="9" fill="#94a3b8">and allow the AP to work around interference on individual sub-bands</text>
 </svg>

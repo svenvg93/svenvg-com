@@ -1,96 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 290" width="700" height="290" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
   <defs>
-    <marker id="bs-arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto" markerUnits="userSpaceOnUse">
-      <polygon points="0,0 8,3 0,6" fill="#64748b"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <marker id="bs-arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#94a3b8"/>
     </marker>
-    <marker id="bs-arr-g" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto" markerUnits="userSpaceOnUse">
-      <polygon points="0,0 8,3 0,6" fill="#10b981"/>
+    <marker id="bs-arr-g" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#34d399"/>
     </marker>
-    <marker id="bs-arr-r" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto" markerUnits="userSpaceOnUse">
-      <polygon points="0,0 8,3 0,6" fill="#ef4444"/>
+    <marker id="bs-arr-r" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#f87171"/>
     </marker>
   </defs>
 
   <!-- Background -->
-  <rect width="700" height="290" fill="#f8fafc" rx="12"/>
+  <rect width="700" height="290" fill="url(#bg)" rx="8"/>
 
-  <!-- Title -->
-  <text x="350" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#111827">Band Steering — Probe Suppression Mechanism</text>
+  <!-- Subtle grid line -->
+  <line x1="0" y1="145" x2="700" y2="145" stroke="#0d1a2a" stroke-width="1"/>
+
+  <!-- Header label -->
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">BAND STEERING — PROBE SUPPRESSION MECHANISM</text>
 
   <!-- Divider -->
-  <line x1="350" y1="42" x2="350" y2="258" stroke="#e5e7eb" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="350" y1="36" x2="350" y2="254" stroke="#0d1a2a" stroke-width="1.5" stroke-dasharray="4,3"/>
 
   <!-- ════ LEFT — Dual-band client (success) ════ -->
-  <text x="175" y="52" text-anchor="middle" font-size="12" font-weight="700" fill="#374151">Dual-Band Client (Steered)</text>
+  <text x="175" y="50" text-anchor="middle" font-size="12" font-weight="700" fill="#94a3b8">Dual-Band Client (Steered)</text>
 
   <!-- Actors -->
-  <rect x="14" y="62" width="86" height="38" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5" rx="5"/>
-  <text x="57" y="78" text-anchor="middle" font-size="10" font-weight="600" fill="#374151">Dual-Band</text>
-  <text x="57" y="92" text-anchor="middle" font-size="10" font-weight="600" fill="#374151">Client</text>
+  <rect x="14" y="58" width="86" height="38" fill="#0e1a3a" stroke="#3b82f6" stroke-width="1.5" rx="5"/>
+  <text x="57" y="74" text-anchor="middle" font-size="10" font-weight="600" fill="#93c5fd">Dual-Band</text>
+  <text x="57" y="88" text-anchor="middle" font-size="10" font-weight="600" fill="#93c5fd">Client</text>
 
-  <rect x="230" y="62" width="90" height="38" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5" rx="5"/>
-  <text x="275" y="78" text-anchor="middle" font-size="10" font-weight="600" fill="#1d4ed8">AP</text>
-  <text x="275" y="92" text-anchor="middle" font-size="10" fill="#3b82f6">(band steering on)</text>
+  <rect x="230" y="58" width="90" height="38" fill="#0e1a3a" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
+  <text x="275" y="74" text-anchor="middle" font-size="10" font-weight="600" fill="#38bdf8">AP</text>
+  <text x="275" y="88" text-anchor="middle" font-size="10" fill="#38bdf8">(band steering on)</text>
 
   <!-- Lifelines -->
-  <line x1="57" y1="100" x2="57" y2="235" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3,3"/>
-  <line x1="275" y1="100" x2="275" y2="235" stroke="#bfdbfe" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="57" y1="96" x2="57" y2="232" stroke="#1e293b" stroke-width="2" stroke-dasharray="3,3"/>
+  <line x1="275" y1="96" x2="275" y2="232" stroke="#1e293b" stroke-width="2" stroke-dasharray="3,3"/>
 
   <!-- Probe 2.4GHz → suppressed -->
-  <line x1="65" y1="112" x2="265" y2="112" stroke="#64748b" stroke-width="1.5" marker-end="url(#bs-arr)"/>
-  <text x="161" y="108" text-anchor="middle" font-size="9" fill="#64748b">Probe 2.4 GHz</text>
-  <rect x="248" y="118" width="54" height="18" fill="#fef9c3" stroke="#facc15" stroke-width="1" rx="3"/>
-  <text x="275" y="131" text-anchor="middle" font-size="9" font-weight="600" fill="#92400e">ignored</text>
+  <line x1="65" y1="108" x2="265" y2="108" stroke="#475569" stroke-width="1.5" marker-end="url(#bs-arr)"/>
+  <text x="161" y="104" text-anchor="middle" font-size="9" fill="#94a3b8">Probe 2.4 GHz</text>
+  <rect x="248" y="114" width="54" height="18" fill="#1a1000" stroke="#92400e" stroke-width="1" rx="3"/>
+  <text x="275" y="127" text-anchor="middle" font-size="9" font-weight="600" fill="#fcd34d">ignored</text>
 
   <!-- Probe 2.4GHz again → suppressed -->
-  <line x1="65" y1="152" x2="265" y2="152" stroke="#64748b" stroke-width="1.5" marker-end="url(#bs-arr)"/>
-  <text x="161" y="148" text-anchor="middle" font-size="9" fill="#64748b">Probe 2.4 GHz (retry)</text>
-  <rect x="248" y="158" width="54" height="18" fill="#fef9c3" stroke="#facc15" stroke-width="1" rx="3"/>
-  <text x="275" y="171" text-anchor="middle" font-size="9" font-weight="600" fill="#92400e">ignored</text>
+  <line x1="65" y1="148" x2="265" y2="148" stroke="#475569" stroke-width="1.5" marker-end="url(#bs-arr)"/>
+  <text x="161" y="144" text-anchor="middle" font-size="9" fill="#94a3b8">Probe 2.4 GHz (retry)</text>
+  <rect x="248" y="154" width="54" height="18" fill="#1a1000" stroke="#92400e" stroke-width="1" rx="3"/>
+  <text x="275" y="167" text-anchor="middle" font-size="9" font-weight="600" fill="#fcd34d">ignored</text>
 
   <!-- Client falls back to 5GHz -->
-  <line x1="65" y1="192" x2="265" y2="192" stroke="#10b981" stroke-width="1.5" marker-end="url(#bs-arr-g)"/>
-  <text x="161" y="188" text-anchor="middle" font-size="9" fill="#10b981">Probe 5 GHz</text>
-  <line x1="265" y1="208" x2="65" y2="208" stroke="#10b981" stroke-width="1.5" marker-end="url(#bs-arr-g)"/>
-  <text x="161" y="221" text-anchor="middle" font-size="9" fill="#10b981">Response → connects on 5 GHz ✓</text>
+  <line x1="65" y1="188" x2="265" y2="188" stroke="#34d399" stroke-width="1.5" marker-end="url(#bs-arr-g)"/>
+  <text x="161" y="184" text-anchor="middle" font-size="9" fill="#34d399">Probe 5 GHz</text>
+  <line x1="265" y1="204" x2="65" y2="204" stroke="#34d399" stroke-width="1.5" marker-end="url(#bs-arr-g)"/>
+  <text x="161" y="217" text-anchor="middle" font-size="9" fill="#34d399">Response — connects on 5 GHz</text>
 
   <!-- ════ RIGHT — 2.4GHz-only IoT (failure) ════ -->
-  <text x="525" y="52" text-anchor="middle" font-size="12" font-weight="700" fill="#374151">2.4 GHz-Only IoT Device (Fails)</text>
+  <text x="525" y="50" text-anchor="middle" font-size="12" font-weight="700" fill="#94a3b8">2.4 GHz-Only IoT Device (Fails)</text>
 
   <!-- Actors -->
-  <rect x="364" y="62" width="86" height="38" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5" rx="5"/>
-  <text x="407" y="78" text-anchor="middle" font-size="10" font-weight="600" fill="#c2410c">IoT Device</text>
-  <text x="407" y="92" text-anchor="middle" font-size="10" fill="#f97316">(2.4 GHz only)</text>
+  <rect x="364" y="58" width="86" height="38" fill="#1a0a00" stroke="#92400e" stroke-width="1.5" rx="5"/>
+  <text x="407" y="74" text-anchor="middle" font-size="10" font-weight="600" fill="#fcd34d">IoT Device</text>
+  <text x="407" y="88" text-anchor="middle" font-size="10" fill="#f97316">(2.4 GHz only)</text>
 
-  <rect x="580" y="62" width="90" height="38" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5" rx="5"/>
-  <text x="625" y="78" text-anchor="middle" font-size="10" font-weight="600" fill="#1d4ed8">AP</text>
-  <text x="625" y="92" text-anchor="middle" font-size="10" fill="#3b82f6">(band steering on)</text>
+  <rect x="580" y="58" width="90" height="38" fill="#0e1a3a" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
+  <text x="625" y="74" text-anchor="middle" font-size="10" font-weight="600" fill="#38bdf8">AP</text>
+  <text x="625" y="88" text-anchor="middle" font-size="10" fill="#38bdf8">(band steering on)</text>
 
   <!-- Lifelines -->
-  <line x1="407" y1="100" x2="407" y2="235" stroke="#fed7aa" stroke-width="1" stroke-dasharray="3,3"/>
-  <line x1="625" y1="100" x2="625" y2="235" stroke="#bfdbfe" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="407" y1="96" x2="407" y2="232" stroke="#1e293b" stroke-width="2" stroke-dasharray="3,3"/>
+  <line x1="625" y1="96" x2="625" y2="232" stroke="#1e293b" stroke-width="2" stroke-dasharray="3,3"/>
 
   <!-- Probe 2.4GHz → suppressed x3 -->
-  <line x1="415" y1="112" x2="615" y2="112" stroke="#64748b" stroke-width="1.5" marker-end="url(#bs-arr)"/>
-  <text x="511" y="108" text-anchor="middle" font-size="9" fill="#64748b">Probe 2.4 GHz</text>
-  <rect x="598" y="118" width="54" height="18" fill="#fef9c3" stroke="#facc15" stroke-width="1" rx="3"/>
-  <text x="625" y="131" text-anchor="middle" font-size="9" font-weight="600" fill="#92400e">ignored</text>
+  <line x1="415" y1="108" x2="615" y2="108" stroke="#475569" stroke-width="1.5" marker-end="url(#bs-arr)"/>
+  <text x="511" y="104" text-anchor="middle" font-size="9" fill="#94a3b8">Probe 2.4 GHz</text>
+  <rect x="598" y="114" width="54" height="18" fill="#1a1000" stroke="#92400e" stroke-width="1" rx="3"/>
+  <text x="625" y="127" text-anchor="middle" font-size="9" font-weight="600" fill="#fcd34d">ignored</text>
 
-  <line x1="415" y1="148" x2="615" y2="148" stroke="#64748b" stroke-width="1.5" marker-end="url(#bs-arr)"/>
-  <text x="511" y="144" text-anchor="middle" font-size="9" fill="#64748b">Probe 2.4 GHz (retry 1)</text>
-  <rect x="598" y="154" width="54" height="18" fill="#fef9c3" stroke="#facc15" stroke-width="1" rx="3"/>
-  <text x="625" y="167" text-anchor="middle" font-size="9" font-weight="600" fill="#92400e">ignored</text>
+  <line x1="415" y1="144" x2="615" y2="144" stroke="#475569" stroke-width="1.5" marker-end="url(#bs-arr)"/>
+  <text x="511" y="140" text-anchor="middle" font-size="9" fill="#94a3b8">Probe 2.4 GHz (retry 1)</text>
+  <rect x="598" y="150" width="54" height="18" fill="#1a1000" stroke="#92400e" stroke-width="1" rx="3"/>
+  <text x="625" y="163" text-anchor="middle" font-size="9" font-weight="600" fill="#fcd34d">ignored</text>
 
-  <line x1="415" y1="184" x2="615" y2="184" stroke="#64748b" stroke-width="1.5" marker-end="url(#bs-arr)"/>
-  <text x="511" y="180" text-anchor="middle" font-size="9" fill="#64748b">Probe 2.4 GHz (retry 2)</text>
-  <rect x="598" y="190" width="54" height="18" fill="#fef9c3" stroke="#facc15" stroke-width="1" rx="3"/>
-  <text x="625" y="203" text-anchor="middle" font-size="9" font-weight="600" fill="#92400e">ignored</text>
+  <line x1="415" y1="180" x2="615" y2="180" stroke="#475569" stroke-width="1.5" marker-end="url(#bs-arr)"/>
+  <text x="511" y="176" text-anchor="middle" font-size="9" fill="#94a3b8">Probe 2.4 GHz (retry 2)</text>
+  <rect x="598" y="186" width="54" height="18" fill="#1a1000" stroke="#92400e" stroke-width="1" rx="3"/>
+  <text x="625" y="199" text-anchor="middle" font-size="9" font-weight="600" fill="#fcd34d">ignored</text>
 
   <!-- Device gives up -->
-  <rect x="364" y="212" width="310" height="20" fill="#fee2e2" stroke="#fca5a5" stroke-width="1" rx="3"/>
-  <text x="519" y="226" text-anchor="middle" font-size="9" font-weight="600" fill="#dc2626">device gives up → "network not found" ✗</text>
+  <rect x="364" y="208" width="310" height="20" fill="#150808" stroke="#7f1d1d" stroke-width="1" rx="3"/>
+  <text x="519" y="222" text-anchor="middle" font-size="9" font-weight="600" fill="#f87171">device gives up — "network not found"</text>
 
-  <!-- Caption -->
-  <text x="350" y="272" text-anchor="middle" font-size="11" fill="#6b7280">Probe suppression works for dual-band clients — but misidentified 2.4 GHz-only devices fail to connect</text>
+  <!-- Footer caption -->
+  <text x="350" y="272" text-anchor="middle" font-size="9" fill="#94a3b8">Probe suppression works for dual-band clients — but misidentified 2.4 GHz-only devices fail to connect</text>
 </svg>

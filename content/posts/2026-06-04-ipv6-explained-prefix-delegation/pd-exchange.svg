@@ -2,43 +2,79 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 250" width="700" height="250"
      font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
   <defs>
-    <marker id="arr-r" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto">
-      <polygon points="0,0 7,2.5 0,5" fill="#10b981"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <linearGradient id="arr-solicit" x1="134" y1="72" x2="558" y2="72" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    <linearGradient id="arr-advertise" x1="566" y1="115" x2="142" y2="115" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#fcd34d"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+    <linearGradient id="arr-request" x1="134" y1="158" x2="558" y2="158" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    <linearGradient id="arr-reply" x1="566" y1="200" x2="142" y2="200" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#86efac"/>
+      <stop offset="100%" stop-color="#4ade80"/>
+    </linearGradient>
+    <marker id="arr-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#3b82f6"/>
+    </marker>
+    <marker id="arr-amber" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#f59e0b"/>
+    </marker>
+    <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#4ade80"/>
     </marker>
   </defs>
-  <rect width="700" height="250" fill="#f8fafc" rx="12"/>
-  <text x="350" y="24" text-anchor="middle" font-size="13" font-weight="700" fill="#111827">DHCPv6-PD Exchange — Router Requests Prefix from ISP</text>
 
-  <text x="130" y="44" text-anchor="middle" font-size="11" font-weight="700" fill="#374151">ROUTER (PD client)</text>
-  <text x="570" y="44" text-anchor="middle" font-size="11" font-weight="700" fill="#374151">ISP (PD server)</text>
+  <rect width="700" height="250" fill="url(#bg)" rx="8"/>
 
-  <line x1="130" y1="50" x2="130" y2="235" stroke="#d1d5db" stroke-width="2"/>
-  <line x1="570" y1="50" x2="570" y2="235" stroke="#d1d5db" stroke-width="2"/>
+  <!-- subtle grid -->
+  <g stroke="#0d1a2a" stroke-width="1">
+    <line x1="0" y1="46" x2="700" y2="46"/>
+  </g>
+
+  <!-- header -->
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">DHCPv6-PD EXCHANGE — ROUTER REQUESTS PREFIX FROM ISP</text>
+
+  <!-- Column labels -->
+  <text x="130" y="42" text-anchor="middle" font-size="11" font-weight="600" fill="#93c5fd">ROUTER (PD client)</text>
+  <text x="570" y="42" text-anchor="middle" font-size="11" font-weight="600" fill="#fcd34d">ISP (PD server)</text>
+
+  <!-- Lifelines -->
+  <line x1="130" y1="50" x2="130" y2="235" stroke="#1e293b" stroke-width="2"/>
+  <line x1="570" y1="50" x2="570" y2="235" stroke="#1e293b" stroke-width="2"/>
 
   <!-- Solicit + IA_PD -->
-  <circle cx="130" cy="72" r="4" fill="#10b981"/>
-  <line x1="134" y1="72" x2="558" y2="72" stroke="#10b981" stroke-width="1.5" marker-end="url(#arr-r)"/>
-  <text x="350" y="65" text-anchor="middle" font-size="10" font-weight="600" fill="#065f46">Solicit + IA_PD</text>
-  <text x="350" y="81" text-anchor="middle" font-size="9" fill="#64748b">requesting a prefix — prefer /56</text>
+  <circle cx="130" cy="72" r="4" fill="#6366f1"/>
+  <line x1="134" y1="72" x2="558" y2="72" stroke="url(#arr-solicit)" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-blue)"/>
+  <text x="350" y="65" text-anchor="middle" font-size="10" font-weight="600" fill="#818cf8">Solicit + IA_PD</text>
+  <text x="350" y="84" text-anchor="middle" font-size="9" fill="#94a3b8">requesting a prefix — prefer /56</text>
 
   <!-- Advertise -->
-  <circle cx="570" cy="115" r="4" fill="#10b981"/>
-  <line x1="566" y1="115" x2="142" y2="115" stroke="#10b981" stroke-width="1.5" marker-end="url(#arr-r)" transform="rotate(180,354,115)"/>
-  <line x1="142" y1="115" x2="566" y2="115" stroke="#10b981" stroke-width="1.5"/>
-  <text x="350" y="108" text-anchor="middle" font-size="10" font-weight="600" fill="#065f46">Advertise</text>
-  <text x="350" y="124" text-anchor="middle" font-size="9" fill="#64748b">offering 2001:db8:abcd:ab00::/56 · T1=1800s · T2=2880s</text>
+  <circle cx="570" cy="115" r="4" fill="#f59e0b"/>
+  <line x1="566" y1="115" x2="142" y2="115" stroke="url(#arr-advertise)" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-amber)"/>
+  <text x="350" y="108" text-anchor="middle" font-size="10" font-weight="600" fill="#fcd34d">Advertise</text>
+  <text x="350" y="127" text-anchor="middle" font-size="9" fill="#94a3b8">offering 2001:db8:abcd:ab00::/56 · T1=1800s · T2=2880s</text>
 
   <!-- Request -->
-  <circle cx="130" cy="158" r="4" fill="#10b981"/>
-  <line x1="134" y1="158" x2="558" y2="158" stroke="#10b981" stroke-width="1.5" marker-end="url(#arr-r)"/>
-  <text x="350" y="151" text-anchor="middle" font-size="10" font-weight="600" fill="#065f46">Request</text>
-  <text x="350" y="167" text-anchor="middle" font-size="9" fill="#64748b">I want 2001:db8:abcd:ab00::/56</text>
+  <circle cx="130" cy="158" r="4" fill="#6366f1"/>
+  <line x1="134" y1="158" x2="558" y2="158" stroke="url(#arr-request)" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-blue)"/>
+  <text x="350" y="151" text-anchor="middle" font-size="10" font-weight="600" fill="#818cf8">Request</text>
+  <text x="350" y="170" text-anchor="middle" font-size="9" fill="#94a3b8">I want 2001:db8:abcd:ab00::/56</text>
 
   <!-- Reply -->
-  <circle cx="570" cy="200" r="4" fill="#10b981"/>
-  <line x1="142" y1="200" x2="566" y2="200" stroke="#10b981" stroke-width="1.5"/>
-  <text x="350" y="193" text-anchor="middle" font-size="10" font-weight="600" fill="#065f46">Reply — delegation confirmed</text>
-  <text x="350" y="209" text-anchor="middle" font-size="9" fill="#64748b">2001:db8:abcd:ab00::/56 delegated · router owns this prefix</text>
+  <circle cx="570" cy="200" r="4" fill="#4ade80"/>
+  <line x1="566" y1="200" x2="142" y2="200" stroke="url(#arr-reply)" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-green)"/>
+  <text x="350" y="193" text-anchor="middle" font-size="10" font-weight="600" fill="#86efac">Reply — delegation confirmed</text>
+  <text x="350" y="212" text-anchor="middle" font-size="9" fill="#94a3b8">2001:db8:abcd:ab00::/56 delegated · router owns this prefix</text>
 
-  <text x="350" y="238" text-anchor="middle" font-size="10" fill="#94a3b8">Router now installs route for /56 and subdivides into /64 subnets</text>
+  <!-- footer -->
+  <text x="350" y="240" text-anchor="middle" font-size="9" fill="#94a3b8">Router now installs route for /56 and subdivides into /64 subnets</text>
 </svg>

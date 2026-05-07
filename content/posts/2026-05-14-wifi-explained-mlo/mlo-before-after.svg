@@ -1,96 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 260" width="700" height="260" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+  </defs>
 
   <!-- Background -->
-  <rect width="700" height="260" fill="#f8fafc" rx="12"/>
+  <rect width="700" height="260" fill="url(#bg)" rx="8"/>
 
-  <!-- Title -->
-  <text x="350" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#111827">Before and After MLO</text>
+  <!-- Subtle grid -->
+  <line x1="0" y1="130" x2="700" y2="130" stroke="#0d1a2a" stroke-width="1"/>
 
-  <!-- ── DIVIDER ── -->
-  <line x1="350" y1="42" x2="350" y2="222" stroke="#e5e7eb" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <!-- Header label -->
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">BEFORE AND AFTER MLO</text>
 
-  <!-- ════ LEFT PANEL — WiFi 6 ════ -->
-  <text x="175" y="52" text-anchor="middle" font-size="12" font-weight="700" fill="#374151">WiFi 6 — Single Active Band</text>
+  <!-- Divider -->
+  <line x1="350" y1="36" x2="350" y2="222" stroke="#1e3a5f" stroke-width="1.5" stroke-dasharray="4,3"/>
 
+  <!-- LEFT PANEL — WiFi 6 -->
+  <text x="175" y="48" text-anchor="middle" font-size="12" font-weight="700" fill="#94a3b8">WiFi 6 — Single Active Band</text>
+
+  <!-- Client label -->
+  <text x="80" y="64" text-anchor="middle" font-size="10" font-weight="600" fill="#94a3b8">CLIENT</text>
   <!-- Client box -->
-  <text x="80" y="68" text-anchor="middle" font-size="10" font-weight="600" fill="#9ca3af">CLIENT</text>
-  <rect x="10" y="73" width="140" height="148" fill="white" stroke="#e5e7eb" stroke-width="1.5" rx="7"/>
+  <rect x="10" y="69" width="140" height="148" fill="#0a1628" stroke="#1e3a5f" stroke-width="1.5" rx="5"/>
 
-  <!-- 2.4 GHz — idle -->
-  <rect x="22" y="84" width="116" height="36" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1" rx="4"/>
-  <text x="80" y="104" text-anchor="middle" font-size="11" fill="#d1d5db">2.4 GHz</text>
+  <!-- 2.4 GHz idle -->
+  <rect x="22" y="80" width="116" height="36" fill="#0d1520" stroke="#1e3a5f" stroke-width="1" rx="5"/>
+  <text x="80" y="102" text-anchor="middle" font-size="11" fill="#94a3b8">2.4 GHz</text>
+  <!-- 5 GHz active -->
+  <rect x="22" y="124" width="116" height="36" fill="#071810" stroke="#34d399" stroke-width="1.5" rx="5"/>
+  <text x="80" y="140" text-anchor="middle" font-size="11" font-weight="600" fill="#a7f3d0">5 GHz</text>
+  <text x="80" y="154" text-anchor="middle" font-size="9" fill="#34d399">active</text>
+  <!-- 6 GHz idle -->
+  <rect x="22" y="168" width="116" height="36" fill="#0d1520" stroke="#1e3a5f" stroke-width="1" rx="5"/>
+  <text x="80" y="190" text-anchor="middle" font-size="11" fill="#94a3b8">6 GHz</text>
 
-  <!-- 5 GHz — active -->
-  <rect x="22" y="128" width="116" height="36" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5" rx="4"/>
-  <text x="80" y="144" text-anchor="middle" font-size="11" font-weight="600" fill="#065f46">5 GHz</text>
-  <text x="80" y="158" text-anchor="middle" font-size="9" fill="#10b981">● active</text>
+  <!-- AP label -->
+  <text x="270" y="64" text-anchor="middle" font-size="10" font-weight="600" fill="#94a3b8">ACCESS POINT</text>
+  <!-- AP box -->
+  <rect x="200" y="69" width="140" height="148" fill="#0a1628" stroke="#1e3a5f" stroke-width="1.5" rx="5"/>
 
-  <!-- 6 GHz — idle -->
-  <rect x="22" y="172" width="116" height="36" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1" rx="4"/>
-  <text x="80" y="192" text-anchor="middle" font-size="11" fill="#d1d5db">6 GHz</text>
+  <rect x="212" y="80" width="116" height="36" fill="#0d1520" stroke="#1e3a5f" stroke-width="1" rx="5"/>
+  <text x="270" y="102" text-anchor="middle" font-size="11" fill="#94a3b8">2.4 GHz</text>
+  <rect x="212" y="124" width="116" height="36" fill="#071810" stroke="#34d399" stroke-width="1.5" rx="5"/>
+  <text x="270" y="148" text-anchor="middle" font-size="11" font-weight="600" fill="#a7f3d0">5 GHz</text>
+  <rect x="212" y="168" width="116" height="36" fill="#0d1520" stroke="#1e3a5f" stroke-width="1" rx="5"/>
+  <text x="270" y="190" text-anchor="middle" font-size="11" fill="#94a3b8">6 GHz</text>
 
-  <!-- AP box (left) -->
-  <text x="270" y="68" text-anchor="middle" font-size="10" font-weight="600" fill="#9ca3af">ACCESS POINT</text>
-  <rect x="200" y="73" width="140" height="148" fill="white" stroke="#e5e7eb" stroke-width="1.5" rx="7"/>
-
-  <rect x="212" y="84" width="116" height="36" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1" rx="4"/>
-  <text x="270" y="104" text-anchor="middle" font-size="11" fill="#d1d5db">2.4 GHz</text>
-
-  <rect x="212" y="128" width="116" height="36" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5" rx="4"/>
-  <text x="270" y="148" text-anchor="middle" font-size="11" font-weight="600" fill="#065f46">5 GHz</text>
-
-  <rect x="212" y="172" width="116" height="36" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1" rx="4"/>
-  <text x="270" y="192" text-anchor="middle" font-size="11" fill="#d1d5db">6 GHz</text>
-
-  <!-- Links (left panel) -->
-  <!-- 2.4 GHz — no link -->
-  <line x1="152" y1="102" x2="200" y2="102" stroke="#e5e7eb" stroke-width="1.5" stroke-dasharray="4,3"/>
-  <!-- 5 GHz — active link -->
-  <line x1="152" y1="146" x2="200" y2="146" stroke="#10b981" stroke-width="2.5"/>
-  <!-- 6 GHz — no link -->
-  <line x1="152" y1="190" x2="200" y2="190" stroke="#e5e7eb" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <!-- Links left panel -->
+  <line x1="152" y1="98" x2="200" y2="98" stroke="#1e3a5f" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="152" y1="142" x2="200" y2="142" stroke="#34d399" stroke-width="2.5"/>
+  <line x1="152" y1="186" x2="200" y2="186" stroke="#1e3a5f" stroke-width="1.5" stroke-dasharray="4,3"/>
 
   <!-- Left caption -->
-  <text x="175" y="235" text-anchor="middle" font-size="10" fill="#6b7280">1 band active — 2 bands idle</text>
+  <text x="175" y="230" text-anchor="middle" font-size="9" fill="#94a3b8">1 band active — 2 bands idle</text>
 
-  <!-- ════ RIGHT PANEL — WiFi 7 MLO ════ -->
-  <text x="525" y="52" text-anchor="middle" font-size="12" font-weight="700" fill="#374151">WiFi 7 — MLO</text>
+  <!-- RIGHT PANEL — WiFi 7 MLO -->
+  <text x="525" y="48" text-anchor="middle" font-size="12" font-weight="700" fill="#94a3b8">WiFi 7 — MLO</text>
 
-  <!-- Client box (right) -->
-  <text x="430" y="68" text-anchor="middle" font-size="10" font-weight="600" fill="#9ca3af">CLIENT</text>
-  <rect x="360" y="73" width="140" height="148" fill="white" stroke="#e5e7eb" stroke-width="1.5" rx="7"/>
+  <!-- Client label right -->
+  <text x="430" y="64" text-anchor="middle" font-size="10" font-weight="600" fill="#94a3b8">CLIENT</text>
+  <!-- Client box right -->
+  <rect x="360" y="69" width="140" height="148" fill="#0a1628" stroke="#1e3a5f" stroke-width="1.5" rx="5"/>
 
-  <rect x="372" y="84" width="116" height="36" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5" rx="4"/>
-  <text x="430" y="104" text-anchor="middle" font-size="11" font-weight="600" fill="#1d4ed8">2.4 GHz</text>
+  <rect x="372" y="80" width="116" height="36" fill="#150808" stroke="#f97316" stroke-width="1.5" rx="5"/>
+  <text x="430" y="102" text-anchor="middle" font-size="11" font-weight="600" fill="#fed7aa">2.4 GHz</text>
+  <rect x="372" y="124" width="116" height="36" fill="#071810" stroke="#34d399" stroke-width="1.5" rx="5"/>
+  <text x="430" y="148" text-anchor="middle" font-size="11" font-weight="600" fill="#a7f3d0">5 GHz</text>
+  <rect x="372" y="168" width="116" height="36" fill="#0e1a3a" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
+  <text x="430" y="190" text-anchor="middle" font-size="11" font-weight="600" fill="#bae6fd">6 GHz</text>
 
-  <rect x="372" y="128" width="116" height="36" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5" rx="4"/>
-  <text x="430" y="148" text-anchor="middle" font-size="11" font-weight="600" fill="#065f46">5 GHz</text>
+  <!-- AP label right -->
+  <text x="620" y="64" text-anchor="middle" font-size="10" font-weight="600" fill="#94a3b8">ACCESS POINT</text>
+  <!-- AP box right -->
+  <rect x="550" y="69" width="140" height="148" fill="#0a1628" stroke="#1e3a5f" stroke-width="1.5" rx="5"/>
 
-  <rect x="372" y="172" width="116" height="36" fill="#fffbeb" stroke="#f59e0b" stroke-width="1.5" rx="4"/>
-  <text x="430" y="192" text-anchor="middle" font-size="11" font-weight="600" fill="#92400e">6 GHz</text>
+  <rect x="562" y="80" width="116" height="36" fill="#150808" stroke="#f97316" stroke-width="1.5" rx="5"/>
+  <text x="620" y="102" text-anchor="middle" font-size="11" font-weight="600" fill="#fed7aa">2.4 GHz</text>
+  <rect x="562" y="124" width="116" height="36" fill="#071810" stroke="#34d399" stroke-width="1.5" rx="5"/>
+  <text x="620" y="148" text-anchor="middle" font-size="11" font-weight="600" fill="#a7f3d0">5 GHz</text>
+  <rect x="562" y="168" width="116" height="36" fill="#0e1a3a" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
+  <text x="620" y="190" text-anchor="middle" font-size="11" font-weight="600" fill="#bae6fd">6 GHz</text>
 
-  <!-- AP box (right) -->
-  <text x="620" y="68" text-anchor="middle" font-size="10" font-weight="600" fill="#9ca3af">ACCESS POINT</text>
-  <rect x="550" y="73" width="140" height="148" fill="white" stroke="#e5e7eb" stroke-width="1.5" rx="7"/>
-
-  <rect x="562" y="84" width="116" height="36" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5" rx="4"/>
-  <text x="620" y="104" text-anchor="middle" font-size="11" font-weight="600" fill="#1d4ed8">2.4 GHz</text>
-
-  <rect x="562" y="128" width="116" height="36" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5" rx="4"/>
-  <text x="620" y="148" text-anchor="middle" font-size="11" font-weight="600" fill="#065f46">5 GHz</text>
-
-  <rect x="562" y="172" width="116" height="36" fill="#fffbeb" stroke="#f59e0b" stroke-width="1.5" rx="4"/>
-  <text x="620" y="192" text-anchor="middle" font-size="11" font-weight="600" fill="#92400e">6 GHz</text>
-
-  <!-- Links (right panel) — all active -->
-  <line x1="502" y1="102" x2="550" y2="102" stroke="#3b82f6" stroke-width="2.5"/>
-  <line x1="502" y1="146" x2="550" y2="146" stroke="#10b981" stroke-width="2.5"/>
-  <line x1="502" y1="190" x2="550" y2="190" stroke="#f59e0b" stroke-width="2.5"/>
+  <!-- Links right panel — all active -->
+  <line x1="502" y1="98" x2="550" y2="98" stroke="#f97316" stroke-width="2.5"/>
+  <line x1="502" y1="142" x2="550" y2="142" stroke="#34d399" stroke-width="2.5"/>
+  <line x1="502" y1="186" x2="550" y2="186" stroke="#38bdf8" stroke-width="2.5"/>
 
   <!-- Right caption -->
-  <text x="525" y="235" text-anchor="middle" font-size="10" fill="#6b7280">all 3 bands active simultaneously</text>
+  <text x="525" y="230" text-anchor="middle" font-size="9" fill="#94a3b8">all 3 bands active simultaneously</text>
 
-  <!-- Overall caption -->
-  <text x="350" y="252" text-anchor="middle" font-size="11" fill="#6b7280">MLO replaces the "pick one band" constraint with concurrent multi-band operation</text>
+  <!-- Footer caption -->
+  <text x="350" y="250" text-anchor="middle" font-size="9" fill="#94a3b8">MLO replaces the "pick one band" constraint with concurrent multi-band operation</text>
 </svg>

@@ -1,27 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 210" width="700" height="210"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 230" width="700" height="230"
      font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
-  <rect width="700" height="210" fill="#f8fafc" rx="12"/>
-  <text x="350" y="24" text-anchor="middle" font-size="13" font-weight="700" fill="#111827">IPv6 Address Notation — Three Forms of the Same Address</text>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="700" height="230" fill="url(#bg)" rx="8"/>
+
+  <!-- Subtle grid line -->
+  <line x1="0" y1="105" x2="700" y2="105" stroke="#0d1a2a" stroke-width="1"/>
+
+  <!-- Header label -->
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">IPV6 ADDRESS NOTATION — THREE FORMS OF THE SAME ADDRESS</text>
 
   <!-- Full form -->
-  <rect x="40" y="38" width="620" height="38" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1" rx="5"/>
-  <text x="60" y="54" font-size="9" fill="#64748b" font-weight="600" letter-spacing="1">FULL</text>
-  <text x="350" y="63" text-anchor="middle" font-size="13" font-family="'Courier New',monospace" fill="#1e293b">2001:0db8:0000:0000:0000:0000:0000:0001</text>
+  <rect x="40" y="35" width="620" height="40" fill="#0a0f1e" stroke="#334155" stroke-width="1.5" rx="5"/>
+  <text x="60" y="50" font-size="9" fill="#94a3b8" font-weight="600" letter-spacing="1">FULL</text>
+  <text x="350" y="61" text-anchor="middle" font-size="13" font-family="'Courier New',monospace" fill="#cbd5e1">2001:0db8:0000:0000:0000:0000:0000:0001</text>
 
-  <!-- Arrow + rule -->
-  <text x="350" y="96" text-anchor="middle" font-size="10" fill="#94a3b8">↓  drop leading zeros within each group</text>
+  <!-- Rule 1 -->
+  <text x="350" y="93" text-anchor="middle" font-size="10" fill="#94a3b8">&#x2193;  drop leading zeros within each group</text>
 
-  <!-- Compressed zeros -->
-  <rect x="40" y="104" width="620" height="38" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1" rx="5"/>
-  <text x="60" y="120" font-size="9" fill="#3b82f6" font-weight="600" letter-spacing="1">LEADING ZEROS REMOVED</text>
-  <text x="350" y="129" text-anchor="middle" font-size="13" font-family="'Courier New',monospace" fill="#1e40af">2001:db8:0:0:0:0:0:1</text>
+  <!-- Leading zeros removed -->
+  <rect x="40" y="101" width="620" height="40" fill="#0e1a3a" stroke="#3b82f6" stroke-width="1.5" rx="5"/>
+  <text x="60" y="116" font-size="9" fill="#93c5fd" font-weight="600" letter-spacing="1">LEADING ZEROS REMOVED</text>
+  <text x="350" y="127" text-anchor="middle" font-size="13" font-family="'Courier New',monospace" fill="#93c5fd">2001:db8:0:0:0:0:0:1</text>
 
-  <!-- Arrow + rule -->
-  <text x="350" y="157" text-anchor="middle" font-size="10" fill="#94a3b8">↓  replace one run of all-zero groups with ::</text>
+  <!-- Rule 2 -->
+  <text x="350" y="155" text-anchor="middle" font-size="10" fill="#94a3b8">&#x2193;  replace one run of all-zero groups with ::</text>
 
   <!-- Double-colon form -->
-  <rect x="40" y="165" width="620" height="38" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1" rx="5"/>
-  <text x="60" y="181" font-size="9" fill="#16a34a" font-weight="600" letter-spacing="1">DOUBLE-COLON SHORTHAND</text>
-  <text x="350" y="190" text-anchor="middle" font-size="13" font-family="'Courier New',monospace" fill="#15803d">2001:db8::1</text>
+  <rect x="40" y="163" width="620" height="40" fill="#071810" stroke="#34d399" stroke-width="1.5" rx="5"/>
+  <text x="60" y="178" font-size="9" fill="#86efac" font-weight="600" letter-spacing="1">DOUBLE-COLON SHORTHAND</text>
+  <text x="350" y="189" text-anchor="middle" font-size="13" font-family="'Courier New',monospace" fill="#86efac">2001:db8::1</text>
+
+  <!-- Footer caption -->
+  <text x="350" y="220" text-anchor="middle" font-size="9" fill="#94a3b8">Each form represents the same 128-bit address</text>
 </svg>

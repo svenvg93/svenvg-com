@@ -11,8 +11,6 @@ tags:
   - wifi7
 series:
   - WiFi Explained
-lightbox:
-  enabled: true
 series_order: 3
 ---
 
@@ -53,7 +51,7 @@ The biggest delay in roaming is the authentication exchange with the new AP. In 
 
 The result: handoff time drops from 200ms+ to under 50ms. For voice calls, this is the threshold below which users don't perceive a gap.
 
-![Roaming latency comparison — without 802.11r vs with 802.11r](roaming-latency.svg)
+![](roaming-latency.svg "Roaming latency comparison — without 802.11r vs with 802.11r")
 
 802.11r requires that all APs in the network share a mobility domain — a common identifier that tells clients the APs coordinate with each other. APs not in the same mobility domain can't participate in FT.
 
@@ -88,7 +86,7 @@ A well-configured network with all three: the AP suggests the client roam (v), t
 
 These are sometimes marketed together as **802.11kvr** or **Fast Roaming**. The exact label varies by vendor.
 
-![How 802.11k, r, and v work together during a roam event](roaming-kvr-flow.svg)
+![](roaming-kvr-flow.svg "How 802.11k, r, and v work together during a roam event")
 
 ## Why Clients Still Stick
 
@@ -119,7 +117,7 @@ Band steering doesn't have a standard. Every vendor implements it differently, b
 
 **Minimum RSSI to connect** — Some APs expose a separate control: a signal floor below which the AP won't allow association on a given radio. This is distinct from band steering — it's a hard per-band threshold, not a redirection mechanism. It directly addresses the range-mismatch problem: a client with a weak 5 GHz signal is left on 2.4 GHz rather than steered onto a band where it will perform poorly.
 
-![Probe suppression — how band steering works for a dual-band client vs a 2.4 GHz-only IoT device](band-steering-probe.svg)
+![](band-steering-probe.svg "Probe suppression — how band steering works for a dual-band client vs a 2.4 GHz-only IoT device")
 
 ### Why Band Steering Often Causes Problems
 
@@ -131,7 +129,7 @@ Band steering doesn't have a standard. Every vendor implements it differently, b
 
 **2.4 GHz-only devices get caught.** Steering logic is imperfect. Some APs will attempt to steer devices that only support 2.4 GHz, either because their heuristic misidentified the device or because a firmware bug broadened the steering criteria.
 
-![Coverage range mismatch — 5 GHz range is smaller than 2.4 GHz, but steering ignores this](band-steering-range.svg)
+![](band-steering-range.svg "Coverage range mismatch — 5 GHz range is smaller than 2.4 GHz, but steering ignores this")
 
 ### The Three-Band Problem: WiFi 6E and WiFi 7
 
@@ -143,7 +141,7 @@ The same range-mismatch problem that exists between 2.4 GHz and 5 GHz now also e
 
 The better mechanism for per-band steering is 802.11v BSS Transition Management — the same standard used for AP-to-AP roaming. Because it operates post-association, there is no risk of broken connections or IoT device failures. The AP suggests a move to the better band after the client has already successfully connected; the client decides whether to switch.
 
-![Band Steering vs 802.11v BSS Transition — mechanism comparison](band-steering-vs-bsstm.svg)
+![](band-steering-vs-bsstm.svg "Band Steering vs 802.11v BSS Transition — mechanism comparison")
 
 ## Practical Configuration
 

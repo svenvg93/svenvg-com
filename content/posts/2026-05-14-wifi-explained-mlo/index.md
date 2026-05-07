@@ -11,8 +11,6 @@ tags:
   - wifi7
 series:
   - WiFi Explained
-lightbox:
-  enabled: true
 series_order: 5
 ---
 
@@ -26,7 +24,7 @@ Band steering and load balancing are workarounds for this: the AP nudges clients
 
 MLO eliminates that constraint.
 
-![WiFi 6 vs WiFi 7 MLO — before and after comparison](mlo-before-after.svg)
+![](mlo-before-after.svg "WiFi 6 vs WiFi 7 MLO — before and after comparison")
 
 ## What MLO Does
 
@@ -52,7 +50,7 @@ The baseline MLO mode. The device uses a single radio that can only be tuned to 
 
 MLSR enables basic multi-link functionality such as link fallback and simple load distribution, but the switching overhead limits how quickly it can react to changing conditions. It is primarily a baseline implementation for devices with strict cost or hardware constraints.
 
-![MLSR — a single radio switches fully between bands, one at a time, with overhead on each switch](mlo-mlsr.svg)
+![](mlo-mlsr.svg "MLSR — a single radio switches fully between bands, one at a time, with overhead on each switch")
 
 ### eMLSR — Enhanced Multi-Link Single Radio
 
@@ -60,7 +58,7 @@ eMLSR uses a single transmit radio like MLSR, but adds multiple receive chains t
 
 eMLSR doesn't deliver parallel throughput — only one link carries active data at a time. But its ability to listen on multiple bands simultaneously gives it noticeably better latency than MLSR, at similar hardware cost. It's the primary MLO mode for power-constrained devices like phones and laptops.
 
-![eMLSR — a single radio time-slices between bands, switching to whichever link has pending traffic](mlo-emlsr.svg)
+![](mlo-emlsr.svg "eMLSR — a single radio time-slices between bands, switching to whichever link has pending traffic")
 
 ### NSTR — Non-Simultaneous Transmit and Receive
 
@@ -68,7 +66,7 @@ NSTR introduces a second radio, but with a constraint: the device cannot transmi
 
 NSTR provides better channel utilization, dynamic load distribution, and redundancy compared to single-radio modes. But throughput gains are lower than STR because the two links can't independently carry bidirectional traffic at the same time.
 
-![NSTR — multiple radios coordinated so transmissions on one link align with idle periods on the other](mlo-nstr.svg)
+![](mlo-nstr.svg "NSTR — multiple radios coordinated so transmissions on one link align with idle periods on the other")
 
 ### STR — Simultaneous Transmit and Receive
 
@@ -76,7 +74,7 @@ The device has independent radios for each band and can transmit on one while re
 
 The constraint is RF isolation. If the 2.4GHz and 5GHz radios are physically too close, transmitting on one can interfere with reception on the other. STR requires that the AP and client hardware achieve adequate isolation between bands — a non-trivial design challenge, especially for thin client devices.
 
-![STR — all three radios active concurrently, independent TX and RX on each band](mlo-str.svg)
+![](mlo-str.svg "STR — all three radios active concurrently, independent TX and RX on each band")
 
 ## Mode Comparison
 
@@ -103,7 +101,7 @@ MLO operates at the 802.11 MAC layer. It is not the same as 802.3ad link aggrega
 
 From the perspective of the OS and applications, an MLO connection is a single network interface with a single IP address. The multi-link coordination happens below that level.
 
-![MLO vs LACP — layer comparison showing where each operates in the stack](mlo-vs-lacp.svg)
+![](mlo-vs-lacp.svg "MLO vs LACP — layer comparison showing where each operates in the stack")
 
 ## Real-World Status
 
@@ -127,6 +125,6 @@ MLO is WiFi 7's headline feature, but it works alongside two other spectrum impr
 
 The three features address different layers of the same problem: MLO bonds multiple bands into one logical link, Multi-RU fills each band's spectrum efficiently, and Puncturing keeps wide channels usable despite partial interference.
 
-![WiFi 7 — MLO, Multi-RU, and Preamble Puncturing as a system](wifi7-features.svg)
+![](wifi7-features.svg "WiFi 7 — MLO, Multi-RU, and Preamble Puncturing as a system")
 
 For the full explanation of Multi-RU and Preamble Puncturing, see [How Devices Share the Air](/posts/2026-04-30-wifi-explained-medium) in this series.

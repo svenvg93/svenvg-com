@@ -10,8 +10,6 @@ tags:
   - ipv6
 series:
   - IPv6 Explained
-lightbox:
-  enabled: true
 series_order: 2
 ---
 
@@ -33,7 +31,7 @@ SLAAC proceeds through four steps, all without a server:
 
 No server is needed for any of this. The router also advertises its own link-local address as the default gateway, so the device can reach the internet as soon as address construction and DAD complete.
 
-![SLAAC flow — RS, RA, and address construction from prefix + interface ID](slaac-flow.svg)
+![](slaac-flow.svg "SLAAC flow — RS, RA, and address construction from prefix + interface ID")
 
 The RA carries two sets of flags. The router-level flags control which address mechanism to use:
 
@@ -63,7 +61,7 @@ DHCPv6 works similarly to DHCPv4 in structure — client sends a Solicit, server
 
 **Stateless DHCPv6** doesn't assign addresses. The device uses SLAAC for its address, but contacts DHCPv6 to get DNS servers and other options. This is what the O flag triggers. It's very common — SLAAC handles the address, DHCPv6 handles the configuration.
 
-![DHCPv6 exchange — Solicit, Advertise, Request, Reply for stateful address assignment](dhcpv6-flow.svg)
+![](dhcpv6-flow.svg "DHCPv6 exchange — Solicit, Advertise, Request, Reply for stateful address assignment")
 
 One important difference from DHCPv4: DHCPv6 does not carry the default gateway. That information comes only from Router Advertisements. This means even on a network using stateful DHCPv6 for addresses, the router still needs to send RAs for gateway discovery.
 

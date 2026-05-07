@@ -1,7 +1,7 @@
 ---
 title: Secure Remote Access with Unifi Identity
 description: Use Unifi Identity to set up secure remote access to your home network, managing who can connect and from where.
-date: 2026-07-06
+date: 2026-06-29
 draft: true
 categories:
   - Networking

@@ -1,106 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" width="700" height="300" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+  </defs>
 
   <!-- Background -->
-  <rect width="700" height="300" fill="#f8fafc" rx="12"/>
+  <rect width="700" height="300" fill="url(#bg)" rx="8"/>
 
-  <!-- Title -->
-  <text x="350" y="26" text-anchor="middle" font-size="14" font-weight="700" fill="#111827">Channel Selection — 2.4, 5, and 6 GHz</text>
+  <!-- Subtle grid -->
+  <line x1="0" y1="150" x2="700" y2="150" stroke="#0d1a2a" stroke-width="1"/>
 
-  <!-- ═══════════════════════════════════════════
-       2.4 GHz — 13 individual channel slots
-  ════════════════════════════════════════════ -->
-  <text x="16" y="54" font-size="11" font-weight="700" fill="#374151">2.4 GHz</text>
+  <!-- Header label -->
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">CHANNEL SELECTION — 2.4, 5, AND 6 GHz</text>
 
-  <!-- Overlap background — partial overlap zones shown in red -->
-  <rect x="105" y="60" width="180" height="36" fill="#fee2e2" fill-opacity="0.5"/>
-  <rect x="195" y="60" width="180" height="36" fill="#fee2e2" fill-opacity="0.5"/>
-  <rect x="375" y="60" width="180" height="36" fill="#fee2e2" fill-opacity="0.5"/>
+  <!-- 2.4 GHz section -->
+  <text x="16" y="50" font-size="11" font-weight="700" fill="#94a3b8">2.4 GHz</text>
 
-  <!-- ch1 green -->
-  <rect x="60"  y="60" width="42" height="36" fill="#bbf7d0" stroke="#22c55e" stroke-width="2" rx="3"/>
-  <text x="81"  y="82" text-anchor="middle" font-size="10" font-weight="700" fill="#15803d">1</text>
+  <!-- Overlap zones (red tint) -->
+  <rect x="105" y="56" width="180" height="36" fill="#3a0a0a" fill-opacity="0.6"/>
+  <rect x="195" y="56" width="180" height="36" fill="#3a0a0a" fill-opacity="0.6"/>
+  <rect x="375" y="56" width="180" height="36" fill="#3a0a0a" fill-opacity="0.6"/>
+
+  <!-- ch1 — non-overlapping (emerald) -->
+  <rect x="60"  y="56" width="42" height="36" fill="#071810" stroke="#34d399" stroke-width="2" rx="3"/>
+  <text x="81"  y="78" text-anchor="middle" font-size="10" font-weight="700" fill="#34d399">1</text>
   <!-- ch2–5 grey -->
-  <rect x="105" y="60" width="42" height="36" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1" rx="3"/>
-  <text x="126" y="82" text-anchor="middle" font-size="10" fill="#9ca3af">2</text>
-  <rect x="150" y="60" width="42" height="36" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1" rx="3"/>
-  <text x="171" y="82" text-anchor="middle" font-size="10" fill="#9ca3af">3</text>
-  <rect x="195" y="60" width="42" height="36" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1" rx="3"/>
-  <text x="216" y="82" text-anchor="middle" font-size="10" fill="#9ca3af">4</text>
-  <rect x="240" y="60" width="42" height="36" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1" rx="3"/>
-  <text x="261" y="82" text-anchor="middle" font-size="10" fill="#9ca3af">5</text>
-  <!-- ch6 green -->
-  <rect x="285" y="60" width="42" height="36" fill="#bbf7d0" stroke="#22c55e" stroke-width="2" rx="3"/>
-  <text x="306" y="82" text-anchor="middle" font-size="10" font-weight="700" fill="#15803d">6</text>
+  <rect x="105" y="56" width="42" height="36" fill="#0d1520" stroke="#1e3a5f" stroke-width="1" rx="3"/>
+  <text x="126" y="78" text-anchor="middle" font-size="10" fill="#94a3b8">2</text>
+  <rect x="150" y="56" width="42" height="36" fill="#0d1520" stroke="#1e3a5f" stroke-width="1" rx="3"/>
+  <text x="171" y="78" text-anchor="middle" font-size="10" fill="#94a3b8">3</text>
+  <rect x="195" y="56" width="42" height="36" fill="#0d1520" stroke="#1e3a5f" stroke-width="1" rx="3"/>
+  <text x="216" y="78" text-anchor="middle" font-size="10" fill="#94a3b8">4</text>
+  <rect x="240" y="56" width="42" height="36" fill="#0d1520" stroke="#1e3a5f" stroke-width="1" rx="3"/>
+  <text x="261" y="78" text-anchor="middle" font-size="10" fill="#94a3b8">5</text>
+  <!-- ch6 — non-overlapping -->
+  <rect x="285" y="56" width="42" height="36" fill="#071810" stroke="#34d399" stroke-width="2" rx="3"/>
+  <text x="306" y="78" text-anchor="middle" font-size="10" font-weight="700" fill="#34d399">6</text>
   <!-- ch7–10 grey -->
-  <rect x="330" y="60" width="42" height="36" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1" rx="3"/>
-  <text x="351" y="82" text-anchor="middle" font-size="10" fill="#9ca3af">7</text>
-  <rect x="375" y="60" width="42" height="36" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1" rx="3"/>
-  <text x="396" y="82" text-anchor="middle" font-size="10" fill="#9ca3af">8</text>
-  <rect x="420" y="60" width="42" height="36" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1" rx="3"/>
-  <text x="441" y="82" text-anchor="middle" font-size="10" fill="#9ca3af">9</text>
-  <rect x="465" y="60" width="42" height="36" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1" rx="3"/>
-  <text x="486" y="82" text-anchor="middle" font-size="10" fill="#9ca3af">10</text>
-  <!-- ch11 green -->
-  <rect x="510" y="60" width="42" height="36" fill="#bbf7d0" stroke="#22c55e" stroke-width="2" rx="3"/>
-  <text x="531" y="82" text-anchor="middle" font-size="10" font-weight="700" fill="#15803d">11</text>
+  <rect x="330" y="56" width="42" height="36" fill="#0d1520" stroke="#1e3a5f" stroke-width="1" rx="3"/>
+  <text x="351" y="78" text-anchor="middle" font-size="10" fill="#94a3b8">7</text>
+  <rect x="375" y="56" width="42" height="36" fill="#0d1520" stroke="#1e3a5f" stroke-width="1" rx="3"/>
+  <text x="396" y="78" text-anchor="middle" font-size="10" fill="#94a3b8">8</text>
+  <rect x="420" y="56" width="42" height="36" fill="#0d1520" stroke="#1e3a5f" stroke-width="1" rx="3"/>
+  <text x="441" y="78" text-anchor="middle" font-size="10" fill="#94a3b8">9</text>
+  <rect x="465" y="56" width="42" height="36" fill="#0d1520" stroke="#1e3a5f" stroke-width="1" rx="3"/>
+  <text x="486" y="78" text-anchor="middle" font-size="10" fill="#94a3b8">10</text>
+  <!-- ch11 — non-overlapping -->
+  <rect x="510" y="56" width="42" height="36" fill="#071810" stroke="#34d399" stroke-width="2" rx="3"/>
+  <text x="531" y="78" text-anchor="middle" font-size="10" font-weight="700" fill="#34d399">11</text>
   <!-- ch12–13 grey -->
-  <rect x="555" y="60" width="42" height="36" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1" rx="3"/>
-  <text x="576" y="82" text-anchor="middle" font-size="10" fill="#9ca3af">12</text>
-  <rect x="600" y="60" width="42" height="36" fill="#f3f4f6" stroke="#e5e7eb" stroke-width="1" rx="3"/>
-  <text x="621" y="82" text-anchor="middle" font-size="10" fill="#9ca3af">13</text>
+  <rect x="555" y="56" width="42" height="36" fill="#0d1520" stroke="#1e3a5f" stroke-width="1" rx="3"/>
+  <text x="576" y="78" text-anchor="middle" font-size="10" fill="#94a3b8">12</text>
+  <rect x="600" y="56" width="42" height="36" fill="#0d1520" stroke="#1e3a5f" stroke-width="1" rx="3"/>
+  <text x="621" y="78" text-anchor="middle" font-size="10" fill="#94a3b8">13</text>
 
-  <text x="350" y="110" text-anchor="middle" font-size="9" fill="#6b7280">Only channels 1, 6, and 11 are non-overlapping — use these exclusively</text>
+  <text x="350" y="106" text-anchor="middle" font-size="9" fill="#94a3b8">Only channels 1, 6, and 11 are non-overlapping — use these exclusively</text>
 
-  <!-- ═══════════════════════════════════════════
-       5 GHz — three UNII sub-bands
-       Total spectrum ~680 MHz, width 582px
-       UNII-1: ~80 MHz → 68px
-       UNII-2: ~400 MHz → 342px
-       UNII-3: ~160 MHz → 137px (gap between 144 and 149 ~35px)
-       Laid out: x=60..128 | x=163..505 | x=520..642
-  ════════════════════════════════════════════ -->
-  <text x="16" y="134" font-size="11" font-weight="700" fill="#374151">5 GHz</text>
+  <!-- 5 GHz section -->
+  <text x="16" y="130" font-size="11" font-weight="700" fill="#94a3b8">5 GHz</text>
 
-  <!-- UNII-1: ch 36–48, no DFS -->
-  <rect x="60" y="140" width="90" height="42" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5" rx="4"/>
-  <text x="105" y="156" text-anchor="middle" font-size="9" font-weight="700" fill="#1d4ed8">UNII-1</text>
-  <text x="105" y="169" text-anchor="middle" font-size="9" fill="#1d4ed8">ch 36–48</text>
-  <text x="105" y="180" text-anchor="middle" font-size="8" fill="#3b82f6">no DFS</text>
-
-  <!-- Gap between UNII-1 and UNII-2 (small guard band) -->
-  <rect x="152" y="140" width="8" height="42" fill="#f3f4f6" stroke="none" rx="0"/>
-
-  <!-- UNII-2: ch 52–144, DFS required -->
-  <rect x="162" y="140" width="330" height="42" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5" rx="4"/>
-  <text x="327" y="156" text-anchor="middle" font-size="9" font-weight="700" fill="#92400e">UNII-2 (DFS required)</text>
-  <text x="327" y="169" text-anchor="middle" font-size="9" fill="#92400e">ch 52–144  ·  16 channels</text>
-  <text x="327" y="180" text-anchor="middle" font-size="8" fill="#b45309">AP must scan for radar — may cause 30–60 s interruption</text>
+  <!-- UNII-1: ch 36–48, no DFS (sky blue) -->
+  <rect x="60" y="136" width="90" height="42" fill="#0e1a3a" stroke="#38bdf8" stroke-width="1.5" rx="4"/>
+  <text x="105" y="152" text-anchor="middle" font-size="9" font-weight="700" fill="#38bdf8">UNII-1</text>
+  <text x="105" y="165" text-anchor="middle" font-size="9" fill="#bae6fd">ch 36–48</text>
+  <text x="105" y="176" text-anchor="middle" font-size="8" fill="#38bdf8">no DFS</text>
 
   <!-- Gap -->
-  <rect x="494" y="140" width="8" height="42" fill="#f3f4f6" stroke="none" rx="0"/>
+  <rect x="152" y="136" width="8" height="42" fill="#080c14" stroke="none" rx="0"/>
 
-  <!-- UNII-3: ch 149–177, no DFS (most regions) -->
-  <rect x="504" y="140" width="138" height="42" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5" rx="4"/>
-  <text x="573" y="156" text-anchor="middle" font-size="9" font-weight="700" fill="#1d4ed8">UNII-3</text>
-  <text x="573" y="169" text-anchor="middle" font-size="9" fill="#1d4ed8">ch 149–177</text>
-  <text x="573" y="180" text-anchor="middle" font-size="8" fill="#3b82f6">no DFS (most regions)</text>
+  <!-- UNII-2: DFS required (orange/amber warning) -->
+  <rect x="162" y="136" width="330" height="42" fill="#1a1000" stroke="#f97316" stroke-width="1.5" rx="4"/>
+  <text x="327" y="152" text-anchor="middle" font-size="9" font-weight="700" fill="#f97316">UNII-2 (DFS required)</text>
+  <text x="327" y="165" text-anchor="middle" font-size="9" fill="#fed7aa">ch 52–144  ·  16 channels</text>
+  <text x="327" y="176" text-anchor="middle" font-size="8" fill="#fed7aa">AP must scan for radar — may cause 30–60 s interruption</text>
 
-  <text x="350" y="198" text-anchor="middle" font-size="9" fill="#6b7280">~25 non-overlapping 20 MHz channels — auto channel selection works well here</text>
+  <!-- Gap -->
+  <rect x="494" y="136" width="8" height="42" fill="#080c14" stroke="none" rx="0"/>
 
-  <!-- ═══════════════════════════════════════════
-       6 GHz — one clean wide band
-  ════════════════════════════════════════════ -->
-  <text x="16" y="220" font-size="11" font-weight="700" fill="#374151">6 GHz</text>
+  <!-- UNII-3: ch 149–177, no DFS (sky blue) -->
+  <rect x="504" y="136" width="138" height="42" fill="#0e1a3a" stroke="#38bdf8" stroke-width="1.5" rx="4"/>
+  <text x="573" y="152" text-anchor="middle" font-size="9" font-weight="700" fill="#38bdf8">UNII-3</text>
+  <text x="573" y="165" text-anchor="middle" font-size="9" fill="#bae6fd">ch 149–177</text>
+  <text x="573" y="176" text-anchor="middle" font-size="8" fill="#38bdf8">no DFS (most regions)</text>
 
-  <rect x="60" y="226" width="582" height="52" fill="#dcfce7" stroke="#22c55e" stroke-width="1.5" rx="4"/>
-  <text x="351" y="243" text-anchor="middle" font-size="9" font-weight="700" fill="#15803d">5.925 – 7.125 GHz</text>
-  <text x="351" y="256" text-anchor="middle" font-size="9" fill="#15803d">Up to 59 non-overlapping 20 MHz channels  ·  No DFS  ·  No legacy devices</text>
-  <text x="351" y="267" text-anchor="middle" font-size="8" fill="#16a34a">Cleanest available band — wide channels viable without consuming the entire spectrum</text>
+  <text x="350" y="194" text-anchor="middle" font-size="9" fill="#94a3b8">~25 non-overlapping 20 MHz channels — auto channel selection works well here</text>
+
+  <!-- 6 GHz section -->
+  <text x="16" y="216" font-size="11" font-weight="700" fill="#94a3b8">6 GHz</text>
+
+  <rect x="60" y="222" width="582" height="52" fill="#071810" stroke="#34d399" stroke-width="1.5" rx="4"/>
+  <text x="351" y="239" text-anchor="middle" font-size="9" font-weight="700" fill="#34d399">5.925 – 7.125 GHz</text>
+  <text x="351" y="252" text-anchor="middle" font-size="9" fill="#a7f3d0">Up to 59 non-overlapping 20 MHz channels  ·  No DFS  ·  No legacy devices</text>
+  <text x="351" y="263" text-anchor="middle" font-size="8" fill="#34d399">Cleanest available band — wide channels viable without consuming the entire spectrum</text>
 
   <!-- Legend -->
-  <rect x="160" y="284" width="12" height="10" fill="#bbf7d0" stroke="#22c55e" stroke-width="1" rx="2"/>
-  <text x="178" y="293" font-size="9" fill="#15803d">Non-overlapping / no DFS</text>
-  <rect x="360" y="284" width="12" height="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="1" rx="2"/>
-  <text x="378" y="293" font-size="9" fill="#92400e">DFS — radar detection required</text>
+  <rect x="160" y="281" width="12" height="10" fill="#071810" stroke="#34d399" stroke-width="1" rx="2"/>
+  <text x="178" y="290" font-size="9" fill="#34d399">Non-overlapping / no DFS</text>
+  <rect x="360" y="281" width="12" height="10" fill="#1a1000" stroke="#f97316" stroke-width="1" rx="2"/>
+  <text x="378" y="290" font-size="9" fill="#fed7aa">DFS — radar detection required</text>
 </svg>

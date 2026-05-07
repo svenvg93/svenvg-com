@@ -12,8 +12,6 @@ cover: cover.svg
 series:
   - Traefik Essentials
 series_order: 4
-lightbox:
-  enabled: true
 ---
 
 When a request reaches Traefik, it is matched against a router. Before that request is forwarded to your service, middlewares have a chance to inspect or modify it. A middleware can reject the request outright (wrong IP, missing credentials), rewrite headers, or add security headers to the response on the way back.

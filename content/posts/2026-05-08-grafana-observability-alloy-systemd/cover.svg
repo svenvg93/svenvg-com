@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <linearGradient id="hex-fill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0e2040"/>
+      <stop offset="100%" stop-color="#071428"/>
+    </linearGradient>
+    <linearGradient id="textbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#080c14" stop-opacity="0"/>
+      <stop offset="60%"  stop-color="#080c14" stop-opacity="0.93"/>
+      <stop offset="100%" stop-color="#080c14" stop-opacity="1"/>
+    </linearGradient>
+    <radialGradient id="glow-left" cx="24%" cy="50%" r="22%">
+      <stop offset="0%" stop-color="#f97316" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-center" cx="50%" cy="50%" r="20%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-right" cx="76%" cy="50%" r="22%">
+      <stop offset="0%" stop-color="#f97316" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
+    </radialGradient>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#f97316"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow-left)"/>
+  <rect width="1200" height="630" fill="url(#glow-center)"/>
+  <rect width="1200" height="630" fill="url(#glow-right)"/>
+
+  <!-- Subtle line grid -->
+  <g stroke="#0d1a2a" stroke-width="1">
+    <line x1="0"    y1="100" x2="1200" y2="100"/>
+    <line x1="0"    y1="200" x2="1200" y2="200"/>
+    <line x1="0"    y1="300" x2="1200" y2="300"/>
+    <line x1="200"  y1="0"   x2="200"  y2="500"/>
+    <line x1="400"  y1="0"   x2="400"  y2="500"/>
+    <line x1="600"  y1="0"   x2="600"  y2="500"/>
+    <line x1="800"  y1="0"   x2="800"  y2="500"/>
+    <line x1="1000" y1="0"   x2="1000" y2="500"/>
+  </g>
+
+  <!-- ===== LEFT PANEL — alloy.service unit file ===== -->
+  <rect x="160" y="80" width="260" height="280" fill="#0a1628" stroke="#334155" stroke-width="1.5" rx="8"/>
+  <rect x="160" y="80" width="260" height="24"  fill="#1e293b" rx="8"/>
+  <rect x="160" y="92" width="260" height="12"  fill="#1e293b"/>
+  <circle cx="182" cy="92" r="5" fill="#ef4444" fill-opacity="0.7"/>
+  <circle cx="197" cy="92" r="5" fill="#f59e0b" fill-opacity="0.7"/>
+  <circle cx="212" cy="92" r="5" fill="#4ade80" fill-opacity="0.7"/>
+  <text x="290" y="96" text-anchor="middle" font-size="9" fill="#64748b">alloy.service</text>
+
+  <g font-size="9" font-family="'Courier New',monospace">
+    <text x="180" y="122" fill="#f97316" font-weight="700">[Unit]</text>
+    <text x="180" y="137" fill="#7dd3fc">Description</text><text x="250" y="137" fill="#94a3b8">=Grafana Alloy</text>
+    <text x="180" y="152" fill="#7dd3fc">After</text><text x="216" y="152" fill="#94a3b8">=network.target</text>
+
+    <text x="180" y="174" fill="#f97316" font-weight="700">[Service]</text>
+    <text x="180" y="189" fill="#7dd3fc">User</text><text x="213" y="189" fill="#94a3b8">=alloy</text>
+    <text x="180" y="204" fill="#7dd3fc">ExecStart</text><text x="246" y="204" fill="#94a3b8">=/usr/bin/alloy \</text>
+    <text x="192" y="219" fill="#64748b">run config.alloy</text>
+    <text x="180" y="234" fill="#7dd3fc">Restart</text><text x="228" y="234" fill="#94a3b8">=on-failure</text>
+    <text x="180" y="249" fill="#7dd3fc">LimitNOFILE</text><text x="258" y="249" fill="#94a3b8">=65536</text>
+
+    <text x="180" y="271" fill="#f97316" font-weight="700">[Install]</text>
+    <text x="180" y="286" fill="#7dd3fc">WantedBy</text><text x="243" y="286" fill="#94a3b8">=multi-user.target</text>
+  </g>
+
+  <!-- Arrow: config → Alloy -->
+  <path d="M 420,215 C 460,215 495,215 529,215"
+        fill="none" stroke="#f97316" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- ===== CENTER — Alloy hexagon (r=82, cx=600, cy=215) ===== -->
+  <polygon points="600,133 671,174 671,256 600,297 529,256 529,174"
+           fill="url(#hex-fill)" stroke="#38bdf8" stroke-width="2.5"/>
+  <polygon points="600,141 663,179 663,251 600,289 537,251 537,179"
+           fill="none" stroke="#38bdf8" stroke-width="0.8" stroke-opacity="0.3"/>
+  <text x="600" y="207" text-anchor="middle" font-size="20" font-weight="700" fill="#7dd3fc" letter-spacing="2">ALLOY</text>
+  <text x="600" y="230" text-anchor="middle" font-size="11" fill="#38bdf8" letter-spacing="3" opacity="0.8">service</text>
+  <text x="600" y="318" text-anchor="middle" font-size="9" fill="#334155" font-family="'Courier New',monospace">systemd managed</text>
+
+  <!-- Arrow: Alloy → status -->
+  <path d="M 671,215 C 705,215 740,215 780,215"
+        fill="none" stroke="#f97316" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- ===== RIGHT PANEL — systemctl status alloy ===== -->
+  <rect x="780" y="80" width="260" height="280" fill="#0a1628" stroke="#334155" stroke-width="1.5" rx="8"/>
+  <rect x="780" y="80" width="260" height="24"  fill="#1e293b" rx="8"/>
+  <rect x="780" y="92" width="260" height="12"  fill="#1e293b"/>
+  <circle cx="802" cy="92" r="5" fill="#ef4444" fill-opacity="0.7"/>
+  <circle cx="817" cy="92" r="5" fill="#f59e0b" fill-opacity="0.7"/>
+  <circle cx="832" cy="92" r="5" fill="#4ade80" fill-opacity="0.7"/>
+  <text x="910" y="96" text-anchor="middle" font-size="9" fill="#64748b">bash</text>
+
+  <g font-size="9" font-family="'Courier New',monospace">
+    <!-- systemctl status header line -->
+    <circle cx="798" cy="118" r="5" fill="#4ade80"/>
+    <text x="810" y="122" fill="#f1f5f9" font-weight="700">alloy.service</text>
+    <text x="798" y="137" fill="#94a3b8">Grafana Alloy</text>
+    <!-- Active line -->
+    <text x="798" y="155" fill="#64748b">Active: </text>
+    <text x="836" y="155" fill="#4ade80">active (running)</text>
+    <text x="798" y="170" fill="#64748b">since 2026-05-07 00:00:01</text>
+    <text x="798" y="185" fill="#64748b">Main PID: 1234 (alloy)</text>
+    <text x="798" y="200" fill="#64748b">Memory: 48.2M</text>
+    <text x="798" y="215" fill="#64748b">CPU: 1.231s</text>
+    <text x="798" y="230" fill="#64748b">Tasks: 12 (limit: 4915)</text>
+
+    <!-- Separator -->
+    <line x1="798" y1="244" x2="1020" y2="244" stroke="#1e293b" stroke-width="1"/>
+
+    <!-- Listening badge -->
+    <text x="798" y="260" fill="#64748b">$ curl localhost:</text>
+    <text x="903" y="260" fill="#f97316">12345</text>
+    <text x="798" y="275" fill="#4ade80">{"status":"healthy"}</text>
+
+    <!-- Enabled pill -->
+    <rect x="798" y="286" width="70" height="18" fill="#052e16" stroke="#4ade80" stroke-width="1" rx="3"/>
+    <text x="833" y="299" text-anchor="middle" fill="#4ade80">enabled</text>
+    <rect x="876" y="286" width="84" height="18" fill="#0a1e30" stroke="#38bdf8" stroke-width="1" rx="3"/>
+    <text x="918" y="299" text-anchor="middle" fill="#7dd3fc">auto-restart</text>
+  </g>
+
+  <!-- Bottom gradient overlay -->
+  <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
+
+  <!-- Series label -->
+  <text x="600" y="500" text-anchor="middle" font-size="13" fill="#f97316" letter-spacing="3" font-weight="600">GRAFANA OBSERVABILITY</text>
+
+  <!-- Post title -->
+  <text x="600" y="538" text-anchor="middle" font-size="34" font-weight="700" fill="#f1f5f9">Install Grafana Alloy with systemd</text>
+</svg>

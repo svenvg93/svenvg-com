@@ -39,7 +39,7 @@ author:
 colorScheme: "default"
 
 home:
-  recentPostsCount: 8
+  recentPostsCount: 5
   contentOrder:
     - author-section
     - recent-posts

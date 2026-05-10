@@ -10,7 +10,7 @@ tags:
   - ipv6
 series:
   - IPv6 Explained
-series_order: 5
+series_order: 4
 ---
 
 IPv4 networks almost universally use NAT — Network Address Translation. A router maps many private addresses to a single public one, and keeps state to route replies back to the right device. It works, but it's a workaround for address exhaustion, not a design goal.

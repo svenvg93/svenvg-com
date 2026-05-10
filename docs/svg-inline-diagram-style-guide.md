@@ -73,9 +73,10 @@ Adjust line positions to match the natural divisions of your diagram (e.g. betwe
 
 ## Title / header label
 
-Inline diagrams use a short uppercase label at the top as a caption, not a full title block. Place it at `y="22"`, centered:
+Inline diagrams use a short uppercase label at the top as a caption, not a full title block. Always pair it with a horizontal divider line at `y="36"`:
 
 ```xml
+<line x1="0" y1="36" x2="700" y2="36" stroke="#0d1a2a" stroke-width="1"/>
 <text x="350" y="22" text-anchor="middle"
       font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">
   TOPIC — SHORT DESCRIPTION OF WHAT IS SHOWN
@@ -83,6 +84,8 @@ Inline diagrams use a short uppercase label at the top as a caption, not a full 
 ```
 
 Use `fill="#94a3b8"` (slate-400) — muted but readable on the dark background. The diagram content should draw the eye, not the label.
+
+> **Rule**: The divider line is not optional — it visually anchors the header to the canvas and separates it from the diagram body. Omitting it makes the label float disconnected above the content.
 
 ---
 
@@ -96,7 +99,14 @@ Optional. Two-line maximum. Place the last line at `y = height - 16`, the first 
 </text>
 ```
 
-> **Rule**: Footer text color is `#94a3b8`, not `#334155`. Dark slate text is nearly invisible on the `#080c14` background — always use slate-400 or brighter for any text that must be readable.
+**Footer color tiers:**
+
+| Use | Color | Hex | When |
+|-----|-------|-----|------|
+| Readable footer note | slate-400 | `#94a3b8` | Default — reader is expected to read this |
+| De-emphasized footnote | slate-600 | `#475569` | Fine-print that reader can safely ignore; accepts lower contrast |
+
+> **Rule**: Default to `#94a3b8`. Only drop to `#475569` when the footer is a supplementary fine-print note (e.g. a one-line restatement of information already in the diagram). Never use `#334155` or darker — it vanishes on the `#080c14` background.
 
 ---
 
@@ -122,7 +132,7 @@ Boxes use dark fills with a 1.5px colored border and `rx="5"`:
 ```xml
 <!-- LAN box example -->
 <rect x="20" y="172" width="270" height="72" fill="#071810" stroke="#166534" stroke-width="1.5" rx="5"/>
-<text x="155" y="192" text-anchor="middle" font-size="11" font-weight="600" fill="#86efac">LAN</text>
+<text x="155" y="192" text-anchor="middle" font-size="12" font-weight="600" fill="#86efac">LAN</text>
 <text x="155" y="210" text-anchor="middle" font-size="9"  fill="#4ade80"  font-family="'Courier New',monospace">2001:db8:0000::/64</text>
 <text x="155" y="226" text-anchor="middle" font-size="8"  fill="#166534">secondary note</text>
 ```
@@ -131,11 +141,124 @@ Boxes use dark fills with a 1.5px colored border and `rx="5"`:
 
 | Role | font-size | font-weight | fill |
 |------|-----------|-------------|------|
-| Title / name | `11` | `600` | Light variant (e.g. `#86efac`) |
-| Address / value | `9` | — | Mid variant (e.g. `#4ade80`), monospace |
-| Secondary note | `8` | — | Dark variant (e.g. `#166534`) |
+| Component name / title | `12` | `600` | Light variant (e.g. `#86efac`, `#a5b4fc`, `#fcd34d`) |
+| Subtitle / address | `9` | — | Mid variant (e.g. `#64748b`, `#78716c`) |
+| Secondary note | `8` | — | Dark variant (e.g. `#4a4a6a`) |
+
+> **Rule**: Component names in inline diagrams use `font-size="12"`, not `font-size="11"`. The `11` size is reserved for the header label only.
 
 **Box sizing:** Ensure the box is wide enough to give its label ~9 px of padding on each side. A label like "Client A" rendered at `font-size="10"` is roughly 45 px wide — it needs a box at least 63 px wide (use 64 px). Cramped boxes make text appear to touch the border.
+
+**Standard box heights:** Use `h=50` for source/destination boxes with a title and one subtitle line. Reduce to `h=40` when two pipeline lanes need to fit closer together — the tighter boxes allow ~8 px gap between them instead of overlapping.
+
+---
+
+## Two-lane pipeline diagrams
+
+Use this pattern when showing a single processor (e.g. Grafana Alloy) running two parallel sub-pipelines — one for metrics, one for logs. The processor is represented as a large container box with two internal rows.
+
+### Structure
+
+```
+[Source A]  ──→  [ Container: Processor              ] ──→  [Dest A]
+[Source B]  ──→  [  stage → stage → stage            ] ──→  [Dest B]
+                 [  stage → stage                    ]
+```
+
+### Source boxes
+
+Use `h=40` (not the standard `h=50`) to allow both source boxes to sit close together with an ~8 px gap between them:
+
+```xml
+<!-- Source boxes: x=50, stacked with 8px gap between them -->
+<rect x="50" y="68" width="115" height="40" fill="#0b1628" stroke="#3b82f6" stroke-width="1.5" rx="5"/>
+<text x="107" y="84" text-anchor="middle" font-size="12" font-weight="600" fill="#93c5fd">Source A</text>
+<text x="107" y="98" text-anchor="middle" font-size="9" fill="#64748b">subtitle</text>
+
+<rect x="50" y="116" width="115" height="40" fill="#0b1628" stroke="#3b82f6" stroke-width="1.5" rx="5"/>
+<text x="107" y="132" text-anchor="middle" font-size="12" font-weight="600" fill="#93c5fd">Source B</text>
+<text x="107" y="146" text-anchor="middle" font-size="9" fill="#64748b">subtitle</text>
+```
+
+Source box centers: lane A at `y = box_top_A + 20`, lane B at `y = box_top_B + 20`. Both arrows depart at these y values.
+
+### Container box
+
+The container box encloses both sub-pipeline rows. Its top edge aligns with or above the top lane's first stage; its bottom edge aligns with or below the bottom lane's last stage (minimum 8 px padding):
+
+```xml
+<rect x="215" y="48" width="300" height="112" fill="#0a0d28" stroke="#6366f1" stroke-width="1.5" rx="5"/>
+<text x="365" y="65" text-anchor="middle" font-size="12" font-weight="600" fill="#a5b4fc">Grafana Alloy</text>
+```
+
+### Pipeline stage boxes (inside the container)
+
+Each stage is a small inner box with a dark indigo fill:
+
+```xml
+<rect x="225" y="80" width="120" height="22" fill="#151050" rx="3"/>
+<text x="285" y="95" text-anchor="middle" font-size="8" font-weight="600" fill="#818cf8">prometheus.scrape</text>
+```
+
+| Property | Value |
+|----------|-------|
+| `fill` | `#151050` |
+| `rx` | `3` |
+| `font-size` | `8` |
+| `font-weight` | `600` |
+| `fill` (text) | `#818cf8` |
+
+### Small arrows between stages
+
+Use a dedicated small marker for arrows *inside* the container — it is proportionally shorter than the outer box-to-box markers:
+
+```xml
+<marker id="arr-sm" markerWidth="6" markerHeight="5" refX="5" refY="2.5"
+        orient="auto" markerUnits="userSpaceOnUse">
+  <polygon points="0,0 6,2.5 0,5" fill="#6366f1"/>
+</marker>
+
+<line x1="345" y1="91" x2="360" y2="91" stroke="#6366f1" stroke-width="1" marker-end="url(#arr-sm)"/>
+```
+
+Use `stroke-width="1"` (not 1.5) on stage-to-stage connectors inside the container.
+
+### Merge bus (optional)
+
+When both lanes converge to a single exit point before splitting to separate destinations, add a vertical dashed bus line at the merge x:
+
+```xml
+<!-- Vertical bus connecting both exit lines at x=515 -->
+<line x1="515" y1="87" x2="515" y2="143" stroke="#6366f1" stroke-width="1" stroke-dasharray="3,2"/>
+```
+
+If the two lanes exit directly to separate destinations without merging, omit the bus and draw two independent exit arrows.
+
+### Canvas sizing for pipeline diagrams
+
+The standard canvas sizes (220/260/300 px) may not apply directly. Calculate height from content:
+- Header bar at y=36
+- Container top typically y=48
+- Container height = content + padding (usually 8 px per side)
+- Add 20 px footer clearance below the container
+
+A two-source, two-lane pipeline with 40 px source boxes typically fits in **195–220 px**.
+
+---
+
+## Centering verification
+
+Before finalising a diagram, verify the horizontal balance:
+
+```
+left_margin  = x coordinate of the leftmost element
+right_margin = canvas_width − (x + width of the rightmost element)
+difference   = |left_margin − right_margin|
+```
+
+A difference ≤ 15 px is acceptable. More than that — shift the content toward center by half the excess.
+
+> **Rule**: Never move a content element horizontally to fix balance without also updating its gradient coordinates. A `linearGradient` defined with `gradientUnits="userSpaceOnUse"` stores absolute x/y positions — if the element moves, the gradient endpoints must move by the same delta.
 
 ---
 
@@ -185,6 +308,24 @@ The arrow tip must touch the destination box edge, not overlap into it. When usi
 ---
 
 ## Labels on arrows
+
+### Narrow gaps — embed in box instead
+
+When the horizontal gap between two adjacent boxes is **less than ~80 px**, do not place a label on the arrow — the label will be wider than the gap and will overflow into one or both boxes. Instead, embed the concept as a subtext line inside the source or destination box:
+
+```xml
+<!-- Gap between boxes is only 72px — label "outbound-only TLS" (~85px wide at font-size=8) won't fit -->
+<!-- BAD: floating label on arrow -->
+<text x="244" y="99" text-anchor="middle" font-size="8" fill="#6366f1">outbound-only TLS</text>
+
+<!-- GOOD: move the concept into the source box as a third subtext line -->
+<rect x="53" y="73" width="155" height="70" fill="#0a0d28" stroke="#6366f1" stroke-width="1.5" rx="5"/>
+<text x="130" y="96"  text-anchor="middle" font-size="12" font-weight="600" fill="#a5b4fc">cloudflared</text>
+<text x="130" y="113" text-anchor="middle" font-size="9"  fill="#64748b">tunnel daemon</text>
+<text x="130" y="129" text-anchor="middle" font-size="8"  fill="#4a4a6a">outbound-only TLS</text>
+```
+
+The arrow itself conveys directionality; the box subtext conveys the behavior. This is always cleaner than a cramped floating label.
 
 ### Horizontal arrows
 
@@ -254,12 +395,12 @@ Same font stack as covers (set on the root `<svg>` element). Per-element rules:
 | Use | font-size | fill |
 |-----|-----------|------|
 | Header label | `11` | `#94a3b8` |
-| Box title | `11` | Light zone variant |
+| Box title / component name | `12` | Light zone variant |
 | Box address / code | `9` | Mid zone variant, `font-family="'Courier New',monospace"` |
 | Box note | `8` | Dark zone variant |
 | Arrow label | `8`–`9` | Zone accent or `#94a3b8` for neutral |
 | Axis / legend label | `9` | `#94a3b8` |
-| Footer caption | `9` | `#94a3b8` |
+| Footer caption | `9` | `#94a3b8` (or `#475569` for de-emphasized fine-print) |
 
 > **Rule**: Never go above `font-size="12"` inside an inline diagram. These are supporting visuals, not headlines.
 
@@ -293,14 +434,16 @@ Use the same accent colors as the cover for the series this diagram belongs to. 
 
 ## Checklist for new inline diagrams
 
-- [ ] Canvas is 700 px wide; height chosen from the standard sizes (220 / 260 / 300)
+- [ ] Canvas is 700 px wide; height chosen from the standard sizes (220 / 260 / 300) — or calculated from content for pipeline diagrams
 - [ ] Root `<svg>` has correct `font-family` attribute
 - [ ] Background is the dark navy gradient with `rx="8"`
 - [ ] All gradients and markers are in a single top-level `<defs>` block
 - [ ] No `textbg` gradient — that is covers only
 - [ ] No title block at y=500/538 — that is covers only
+- [ ] Horizontal divider line at `y="36"` present alongside the header label
 - [ ] Header label at `y="22"`, `font-size="11"`, `fill="#94a3b8"`, uppercase, `letter-spacing="1"`
-- [ ] No grey text uses `#334155`, `#475569`, or `#64748b` — all muted text is `#94a3b8` or brighter
+- [ ] No grey text uses `#334155` — all readable text is `#94a3b8` or brighter; `#475569` only for de-emphasized fine-print
+- [ ] Centering verified: `|left_margin − right_margin| ≤ 15 px`
 - [ ] Footer text has ≥ 20 px clearance below last content element (30 px for two-line footer)
 - [ ] No circle or arc extends beyond the canvas boundary
 - [ ] Zone colors follow the red/blue/green/amber/orange convention from the cover guide
@@ -311,8 +454,10 @@ Use the same accent colors as the cover for the series this diagram belongs to. 
 - [ ] All `<marker>` elements use `orient="auto"` with the right-pointing polygon — never a manually flipped polygon
 - [ ] Arrow tip (`refX="7"` or manual polygon) stops at the destination box edge, not inside it
 - [ ] Gradient arrows use `gradientUnits="userSpaceOnUse"` with coordinates matching the actual line
+- [ ] After repositioning any element, gradient `x1`/`y1`/`x2`/`y2` updated to match the new coordinates
 - [ ] Arrow tip marker color matches the destination zone
 - [ ] Horizontal arrow labels have baseline ≥ 8 px above the arrow line
+- [ ] Arrows where gap between boxes is < 80 px have no floating label — concept is embedded in adjacent box subtext instead
 - [ ] Vertical arrow branch labels are positioned to the side, not overlaid on the line
 - [ ] Diagonal arrow labels have a `fill="#080c14"` background rect drawn before the text
 - [ ] Label rects are positioned so the rect edge clears the line by ≥ 6 px
@@ -321,3 +466,4 @@ Use the same accent colors as the cover for the series this diagram belongs to. 
 - [ ] All text uses light zone variants, not dark base colors
 - [ ] No `<animate>` elements
 - [ ] No emoji characters in `<text>` elements
+- [ ] **Two-lane pipeline diagrams**: source boxes `h=40`; stage boxes `fill="#151050" rx="3"`, text `font-size="8" fill="#818cf8"`; inner arrows use `arr-sm` marker (`markerWidth="6"`, `fill="#6366f1"`); container box padding ≥ 8 px per side

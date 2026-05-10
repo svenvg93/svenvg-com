@@ -25,6 +25,8 @@ Dashboards created through the Grafana UI are stored in its SQLite database insi
 
 Grafana's provisioning system reads a configuration file at startup that points to one or more directories. Any `.json` file it finds there is loaded as a dashboard and placed in the specified folder. If the file changes on disk, Grafana picks up the update within the configured interval — no restart required.
 
+![](provisioning-flow.svg)
+
 ## Directory Structure
 
 Add a `dashboards/` directory inside your existing provisioning folder:

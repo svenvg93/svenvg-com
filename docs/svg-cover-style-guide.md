@@ -149,6 +149,19 @@ Left span     ≈  Right span     (within ~40px)
 - If right span > left span: move the right element(s) leftward, or widen them.
 - Never move the central element away from x=600 to compensate.
 
+**Measuring the gap symmetrically:**
+
+For flow layouts where a central element (e.g. hexagon) has flanking content (e.g. left boxes and right boxes), measure the gap on each side:
+
+```
+left_gap  = hex_left_face_x  − rightmost_x_of_left_content
+right_gap = leftmost_x_of_right_content − hex_right_face_x
+```
+
+These two gaps should be within ~40 px of each other. If not, shift the deficient side by half the difference.
+
+> **Critical**: When repositioning elements that use curved bezier `<path>` arrows, the gradient in `<defs>` stores absolute coordinates. After moving an element, update the gradient's `x1`/`y1` (and/or `x2`/`y2`) to match the new arrow start/end point. A gradient that still references old coordinates will render with a misaligned color transition.
+
 ---
 
 ## Zone color coding (topology covers)
@@ -794,7 +807,8 @@ Labels inside or adjacent to colored elements must be legible against dark backg
 - [ ] `textbg` gradient rect is at `y="390"` with `height="240"`
 - [ ] All diagram content ends above `y=390`
 - [ ] Main diagram element is centered at `x=600`
-- [ ] Left edge padding ≈ right edge padding (within ~40px)
+- [ ] Left edge padding ≈ right edge padding (within ~40px); gap from central element to left content ≈ gap from central element to right content (within ~40px)
+- [ ] After repositioning any flanking element, all gradient `x1`/`y1`/`x2`/`y2` coordinates updated to match new arrow positions
 - [ ] Diagram vertical center is between `y=180` and `y=280`
 - [ ] Zone colors follow the red/blue/green/orange/purple convention
 - [ ] Branch routes from a central node are placed symmetrically (equal y offset above and below)

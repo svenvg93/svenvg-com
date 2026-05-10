@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 210" width="700" height="210"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#94a3b8"/>
+    </marker>
+    <marker id="arr-sm" markerWidth="6" markerHeight="5" refX="5" refY="2.5" orient="auto">
+      <polygon points="0,0 6,2.5 0,5" fill="#6366f1"/>
+    </marker>
+  </defs>
+
+  <rect width="700" height="210" fill="url(#bg)" rx="8"/>
+  <line x1="0" y1="36" x2="700" y2="36" stroke="#0d1a2a" stroke-width="1"/>
+
+  <!-- Header -->
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">UNIFI SYSLOG COLLECTION PIPELINE</text>
+
+  <!-- UniFi box -->
+  <rect x="25" y="72" width="115" height="58" fill="#0b1628" stroke="#3b82f6" stroke-width="1.5" rx="5"/>
+  <text x="82" y="96" text-anchor="middle" font-size="12" font-weight="600" fill="#93c5fd">UniFi</text>
+  <text x="82" y="114" text-anchor="middle" font-size="9" fill="#64748b">Network Devices</text>
+
+  <!-- Arrow: UniFi → Alloy -->
+  <line x1="142" y1="101" x2="192" y2="101" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="167" y="93" text-anchor="middle" font-size="8" fill="#475569">UDP :514</text>
+  <text x="167" y="114" text-anchor="middle" font-size="8" fill="#475569">RFC3164</text>
+
+  <!-- Alloy box (taller — centre piece) -->
+  <rect x="194" y="55" width="154" height="95" fill="#0a0d28" stroke="#6366f1" stroke-width="1.5" rx="5"/>
+  <text x="271" y="76" text-anchor="middle" font-size="12" font-weight="600" fill="#a5b4fc">Grafana Alloy</text>
+
+  <!-- Pipeline stages inside Alloy -->
+  <rect x="204" y="88" width="38" height="18" fill="#151050" rx="3"/>
+  <text x="223" y="101" text-anchor="middle" font-size="8" font-weight="600" fill="#818cf8">relabel</text>
+
+  <line x1="244" y1="97" x2="250" y2="97" stroke="#6366f1" stroke-width="1.2" marker-end="url(#arr-sm)"/>
+
+  <rect x="252" y="88" width="38" height="18" fill="#151050" rx="3"/>
+  <text x="271" y="101" text-anchor="middle" font-size="8" font-weight="600" fill="#818cf8">process</text>
+
+  <line x1="292" y1="97" x2="298" y2="97" stroke="#6366f1" stroke-width="1.2" marker-end="url(#arr-sm)"/>
+
+  <rect x="300" y="88" width="38" height="18" fill="#151050" rx="3"/>
+  <text x="319" y="101" text-anchor="middle" font-size="8" font-weight="600" fill="#818cf8">write</text>
+
+  <text x="271" y="132" text-anchor="middle" font-size="8" fill="#4a4a6a">syslog collector &amp; processor</text>
+
+  <!-- Arrow: Alloy → Loki -->
+  <line x1="350" y1="101" x2="402" y2="101" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="376" y="93" text-anchor="middle" font-size="8" fill="#475569">HTTP push</text>
+
+  <!-- Loki box -->
+  <rect x="404" y="72" width="108" height="58" fill="#1a1008" stroke="#f59e0b" stroke-width="1.5" rx="5"/>
+  <text x="458" y="96" text-anchor="middle" font-size="12" font-weight="600" fill="#fcd34d">Loki</text>
+  <text x="458" y="114" text-anchor="middle" font-size="9" fill="#78716c">Log storage</text>
+
+  <!-- Arrow: Loki → Grafana -->
+  <line x1="514" y1="101" x2="562" y2="101" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="538" y="93" text-anchor="middle" font-size="8" fill="#475569">query</text>
+
+  <!-- Grafana box -->
+  <rect x="564" y="72" width="111" height="58" fill="#1a0c06" stroke="#f97316" stroke-width="1.5" rx="5"/>
+  <text x="619" y="96" text-anchor="middle" font-size="12" font-weight="600" fill="#fb923c">Grafana</text>
+  <text x="619" y="114" text-anchor="middle" font-size="9" fill="#78716c">Visualization</text>
+
+  <!-- Footer -->
+  <text x="350" y="183" text-anchor="middle" font-size="9" fill="#475569">Alloy receives syslog on UDP :514 · normalizes severity &amp; hostname · pushes to Loki</text>
+</svg>

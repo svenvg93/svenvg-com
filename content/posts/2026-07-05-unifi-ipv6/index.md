@@ -1,7 +1,7 @@
 ---
 title: Setting Up Native IPv6 on Unifi
 description: Enable native IPv6 on your Unifi network with prefix delegation, proper firewall rules, and working SLAAC for all your devices.
-date: 2026-06-15
+date: 2026-07-05
 draft: true
 categories:
   - Networking

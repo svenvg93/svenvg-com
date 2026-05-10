@@ -18,6 +18,8 @@ series_order: 2
 
 Monitoring your systems and containers is essential for maintaining a reliable homelab or home server. This guide uses Grafana Alloy's built-in exporters to collect host and container metrics, with Prometheus for storage and Grafana for visualization — all managed through a single agent instead of separate containers per exporter.
 
+![](metrics-pipeline.svg)
+
 ## Prerequisites
 
 - Prometheus running and reachable

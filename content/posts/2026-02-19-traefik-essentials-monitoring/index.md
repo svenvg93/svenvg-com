@@ -20,6 +20,8 @@ series_order: 2
 
 Traefik exposes metrics on EntryPoints, Routers, Services, and more. This guide shows you how to collect these metrics with Prometheus and aggregate logs with Loki via Grafana Alloy for a complete monitoring solution.
 
+![](traefik-monitoring.svg)
+
 ## Prerequisites
 
 - Grafana, Prometheus, Loki, and Alloy already running — see [Setting Up Your Observability Stack]({{< ref "/posts/2026-01-08-grafana-observability-setup" >}})

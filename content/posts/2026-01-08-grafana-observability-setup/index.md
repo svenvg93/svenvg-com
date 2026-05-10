@@ -24,6 +24,8 @@ Before you can collect metrics or centralize logs, you need somewhere to store a
 - **Grafana** — visualization
 - **Grafana Alloy** — telemetry collection agent
 
+![](stack-architecture.svg)
+
 ## Prometheus
 
 Prometheus is a time-series database that stores metrics. We'll enable the remote write receiver so Alloy can push metrics directly to it.

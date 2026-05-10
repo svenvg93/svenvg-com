@@ -30,10 +30,15 @@
       <stop offset="0%" stop-color="#34d399" stop-opacity="0.10"/>
       <stop offset="100%" stop-color="#34d399" stop-opacity="0"/>
     </radialGradient>
-    <!-- Router (blue) → SLAAC center (emerald) -->
-    <linearGradient id="arr-lr" x1="281" y1="208" x2="521" y2="208" gradientUnits="userSpaceOnUse">
+    <!-- RA: Router → NDP (blue → green) -->
+    <linearGradient id="arr-ra-l" x1="281" y1="203" x2="529" y2="203" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#38bdf8"/>
       <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+    <!-- RS: NDP → Router (green → blue) -->
+    <linearGradient id="arr-rs-l" x1="529" y1="227" x2="281" y2="227" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
     </linearGradient>
     <linearGradient id="textbg" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%"   stop-color="#080c14" stop-opacity="0"/>
@@ -43,6 +48,9 @@
     <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
       <polygon points="0,0 8,3 0,6" fill="#34d399"/>
     </marker>
+    <marker id="arr-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#38bdf8"/>
+    </marker>
   </defs>
 
   <rect width="1200" height="630" fill="url(#bg)"/>
@@ -50,7 +58,7 @@
   <rect width="1200" height="630" fill="url(#glow-center)"/>
   <rect width="1200" height="630" fill="url(#glow-right)"/>
 
-  <!-- Left hex: ROUTER (blue — zone convention: router = blue) -->
+  <!-- Left hex: ROUTER (blue, cx=220 cy=215 r=70) -->
   <polygon points="220,145 281,180 281,250 220,285 159,250 159,180"
            fill="url(#hex-fill-blue)" stroke="#38bdf8" stroke-width="2.5"/>
   <polygon points="220,153 274,184 274,246 220,277 166,246 166,184"
@@ -58,16 +66,15 @@
   <text x="220" y="210" text-anchor="middle" font-size="13" font-weight="700" fill="#bae6fd">ROUTER</text>
   <text x="220" y="228" text-anchor="middle" font-size="9" fill="#38bdf8" letter-spacing="2" opacity="0.8">RA SENDER</text>
 
-  <!-- Center hex: SLAAC process (emerald) -->
+  <!-- Center hex: NDP (emerald, cx=600 cy=215 r=82) -->
   <polygon points="600,133 671,174 671,256 600,297 529,256 529,174"
            fill="url(#hex-fill-center)" stroke="#34d399" stroke-width="2.5"/>
   <polygon points="600,141 663,179 663,251 600,289 537,251 537,179"
            fill="none" stroke="#34d399" stroke-width="0.8" stroke-opacity="0.3"/>
-  <text x="600" y="205" text-anchor="middle" font-size="15" font-weight="700" fill="#86efac" letter-spacing="1">SLAAC</text>
-  <text x="600" y="228" text-anchor="middle" font-size="8" fill="#34d399" letter-spacing="2" opacity="0.8">PREFIX + IID</text>
-  <text x="600" y="248" text-anchor="middle" font-size="9" fill="#34d399" font-family="'Courier New',monospace" opacity="0.7">fd00::/8</text>
+  <text x="600" y="207" text-anchor="middle" font-size="16" font-weight="700" fill="#86efac" letter-spacing="1">NDP</text>
+  <text x="600" y="226" text-anchor="middle" font-size="8" fill="#34d399" letter-spacing="1.5" opacity="0.9">RS · RA · NS · NA</text>
 
-  <!-- Right hex: DEVICE (green — zone convention: LAN/device = green) -->
+  <!-- Right hex: DEVICE (green, cx=940 cy=215 r=70) -->
   <polygon points="940,145 1001,180 1001,250 940,285 879,250 879,180"
            fill="url(#hex-fill-green)" stroke="#34d399" stroke-width="2.5"/>
   <polygon points="940,153 994,184 994,246 940,277 886,246 886,184"
@@ -75,23 +82,29 @@
   <text x="940" y="210" text-anchor="middle" font-size="13" font-weight="700" fill="#86efac">DEVICE</text>
   <text x="940" y="228" text-anchor="middle" font-size="9" fill="#34d399" letter-spacing="2" opacity="0.8">AUTOCONFIGURED</text>
 
-  <!-- RA: Router → SLAAC (gradient blue → emerald) -->
-  <line x1="281" y1="208" x2="521" y2="208" stroke="url(#arr-lr)" stroke-width="2"
-        marker-end="url(#arr-green)"/>
-  <text x="405" y="201" text-anchor="middle" font-size="9" fill="#64748b" letter-spacing="1">RA · prefix</text>
-  <!-- RS: Router → SLAAC (dashed, same gradient) -->
-  <line x1="289" y1="222" x2="521" y2="222" stroke="url(#arr-lr)" stroke-width="1.5" stroke-dasharray="4,3"
-        marker-end="url(#arr-green)"/>
-  <text x="405" y="237" text-anchor="middle" font-size="9" fill="#64748b" letter-spacing="1">RS</text>
+  <!-- RA: Router → NDP (solid, blue→green gradient) -->
+  <line x1="281" y1="203" x2="521" y2="203"
+        stroke="url(#arr-ra-l)" stroke-width="2" marker-end="url(#arr-green)"/>
+  <text x="405" y="194" text-anchor="middle" font-size="9" fill="#94a3b8" letter-spacing="1">RA · prefix · gateway</text>
 
-  <!-- Address assigned: SLAAC → Device -->
-  <line x1="679" y1="208" x2="871" y2="208" stroke="#34d399" stroke-width="2"
-        marker-end="url(#arr-green)"/>
-  <text x="775" y="201" text-anchor="middle" font-size="9" fill="#64748b" letter-spacing="1">address assigned</text>
+  <!-- RS: NDP → Router (dashed, green→blue gradient) -->
+  <line x1="521" y1="227" x2="281" y2="227"
+        stroke="url(#arr-rs-l)" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr-blue)"/>
+  <text x="405" y="242" text-anchor="middle" font-size="9" fill="#94a3b8" letter-spacing="1">RS · router solicitation</text>
+
+  <!-- Address assigned: NDP → Device (solid, green) -->
+  <line x1="679" y1="203" x2="871" y2="203"
+        stroke="#34d399" stroke-width="2" marker-end="url(#arr-green)"/>
+  <text x="775" y="194" text-anchor="middle" font-size="9" fill="#94a3b8" letter-spacing="1">address assigned</text>
+
+  <!-- NS/NA: Device → NDP (dashed, green) -->
+  <line x1="871" y1="227" x2="679" y2="227"
+        stroke="#34d399" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr-green)"/>
+  <text x="775" y="242" text-anchor="middle" font-size="9" fill="#94a3b8" letter-spacing="1">NS · NA · DAD</text>
 
   <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
   <text x="600" y="500" text-anchor="middle" font-size="13"
         fill="#34d399" letter-spacing="3" font-weight="600">IPv6 EXPLAINED</text>
   <text x="600" y="538" text-anchor="middle" font-size="34"
-        font-weight="700" fill="#f1f5f9">SLAAC and DHCPv6</text>
+        font-weight="700" fill="#f1f5f9">SLAAC and Neighbor Discovery</text>
 </svg>

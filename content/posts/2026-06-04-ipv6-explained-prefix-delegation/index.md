@@ -10,7 +10,7 @@ tags:
   - ipv6
 series:
   - IPv6 Explained
-series_order: 4
+series_order: 3
 ---
 
 In IPv4, a home router gets one public IP address from the ISP — typically via DHCP on the WAN interface — and uses NAT to share it across all devices on the LAN. IPv6 is designed differently: there's no NAT, so every device needs a public address. The mechanism that makes this work at scale is **prefix delegation**.

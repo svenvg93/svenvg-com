@@ -17,6 +17,8 @@ Unifi network devices generate valuable logs that can help you troubleshoot netw
 
 This guide we will only focus on device logs. Securtiy and firewall logs are out of scope.
 
+![Alloy pipeline diagram](alloy-pipeline.svg)
+
 ## Prerequisites
 
 - Grafana Alloy installed (or can be deployed via Docker)
@@ -102,33 +104,26 @@ loki.relabel "unifi_syslog" {
   // Then normalize specific values (these overwrite the above)
   rule {
     source_labels = ["__syslog_message_severity"]
-    regex         = "(?i)(emergency|alert|critical)"
+    regex         = "(?i)^(emergency|alert|critical)$"
     target_label  = "detected_level"
     replacement   = "critical"
   }
   rule {
     source_labels = ["__syslog_message_severity"]
-    regex         = "(?i)(warning)"
+    regex         = "(?i)^warning$"
     target_label  = "detected_level"
     replacement   = "warn"
   }
   rule {
     source_labels = ["__syslog_message_severity"]
-    regex         = "(?i)(notice|informational)"
+    regex         = "(?i)^(notice|informational)$"
     target_label  = "detected_level"
     replacement   = "info"
   }
 
-  // Map hostname from syslog header
   rule {
     source_labels = ["__syslog_message_hostname"]
     target_label  = "host"
-  }
-
-  // Map app name from syslog header
-  rule {
-    source_labels = ["__syslog_message_app_name"]
-    target_label  = "app"
   }
 }
 
@@ -148,23 +143,50 @@ loki.source.syslog "unifi" {
 }
 
 loki.process "unifi" {
+  // Extract device MAC and firmware from AP/Switch prefix: "1c6a1b3f7059,U7-Pro-Wall-8.5.21+18681: ..."
+  // Gateway logs don't have this prefix — stages are no-ops for those.
+  stage.regex {
+    expression = `^(?P<device_mac>[0-9a-f]{12}),(?P<firmware>[^:\s]+):\s+`
+  }
+
+  stage.labels {
+    values = {
+      device_mac = "",
+      firmware   = "",
+    }
+  }
+
   // Extract app and message from UniFi syslog content
-  // Format 1 (AP/Switch): "mac,device-firmware: process[pid]: message"
+  // Format 1 (AP/Switch): "mac,device-firmware: process[pid][pid2]: message"
   //   Example: "6c63f8863465,U7-Pro-Wall-8.3.2+18064: hostapd[5343]: wifi1ap6: STA ..."
+  //   Example: "1c6a1b3f7059,...: syswrapper[2807][16721]: [configure_vap] up wifi0ap0"
   // Format 2 (Gateway): "hostname process[pid]: message"
   //   Example: "UCG-Fiber bash[2616997]: HISTORY: ..."
   stage.regex {
-    expression = "^(?:[\\w,\\-\\.\\+]+:\\s+|[\\w\\-]+\\s+)?(?P<app>[\\w\\-]+)(?:\\[\\d+\\])?:\\s*(?P<message>.*)$"
+    expression = `^(?:[\w,\-\.\+]+:\s+|[\w\-]+\s+)?(?P<app>[\w\-]+)(?:\[\d+\])?:\s*(?P<message>.*)`
   }
 
-  // Set app label from regex
   stage.labels {
     values = {
       app = "",
     }
   }
 
-  // Output just the message content
+  // For stahtd lines, extract the embedded JSON payload into structured metadata
+  stage.match {
+    selector = `{app="stahtd"}`
+
+    stage.regex {
+      expression = `(?P<json_payload>\{.*?\})`
+    }
+
+    stage.structured_metadata {
+      values = {
+        json_payload = "",
+      }
+    }
+  }
+
   stage.output {
     source = "message"
   }
@@ -182,66 +204,37 @@ loki.write "default" {
 
 ### Configuration Breakdown
 
-This configuration includes three main components that work together to collect, process, and forward Unifi syslog messages to Loki.
-
 #### 1. Relabel Rules (`loki.relabel "unifi_syslog"`)
 
-The relabel component extracts and normalizes metadata from the syslog headers:
+Runs before log processing to normalize metadata from the raw syslog headers:
 
-**Severity Normalization:**
-- Converts syslog severity levels (emergency, alert, critical etc) to standardized labels
-- Creates a `detected_level` label for filtering logs by severity in Grafana
-
-**Metadata Extraction:**
-- `host`: Captures the hostname of the device sending logs (e.g., "UCG-Fiber", "U7-Pro-Wall")
-- `app`: Extracts the application or process name from the syslog header
-
-These labels make it easy to filter logs by device or severity without parsing the log content.
+- **`detected_level`**: Maps RFC3164 severity words (emergency, alert, critical → `critical`; warning → `warn`; notice, informational → `info`) to standard Loki level labels
+- **`host`**: Copies the syslog hostname field so you can filter by device name
 
 #### 2. Syslog Listener (`loki.source.syslog "unifi"`)
 
-The syslog source receives incoming log messages:
+Listens on UDP port 514, parsing RFC3164 — the format UniFi devices use by default. All logs get `job="unifi"` as a static label, then pass through the relabel rules above before moving to the process stage.
 
-**Listener Configuration:**
-- `address`: Binds to all interfaces on port 514 (standard syslog port)
-- `protocol`: Uses UDP, the most common syslog transport protocol
-- `syslog_format`: Parses RFC3164 format, which Unifi devices use
-- `use_incoming_timestamp`: Set to false to use Alloy's timestamp instead of the device timestamp
-
-**Static Labels:**
-- `job="unifi"`: Identifies all logs from this source as Unifi logs
-- `platform="network"`: Categorizes these as network infrastructure logs
-
-**Pipeline:**
-- Applies the relabel rules defined above
-- Forwards logs to the processing stage
+`use_incoming_timestamp` is set to `false` so Alloy's receive time is used instead of the device clock, which can drift.
 
 #### 3. Log Processing (`loki.process "unifi"`)
 
-This component parses and cleans Unifi-specific log formats:
+This stage does the heavy lifting. UniFi devices produce two distinct log formats:
 
-**Regex Extraction:**
-Unifi devices use different log formats depending on the device type:
-- **Access Points/Switches**: Include MAC address and firmware version
-  - Example: `6c63f8863465,U7-Pro-Wall-8.3.2+18064: hostapd[5343]: wifi1ap6: STA connected`
-- **Gateways**: Use hostname and process name
-  - Example: `UCG-Fiber bash[2616997]: HISTORY: command executed`
+- **Access Points / Switches**: prefix includes MAC address and firmware version
+  - `1c6a1b3f7059,U7-Pro-Wall-8.5.21+18681: hostapd[5343]: STA connected`
+- **Gateways**: no prefix, just hostname and process
+  - `UCG-Fiber bash[2616997]: HISTORY: command run`
 
-The regex pattern captures:
-- `app`: The process or service name (hostapd, bash, kernel, etc.)
-- `message`: The actual log message content
+The pipeline handles both:
 
-**Output Stage:**
-- Extracts just the message content, removing metadata already captured as labels
-- Results in cleaner, more readable logs in Grafana
+1. A first regex extracts `device_mac` and `firmware` from the AP/Switch prefix and promotes them to labels — gateway logs simply produce no match and skip this step.
+2. A second regex extracts the `app` (process name) and strips the cleaned `message` as the log line output.
+3. A `stage.match` block runs only for `stahtd` logs, pulling the embedded JSON payload out into structured metadata for richer querying.
 
 #### 4. Loki Write (`loki.write "default"`)
 
-The final component sends processed logs to Loki:
-
-- `endpoint.url`: The Loki push API endpoint
-- Uses the Docker network name `loki` to connect to Loki running in the same Docker network
-- Handles batching and retries automatically
+Sends batched logs to the Loki push API at `http://loki:3100`. Uses the Docker network name `loki` to reach Loki on the same backend network; retries and batching are handled automatically.
 
 ## Start Alloy
 

@@ -33,6 +33,8 @@ Three components work together:
 
 All three can be provisioned from YAML files, keeping your alerting config in version control alongside the rest of your stack.
 
+![](alert-evaluation.svg)
+
 ## Directory Structure
 
 Add an `alerting/` folder inside your existing Grafana provisioning directory:
@@ -105,6 +107,8 @@ policies:
 ```
 
 You can also split alerts into categories such as `system`, `infra`, and `docker`. The useful part is not just the folder layout in Grafana, but the labels on each rule. Once a rule carries a label like `scope: system`, you can route or filter it however you like later.
+
+![](alert-routing.svg)
 
 ```yaml {filename="alerting/policies.yaml"}
 apiVersion: 1

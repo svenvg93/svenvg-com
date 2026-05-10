@@ -18,6 +18,8 @@ series_order: 3
 
 Monitoring isn't just about metrics — centralized logging provides deeper insights by letting you search and correlate events across your entire infrastructure. This guide uses Grafana Alloy to collect both system logs and Docker container logs, forwarding them to Loki for querying in Grafana.
 
+![](log-pipeline.svg)
+
 ## Prerequisites
 
 - Loki running and reachable

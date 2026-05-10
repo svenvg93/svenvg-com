@@ -1,7 +1,7 @@
 ---
 title: "Unifi Multi-WAN: Load Balancing and Automatic Failover"
 description: Configure two WAN connections on Unifi for automatic failover and load balancing so your network stays online when one ISP goes down.
-date: 2026-06-11
+date: 2026-06-30
 draft: true
 categories:
   - Networking

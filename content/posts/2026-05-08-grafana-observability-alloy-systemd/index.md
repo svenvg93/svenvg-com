@@ -19,6 +19,8 @@ The [first post in this series]({{< ref "/posts/2026-01-08-grafana-observability
 
 This post covers installing Alloy via the Grafana apt repository, configuring it to load a directory of `.alloy` files, and wiring it up to the same Prometheus and Loki stack from the rest of the series.
 
+![](alloy-systemd.svg)
+
 ## Prerequisites
 
 - Prometheus running and reachable at `http://<HOST>:9090`

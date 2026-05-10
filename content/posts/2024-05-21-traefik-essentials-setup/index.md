@@ -21,6 +21,8 @@ Traefik is an open-source reverse proxy and load balancer that works well with D
 
 In this guide, we will set up Traefik in Docker, enable automatic Let's Encrypt SSL via Cloudflare DNS challenge, and test it with a simple service.
 
+![](traefik-architecture.svg)
+
 ## Setup Traefik with Docker
 
 ### Docker

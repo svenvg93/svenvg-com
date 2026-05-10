@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 260" width="700" height="260"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <linearGradient id="g-c-r" x1="132" y1="112" x2="178" y2="112" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#f87171"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    <linearGradient id="g-r-m" x1="302" y1="112" x2="338" y2="112" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <linearGradient id="g-m-s" x1="482" y1="112" x2="518" y2="112" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#166534"/>
+    </linearGradient>
+    <marker id="arr-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#3b82f6"/>
+    </marker>
+    <marker id="arr-amber" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#d97706"/>
+    </marker>
+    <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#166534"/>
+    </marker>
+    <marker id="arr-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#f87171"/>
+    </marker>
+  </defs>
+
+  <rect width="700" height="260" fill="url(#bg)" rx="8"/>
+  <line x1="0" y1="36" x2="700" y2="36" stroke="#0d1a2a" stroke-width="1"/>
+
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">REQUEST PIPELINE — WHERE MIDDLEWARES FIT</text>
+
+  <!-- CLIENT (Internet/external zone) -->
+  <rect x="20" y="90" width="110" height="55" fill="#150808" stroke="#7f1d1d" stroke-width="1.5" rx="5"/>
+  <text x="75" y="113" text-anchor="middle" font-size="11" font-weight="600" fill="#f87171">Client</text>
+  <text x="75" y="130" text-anchor="middle" font-size="8" fill="#94a3b8">browser / app</text>
+
+  <!-- Client → Router -->
+  <line x1="132" y1="112" x2="178" y2="112" stroke="url(#g-c-r)" stroke-width="1.5" marker-end="url(#arr-blue)"/>
+  <text x="155" y="104" text-anchor="middle" font-size="8" fill="#94a3b8">request</text>
+
+  <!-- ROUTER (gateway zone) -->
+  <rect x="180" y="90" width="120" height="55" fill="#0e1a3a" stroke="#3b82f6" stroke-width="1.5" rx="5"/>
+  <text x="240" y="113" text-anchor="middle" font-size="11" font-weight="600" fill="#93c5fd">Router</text>
+  <text x="240" y="130" text-anchor="middle" font-size="8" fill="#94a3b8">match rules</text>
+
+  <!-- Router → Middleware -->
+  <line x1="302" y1="112" x2="338" y2="112" stroke="url(#g-r-m)" stroke-width="1.5" marker-end="url(#arr-amber)"/>
+
+  <!-- MIDDLEWARE (security/alert zone — taller) -->
+  <rect x="340" y="73" width="140" height="90" fill="#1a1200" stroke="#d97706" stroke-width="1.5" rx="5"/>
+  <text x="410" y="97" text-anchor="middle" font-size="11" font-weight="600" fill="#fde68a">Middleware</text>
+  <text x="410" y="113" text-anchor="middle" font-size="8" fill="#94a3b8">inspect · modify</text>
+  <text x="410" y="127" text-anchor="middle" font-size="8" fill="#94a3b8">reject · add headers</text>
+
+  <!-- Reject arrow (downward) -->
+  <line x1="410" y1="165" x2="410" y2="197" stroke="#f87171" stroke-width="1.5" marker-end="url(#arr-red)"/>
+  <text x="420" y="184" text-anchor="start" font-size="9" font-weight="600" fill="#f87171">403 Forbidden</text>
+
+  <!-- Middleware → Service (pass) -->
+  <line x1="482" y1="112" x2="518" y2="112" stroke="url(#g-m-s)" stroke-width="1.5" marker-end="url(#arr-green)"/>
+  <text x="500" y="104" text-anchor="middle" font-size="8" fill="#4ade80">pass</text>
+
+  <!-- SERVICE (LAN/trusted zone) -->
+  <rect x="520" y="90" width="115" height="55" fill="#071810" stroke="#166534" stroke-width="1.5" rx="5"/>
+  <text x="577" y="113" text-anchor="middle" font-size="11" font-weight="600" fill="#86efac">Service</text>
+  <text x="577" y="130" text-anchor="middle" font-size="8" fill="#94a3b8">your app</text>
+
+  <!-- Footer -->
+  <text x="350" y="230" text-anchor="middle" font-size="9" fill="#94a3b8">middlewares are reusable — define once, attach to any router</text>
+  <text x="350" y="244" text-anchor="middle" font-size="9" fill="#94a3b8">they also run on the response path — security headers are added on the way back</text>
+</svg>

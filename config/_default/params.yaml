@@ -59,50 +59,9 @@ post:
 # comments
 comments:
   enabled: false
-  system: "giscus"
-  giscus:
-    repo: "tom2almighty/hugo-narrow-giscus"
-    repoId: "R_kgDOO2gwLg"
-    category: "General"
-    categoryId: "DIC_kwDOO2gwLs4CrEaf"
-    mapping: "pathname"
-    strict: "0"
-    reactionsEnabled: "1"
-    emitMetadata: "0"
-    inputPosition: "bottom"
-    theme: "preferred_color_scheme"
-    lang: "en"
-  disqus:
-    shortname: ""
-  utterances:
-    repo: ""
-    issueTerm: "pathname"
-    label: "comment"
-    theme: "preferred-color-scheme"
-  waline:
-    serverURL: ""
-    lang: "en"
-  artalk:
-    server: ""
-    site: ""
-    locale: "en"
-    darkMode: "auto"
-    gravatar:
-      mirror: "https://gravatar.com/avatar/"
-  twikoo:
-    envId: ""
-    region: ""
-    path: ""
-    lang: "en"
 
 analytics:
   enabled: true
-  baidu:
-    enabled: false
-    id: "your-baidu-analytics-id"
-  clarity:
-    enabled: false
-    id: "your-clarity-analytics-id"
   google:
     enabled: true
     id: "G-TY2X9VQNYT"

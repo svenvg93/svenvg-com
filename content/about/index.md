@@ -21,4 +21,3 @@ My homelab is where I test ideas before they become guides. If something works w
 ## Explore
 
 - [Resume](/resume) — my professional background
-- [Personal Projects](/projects) — things I’ve built

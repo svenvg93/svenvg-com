@@ -36,13 +36,6 @@ main:
     params:
       icon: archive
 
-  - name: Projects
-    pageRef: /projects
-    weight: 30
-    parent: More
-    params:
-      icon: projects
-
   - name: About
     pageRef: /about
     weight: 40

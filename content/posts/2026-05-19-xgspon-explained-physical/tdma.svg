@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 260" width="700" height="260"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <marker id="arr-time" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#94a3b8"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="700" height="260" fill="url(#bg)" rx="8"/>
+
+  <!-- Header -->
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600"
+        fill="#94a3b8" letter-spacing="1">UPSTREAM TDMA — TIME SLOT ALLOCATION PER FRAME</text>
+  <line x1="0" y1="36" x2="700" y2="36" stroke="#0d1a2a" stroke-width="1"/>
+
+  <!-- Vertical separator (label area | timeline) -->
+  <line x1="90" y1="36" x2="90" y2="205" stroke="#0d1a2a" stroke-width="1"/>
+
+  <!-- ONT row lane separators -->
+  <line x1="90" y1="95"  x2="683" y2="95"  stroke="#0d1a2a" stroke-width="1"/>
+  <line x1="90" y1="145" x2="683" y2="145" stroke="#0d1a2a" stroke-width="1"/>
+
+  <!-- ONT lane labels (left panel) -->
+  <text x="45" y="74"  text-anchor="middle" font-size="11" font-weight="600" fill="#93c5fd">ONT 1</text>
+  <text x="45" y="124" text-anchor="middle" font-size="11" font-weight="600" fill="#86efac">ONT 2</text>
+  <text x="45" y="174" text-anchor="middle" font-size="11" font-weight="600" fill="#fb923c">ONT 3</text>
+
+  <!-- ── Slot outlines (all 18 — faint grid showing time structure) ── -->
+  <!-- ONT 1 row (y=52 to y=88) -->
+  <rect x="97"  y="52" width="94" height="36" fill="none" stroke="#1e3650" stroke-width="0.5" rx="2"/>
+  <rect x="195" y="52" width="94" height="36" fill="none" stroke="#1e3650" stroke-width="0.5" rx="2"/>
+  <rect x="293" y="52" width="94" height="36" fill="none" stroke="#1e3650" stroke-width="0.5" rx="2"/>
+  <rect x="391" y="52" width="94" height="36" fill="none" stroke="#1e3650" stroke-width="0.5" rx="2"/>
+  <rect x="489" y="52" width="94" height="36" fill="none" stroke="#1e3650" stroke-width="0.5" rx="2"/>
+  <rect x="587" y="52" width="94" height="36" fill="none" stroke="#1e3650" stroke-width="0.5" rx="2"/>
+  <!-- ONT 2 row (y=102 to y=138) -->
+  <rect x="97"  y="102" width="94" height="36" fill="none" stroke="#1e3650" stroke-width="0.5" rx="2"/>
+  <rect x="195" y="102" width="94" height="36" fill="none" stroke="#1e3650" stroke-width="0.5" rx="2"/>
+  <rect x="293" y="102" width="94" height="36" fill="none" stroke="#1e3650" stroke-width="0.5" rx="2"/>
+  <rect x="391" y="102" width="94" height="36" fill="none" stroke="#1e3650" stroke-width="0.5" rx="2"/>
+  <rect x="489" y="102" width="94" height="36" fill="none" stroke="#1e3650" stroke-width="0.5" rx="2"/>
+  <rect x="587" y="102" width="94" height="36" fill="none" stroke="#1e3650" stroke-width="0.5" rx="2"/>
+  <!-- ONT 3 row (y=152 to y=188) -->
+  <rect x="97"  y="152" width="94" height="36" fill="none" stroke="#1e3650" stroke-width="0.5" rx="2"/>
+  <rect x="195" y="152" width="94" height="36" fill="none" stroke="#1e3650" stroke-width="0.5" rx="2"/>
+  <rect x="293" y="152" width="94" height="36" fill="none" stroke="#1e3650" stroke-width="0.5" rx="2"/>
+  <rect x="391" y="152" width="94" height="36" fill="none" stroke="#1e3650" stroke-width="0.5" rx="2"/>
+  <rect x="489" y="152" width="94" height="36" fill="none" stroke="#1e3650" stroke-width="0.5" rx="2"/>
+  <rect x="587" y="152" width="94" height="36" fill="none" stroke="#1e3650" stroke-width="0.5" rx="2"/>
+
+  <!-- ── Transmit blocks ── -->
+  <!-- ONT 1 transmits: slots 1 and 4 (blue) -->
+  <rect x="97"  y="52" width="94" height="36" fill="#0e1a3a" stroke="#3b82f6" stroke-width="1.5" rx="2"/>
+  <text x="144" y="73" text-anchor="middle" font-size="10" font-weight="600" fill="#93c5fd">TX</text>
+  <rect x="391" y="52" width="94" height="36" fill="#0e1a3a" stroke="#3b82f6" stroke-width="1.5" rx="2"/>
+  <text x="438" y="73" text-anchor="middle" font-size="10" font-weight="600" fill="#93c5fd">TX</text>
+
+  <!-- ONT 2 transmits: slots 2 and 5 (green) -->
+  <rect x="195" y="102" width="94" height="36" fill="#071810" stroke="#166534" stroke-width="1.5" rx="2"/>
+  <text x="242" y="123" text-anchor="middle" font-size="10" font-weight="600" fill="#86efac">TX</text>
+  <rect x="489" y="102" width="94" height="36" fill="#071810" stroke="#166534" stroke-width="1.5" rx="2"/>
+  <text x="536" y="123" text-anchor="middle" font-size="10" font-weight="600" fill="#86efac">TX</text>
+
+  <!-- ONT 3 transmits: slots 3 and 6 (orange) -->
+  <rect x="293" y="152" width="94" height="36" fill="#1a0800" stroke="#c2410c" stroke-width="1.5" rx="2"/>
+  <text x="340" y="173" text-anchor="middle" font-size="10" font-weight="600" fill="#fb923c">TX</text>
+  <rect x="587" y="152" width="94" height="36" fill="#1a0800" stroke="#c2410c" stroke-width="1.5" rx="2"/>
+  <text x="634" y="173" text-anchor="middle" font-size="10" font-weight="600" fill="#fb923c">TX</text>
+
+  <!-- ── Time axis ── -->
+  <line x1="90" y1="205" x2="675" y2="205"
+        stroke="#94a3b8" stroke-width="1" marker-end="url(#arr-time)"/>
+
+  <!-- Slot boundary ticks on time axis -->
+  <line x1="95"  y1="201" x2="95"  y2="209" stroke="#94a3b8" stroke-width="0.5"/>
+  <line x1="193" y1="201" x2="193" y2="209" stroke="#94a3b8" stroke-width="0.5"/>
+  <line x1="291" y1="201" x2="291" y2="209" stroke="#94a3b8" stroke-width="0.5"/>
+  <line x1="389" y1="201" x2="389" y2="209" stroke="#94a3b8" stroke-width="0.5"/>
+  <line x1="487" y1="201" x2="487" y2="209" stroke="#94a3b8" stroke-width="0.5"/>
+  <line x1="585" y1="201" x2="585" y2="209" stroke="#94a3b8" stroke-width="0.5"/>
+  <line x1="683" y1="201" x2="683" y2="209" stroke="#94a3b8" stroke-width="0.5"/>
+
+  <!-- ── Frame bracket (one full frame = 3 slots = 125 µs) ── -->
+  <line x1="95"  y1="218" x2="389" y2="218" stroke="#94a3b8" stroke-width="0.5"/>
+  <line x1="95"  y1="214" x2="95"  y2="222" stroke="#94a3b8" stroke-width="0.5"/>
+  <line x1="389" y1="214" x2="389" y2="222" stroke="#94a3b8" stroke-width="0.5"/>
+  <text x="242" y="231" text-anchor="middle" font-size="9" fill="#94a3b8">1 frame · 125 µs</text>
+
+  <!-- Footer -->
+  <text x="350" y="244" text-anchor="middle" font-size="9" fill="#94a3b8">
+    OLT grants each ONT a time slot · only one ONT transmits at a time · DBA adjusts slot sizes per frame
+  </text>
+</svg>

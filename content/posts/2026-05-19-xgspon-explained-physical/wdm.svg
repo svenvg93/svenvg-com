@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 220" width="700" height="220"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <!-- Downstream beam: OLT (red) → ONT (blue) -->
+    <linearGradient id="beam-ds" x1="162" y1="112" x2="532" y2="112" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    <!-- Upstream beam: ONT (green) → OLT (green) -->
+    <linearGradient id="beam-us" x1="538" y1="136" x2="168" y2="136" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#166534"/>
+    </linearGradient>
+    <!-- Arrow marker (orient="auto" rotates for both directions) -->
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#94a3b8"/>
+    </marker>
+    <marker id="arr-ds" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#3b82f6"/>
+    </marker>
+    <marker id="arr-us" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#166534"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="700" height="220" fill="url(#bg)" rx="8"/>
+
+  <!-- Header -->
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600"
+        fill="#94a3b8" letter-spacing="1">WDM — WAVELENGTH DIVISION MULTIPLEXING ON ONE FIBER</text>
+  <line x1="0" y1="36" x2="700" y2="36" stroke="#0d1a2a" stroke-width="1"/>
+
+  <!-- ── OLT box (left, red) ── -->
+  <rect x="20" y="90" width="140" height="64" fill="#150808" stroke="#7f1d1d" stroke-width="1.5" rx="5"/>
+  <text x="90" y="117" text-anchor="middle" font-size="12" font-weight="600" fill="#f87171">OLT</text>
+  <text x="90" y="134" text-anchor="middle" font-size="9" fill="#94a3b8">ISP Central Office</text>
+
+  <!-- Fiber strand background -->
+  <rect x="162" y="100" width="376" height="44" fill="#0a1020" stroke="#1e3a5f" stroke-width="1" rx="3"/>
+
+  <!-- Wavelength label above fiber — downstream -->
+  <text x="350" y="93" text-anchor="middle" font-size="9" fill="#93c5fd" letter-spacing="0.5">1577 nm — downstream →</text>
+
+  <!-- Downstream beam -->
+  <line x1="162" y1="112" x2="532" y2="112"
+        stroke="url(#beam-ds)" stroke-width="3" marker-end="url(#arr-ds)"/>
+
+  <!-- Upstream beam -->
+  <line x1="538" y1="136" x2="168" y2="136"
+        stroke="url(#beam-us)" stroke-width="3" marker-end="url(#arr-us)"/>
+
+  <!-- Wavelength label below fiber — upstream -->
+  <text x="350" y="160" text-anchor="middle" font-size="9" fill="#86efac" letter-spacing="0.5">← upstream — 1270 nm</text>
+
+  <!-- ── ONT box (right, green) ── -->
+  <rect x="540" y="90" width="140" height="64" fill="#071810" stroke="#166534" stroke-width="1.5" rx="5"/>
+  <text x="610" y="117" text-anchor="middle" font-size="12" font-weight="600" fill="#86efac">ONT</text>
+  <text x="610" y="134" text-anchor="middle" font-size="9" fill="#94a3b8">Subscriber Home</text>
+
+  <!-- ── Legend ── -->
+  <line x1="116" y1="186" x2="156" y2="186" stroke="#3b82f6" stroke-width="2"/>
+  <text x="164" y="190" font-size="9" fill="#94a3b8">downstream · 1577 nm (OLT → ONT)</text>
+  <line x1="356" y1="186" x2="396" y2="186" stroke="#34d399" stroke-width="2"/>
+  <text x="404" y="190" font-size="9" fill="#94a3b8">upstream · 1270 nm (ONT → OLT)</text>
+</svg>

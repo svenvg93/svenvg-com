@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <linearGradient id="textbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#080c14" stop-opacity="0"/>
+      <stop offset="60%"  stop-color="#080c14" stop-opacity="0.93"/>
+      <stop offset="100%" stop-color="#080c14" stop-opacity="1"/>
+    </linearGradient>
+
+    <!-- Fills -->
+    <radialGradient id="olt-fill" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1a0808"/>
+      <stop offset="100%" stop-color="#0d0404"/>
+    </radialGradient>
+    <linearGradient id="hex-fill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0e2040"/>
+      <stop offset="100%" stop-color="#071428"/>
+    </linearGradient>
+
+    <!-- Zone glows -->
+    <radialGradient id="glow-red" cx="14%" cy="50%" r="20%">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#ef4444" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-blue" cx="50%" cy="48%" r="18%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-green" cx="83%" cy="50%" r="26%">
+      <stop offset="0%" stop-color="#34d399" stop-opacity="0.09"/>
+      <stop offset="100%" stop-color="#34d399" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Feeder arc: OLT red → splitter blue -->
+    <linearGradient id="grad-feeder" x1="240" y1="210" x2="535" y2="210" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+    <!-- Drop arcs: splitter blue → ONT green -->
+    <linearGradient id="grad-d1" x1="665" y1="210" x2="952" y2="105" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+    <linearGradient id="grad-d2" x1="665" y1="210" x2="952" y2="210" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+    <linearGradient id="grad-d3" x1="665" y1="210" x2="952" y2="315" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Zone glows -->
+  <rect width="1200" height="630" fill="url(#glow-red)"/>
+  <rect width="1200" height="630" fill="url(#glow-blue)"/>
+  <rect width="1200" height="630" fill="url(#glow-green)"/>
+
+  <!-- Dot grid -->
+  <g fill="#0f1f44" opacity="0.45">
+    <circle cx="200" cy="80"  r="1.5"/><circle cx="400" cy="80"  r="1.5"/><circle cx="600" cy="80"  r="1.5"/>
+    <circle cx="800" cy="80"  r="1.5"/><circle cx="1000" cy="80" r="1.5"/>
+    <circle cx="100" cy="160" r="1.5"/><circle cx="300" cy="160" r="1.5"/><circle cx="500" cy="160" r="1.5"/>
+    <circle cx="700" cy="160" r="1.5"/><circle cx="900" cy="160" r="1.5"/><circle cx="1100" cy="160" r="1.5"/>
+    <circle cx="200" cy="240" r="1.5"/><circle cx="400" cy="240" r="1.5"/><circle cx="800" cy="240" r="1.5"/>
+    <circle cx="1000" cy="240" r="1.5"/>
+    <circle cx="100" cy="320" r="1.5"/><circle cx="300" cy="320" r="1.5"/><circle cx="900" cy="320" r="1.5"/>
+    <circle cx="1100" cy="320" r="1.5"/>
+  </g>
+
+  <!-- ── Feeder arc (OLT → Splitter) ── -->
+  <path d="M 240,210 C 350,152 460,172 535,210"
+        fill="none" stroke="url(#grad-feeder)" stroke-width="2.5" stroke-dasharray="7,4"/>
+
+  <!-- ── Drop arcs (Splitter → ONTs) ── -->
+  <path d="M 665,210 C 780,185 865,132 952,105"
+        fill="none" stroke="url(#grad-d1)" stroke-width="2"/>
+  <path d="M 665,210 C 780,210 865,210 952,210"
+        fill="none" stroke="url(#grad-d2)" stroke-width="2"/>
+  <path d="M 665,210 C 780,235 865,272 952,315"
+        fill="none" stroke="url(#grad-d3)" stroke-width="2"/>
+
+  <!-- ── OLT globe (left, red) ── -->
+  <circle cx="165" cy="210" r="65" fill="url(#olt-fill)" stroke="#7f1d1d" stroke-width="1.5"/>
+  <ellipse cx="165" cy="210" rx="32" ry="65" fill="none" stroke="#7f1d1d" stroke-width="1"/>
+  <line x1="100" y1="210" x2="230" y2="210" stroke="#7f1d1d" stroke-width="1"/>
+  <line x1="105" y1="178" x2="225" y2="178" stroke="#7f1d1d" stroke-width="1" opacity="0.4"/>
+  <line x1="105" y1="242" x2="225" y2="242" stroke="#7f1d1d" stroke-width="1" opacity="0.4"/>
+  <text x="165" y="204" text-anchor="middle" font-size="16" font-weight="700" fill="#f87171">OLT</text>
+  <text x="165" y="222" text-anchor="middle" font-size="10" fill="#fca5a5" letter-spacing="1" opacity="0.8">ISP Central</text>
+
+  <!-- ── Passive splitter hexagon (center, blue) ── -->
+  <!-- pointy-top r=75 at (600,210) -->
+  <polygon points="600,135 665,173 665,248 600,285 535,248 535,173"
+           fill="url(#hex-fill)" stroke="#38bdf8" stroke-width="2.5"/>
+  <polygon points="600,142 658,177 658,243 600,278 542,243 542,177"
+           fill="none" stroke="#38bdf8" stroke-width="0.7" stroke-opacity="0.3"/>
+  <text x="600" y="202" text-anchor="middle" font-size="13" font-weight="700" fill="#bae6fd" letter-spacing="2">SPLITTER</text>
+  <text x="600" y="220" text-anchor="middle" font-size="11" fill="#38bdf8" opacity="0.85">1 : 32</text>
+  <text x="600" y="237" text-anchor="middle" font-size="9"  fill="#7dd3fc" opacity="0.65">passive ODN</text>
+
+  <!-- ── ONT nodes (right, green) ── -->
+  <!-- ONT 1 -->
+  <circle cx="960" cy="105" r="9" fill="#071810" stroke="#166534" stroke-width="1.5"/>
+  <text x="977" y="101" font-size="13" font-weight="600" fill="#86efac">WDM</text>
+  <text x="977" y="116" font-size="9" fill="#94a3b8">1577 nm downstream · 1270 nm upstream</text>
+
+  <!-- ONT 2 -->
+  <circle cx="960" cy="210" r="9" fill="#071810" stroke="#166534" stroke-width="1.5"/>
+  <text x="977" y="206" font-size="13" font-weight="600" fill="#86efac">TDMA · DBA</text>
+  <text x="977" y="221" font-size="9" fill="#94a3b8">OLT-granted slots · dynamic bandwidth</text>
+
+  <!-- ONT 3 -->
+  <circle cx="960" cy="315" r="9" fill="#071810" stroke="#166534" stroke-width="1.5"/>
+  <text x="977" y="311" font-size="13" font-weight="600" fill="#86efac">PLOAM · GEM · T-CONT</text>
+  <text x="977" y="326" font-size="9" fill="#94a3b8">registration · encapsulation · QoS</text>
+
+  <!-- ── Text overlay ── -->
+  <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
+
+  <text x="600" y="500" text-anchor="middle" font-size="13" font-weight="600"
+        fill="#38bdf8" letter-spacing="3">FIBER TO THE HOME · ITU-T G.9807.1</text>
+  <text x="600" y="538" text-anchor="middle" font-size="44"
+        font-weight="700" fill="#f1f5f9">XGS-PON Explained</text>
+</svg>

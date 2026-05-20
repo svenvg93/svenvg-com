@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 320" width="700" height="320"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <!-- Broadcast arrow: OLT → ONT1 (red → green) -->
+    <linearGradient id="arr-accept" x1="160" y1="138" x2="486" y2="94" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+    <!-- Discarded arrows: OLT → ONT2/3 (red → muted) -->
+    <linearGradient id="arr-drop2" x1="160" y1="155" x2="486" y2="174" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#475569"/>
+    </linearGradient>
+    <linearGradient id="arr-drop3" x1="160" y1="172" x2="486" y2="254" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#475569"/>
+    </linearGradient>
+    <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#34d399"/>
+    </marker>
+    <marker id="arr-muted" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="700" height="320" fill="url(#bg)" rx="8"/>
+
+  <!-- Header -->
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600"
+        fill="#94a3b8" letter-spacing="1">DOWNSTREAM BROADCAST · PER-ONT AES-128 ENCRYPTION</text>
+  <line x1="0" y1="36" x2="700" y2="36" stroke="#0d1a2a" stroke-width="1"/>
+
+  <!-- ── OLT box (left) ── -->
+  <rect x="20" y="120" width="140" height="70" fill="#150808" stroke="#7f1d1d" stroke-width="1.5" rx="5"/>
+  <text x="90" y="148" text-anchor="middle" font-size="12" font-weight="600" fill="#f87171">OLT</text>
+  <text x="90" y="164" text-anchor="middle" font-size="9" fill="#94a3b8">broadcasts all frames</text>
+  <text x="90" y="178" text-anchor="middle" font-size="8" fill="#94a3b8">1577 nm downstream</text>
+
+  <!-- Broadcast label -->
+  <text x="325" y="52" text-anchor="middle" font-size="9" fill="#94a3b8" letter-spacing="0.5">broadcast — all ONTs receive every frame</text>
+
+  <!-- ── Arrow to ONT 1 (accepted) ── -->
+  <line x1="160" y1="138" x2="486" y2="94"
+        stroke="url(#arr-accept)" stroke-width="1.5" marker-end="url(#arr-green)"/>
+
+  <!-- ── Arrow to ONT 2 (discarded) ── -->
+  <line x1="160" y1="155" x2="486" y2="174"
+        stroke="url(#arr-drop2)" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr-muted)"/>
+
+  <!-- ── Arrow to ONT 3 (discarded) ── -->
+  <line x1="160" y1="172" x2="486" y2="254"
+        stroke="url(#arr-drop3)" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr-muted)"/>
+
+  <!-- ── ONT 1 — accepted (green) ── -->
+  <rect x="490" y="62" width="185" height="65" fill="#071810" stroke="#166534" stroke-width="1.5" rx="5"/>
+  <text x="582" y="85" text-anchor="middle" font-size="12" font-weight="600" fill="#86efac">ONT 1 — accepted</text>
+  <text x="582" y="101" text-anchor="middle" font-size="9" fill="#94a3b8">GEM Port ID matches</text>
+  <text x="582" y="116" text-anchor="middle" font-size="8" fill="#94a3b8">decrypts with own AES-128 key</text>
+
+  <!-- ── ONT 2 — discarded (muted) ── -->
+  <rect x="490" y="142" width="185" height="65" fill="#0a0e16" stroke="#1e2d3d" stroke-width="1.5" rx="5"/>
+  <text x="582" y="165" text-anchor="middle" font-size="12" font-weight="600" fill="#94a3b8">ONT 2 — discarded</text>
+  <text x="582" y="181" text-anchor="middle" font-size="9" fill="#94a3b8">GEM Port ID mismatch</text>
+  <text x="582" y="196" text-anchor="middle" font-size="8" fill="#94a3b8">wrong key — frame dropped</text>
+
+  <!-- ── ONT 3 — discarded (muted) ── -->
+  <rect x="490" y="222" width="185" height="55" fill="#0a0e16" stroke="#1e2d3d" stroke-width="1.5" rx="5"/>
+  <text x="582" y="248" text-anchor="middle" font-size="12" font-weight="600" fill="#94a3b8">ONT 3 — discarded</text>
+  <text x="582" y="264" text-anchor="middle" font-size="8" fill="#94a3b8">wrong key — frame dropped</text>
+
+  <!-- Footer note -->
+  <text x="350" y="304" text-anchor="middle" font-size="9" fill="#94a3b8">
+    each ONT holds a unique AES-128 key provisioned by the OLT during PLOAM registration
+  </text>
+</svg>

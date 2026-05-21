@@ -62,14 +62,20 @@ Each prefix in the RA is carried in a **Prefix Information Option (PIO)**, which
 
 - **A flag (Autonomous)** — if set, the device may use this prefix to form a SLAAC address. If unset, the prefix is advertised but SLAAC does not trigger for it.
 - **L flag (on-link)** — if set, the prefix is declared on-link: the device can communicate directly with other addresses in this prefix without going through the router. If unset, the device sends all traffic — even to addresses in the same prefix — via the default gateway.
+- **P flag (DHCPv6-PD Preferred)** — if set, the network prefers that the device request a full delegated prefix via DHCPv6-PD rather than using SLAAC or individual DHCPv6 address assignment. Defined in RFC 9762, this is aimed at modern deployments where every device can receive its own `/64`. Networks that set the P flag often also set M or O to support devices that don't implement RFC 9762.
 
-Both flags default to 1 in most deployments. But they can be set independently: a prefix can be advertised as on-link without triggering SLAAC (A=0, L=1), or used for SLAAC without being on-link (A=1, L=0). The M and O flags tell the device *how* to get an address; the A flag controls *whether this prefix is used for SLAAC*.
+The A and L flags default to 1 in most deployments and can be set independently: a prefix can be advertised as on-link without triggering SLAAC (A=0, L=1), or used for SLAAC without being on-link (A=1, L=0). The M and O flags tell the device *how* to get an address; the A flag controls *whether this prefix is used for SLAAC*; the P flag signals that the network prefers delegation over individual address assignment.
+
+Each PIO also carries two lifetimes that control how long an address formed from the prefix remains usable:
+
+- **Valid lifetime** — how long the address is valid at all. After expiry it is removed entirely. RFC 4861 defaults to 30 days.
+- **Preferred lifetime** — how long the address is preferred for new outgoing connections. Must be ≤ valid lifetime. Once the preferred lifetime expires, the address enters a **deprecated** state: existing connections continue using it, but the OS will not pick it as the source for new connections.
+
+The distinction matters during prefix changes. When an ISP rotates the delegated prefix, the router advertises the old prefix with a shortened preferred lifetime (so devices stop initiating new connections from it) while keeping it valid long enough for existing sessions to drain — simultaneously advertising the new prefix normally. This produces a graceful handover rather than an abrupt address invalidation.
 
 ## Interface Identifier in SLAAC
 
-SLAAC gives the device freedom in how it generates the interface ID. The original method was EUI-64 — derived from the MAC address — which produced a stable, globally unique identifier. The problem is that the same interface ID follows the device across every network it joins, making it trackable.
-
-RFC 4941 introduced **privacy extensions**: the device generates a random interface ID and rotates it periodically. Most operating systems now use this by default for outbound connections. Servers and infrastructure that need stable addresses typically use EUI-64 or manually configured IDs instead.
+SLAAC lets the device choose how it generates the interface ID — EUI-64 (derived from the MAC) or a random privacy-extension address (RFC 8981). The mechanics and trade-offs are covered in [Addressing](/posts/2026-05-25-ipv6-explained-addressing/); the short version is that most operating systems default to random, periodically rotated IDs for outbound connections.
 
 ## DHCPv6
 
@@ -83,6 +89,14 @@ DHCPv6 works similarly to DHCPv4 in structure — client sends a Solicit, server
 
 One important difference from DHCPv4: DHCPv6 does not carry the default gateway. That information comes only from Router Advertisements. This means even on a network using stateful DHCPv6 for addresses, the router still needs to send RAs for gateway discovery.
 
+## RDNSS
+
+RDNSS (Recursive DNS Server option, [RFC 8106][2]) carries DNS resolver addresses directly in Router Advertisements, without any DHCPv6 exchange. The RA includes one or more IPv6 addresses of DNS resolvers, each with a lifetime indicating how long the entry should be trusted. A related option, DNSSL (DNS Search List), carries the domain search list the same way.
+
+This makes pure SLAAC deployments viable end-to-end: the device gets its address via SLAAC and its DNS resolvers via RDNSS, with no server of any kind required.
+
+RDNSS has one operational limitation compared to DHCPv6: it cannot push updates between RA intervals. A DNS change must wait for the next scheduled RA (up to `MaxRtrAdvInterval`, default 600 s) or until a client sends an RS. DHCPv6 can push a change immediately. In practice this rarely matters, but it is worth knowing when troubleshooting DNS propagation on pure-SLAAC networks.
+
 ## Address Resolution
 
 When a device wants to send a packet to another IPv6 address on the same link, it needs the destination's MAC address. NDP handles this with NS and NA:
@@ -91,7 +105,7 @@ When a device wants to send a packet to another IPv6 address on the same link, i
 2. It sends a Neighbor Solicitation to that multicast address, asking for the target's MAC.
 3. The target — and only the target — is listening on that multicast address. It replies with a Neighbor Advertisement containing its MAC.
 
-The solicited-node multicast address is the key improvement over ARP broadcast. Instead of every device processing the request, only devices whose address matches the last 24 bits receive it. On a large segment this significantly reduces interrupt load.
+The solicited-node multicast address is the key improvement over ARP broadcast. Instead of every device processing the request, only devices whose address matches the last 24 bits receive it. On a large segment this significantly reduces interrupt load. The structure of solicited-node multicast addresses — and how they map to switch-level forwarding — is covered in [Multicast and MLD](/posts/2026-06-22-ipv6-explained-multicast/).
 
 ![](ndp-resolution.svg "NDP address resolution — NS to solicited-node multicast, NA unicast reply")
 
@@ -99,9 +113,7 @@ Resolved mappings are stored in the **neighbor cache**, equivalent to ARP's cach
 
 ## Duplicate Address Detection
 
-Before using any unicast address — whether SLAAC-generated, DHCPv6-assigned, or manually configured — a device must verify the address isn't already in use on the link. DAD uses a Neighbor Solicitation with the unspecified address (`::`) as the source, targeting the address the device wants to use. If another device on the link already has that address, it responds with a Neighbor Advertisement and DAD fails — the address is not used.
-
-DAD happens for every new address, including link-local. The brief delay between interface up and address assignment is DAD in progress.
+DAD applies to every new unicast address — SLAAC-generated, DHCPv6-assigned, or manually configured — not just the link-local address covered in step 2 above. The brief delay visible between interface up and address availability is DAD in progress. If a conflict is detected (another device replies with a NA), the address is abandoned and not used.
 
 ![](ndp-dad.svg "DAD flow — NS with source :: sent to solicited-node multicast, no reply means address is unique")
 
@@ -113,10 +125,25 @@ DAD happens for every new address, including link-local. The brief delay between
 | Mechanism | Broadcast | Solicited-node multicast |
 | Router discovery | Separate (DHCP / manual) | Built-in (RS/RA) |
 | Address conflict detection | Gratuitous ARP (optional) | DAD (mandatory) |
-| Authentication | None | Optional (SEND) |
+| Authentication | None | Optional ([SEND](/posts/2026-06-29-ipv6-explained-security/)) |
 | Scope | Link-local | Link-local |
 
 The multicast model means NDP is quieter than ARP on large segments — each NS reaches at most a small fraction of devices. It also means IPv6 is more dependent on multicast working correctly on the underlying network. Switches and wireless APs that filter multicast aggressively can break NDP.
+
+## Source Address Selection
+
+A device with multiple IPv6 addresses — which is the norm, not the exception — must choose which one to use as the source for each outgoing connection. RFC 6724 defines the **default address selection** algorithm that operating systems implement.
+
+The algorithm works through a ranked list of preference rules. The most impactful in practice:
+
+1. **Same scope wins** — prefer an address whose scope matches the destination. Link-local addresses are preferred for link-local destinations; global addresses for global destinations.
+2. **Prefix match wins** — if one candidate address shares a longer prefix with the destination, prefer it. This avoids routing asymmetry where traffic leaves via one path but replies arrive via another.
+3. **Preferred over deprecated** — a deprecated address (past its preferred lifetime) loses to a currently preferred one.
+4. **Temporary over public** — for outbound connections, a temporary (RFC 8981) address is preferred over a stable public one to limit trackability.
+
+In practice: a host with both a GUA and a ULA will use its GUA for internet traffic and its ULA for destinations within the ULA prefix — provided routing is correct. Source address selection does not substitute for routing; if no route to a ULA destination exists, the algorithm may still select a GUA source and the packet will be misrouted or dropped.
+
+On dual-stack hosts, the algorithm also ranks IPv6 against IPv4 candidates. IPv6 is strongly preferred when a AAAA record exists, because the IPv6 source and IPv6 destination are a same-family (same-scope) match — which ranks higher than an IPv4 address paired with an IPv6 destination. This is the mechanism behind Happy Eyeballs and why dual-stack hosts reach dual-stack servers over IPv6 by default.
 
 ## SLAAC vs DHCPv6
 
@@ -131,3 +158,4 @@ The multicast model means NDP is quieter than ARP on large segments — each NS 
 The absence of an address log is the most operationally significant difference. With SLAAC, there's no central record of which device has which address unless you're collecting RA or NDP data separately. For networks where address-to-device mapping matters (audit, security), stateful DHCPv6 or NDP logging is needed.
 
 [1]: https://datatracker.ietf.org/doc/html/rfc4861
+[2]: https://datatracker.ietf.org/doc/html/rfc8106

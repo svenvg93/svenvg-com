@@ -634,6 +634,7 @@ Each series has one accent color used for: series label text, primary glows, key
 
 | Series | Color | Hex |
 |--------|-------|-----|
+| IPv6 Explained | Emerald 400 | `#34d399` |
 | WiFi Explained | Sky 400 | `#38bdf8` |
 | Traefik Essentials | Teal | `#37BEC3` |
 | Smokeping Essentials | Sky 500 | `#0ea5e9` |

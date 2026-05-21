@@ -10,7 +10,7 @@ tags:
   - ipv6
 series:
   - IPv6 Explained
-series_order: 5
+series_order: 4
 ---
 
 The internet is not going to be fully IPv6 overnight. IPv4 servers will exist for years, and ISPs that have already moved their core infrastructure to IPv6 still need their customers to reach them. The mechanisms that bridge the gap — DS-Lite, NAT64, DNS64, and 464XLAT — are not curiosities. If you have a residential internet connection in Europe, your router is probably using one of them right now.

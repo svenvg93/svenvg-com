@@ -1,25 +1,89 @@
 ---
-title: "IPv6 Explained: Routing and Firewalling"
-description: IPv6 was designed without NAT — every device gets a public address and is reachable end-to-end. Here's what that means for routing, why NAT isn't security, and what a correct IPv6 firewall looks like.
+title: "IPv6 Explained: Prefix Delegation and Routing"
+description: ISPs delegate an entire prefix block to your router — not a single address. Here's how DHCPv6-PD works, how routers subdivide it into subnets, and how routing and firewalling work without NAT.
 date: 2026-06-08
 draft: false
 cover: cover.svg
+aliases:
+  - /posts/2026-06-04-ipv6-explained-prefix-delegation/
+  - /posts/ipv6-explained-prefix-delegation/
 categories:
   - Networking
 tags:
   - ipv6
 series:
   - IPv6 Explained
-series_order: 4
+series_order: 3
 ---
 
-IPv4 networks almost universally use NAT — Network Address Translation. A router maps many private addresses to a single public one, and keeps state to route replies back to the right device. It works, but it's a workaround for address exhaustion, not a design goal.
+In IPv4, a home router gets one public IP address from the ISP and uses NAT to share it across all devices on the LAN. IPv6 is designed differently: there's no NAT, so every device needs a public address. The mechanism that makes this work at scale is **prefix delegation** — the ISP delegates an entire address block to your router, which subdivides it and advertises smaller prefixes to each of its networks. Understanding how the router acquires that block is the foundation for understanding IPv6 routing.
 
-IPv6 was designed with enough address space to give every device a globally routable address. NAT is not needed and largely absent from IPv6 deployments. This changes how routing and firewalling work — and forces a clear separation between them.
+## DHCPv6-PD
+
+Prefix delegation is negotiated through **DHCPv6-PD** (DHCPv6 Prefix Delegation), defined in [RFC 8415][1]. It uses the same 4-step exchange as DHCPv6 (covered in [SLAAC and Neighbor Discovery](/posts/2026-06-01-ipv6-explained-slaac/)), but the router requests a prefix block rather than a single address. The router acts as a DHCPv6-PD client on its WAN interface; the ISP's DHCPv6 server assigns a prefix and its lease time.
+
+The router now owns that prefix for the duration of the lease and is responsible for routing all traffic destined to it.
+
+![](pd-exchange.svg "DHCPv6-PD exchange — router requests prefix delegation from ISP, receives /48 or /56")
+
+## Prefix Sizes
+
+ISPs vary in how much space they delegate:
+
+| Prefix | Subnets available (/64) | Typical assignment |
+|--------|------------------------|-------------------|
+| `/48`  | 65,536 | Business, some residential ISPs |
+| `/56`  | 256 | Common residential |
+| `/60`  | 16 | Some ISPs, minimal allocation |
+| `/64`  | 1 | Single subnet — no room to divide |
+
+A `/64` delegation is the worst case: the router can use it for exactly one subnet and cannot subdivide further (since `/64` is the standard subnet size). A `/56` is the practical minimum for a homelab — 256 subnets covers any reasonable VLAN segmentation. A `/48` gives essentially unlimited subnets.
+
+## Subdividing the Prefix
+
+Once the router has a delegated prefix, it carves it into `/64` subnets and assigns one to each interface or VLAN. It then sends Router Advertisements on each interface with the appropriate prefix, triggering [SLAAC](/posts/2026-06-01-ipv6-explained-slaac/) on the clients.
+
+With a `/56` delegation of `2001:db8:abcd:ab00::/56`, the router has 8 bits of subnet space — bits 56 to 63. In the fourth 16-bit group `abXX`, the first byte `ab` is part of the ISP's fixed /56 prefix; the second byte `XX` (00–ff) is the subnet field the router controls:
+
+```
+2001:db8:abcd:ab00::/64  ← LAN (VLAN 1)
+2001:db8:abcd:ab01::/64  ← IoT (VLAN 2)
+2001:db8:abcd:ab02::/64  ← Servers (VLAN 3)
+2001:db8:abcd:ab03::/64  ← Guest (VLAN 4)
+...
+2001:db8:abcd:abff::/64  ← subnet 255
+```
+
+![](pd-subdivision.svg "Prefix subdivision — /56 from ISP split into /64 subnets per VLAN")
+
+The router adds a route for the entire delegated prefix pointing to itself on the WAN side, and routes individual `/64` subnets to the correct internal interfaces.
+
+## Prefix Stability
+
+Delegated prefixes are not always stable. Many ISPs rotate prefixes on reconnect or lease expiry, which means every device's public address changes. This matters if you're running services reachable by IPv6 address, DNS records point to specific addresses, or firewall rules reference specific prefixes.
+
+Some ISPs offer stable prefix delegation as an add-on. Dynamic DNS that updates IPv6 records on prefix change can also mitigate the problem.
+
+## NPTv6
+
+NPTv6 (Network Prefix Translation for IPv6, [RFC 6296][2]) is a stateless 1:1 prefix translation mechanism. It maps one IPv6 prefix to another at the network boundary, rewriting only the network part while leaving the interface identifier unchanged.
+
+The primary use case is working around a `/64` delegation: the router translates the single delegated `/64` into multiple internal ULA prefixes, one per subnet. From the outside, all traffic appears to come from addresses within the delegated `/64`. Internally, each VLAN has its own ULA `/64`.
+
+```
+ISP delegates:  2001:db8:abcd:1::/64
+
+Internal VLAN 1 (ULA): fd00:1::/64  ←→  2001:db8:abcd:1::/64  (NPTv6)
+Internal VLAN 2 (ULA): fd00:2::/64  ←→  (no external mapping — internal only)
+```
+
+NPTv6 differs fundamentally from NAT44. It is stateless — there are no connection tracking tables and no port remapping. Each internal address maps deterministically to exactly one external address. End-to-end reachability is preserved for inbound connections, unlike NAT. But it still breaks the end-to-end address transparency that IPv6 was designed to provide, and some protocols that embed addresses in their payload will fail without application-layer gateways.
+
+NPTv6 is a workaround for a constrained delegation, not a recommended design. The correct solution is to obtain a larger prefix from your ISP.
 
 ## End-to-End Reachability
 
-The original internet model assumed every host had a globally routable address. NAT broke that model: a device behind NAT cannot receive unsolicited inbound connections without port forwarding. This complicates peer-to-peer applications, VoIP, gaming, and anything that needs to accept inbound traffic.
+With the router's prefix subdivided across subnets and advertised via RA, every device has a globally routable address. The original internet model assumed exactly this — NAT broke it: a device behind NAT cannot receive unsolicited inbound connections without port forwarding, complicating peer-to-peer applications, VoIP, gaming, and anything that needs to accept inbound traffic.
 
 IPv6 restores end-to-end connectivity. A device with a GUA (Global Unicast Address) is directly reachable from anywhere on the internet — no port forwarding required. The router forwards packets to the correct internal host based on the destination address.
 
@@ -37,7 +101,7 @@ In IPv6, the firewall must do what the stateful firewall in an IPv4 router does 
 
 Routing in IPv6 follows the same principles as IPv4. Routers forward packets based on the longest matching prefix in their routing table. The source address of a packet does not affect forwarding decisions (except for policy routing).
 
-What changes with prefix delegation is the routing hierarchy:
+The routing hierarchy with prefix delegation:
 
 - The ISP's core routers have a route for your delegated prefix pointing toward your CPE.
 - Your router has the delegated prefix in its table, with individual `/64` subnets pointing to internal interfaces.
@@ -89,3 +153,6 @@ Not every internal service should be reachable from the internet. A database, a 
 In IPv4 this is handled by not port-forwarding. In IPv6, the equivalent is assigning the service a **ULA address** (`fd00::/8`) instead of or in addition to its GUA. ULA addresses are not routed on the internet — the ISP drops them at the border. The firewall can also block inbound traffic to GUA addresses of internal-only services.
 
 Using ULA for internal services makes the intent explicit in the address itself, rather than relying solely on firewall rules that might change.
+
+[1]: https://datatracker.ietf.org/doc/html/rfc8415
+[2]: https://datatracker.ietf.org/doc/html/rfc6296

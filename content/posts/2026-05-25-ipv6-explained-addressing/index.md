@@ -86,7 +86,7 @@ The interface identifier can be generated several ways:
 
 ![](eui64-construction.svg "EUI-64 construction — MAC address split, fffe inserted, U/L bit flipped to produce the 64-bit interface ID")
 
-**Privacy extensions (RFC 4941)** — the interface ID is randomly generated and rotated periodically. Most modern operating systems use this by default for outbound connections to prevent tracking across networks.
+**Privacy extensions (RFC 8981)** — the interface ID is randomly generated and rotated periodically. Most modern operating systems use this by default for outbound connections to prevent tracking across networks.
 
 **Manual / static** — set explicitly. Common on routers, servers, and infrastructure where a stable address matters.
 
@@ -105,3 +105,40 @@ Your subnets:  2001:db8:abcd:0001::/64  ← VLAN 1
 ```
 
 The notation `/64` after the address specifies the prefix length — how many bits are the network part. Everything after is the interface ID.
+
+## Packet Header
+
+The IPv6 base header is fixed at **40 bytes**. Unlike IPv4 — which has a variable-length header with an options field — all options in IPv6 are pushed into extension headers, keeping the base header constant-length and router-friendly.
+
+| Field | Bits | Description |
+|---|---|---|
+| Version | 4 | Always 6 |
+| Traffic Class | 8 | Upper 6 bits: DSCP (QoS marking). Lower 2 bits: ECN (Explicit Congestion Notification). Equivalent to the IPv4 DS field. |
+| Flow Label | 20 | Identifies a flow between source and destination. Routers use it for consistent ECMP path selection without inspecting upper-layer headers. |
+| Payload Length | 16 | Length of everything after the 40-byte header, in bytes. Does not include the header itself. |
+| Next Header | 8 | Type of the next header — either an extension header or an upper-layer protocol (6=TCP, 17=UDP, 58=ICMPv6). |
+| Hop Limit | 8 | Decremented by each router. Packet dropped and ICMPv6 Time Exceeded sent when it reaches zero. Equivalent to IPv4's TTL. |
+| Source Address | 128 | — |
+| Destination Address | 128 | — |
+
+There is no header checksum. IPv4 included one because routers modified the TTL field in transit, requiring recomputation at every hop. IPv6's Hop Limit fills the same role but without a checksum — upper-layer protocols carry their own integrity checks, and link layers provide error detection.
+
+![](ipv6-packet-header.svg "IPv6 base header — 40-byte fixed structure with field sizes and purpose")
+
+## Extension Headers
+
+IPv6 replaces the IPv4 options field with **extension headers** — additional headers chained between the base header and the upper-layer protocol. Each header identifies the next via its own Next Header field, forming a linked list that terminates at the upper-layer protocol or at Next Header 59 (No Next Header).
+
+| Next Header | Extension Header | Purpose |
+|---|---|---|
+| 0 | Hop-by-Hop Options | Processed by every router on the path. Rarely used — per-hop processing is expensive and many operators drop these packets at the border as a DoS precaution. |
+| 43 | Routing | Specifies intermediate nodes the packet must traverse. Type 0 (RH0) was deprecated (RFC 5095) due to DoS amplification. Type 2 is used in Mobile IPv6. |
+| 44 | Fragment | Carries fragmentation state when the source has split a packet that exceeds path MTU. Routers never fragment — only sources do. |
+| 50 | ESP | IPsec Encapsulating Security Payload — encryption. |
+| 51 | AH | IPsec Authentication Header — integrity and origin authentication without encryption. |
+| 60 | Destination Options | Processed only by the final destination. |
+| 59 | No Next Header | Marks the end of the chain — no upper-layer payload follows. |
+
+Extension headers must appear in the order listed above, as defined by RFC 8200. In practice, the only ones commonly encountered are Fragment (source fragmentation and PMTUD) and ESP/AH (VPN traffic). Hop-by-Hop Options is the most restricted: because every router on the path must process it, it has been used as a DoS amplification vector and is widely filtered at network borders.
+
+![](extension-headers.svg "Extension header chaining — Next Header field links base header to extension headers to upper-layer protocol")

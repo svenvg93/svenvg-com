@@ -144,6 +144,7 @@ AmbientCapabilities=CAP_DAC_READ_SEARCH
 CapabilityBoundingSet=CAP_DAC_READ_SEARCH
 EOF
 sudo systemctl daemon-reload
+sudo usermod -aG docker alloy
 ```
 
 A service restart is required after any permission change.

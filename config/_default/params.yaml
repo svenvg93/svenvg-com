@@ -16,7 +16,7 @@ header:
     image: "/image.png"
     link: "/"
   showThemeSwitch: false
-  showDarkModeSwitch: false
+  showDarkModeSwitch: true
   showLanguageSwitch: false
   languageSwitchMode: "dropdown"  # dropdown | cycle
 

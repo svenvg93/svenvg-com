@@ -1,6 +1,6 @@
 ---
-title: "Ansible Essentials: Installation & Configuration"
-description: Install and configure Ansible on Linux, set up your inventory, and run your first ad-hoc commands and playbooks to automate infrastructure tasks.
+title: "Ansible Essentials: Installation, Playbooks & Roles"
+description: Install and configure Ansible, set up SSH access and your inventory, then organize your automation into playbooks, roles, and handlers for clean, reusable infrastructure code.
 date: 2025-05-15
 draft: false
 categories:
@@ -11,9 +11,12 @@ cover: cover.svg
 series:
   - Ansible Essentials
 series_order: 1
+aliases:
+  - /posts/2025-05-19-ansible-essentials-playbooks/
+  - /posts/ansible-essentials-installation-configuration/
 ---
 
-Ansible is a powerful automation tool that lets you manage your infrastructure using simple, repeatable playbooks. In this first part of the series, you'll install Ansible, configure SSH access, and run your first task — laying the foundation for automating your homelab.
+Ansible is a powerful automation tool that lets you manage your infrastructure using simple, repeatable playbooks. In this first part of the series, you'll install Ansible, configure SSH access, and set up your inventory — then organize your automation into playbooks, roles, and handlers so your project stays clean and reusable as your homelab grows.
 
 ## Install Ansible
 
@@ -73,8 +76,6 @@ homelab-ansible/
 ├── ansible.cfg
 ├── inventory/
 │   └── hosts.yml
-├── playbooks/
-│   └── install-htop.yml
 └── README.md
 ```
 
@@ -117,56 +118,145 @@ Use Ansible’s ping module to confirm everything is working:
 ansible -m ping homelab
 ```
 
-Each machine should return `pong` if SSH and the inventory are set up correctly.
+Each machine should return `pong` if SSH and the inventory are set up correctly. With connectivity confirmed, you're ready to organize real automation tasks using playbooks, roles, and handlers.
 
-## First Playbook: Install htop
+## What Are Ansible Roles?
 
-Let's create a simple Ansible playbook to install a package (in this case, `htop`) on all your homelab servers. It's a good practice to save your playbooks in a dedicated playbooks/ directory. If you don't have this folder yet, you can create it.
+Roles are a way to organize your Ansible code into reusable, modular components.
 
-Save the following content as `playbooks/install-htop.yml`:
+A role has a standard folder structure (tasks/, handlers/ etc.), and can include everything needed to configure a specific part of your system.
 
-```yaml {filename="install-htop.yml"}
-- name: Install htop on homelab servers
-  hosts: homelab
-  become: true
-  tasks:
-    - name: Ensure htop is installed
-      ansible.builtin.apt:
-        name: htop
-        state: present
+Benefits:
+- Keeps your playbooks clean
+- Promotes reuse across multiple playbooks
+- Encourages good organization
+
+Example:
+Instead of writing all tasks inline, you just do:
+
+```yaml
+roles:
+  - maintenance
 ```
 
+And Ansible will run roles/maintenance/tasks/main.yml.
+
+## What Are Handlers?
+
+Handlers are special tasks triggered only when notified by another task.
+
+They’re usually used for things like restarting services or rebooting after updates.
+
+Example:
+```yaml {filename="main.yml"}
+tasks:
+  - name: Update packages
+    apt:
+      upgrade: dist
+    notify: Reboot if required
+
+handlers:
+  - name: Reboot if required
+    reboot:
+      reboot_timeout: 600
+```
+
+So if the package update changes something, the handler will run. Otherwise, it won’t.
+
+## Project Structure, Revisited
+
+Once you start using roles, your project layout grows a `playbooks/` directory and a `roles/` directory alongside the inventory and config you already set up:
+
+```bash
+homelab-ansible/
+├── ansible.cfg
+├── inventory/
+│   └── hosts.yml
+├── playbooks/
+│   └── system-maintenance.yml
+├── roles/
+│   └── maintenance/
+│       ├── tasks/
+│       │   └── main.yml
+│       └── handlers/
+│           └── main.yml
+└── README.md
+```
+
+## Create a Maintenance role
+
+To maintain a well-organized and reusable Ansible project, we've introduced a role called `maintenance` that handles system package updates across all hosts. By using roles, we can group related tasks and logic—in this case, routine system maintenance—into a dedicated, structured directory for better clarity and reusability.
+
+### Create Task
+
+```yaml {filename="main.yml"}
+- name: Update APT package cache
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: Upgrade all packages
+  ansible.builtin.apt:
+    upgrade: dist
+    autoremove: true
+    autoclean: true
+  notify: Reboot if required
+```
+
+
+This file defines the main tasks:
+- Updates the APT cache
+- Upgrades all packages
+- Notifies the reboot handler if anything changes
+
+### Create Handlers
+
+```yaml {filename="main.yml"}
+- name: Reboot if required
+  ansible.builtin.reboot:
+    reboot_timeout: 600
+```
+
+The reboot handler is triggered only when notified by the upgrade task. If changes are made during the upgrade, the handler will automatically reboot the host to apply updates that require a restart.
+
+## Create Playbook
+
+```yaml {filename="system-maintenance.yml"}
+- name: Perform system maintenance
+  hosts: homelab
+  become: true
+  roles:
+    - maintenance
+```
+
+
 This playbook:
-- Connects to all hosts in the `homelab` group
-- Uses `sudo` (`become: true`)
-- Installs the `htop` package if it's not already present
+- Targets the `homelab` group in your `hosts.yml`
+- Uses privilege escalation (`become: true`)
+- Calls the `maintenance` role
+
 
 ## Run the Playbook
 
 From your project root:
 
 ```bash
-ansible-playbook playbooks/install-htop.yml --ask-become-pass
+ansible-playbook playbooks/system-maintenance.yml --ask-become-pass
 ```
 
 If your user has passwordless sudo, you can skip the `--ask-become-pass` flag.
 
-## Recap
+## Recap & What’s Next
 
 You’ve now:
 
-- Installed Ansible
-- Set up SSH key access to your servers
-- Created a clean project structure
-- Written and executed a basic playbook
+- Installed Ansible and set up SSH key access to your servers
+- Created a clean project structure with `ansible.cfg` and an inventory
+- Confirmed SSH connectivity with the `ping` module
+- Learned what roles and handlers are and why they matter
+- Created a reusable `maintenance` role with a task and a handler
+- Run a role-based playbook against your homelab
 
-## What’s Next
-
-In the next parts of this series, we’ll cover:
-- Organizing your automation with roles
-- Reacting to changes using handlers
-- Managing secrets securely with Ansible Vault
-
-You’re now ready to scale up your homelab automation. Let’s continue.
+Next up: **Variables, Facts & Templates** — how Ansible collects information about your hosts and uses it to generate dynamic configuration files.
 
 [1]: https://tailscale.com

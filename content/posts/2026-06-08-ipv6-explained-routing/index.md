@@ -1,12 +1,14 @@
 ---
-title: "IPv6 Explained: Prefix Delegation and Routing"
-description: ISPs delegate an entire prefix block to your router — not a single address. Here's how DHCPv6-PD works, how routers subdivide it into subnets, and how routing and firewalling work without NAT.
+title: "IPv6 Explained: Prefix Delegation, Routing & First-Hop Security"
+description: ISPs delegate an entire prefix block to your router — not a single address. Here's how DHCPv6-PD works, how routing and firewalling work without NAT, and how RA Guard, DHCPv6 Guard, and ND Inspection lock down the link layer against rogue RAs and neighbor-cache attacks.
 date: 2026-06-08
 draft: false
 cover: cover.svg
 aliases:
   - /posts/2026-06-04-ipv6-explained-prefix-delegation/
   - /posts/ipv6-explained-prefix-delegation/
+  - /posts/2026-06-29-ipv6-explained-security/
+  - /posts/ipv6-explained-prefix-delegation-and-routing/
 categories:
   - Networking
 tags:
@@ -16,7 +18,7 @@ series:
 series_order: 3
 ---
 
-In IPv4, a home router gets one public IP address from the ISP and uses NAT to share it across all devices on the LAN. IPv6 is designed differently: there's no NAT, so every device needs a public address. The mechanism that makes this work at scale is **prefix delegation** — the ISP delegates an entire address block to your router, which subdivides it and advertises smaller prefixes to each of its networks. Understanding how the router acquires that block is the foundation for understanding IPv6 routing.
+In IPv4, a home router gets one public IP address from the ISP and uses NAT to share it across all devices on the LAN. IPv6 is designed differently: there's no NAT, so every device needs a public address. The mechanism that makes this work at scale is **prefix delegation** — the ISP delegates an entire address block to your router, which subdivides it and advertises smaller prefixes to each of its networks. Understanding how the router acquires that block is the foundation for understanding IPv6 routing — and, once every device is directly addressable, for understanding how to secure the network at the border and at the link layer.
 
 ## DHCPv6-PD
 
@@ -154,5 +156,73 @@ In IPv4 this is handled by not port-forwarding. In IPv6, the equivalent is assig
 
 Using ULA for internal services makes the intent explicit in the address itself, rather than relying solely on firewall rules that might change.
 
+## First-Hop Security
+
+Everything above secures the border: the firewall decides what may cross from the WAN onto the LAN. But IPv6 also moves address assignment and router discovery onto the LAN's own link layer, where hosts trust Router Advertisements from any router and Neighbor Advertisements from any host by default — the rogue-RA and neighbor-cache risks already touched on in the [SLAAC and Neighbor Discovery](/posts/2026-06-01-ipv6-explained-slaac/) post are just as real on a well-firewalled network, because they never cross the border at all. Closing them takes switch-level mechanisms, not firewall rules.
+
+## RA Guard
+
+RA Guard ([RFC 6105][3]) is a switch-level feature that drops Router Advertisement and Router Redirect messages arriving on ports that should not be sending them. The switch is configured with a policy: router ports are allowed to send RAs; host ports are not. Any RA arriving on a host port is silently discarded before it reaches other devices.
+
+RA Guard operates at layer 2, making it transparent to hosts. Configuration is per-port:
+
+- **Router ports** — uplinks, trunk ports, or ports connected to known routers. RAs are permitted.
+- **Host ports** — access ports connected to end devices. RAs are dropped.
+
+The limitation of basic RA Guard is extension header evasion. An attacker can encapsulate a Router Advertisement inside a fragmented packet — the RA payload is split across multiple Fragment extension headers, and a naive RA Guard implementation that only inspects unfragmented packets will not recognize it as an RA. RFC 7113 updates RA Guard to require that implementations either:
+
+- Reassemble fragments before applying the policy, or
+- Drop all fragmented packets that could contain RA content on host ports.
+
+RA Guard does not protect against attacks on the router port itself or from devices connected to unmanaged switches.
+
+![](ra-guard-sequence.svg "RA Guard sequence — rogue RA blocked on host port; legitimate RA from router port forwarded")
+
+## DHCPv6 Guard
+
+DHCPv6 Guard ([RFC 7610][4]) applies the same principle to DHCPv6 server messages. The switch drops DHCPv6 Advertise and Reply messages arriving on host ports — only designated server ports may send them. A device on a host port attempting to run a rogue DHCPv6 server will have its responses silently dropped before they reach clients.
+
+DHCPv6 Guard can also validate that DHCPv6 Replies contain prefixes consistent with what the legitimate server would assign, though this requires the switch to be aware of the server's allocation policy.
+
+## ND Inspection (IPv6 Source Guard)
+
+ND Inspection — sometimes called IPv6 Source Guard or Neighbor Discovery Inspection — is the IPv6 equivalent of IPv4's Dynamic ARP Inspection and IP Source Guard combined.
+
+The switch builds a **binding table** associating:
+- IPv6 address
+- MAC address
+- Switch port
+- VLAN
+
+Entries are populated from observed DHCPv6 exchanges (if DHCPv6 snooping is enabled) or from NDP traffic (Neighbor Advertisements, DAD Neighbor Solicitations). Statically configured entries can also be added.
+
+With ND Inspection active, the switch validates every Neighbor Advertisement and data packet:
+
+- A Neighbor Advertisement claiming a binding that does not match the table (wrong MAC, wrong port) is dropped — preventing neighbor cache poisoning.
+- A data packet whose source IPv6 address does not match the binding for that port is dropped — preventing IP source spoofing.
+
+The binding table must be populated before it enforces — typically via DHCPv6 snooping on stateful networks, or via explicit seeding on SLAAC networks. SLAAC poses a challenge: addresses are self-generated, so there is no DHCP exchange for the switch to observe. Some implementations learn bindings from DAD Neighbor Solicitations, which are sent from `::` and include the candidate address in the target field. Others require manual binding entry or rely on NDP inspection of Neighbor Advertisements during address assignment.
+
+![](nd-inspection.svg "ND Inspection binding table — valid packet forwarded; spoofed source address or wrong port dropped")
+
+## SEND
+
+SEND (SEcure Neighbor Discovery, [RFC 3971][5]) takes a different approach to the same problem: instead of relying on switch enforcement, it cryptographically authenticates RAs and NAs at the protocol level, using Cryptographically Generated Addresses (CGAs, tying an interface identifier to the sender's public key) and a Router Authorization Certificate chain that proves a router is entitled to advertise on the link. In theory this closes the rogue-RA and neighbor-cache-poisoning problem without any switch involvement at all. In practice it requires universal host, router, and PKI support, adds computation overhead to address configuration, and no major operating system enables it by default — so RA Guard and DHCPv6 Guard, which need no host changes, are what actually gets deployed.
+
+## Summary
+
+| Mechanism | Mitigates | Where it runs | Requires |
+|---|---|---|---|
+| Stateful firewall | Unsolicited inbound connections from the WAN | Router (border) | Default-deny inbound policy, required ICMPv6 permitted |
+| RA Guard | Rogue Router Advertisements | Switch (per-port policy) | Managed switch with RA Guard support |
+| DHCPv6 Guard | Rogue DHCPv6 servers | Switch (per-port policy) | Managed switch with DHCPv6 Guard support |
+| ND Inspection | Neighbor cache poisoning, IP source spoofing | Switch (binding table) | Managed switch; DHCPv6 snooping or manual bindings |
+| SEND | Rogue RAs, neighbor cache poisoning | Host and router | PKI, host and router OS support |
+
+The border and the link layer are two different attack surfaces, and both need coverage: a default-deny stateful firewall at the WAN edge, plus RA Guard and DHCPv6 Guard on access ports, plus ND Inspection wherever stateful DHCPv6 provides a binding table to enforce against. SEND remains the theoretically complete answer, deferred until host and router ecosystem support actually materializes.
+
 [1]: https://datatracker.ietf.org/doc/html/rfc8415
 [2]: https://datatracker.ietf.org/doc/html/rfc6296
+[3]: https://datatracker.ietf.org/doc/html/rfc6105
+[4]: https://datatracker.ietf.org/doc/html/rfc7610
+[5]: https://datatracker.ietf.org/doc/html/rfc3971

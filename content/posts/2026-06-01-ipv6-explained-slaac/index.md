@@ -125,7 +125,7 @@ DAD applies to every new unicast address — SLAAC-generated, DHCPv6-assigned, o
 | Mechanism | Broadcast | Solicited-node multicast |
 | Router discovery | Separate (DHCP / manual) | Built-in (RS/RA) |
 | Address conflict detection | Gratuitous ARP (optional) | DAD (mandatory) |
-| Authentication | None | Optional ([SEND](/posts/2026-06-29-ipv6-explained-security/)) |
+| Authentication | None | Optional ([SEND](/posts/2026-06-08-ipv6-explained-routing/)) |
 | Scope | Link-local | Link-local |
 
 The multicast model means NDP is quieter than ARP on large segments — each NS reaches at most a small fraction of devices. It also means IPv6 is more dependent on multicast working correctly on the underlying network. Switches and wireless APs that filter multicast aggressively can break NDP.

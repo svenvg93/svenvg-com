@@ -11,14 +11,14 @@ tags:
   - traefik
 series:
   - Traefik Essentials
-series_order: 6
+series_order: 4
 ---
 
 HTTP routing works because Traefik can read the request — the hostname, the path, the headers — and make a decision based on what it sees. Not every service speaks HTTP. For databases, DNS resolvers, game servers, or anything else that uses raw TCP or UDP, Traefik operates at Layer 4: it sees the port and, for TLS connections, the SNI name. That is enough to route most non-HTTP traffic without running a separate proxy.
 
 ## Prerequisites
 
-- Traefik running from the [Docker setup][1] or [bare metal install][2]
+- Traefik running — see the [installation guide][1]
 
 ## How TCP/UDP Routing Differs from HTTP
 
@@ -221,4 +221,3 @@ udp:
 A TLS connection to `:443` is matched by SNI and forwarded encrypted to `192.168.1.10:443`. A connection to `:5432` goes straight to the PostgreSQL server on `192.168.1.20`. A UDP packet to `:53` is forwarded to the DNS resolver on `192.168.1.1`.
 
 [1]: {{< ref "/posts/2024-05-21-traefik-essentials-setup" >}}
-[2]: {{< ref "/posts/2026-03-23-traefik-essentials-bare-metal" >}}

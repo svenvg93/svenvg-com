@@ -22,7 +22,7 @@ GL.iNet routers run OpenWRT, which has native Prometheus exporter packages and r
 
 ## Prerequisites
 
-- Grafana, Alloy, Prometheus, and Loki already running. See the [Log Monitoring with Grafana Alloy and Loki]({{< ref "/posts/2026-02-05-grafana-observability-log-monitoring" >}}) post for the observability stack setup.
+- Grafana, Alloy, Prometheus, and Loki already running. See the [Host, Container & Log Monitoring with Alloy]({{< ref "/posts/2026-01-22-grafana-observability-host-container-monitoring" >}}) post for the observability stack setup.
 - A GL.iNet router set up as per the [GL.iNet Travel Router Setup]({{< ref "/posts/2025-04-05-setup-travel-router" >}}) guide.
 
 ## Metrics

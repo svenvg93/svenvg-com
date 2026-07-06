@@ -11,7 +11,7 @@ tags:
 cover: cover.svg
 series:
   - Grafana Observability
-series_order: 5
+series_order: 4
 ---
 
 Dashboards created through the Grafana UI are stored in its SQLite database inside the `grafana_data` volume. The volume survives container rebuilds, but it is not in version control — there is no history, no way to diff changes, and no easy path to reproducing the same setup on another machine. Provisioning solves this by loading dashboards from JSON files on disk at startup, keeping them alongside the rest of your stack config in git.

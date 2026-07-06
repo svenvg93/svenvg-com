@@ -12,7 +12,7 @@ tags:
 cover: cover.svg
 series:
   - Grafana Observability
-series_order: 4
+series_order: 3
 ---
 
 Collecting metrics is only half the picture — you also need to know when something breaks. Grafana Alerting evaluates rules against your Prometheus data and fires notifications to a contact point of your choice.
@@ -149,9 +149,11 @@ You do not need to keep everything in one alert group either. A common split is:
 - `Infrastructure` for service availability and network-level checks
 - `Docker` for container restarts, unhealthy containers, or missing exporters
 
-Here is the full ruleset, split into three groups:
+All rules across all three groups live together in a single `alerting/rules.yaml` file. Rather than reprint all eighteen rules — most of which just swap out the PromQL expression and threshold — here's the full definition of one representative rule from each group, followed by a summary table of the rest.
 
-```yaml {filename="alerting/rules.yaml"}
+#### Systems: CPU Usage High
+
+```yaml {filename="alerting/rules.yaml (excerpt — systems group)"}
 apiVersion: 1
 groups:
   - orgId: 1
@@ -200,259 +202,15 @@ groups:
           __dashboardUid__: "ddmvax2tzuv40c"
           __panelId__: "5"
           summary: "{{ $labels.instance }} CPU above 80% (current: {{ $values.A.Value | printf \"%.1f\" }}%)"
+```
 
-      - uid: memory-high
-        title: Memory Usage High
-        condition: B
-        data:
-          - refId: A
-            datasourceUid: prometheus
-            relativeTimeRange:
-              from: 300
-              to: 0
-            model:
-              expr: (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100
-              instant: true
-              refId: A
-          - refId: B
-            datasourceUid: "__expr__"
-            model:
-              type: threshold
-              expression: "A"
-              refId: B
-              conditions:
-                - evaluator:
-                    params:
-                      - 85
-                    type: gt
-                  operator:
-                    type: and
-                  query:
-                    params:
-                      - A
-                  reducer:
-                    type: last
-        noDataState: OK
-        execErrState: Error
-        for: 5m
-        labels:
-          scope: system
-          severity: warning
-        annotations:
-          __dashboardUid__: "ddmvax2tzuv40c"
-          __panelId__: "6"
-          summary: "{{ $labels.instance }} memory above 85% (current: {{ $values.A.Value | printf \"%.1f\" }}%)"
+The query (refId `A`) averages CPU utilization across all cores over a 2-minute window; the threshold step (refId `B`) compares that average against 80% separately, so a scrape gap doesn't get misread as "no data = alert". It only fires once CPU has stayed above 80% for a full 5 minutes (`for: 5m`), and the summary annotation reuses the evaluated value (`$values.A.Value`) so the Discord message shows the exact percentage that tripped it.
 
-      - uid: swap-high
-        title: Swap Usage High
-        condition: B
-        data:
-          - refId: A
-            datasourceUid: prometheus
-            relativeTimeRange:
-              from: 300
-              to: 0
-            model:
-              expr: (1 - (node_memory_SwapFree_bytes / node_memory_SwapTotal_bytes)) * 100
-              instant: true
-              refId: A
-          - refId: B
-            datasourceUid: "__expr__"
-            model:
-              type: threshold
-              expression: "A"
-              refId: B
-              conditions:
-                - evaluator:
-                    params:
-                      - 80
-                    type: gt
-                  operator:
-                    type: and
-                  query:
-                    params:
-                      - A
-                  reducer:
-                    type: last
-        noDataState: OK
-        execErrState: Error
-        for: 5m
-        labels:
-          scope: system
-          severity: warning
-        annotations:
-          __dashboardUid__: "ddmvax2tzuv40c"
-          __panelId__: "14"
-          summary: "{{ $labels.instance }} swap above 80% (current: {{ $values.A.Value | printf \"%.1f\" }}%)"
+#### Infrastructure: Host Down
 
-      - uid: disk-low
-        title: Disk Space Low
-        condition: B
-        data:
-          - refId: A
-            datasourceUid: prometheus
-            relativeTimeRange:
-              from: 300
-              to: 0
-            model:
-              expr: (node_filesystem_avail_bytes{mountpoint="/"} / node_filesystem_size_bytes{mountpoint="/"}) * 100
-              instant: true
-              refId: A
-          - refId: B
-            datasourceUid: "__expr__"
-            model:
-              type: threshold
-              expression: "A"
-              refId: B
-              conditions:
-                - evaluator:
-                    params:
-                      - 10
-                    type: lt
-                  operator:
-                    type: and
-                  query:
-                    params:
-                      - A
-                  reducer:
-                    type: last
-        noDataState: OK
-        execErrState: Error
-        for: 5m
-        labels:
-          scope: system
-          severity: warning
-        annotations:
-          __dashboardUid__: "ddmvax2tzuv40c"
-          __panelId__: "16"
-          summary: "{{ $labels.instance }} disk below 10% (current: {{ $values.A.Value | printf \"%.1f\" }}%)"
-
-      - uid: load-high
-        title: High Load Average
-        condition: B
-        data:
-          - refId: A
-            datasourceUid: prometheus
-            relativeTimeRange:
-              from: 300
-              to: 0
-            model:
-              expr: node_load15 / count without(cpu, mode) (node_cpu_seconds_total{mode="idle"})
-              instant: true
-              refId: A
-          - refId: B
-            datasourceUid: "__expr__"
-            model:
-              type: threshold
-              expression: "A"
-              refId: B
-              conditions:
-                - evaluator:
-                    params:
-                      - 1
-                    type: gt
-                  operator:
-                    type: and
-                  query:
-                    params:
-                      - A
-                  reducer:
-                    type: last
-        noDataState: OK
-        execErrState: Error
-        for: 10m
-        labels:
-          scope: system
-          severity: warning
-        annotations:
-          __dashboardUid__: "ddmvax2tzuv40c"
-          __panelId__: "17"
-          summary: "{{ $labels.instance }} load average high (current: {{ $values.A.Value | printf \"%.2f\" }} per CPU)"
-
-      - uid: temp-high
-        title: High Temperature
-        condition: B
-        data:
-          - refId: A
-            datasourceUid: prometheus
-            relativeTimeRange:
-              from: 300
-              to: 0
-            model:
-              expr: max by(instance) (node_hwmon_temp_celsius)
-              instant: true
-              refId: A
-          - refId: B
-            datasourceUid: "__expr__"
-            model:
-              type: threshold
-              expression: "A"
-              refId: B
-              conditions:
-                - evaluator:
-                    params:
-                      - 85
-                    type: gt
-                  operator:
-                    type: and
-                  query:
-                    params:
-                      - A
-                  reducer:
-                    type: last
-        noDataState: OK
-        execErrState: Error
-        for: 5m
-        labels:
-          scope: system
-          severity: warning
-        annotations:
-          __dashboardUid__: "ddmvax2tzuv40c"
-          __panelId__: "18"
-          summary: "{{ $labels.instance }} temperature above 85°C (current: {{ $values.A.Value | printf \"%.0f\" }}°C)"
-
-      - uid: system-reboot
-        title: System Reboot Detected
-        condition: B
-        data:
-          - refId: A
-            datasourceUid: prometheus
-            relativeTimeRange:
-              from: 300
-              to: 0
-            model:
-              expr: time() - node_boot_time_seconds
-              instant: true
-              refId: A
-          - refId: B
-            datasourceUid: "__expr__"
-            model:
-              type: threshold
-              expression: "A"
-              refId: B
-              conditions:
-                - evaluator:
-                    params:
-                      - 300
-                    type: lt
-                  operator:
-                    type: and
-                  query:
-                    params:
-                      - A
-                  reducer:
-                    type: last
-        noDataState: OK
-        execErrState: Error
-        for: 0m
-        labels:
-          scope: system
-          severity: warning
-        annotations:
-          __dashboardUid__: "ddmvax2tzuv40c"
-          __panelId__: "1"
-          summary: "{{ $labels.instance }} has rebooted (uptime: {{ $values.A.Value | printf \"%.0f\" }}s)"
-
+```yaml {filename="alerting/rules.yaml (excerpt — infrastructure group)"}
+apiVersion: 1
+groups:
   - orgId: 1
     name: infrastructure
     folder: Infrastructure
@@ -481,241 +239,15 @@ groups:
           __dashboardUid__: "ddmvax2tzuv40c"
           __panelId__: "1"
           summary: "{{ $labels.instance }} is unreachable"
+```
 
-      - uid: network-errors
-        title: Network Errors
-        condition: B
-        data:
-          - refId: A
-            datasourceUid: prometheus
-            relativeTimeRange:
-              from: 300
-              to: 0
-            model:
-              expr: sum by(instance) (rate(node_network_receive_errs_total{device!~"veth.+|br.+|docker0|lo"}[5m]) + rate(node_network_transmit_errs_total{device!~"veth.+|br.+|docker0|lo"}[5m]))
-              instant: true
-              refId: A
-          - refId: B
-            datasourceUid: "__expr__"
-            model:
-              type: threshold
-              expression: "A"
-              refId: B
-              conditions:
-                - evaluator:
-                    params:
-                      - 10
-                    type: gt
-                  operator:
-                    type: and
-                  query:
-                    params:
-                      - A
-                  reducer:
-                    type: last
-        noDataState: OK
-        execErrState: Error
-        for: 5m
-        labels:
-          scope: infra
-          severity: warning
-        annotations:
-          __dashboardUid__: "ddmvax2tzuv40c"
-          __panelId__: "20"
-          summary: "{{ $labels.instance }} network errors detected"
+This one skips the two-step pattern — `up{job="unix"} == 0` already evaluates to a clean boolean, so `condition: A` is enough on its own. The important difference from the threshold-style rules is `noDataState: Alerting` and `execErrState: Alerting`: for every other rule a missing scrape resolves to `OK`, but here a host that stops responding entirely looks exactly like "no data", so both are flipped to `Alerting` to make sure a fully-dead host still pages you instead of going quiet.
 
-      - uid: network-high
-        title: Network Throughput High
-        condition: B
-        data:
-          - refId: A
-            datasourceUid: prometheus
-            relativeTimeRange:
-              from: 300
-              to: 0
-            model:
-              expr: sum by(instance) (rate(node_network_receive_bytes_total{device!~"veth.+|br.+|docker0|lo"}[5m]) + rate(node_network_transmit_bytes_total{device!~"veth.+|br.+|docker0|lo"}[5m]))
-              instant: true
-              refId: A
-          - refId: B
-            datasourceUid: "__expr__"
-            model:
-              type: threshold
-              expression: "A"
-              refId: B
-              conditions:
-                - evaluator:
-                    params:
-                      - 100000000
-                    type: gt
-                  operator:
-                    type: and
-                  query:
-                    params:
-                      - A
-                  reducer:
-                    type: last
-        noDataState: OK
-        execErrState: Error
-        for: 5m
-        labels:
-          scope: infra
-          severity: warning
-        annotations:
-          __dashboardUid__: "ddmvax2tzuv40c"
-          __panelId__: "8"
-          summary: "{{ $labels.instance }} network throughput above 100 MB/s (current: {{ humanize1024 $values.A.Value }}/s)"
+#### Docker: Docker Container Down
 
-      - uid: traefik-down
-        title: Traefik Down
-        condition: A
-        data:
-          - refId: A
-            datasourceUid: prometheus
-            relativeTimeRange:
-              from: 300
-              to: 0
-            model:
-              expr: up{job="traefik"} == 0
-              instant: true
-              refId: A
-        noDataState: Alerting
-        execErrState: Alerting
-        for: 2m
-        labels:
-          scope: infra
-          severity: critical
-        annotations:
-          __dashboardUid__: "ddmlqvk12uozka"
-          __panelId__: "1"
-          summary: "Traefik metrics endpoint {{ $labels.instance }} is unreachable"
-
-      - uid: traefik-5xx-high
-        title: Traefik 5xx Rate High
-        condition: B
-        data:
-          - refId: A
-            datasourceUid: prometheus
-            relativeTimeRange:
-              from: 300
-              to: 0
-            model:
-              expr: sum by(instance) (rate(traefik_service_requests_total{code=~"5..", protocol="http"}[5m]))
-              instant: true
-              refId: A
-          - refId: B
-            datasourceUid: "__expr__"
-            model:
-              type: threshold
-              expression: "A"
-              refId: B
-              conditions:
-                - evaluator:
-                    params:
-                      - 0.1
-                    type: gt
-                  operator:
-                    type: and
-                  query:
-                    params:
-                      - A
-                  reducer:
-                    type: last
-        noDataState: OK
-        execErrState: Error
-        for: 5m
-        labels:
-          scope: infra
-          severity: warning
-        annotations:
-          __dashboardUid__: "ddmlqvk12uozka"
-          __panelId__: "6"
-          summary: "{{ $labels.instance }} Traefik 5xx rate is high (current: {{ $values.A.Value | printf \"%.2f\" }} req/s)"
-
-      - uid: traefik-latency-high
-        title: Traefik Response Time High
-        condition: B
-        data:
-          - refId: A
-            datasourceUid: prometheus
-            relativeTimeRange:
-              from: 300
-              to: 0
-            model:
-              expr: sum by(instance) (rate(traefik_service_request_duration_seconds_sum[5m])) / sum by(instance) (rate(traefik_service_request_duration_seconds_count[5m]))
-              instant: true
-              refId: A
-          - refId: B
-            datasourceUid: "__expr__"
-            model:
-              type: threshold
-              expression: "A"
-              refId: B
-              conditions:
-                - evaluator:
-                    params:
-                      - 1
-                    type: gt
-                  operator:
-                    type: and
-                  query:
-                    params:
-                      - A
-                  reducer:
-                    type: last
-        noDataState: OK
-        execErrState: Error
-        for: 10m
-        labels:
-          scope: infra
-          severity: warning
-        annotations:
-          __dashboardUid__: "ddmlqvk12uozka"
-          __panelId__: "7"
-          summary: "{{ $labels.instance }} Traefik response time is high (current: {{ $values.A.Value | printf \"%.2f\" }}s)"
-
-      - uid: traefik-cert-expiring
-        title: Traefik Certificate Expiring Soon
-        condition: B
-        data:
-          - refId: A
-            datasourceUid: prometheus
-            relativeTimeRange:
-              from: 300
-              to: 0
-            model:
-              expr: (traefik_tls_certs_not_after{san=~".*"} - time()) / 86400
-              instant: true
-              refId: A
-          - refId: B
-            datasourceUid: "__expr__"
-            model:
-              type: threshold
-              expression: "A"
-              refId: B
-              conditions:
-                - evaluator:
-                    params:
-                      - 14
-                    type: lt
-                  operator:
-                    type: and
-                  query:
-                    params:
-                      - A
-                  reducer:
-                    type: last
-        noDataState: OK
-        execErrState: Error
-        for: 0m
-        labels:
-          scope: infra
-          severity: warning
-        annotations:
-          __dashboardUid__: "ddmlqvk12uozka"
-          __panelId__: "34"
-          summary: "Certificate {{ $labels.cn }} expires soon ({{ $values.A.Value | printf \"%.1f\" }} days left)"
-
+```yaml {filename="alerting/rules.yaml (excerpt — docker group)"}
+apiVersion: 1
+groups:
   - orgId: 1
     name: docker
     folder: Docker
@@ -762,133 +294,31 @@ groups:
           __dashboardUid__: "docker-metrics"
           __panelId__: "200"
           summary: "{{ $labels.name }} has not reported metrics for more than 60 seconds"
-
-      - uid: docker-container-restart-loop
-        title: Docker Container Restart Loop
-        condition: B
-        data:
-          - refId: A
-            datasourceUid: prometheus
-            relativeTimeRange:
-              from: 900
-              to: 0
-            model:
-              expr: changes(container_start_time_seconds{container_label_com_docker_compose_project!="", name!=""}[15m])
-              instant: true
-              refId: A
-          - refId: B
-            datasourceUid: "__expr__"
-            model:
-              type: threshold
-              expression: "A"
-              refId: B
-              conditions:
-                - evaluator:
-                    params:
-                      - 2
-                    type: gt
-                  operator:
-                    type: and
-                  query:
-                    params:
-                      - A
-                  reducer:
-                    type: last
-        noDataState: OK
-        execErrState: Error
-        for: 0m
-        labels:
-          scope: docker
-          severity: critical
-        annotations:
-          __dashboardUid__: "docker-metrics"
-          __panelId__: "200"
-          summary: "{{ $labels.name }} restarted {{ $values.A.Value | printf \"%.0f\" }} times in the last 15 minutes"
-
-      - uid: docker-container-cpu-high
-        title: Docker Container CPU High
-        condition: B
-        data:
-          - refId: A
-            datasourceUid: prometheus
-            relativeTimeRange:
-              from: 300
-              to: 0
-            model:
-              expr: sum by(name) (rate(container_cpu_usage_seconds_total{container_label_com_docker_compose_project!="", name!=""}[5m]))
-              instant: true
-              refId: A
-          - refId: B
-            datasourceUid: "__expr__"
-            model:
-              type: threshold
-              expression: "A"
-              refId: B
-              conditions:
-                - evaluator:
-                    params:
-                      - 0.8
-                    type: gt
-                  operator:
-                    type: and
-                  query:
-                    params:
-                      - A
-                  reducer:
-                    type: last
-        noDataState: OK
-        execErrState: Error
-        for: 10m
-        labels:
-          scope: docker
-          severity: warning
-        annotations:
-          __dashboardUid__: "docker-metrics"
-          __panelId__: "2"
-          summary: "{{ $labels.name }} CPU usage is high (current: {{ $values.A.Value | printf \"%.2f\" }} cores)"
-
-      - uid: docker-container-memory-high
-        title: Docker Container Memory High
-        condition: B
-        data:
-          - refId: A
-            datasourceUid: prometheus
-            relativeTimeRange:
-              from: 300
-              to: 0
-            model:
-              expr: container_memory_working_set_bytes{container_label_com_docker_compose_project!="", name!=""}
-              instant: true
-              refId: A
-          - refId: B
-            datasourceUid: "__expr__"
-            model:
-              type: threshold
-              expression: "A"
-              refId: B
-              conditions:
-                - evaluator:
-                    params:
-                      - 1073741824
-                    type: gt
-                  operator:
-                    type: and
-                  query:
-                    params:
-                      - A
-                  reducer:
-                    type: last
-        noDataState: OK
-        execErrState: Error
-        for: 10m
-        labels:
-          scope: docker
-          severity: warning
-        annotations:
-          __dashboardUid__: "docker-metrics"
-          __panelId__: "3"
-          summary: "{{ $labels.name }} memory usage is high (current: {{ humanize1024 $values.A.Value }})"
 ```
+
+This one uses `container_last_seen` rather than `up{job="docker"}`, because cAdvisor's own scrape target stays up even when an individual container has stopped — only that container's last-seen timestamp goes stale. The PromQL already contains the threshold (`> 60`), which evaluates to `1` once a container hasn't reported in over 60 seconds; refId `B` just checks that this result is greater than `0`, i.e. true. The label filters `container_label_com_docker_compose_project!=""` and `name!=""` exclude cAdvisor's own internal/pause-container series that don't carry a real container name.
+
+#### The rest of the ruleset
+
+The remaining rules follow the same two-step query/threshold pattern shown above, just with a different PromQL expression and threshold per check. The full YAML for all of them is in the project's alerting config; here's what each one does:
+
+| Rule | What it checks | Threshold | Severity |
+|---|---|---|---|
+| Memory Usage High (`memory-high`) | % of RAM in use | > 85% for 5m | warning |
+| Swap Usage High (`swap-high`) | % of swap in use | > 80% for 5m | warning |
+| Disk Space Low (`disk-low`) | % free space on the root filesystem | < 10% for 5m | warning |
+| High Load Average (`load-high`) | 15-minute load average, normalized per CPU core | > 1 per core for 10m | warning |
+| High Temperature (`temp-high`) | Highest hwmon sensor reading | > 85°C for 5m | warning |
+| System Reboot Detected (`system-reboot`) | Seconds since boot | < 300s uptime, fires immediately | warning |
+| Network Errors (`network-errors`) | Combined rx+tx error rate on physical interfaces | > 10 errors/s for 5m | warning |
+| Network Throughput High (`network-high`) | Combined rx+tx byte rate on physical interfaces | > 100 MB/s for 5m | warning |
+| Traefik Down (`traefik-down`) | Traefik metrics endpoint reachability | unreachable for 2m | critical |
+| Traefik 5xx Rate High (`traefik-5xx-high`) | Rate of HTTP 5xx responses served by Traefik | > 0.1 req/s for 5m | warning |
+| Traefik Response Time High (`traefik-latency-high`) | Average request duration across Traefik services | > 1s for 10m | warning |
+| Traefik Certificate Expiring Soon (`traefik-cert-expiring`) | Days remaining until TLS cert expiry | < 14 days | warning |
+| Docker Container Restart Loop (`docker-container-restart-loop`) | Number of container start-time changes in a 15m window | > 2 restarts / 15m | critical |
+| Docker Container CPU High (`docker-container-cpu-high`) | Per-container CPU usage rate | > 0.8 cores for 10m | warning |
+| Docker Container Memory High (`docker-container-memory-high`) | Per-container working set memory | > 1 GiB for 10m | warning |
 
 ### Dashboard Linking
 

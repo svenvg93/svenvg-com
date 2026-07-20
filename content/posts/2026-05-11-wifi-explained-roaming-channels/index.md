@@ -1,0 +1,265 @@
+---
+title: "WiFi Explained: Roaming & Channel Management"
+description: Transmit power, channel selection, and channel width shape how well a network performs — and they determine how well roaming and band steering work on top of it. Here's how to tune the radio settings, and how 802.11k/r/v and band steering move clients between APs and bands.
+date: 2026-05-11
+draft: false
+cover: cover.svg
+categories:
+  - Networking
+tags:
+  - wifi
+  - wifi7
+---
+
+Three settings sit on every AP's radio configuration page: transmit power, channel, and channel width. Most installs leave them on auto and move on — which is often fine, but understanding what they actually control is the difference between a network that works and one that works well. It also matters for what comes next: once a network has more than one AP or more than one band, clients need to move between them at the right time, and that's roaming and band steering's job. Get the radio settings wrong and no amount of roaming tuning fixes it; get them right and roaming has a much easier job to do.
+
+## Transmit Power and the Asymmetric Link
+
+A Wi-Fi access point typically transmits around 20–23 dBm (100–200 mW) on 2.4 GHz. On 5 GHz, transmit power is often slightly lower indoors, commonly around 17–21 dBm, while 6 GHz devices are typically in the 14–18 dBm range indoors, depending on regional regulations and device class.
+
+Smartphones usually transmit at lower power levels, often around 10–18 dBm (sometimes peaking near 20 dBm), with transmit power dynamically reduced for battery savings and thermal management. Laptops generally fall somewhere in between, commonly around 15–20 dBm depending on the Wi-Fi chipset and antenna design.
+
+It's also important to remember that Wi-Fi performance is often limited by the client device's transmit power rather than the AP itself. Even if the AP can transmit strongly, the phone or laptop still needs enough transmit power for the AP to reliably receive the response.
+
+This asymmetry can create a link that appears stronger in one direction than the other. A client located 25 metres from the AP may decode the AP's beacon at −65 dBm and display a strong signal indicator. Meanwhile, the AP — receiving the client's weaker uplink transmission — may see that same device at −80 dBm, near the edge of reliable reception.
+
+**The RSSI shown on the client is downlink signal** — what the AP transmits and the client receives. It says nothing about what the AP can hear back. A client with a full signal bar but a poor uplink retransmits constantly, holds a low data rate, and consumes airtime — without the user seeing any obvious problem.
+
+**High transmit power isn't always better.** At maximum power, the AP's coverage circle expands — but it creates a zone at the outer edge where clients associate based on strong downlink but can't transmit back effectively. It also increases co-channel interference for neighbouring APs. In dense multi-AP environments, lower per-AP power combined with closer spacing outperforms high power with sparse placement.
+
+The right transmit power is set so that the -70 dBm downlink contour roughly matches the range at which client uplinks are still usable — typically 14–18 dBm in multi-AP environments rather than the 23 dBm maximum.
+
+![](power-asymmetry.svg "Transmit power asymmetry — AP and client TX power difference and resulting RSSI gap")
+
+## Channel Selection
+
+WiFi channels are slices of the radio spectrum. Choosing them well minimises interference between APs sharing the same physical space.
+
+### 2.4 GHz — Only Three Usable Channels
+
+The 2.4 GHz band is 83.5 MHz wide and divided into 13 channels (14 in Japan) spaced 5 MHz apart. A 20 MHz channel overlaps with the four channels on either side. The only three channels that don't overlap with each other in most regions are **1, 6, and 11**.
+
+Using any other channel — 3, 8, 4 — means your transmissions partially overlap with neighbours, causing worse interference than full co-channel overlap would. Co-channel devices at least detect each other via CSMA/CA and back off. Partially-overlapping devices don't detect each other — they transmit simultaneously and corrupt each other's frames without backing off.
+
+The practical result: every 2.4 GHz radio in a building should be on 1, 6, or 11. Nothing else.
+
+### 5 GHz — More Channels, More Flexibility
+
+The 5 GHz band offers up to 25 non-overlapping 20 MHz channels in most regions. It's divided into three sub-bands:
+
+- **UNII-1 (channels 36–48)** — available everywhere, no restrictions, no DFS required. Use these first.
+- **UNII-2 (channels 52–144)** — require **DFS** (Dynamic Frequency Selection). The AP must scan for radar and vacate the channel within 10 seconds if detected. DFS channel changes cause a 30–60 second service interruption on that radio.
+- **UNII-3 (channels 149–165, with 169–177 available in some regions)** — available without DFS in most regions. Good second option after UNII-1.
+
+Auto channel selection works well on 5 GHz because the band has enough channels that APs can find clean ones without user help.
+
+### 6 GHz — The Cleanest Band
+
+WiFi 6E and WiFi 7 add the 6 GHz band (5.925–7.125 GHz), providing up to 59 non-overlapping 20 MHz channels depending on region. No legacy devices use it, and the band is effectively empty compared to the crowded 2.4 and 5 GHz bands. The trade-off is range — 6 GHz attenuates faster through walls and with distance.
+
+The regulatory picture in 6 GHz is more layered than 5 GHz:
+
+- **Low Power Indoor (LPI)** — the default class for consumer APs. No DFS, no AFC. Max 30 dBm EIRP. Indoor use only.
+- **Standard Power** — higher transmit power (up to 36 dBm EIRP) for outdoor and long-range use, but requires **AFC (Automated Frequency Coordination)**: the AP queries a cloud service that checks whether any licensed incumbent (fixed satellite, point-to-point microwave) is present on the requested channel at the device's location. If clear, the channel is granted. If not, the AP uses a different one.
+- **Very Low Power (VLP)** — no AFC, no DFS, max 21 dBm EIRP. Designed for wearables and IoT.
+
+Most home and office APs operate as LPI devices, which is why the "no DFS, no AFC" experience is the norm for consumer equipment. Standard Power and AFC are relevant mainly for outdoor enterprise deployments.
+
+![](channel-selection.svg "Channel selection across 2.4, 5, and 6 GHz — usable channels, overlap zones, and DFS")
+
+## Channel Width
+
+Channel width controls how much spectrum a radio uses per transmission. Wider channels carry more data per frame — an 80 MHz channel has four times the raw capacity of a 20 MHz channel — but they consume more spectrum, leave fewer non-overlapping options, and pick up interference from a wider frequency range.
+
+### 2.4 GHz: Always 20 MHz
+
+The 2.4 GHz band is only 83.5 MHz wide. A 40 MHz channel consumes nearly half of it, leaving at most two non-overlapping options — and those two options overlap with neighbouring networks. 20 MHz is the correct width for 2.4 GHz in any environment with neighbours. The throughput gain from 40 MHz doesn't compensate for the interference it creates.
+
+### 5 GHz: 80 MHz as the Practical Default
+
+5 GHz is wide enough that 80 MHz channels are practical. An 80 MHz channel gives most clients excellent throughput and still leaves 5–6 non-overlapping options across the full band. 160 MHz is available but spans most of UNII-2, which requires DFS, introduces radar-avoidance risk, and primarily benefits clients doing large close-range transfers. For most deployments, 80 MHz on 5 GHz is the right default.
+
+### 6 GHz: 160 MHz and 320 MHz Are Viable
+
+The 6 GHz band is wide enough that 160 MHz channels still leave meaningful non-overlapping alternatives. WiFi 7's 320 MHz channel is designed for 6 GHz and delivers very high throughput where the band is available. The shorter range of 6 GHz limits interference from distant networks, making wide channels more practical here than in 5 GHz.
+
+**Non-overlapping channel availability by width:**
+
+| Band | 20 MHz | 40 MHz | 80 MHz | 160 MHz | 320 MHz |
+|------|--------|--------|--------|---------|---------|
+| 2.4 GHz | 3 | 1–2 | — | — | — |
+| 5 GHz | ~25 | ~12 | ~6 | ~2–3 (DFS) | — |
+| 6 GHz | ~59 | ~29 | ~14 | ~7 | ~3–4 |
+
+![](channel-width.svg "Channel width trade-off — how wider channels consume available spectrum in 5 and 6 GHz")
+
+## How Power, Channel, and Width Interact
+
+These three settings pull against each other.
+
+**High transmit power + wide channels** maximises range and per-device throughput — but creates large interference zones and leaves fewer clean channels for neighbouring APs.
+
+**Low transmit power + narrow channels** allows denser AP spacing with less mutual interference — but reduces per-device throughput and coverage radius.
+
+**Auto settings** balance these dynamically. They work well in stable environments and fail in dense or high-change environments where the algorithm can't converge, or when auto logic doesn't account for the client uplink constraint.
+
+A reasonable starting point for a multi-AP environment:
+
+| Band | Channel width | Channel | Transmit power |
+|------|--------------|---------|----------------|
+| 2.4 GHz | 20 MHz | 1, 6, or 11 (manual) | 14–17 dBm |
+| 5 GHz | 80 MHz | Auto (UNII-1/3 preferred) | 17–20 dBm |
+| 6 GHz | 160 MHz | Auto | 17–20 dBm |
+
+These are starting points, not rules. A single-AP home network can run full power and wide channels without issue. A venue with 50 APs needs tighter power and narrower channel discipline to keep the co-channel interference manageable.
+
+## Roaming: Who Decides When to Move
+
+With power, channel, and width tuned, the next question is what happens once a network has more than one AP or more than one band: how — and when — does a client actually move between them?
+
+The client does. Always. The AP cannot force a client off its radio — it can only suggest (more on that later). The client monitors its current signal, decides when it's degraded enough to justify roaming, scans for alternatives, authenticates with the new AP, and reassociates.
+
+Without any roaming standards, this process is slow and dumb:
+
+1. Client's signal degrades. It notices.
+2. Client scans all channels to find other APs — this takes hundreds of milliseconds and interrupts traffic.
+3. Client picks the best AP, runs a full authentication exchange.
+4. Client reassociates. Total interruption: 200–500ms or more.
+
+For browsing, this is invisible. For a VoIP call or video stream, it's a stutter. For applications that time out on connection loss, it can be a dropped session.
+
+The deeper problem: clients are conservative. They evolved in a world where scanning for alternatives consumed battery and interrupted traffic, so they delay roaming as long as possible. A phone walking away from an AP will often cling to -80 dBm signal on the original AP when a closer one at -55 dBm is available, because switching costs something and the current connection technically still works.
+
+This is the sticky client problem. Solving it requires understanding both how clients decide when to roam and how the AP can guide them — including band steering, which is the bluntest tool in this kit.
+
+## 802.11k — Neighbor Reports
+
+Before a client can roam, it needs to know which APs to consider. Without 802.11k, it scans every channel — slow and disruptive. With 802.11k, the client asks its current AP for a **neighbor report**: a list of nearby APs, their channels, and signal information.
+
+The client can now build a roam candidate list without scanning every channel. It scans only the channels where candidates exist, cutting scan time significantly.
+
+802.11k doesn't trigger roaming or speed up the handoff. It just makes the candidate discovery step faster and less disruptive.
+
+## 802.11r — Fast BSS Transition
+
+The biggest delay in roaming is the authentication exchange with the new AP. In WPA2/WPA3, this involves deriving keys, exchanging frames, and completing a 4-way handshake. On a congested network or a slow AP, this takes time.
+
+802.11r (Fast BSS Transition, or FT) solves this with **pre-authentication**. While the client is still connected to the current AP, it pre-negotiates keys with the target AP. There are two ways this happens: **over-the-DS**, where the FT frames travel through the wired backhaul between APs, or **over-the-air**, where the client contacts the target AP directly while still associated to the current one. The end result is the same — when the client decides to roam:
+
+1. It already has the keys for the target AP.
+2. It sends a single FT Action frame to the target AP.
+3. The target AP responds. Reassociation completes.
+
+The result: handoff time drops from 200ms+ to under 50ms. For voice calls, this is the threshold below which users don't perceive a gap.
+
+![](roaming-latency.svg "Roaming latency comparison — without 802.11r vs with 802.11r")
+
+802.11r requires that all APs in the network share a mobility domain — a common identifier that tells clients the APs coordinate with each other. APs not in the same mobility domain can't participate in FT.
+
+One caveat: some older clients have buggy 802.11r implementations and fail to connect at all when it's enabled. Most modern devices handle it correctly, but this is worth checking if you see connection failures after enabling it.
+
+## 802.11v — BSS Transition Management
+
+802.11v gives the AP a voice in roaming decisions. It can send a **BSS Transition Management Request** to a client — essentially a suggestion to roam to a specific AP.
+
+The client can accept or ignore it. It cannot be forced. But in practice, most clients respect the suggestion, especially when the AP includes signal information that makes a clear case for switching.
+
+The request can also include a **Disassociation Imminent** flag with a countdown timer — the AP announces it will disconnect the client in X seconds if it hasn't moved on its own. This is the closest the standard comes to a mandate: the client still picks where to go, but staying put means being kicked. It's a meaningful step up from a pure suggestion.
+
+APs use 802.11v for two things:
+
+- **Load balancing** — Steering clients away from a congested radio toward a less loaded one.
+- **Kicking weak clients** — If a client is too far away and holding a slow MCS rate that consumes airtime, the AP can suggest it move.
+
+Without 802.11v, the AP has no mechanism to nudge a sticky client. It can only wait.
+
+## How k, r, and v Work Together
+
+The three standards complement each other:
+
+| Standard | What it does | When it fires |
+|----------|-------------|---------------|
+| 802.11k | Provides a neighbor report — nearby APs and their channels | Before the roam: speeds up candidate discovery |
+| 802.11r | Pre-negotiates keys with the target AP | At roam time: cuts handoff from 200ms+ to under 50ms |
+| 802.11v | Sends a BSS Transition Request suggesting the client move | Proactively, from AP to client, to trigger the roam |
+
+A well-configured network with all three: the AP suggests the client roam (v), the client already has a candidate list (k), and the handoff completes in under 50ms (r).
+
+These are sometimes marketed together as **802.11kvr** or **Fast Roaming**. The exact label varies by vendor.
+
+![](roaming-kvr-flow.svg "How 802.11k, r, and v work together during a roam event")
+
+## Why Clients Still Stick
+
+Even with all three standards enabled, clients roam later than they should. The reasons:
+
+- **RSSI thresholds are conservative by default.** Client firmware developers set thresholds that minimize unnecessary roams, since each roam has a cost. The result is clients staying on a degrading signal longer than needed.
+- **802.11r compatibility issues.** Some enterprise APs or older infrastructure have quirks. If a client can't complete FT, it may fall back to full re-authentication — or fail entirely and not roam.
+- **OS-level roaming logic varies.** iOS, Android, Windows, and Linux all implement roaming differently. Apple devices tend to roam earlier and more aggressively. Some Android devices are notoriously sticky. Apple publishes [recommended WiFi settings for deploying Apple devices][1], including which 802.11r/k/v features to enable.
+- **802.11v is advisory.** A client can simply ignore the suggestion. There's no enforcement mechanism.
+
+## Band Steering: Guiding Clients Between Bands
+
+Roaming moves clients between access points. Band steering solves a related problem: clients that are in range of a faster band but associate on a slower one anyway.
+
+Dual-band and tri-band APs broadcast multiple radios on the same SSID. A 2.4 GHz radio and a 5 GHz radio both advertise the same network name, and the client picks which one to associate with. The problem: clients default to 2.4 GHz more often than expected. 2.4 GHz has longer range and better wall penetration, so devices within range of both bands sometimes pick 2.4 GHz anyway — especially older devices and IoT hardware. The result is a crowded 2.4 GHz radio carrying devices that could be on the faster, less congested 5 GHz band.
+
+Band steering is the AP's attempt to correct this by nudging capable clients toward the preferred band.
+
+### How Band Steering Works
+
+Band steering doesn't have a standard. Every vendor implements it differently, but the common mechanisms are:
+
+**Probe suppression** — The AP ignores or delays responding to probe requests on 2.4 GHz from clients it believes are 5 GHz capable. The client, hearing no response on 2.4 GHz, falls back to scanning 5 GHz and finds the AP there instead.
+
+**Association rejection** — The AP responds to probes on 2.4 GHz but rejects the association request, forcing the client to retry on 5 GHz.
+
+**BSS Transition Request (802.11v)** — For already-connected clients, the AP sends a BSS transition management frame suggesting the client move to the 5 GHz radio. This is the least disruptive mechanism since it's advisory and only applies post-association.
+
+**Minimum RSSI to connect** — Some APs expose a separate control: a signal floor below which the AP won't allow association on a given radio. This is distinct from band steering — it's a hard per-band threshold, not a redirection mechanism. It directly addresses the range-mismatch problem: a client with a weak 5 GHz signal is left on 2.4 GHz rather than steered onto a band where it will perform poorly.
+
+![](band-steering-probe.svg "Probe suppression — how band steering works for a dual-band client vs a 2.4 GHz-only IoT device")
+
+### Why Band Steering Often Causes Problems
+
+**Aggressive rejection breaks connections.** A client that gets its 2.4 GHz association rejected will retry a few times, then give up or report no network found. Devices with minimal retry logic — many IoT devices — fail entirely. The user sees a device that "won't connect" with no useful error.
+
+**Range mismatch.** 5 GHz has shorter range than 2.4 GHz. A client at the edge of 5 GHz coverage but solidly in 2.4 GHz range may be steered to the faster band and end up with worse actual performance — more retransmissions, lower MCS rate, higher latency — than it would have had on 2.4 GHz.
+
+**No standard means no consistency.** Probe suppression from one vendor interacts unpredictably with the retry behaviour of clients from another vendor. The result is connection timing issues, long association delays, and behaviour that changes with firmware updates on either side.
+
+**2.4 GHz-only devices get caught.** Steering logic is imperfect. Some APs will attempt to steer devices that only support 2.4 GHz, either because their heuristic misidentified the device or because a firmware bug broadened the steering criteria.
+
+![](band-steering-range.svg "Coverage range mismatch — 5 GHz range is smaller than 2.4 GHz, but steering ignores this")
+
+### The Three-Band Problem: WiFi 6E and WiFi 7
+
+WiFi 6E and WiFi 7 APs add a 6 GHz radio, which makes the steering calculus more complex. 6 GHz has even shorter range than 5 GHz — walls and distance attenuate it more aggressively — but it offers significantly less congestion and wider channels.
+
+The same range-mismatch problem that exists between 2.4 GHz and 5 GHz now also exists between 5 GHz and 6 GHz. With three bands, the gap between a well-tuned minimum RSSI threshold and a poorly tuned one becomes more consequential. When in doubt, be conservative — only steer clients with a strong signal on the target band.
+
+### Band Steering vs 802.11v BSS Transition
+
+The better mechanism for per-band steering is 802.11v BSS Transition Management — the same standard used for AP-to-AP roaming. Because it operates post-association, there is no risk of broken connections or IoT device failures. The AP suggests a move to the better band after the client has already successfully connected; the client decides whether to switch.
+
+![](band-steering-vs-bsstm.svg "Band Steering vs 802.11v BSS Transition — mechanism comparison")
+
+## Practical Configuration
+
+These recommendations are ordered from most impactful to most specific:
+
+**Use the same SSID across all APs.** Clients treat different SSIDs as different networks and won't roam between them — even if the underlying infrastructure is the same.
+
+**Match security settings across all APs.** Mixing WPA2 and WPA3 transition configurations can introduce re-authentication delays at roam time. Keep the security mode identical on every AP serving the same SSID.
+
+**Separate IoT onto a dedicated 2.4 GHz SSID.** Smart home devices — sensors, cameras, plugs — belong on 2.4 GHz and often have minimal roaming logic. Segregating them removes them from band steering entirely and lets you apply conservative or disabled roaming settings without affecting regular clients — this eliminates the most common steering failure mode without touching any steering configuration.
+
+**Disable band steering on your main SSID if IoT devices share it.** If a dedicated IoT SSID isn't practical right now, disabling steering for the primary SSID is the safer default for a mixed device environment. Band steering failures are hard to debug; removing the variable is faster than tuning it.
+
+**Enable 802.11r within a shared mobility domain.** All APs handling the same SSID must share a mobility domain identifier. APs outside the domain can't participate in fast BSS transition, so clients roaming to them fall back to full re-authentication. Test 802.11r before deploying — some clients have buggy FT implementations that cause connection failures when it's enabled.
+
+**Set RSSI kick thresholds for 802.11v.** Configure the signal level below which clients receive a BSS Transition Request — around -70 to -75 dBm is a common starting point. This nudges weak clients toward a better AP or band without forcing a band change through probe suppression.
+
+**If you're on WiFi 7, let MLO handle band selection.** Multi-Link Operation makes band steering largely obsolete for WiFi 7 clients — the device maintains links on multiple bands simultaneously and the AP distributes traffic dynamically. MLO is a structural solution rather than a heuristic one. See [WiFi 7 Spectrum & Multi-Link Operation](/posts/wifi-explained-wifi-7-spectrum-multi-link-operation/) for details.
+
+[1]: https://support.apple.com/en-us/guide/deployment/dep98f116c0f/web

@@ -117,5 +117,5 @@
   <text x="600" y="500" text-anchor="middle" font-size="13"
         fill="#f97316" letter-spacing="3" font-weight="600">GRAFANA OBSERVABILITY</text>
   <text x="600" y="538" text-anchor="middle" font-size="34"
-        font-weight="700" fill="#f1f5f9">Alerting</text>
+        font-weight="700" fill="#f1f5f9">Alerting &amp; Dashboards as Code</text>
 </svg>

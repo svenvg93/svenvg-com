@@ -106,7 +106,7 @@
 
   <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
   <text x="600" y="500" text-anchor="middle" font-size="13"
-        fill="#37BEC3" letter-spacing="3" font-weight="600">TRAEFIK ESSENTIALS</text>
+        fill="#37BEC3" letter-spacing="3" font-weight="600">TRAEFIK REVERSE PROXY</text>
   <text x="600" y="538" text-anchor="middle" font-size="34"
         font-weight="700" fill="#f1f5f9">TCP and UDP Routing</text>
 </svg>

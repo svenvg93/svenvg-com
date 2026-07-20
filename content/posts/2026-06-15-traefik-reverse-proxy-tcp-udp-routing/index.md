@@ -1,5 +1,5 @@
 ---
-title: "Traefik Essentials: TCP and UDP Routing"
+title: "Traefik Reverse Proxy: TCP and UDP Routing"
 description: Traefik isn't just for HTTP — it can route raw TCP and UDP traffic too. This guide covers how to expose non-HTTP services like databases, game servers, and DNS through Traefik.
 date: 2026-06-15
 draft: false

@@ -8,7 +8,6 @@ name: "Sven van Ginkel"
 jobtitle: "Designer Fixed Access"
 location: "Vlaardingen, The Netherlands"
 email: "svenvanginkel@icloud.com"
-website: "https://svenvg.com"
 linkedin: "https://www.linkedin.com/in/svenvanginkel"
 github: "https://github.com/svenvg93"
 

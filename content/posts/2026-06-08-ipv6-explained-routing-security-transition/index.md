@@ -14,7 +14,7 @@ In IPv4, a home router gets one public IP address from the ISP and uses NAT to s
 
 ## DHCPv6-PD
 
-Prefix delegation is negotiated through **DHCPv6-PD** (DHCPv6 Prefix Delegation), defined in [RFC 8415][1]. It uses the same 4-step exchange as DHCPv6 (covered in [Addressing, Autoconfiguration & Multicast]({{< ref "/posts/2026-05-25-ipv6-explained-addressing-autoconfiguration-multicast" >}})), but the router requests a prefix block rather than a single address. The router acts as a DHCPv6-PD client on its WAN interface; the ISP's DHCPv6 server assigns a prefix and its lease time.
+Prefix delegation is negotiated through **DHCPv6-PD** (DHCPv6 Prefix Delegation), defined in [RFC 8415][1]. It uses the same 4-step exchange as DHCPv6 (covered in [SLAAC, Neighbor Discovery & Multicast]({{< ref "/posts/2026-06-01-ipv6-explained-slaac-multicast" >}})), but the router requests a prefix block rather than a single address. The router acts as a DHCPv6-PD client on its WAN interface; the ISP's DHCPv6 server assigns a prefix and its lease time.
 
 The router now owns that prefix for the duration of the lease and is responsible for routing all traffic destined to it.
 
@@ -35,7 +35,7 @@ A `/64` delegation is the worst case: the router can use it for exactly one subn
 
 ## Subdividing the Prefix
 
-Once the router has a delegated prefix, it carves it into `/64` subnets and assigns one to each interface or VLAN. It then sends Router Advertisements on each interface with the appropriate prefix, triggering [SLAAC]({{< ref "/posts/2026-05-25-ipv6-explained-addressing-autoconfiguration-multicast" >}}) on the clients.
+Once the router has a delegated prefix, it carves it into `/64` subnets and assigns one to each interface or VLAN. It then sends Router Advertisements on each interface with the appropriate prefix, triggering [SLAAC]({{< ref "/posts/2026-06-01-ipv6-explained-slaac-multicast" >}}) on the clients.
 
 With a `/56` delegation of `2001:db8:abcd:ab00::/56`, the router has 8 bits of subnet space — bits 56 to 63. In the fourth 16-bit group `abXX`, the first byte `ab` is part of the ISP's fixed /56 prefix; the second byte `XX` (00–ff) is the subnet field the router controls:
 
@@ -150,7 +150,7 @@ Using ULA for internal services makes the intent explicit in the address itself,
 
 ## First-Hop Security
 
-Everything above secures the border: the firewall decides what may cross from the WAN onto the LAN. But IPv6 also moves address assignment and router discovery onto the LAN's own link layer, where hosts trust Router Advertisements from any router and Neighbor Advertisements from any host by default — the rogue-RA and neighbor-cache risks already touched on in [Addressing, Autoconfiguration & Multicast]({{< ref "/posts/2026-05-25-ipv6-explained-addressing-autoconfiguration-multicast" >}}) are just as real on a well-firewalled network, because they never cross the border at all. Closing them takes switch-level mechanisms, not firewall rules.
+Everything above secures the border: the firewall decides what may cross from the WAN onto the LAN. But IPv6 also moves address assignment and router discovery onto the LAN's own link layer, where hosts trust Router Advertisements from any router and Neighbor Advertisements from any host by default — the rogue-RA and neighbor-cache risks already touched on in [SLAAC, Neighbor Discovery & Multicast]({{< ref "/posts/2026-06-01-ipv6-explained-slaac-multicast" >}}) are just as real on a well-firewalled network, because they never cross the border at all. Closing them takes switch-level mechanisms, not firewall rules.
 
 ## RA Guard
 

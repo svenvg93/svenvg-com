@@ -9,9 +9,6 @@ categories:
   - Security
 tags:
   - wifi
-series:
-  - WiFi Explained
-series_order: 2
 ---
 
 WPA3 has been around since 2018, but most people enabled it because their router's UI said to — without knowing what actually changed. Some of the improvements are subtle, some are significant, and a few things WPA3 is assumed to fix it doesn't. This post covers the four main components: SAE (the new handshake), PMF (protected management frames), OWE (open network encryption), and the Enterprise 192-bit mode — plus where WPA3 still falls short.

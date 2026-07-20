@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 195" width="700" height="195"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <linearGradient id="g-ab" x1="185" y1="98" x2="225" y2="98" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <linearGradient id="g-bc" x1="345" y1="98" x2="385" y2="98" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#f87171"/>
+    </linearGradient>
+    <marker id="arr-indigo" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#6366f1"/>
+    </marker>
+    <marker id="arr-amber" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#d97706"/>
+    </marker>
+    <marker id="arr-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#f87171"/>
+    </marker>
+  </defs>
+
+  <rect width="700" height="195" fill="url(#bg)" rx="8"/>
+  <line x1="0" y1="36" x2="700" y2="36" stroke="#0d1a2a" stroke-width="1"/>
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">ALERT RULE EVALUATION — TWO-STEP PROCESS</text>
+
+  <!-- Query A (PromQL) -->
+  <rect x="45" y="68" width="140" height="60" fill="#0a0d28" stroke="#6366f1" stroke-width="1.5" rx="5"/>
+  <text x="115" y="88" text-anchor="middle" font-size="9" fill="#818cf8" font-weight="600">A — Metric Query</text>
+  <text x="115" y="104" text-anchor="middle" font-size="10" font-weight="600" fill="#a5b4fc">PromQL</text>
+  <text x="115" y="120" text-anchor="middle" font-size="8" fill="#4a4a6a">time series data</text>
+
+  <!-- A → Reduce -->
+  <line x1="185" y1="98" x2="225" y2="98" stroke="url(#g-ab)" stroke-width="1.5" marker-end="url(#arr-amber)"/>
+
+  <!-- Reduce -->
+  <rect x="227" y="68" width="115" height="60" fill="#1a1000" stroke="#d97706" stroke-width="1.5" rx="5"/>
+  <text x="284" y="88" text-anchor="middle" font-size="9" fill="#fbbf24" font-weight="600">Reduce</text>
+  <text x="284" y="104" text-anchor="middle" font-size="10" font-weight="600" fill="#fcd34d">last / mean</text>
+  <text x="284" y="120" text-anchor="middle" font-size="8" fill="#4a4a6a">series → scalar</text>
+
+  <!-- Reduce → Query B -->
+  <line x1="342" y1="98" x2="382" y2="98" stroke="url(#g-bc)" stroke-width="1.5" marker-end="url(#arr-red)"/>
+
+  <!-- Query B (Threshold) -->
+  <rect x="384" y="68" width="140" height="60" fill="#150808" stroke="#f87171" stroke-width="1.5" rx="5"/>
+  <text x="454" y="88" text-anchor="middle" font-size="9" fill="#fca5a5" font-weight="600">B — Condition</text>
+  <text x="454" y="104" text-anchor="middle" font-size="10" font-weight="600" fill="#f87171">Threshold</text>
+  <text x="454" y="120" text-anchor="middle" font-size="8" fill="#4a4a6a">scalar &gt; threshold?</text>
+
+  <!-- B → Alert State -->
+  <line x1="524" y1="98" x2="564" y2="98" stroke="#f87171" stroke-width="1.5" marker-end="url(#arr-red)"/>
+
+  <!-- Alert State -->
+  <rect x="566" y="68" width="90" height="60" fill="#150808" stroke="#f87171" stroke-width="1.5" rx="5"/>
+  <text x="611" y="90" text-anchor="middle" font-size="10" font-weight="600" fill="#f87171">FIRING</text>
+  <line x1="577" y1="98" x2="645" y2="98" stroke="#1e2a1e" stroke-width="0.5"/>
+  <text x="611" y="116" text-anchor="middle" font-size="10" font-weight="600" fill="#4ade80">NORMAL</text>
+
+  <!-- Footer -->
+  <text x="350" y="172" text-anchor="middle" font-size="9" fill="#475569">Query A fetches the metric series · Reduce collapses it to a single value · Query B applies the threshold condition</text>
+  <text x="350" y="184" text-anchor="middle" font-size="9" fill="#475569">Grafana evaluates each rule on its configured interval and transitions the alert state accordingly</text>
+</svg>

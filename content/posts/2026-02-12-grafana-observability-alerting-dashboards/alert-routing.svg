@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 245" width="700" height="245"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <marker id="arr-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#f87171"/>
+    </marker>
+    <marker id="arr-amber" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#d97706"/>
+    </marker>
+    <marker id="arr-indigo" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#6366f1"/>
+    </marker>
+  </defs>
+
+  <rect width="700" height="245" fill="url(#bg)" rx="8"/>
+  <line x1="0" y1="36" x2="700" y2="36" stroke="#0d1a2a" stroke-width="1"/>
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">ALERT ROUTING — LABEL-BASED NOTIFICATION POLICY</text>
+
+  <!-- scope=system -->
+  <rect x="22" y="58" width="118" height="36" fill="#150808" stroke="#f87171" stroke-width="1.5" rx="5"/>
+  <text x="81" y="73" text-anchor="middle" font-size="9" font-weight="600" fill="#f87171">scope=system</text>
+  <text x="81" y="86" text-anchor="middle" font-size="8" fill="#64748b">CPU · memory · disk</text>
+
+  <!-- scope=infra -->
+  <rect x="22" y="115" width="118" height="36" fill="#1a1000" stroke="#f59e0b" stroke-width="1.5" rx="5"/>
+  <text x="81" y="130" text-anchor="middle" font-size="9" font-weight="600" fill="#fcd34d">scope=infra</text>
+  <text x="81" y="143" text-anchor="middle" font-size="8" fill="#64748b">Traefik · containers</text>
+
+  <!-- scope=docker -->
+  <rect x="22" y="172" width="118" height="36" fill="#0b1628" stroke="#3b82f6" stroke-width="1.5" rx="5"/>
+  <text x="81" y="187" text-anchor="middle" font-size="9" font-weight="600" fill="#93c5fd">scope=docker</text>
+  <text x="81" y="200" text-anchor="middle" font-size="8" fill="#64748b">container health</text>
+
+  <!-- Arrows from alert groups → Notification Policy -->
+  <line x1="140" y1="76" x2="205" y2="108" stroke="#f87171" stroke-width="1.2" marker-end="url(#arr-red)"/>
+  <line x1="140" y1="133" x2="205" y2="133" stroke="#f59e0b" stroke-width="1.2" marker-end="url(#arr-amber)"/>
+  <line x1="140" y1="190" x2="205" y2="158" stroke="#3b82f6" stroke-width="1.2" marker-end="url(#arr-indigo)"/>
+
+  <!-- NOTIFICATION POLICY box -->
+  <rect x="207" y="83" width="148" height="100" fill="#0d1520" stroke="#94a3b8" stroke-width="1.5" rx="5"/>
+  <text x="281" y="100" text-anchor="middle" font-size="12" font-weight="600" fill="#94a3b8">Notification Policy</text>
+  <text x="281" y="115" text-anchor="middle" font-size="8" fill="#475569">match on scope= label</text>
+  <line x1="217" y1="120" x2="345" y2="120" stroke="#0d1a2a" stroke-width="1"/>
+  <text x="281" y="133" text-anchor="middle" font-size="8" fill="#f87171">system → Discord</text>
+  <text x="281" y="146" text-anchor="middle" font-size="8" fill="#fcd34d">infra → Discord</text>
+  <text x="281" y="159" text-anchor="middle" font-size="8" fill="#93c5fd">docker → Discord</text>
+  <text x="281" y="174" text-anchor="middle" font-size="8" fill="#475569">all via one contact point</text>
+
+  <!-- Policy → Contact Point -->
+  <line x1="355" y1="133" x2="415" y2="133" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr-amber)"/>
+
+  <!-- CONTACT POINT box -->
+  <rect x="417" y="100" width="130" height="66" fill="#1a1000" stroke="#d97706" stroke-width="1.5" rx="5"/>
+  <text x="482" y="119" text-anchor="middle" font-size="10" font-weight="600" fill="#fcd34d">Contact Point</text>
+  <text x="482" y="135" text-anchor="middle" font-size="9" fill="#78716c">Discord webhook</text>
+  <text x="482" y="151" text-anchor="middle" font-size="8" fill="#4a4a6a">Go template rendered</text>
+
+  <!-- Contact Point → Discord -->
+  <line x1="547" y1="133" x2="595" y2="133" stroke="#d97706" stroke-width="1.5" marker-end="url(#arr-amber)"/>
+
+  <!-- DISCORD destination -->
+  <rect x="597" y="107" width="85" height="52" fill="#100a1e" stroke="#7c3aed" stroke-width="1.5" rx="5"/>
+  <text x="639" y="128" text-anchor="middle" font-size="11" font-weight="600" fill="#c4b5fd">Discord</text>
+  <text x="639" y="144" text-anchor="middle" font-size="8" fill="#64748b">channel alert</text>
+
+  <!-- Footer -->
+  <text x="350" y="230" text-anchor="middle" font-size="9" fill="#475569">all three scope groups share the same contact point · the template formats the message per alert group</text>
+</svg>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 330" width="700" height="330"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#34d399"/>
+    </marker>
+    <marker id="arr-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#ef4444"/>
+    </marker>
+    <marker id="arr-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#38bdf8"/>
+    </marker>
+  </defs>
+
+  <rect width="700" height="330" fill="url(#bg)" rx="8"/>
+  <g stroke="#0d1a2a" stroke-width="1">
+    <line x1="0" y1="30" x2="700" y2="30"/>
+  </g>
+
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">ND INSPECTION — BINDING TABLE ENFORCEMENT</text>
+
+  <!-- Binding Table (center) -->
+  <rect x="200" y="38" width="300" height="142" fill="#080c14" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
+  <text x="350" y="54" text-anchor="middle" font-size="10" font-weight="600" fill="#bae6fd">Binding Table</text>
+
+  <!-- Table header -->
+  <line x1="200" y1="58" x2="500" y2="58" stroke="#1e293b" stroke-width="1"/>
+  <text x="215" y="70" font-size="8" font-weight="600" fill="#64748b">IPv6 Address</text>
+  <text x="370" y="70" font-size="8" font-weight="600" fill="#64748b">MAC</text>
+  <text x="440" y="70" font-size="8" font-weight="600" fill="#64748b">Port</text>
+  <text x="478" y="70" font-size="8" font-weight="600" fill="#64748b">VLAN</text>
+  <line x1="200" y1="73" x2="500" y2="73" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- Binding row 1 (valid) -->
+  <text x="215" y="87" font-size="8" fill="#34d399" font-family="'Courier New',monospace">2001:db8::a</text>
+  <text x="370" y="87" font-size="8" fill="#86efac" font-family="'Courier New',monospace">aa:bb:cc:01</text>
+  <text x="440" y="87" font-size="8" fill="#86efac">port 3</text>
+  <text x="478" y="87" font-size="8" fill="#86efac">10</text>
+
+  <!-- Binding row 2 (valid) -->
+  <text x="215" y="101" font-size="8" fill="#34d399" font-family="'Courier New',monospace">2001:db8::b</text>
+  <text x="370" y="101" font-size="8" fill="#86efac" font-family="'Courier New',monospace">aa:bb:cc:02</text>
+  <text x="440" y="101" font-size="8" fill="#86efac">port 5</text>
+  <text x="478" y="101" font-size="8" fill="#86efac">10</text>
+
+  <!-- Binding row 3 (valid) -->
+  <text x="215" y="115" font-size="8" fill="#34d399" font-family="'Courier New',monospace">2001:db8::c</text>
+  <text x="370" y="115" font-size="8" fill="#86efac" font-family="'Courier New',monospace">aa:bb:cc:03</text>
+  <text x="440" y="115" font-size="8" fill="#86efac">port 7</text>
+  <text x="478" y="115" font-size="8" fill="#86efac">10</text>
+
+  <!-- Populated from note -->
+  <line x1="200" y1="122" x2="500" y2="122" stroke="#1e293b" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="350" y="134" text-anchor="middle" font-size="8" fill="#64748b">populated from DHCPv6 snooping exchanges</text>
+  <text x="350" y="146" text-anchor="middle" font-size="8" fill="#64748b">or learned from DAD Neighbor Solicitations</text>
+  <text x="350" y="160" text-anchor="middle" font-size="8" fill="#475569">or manually configured static entries</text>
+  <text x="350" y="172" text-anchor="middle" font-size="8" fill="#64748b">entries include: address · MAC · port · VLAN</text>
+
+  <!-- ── Case A: VALID packet ── -->
+  <!-- Host A on port 3 -->
+  <rect x="20" y="60" width="130" height="50" fill="#072a1e" stroke="#34d399" stroke-width="1.5" rx="4"/>
+  <text x="85" y="78" text-anchor="middle" font-size="10" font-weight="600" fill="#86efac">Host A · port 3</text>
+  <text x="85" y="92" text-anchor="middle" font-size="8" fill="#34d399" font-family="'Courier New',monospace">src: 2001:db8::a</text>
+  <text x="85" y="104" text-anchor="middle" font-size="8" fill="#34d399" font-family="'Courier New',monospace">mac: aa:bb:cc:01</text>
+
+  <!-- Arrow from Host A to binding table -->
+  <line x1="150" y1="85" x2="194" y2="85" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#arr-blue)"/>
+  <text x="172" y="79" text-anchor="middle" font-size="8" fill="#64748b">lookup</text>
+
+  <!-- Match result — draw line first so text renders on top -->
+  <line x1="350" y1="180" x2="350" y2="200" stroke="#34d399" stroke-width="1.5" marker-end="url(#arr-green)"/>
+  <rect x="290" y="188" width="120" height="14" fill="#080c14"/>
+  <text x="350" y="199" text-anchor="middle" font-size="9" font-weight="600" fill="#34d399">match — forward</text>
+
+  <!-- ── Case B: SPOOFED packet ── -->
+  <!-- Attacker on port 3 claiming 2001:db8::b -->
+  <rect x="20" y="160" width="130" height="65" fill="#200808" stroke="#ef4444" stroke-width="1.5" rx="4"/>
+  <text x="85" y="178" text-anchor="middle" font-size="10" font-weight="600" fill="#fca5a5">Attacker · port 3</text>
+  <text x="85" y="192" text-anchor="middle" font-size="8" fill="#f87171" font-family="'Courier New',monospace">src: 2001:db8::b</text>
+  <text x="85" y="206" text-anchor="middle" font-size="8" fill="#f87171">claims another host's addr</text>
+  <text x="85" y="218" text-anchor="middle" font-size="8" fill="#ef4444" font-family="'Courier New',monospace">mac: aa:bb:cc:99</text>
+
+  <!-- Arrow from Attacker to binding table -->
+  <line x1="150" y1="190" x2="194" y2="150" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#arr-red)"/>
+  <text x="172" y="176" text-anchor="middle" font-size="8" fill="#64748b">lookup</text>
+
+  <!-- Mismatch: 2001:db8::b is on port 5, not port 3 — drop -->
+  <rect x="215" y="208" width="270" height="30" fill="#200808" stroke="#ef4444" stroke-width="1.5" rx="3"/>
+  <text x="350" y="220" text-anchor="middle" font-size="9" font-weight="600" fill="#fca5a5">mismatch — packet dropped</text>
+  <text x="350" y="232" text-anchor="middle" font-size="8" fill="#ef4444">2001:db8::b expected on port 5, arrived on port 3</text>
+
+  <!-- ── Right side: what the switch enforces ── -->
+  <rect x="510" y="60" width="170" height="118" fill="#080c14" stroke="#38bdf8" stroke-width="1" rx="4"/>
+  <text x="595" y="76" text-anchor="middle" font-size="9" font-weight="600" fill="#bae6fd">Switch enforces</text>
+  <text x="522" y="92" font-size="8" fill="#94a3b8">Neighbor Advertisement</text>
+  <text x="522" y="104" font-size="8" fill="#94a3b8">claiming a binding that</text>
+  <text x="522" y="116" font-size="8" fill="#94a3b8">mismatches the table</text>
+  <text x="522" y="128" font-size="8" fill="#ef4444">→ dropped</text>
+  <line x1="522" y1="133" x2="670" y2="133" stroke="#1e293b" stroke-width="1"/>
+  <text x="522" y="147" font-size="8" fill="#94a3b8">Data packet with source</text>
+  <text x="522" y="159" font-size="8" fill="#94a3b8">address not in table</text>
+  <text x="522" y="170" font-size="8" fill="#ef4444">→ dropped</text>
+
+  <!-- Footer -->
+  <rect x="20" y="256" width="660" height="60" fill="#080c14" stroke="#f59e0b" stroke-width="1" rx="4"/>
+  <text x="350" y="274" text-anchor="middle" font-size="9" font-weight="600" fill="#fcd34d">SLAAC Challenge</text>
+  <text x="350" y="291" text-anchor="middle" font-size="8" fill="#94a3b8">Addresses are self-generated — no DHCPv6 exchange for the switch to observe.</text>
+  <text x="350" y="307" text-anchor="middle" font-size="8" fill="#94a3b8">Switches must learn from DAD Neighbor Solicitations or manual binding entries.</text>
+</svg>

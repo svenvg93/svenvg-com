@@ -32,7 +32,6 @@ languages:
 taxonomies:
   category: categories
   tag: tags
-  series: series
 
 mainSections: ["posts"]
 

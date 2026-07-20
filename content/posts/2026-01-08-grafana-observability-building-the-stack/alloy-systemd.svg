@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 260" width="700" height="260"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#94a3b8"/>
+    </marker>
+    <marker id="arr-indigo" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#6366f1"/>
+    </marker>
+    <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#166534"/>
+    </marker>
+    <marker id="arr-amber" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#f59e0b"/>
+    </marker>
+  </defs>
+
+  <rect width="700" height="260" fill="url(#bg)" rx="8"/>
+  <line x1="0" y1="36" x2="700" y2="36" stroke="#0d1a2a" stroke-width="1"/>
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">ALLOY AS A SYSTEMD SERVICE — HOST-NATIVE DEPLOYMENT</text>
+
+  <!-- systemd box -->
+  <rect x="74" y="82" width="105" height="55" fill="#071810" stroke="#166534" stroke-width="1.5" rx="5"/>
+  <text x="126" y="105" text-anchor="middle" font-size="11" font-weight="600" fill="#86efac">systemd</text>
+  <text x="126" y="120" text-anchor="middle" font-size="8" fill="#64748b">unit service</text>
+  <text x="126" y="132" text-anchor="middle" font-size="8" fill="#4a4a6a">alloy.service</text>
+
+  <!-- systemd → Alloy -->
+  <line x1="179" y1="109" x2="234" y2="109" stroke="#166534" stroke-width="1.5" marker-end="url(#arr-green)"/>
+  <text x="206" y="101" text-anchor="middle" font-size="8" fill="#4ade80">starts</text>
+
+  <!-- ALLOY central box -->
+  <rect x="236" y="58" width="195" height="115" fill="#0a0d28" stroke="#6366f1" stroke-width="1.5" rx="5"/>
+  <text x="333" y="78" text-anchor="middle" font-size="12" font-weight="600" fill="#a5b4fc">Grafana Alloy</text>
+  <text x="333" y="94" text-anchor="middle" font-size="8" fill="#64748b">native process · no Docker</text>
+  <line x1="246" y1="100" x2="421" y2="100" stroke="#0d1a2a" stroke-width="1"/>
+  <text x="333" y="115" text-anchor="middle" font-size="8" fill="#4a4a6a">/etc/alloy/*.alloy</text>
+  <text x="333" y="129" text-anchor="middle" font-size="8" fill="#4a4a6a">direct /proc /sys access</text>
+  <text x="333" y="143" text-anchor="middle" font-size="8" fill="#4a4a6a">:12345</text>
+  <text x="333" y="157" text-anchor="middle" font-size="8" fill="#4a4a6a">user: alloy</text>
+
+  <!-- Permission arrows into Alloy from below -->
+  <!-- /var/log/ -->
+  <line x1="289" y1="200" x2="289" y2="173" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3,2" marker-end="url(#arr)"/>
+  <text x="289" y="213" text-anchor="middle" font-size="8" fill="#64748b">/var/log/</text>
+  <text x="289" y="224" text-anchor="middle" font-size="8" fill="#475569">adm group</text>
+
+  <!-- Docker socket -->
+  <line x1="379" y1="200" x2="379" y2="173" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3,2" marker-end="url(#arr)"/>
+  <text x="379" y="213" text-anchor="middle" font-size="8" fill="#64748b">docker.sock</text>
+  <text x="379" y="224" text-anchor="middle" font-size="8" fill="#475569">docker group + CAP</text>
+
+  <!-- Alloy → Prometheus -->
+  <line x1="431" y1="90" x2="499" y2="85" stroke="#6366f1" stroke-width="1.5" marker-end="url(#arr-indigo)"/>
+  <text x="463" y="78" text-anchor="middle" font-size="8" fill="#818cf8">remote_write</text>
+
+  <!-- Alloy → Loki -->
+  <line x1="431" y1="130" x2="499" y2="140" stroke="#6366f1" stroke-width="1.5" marker-end="url(#arr-indigo)"/>
+  <text x="463" y="153" text-anchor="middle" font-size="8" fill="#818cf8">HTTP push</text>
+
+  <!-- Remote Prometheus -->
+  <rect x="501" y="62" width="125" height="50" fill="#1a1000" stroke="#f59e0b" stroke-width="1.5" rx="5"/>
+  <text x="563" y="83" text-anchor="middle" font-size="11" font-weight="600" fill="#fcd34d">Prometheus</text>
+  <text x="563" y="99" text-anchor="middle" font-size="8" fill="#78716c">remote · :9090</text>
+
+  <!-- Remote Loki -->
+  <rect x="501" y="132" width="125" height="50" fill="#1a1000" stroke="#f59e0b" stroke-width="1.5" rx="5"/>
+  <text x="563" y="153" text-anchor="middle" font-size="11" font-weight="600" fill="#fcd34d">Loki</text>
+  <text x="563" y="169" text-anchor="middle" font-size="8" fill="#78716c">remote · :3100</text>
+
+  <!-- Footer -->
+  <text x="350" y="248" text-anchor="middle" font-size="9" fill="#475569">systemd manages the process lifecycle · host access via group membership and Linux capabilities</text>
+</svg>

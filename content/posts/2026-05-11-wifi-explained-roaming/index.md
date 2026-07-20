@@ -9,9 +9,6 @@ categories:
 tags:
   - wifi
   - wifi7
-series:
-  - WiFi Explained
-series_order: 3
 ---
 
 Move far enough from your router and your device will eventually roam to a closer AP. The question is when — and with multiple APs in a home or office, the answer is often "much later than it should." This is the sticky client problem. Solving it requires understanding both how clients decide when to roam and how the AP can guide them — including band steering, which is the bluntest tool in this kit.
@@ -161,6 +158,6 @@ These recommendations are ordered from most impactful to most specific:
 
 **Isolate IoT on a dedicated SSID.** Smart home devices often have minimal roaming logic. A dedicated SSID lets you apply conservative or disabled roaming settings to IoT without affecting the behaviour for regular clients.
 
-**If you're on WiFi 7, let MLO handle band selection.** Multi-Link Operation makes band steering largely obsolete for WiFi 7 clients — the device maintains links on multiple bands simultaneously and the AP distributes traffic dynamically. MLO is a structural solution rather than a heuristic one. See [How Devices Share the Air](/posts/2026-04-30-wifi-explained-medium) for details.
+**If you're on WiFi 7, let MLO handle band selection.** Multi-Link Operation makes band steering largely obsolete for WiFi 7 clients — the device maintains links on multiple bands simultaneously and the AP distributes traffic dynamically. MLO is a structural solution rather than a heuristic one. See [WiFi 7 Spectrum & Multi-Link Operation](/posts/wifi-explained-wifi-7-spectrum-multi-link-operation/) for details.
 
 [1]: https://support.apple.com/en-us/guide/deployment/dep98f116c0f/web

@@ -105,14 +105,6 @@ gallery:
     showAnimationDuration: 333
     hideAnimationDuration: 333
 
-series:
-  enabled: true
-  position: "left" # card/left/right
-  maxWidth: "280px"
-  maxHeight: "80vh"
-  showProgress: true
-  showInHeader: true
-
 codeblock:
   collapse:
     enabled: true

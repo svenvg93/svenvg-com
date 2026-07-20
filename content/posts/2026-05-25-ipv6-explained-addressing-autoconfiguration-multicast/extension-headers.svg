@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" width="700" height="300"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <marker id="arr-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#38bdf8"/>
+    </marker>
+    <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#34d399"/>
+    </marker>
+  </defs>
+
+  <rect width="700" height="300" fill="url(#bg)" rx="8"/>
+  <g stroke="#0d1a2a" stroke-width="1">
+    <line x1="0" y1="30" x2="700" y2="30"/>
+  </g>
+
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">EXTENSION HEADERS — NEXT HEADER CHAINING</text>
+
+  <!-- ── Example A: no extension headers ── -->
+  <text x="40" y="50" font-size="10" font-weight="600" fill="#64748b">A — no extension headers</text>
+
+  <!-- IPv6 Header box -->
+  <rect x="40" y="56" width="140" height="46" fill="#042a40" stroke="#38bdf8" stroke-width="1.5" rx="4"/>
+  <text x="110" y="74" text-anchor="middle" font-size="10" font-weight="600" fill="#bae6fd">IPv6 Header</text>
+  <text x="110" y="89" text-anchor="middle" font-size="9" fill="#38bdf8" font-family="'Courier New',monospace">Next Header: 6</text>
+
+  <!-- Arrow A -->
+  <line x1="180" y1="79" x2="236" y2="79" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#arr-blue)"/>
+
+  <!-- TCP box -->
+  <rect x="237" y="56" width="100" height="46" fill="#072a1e" stroke="#34d399" stroke-width="1.5" rx="4"/>
+  <text x="287" y="74" text-anchor="middle" font-size="10" font-weight="600" fill="#86efac">TCP</text>
+  <text x="287" y="89" text-anchor="middle" font-size="9" fill="#34d399">upper layer</text>
+
+  <!-- ── Example B: one extension header ── -->
+  <line x1="40" y1="120" x2="660" y2="120" stroke="#1e293b" stroke-width="1" stroke-dasharray="6,4"/>
+  <text x="40" y="136" font-size="10" font-weight="600" fill="#64748b">B — Fragment extension header (e.g. source-fragmented UDP)</text>
+
+  <!-- IPv6 Header -->
+  <rect x="40" y="142" width="140" height="46" fill="#042a40" stroke="#38bdf8" stroke-width="1.5" rx="4"/>
+  <text x="110" y="160" text-anchor="middle" font-size="10" font-weight="600" fill="#bae6fd">IPv6 Header</text>
+  <text x="110" y="175" text-anchor="middle" font-size="9" fill="#38bdf8" font-family="'Courier New',monospace">Next Header: 44</text>
+
+  <!-- Arrow -->
+  <line x1="180" y1="165" x2="236" y2="165" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#arr-blue)"/>
+
+  <!-- Fragment Header -->
+  <rect x="237" y="142" width="148" height="46" fill="#1a1200" stroke="#f59e0b" stroke-width="1.5" rx="4"/>
+  <text x="311" y="160" text-anchor="middle" font-size="10" font-weight="600" fill="#fcd34d">Fragment Header</text>
+  <text x="311" y="175" text-anchor="middle" font-size="9" fill="#f59e0b" font-family="'Courier New',monospace">Next Header: 17</text>
+
+  <!-- Arrow -->
+  <line x1="385" y1="165" x2="441" y2="165" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#arr-blue)"/>
+
+  <!-- UDP box -->
+  <rect x="442" y="142" width="100" height="46" fill="#072a1e" stroke="#34d399" stroke-width="1.5" rx="4"/>
+  <text x="492" y="160" text-anchor="middle" font-size="10" font-weight="600" fill="#86efac">UDP</text>
+  <text x="492" y="175" text-anchor="middle" font-size="9" fill="#34d399">upper layer</text>
+
+  <!-- ── Example C: ESP (IPsec) ── -->
+  <line x1="40" y1="206" x2="660" y2="206" stroke="#1e293b" stroke-width="1" stroke-dasharray="6,4"/>
+  <text x="40" y="222" font-size="10" font-weight="600" fill="#64748b">C — ESP extension header (IPsec encrypted tunnel)</text>
+
+  <!-- IPv6 Header -->
+  <rect x="40" y="228" width="140" height="46" fill="#042a40" stroke="#38bdf8" stroke-width="1.5" rx="4"/>
+  <text x="110" y="246" text-anchor="middle" font-size="10" font-weight="600" fill="#bae6fd">IPv6 Header</text>
+  <text x="110" y="261" text-anchor="middle" font-size="9" fill="#38bdf8" font-family="'Courier New',monospace">Next Header: 50</text>
+
+  <!-- Arrow -->
+  <line x1="180" y1="251" x2="236" y2="251" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#arr-blue)"/>
+
+  <!-- ESP Header -->
+  <rect x="237" y="228" width="130" height="46" fill="#1a0a2e" stroke="#8b5cf6" stroke-width="1.5" rx="4"/>
+  <text x="302" y="246" text-anchor="middle" font-size="10" font-weight="600" fill="#c4b5fd">ESP Header</text>
+  <text x="302" y="261" text-anchor="middle" font-size="9" fill="#8b5cf6">encrypted payload</text>
+
+  <!-- key: Next Header values -->
+  <rect x="40" y="280" width="620" height="14" fill="none"/>
+  <text x="40"  y="291" font-size="8" fill="#475569">Next Header values: 6=TCP · 17=UDP · 44=Fragment · 50=ESP · 51=AH · 58=ICMPv6 · 59=No Next Header · 60=Dest Options</text>
+</svg>

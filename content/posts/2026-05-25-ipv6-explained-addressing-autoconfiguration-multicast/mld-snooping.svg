@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 350" width="700" height="350"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <marker id="arr-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#ef4444"/>
+    </marker>
+    <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#34d399"/>
+    </marker>
+    <marker id="arr-gray" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <rect width="700" height="350" fill="url(#bg)" rx="8"/>
+  <g stroke="#0d1a2a" stroke-width="1">
+    <line x1="0" y1="30" x2="700" y2="30"/>
+    <line x1="350" y1="30" x2="350" y2="330" stroke-dasharray="4,3"/>
+  </g>
+
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">MLD SNOOPING — SELECTIVE MULTICAST DELIVERY</text>
+
+  <!-- ── LEFT: Without MLD Snooping ── -->
+  <text x="174" y="46" text-anchor="middle" font-size="11" font-weight="600" fill="#ef4444">Without MLD Snooping</text>
+  <text x="174" y="60" text-anchor="middle" font-size="9" fill="#64748b">multicast flooded to every port</text>
+
+  <!-- Switch box (left) -->
+  <rect x="128" y="70" width="92" height="36" fill="#0e2040" stroke="#38bdf8" stroke-width="1.5" rx="4"/>
+  <text x="174" y="84" text-anchor="middle" font-size="10" font-weight="600" fill="#bae6fd">Switch</text>
+  <text x="174" y="97" text-anchor="middle" font-size="8" fill="#38bdf8">no MLD table</text>
+
+  <!-- Port lines down from switch (left) -->
+  <!-- 3 ports: port1 x=90, port2 x=174 (center), port3 x=258 -->
+  <line x1="90"  y1="106" x2="90"  y2="140" stroke="#475569" stroke-width="1.5"/>
+  <line x1="174" y1="106" x2="174" y2="140" stroke="#475569" stroke-width="1.5"/>
+  <line x1="258" y1="106" x2="258" y2="140" stroke="#475569" stroke-width="1.5"/>
+
+  <!-- Flood arrows: red (unwanted) to all 3 ports -->
+  <line x1="90"  y1="106" x2="90"  y2="134" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,2" marker-end="url(#arr-red)"/>
+  <line x1="174" y1="106" x2="174" y2="134" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,2" marker-end="url(#arr-red)"/>
+  <line x1="258" y1="106" x2="258" y2="134" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,2" marker-end="url(#arr-red)"/>
+
+  <!-- Hosts (left) -->
+  <rect x="56"  y="140" width="68" height="36" fill="#150808" stroke="#7f1d1d" stroke-width="1" rx="3"/>
+  <text x="90"  y="155" text-anchor="middle" font-size="9" font-weight="600" fill="#fca5a5">Host A</text>
+  <text x="90"  y="168" text-anchor="middle" font-size="8" fill="#ef4444">not subscribed</text>
+
+  <rect x="140" y="140" width="68" height="36" fill="#072a1e" stroke="#166534" stroke-width="1" rx="3"/>
+  <text x="174" y="155" text-anchor="middle" font-size="9" font-weight="600" fill="#86efac">Host B</text>
+  <text x="174" y="168" text-anchor="middle" font-size="8" fill="#34d399">subscribed</text>
+
+  <rect x="224" y="140" width="68" height="36" fill="#150808" stroke="#7f1d1d" stroke-width="1" rx="3"/>
+  <text x="258" y="155" text-anchor="middle" font-size="9" font-weight="600" fill="#fca5a5">Host C</text>
+  <text x="258" y="168" text-anchor="middle" font-size="8" fill="#ef4444">not subscribed</text>
+
+  <!-- unwanted label -->
+  <text x="90"  y="195" text-anchor="middle" font-size="8" fill="#ef4444">unwanted</text>
+  <text x="258" y="195" text-anchor="middle" font-size="8" fill="#ef4444">unwanted</text>
+
+  <!-- ── RIGHT: With MLD Snooping ── -->
+  <text x="524" y="46" text-anchor="middle" font-size="11" font-weight="600" fill="#34d399">With MLD Snooping</text>
+  <text x="524" y="60" text-anchor="middle" font-size="9" fill="#64748b">only subscribed ports receive multicast</text>
+
+  <!-- Switch box (right) -->
+  <rect x="478" y="70" width="92" height="36" fill="#0e2040" stroke="#38bdf8" stroke-width="1.5" rx="4"/>
+  <text x="524" y="84" text-anchor="middle" font-size="10" font-weight="600" fill="#bae6fd">Switch</text>
+  <text x="524" y="97" text-anchor="middle" font-size="8" fill="#38bdf8">MLD table active</text>
+
+  <!-- Port lines (right) -->
+  <line x1="440" y1="106" x2="440" y2="140" stroke="#475569" stroke-width="1.5"/>
+  <line x1="524" y1="106" x2="524" y2="140" stroke="#475569" stroke-width="1.5"/>
+  <line x1="608" y1="106" x2="608" y2="140" stroke="#475569" stroke-width="1.5"/>
+
+  <!-- Only subscribed gets arrow; others blocked -->
+  <line x1="440" y1="106" x2="440" y2="134" stroke="#1e293b" stroke-width="2"/>
+  <text x="440" y="136" text-anchor="middle" font-size="9" fill="#475569">—</text>
+
+  <line x1="524" y1="106" x2="524" y2="134" stroke="#34d399" stroke-width="2" marker-end="url(#arr-green)"/>
+
+  <line x1="608" y1="106" x2="608" y2="134" stroke="#1e293b" stroke-width="2"/>
+  <text x="608" y="136" text-anchor="middle" font-size="9" fill="#475569">—</text>
+
+  <!-- Hosts (right) -->
+  <rect x="406" y="140" width="68" height="36" fill="#0e1a30" stroke="#334155" stroke-width="1" rx="3"/>
+  <text x="440" y="155" text-anchor="middle" font-size="9" font-weight="600" fill="#94a3b8">Host A</text>
+  <text x="440" y="168" text-anchor="middle" font-size="8" fill="#475569">not subscribed</text>
+
+  <rect x="490" y="140" width="68" height="36" fill="#072a1e" stroke="#166534" stroke-width="1" rx="3"/>
+  <text x="524" y="155" text-anchor="middle" font-size="9" font-weight="600" fill="#86efac">Host B</text>
+  <text x="524" y="168" text-anchor="middle" font-size="8" fill="#34d399">subscribed</text>
+
+  <rect x="574" y="140" width="68" height="36" fill="#0e1a30" stroke="#334155" stroke-width="1" rx="3"/>
+  <text x="608" y="155" text-anchor="middle" font-size="9" font-weight="600" fill="#94a3b8">Host C</text>
+  <text x="608" y="168" text-anchor="middle" font-size="8" fill="#475569">not subscribed</text>
+
+  <!-- MLD Report annotation -->
+  <line x1="524" y1="176" x2="524" y2="210" stroke="#34d399" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="524" y="222" text-anchor="middle" font-size="8" fill="#34d399">MLD Report sent</text>
+  <text x="524" y="234" text-anchor="middle" font-size="8" fill="#64748b">switch learns port</text>
+
+  <!-- MLD table -->
+  <rect x="390" y="250" width="268" height="82" fill="#080c14" stroke="#38bdf8" stroke-width="1" rx="4"/>
+  <text x="524" y="265" text-anchor="middle" font-size="9" font-weight="600" fill="#bae6fd">MLD Snooping Table</text>
+  <text x="402" y="280" font-size="8" fill="#64748b">Group</text>
+  <text x="490" y="280" font-size="8" fill="#64748b">Port</text>
+  <line x1="390" y1="283" x2="658" y2="283" stroke="#1e293b" stroke-width="1"/>
+  <text x="402" y="296" font-size="8" fill="#34d399" font-family="'Courier New',monospace">ff02::1:ff48:1234</text>
+  <text x="490" y="296" font-size="8" fill="#86efac">port 2 (Host B)</text>
+  <text x="402" y="310" font-size="8" fill="#34d399" font-family="'Courier New',monospace">ff02::1:ffXX:XXXX</text>
+  <text x="490" y="310" font-size="8" fill="#64748b">port 3 (if subscribed)</text>
+
+  <!-- Note: solicited-node -->
+  <rect x="20" y="250" width="310" height="82" fill="#080c14" stroke="#f59e0b" stroke-width="1" rx="4"/>
+  <text x="175" y="267" text-anchor="middle" font-size="9" font-weight="600" fill="#fcd34d">Critical: Solicited-Node Multicast</text>
+  <text x="30"  y="283" font-size="8" fill="#94a3b8">MLD snooping must always forward</text>
+  <text x="30"  y="297" font-size="8" fill="#f59e0b" font-family="'Courier New',monospace">ff02::1:ff00:0/104</text>
+  <text x="210" y="297" font-size="8" fill="#94a3b8">to all ports — or</text>
+  <text x="30"  y="311" font-size="8" fill="#94a3b8">NDP neighbor resolution silently fails.</text>
+  <text x="30"  y="324" font-size="8" fill="#64748b">Switches must handle the entire /104 range, not just learned groups.</text>
+</svg>

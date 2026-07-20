@@ -1,5 +1,5 @@
 ---
-title: "Traefik Reverse Proxy: Install, Middlewares & Monitoring"
+title: "Traefik Reverse Proxy: Installing, Securing & Monitoring"
 description: Install Traefik as a reverse proxy via Docker or bare metal with automatic Let's Encrypt SSL, lock it down with middlewares, and monitor it with Prometheus, Loki, and Grafana.
 date: 2024-05-21
 draft: false

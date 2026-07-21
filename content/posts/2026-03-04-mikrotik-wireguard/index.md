@@ -49,12 +49,12 @@ Add firewall rules to allow WireGuard traffic and permit communication between V
 
 ```bash {filename="Firewall Configuration"}
 /ip firewall filter
-add chain=input action=accept protocol=udp dst-port=13231 in-interface=ether1 comment="Allow WireGuard"
+add chain=input action=accept protocol=udp dst-port=13231 in-interface-list=WAN comment="Allow WireGuard"
 add chain=forward action=accept in-interface=wireguard1 out-interface=bridge1 comment="WG to LAN"
 add chain=forward action=accept in-interface=bridge1 out-interface=wireguard1 comment="LAN to WG"
 ```
 
->  Make sure these rules are placed **before** any drop rules in their respective chains. Adjust `in-interface=ether1` to match your WAN interface name.
+>  Make sure these rules are placed **before** any drop rules in their respective chains. If you followed the initial router setup guide, the first rule already exists — skip it and add only the two forward rules.
 
 ## Peers
 
@@ -119,11 +119,9 @@ To enable internet traffic through the VPN, add these rules:
 
 ```bash {filename="Full-Tunnel Firewall Rules"}
 /ip firewall filter
-add action=accept chain=forward comment="WG to Internet" in-interface=wireguard1 out-interface=ether1
+add action=accept chain=forward comment="WG to Internet" in-interface=wireguard1 out-interface-list=WAN
 add action=accept chain=input comment="Allow traffic from WG to router" in-interface=wireguard1
 ```
-
-> Replace `ether1` with your actual WAN interface name. Check with `/interface print` if unsure.
 
 ## Conclusion
 

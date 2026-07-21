@@ -6,62 +6,35 @@
       <stop offset="0%" stop-color="#080c14"/>
       <stop offset="100%" stop-color="#0d1520"/>
     </linearGradient>
-    <radialGradient id="glow" cx="50%" cy="42%" r="38%">
-      <stop offset="0%" stop-color="#34d399" stop-opacity="0.15"/>
+    <radialGradient id="glow" cx="82%" cy="18%" r="42%">
+      <stop offset="0%" stop-color="#34d399" stop-opacity="0.16"/>
       <stop offset="100%" stop-color="#34d399" stop-opacity="0"/>
     </radialGradient>
     <linearGradient id="textbg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%"   stop-color="#080c14" stop-opacity="0"/>
-      <stop offset="60%"  stop-color="#080c14" stop-opacity="0.93"/>
+      <stop offset="0%" stop-color="#080c14" stop-opacity="0"/>
+      <stop offset="60%" stop-color="#080c14" stop-opacity="0.93"/>
       <stop offset="100%" stop-color="#080c14" stop-opacity="1"/>
     </linearGradient>
-    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
-      <polygon points="0,0 8,4 0,8" fill="#34d399"/>
-    </marker>
   </defs>
 
   <rect width="1200" height="630" fill="url(#bg)"/>
   <rect width="1200" height="630" fill="url(#glow)"/>
 
-  <!-- Subtle dot grid -->
-  <g fill="#0a2016" opacity="0.7">
-    <circle cx="200" cy="90" r="1.5"/><circle cx="300" cy="90" r="1.5"/><circle cx="400" cy="90" r="1.5"/>
-    <circle cx="800" cy="90" r="1.5"/><circle cx="900" cy="90" r="1.5"/><circle cx="1000" cy="90" r="1.5"/>
+  <g fill="#34d399">
+    <circle cx="920" cy="80" r="4" opacity="0.25"/>
+    <circle cx="980" cy="130" r="6" opacity="0.18"/>
+    <circle cx="1050" cy="70" r="3" opacity="0.3"/>
+    <circle cx="1000" cy="200" r="5" opacity="0.15"/>
+    <circle cx="1080" cy="160" r="3" opacity="0.22"/>
+    <circle cx="930" cy="220" r="4" opacity="0.12"/>
+    <circle cx="1120" cy="90" r="2.5" opacity="0.28"/>
+    <circle cx="1060" cy="260" r="3.5" opacity="0.1"/>
   </g>
 
-  <!-- Client node -->
-  <circle cx="330" cy="220" r="10" fill="#072a1e" stroke="#34d399" stroke-width="2"/>
-  <text x="330" y="180" text-anchor="middle" font-size="13" font-weight="600" fill="#86efac" letter-spacing="1.5">CLIENT</text>
-
-  <!-- Router node -->
-  <rect x="810" y="196" width="60" height="48" rx="8" fill="#072a1e" stroke="#34d399" stroke-width="2"/>
-  <text x="840" y="180" text-anchor="middle" font-size="13" font-weight="600" fill="#86efac" letter-spacing="1.5">ROUTER</text>
-
-  <!-- RS arrow (client -> router) -->
-  <path d="M 345,210 L 805,212" fill="none" stroke="#34d399" stroke-width="2" marker-end="url(#arr)"/>
-  <text x="575" y="200" text-anchor="middle" font-size="12" font-weight="600" fill="#34d399" letter-spacing="1">RS</text>
-
-  <!-- RA arrow (router -> client, multicast fan) -->
-  <path d="M 805,240 L 345,238" fill="none" stroke="#6ee7b7" stroke-width="2" marker-end="url(#arr)"/>
-  <text x="575" y="262" text-anchor="middle" font-size="12" font-weight="600" fill="#6ee7b7" letter-spacing="1">RA</text>
-
-  <!-- Multicast fan-out below router, representing group delivery -->
-  <g stroke="#34d399" stroke-width="1.5" stroke-opacity="0.6" fill="none">
-    <path d="M 840,244 L 750,320"/>
-    <path d="M 840,244 L 840,330"/>
-    <path d="M 840,244 L 930,320"/>
-  </g>
-  <circle cx="750" cy="326" r="5" fill="#072a1e" stroke="#34d399" stroke-width="1.5"/>
-  <circle cx="840" cy="336" r="5" fill="#072a1e" stroke="#34d399" stroke-width="1.5"/>
-  <circle cx="930" cy="326" r="5" fill="#072a1e" stroke="#34d399" stroke-width="1.5"/>
-  <text x="840" y="368" text-anchor="middle" font-size="11" fill="#34d399" letter-spacing="2" opacity="0.8">ff02::1</text>
-
-  <!-- Divider -->
-  <line x1="600" y1="130" x2="600" y2="385" stroke="#0f2a1e" stroke-width="1" stroke-dasharray="6,4"/>
+  <rect x="576" y="466" width="48" height="4" rx="2" fill="#34d399"/>
 
   <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
-  <text x="600" y="500" text-anchor="middle" font-size="13"
-        fill="#34d399" letter-spacing="3" font-weight="600">IPv6 EXPLAINED</text>
-  <text x="600" y="538" text-anchor="middle" font-size="34"
-        font-weight="700" fill="#f1f5f9">SLAAC, NDP &amp; Multicast</text>
+
+  <text x="600" y="500" text-anchor="middle" font-size="13" fill="#34d399" letter-spacing="3" font-weight="600">IPv6 EXPLAINED</text>
+  <text x="600" y="545" text-anchor="middle" font-size="40" font-weight="700" fill="#f1f5f9">SLAAC, NDP &amp; Multicast</text>
 </svg>

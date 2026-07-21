@@ -260,6 +260,6 @@ These recommendations are ordered from most impactful to most specific:
 
 **Set RSSI kick thresholds for 802.11v.** Configure the signal level below which clients receive a BSS Transition Request — around -70 to -75 dBm is a common starting point. This nudges weak clients toward a better AP or band without forcing a band change through probe suppression.
 
-**If you're on WiFi 7, let MLO handle band selection.** Multi-Link Operation makes band steering largely obsolete for WiFi 7 clients — the device maintains links on multiple bands simultaneously and the AP distributes traffic dynamically. MLO is a structural solution rather than a heuristic one. See [WiFi 7 Spectrum & Multi-Link Operation](/posts/wifi-explained-wifi-7-spectrum-multi-link-operation/) for details.
+**If you're on WiFi 7, let MLO handle band selection.** Multi-Link Operation makes band steering largely obsolete for WiFi 7 clients — the device maintains links on multiple bands simultaneously and the AP distributes traffic dynamically. MLO is a structural solution rather than a heuristic one. See [WiFi 7 Spectrum & Multi-Link Operation]({{< ref "/posts/2026-04-30-wifi-explained-mlo" >}}) for details.
 
 [1]: https://support.apple.com/en-us/guide/deployment/dep98f116c0f/web

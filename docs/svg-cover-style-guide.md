@@ -2,6 +2,10 @@
 
 Reference for all cover images and inline diagrams across the blog. Follow this guide when creating new covers or editing existing ones.
 
+**Two distinct systems, don't mix them:**
+- **Cover images** (this post's OG/thumbnail image, `cover.svg`) — canvas, typography, background, and the **shape catalog** sections below. As of the latest redesign, covers are deliberately minimal: a dark gradient, one small abstract shape, and bold typography. They do **not** use the hex-node/topology/monitoring-tool patterns further down this doc — those were the old cover style (network diagrams with labeled nodes and arrows) and were retired for being too busy/cluttered at thumbnail size.
+- **Inline diagrams** (the illustrations embedded in post bodies, e.g. `slaac-flow.svg`, `pd-exchange.svg`) — smaller canvas (sized to the post's content width, not 1200×630), and they still use the full pattern library documented from "Zone color coding" onward: router/node hexagons, three-zone topology, monitoring tool nodes, terminal panels, callout labels, etc. Nothing about inline diagrams has changed — only cover images were redesigned.
+
 ---
 
 ## Canvas
@@ -36,7 +40,7 @@ Both elements are horizontally centered at `x="600"` with `text-anchor="middle"`
 | Element | `y` | `font-size` | `font-weight` | `fill` | `letter-spacing` |
 |---------|-----|-------------|---------------|--------|-----------------|
 | Series label | `500` | `13` | `600` | Series accent color (see below) | `3` |
-| Post title | `538` | `34` | `700` | `#f1f5f9` | — |
+| Post title | `545` | `40` | `700` | `#f1f5f9` | — |
 
 ```xml
 <!-- Series label -->
@@ -44,11 +48,11 @@ Both elements are horizontally centered at `x="600"` with `text-anchor="middle"`
       fill="SERIES_COLOR" letter-spacing="3" font-weight="600">Series Name</text>
 
 <!-- Post title -->
-<text x="600" y="538" text-anchor="middle" font-size="34"
+<text x="600" y="545" text-anchor="middle" font-size="40"
       font-weight="700" fill="#f1f5f9">Post Title Here</text>
 ```
 
-> **Rule**: Never use `font-size` larger than 34 for the main title. Never change `fill="#f1f5f9"` on the title.
+> **Rule**: Title `font-size` is `40`, `y="545"` (raised from the older `34`/`538` spec for more visual weight now that covers no longer compete with a busy scene above). Never change `fill="#f1f5f9"` on the title. Estimate width before committing to a title string: `chars × 40 × 0.55` should stay comfortably under ~1000px so it doesn't crowd the canvas edges at `x=600` center.
 
 ---
 
@@ -114,26 +118,106 @@ Every cover must include this gradient. It fades to opaque at the bottom to ensu
 
 ---
 
+## Cover shape catalog
+
+Every cover uses the post's existing accent color and background gradient, plus **exactly one** shape from this catalog — nothing else. No labels, no small text, no multi-element scenes. The goal is texture, not illustration: something that reads fine when the cover is shrunk to a thumbnail or a link-preview card.
+
+Pick a corner (`TR` = top-right, `TL` = top-left, mirror `cx`/`x1`/`points` horizontally across `x=600` to flip) or, for the full-width arc, no corner at all. Pair each shape with a matching `glow` radial gradient at the same corner (`cx="82%" cy="18%"` for TR, `cx="18%" cy="18%"` for TL, `cx="50%" cy="25%"` for the arc) — except the glow-blob shape, which *is* the glow, so skip the separate `glow` gradient for that one.
+
+**1. Rings** — two thin concentric circles.
+```xml
+<circle cx="990" cy="105" r="280" fill="none" stroke="ACCENT" stroke-width="1" stroke-opacity="0.18"/>
+<circle cx="990" cy="105" r="200" fill="none" stroke="ACCENT" stroke-width="1" stroke-opacity="0.12"/>
+```
+(`cy="105"`, not `115` — `115+280=395` dips past the fade boundary; `105+280=385` clears it.)
+
+**2. Diagonal stripes** — 4 parallel lines, fading via opacity.
+```xml
+<g stroke="ACCENT" stroke-width="2" stroke-linecap="round">
+  <line x1="880" y1="-20" x2="1220" y2="200" stroke-opacity="0.20"/>
+  <line x1="940" y1="-20" x2="1220" y2="140" stroke-opacity="0.15"/>
+  <line x1="1000" y1="-20" x2="1220" y2="80" stroke-opacity="0.10"/>
+  <line x1="1060" y1="-20" x2="1220" y2="20" stroke-opacity="0.07"/>
+</g>
+```
+
+**3. Dot cluster** — a loose scatter of varying-size soft dots.
+```xml
+<g fill="ACCENT">
+  <circle cx="920" cy="80" r="4" opacity="0.25"/>
+  <circle cx="980" cy="130" r="6" opacity="0.18"/>
+  <circle cx="1050" cy="70" r="3" opacity="0.3"/>
+  <circle cx="1000" cy="200" r="5" opacity="0.15"/>
+  <circle cx="1080" cy="160" r="3" opacity="0.22"/>
+  <circle cx="930" cy="220" r="4" opacity="0.12"/>
+  <circle cx="1120" cy="90" r="2.5" opacity="0.28"/>
+  <circle cx="1060" cy="260" r="3.5" opacity="0.1"/>
+</g>
+```
+
+**4. Soft arc sweep** — one full-width gradient-faded arc, no corner anchor. Needs a `<defs>` gradient:
+```xml
+<linearGradient id="arcgrad" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0%" stop-color="ACCENT" stop-opacity="0"/>
+  <stop offset="50%" stop-color="ACCENT" stop-opacity="0.35"/>
+  <stop offset="100%" stop-color="ACCENT" stop-opacity="0"/>
+</linearGradient>
+```
+```xml
+<path d="M -60,100 C 350,240 850,40 1260,220" fill="none" stroke="url(#arcgrad)" stroke-width="3" stroke-linecap="round"/>
+```
+
+**5. Corner polygon outline** — a single large thin triangle bleeding off the corner.
+```xml
+<polygon points="750,-50 1250,120 950,370" fill="none" stroke="ACCENT" stroke-width="1.5" stroke-opacity="0.15"/>
+```
+
+**6. Soft glow blob** — an oversized out-of-focus radial blob; no stroke, no separate base `glow`. Needs a `<defs>` gradient:
+```xml
+<radialGradient id="blob" cx="50%" cy="50%" r="50%">
+  <stop offset="0%" stop-color="ACCENT" stop-opacity="0.26"/>
+  <stop offset="100%" stop-color="ACCENT" stop-opacity="0"/>
+</radialGradient>
+```
+```xml
+<ellipse cx="1000" cy="120" rx="320" ry="260" fill="url(#blob)"/>
+```
+
+**Accent rule**: every cover also gets one small colored bar sitting just above the eyebrow label, in the post's accent color:
+```xml
+<rect x="576" y="466" width="48" height="4" rx="2" fill="ACCENT"/>
+```
+
+**Rotate shapes across a series** so consecutive posts (e.g. all three WiFi Explained posts) don't repeat the same shape.
+
+> **Verification note**: this environment has no SVG rasterizer, so every cover is checked by coordinate math, not by looking at it. Before considering a cover done, check: (1) every shape element's max-y stays under 390 (a circle's bottom edge is `cy + r`, a bezier's max-y needs sampling, not just endpoint-reading — control points can push it well past either endpoint), (2) the title's estimated width (`chars × 40 × 0.55`) fits with margin, (3) exactly one `<defs>` block, (4) no `<animate>`, no emoji.
+
+---
+
 ## Content area
 
 | Zone | y range | Notes |
 |------|---------|-------|
 | Safe diagram area | `0` – `390` | Fully visible |
 | Gradient fade zone | `390` – `500` | Increasingly obscured — avoid placing content here |
-| Text block | `500` – `538` | Series label and title only |
-| Dead zone | `538` – `630` | Background only, nothing rendered here |
+| Text block | `500` – `545` | Series label and title only |
+| Dead zone | `545` – `630` | Background only, nothing rendered here |
 
 ### Vertical centering
 
-The visual "center" of the safe zone (y=0–390) is y=195. For flow-based covers (left → center → right), aim for the primary element (router, central node) to be centered around **y=210–260** — slightly below mathematical center — so the composition doesn't feel top-heavy when viewed with the title block below.
+The visual "center" of the safe zone (y=0–390) is y=195. For flow-based diagrams (left → center → right), aim for the primary element (router, central node) to be centered around **y=210–260** — slightly below mathematical center.
 
 > **Rule**: Don't place the center of the main diagram element above y=180 or below y=280.
 
 ---
 
+## Inline diagram patterns
+
+> **Everything from here through "Symmetric branch layout" below applies to in-article inline diagrams only** (the smaller illustrations embedded in post bodies, e.g. `slaac-flow.svg`, `pd-exchange.svg`, `mlo-mlsr.svg`). **None of it applies to cover images** — covers use the shape catalog above instead. This is the pattern library that used to also define the old cover style; it's kept here because inline diagrams still use it, just at a smaller, content-width canvas rather than 1200×630.
+
 ## Horizontal layout & centering
 
-For flow-based covers with a central element (router/hexagon) and flanking elements (devices, branches):
+For flow-based diagrams with a central element (router/hexagon) and flanking elements (devices, branches):
 
 1. **The central element is always at `x=600`** (canvas center).
 2. **Equal edge padding**: leftmost content and rightmost content should have roughly equal distance from the canvas edges — aim for ~100–170px on each side.
@@ -164,9 +248,9 @@ These two gaps should be within ~40 px of each other. If not, shift the deficien
 
 ---
 
-## Zone color coding (topology covers)
+## Zone color coding (topology diagrams)
 
-When a cover shows a network flow across zones (e.g. Internet → Router → LAN), use consistent zone colors so readers can orient immediately:
+When an inline diagram shows a network flow across zones (e.g. Internet → Router → LAN), use consistent zone colors so readers can orient immediately:
 
 | Zone | Color | Hex | Usage |
 |------|-------|-----|-------|
@@ -298,7 +382,7 @@ The hex-fill gradient is a dark tint of the accent color. One `id="hex-fill"` pe
 
 ## Three-zone router topology pattern
 
-Used when a post is about **setting up a router or gateway** — shows the classic Internet → Router → LAN flow. Used by MikroTik, VyOS, Travel Router, and Cloudflare Tunnels covers.
+Used when an inline diagram shows **setting up a router or gateway** — the classic Internet → Router → LAN flow.
 
 ### Layout
 
@@ -490,7 +574,7 @@ Use a single arrow marker `id="arr"` in `<defs>` filled with the series accent c
 
 ## Monitoring tool mini hexagon nodes
 
-Used on monitoring-flow covers to represent destination tools (Prometheus, Loki, Grafana). Each tool gets a **pointy-top mini hexagon** at cx=880 on the right side of the canvas.
+Used on monitoring-flow inline diagrams to represent destination tools (Prometheus, Loki, Grafana). Each tool gets a **pointy-top mini hexagon** at cx=880 on the right side of the canvas.
 
 ### Positions (three tools)
 
@@ -584,7 +668,7 @@ When only two tools are shown (e.g. Prometheus + Grafana only), center them at c
 
 ### Single large tool node (solo destination)
 
-When only one tool is the destination (e.g. Loki-only cover), use a larger hexagon (r=45) centered at cy=215 for visual weight:
+When only one tool is the destination (e.g. Loki-only diagram), use a larger hexagon (r=45) centered at cy=215 for visual weight:
 
 ```xml
 <!-- Loki solo, r=45, center (900,215) -->
@@ -648,7 +732,7 @@ Each series has one accent color used for: series label text, primary glows, key
 
 ## WiFi band colors
 
-Used across all WiFi Explained covers for 2.4 / 5 / 6 GHz visual elements.
+Used across WiFi Explained inline diagrams for 2.4 / 5 / 6 GHz visual elements.
 
 | Band | Color | Hex | Glow / light variant |
 |------|-------|-----|---------------------|
@@ -668,7 +752,7 @@ When showing bandwidth as stroke width (e.g. MLO diagram), scale proportionally:
 
 ## Subtle background textures
 
-Use sparingly — one texture type per cover.
+Use sparingly — one texture type per diagram.
 
 **Line grid** (horizontal and/or vertical, very dark):
 ```xml
@@ -742,7 +826,7 @@ Use sparingly — one texture type per cover.
 
 ## Terminal / code panel pattern
 
-Used in Traefik Bare Metal and Smokeping covers. Standard panel with macOS-style traffic lights.
+Used in Traefik and Smokeping inline setup diagrams. Standard panel with macOS-style traffic lights.
 
 ```xml
 <!-- Panel -->
@@ -804,22 +888,30 @@ Labels inside or adjacent to colored elements must be legible against dark backg
 
 - [ ] Canvas is exactly 1200×630
 - [ ] Root `<svg>` has correct `font-family` attribute
-- [ ] All gradients and markers are inside a single top-level `<defs>` block
+- [ ] All gradients/markers in a single top-level `<defs>` block
 - [ ] `textbg` gradient rect is at `y="390"` with `height="240"`
-- [ ] All diagram content ends above `y=390`
-- [ ] Main diagram element is centered at `x=600`
+- [ ] Uses the existing per-post `bg` gradient and accent color — don't invent a new one
+- [ ] Exactly **one** shape from the catalog above — no scenes, no multi-element diagrams, no small text labels
+- [ ] The chosen shape's every element checked against `y=390` (circle: `cy+r`; bezier: sample the curve, don't just read endpoints — control points can push the max well past them)
+- [ ] Accent rule present: `x="576" y="466" width="48" height="4"`, post accent color
+- [ ] Series label: `x="600" y="500"`, `font-size="13"`, `letter-spacing="3"`, `font-weight="600"`, correct accent color
+- [ ] Post title: `x="600" y="545"`, `font-size="40"`, `font-weight="700"`, `fill="#f1f5f9"`; estimated width (`chars × 40 × 0.55`) fits with margin
+- [ ] No `<animate>` elements, no emoji characters in `<text>`
+- [ ] No second `<defs>` block
+- [ ] If this is one of several posts in a series, its shape differs from its siblings' shapes
+
+## Checklist for new inline diagrams
+
+- [ ] Canvas sized to content width (not 1200×630 — that's covers only)
+- [ ] Main diagram element is centered at `x` = half the canvas width
 - [ ] Left edge padding ≈ right edge padding (within ~40px); gap from central element to left content ≈ gap from central element to right content (within ~40px)
 - [ ] After repositioning any flanking element, all gradient `x1`/`y1`/`x2`/`y2` coordinates updated to match new arrow positions
-- [ ] Diagram vertical center is between `y=180` and `y=280`
 - [ ] Zone colors follow the red/blue/green/orange/purple convention
 - [ ] Branch routes from a central node are placed symmetrically (equal y offset above and below)
 - [ ] All text labels use light variants of zone colors, not the dark base colors
-- [ ] Series label: `x="600" y="500"`, `font-size="13"`, `letter-spacing="3"`, `font-weight="600"`, correct series accent color
-- [ ] Post title: `x="600" y="538"`, `font-size="34"`, `font-weight="700"`, `fill="#f1f5f9"`
-- [ ] No `<animate>` elements
-- [ ] No emoji characters in `<text>` elements
+- [ ] No `<animate>` elements, no emoji characters in `<text>`
 - [ ] No second `<defs>` block
-- [ ] **Setup flow covers**: left panel and right panel both 260px wide, panels at y=80 (centered on y=215); arrows at y=215; all content ≤ y=380
+- [ ] **Setup flow diagrams**: left panel and right panel both 260px wide, panels at y=80 (centered on y=215); arrows at y=215
 - [ ] **Monitoring tool nodes**: mini hexagons at cx=880; three-tool layout at cy=165/255/345; two-tool at cy=155/275; gradient arrows use `gradientUnits="userSpaceOnUse"`; tip markers match destination tool color
 - [ ] **Device source nodes**: left-side device hexagon at cx=220 (r=70); cy=215 for three-hex inline flow, cy=255 for diverging monitoring flow; right face departure at x=281
 - [ ] **Three-zone router topology**: globe at cx=190 cy=210 r=74; router hex r=90 at (600,210); LAN bridge x=874 y=180; config pills at y=318; WAN arrow dashed, LAN arrow solid

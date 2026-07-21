@@ -6,107 +6,26 @@
       <stop offset="0%" stop-color="#080c14"/>
       <stop offset="100%" stop-color="#0d1520"/>
     </linearGradient>
-    <linearGradient id="hex-fill" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#0e3040"/>
-      <stop offset="100%" stop-color="#071e2a"/>
-    </linearGradient>
+    <radialGradient id="glow" cx="18%" cy="18%" r="42%">
+      <stop offset="0%" stop-color="#37BEC3" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#37BEC3" stop-opacity="0"/>
+    </radialGradient>
     <linearGradient id="textbg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%"   stop-color="#080c14" stop-opacity="0"/>
-      <stop offset="60%"  stop-color="#080c14" stop-opacity="0.93"/>
+      <stop offset="0%" stop-color="#080c14" stop-opacity="0"/>
+      <stop offset="60%" stop-color="#080c14" stop-opacity="0.93"/>
       <stop offset="100%" stop-color="#080c14" stop-opacity="1"/>
     </linearGradient>
-    <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-      <polygon points="0,0 8,3 0,6" fill="#37BEC3"/>
-    </marker>
-    <marker id="arr-dim" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-      <polygon points="0,0 8,3 0,6" fill="#37BEC3" fill-opacity="0.4"/>
-    </marker>
-    <marker id="arr-amber" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-      <polygon points="0,0 8,3 0,6" fill="#f59e0b"/>
-    </marker>
   </defs>
 
   <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
 
-  <!-- Subtle grid -->
-  <g stroke="#0d1a2a" stroke-width="1">
-    <line x1="0"    y1="100" x2="1200" y2="100"/>
-    <line x1="0"    y1="200" x2="1200" y2="200"/>
-    <line x1="0"    y1="300" x2="1200" y2="300"/>
-    <line x1="0"    y1="400" x2="1200" y2="400"/>
-    <line x1="200"  y1="0"   x2="200"  y2="500"/>
-    <line x1="400"  y1="0"   x2="400"  y2="500"/>
-    <line x1="600"  y1="0"   x2="600"  y2="500"/>
-    <line x1="800"  y1="0"   x2="800"  y2="500"/>
-    <line x1="1000" y1="0"   x2="1000" y2="500"/>
-  </g>
+  <polygon points="450,-50 -50,120 250,370" fill="none" stroke="#37BEC3" stroke-width="1.5" stroke-opacity="0.15"/>
 
-  <!-- CLIENT globe -->
-  <text x="165" y="162" text-anchor="middle" font-size="11" fill="#60a5fa" letter-spacing="2">CLIENT</text>
-  <circle cx="165" cy="215" r="38" fill="#0a1828" stroke="#3b82f6" stroke-width="2"/>
-  <ellipse cx="165" cy="215" rx="18" ry="38" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
-  <line x1="127" y1="215" x2="203" y2="215" stroke="#3b82f6" stroke-width="1.5"/>
-  <line x1="132" y1="190" x2="198" y2="190" stroke="#3b82f6" stroke-width="1"/>
-  <line x1="132" y1="240" x2="198" y2="240" stroke="#3b82f6" stroke-width="1"/>
-
-  <!-- Incoming arrows → Traefik (top TCP dim, mid solid, bottom UDP dashed) -->
-  <path d="M 208,175 C 310,175 400,215 503,215"
-        fill="none" stroke="#37BEC3" stroke-width="2.5" stroke-opacity="0.5" marker-end="url(#arr-dim)"/>
-  <text x="320" y="167" text-anchor="middle" font-size="11" fill="#475569">TCP :5432</text>
-
-  <path d="M 208,215 L 503,215"
-        fill="none" stroke="#37BEC3" stroke-width="3" marker-end="url(#arr)"/>
-  <text x="350" y="207" text-anchor="middle" font-size="11" fill="#37BEC3" font-weight="600">TCP / UDP</text>
-
-  <path d="M 208,255 C 310,255 400,215 503,215"
-        fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-opacity="0.6" stroke-dasharray="5,3" marker-end="url(#arr-amber)"/>
-  <text x="320" y="273" text-anchor="middle" font-size="11" fill="#475569">UDP :53</text>
-
-  <!-- Layer 4 badge above hex -->
-  <rect x="484" y="90" width="232" height="28" fill="#071e2a" stroke="#37BEC3" stroke-width="1.5" rx="14"/>
-  <text x="600" y="109" text-anchor="middle" font-size="12" fill="#37BEC3" font-weight="600" letter-spacing="1">TCP · UDP · Layer 4</text>
-
-  <!-- TRAEFIK HEX (flat-top, center=600,215) -->
-  <polygon points="695,215 648,133 552,133 505,215 552,297 648,297"
-           fill="url(#hex-fill)" stroke="#37BEC3" stroke-width="2.5"/>
-  <text x="600" y="209" text-anchor="middle" font-size="22" font-weight="700" fill="#67e8f9" letter-spacing="2">traefik</text>
-  <text x="600" y="230" text-anchor="middle" font-size="11" fill="#37BEC3" letter-spacing="3" opacity="0.8">tcp · udp routing</text>
-
-  <!-- Arrows: Traefik → service cards -->
-  <path d="M 697,203 C 720,183 760,152 800,152"
-        fill="none" stroke="#37BEC3" stroke-width="2" marker-end="url(#arr)"/>
-  <path d="M 697,215 L 800,215"
-        fill="none" stroke="#37BEC3" stroke-width="2" marker-end="url(#arr)"/>
-  <path d="M 697,227 C 720,247 760,278 800,278"
-        fill="none" stroke="#f59e0b" stroke-width="2" marker-end="url(#arr-amber)"/>
-
-  <!-- Card 1: HTTPS / TLS passthrough (TCP :443) -->
-  <rect x="800" y="125" width="330" height="55" fill="#071e2a" stroke="#37BEC3" stroke-width="1.5" rx="5"/>
-  <rect x="800" y="125" width="5"   height="55" fill="#37BEC3" rx="3"/>
-  <text x="816" y="147" font-size="13" font-weight="700" fill="#67e8f9">HTTPS · :443</text>
-  <text x="816" y="166" font-size="10" fill="#64748b" font-family="'Courier New',monospace">HostSNI(`*`) · TLS passthrough</text>
-  <rect x="1068" y="133" width="48" height="18" fill="#071428" stroke="#38bdf8" stroke-width="1" rx="3"/>
-  <text x="1092" y="146" text-anchor="middle" font-size="9" fill="#7dd3fc" font-weight="700">TCP</text>
-
-  <!-- Card 2: PostgreSQL (TCP :5432) -->
-  <rect x="800" y="188" width="330" height="55" fill="#071e2a" stroke="#37BEC3" stroke-width="1.5" rx="5"/>
-  <rect x="800" y="188" width="5"   height="55" fill="#37BEC3" rx="3"/>
-  <text x="816" y="210" font-size="13" font-weight="700" fill="#67e8f9">PostgreSQL · :5432</text>
-  <text x="816" y="229" font-size="10" fill="#64748b" font-family="'Courier New',monospace">HostSNI(`db.home`) · raw TCP</text>
-  <rect x="1068" y="196" width="48" height="18" fill="#071428" stroke="#38bdf8" stroke-width="1" rx="3"/>
-  <text x="1092" y="209" text-anchor="middle" font-size="9" fill="#7dd3fc" font-weight="700">TCP</text>
-
-  <!-- Card 3: DNS (UDP :53) — amber accent for UDP -->
-  <rect x="800" y="251" width="330" height="55" fill="#1a0e00" stroke="#f59e0b" stroke-width="1.5" rx="5"/>
-  <rect x="800" y="251" width="5"   height="55" fill="#f59e0b" rx="3"/>
-  <text x="816" y="273" font-size="13" font-weight="700" fill="#fcd34d">DNS · :53</text>
-  <text x="816" y="292" font-size="10" fill="#64748b" font-family="'Courier New',monospace">no rule · UDP passthrough</text>
-  <rect x="1068" y="259" width="48" height="18" fill="#1a0e00" stroke="#f59e0b" stroke-width="1" rx="3"/>
-  <text x="1092" y="272" text-anchor="middle" font-size="9" fill="#f59e0b" font-weight="700">UDP</text>
+  <rect x="576" y="466" width="48" height="4" rx="2" fill="#37BEC3"/>
 
   <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
-  <text x="600" y="500" text-anchor="middle" font-size="13"
-        fill="#37BEC3" letter-spacing="3" font-weight="600">TRAEFIK REVERSE PROXY</text>
-  <text x="600" y="538" text-anchor="middle" font-size="34"
-        font-weight="700" fill="#f1f5f9">TCP and UDP Routing</text>
+
+  <text x="600" y="500" text-anchor="middle" font-size="13" fill="#37BEC3" letter-spacing="3" font-weight="600">TRAEFIK REVERSE PROXY</text>
+  <text x="600" y="545" text-anchor="middle" font-size="40" font-weight="700" fill="#f1f5f9">TCP and UDP Routing</text>
 </svg>

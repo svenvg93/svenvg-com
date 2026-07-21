@@ -17,6 +17,7 @@ header:
     link: "/"
   showThemeSwitch: false
   showDarkModeSwitch: true
+  showContentWidthSwitch: false
   showLanguageSwitch: false
   languageSwitchMode: "dropdown"  # dropdown | cycle
 

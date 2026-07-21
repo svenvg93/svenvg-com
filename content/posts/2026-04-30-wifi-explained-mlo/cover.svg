@@ -6,79 +6,35 @@
       <stop offset="0%" stop-color="#060a1a"/>
       <stop offset="100%" stop-color="#0d1530"/>
     </linearGradient>
-    <radialGradient id="glow" cx="62%" cy="42%" r="40%">
-      <stop offset="0%" stop-color="#c084fc" stop-opacity="0.14"/>
-      <stop offset="100%" stop-color="#c084fc" stop-opacity="0"/>
+    <radialGradient id="glow" cx="18%" cy="18%" r="42%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
     </radialGradient>
     <linearGradient id="textbg" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#060a1a" stop-opacity="0"/>
-      <stop offset="65%" stop-color="#060a1a" stop-opacity="0.93"/>
+      <stop offset="60%" stop-color="#060a1a" stop-opacity="0.93"/>
       <stop offset="100%" stop-color="#060a1a" stop-opacity="1"/>
     </linearGradient>
-    <linearGradient id="ap-fill" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#2e1065"/>
-      <stop offset="100%" stop-color="#1a0a2e"/>
-    </linearGradient>
-    <linearGradient id="merge" x1="730" y1="244" x2="900" y2="244" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#c084fc" stop-opacity="0.4"/>
-      <stop offset="100%" stop-color="#c084fc"/>
-    </linearGradient>
-    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
-      <polygon points="0,0 8,4 0,8" fill="#c084fc"/>
-    </marker>
   </defs>
 
-  <!-- Background -->
   <rect width="1200" height="630" fill="url(#bg)"/>
   <rect width="1200" height="630" fill="url(#glow)"/>
 
-  <!-- Subtle dot grid, kept clear of the phone/hex/label areas -->
-  <g fill="#0f1f44" opacity="0.8">
-    <circle cx="50" cy="70" r="1.5"/><circle cx="90" cy="70" r="1.5"/><circle cx="130" cy="70" r="1.5"/>
-    <circle cx="50" cy="350" r="1.5"/><circle cx="90" cy="350" r="1.5"/><circle cx="130" cy="350" r="1.5"/>
-    <circle cx="1080" cy="80" r="1.5"/><circle cx="1120" cy="80" r="1.5"/>
-    <circle cx="1080" cy="360" r="1.5"/><circle cx="1120" cy="360" r="1.5"/>
+  <g fill="#38bdf8">
+    <circle cx="280" cy="80" r="4" opacity="0.25"/>
+    <circle cx="220" cy="130" r="6" opacity="0.18"/>
+    <circle cx="150" cy="70" r="3" opacity="0.3"/>
+    <circle cx="200" cy="200" r="5" opacity="0.15"/>
+    <circle cx="120" cy="160" r="3" opacity="0.22"/>
+    <circle cx="270" cy="220" r="4" opacity="0.12"/>
+    <circle cx="80" cy="90" r="2.5" opacity="0.28"/>
+    <circle cx="140" cy="260" r="3.5" opacity="0.1"/>
   </g>
 
-  <!-- === Client phone icon (left), centered at (180,216) === -->
-  <rect x="150" y="168" width="60" height="96" fill="#1e1b4b" stroke="#c084fc" stroke-width="2" rx="8"/>
-  <rect x="158" y="178" width="44" height="60" fill="#2e1065" rx="4"/>
-  <rect x="162" y="182" width="36" height="6" fill="#c084fc" rx="2" opacity="0.7"/>
-  <rect x="162" y="192" width="28" height="4" fill="#818cf8" rx="2" opacity="0.5"/>
-  <rect x="162" y="200" width="32" height="4" fill="#818cf8" rx="2" opacity="0.5"/>
-  <circle cx="180" cy="252" r="5" fill="#4c1d95" stroke="#c084fc" stroke-width="1.5"/>
-  <text x="180" y="145" text-anchor="middle" font-size="13" font-weight="600" fill="#e9d5ff" letter-spacing="1.5">CLIENT</text>
+  <rect x="576" y="466" width="48" height="4" rx="2" fill="#38bdf8"/>
 
-  <!--
-    Three band links, well separated at the client (y=170 / 244 / 318 — 74px apart,
-    clearing even the thickest 36px stroke) and converging smoothly to one point
-    at (730,244), directly in front of the AP.
-  -->
-  <path d="M 214,170 Q 470,170 730,244" fill="none" stroke="#f97316" stroke-width="16" stroke-linecap="round"/>
-  <path d="M 214,244 L 730,244"          fill="none" stroke="#38bdf8" stroke-width="26" stroke-linecap="round"/>
-  <path d="M 214,318 Q 470,318 730,244" fill="none" stroke="#34d399" stroke-width="36" stroke-linecap="round"/>
-
-  <!-- Band labels, placed just right of the client where the three lines are still fully separated -->
-  <text x="250" y="163" font-size="11" font-weight="600" fill="#fed7aa" letter-spacing="1">2.4 GHz</text>
-  <text x="250" y="237" font-size="11" font-weight="600" fill="#bae6fd" letter-spacing="1">5 GHz</text>
-  <text x="250" y="311" font-size="11" font-weight="600" fill="#a7f3d0" letter-spacing="1">6 GHz</text>
-
-  <!-- === Merged MLO link into the AP === -->
-  <path d="M 730,244 L 900,244" fill="none" stroke="url(#merge)" stroke-width="28" stroke-linecap="round" marker-end="url(#arr)"/>
-
-  <!-- === AP hexagon (right), pointy-top, r=70 centered at (970,244) === -->
-  <polygon points="970,174 1031,209 1031,279 970,314 909,279 909,209"
-           fill="url(#ap-fill)" stroke="#c084fc" stroke-width="2.5"/>
-  <polygon points="970,182 1024,213 1024,275 970,306 916,275 916,213"
-           fill="none" stroke="#c084fc" stroke-width="0.8" stroke-opacity="0.3"/>
-  <text x="970" y="252" text-anchor="middle" font-size="20" font-weight="800" fill="#e9d5ff" letter-spacing="1">MLO</text>
-
-  <!-- Bottom gradient overlay -->
   <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
 
-  <!-- Series label -->
   <text x="600" y="500" text-anchor="middle" font-size="13" fill="#38bdf8" letter-spacing="3" font-weight="600">WIFI EXPLAINED</text>
-
-  <!-- Title -->
-  <text x="600" y="538" text-anchor="middle" font-size="34" font-weight="700" fill="#f1f5f9">Spectrum &amp; Multi-Link Operation</text>
+  <text x="600" y="545" text-anchor="middle" font-size="40" font-weight="700" fill="#f1f5f9">Spectrum &amp; Multi-Link Operation</text>
 </svg>

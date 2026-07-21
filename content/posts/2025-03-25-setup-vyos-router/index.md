@@ -298,7 +298,7 @@ delete system login user vyos
 commit; save
 ```
 
-Now your VyOS router is fully configured and ready to power your homelab! 🎉 With a secure and efficient network in place, you can focus on building and exploring your homelab projects. Happy networking! 🤝
+Now your VyOS router is fully configured and ready to power your homelab. With a secure and efficient network in place, you can focus on building and exploring your homelab projects.
 
 [1]: https://vyos.io
 [2]: https://github.com/vyos/vyos-nightly-build/releases

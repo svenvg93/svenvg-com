@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" width="700" height="300" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 250" width="700" height="250" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#080c14"/>
@@ -7,103 +7,92 @@
     </linearGradient>
   </defs>
 
-  <!-- Background -->
-  <rect width="700" height="300" fill="url(#bg)" rx="8"/>
-
-  <!-- Subtle grid -->
-  <line x1="0" y1="150" x2="700" y2="150" stroke="#0d1a2a" stroke-width="1"/>
-
-  <!-- Header label -->
-  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">CHANNEL WIDTH — THROUGHPUT VS AVAILABLE CHANNELS</text>
+  <rect width="700" height="250" fill="url(#bg)" rx="8"/>
 
   <!-- LEFT: 5 GHz (~500 MHz usable) -->
-  <text x="175" y="44" text-anchor="middle" font-size="12" font-weight="700" fill="#94a3b8">5 GHz band (~500 MHz)</text>
+  <text x="175" y="26" text-anchor="middle" font-size="12" font-weight="700" fill="#94a3b8">5 GHz band (~500 MHz)</text>
 
   <!-- Band baseline -->
-  <line x1="30" y1="240" x2="320" y2="240" stroke="#1e3a5f" stroke-width="1.5"/>
-  <text x="30"  y="254" font-size="8" fill="#94a3b8">5.180</text>
-  <text x="270" y="254" font-size="8" fill="#94a3b8">5.825 GHz</text>
+  <line x1="30" y1="222" x2="320" y2="222" stroke="#1e3a5f" stroke-width="1.5"/>
+  <text x="30"  y="236" font-size="8" fill="#94a3b8">5.180</text>
+  <text x="270" y="236" font-size="8" fill="#94a3b8">5.825 GHz</text>
 
   <!-- 20 MHz: ~25 channels (emerald) -->
-  <text x="30" y="70" font-size="10" font-weight="600" fill="#94a3b8">20 MHz</text>
-  <text x="175" y="70" text-anchor="middle" font-size="9" fill="#34d399">~25 channels</text>
-  <rect x="30"  y="74" width="18" height="18" fill="#071810" stroke="#34d399" stroke-width="1" rx="2"/>
-  <rect x="50"  y="74" width="18" height="18" fill="#071810" stroke="#34d399" stroke-width="1" rx="2"/>
-  <rect x="70"  y="74" width="18" height="18" fill="#071810" stroke="#34d399" stroke-width="1" rx="2"/>
-  <rect x="90"  y="74" width="18" height="18" fill="#071810" stroke="#34d399" stroke-width="1" rx="2"/>
-  <rect x="110" y="74" width="18" height="18" fill="#071810" stroke="#34d399" stroke-width="1" rx="2"/>
-  <rect x="130" y="74" width="18" height="18" fill="#071810" stroke="#34d399" stroke-width="1" rx="2"/>
-  <text x="155" y="87" font-size="9" fill="#94a3b8">· · · ~19 more</text>
+  <text x="30" y="52" font-size="10" font-weight="600" fill="#94a3b8">20 MHz</text>
+  <text x="175" y="52" text-anchor="middle" font-size="9" fill="#34d399">~25 channels</text>
+  <rect x="30"  y="56" width="18" height="18" fill="none" stroke="#34d399" stroke-width="1" rx="2"/>
+  <rect x="50"  y="56" width="18" height="18" fill="none" stroke="#34d399" stroke-width="1" rx="2"/>
+  <rect x="70"  y="56" width="18" height="18" fill="none" stroke="#34d399" stroke-width="1" rx="2"/>
+  <rect x="90"  y="56" width="18" height="18" fill="none" stroke="#34d399" stroke-width="1" rx="2"/>
+  <rect x="110" y="56" width="18" height="18" fill="none" stroke="#34d399" stroke-width="1" rx="2"/>
+  <rect x="130" y="56" width="18" height="18" fill="none" stroke="#34d399" stroke-width="1" rx="2"/>
+  <text x="155" y="69" font-size="9" fill="#94a3b8">&#183; &#183; &#183; ~19 more</text>
 
   <!-- 40 MHz: ~12 channels (sky) -->
-  <text x="30" y="112" font-size="10" font-weight="600" fill="#94a3b8">40 MHz</text>
-  <text x="175" y="112" text-anchor="middle" font-size="9" fill="#38bdf8">~12 channels</text>
-  <rect x="30"  y="116" width="36" height="18" fill="#0e1a3a" stroke="#38bdf8" stroke-width="1" rx="2"/>
-  <rect x="68"  y="116" width="36" height="18" fill="#0e1a3a" stroke="#38bdf8" stroke-width="1" rx="2"/>
-  <rect x="106" y="116" width="36" height="18" fill="#0e1a3a" stroke="#38bdf8" stroke-width="1" rx="2"/>
-  <rect x="144" y="116" width="36" height="18" fill="#0e1a3a" stroke="#38bdf8" stroke-width="1" rx="2"/>
-  <text x="188" y="129" font-size="9" fill="#94a3b8">· · · ~8 more</text>
+  <text x="30" y="94" font-size="10" font-weight="600" fill="#94a3b8">40 MHz</text>
+  <text x="175" y="94" text-anchor="middle" font-size="9" fill="#38bdf8">~12 channels</text>
+  <rect x="30"  y="98" width="36" height="18" fill="none" stroke="#38bdf8" stroke-width="1" rx="2"/>
+  <rect x="68"  y="98" width="36" height="18" fill="none" stroke="#38bdf8" stroke-width="1" rx="2"/>
+  <rect x="106" y="98" width="36" height="18" fill="none" stroke="#38bdf8" stroke-width="1" rx="2"/>
+  <rect x="144" y="98" width="36" height="18" fill="none" stroke="#38bdf8" stroke-width="1" rx="2"/>
+  <text x="188" y="111" font-size="9" fill="#94a3b8">&#183; &#183; &#183; ~8 more</text>
 
-  <!-- 80 MHz: ~6 channels (MLO accent / sky checkmark) -->
-  <text x="30" y="154" font-size="10" font-weight="600" fill="#94a3b8">80 MHz (recommended)</text>
-  <text x="175" y="154" text-anchor="middle" font-size="9" fill="#38bdf8">~6 channels</text>
-  <rect x="30"  y="158" width="72" height="18" fill="#0d1a2e" stroke="#38bdf8" stroke-width="1.5" rx="2"/>
-  <rect x="104" y="158" width="72" height="18" fill="#0d1a2e" stroke="#38bdf8" stroke-width="1.5" rx="2"/>
-  <rect x="178" y="158" width="72" height="18" fill="#0d1a2e" stroke="#38bdf8" stroke-width="1.5" rx="2"/>
-  <text x="257" y="171" font-size="9" fill="#94a3b8">~3 more</text>
+  <!-- 80 MHz: ~6 channels (recommended) -->
+  <text x="30" y="136" font-size="10" font-weight="600" fill="#94a3b8">80 MHz (recommended)</text>
+  <text x="175" y="136" text-anchor="middle" font-size="9" fill="#38bdf8">~6 channels</text>
+  <rect x="30"  y="140" width="72" height="18" fill="none" stroke="#38bdf8" stroke-width="1.5" rx="2"/>
+  <rect x="104" y="140" width="72" height="18" fill="none" stroke="#38bdf8" stroke-width="1.5" rx="2"/>
+  <rect x="178" y="140" width="72" height="18" fill="none" stroke="#38bdf8" stroke-width="1.5" rx="2"/>
+  <text x="257" y="153" font-size="9" fill="#94a3b8">~3 more</text>
 
-  <!-- 160 MHz: ~2-3 channels (red warning) -->
-  <text x="30" y="196" font-size="10" font-weight="600" fill="#94a3b8">160 MHz</text>
-  <text x="175" y="196" text-anchor="middle" font-size="9" fill="#f87171">~2–3 channels (incl. DFS)</text>
-  <rect x="30"  y="200" width="144" height="18" fill="#1a0a0a" stroke="#f87171" stroke-width="1.5" rx="2"/>
-  <rect x="176" y="200" width="144" height="18" fill="#1a0a0a" stroke="#f87171" stroke-width="1.5" rx="2"/>
+  <!-- 160 MHz: ~2-3 channels (warning) -->
+  <text x="30" y="178" font-size="10" font-weight="600" fill="#94a3b8">160 MHz</text>
+  <text x="175" y="178" text-anchor="middle" font-size="9" fill="#f87171">~2&#8211;3 channels (incl. DFS)</text>
+  <rect x="30"  y="182" width="144" height="18" fill="none" stroke="#f87171" stroke-width="1.5" rx="2"/>
+  <rect x="176" y="182" width="144" height="18" fill="none" stroke="#f87171" stroke-width="1.5" rx="2"/>
 
   <!-- Divider -->
-  <line x1="345" y1="38" x2="345" y2="258" stroke="#1e3a5f" stroke-width="1.5"/>
+  <line x1="345" y1="18" x2="345" y2="244" stroke="#1e3a5f" stroke-width="1.5"/>
 
   <!-- RIGHT: 6 GHz (~1200 MHz usable) -->
-  <text x="522" y="44" text-anchor="middle" font-size="12" font-weight="700" fill="#94a3b8">6 GHz band (~1200 MHz)</text>
+  <text x="522" y="26" text-anchor="middle" font-size="12" font-weight="700" fill="#94a3b8">6 GHz band (~1200 MHz)</text>
 
   <!-- Band baseline -->
-  <line x1="370" y1="240" x2="670" y2="240" stroke="#1e3a5f" stroke-width="1.5"/>
-  <text x="370" y="254" font-size="8" fill="#94a3b8">5.925</text>
-  <text x="620" y="254" font-size="8" fill="#94a3b8">7.125 GHz</text>
+  <line x1="370" y1="222" x2="670" y2="222" stroke="#1e3a5f" stroke-width="1.5"/>
+  <text x="370" y="236" font-size="8" fill="#94a3b8">5.925</text>
+  <text x="620" y="236" font-size="8" fill="#94a3b8">7.125 GHz</text>
 
   <!-- 20 MHz: ~59 channels (emerald) -->
-  <text x="370" y="70" font-size="10" font-weight="600" fill="#94a3b8">20 MHz</text>
-  <text x="522" y="70" text-anchor="middle" font-size="9" fill="#34d399">~59 channels</text>
-  <rect x="370" y="74" width="8"  height="18" fill="#071810" stroke="#34d399" stroke-width="0.5" rx="1"/>
-  <rect x="380" y="74" width="8"  height="18" fill="#071810" stroke="#34d399" stroke-width="0.5" rx="1"/>
-  <rect x="390" y="74" width="8"  height="18" fill="#071810" stroke="#34d399" stroke-width="0.5" rx="1"/>
-  <rect x="400" y="74" width="8"  height="18" fill="#071810" stroke="#34d399" stroke-width="0.5" rx="1"/>
-  <rect x="410" y="74" width="8"  height="18" fill="#071810" stroke="#34d399" stroke-width="0.5" rx="1"/>
-  <rect x="420" y="74" width="8"  height="18" fill="#071810" stroke="#34d399" stroke-width="0.5" rx="1"/>
-  <text x="436" y="87" font-size="9" fill="#94a3b8">· · · ~53 more</text>
+  <text x="370" y="52" font-size="10" font-weight="600" fill="#94a3b8">20 MHz</text>
+  <text x="522" y="52" text-anchor="middle" font-size="9" fill="#34d399">~59 channels</text>
+  <rect x="370" y="56" width="8"  height="18" fill="none" stroke="#34d399" stroke-width="0.5" rx="1"/>
+  <rect x="380" y="56" width="8"  height="18" fill="none" stroke="#34d399" stroke-width="0.5" rx="1"/>
+  <rect x="390" y="56" width="8"  height="18" fill="none" stroke="#34d399" stroke-width="0.5" rx="1"/>
+  <rect x="400" y="56" width="8"  height="18" fill="none" stroke="#34d399" stroke-width="0.5" rx="1"/>
+  <rect x="410" y="56" width="8"  height="18" fill="none" stroke="#34d399" stroke-width="0.5" rx="1"/>
+  <rect x="420" y="56" width="8"  height="18" fill="none" stroke="#34d399" stroke-width="0.5" rx="1"/>
+  <text x="436" y="69" font-size="9" fill="#94a3b8">&#183; &#183; &#183; ~53 more</text>
 
   <!-- 80 MHz: ~14 channels (sky) -->
-  <text x="370" y="112" font-size="10" font-weight="600" fill="#94a3b8">80 MHz</text>
-  <text x="522" y="112" text-anchor="middle" font-size="9" fill="#38bdf8">~14 channels</text>
-  <rect x="370" y="116" width="36" height="18" fill="#0e1a3a" stroke="#38bdf8" stroke-width="1" rx="2"/>
-  <rect x="408" y="116" width="36" height="18" fill="#0e1a3a" stroke="#38bdf8" stroke-width="1" rx="2"/>
-  <rect x="446" y="116" width="36" height="18" fill="#0e1a3a" stroke="#38bdf8" stroke-width="1" rx="2"/>
-  <rect x="484" y="116" width="36" height="18" fill="#0e1a3a" stroke="#38bdf8" stroke-width="1" rx="2"/>
-  <text x="528" y="129" font-size="9" fill="#94a3b8">· · · ~10 more</text>
+  <text x="370" y="94" font-size="10" font-weight="600" fill="#94a3b8">80 MHz</text>
+  <text x="522" y="94" text-anchor="middle" font-size="9" fill="#38bdf8">~14 channels</text>
+  <rect x="370" y="98" width="36" height="18" fill="none" stroke="#38bdf8" stroke-width="1" rx="2"/>
+  <rect x="408" y="98" width="36" height="18" fill="none" stroke="#38bdf8" stroke-width="1" rx="2"/>
+  <rect x="446" y="98" width="36" height="18" fill="none" stroke="#38bdf8" stroke-width="1" rx="2"/>
+  <rect x="484" y="98" width="36" height="18" fill="none" stroke="#38bdf8" stroke-width="1" rx="2"/>
+  <text x="528" y="111" font-size="9" fill="#94a3b8">&#183; &#183; &#183; ~10 more</text>
 
   <!-- 160 MHz (recommended for 6 GHz): ~7 channels (sky) -->
-  <text x="370" y="154" font-size="10" font-weight="600" fill="#94a3b8">160 MHz (recommended)</text>
-  <text x="522" y="154" text-anchor="middle" font-size="9" fill="#38bdf8">~7 channels</text>
-  <rect x="370" y="158" width="72" height="18" fill="#0d1a2e" stroke="#38bdf8" stroke-width="1.5" rx="2"/>
-  <rect x="444" y="158" width="72" height="18" fill="#0d1a2e" stroke="#38bdf8" stroke-width="1.5" rx="2"/>
-  <rect x="518" y="158" width="72" height="18" fill="#0d1a2e" stroke="#38bdf8" stroke-width="1.5" rx="2"/>
-  <text x="598" y="171" font-size="9" fill="#94a3b8">~4 more</text>
+  <text x="370" y="136" font-size="10" font-weight="600" fill="#94a3b8">160 MHz (recommended)</text>
+  <text x="522" y="136" text-anchor="middle" font-size="9" fill="#38bdf8">~7 channels</text>
+  <rect x="370" y="140" width="72" height="18" fill="none" stroke="#38bdf8" stroke-width="1.5" rx="2"/>
+  <rect x="444" y="140" width="72" height="18" fill="none" stroke="#38bdf8" stroke-width="1.5" rx="2"/>
+  <rect x="518" y="140" width="72" height="18" fill="none" stroke="#38bdf8" stroke-width="1.5" rx="2"/>
+  <text x="598" y="153" font-size="9" fill="#94a3b8">~4 more</text>
 
   <!-- 320 MHz: ~3 channels (orange) -->
-  <text x="370" y="196" font-size="10" font-weight="600" fill="#94a3b8">320 MHz</text>
-  <text x="522" y="196" text-anchor="middle" font-size="9" fill="#34d399">~3 channels</text>
-  <rect x="370" y="200" width="144" height="18" fill="#1a1000" stroke="#f97316" stroke-width="1.5" rx="2"/>
-  <rect x="516" y="200" width="144" height="18" fill="#1a1000" stroke="#f97316" stroke-width="1.5" rx="2"/>
-
-  <!-- Footer captions -->
-  <text x="350" y="273" text-anchor="middle" font-size="9" fill="#94a3b8">Wider channels deliver more throughput per device but leave fewer independent channels</text>
-  <text x="350" y="287" text-anchor="middle" font-size="9" fill="#94a3b8">The 6 GHz band's extra width makes 160 MHz practical where 5 GHz 160 MHz is risky</text>
+  <text x="370" y="178" font-size="10" font-weight="600" fill="#94a3b8">320 MHz</text>
+  <text x="522" y="178" text-anchor="middle" font-size="9" fill="#34d399">~3 channels</text>
+  <rect x="370" y="182" width="144" height="18" fill="none" stroke="#f97316" stroke-width="1.5" rx="2"/>
+  <rect x="516" y="182" width="144" height="18" fill="none" stroke="#f97316" stroke-width="1.5" rx="2"/>
 </svg>

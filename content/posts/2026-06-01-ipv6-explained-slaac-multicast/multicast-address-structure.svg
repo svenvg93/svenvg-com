@@ -9,78 +9,63 @@
   </defs>
 
   <rect width="700" height="310" fill="url(#bg)" rx="8"/>
-  <g stroke="#0d1a2a" stroke-width="1">
-    <line x1="0" y1="30" x2="700" y2="30"/>
-  </g>
 
-  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">IPv6 MULTICAST ADDRESS STRUCTURE</text>
+  <!-- Field layout — flags/scope given minimum readable width, not strictly proportional -->
+  <!-- ff(8b)=60px | flags(4b)=70px | scope(4b)=70px | group ID(112b)=420px = 620px total -->
 
-  <!-- Field layout — not strictly proportional; flags/scope given minimum readable width -->
-  <!-- ff(8b)=60px | flags(4b)=52px | scope(4b)=52px | group ID(112b)=456px = 620px total -->
+  <rect x="40" y="36" width="60" height="44" fill="none" stroke="#34d399" stroke-width="1.5" rx="2"/>
+  <text x="70" y="55" text-anchor="middle" font-size="12" font-weight="700" fill="#86efac">ff</text>
+  <text x="70" y="71" text-anchor="middle" font-size="8" fill="#34d399">8 b</text>
 
-  <!-- ff prefix: 60px (x=40..100) -->
-  <rect x="40" y="44" width="60" height="44" fill="#200808" stroke="#ef4444" stroke-width="1.5" rx="2"/>
-  <text x="70" y="62" text-anchor="middle" font-size="11" font-weight="600" fill="#fca5a5">ff</text>
-  <text x="70" y="77" text-anchor="middle" font-size="8" fill="#ef4444">8 b</text>
+  <rect x="100" y="36" width="70" height="44" fill="none" stroke="#34d399" stroke-width="1.5" rx="2"/>
+  <text x="135" y="55" text-anchor="middle" font-size="10" font-weight="700" fill="#86efac">Flags</text>
+  <text x="135" y="71" text-anchor="middle" font-size="8" fill="#34d399">4 b</text>
 
-  <!-- flags: 52px (x=100..152) -->
-  <rect x="100" y="44" width="52" height="44" fill="#1a1200" stroke="#f59e0b" stroke-width="1.5" rx="2"/>
-  <text x="126" y="62" text-anchor="middle" font-size="9" font-weight="600" fill="#fcd34d">flags</text>
-  <text x="126" y="77" text-anchor="middle" font-size="8" fill="#f59e0b">4 b</text>
+  <rect x="170" y="36" width="70" height="44" fill="none" stroke="#34d399" stroke-width="1.5" rx="2"/>
+  <text x="205" y="55" text-anchor="middle" font-size="10" font-weight="700" fill="#86efac">Scope</text>
+  <text x="205" y="71" text-anchor="middle" font-size="8" fill="#34d399">4 b</text>
 
-  <!-- scope: 52px (x=152..204) -->
-  <rect x="152" y="44" width="52" height="44" fill="#0e2040" stroke="#38bdf8" stroke-width="1.5" rx="2"/>
-  <text x="178" y="62" text-anchor="middle" font-size="9" font-weight="600" fill="#bae6fd">scope</text>
-  <text x="178" y="77" text-anchor="middle" font-size="8" fill="#38bdf8">4 b</text>
+  <rect x="240" y="36" width="420" height="44" fill="none" stroke="#34d399" stroke-width="1.5" rx="2"/>
+  <text x="450" y="55" text-anchor="middle" font-size="12" font-weight="700" fill="#86efac">Group ID</text>
+  <text x="450" y="71" text-anchor="middle" font-size="8" fill="#34d399">112 b — identifies the multicast group</text>
 
-  <!-- group ID: 456px (x=204..660) -->
-  <rect x="204" y="44" width="456" height="44" fill="#072a1e" stroke="#34d399" stroke-width="1.5" rx="2"/>
-  <text x="432" y="63" text-anchor="middle" font-size="11" font-weight="600" fill="#86efac">Group ID</text>
-  <text x="432" y="79" text-anchor="middle" font-size="8" fill="#34d399">112 bits — identifies the multicast group</text>
+  <!-- Flags detail -->
+  <rect x="40" y="96" width="290" height="90" fill="none" stroke="#34d399" stroke-width="1" rx="4"/>
+  <text x="185" y="113" text-anchor="middle" font-size="10" font-weight="600" fill="#86efac">Flags (4 bits)</text>
+  <text x="52" y="130" font-size="9" fill="#94a3b8">bit 0</text>
+  <text x="90" y="130" font-size="9" fill="#64748b">reserved (0)</text>
+  <text x="52" y="146" font-size="9" fill="#34d399">R</text>
+  <text x="90" y="146" font-size="9" fill="#94a3b8">Rendezvous Point embedded</text>
+  <text x="52" y="162" font-size="9" fill="#34d399">P</text>
+  <text x="90" y="162" font-size="9" fill="#94a3b8">Prefix-based address</text>
+  <text x="52" y="178" font-size="9" fill="#34d399">T</text>
+  <text x="90" y="178" font-size="9" fill="#94a3b8">Transient (1) / permanent (0)</text>
 
-  <!-- field labels below -->
-  <text x="70"  y="97" text-anchor="middle" font-size="9" fill="#94a3b8">Always</text>
-  <text x="70"  y="109" text-anchor="middle" font-size="9" fill="#ef4444">0xff</text>
-  <text x="126" y="97" text-anchor="middle" font-size="9" fill="#f59e0b">Flags</text>
-  <text x="178" y="97" text-anchor="middle" font-size="9" fill="#38bdf8">Scope</text>
+  <!-- Scope detail -->
+  <rect x="370" y="96" width="290" height="90" fill="none" stroke="#34d399" stroke-width="1" rx="4"/>
+  <text x="515" y="113" text-anchor="middle" font-size="10" font-weight="600" fill="#86efac">Scope (4 bits)</text>
+  <text x="382" y="130" font-size="9" fill="#34d399" font-family="'Courier New',monospace">1</text>
+  <text x="400" y="130" font-size="9" fill="#94a3b8">Interface-local (loopback)</text>
+  <text x="382" y="146" font-size="9" fill="#34d399" font-family="'Courier New',monospace">2</text>
+  <text x="400" y="146" font-size="9" fill="#94a3b8">Link-local (never routed)</text>
+  <text x="382" y="162" font-size="9" fill="#34d399" font-family="'Courier New',monospace">5</text>
+  <text x="400" y="162" font-size="9" fill="#94a3b8">Site-local</text>
+  <text x="382" y="178" font-size="9" fill="#34d399" font-family="'Courier New',monospace">e</text>
+  <text x="400" y="178" font-size="9" fill="#94a3b8">Global</text>
 
-  <!-- Flags detail box -->
-  <rect x="40" y="120" width="200" height="80" fill="#080c14" stroke="#f59e0b" stroke-width="1" rx="4"/>
-  <text x="140" y="136" text-anchor="middle" font-size="10" font-weight="600" fill="#fcd34d">Flags (4 bits)</text>
-  <text x="52" y="151" font-size="9" fill="#94a3b8">bit 0</text>
-  <text x="90" y="151" font-size="9" fill="#64748b">reserved (0)</text>
-  <text x="52" y="165" font-size="9" fill="#fcd34d">R</text>
-  <text x="90" y="165" font-size="9" fill="#94a3b8">Rendezvous Point embedded</text>
-  <text x="52" y="179" font-size="9" fill="#fcd34d">P</text>
-  <text x="90" y="179" font-size="9" fill="#94a3b8">Prefix-based address</text>
-  <text x="52" y="193" font-size="9" fill="#fcd34d">T</text>
-  <text x="90" y="193" font-size="9" fill="#94a3b8">Transient (1) / permanent (0)</text>
+  <!-- Examples -->
+  <rect x="40" y="196" width="620" height="90" fill="none" stroke="#334155" stroke-width="1.5" rx="4"/>
+  <text x="350" y="213" text-anchor="middle" font-size="10" font-weight="600" fill="#94a3b8">Examples</text>
 
-  <!-- Scope detail box -->
-  <rect x="252" y="120" width="220" height="80" fill="#080c14" stroke="#38bdf8" stroke-width="1" rx="4"/>
-  <text x="362" y="136" text-anchor="middle" font-size="10" font-weight="600" fill="#bae6fd">Scope (4 bits)</text>
-  <text x="264" y="151" font-size="9" fill="#38bdf8" font-family="'Courier New',monospace">1</text>
-  <text x="280" y="151" font-size="9" fill="#94a3b8">Interface-local (loopback)</text>
-  <text x="264" y="165" font-size="9" fill="#38bdf8" font-family="'Courier New',monospace">2</text>
-  <text x="280" y="165" font-size="9" fill="#94a3b8">Link-local (never routed)</text>
-  <text x="264" y="179" font-size="9" fill="#38bdf8" font-family="'Courier New',monospace">5</text>
-  <text x="280" y="179" font-size="9" fill="#94a3b8">Site-local</text>
-  <text x="264" y="193" font-size="9" fill="#38bdf8" font-family="'Courier New',monospace">e</text>
-  <text x="280" y="193" font-size="9" fill="#94a3b8">Global</text>
+  <text x="52" y="230" font-size="9" fill="#34d399" font-family="'Courier New',monospace">ff02::1</text>
+  <text x="160" y="230" font-size="9" fill="#94a3b8">all nodes, link-local — scope=2, T=0, group=1</text>
 
-  <!-- Examples box -->
-  <rect x="40" y="210" width="620" height="90" fill="#080c14" stroke="#1e293b" stroke-width="1.5" rx="4"/>
-  <text x="350" y="227" text-anchor="middle" font-size="10" font-weight="600" fill="#94a3b8">Examples</text>
+  <text x="52" y="246" font-size="9" fill="#34d399" font-family="'Courier New',monospace">ff02::2</text>
+  <text x="160" y="246" font-size="9" fill="#94a3b8">all routers, link-local</text>
 
-  <text x="52" y="244" font-size="9" fill="#34d399" font-family="'Courier New',monospace">ff02::1</text>
-  <text x="160" y="244" font-size="9" fill="#94a3b8">all nodes, link-local — scope=2, T=0 (permanent), group=1</text>
+  <text x="52" y="262" font-size="9" fill="#34d399" font-family="'Courier New',monospace">ff02::1:ff48:1234</text>
+  <text x="210" y="262" font-size="9" fill="#94a3b8">solicited-node multicast — last 24 bits of unicast addr</text>
 
-  <text x="52" y="260" font-size="9" fill="#34d399" font-family="'Courier New',monospace">ff02::2</text>
-  <text x="160" y="260" font-size="9" fill="#94a3b8">all routers, link-local</text>
-
-  <text x="52" y="276" font-size="9" fill="#34d399" font-family="'Courier New',monospace">ff02::1:ff48:1234</text>
-  <text x="200" y="276" font-size="9" fill="#94a3b8">solicited-node multicast — last 24 bits of unicast addr</text>
-
-  <text x="52" y="292" font-size="9" fill="#34d399" font-family="'Courier New',monospace">ff3e::1:2</text>
-  <text x="160" y="292" font-size="9" fill="#94a3b8">SSM address — scope=e (global), P=1, R=1 (0b0011)</text>
+  <text x="52" y="278" font-size="9" fill="#34d399" font-family="'Courier New',monospace">ff3e::1:2</text>
+  <text x="160" y="278" font-size="9" fill="#94a3b8">SSM address — scope=e (global), P=1, R=1</text>
 </svg>

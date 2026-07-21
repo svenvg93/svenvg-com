@@ -8,48 +8,20 @@
     </linearGradient>
   </defs>
 
-  <!-- Background -->
   <rect width="700" height="220" fill="url(#bg)" rx="8"/>
 
-  <!-- Subtle grid line -->
-  <line x1="0" y1="110" x2="700" y2="110" stroke="#0d1a2a" stroke-width="1"/>
+  <!-- GUA -->
+  <rect x="20" y="65" width="200" height="90" fill="none" stroke="#34d399" stroke-width="1.5" rx="5"/>
+  <text x="120" y="107" text-anchor="middle" font-size="14" font-weight="700" fill="#86efac">GUA — Global Unicast</text>
+  <text x="120" y="133" text-anchor="middle" font-size="9" fill="#34d399" opacity="0.85">2000::/3 · public, ISP-assigned</text>
 
-  <!-- Header label -->
-  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">IPV6 UNICAST ADDRESS TYPES</text>
+  <!-- ULA -->
+  <rect x="250" y="65" width="200" height="90" fill="none" stroke="#34d399" stroke-width="1.5" rx="5"/>
+  <text x="350" y="107" text-anchor="middle" font-size="14" font-weight="700" fill="#86efac">ULA — Unique Local</text>
+  <text x="350" y="133" text-anchor="middle" font-size="9" fill="#34d399" opacity="0.85">fd00::/8 · private, internal use</text>
 
-  <!-- GUA — Global Unicast: #3b82f6 blue zone -->
-  <rect x="30" y="34" width="200" height="168" fill="#0e1a3a" stroke="#3b82f6" stroke-width="1.5" rx="5"/>
-  <text x="130" y="58" text-anchor="middle" font-size="13" font-weight="700" fill="#93c5fd">GUA</text>
-  <text x="130" y="74" text-anchor="middle" font-size="9" fill="#93c5fd" letter-spacing="1">GLOBAL UNICAST</text>
-  <rect x="50" y="83" width="160" height="22" fill="#0a1230" stroke="#3b82f6" stroke-width="1" rx="3"/>
-  <text x="130" y="98" text-anchor="middle" font-size="10" fill="#93c5fd" font-family="'Courier New',monospace">2000::/3</text>
-  <text x="130" y="126" text-anchor="middle" font-size="10" fill="#93c5fd">Publicly routable</text>
-  <text x="130" y="142" text-anchor="middle" font-size="10" fill="#93c5fd">Globally unique</text>
-  <text x="130" y="158" text-anchor="middle" font-size="10" fill="#93c5fd">Internet-reachable</text>
-  <text x="130" y="192" text-anchor="middle" font-size="9" fill="#94a3b8">assigned by ISP</text>
-
-  <!-- ULA — Unique Local: #8b5cf6 purple zone -->
-  <rect x="250" y="34" width="200" height="168" fill="#160a2a" stroke="#8b5cf6" stroke-width="1.5" rx="5"/>
-  <text x="350" y="58" text-anchor="middle" font-size="13" font-weight="700" fill="#c4b5fd">ULA</text>
-  <text x="350" y="74" text-anchor="middle" font-size="9" fill="#c4b5fd" letter-spacing="1">UNIQUE LOCAL</text>
-  <rect x="270" y="83" width="160" height="22" fill="#1a0f38" stroke="#8b5cf6" stroke-width="1" rx="3"/>
-  <text x="350" y="98" text-anchor="middle" font-size="10" fill="#c4b5fd" font-family="'Courier New',monospace">fd00::/8</text>
-  <text x="350" y="126" text-anchor="middle" font-size="10" fill="#c4b5fd">Not internet-routed</text>
-  <text x="350" y="142" text-anchor="middle" font-size="10" fill="#c4b5fd">Site-local scope</text>
-  <text x="350" y="158" text-anchor="middle" font-size="10" fill="#c4b5fd">Stable internal use</text>
-  <text x="350" y="192" text-anchor="middle" font-size="9" fill="#94a3b8">like RFC 1918 in IPv4</text>
-
-  <!-- Link-Local: #f59e0b amber zone -->
-  <rect x="470" y="34" width="200" height="168" fill="#1a1000" stroke="#f59e0b" stroke-width="1.5" rx="5"/>
-  <text x="570" y="58" text-anchor="middle" font-size="13" font-weight="700" fill="#fcd34d">LINK-LOCAL</text>
-  <text x="570" y="74" text-anchor="middle" font-size="9" fill="#fcd34d" letter-spacing="1">LINK SCOPE ONLY</text>
-  <rect x="490" y="83" width="160" height="22" fill="#211400" stroke="#f59e0b" stroke-width="1" rx="3"/>
-  <text x="570" y="98" text-anchor="middle" font-size="10" fill="#fcd34d" font-family="'Courier New',monospace">fe80::/10</text>
-  <text x="570" y="126" text-anchor="middle" font-size="10" fill="#fcd34d">Never forwarded</text>
-  <text x="570" y="142" text-anchor="middle" font-size="10" fill="#fcd34d">Auto-configured</text>
-  <text x="570" y="158" text-anchor="middle" font-size="10" fill="#fcd34d">Always present</text>
-  <text x="570" y="192" text-anchor="middle" font-size="9" fill="#94a3b8">used by NDP and routing</text>
-
-  <!-- Footer caption -->
-  <text x="350" y="215" text-anchor="middle" font-size="9" fill="#94a3b8">All IPv6 interfaces have at least a link-local address</text>
+  <!-- Link-Local -->
+  <rect x="480" y="65" width="200" height="90" fill="none" stroke="#34d399" stroke-width="1.5" rx="5"/>
+  <text x="580" y="107" text-anchor="middle" font-size="14" font-weight="700" fill="#86efac">Link-Local</text>
+  <text x="580" y="133" text-anchor="middle" font-size="9" fill="#34d399" opacity="0.85">fe80::/10 · link-only, automatic</text>
 </svg>

@@ -6,56 +6,46 @@
       <stop offset="0%" stop-color="#080c14"/>
       <stop offset="100%" stop-color="#0d1520"/>
     </linearGradient>
-    <marker id="arr-indigo" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
-      <polygon points="0,0 8,3 0,6" fill="#6366f1"/>
-    </marker>
     <marker id="arr-orange" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
       <polygon points="0,0 8,3 0,6" fill="#f97316"/>
     </marker>
   </defs>
 
   <rect width="700" height="240" fill="url(#bg)" rx="8"/>
-  <line x1="0" y1="36" x2="700" y2="36" stroke="#0d1a2a" stroke-width="1"/>
-  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">OBSERVABILITY STACK — COMPONENTS &amp; DATA FLOW</text>
 
-  <!-- ALLOY (left) -->
-  <rect x="62" y="88" width="130" height="72" fill="#0a0d28" stroke="#6366f1" stroke-width="1.5" rx="5"/>
-  <text x="127" y="116" text-anchor="middle" font-size="12" font-weight="600" fill="#a5b4fc">Grafana Alloy</text>
-  <text x="127" y="133" text-anchor="middle" font-size="9" fill="#64748b">telemetry collector</text>
-  <text x="127" y="150" text-anchor="middle" font-size="8" fill="#4a4a6a">:12345</text>
+  <!-- Grafana Alloy (collector) -->
+  <rect x="60" y="68" width="150" height="114" fill="none" stroke="#f97316" stroke-width="1.5" rx="5"/>
+  <text x="135" y="120" text-anchor="middle" font-size="13" font-weight="700" fill="#fed7aa">Grafana Alloy</text>
+  <text x="135" y="137" text-anchor="middle" font-size="9" fill="#f97316" opacity="0.8">telemetry collector</text>
 
-  <!-- PROMETHEUS (middle top) -->
-  <rect x="287" y="55" width="130" height="55" fill="#1a1000" stroke="#f59e0b" stroke-width="1.5" rx="5"/>
-  <text x="352" y="78" text-anchor="middle" font-size="12" font-weight="600" fill="#fcd34d">Prometheus</text>
-  <text x="352" y="95" text-anchor="middle" font-size="9" fill="#78716c">metrics storage · :9090</text>
+  <!-- Alloy -> Prometheus -->
+  <line x1="210" y1="75" x2="300" y2="75" stroke="#f97316" stroke-width="1.5" marker-end="url(#arr-orange)"/>
+  <text x="255" y="67" text-anchor="middle" font-size="8" fill="#fdba74">remote_write</text>
 
-  <!-- LOKI (middle bottom) -->
-  <rect x="287" y="145" width="130" height="55" fill="#1a1000" stroke="#f59e0b" stroke-width="1.5" rx="5"/>
-  <text x="352" y="168" text-anchor="middle" font-size="12" font-weight="600" fill="#fcd34d">Loki</text>
-  <text x="352" y="185" text-anchor="middle" font-size="9" fill="#78716c">log storage · :3100</text>
+  <!-- Alloy -> Loki -->
+  <line x1="210" y1="175" x2="300" y2="175" stroke="#f97316" stroke-width="1.5" marker-end="url(#arr-orange)"/>
+  <text x="255" y="192" text-anchor="middle" font-size="8" fill="#fdba74">push logs</text>
 
-  <!-- GRAFANA (right) -->
-  <rect x="507" y="88" width="130" height="72" fill="#1a0c06" stroke="#f97316" stroke-width="1.5" rx="5"/>
-  <text x="572" y="116" text-anchor="middle" font-size="12" font-weight="600" fill="#fb923c">Grafana</text>
-  <text x="572" y="133" text-anchor="middle" font-size="9" fill="#78716c">visualization</text>
-  <text x="572" y="150" text-anchor="middle" font-size="8" fill="#4a4a6a">:3000</text>
+  <!-- Prometheus -->
+  <rect x="300" y="50" width="140" height="50" fill="none" stroke="#f97316" stroke-width="1.5" rx="5"/>
+  <text x="370" y="72" text-anchor="middle" font-size="13" font-weight="700" fill="#fed7aa">Prometheus</text>
+  <text x="370" y="89" text-anchor="middle" font-size="9" fill="#f97316" opacity="0.8">metrics · :9090</text>
 
-  <!-- Alloy → Prometheus (remote_write metrics) -->
-  <line x1="192" y1="106" x2="287" y2="78" stroke="#6366f1" stroke-width="1.5" marker-end="url(#arr-indigo)"/>
-  <text x="225" y="70" text-anchor="middle" font-size="8" fill="#818cf8">remote_write</text>
+  <!-- Loki -->
+  <rect x="300" y="150" width="140" height="50" fill="none" stroke="#f97316" stroke-width="1.5" rx="5"/>
+  <text x="370" y="172" text-anchor="middle" font-size="13" font-weight="700" fill="#fed7aa">Loki</text>
+  <text x="370" y="189" text-anchor="middle" font-size="9" fill="#f97316" opacity="0.8">logs · :3100</text>
 
-  <!-- Alloy → Loki (push logs) -->
-  <line x1="192" y1="142" x2="287" y2="165" stroke="#6366f1" stroke-width="1.5" marker-end="url(#arr-indigo)"/>
-  <text x="225" y="176" text-anchor="middle" font-size="8" fill="#818cf8">HTTP push</text>
+  <!-- Prometheus -> Grafana -->
+  <line x1="440" y1="75" x2="530" y2="110" stroke="#f97316" stroke-width="1.5" marker-end="url(#arr-orange)"/>
+  <text x="485" y="82" text-anchor="middle" font-size="8" fill="#fdba74">query</text>
 
-  <!-- Prometheus → Grafana (query) -->
-  <line x1="417" y1="78" x2="507" y2="106" stroke="#f97316" stroke-width="1.5" marker-end="url(#arr-orange)"/>
-  <text x="463" y="71" text-anchor="middle" font-size="8" fill="#fb923c">query</text>
+  <!-- Loki -> Grafana -->
+  <line x1="440" y1="175" x2="530" y2="140" stroke="#f97316" stroke-width="1.5" marker-end="url(#arr-orange)"/>
+  <text x="485" y="167" text-anchor="middle" font-size="8" fill="#fdba74">query</text>
 
-  <!-- Loki → Grafana (query) -->
-  <line x1="417" y1="165" x2="507" y2="140" stroke="#f97316" stroke-width="1.5" marker-end="url(#arr-orange)"/>
-  <text x="463" y="175" text-anchor="middle" font-size="8" fill="#fb923c">query</text>
-
-  <!-- Footer -->
-  <text x="350" y="220" text-anchor="middle" font-size="9" fill="#475569">Alloy collects metrics and logs · pushes to Prometheus and Loki · Grafana queries both for unified dashboards</text>
+  <!-- Grafana -->
+  <rect x="530" y="90" width="140" height="70" fill="none" stroke="#f97316" stroke-width="1.5" rx="5"/>
+  <text x="600" y="119" text-anchor="middle" font-size="13" font-weight="700" fill="#fed7aa">Grafana</text>
+  <text x="600" y="136" text-anchor="middle" font-size="9" fill="#f97316" opacity="0.8">dashboards · :3000</text>
 </svg>

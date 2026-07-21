@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" width="700" height="300"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <marker id="arr-a" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#38bdf8"/>
+    </marker>
+  </defs>
+
+  <rect width="700" height="300" fill="url(#bg)" rx="8"/>
+
+  <!-- Divider between the two modes -->
+  <line x1="350" y1="20" x2="350" y2="280" stroke="#1e3a5f" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- ===== Left: NSTR ===== -->
+  <rect x="30" y="130" width="110" height="50" fill="none" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
+  <text x="85" y="151" text-anchor="middle" font-size="13" font-weight="700" fill="#bae6fd">NSTR</text>
+  <text x="85" y="167" text-anchor="middle" font-size="10" fill="#38bdf8">one at a time</text>
+
+  <rect x="200" y="80" width="130" height="40" fill="none" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
+  <text x="265" y="98" text-anchor="middle" font-size="12" font-weight="600" fill="#bae6fd">Radio 1</text>
+  <text x="265" y="113" text-anchor="middle" font-size="10" fill="#38bdf8">5 GHz · TX or idle</text>
+
+  <rect x="200" y="180" width="130" height="40" fill="none" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
+  <text x="265" y="198" text-anchor="middle" font-size="12" font-weight="600" fill="#bae6fd">Radio 2</text>
+  <text x="265" y="213" text-anchor="middle" font-size="10" fill="#38bdf8">6 GHz · TX or idle</text>
+
+  <line x1="140" y1="148" x2="200" y2="103" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arr-a)"/>
+  <line x1="140" y1="163" x2="200" y2="197" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arr-a)"/>
+
+  <text x="180" y="240" text-anchor="middle" font-size="9" fill="#94a3b8">coordinated: both transmit or both idle</text>
+
+  <!-- ===== Right: STR ===== -->
+  <rect x="380" y="130" width="110" height="50" fill="none" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
+  <text x="435" y="151" text-anchor="middle" font-size="13" font-weight="700" fill="#bae6fd">STR</text>
+  <text x="435" y="167" text-anchor="middle" font-size="10" fill="#38bdf8">independent</text>
+
+  <rect x="550" y="70" width="130" height="40" fill="none" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
+  <text x="615" y="88" text-anchor="middle" font-size="12" font-weight="600" fill="#bae6fd">Radio 1</text>
+  <text x="615" y="103" text-anchor="middle" font-size="10" fill="#38bdf8">2.4 GHz · TX+RX</text>
+
+  <rect x="550" y="135" width="130" height="40" fill="none" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
+  <text x="615" y="153" text-anchor="middle" font-size="12" font-weight="600" fill="#bae6fd">Radio 2</text>
+  <text x="615" y="168" text-anchor="middle" font-size="10" fill="#38bdf8">5 GHz · TX+RX</text>
+
+  <rect x="550" y="200" width="130" height="40" fill="none" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
+  <text x="615" y="218" text-anchor="middle" font-size="12" font-weight="600" fill="#bae6fd">Radio 3</text>
+  <text x="615" y="233" text-anchor="middle" font-size="10" fill="#38bdf8">6 GHz · TX+RX</text>
+
+  <line x1="490" y1="148" x2="550" y2="90" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#arr-a)"/>
+  <line x1="490" y1="155" x2="550" y2="155" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#arr-a)"/>
+  <line x1="490" y1="163" x2="550" y2="220" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#arr-a)"/>
+
+  <text x="530" y="260" text-anchor="middle" font-size="9" fill="#94a3b8">all radios active — no coordination needed</text>
+</svg>

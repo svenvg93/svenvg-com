@@ -6,59 +6,25 @@
       <stop offset="0%" stop-color="#080c14"/>
       <stop offset="100%" stop-color="#0d1520"/>
     </linearGradient>
-    <linearGradient id="arr-assign" x1="252" y1="133" x2="312" y2="133" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#fcd34d"/>
-      <stop offset="100%" stop-color="#86efac"/>
-    </linearGradient>
-    <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-      <polygon points="0,0 8,3 0,6" fill="#86efac"/>
-    </marker>
   </defs>
 
   <rect width="700" height="275" fill="url(#bg)" rx="8"/>
 
-  <!-- subtle grid -->
-  <g stroke="#0d1a2a" stroke-width="1">
-    <line x1="0" y1="32" x2="700" y2="32"/>
-  </g>
+  <!-- Delegated prefix -->
+  <rect x="40" y="30" width="620" height="56" fill="none" stroke="#34d399" stroke-width="1.5" rx="5"/>
+  <text x="350" y="55" text-anchor="middle" font-size="14" font-weight="700" fill="#34d399" font-family="'Courier New',monospace">2001:db8:abcd:ab00::/56 delegated</text>
+  <text x="350" y="74" text-anchor="middle" font-size="10" fill="#86efac">8 subnet bits (56–63) → 256 possible /64 subnets</text>
 
-  <!-- header -->
-  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">PREFIX SUBDIVISION — /56 FROM ISP SPLIT INTO /64 SUBNETS</text>
+  <!-- Subnet rows -->
+  <rect x="40" y="106" width="620" height="32" fill="none" stroke="#34d399" stroke-width="1.5" rx="5"/>
+  <text x="350" y="127" text-anchor="middle" font-size="12" font-weight="600" fill="#86efac" font-family="'Courier New',monospace">2001:db8:abcd:ab<tspan font-weight="700" fill="#34d399">00</tspan>::/64 — LAN</text>
 
-  <!-- ISP block -->
-  <rect x="30" y="40" width="220" height="186" fill="#1a1000" stroke="#92400e" stroke-width="1.5" rx="5"/>
-  <text x="140" y="60" text-anchor="middle" font-size="12" font-weight="600" fill="#fcd34d">ISP Delegates</text>
-  <rect x="50" y="68" width="180" height="28" fill="#150808" stroke="#7f1d1d" stroke-width="1" rx="4"/>
-  <text x="140" y="87" text-anchor="middle" font-size="11" font-family="'Courier New',monospace" fill="#fcd34d">2001:db8:abcd:</text>
-  <rect x="50" y="102" width="180" height="28" fill="#150808" stroke="#7f1d1d" stroke-width="1" rx="4"/>
-  <text x="140" y="121" text-anchor="middle" font-size="11" font-family="'Courier New',monospace" fill="#fcd34d">ab00:: – abff::</text>
-  <rect x="50" y="140" width="180" height="28" fill="#150808" stroke="#92400e" stroke-width="1" rx="4"/>
-  <text x="140" y="159" text-anchor="middle" font-size="13" font-weight="700" fill="#f59e0b">/56 prefix</text>
-  <text x="140" y="183" text-anchor="middle" font-size="10" fill="#92400e">256 × /64 subnets available</text>
-  <text x="140" y="200" text-anchor="middle" font-size="10" fill="#92400e">subnet bits: 56–63</text>
-  <text x="140" y="216" text-anchor="middle" font-size="9" fill="#7f1d1d">router owns entire block</text>
+  <rect x="40" y="146" width="620" height="32" fill="none" stroke="#34d399" stroke-width="1.5" rx="5"/>
+  <text x="350" y="167" text-anchor="middle" font-size="12" font-weight="600" fill="#86efac" font-family="'Courier New',monospace">2001:db8:abcd:ab<tspan font-weight="700" fill="#34d399">01</tspan>::/64 — IoT</text>
 
-  <!-- Arrow ISP → Subnets -->
-  <line x1="252" y1="133" x2="306" y2="133" stroke="url(#arr-assign)" stroke-width="1.5" marker-end="url(#arr-green)"/>
-  <text x="280" y="125" text-anchor="middle" font-size="9" fill="#86efac">assign</text>
+  <rect x="40" y="186" width="620" height="32" fill="none" stroke="#34d399" stroke-width="1.5" rx="5"/>
+  <text x="350" y="207" text-anchor="middle" font-size="12" font-weight="600" fill="#86efac" font-family="'Courier New',monospace">2001:db8:abcd:ab<tspan font-weight="700" fill="#34d399">02</tspan>::/64 — Servers</text>
 
-  <!-- Subnets block -->
-  <rect x="312" y="40" width="358" height="186" fill="#071810" stroke="#166534" stroke-width="1.5" rx="5"/>
-  <text x="491" y="60" text-anchor="middle" font-size="12" font-weight="600" fill="#86efac">Router Assigns /64 per VLAN</text>
-
-  <rect x="330" y="68" width="322" height="28" fill="#080c14" stroke="#166534" stroke-width="1" rx="4"/>
-  <text x="491" y="87" text-anchor="middle" font-size="10" font-family="'Courier New',monospace" fill="#86efac">2001:db8:abcd:ab<tspan font-weight="700" fill="#4ade80">00</tspan>::/64  ·  LAN</text>
-
-  <rect x="330" y="103" width="322" height="28" fill="#080c14" stroke="#166534" stroke-width="1" rx="4"/>
-  <text x="491" y="122" text-anchor="middle" font-size="10" font-family="'Courier New',monospace" fill="#86efac">2001:db8:abcd:ab<tspan font-weight="700" fill="#4ade80">01</tspan>::/64  ·  IoT</text>
-
-  <rect x="330" y="138" width="322" height="28" fill="#080c14" stroke="#166534" stroke-width="1" rx="4"/>
-  <text x="491" y="157" text-anchor="middle" font-size="10" font-family="'Courier New',monospace" fill="#86efac">2001:db8:abcd:ab<tspan font-weight="700" fill="#4ade80">02</tspan>::/64  ·  Servers</text>
-
-  <rect x="330" y="173" width="322" height="28" fill="#080c14" stroke="#166534" stroke-width="1" rx="4"/>
-  <text x="491" y="192" text-anchor="middle" font-size="10" font-family="'Courier New',monospace" fill="#86efac">2001:db8:abcd:ab<tspan font-weight="700" fill="#4ade80">03</tspan>::/64  ·  Guest</text>
-
-  <!-- Captions -->
-  <text x="350" y="248" text-anchor="middle" font-size="9" fill="#94a3b8">Highlighted byte is the subnet field (bits 56–63) — 00 through ff gives 256 /64 subnets from a /56</text>
-  <text x="350" y="263" text-anchor="middle" font-size="9" fill="#94a3b8">The  ab  byte (bits 48–55) is fixed by the ISP's /56 prefix — only the last byte is yours to allocate</text>
+  <rect x="40" y="226" width="620" height="32" fill="none" stroke="#34d399" stroke-width="1.5" rx="5"/>
+  <text x="350" y="247" text-anchor="middle" font-size="12" font-weight="600" fill="#86efac" font-family="'Courier New',monospace">2001:db8:abcd:ab<tspan font-weight="700" fill="#34d399">03</tspan>::/64 — Guest</text>
 </svg>

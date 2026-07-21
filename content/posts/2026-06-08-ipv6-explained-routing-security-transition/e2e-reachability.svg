@@ -6,107 +6,50 @@
       <stop offset="0%" stop-color="#080c14"/>
       <stop offset="100%" stop-color="#0d1520"/>
     </linearGradient>
-    <linearGradient id="arr-v4a" x1="112" y1="80" x2="130" y2="80" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#93c5fd"/>
-      <stop offset="100%" stop-color="#f87171"/>
-    </linearGradient>
-    <linearGradient id="arr-v4b" x1="213" y1="80" x2="240" y2="80" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#f87171"/>
-      <stop offset="100%" stop-color="#94a3b8"/>
-    </linearGradient>
-    <linearGradient id="arr-v6a" x1="462" y1="80" x2="475" y2="80" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#86efac"/>
-      <stop offset="100%" stop-color="#6b7280"/>
-    </linearGradient>
-    <marker id="arr-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-      <polygon points="0,0 8,3 0,6" fill="#f87171"/>
+    <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#34d399"/>
     </marker>
-    <marker id="arr-slate" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-      <polygon points="0,0 8,3 0,6" fill="#94a3b8"/>
-    </marker>
-    <marker id="arr-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-      <polygon points="0,0 8,3 0,6" fill="#3b82f6"/>
-    </marker>
-    <marker id="arr-gray" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-      <polygon points="0,0 8,3 0,6" fill="#6b7280"/>
+    <marker id="arr-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#38bdf8"/>
     </marker>
   </defs>
 
   <rect width="700" height="240" fill="url(#bg)" rx="8"/>
 
-  <!-- subtle grid -->
-  <g stroke="#0d1a2a" stroke-width="1">
-    <line x1="350" y1="36" x2="350" y2="225"/>
-    <line x1="0" y1="36" x2="700" y2="36"/>
-  </g>
+  <line x1="350" y1="50" x2="350" y2="145" stroke="#1e293b" stroke-width="1.5"/>
 
-  <!-- header -->
-  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">END-TO-END REACHABILITY — IPv4 NAT VS IPv6</text>
-
-  <!-- Section labels -->
-  <text x="175" y="49" text-anchor="middle" font-size="11" font-weight="600" fill="#93c5fd">IPv4 + NAT</text>
-  <text x="525" y="49" text-anchor="middle" font-size="11" font-weight="600" fill="#86efac">IPv6</text>
+  <text x="175" y="40" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8">IPv4 + NAT</text>
+  <text x="525" y="40" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8">IPv6</text>
 
   <!-- IPv4 side -->
-  <!-- Device (private) -->
-  <rect x="20" y="60" width="90" height="40" fill="#0a0a1f" stroke="#6366f1" stroke-width="1.5" rx="5"/>
-  <text x="65" y="78" text-anchor="middle" font-size="10" font-weight="600" fill="#a5b4fc">DEVICE</text>
-  <text x="65" y="92" text-anchor="middle" font-size="8" fill="#818cf8">192.168.1.x</text>
+  <rect x="30" y="60" width="90" height="48" fill="none" stroke="#34d399" stroke-width="1.5" rx="5"/>
+  <text x="75" y="82" text-anchor="middle" font-size="12" font-weight="700" fill="#86efac">Device</text>
+  <text x="75" y="98" text-anchor="middle" font-size="9" fill="#34d399">192.168.1.10</text>
 
-  <!-- NAT router -->
-  <rect x="130" y="60" width="80" height="40" fill="#150808" stroke="#7f1d1d" stroke-width="1.5" rx="5"/>
-  <text x="170" y="78" text-anchor="middle" font-size="10" font-weight="600" fill="#f87171">NAT</text>
-  <text x="170" y="92" text-anchor="middle" font-size="8" fill="#ef4444">1.2.3.4</text>
+  <rect x="140" y="60" width="90" height="48" fill="none" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
+  <text x="185" y="82" text-anchor="middle" font-size="12" font-weight="700" fill="#bae6fd">NAT</text>
+  <text x="185" y="98" text-anchor="middle" font-size="9" fill="#38bdf8">blocks inbound</text>
 
-  <!-- Server -->
-  <rect x="240" y="60" width="90" height="40" fill="#0e1a3a" stroke="#3b82f6" stroke-width="1.5" rx="5"/>
-  <text x="285" y="78" text-anchor="middle" font-size="10" font-weight="600" fill="#93c5fd">SERVER</text>
-  <text x="285" y="92" text-anchor="middle" font-size="8" fill="#60a5fa">5.6.7.8</text>
+  <rect x="250" y="60" width="90" height="48" fill="none" stroke="#ef4444" stroke-width="1.5" rx="5"/>
+  <text x="295" y="82" text-anchor="middle" font-size="12" font-weight="700" fill="#fca5a5">Server</text>
+  <text x="295" y="98" text-anchor="middle" font-size="9" fill="#ef4444">any : 443</text>
 
-  <!-- IPv4 arrows — tip placed at destination box left edge -->
-  <line x1="112" y1="80" x2="122" y2="80" stroke="url(#arr-v4a)" stroke-width="1.5"/>
-  <polygon points="122,77 130,80 122,83" fill="#f87171"/>
-  <line x1="213" y1="80" x2="232" y2="80" stroke="url(#arr-v4b)" stroke-width="1.5"/>
-  <polygon points="232,77 240,80 232,83" fill="#94a3b8"/>
+  <line x1="120" y1="84" x2="136" y2="84" stroke="#34d399" stroke-width="1.5" marker-end="url(#arr-green)"/>
+  <line x1="230" y1="84" x2="246" y2="84" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#arr-blue)"/>
 
-  <!-- Port forwarding note -->
-  <rect x="65" y="112" width="220" height="28" fill="#150808" stroke="#7f1d1d" stroke-width="1" rx="4"/>
-  <text x="175" y="124" text-anchor="middle" font-size="9" fill="#f87171">inbound requires port forwarding</text>
-  <text x="175" y="136" text-anchor="middle" font-size="9" fill="#ef4444">no unsolicited inbound connections</text>
-
-  <!-- Source rewrite label -->
-  <text x="175" y="160" text-anchor="middle" font-size="9" fill="#94a3b8">src 192.168.1.x → rewritten to 1.2.3.4</text>
-  <text x="175" y="173" text-anchor="middle" font-size="9" fill="#94a3b8">server sees only the NAT address</text>
+  <text x="175" y="132" text-anchor="middle" font-size="10" fill="#94a3b8">no unsolicited inbound without port forwarding</text>
 
   <!-- IPv6 side -->
-  <!-- Device (GUA) -->
-  <rect x="370" y="60" width="90" height="40" fill="#071810" stroke="#166534" stroke-width="1.5" rx="5"/>
-  <text x="415" y="78" text-anchor="middle" font-size="10" font-weight="600" fill="#86efac">DEVICE</text>
-  <text x="415" y="92" text-anchor="middle" font-size="8" fill="#4ade80">2001:db8::1</text>
+  <rect x="380" y="60" width="90" height="48" fill="none" stroke="#34d399" stroke-width="1.5" rx="5"/>
+  <text x="425" y="82" text-anchor="middle" font-size="12" font-weight="700" fill="#86efac">Device</text>
+  <text x="425" y="98" text-anchor="middle" font-size="9" fill="#34d399">2001:db8::10</text>
 
-  <!-- Internet cloud -->
-  <rect x="470" y="68" width="60" height="24" fill="#0e1a3a" stroke="#3b82f6" stroke-width="1" rx="4"/>
-  <text x="500" y="84" text-anchor="middle" font-size="9" fill="#60a5fa">Internet</text>
+  <rect x="580" y="60" width="90" height="48" fill="none" stroke="#ef4444" stroke-width="1.5" rx="5"/>
+  <text x="625" y="82" text-anchor="middle" font-size="12" font-weight="700" fill="#fca5a5">Server</text>
+  <text x="625" y="98" text-anchor="middle" font-size="9" fill="#ef4444">2001:db8:1::80</text>
 
-  <!-- Server (GUA) -->
-  <rect x="545" y="60" width="90" height="40" fill="#0a0a1f" stroke="#6366f1" stroke-width="1.5" rx="5"/>
-  <text x="590" y="78" text-anchor="middle" font-size="10" font-weight="600" fill="#a5b4fc">SERVER</text>
-  <text x="590" y="92" text-anchor="middle" font-size="8" fill="#818cf8">2001:db8::2</text>
+  <line x1="470" y1="84" x2="576" y2="84" stroke="#34d399" stroke-width="1.5" marker-end="url(#arr-green)"/>
+  <text x="525" y="77" text-anchor="middle" font-size="9" fill="#86efac">direct — no NAT</text>
 
-  <!-- IPv6 arrows — tip placed at destination box left edge -->
-  <line x1="462" y1="80" x2="463" y2="80" stroke="url(#arr-v6a)" stroke-width="1.5"/>
-  <polygon points="463,77 470,80 463,83" fill="#6b7280"/>
-  <line x1="537" y1="80" x2="538" y2="80" stroke="#6366f1" stroke-width="1.5"/>
-  <polygon points="538,77 545,80 538,83" fill="#6366f1"/>
-
-  <!-- Direct label -->
-  <rect x="370" y="112" width="265" height="28" fill="#071810" stroke="#166534" stroke-width="1" rx="4"/>
-  <text x="503" y="124" text-anchor="middle" font-size="9" fill="#86efac">every device has a public GUA address</text>
-  <text x="503" y="136" text-anchor="middle" font-size="9" fill="#4ade80">inbound works without port forwarding</text>
-
-  <text x="503" y="160" text-anchor="middle" font-size="9" fill="#94a3b8">src 2001:db8::1 — never rewritten</text>
-  <text x="503" y="173" text-anchor="middle" font-size="9" fill="#94a3b8">firewall controls what's reachable</text>
-
-  <!-- Footer caption -->
-  <text x="350" y="218" text-anchor="middle" font-size="9" fill="#94a3b8">IPv6 restores the original internet model — NAT was a workaround for IPv4 exhaustion</text>
+  <text x="525" y="132" text-anchor="middle" font-size="10" fill="#94a3b8">directly reachable — no port forwarding needed</text>
 </svg>

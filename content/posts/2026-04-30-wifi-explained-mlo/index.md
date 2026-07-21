@@ -87,15 +87,13 @@ The baseline MLO mode. The device uses a single radio that can only be tuned to 
 
 MLSR enables basic multi-link functionality such as link fallback and simple load distribution, but the switching overhead limits how quickly it can react to changing conditions. It is primarily a baseline implementation for devices with strict cost or hardware constraints.
 
-![](mlo-mlsr.svg "MLSR — a single radio switches fully between bands, one at a time, with overhead on each switch")
+![](mlo-single-radio.svg "MLSR vs eMLSR — both use a single radio for transmission; eMLSR adds passive multi-band listening")
 
 #### eMLSR — Enhanced Multi-Link Single Radio
 
 eMLSR uses a single transmit radio like MLSR, but adds multiple receive chains that can passively listen on more than one band at the same time. The radio can monitor several links simultaneously for incoming frames and switch its transmit path to whichever link has pending traffic, without waiting for a full channel scan. This is the key improvement over MLSR: eMLSR never loses sight of secondary links while the transmitter is elsewhere, so it reacts to incoming traffic much faster.
 
-eMLSR doesn't deliver parallel throughput — only one link carries active data at a time. But its ability to listen on multiple bands simultaneously gives it noticeably better latency than MLSR, at similar hardware cost. It's the primary MLO mode for power-constrained devices like phones and laptops.
-
-![](mlo-emlsr.svg "eMLSR — a single radio time-slices between bands, switching to whichever link has pending traffic")
+eMLSR doesn't deliver parallel throughput — only one link carries active data at a time. But its ability to listen on multiple bands simultaneously gives it noticeably better latency than MLSR, at similar hardware cost. It's the primary MLO mode for power-constrained devices like phones and laptops. See the diagram above for how eMLSR's passive listening compares to MLSR's full channel switch.
 
 #### NSTR — Non-Simultaneous Transmit and Receive
 
@@ -103,15 +101,13 @@ NSTR introduces a second radio, but with a constraint: the device cannot transmi
 
 NSTR provides better channel utilization, dynamic load distribution, and redundancy compared to single-radio modes. But throughput gains are lower than STR because the two links can't independently carry bidirectional traffic at the same time.
 
-![](mlo-nstr.svg "NSTR — multiple radios coordinated so transmissions on one link align with idle periods on the other")
+![](mlo-multi-radio.svg "NSTR vs STR — coordinated TX/idle radios compared to fully independent, simultaneous TX/RX radios")
 
 #### STR — Simultaneous Transmit and Receive
 
 The device has independent radios for each band and can transmit on one while receiving on another simultaneously — with no coordination constraint between links. This is the highest-capability single-mode and delivers the full MLO benefit: true concurrent use of all links.
 
-The constraint is RF isolation. If the 2.4GHz and 5GHz radios are physically too close, transmitting on one can interfere with reception on the other. STR requires that the AP and client hardware achieve adequate isolation between bands — a non-trivial design challenge, especially for thin client devices.
-
-![](mlo-str.svg "STR — all three radios active concurrently, independent TX and RX on each band")
+The constraint is RF isolation. If the 2.4GHz and 5GHz radios are physically too close, transmitting on one can interfere with reception on the other. STR requires that the AP and client hardware achieve adequate isolation between bands — a non-trivial design challenge, especially for thin client devices. See the diagram above for how STR's fully independent radios compare to NSTR's coordinated pair.
 
 ### Mode Comparison
 

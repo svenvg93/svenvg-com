@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 280" width="700" height="280"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 316" width="700" height="316"
      font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
@@ -8,49 +8,40 @@
     </linearGradient>
   </defs>
 
-  <rect width="700" height="280" fill="url(#bg)" rx="8"/>
+  <rect width="700" height="316" fill="url(#bg)" rx="8"/>
 
-  <!-- subtle grid -->
-  <g stroke="#0d1a2a" stroke-width="1">
-    <line x1="0" y1="32" x2="700" y2="32"/>
-  </g>
+  <!-- WAN → LAN (inbound) -->
+  <text x="350" y="26" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">WAN &#8594; LAN — INBOUND</text>
 
-  <!-- header -->
-  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">IPv6 FIREWALL POLICY — DEFAULT-DENY INBOUND</text>
+  <rect x="20" y="36" width="205" height="54" fill="none" stroke="#ef4444" stroke-width="1.5" rx="5"/>
+  <text x="122" y="58" text-anchor="middle" font-size="14" font-weight="700" fill="#fca5a5">DROP</text>
+  <text x="122" y="76" text-anchor="middle" font-size="9" fill="#ef4444" opacity="0.8">default — new connections</text>
 
-  <!-- WAN → LAN section -->
-  <rect x="20" y="36" width="660" height="90" fill="#150808" stroke="#7f1d1d" stroke-width="1.5" rx="5"/>
-  <text x="40" y="56" font-size="11" font-weight="600" fill="#f87171">WAN → LAN (inbound)</text>
+  <rect x="237" y="36" width="205" height="54" fill="none" stroke="#34d399" stroke-width="1.5" rx="5"/>
+  <text x="339" y="58" text-anchor="middle" font-size="14" font-weight="700" fill="#86efac">ACCEPT</text>
+  <text x="339" y="76" text-anchor="middle" font-size="9" fill="#34d399" opacity="0.8">established / related</text>
 
-  <!-- DROP rule -->
-  <rect x="36" y="63" width="300" height="22" fill="#0a0507" stroke="#7f1d1d" stroke-width="1" rx="3"/>
-  <text x="50" y="78" font-size="9" fill="#f87171">DROP — default (new connections)</text>
+  <rect x="454" y="36" width="226" height="54" fill="none" stroke="#34d399" stroke-width="1.5" rx="5"/>
+  <text x="567" y="58" text-anchor="middle" font-size="14" font-weight="700" fill="#86efac">ACCEPT</text>
+  <text x="567" y="76" text-anchor="middle" font-size="9" fill="#34d399" opacity="0.8">specific services you expose</text>
 
-  <!-- ACCEPT established rule -->
-  <rect x="36" y="91" width="300" height="22" fill="#071810" stroke="#166534" stroke-width="1" rx="3"/>
-  <text x="50" y="106" font-size="9" fill="#86efac">ACCEPT — established / related (return traffic)</text>
+  <!-- LAN → WAN (outbound) -->
+  <text x="350" y="116" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">LAN &#8594; WAN — OUTBOUND</text>
 
-  <!-- ACCEPT specific services -->
-  <rect x="344" y="63" width="320" height="50" fill="#1a1000" stroke="#92400e" stroke-width="1" rx="3"/>
-  <text x="360" y="78" font-size="9" fill="#fcd34d">ACCEPT — specific services</text>
-  <text x="360" y="92" font-size="9" fill="#92400e">(only what you explicitly expose)</text>
-  <text x="360" y="106" font-size="9" fill="#7f5009" font-family="'Courier New',monospace">e.g. TCP 443 to 2001:db8::web</text>
+  <rect x="20" y="126" width="660" height="50" fill="none" stroke="#34d399" stroke-width="1.5" rx="5"/>
+  <text x="350" y="148" text-anchor="middle" font-size="14" font-weight="700" fill="#86efac">ACCEPT</text>
+  <text x="350" y="166" text-anchor="middle" font-size="9" fill="#34d399" opacity="0.8">default — or apply egress filtering as needed</text>
 
-  <!-- LAN → WAN section -->
-  <rect x="20" y="136" width="660" height="50" fill="#071810" stroke="#166534" stroke-width="1.5" rx="5"/>
-  <text x="40" y="156" font-size="11" font-weight="600" fill="#86efac">LAN → WAN (outbound)</text>
-  <rect x="240" y="143" width="420" height="22" fill="#071810" stroke="#166534" stroke-width="1" rx="3"/>
-  <text x="256" y="158" font-size="9" fill="#4ade80">ACCEPT — default (or apply egress filtering as needed)</text>
+  <!-- ICMPv6 — required types -->
+  <text x="350" y="202" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">ICMPV6 — REQUIRED TYPES</text>
 
-  <!-- ICMPv6 section -->
-  <rect x="20" y="196" width="660" height="70" fill="#0a0a1f" stroke="#6366f1" stroke-width="1.5" rx="5"/>
-  <text x="40" y="216" font-size="11" font-weight="600" fill="#a5b4fc">ICMPv6 — never block these types</text>
+  <rect x="20" y="212" width="320" height="64" fill="none" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
+  <text x="180" y="234" text-anchor="middle" font-size="13" font-weight="700" fill="#bae6fd">Router &amp; Neighbor Discovery</text>
+  <text x="180" y="252" text-anchor="middle" font-size="9" fill="#38bdf8" opacity="0.8">Types 133, 134, 135, 136 — SLAAC / NDP</text>
 
-  <text x="40" y="234" font-size="9" fill="#818cf8">Type 133 Router Solicitation</text>
-  <text x="40" y="248" font-size="9" fill="#818cf8">Type 134 Router Advertisement</text>
-  <text x="40" y="262" font-size="9" fill="#818cf8">Type 135/136 Neighbor Sol/Adv (NDP)</text>
+  <rect x="352" y="212" width="328" height="64" fill="none" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
+  <text x="516" y="234" text-anchor="middle" font-size="13" font-weight="700" fill="#bae6fd">Error &amp; Diagnostic Signaling</text>
+  <text x="516" y="252" text-anchor="middle" font-size="9" fill="#38bdf8" opacity="0.8">Types 1, 2, 3, 4 — errors, PMTUD, hop limit</text>
 
-  <text x="260" y="234" font-size="9" fill="#818cf8">Type 2 Packet Too Big (PMTUD)</text>
-  <text x="260" y="248" font-size="9" fill="#818cf8">Type 1 Destination Unreachable</text>
-  <text x="260" y="262" font-size="9" fill="#94a3b8">Blocking these breaks SLAAC, NDP, and PMTUD</text>
+  <text x="350" y="298" text-anchor="middle" font-size="9" fill="#64748b">Blocking ICMPv6 breaks SLAAC, NDP, and Path MTU Discovery</text>
 </svg>

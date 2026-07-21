@@ -1,99 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 340" width="700" height="340"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 350" width="700" height="350"
      font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#080c14"/>
       <stop offset="100%" stop-color="#0d1520"/>
     </linearGradient>
-    <linearGradient id="arr-attack" x1="106" y1="1" x2="324" y2="1" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#ef4444"/>
-      <stop offset="100%" stop-color="#f87171"/>
-    </linearGradient>
-    <linearGradient id="arr-fwd" x1="336" y1="1" x2="554" y2="1" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#ef4444"/>
-      <stop offset="100%" stop-color="#f87171"/>
-    </linearGradient>
-    <marker id="arr-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+    <marker id="arr-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
       <polygon points="0,0 8,3 0,6" fill="#ef4444"/>
     </marker>
-    <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-      <polygon points="0,0 8,3 0,6" fill="#34d399"/>
-    </marker>
-    <marker id="arr-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+    <marker id="arr-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
       <polygon points="0,0 8,3 0,6" fill="#38bdf8"/>
+    </marker>
+    <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#34d399"/>
     </marker>
   </defs>
 
-  <rect width="700" height="340" fill="url(#bg)" rx="8"/>
-  <g stroke="#0d1a2a" stroke-width="1">
-    <line x1="0" y1="30" x2="700" y2="30"/>
-    <line x1="350" y1="30" x2="350" y2="318" stroke-dasharray="4,3"/>
-  </g>
+  <rect width="700" height="350" fill="url(#bg)" rx="8"/>
 
-  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">RA GUARD — BLOCKING ROGUE ROUTER ADVERTISEMENTS</text>
+  <!-- Participants -->
+  <rect x="40" y="30" width="120" height="44" fill="none" stroke="#ef4444" stroke-width="1.5" rx="5"/>
+  <text x="100" y="50" text-anchor="middle" font-size="13" font-weight="700" fill="#fca5a5">Attacker</text>
+  <text x="100" y="65" text-anchor="middle" font-size="9" fill="#ef4444" opacity="0.8">rogue router</text>
 
-  <!-- Column headers: ATTACKER | SWITCH | HOST -->
-  <text x="105" y="46" text-anchor="middle" font-size="10" font-weight="600" fill="#f87171">ATTACKER</text>
-  <text x="330" y="46" text-anchor="middle" font-size="10" font-weight="600" fill="#38bdf8">SWITCH</text>
-  <text x="555" y="46" text-anchor="middle" font-size="10" font-weight="600" fill="#34d399">HOST</text>
+  <rect x="290" y="30" width="120" height="44" fill="none" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
+  <text x="350" y="50" text-anchor="middle" font-size="13" font-weight="700" fill="#bae6fd">Switch</text>
+  <text x="350" y="65" text-anchor="middle" font-size="9" fill="#38bdf8" opacity="0.8">RA Guard</text>
+
+  <rect x="540" y="30" width="120" height="44" fill="none" stroke="#34d399" stroke-width="1.5" rx="5"/>
+  <text x="600" y="50" text-anchor="middle" font-size="13" font-weight="700" fill="#86efac">Host</text>
+  <text x="600" y="65" text-anchor="middle" font-size="9" fill="#34d399" opacity="0.8">LAN client</text>
 
   <!-- Lifelines -->
-  <line x1="105" y1="52" x2="105" y2="310" stroke="#1e293b" stroke-width="2"/>
-  <line x1="330" y1="52" x2="330" y2="310" stroke="#1e293b" stroke-width="2"/>
-  <line x1="555" y1="52" x2="555" y2="310" stroke="#1e293b" stroke-width="2"/>
+  <line x1="100" y1="74" x2="100" y2="330" stroke="#1e293b" stroke-width="1.5"/>
+  <line x1="350" y1="74" x2="350" y2="330" stroke="#1e293b" stroke-width="1.5"/>
+  <line x1="600" y1="74" x2="600" y2="330" stroke="#1e293b" stroke-width="1.5"/>
 
-  <!-- ── Scenario A: No RA Guard ── -->
-  <text x="174" y="68" text-anchor="middle" font-size="10" font-weight="600" fill="#ef4444">A — no RA Guard</text>
+  <!-- Scenario A -->
+  <text x="350" y="95" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8">SCENARIO A — NO RA GUARD</text>
 
-  <!-- Rogue RA → Switch -->
-  <circle cx="105" cy="84" r="3.5" fill="#ef4444"/>
-  <line x1="109" y1="84" x2="320" y2="84" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-red)"/>
-  <text x="213" y="78" text-anchor="middle" font-size="9" fill="#f87171">rogue RA (prefix + fake gateway)</text>
+  <text x="225" y="108" text-anchor="middle" font-size="9" fill="#fca5a5">rogue RA — prefix + fake gateway</text>
+  <line x1="106" y1="115" x2="344" y2="115" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-red)"/>
 
-  <!-- Switch forwards → Host -->
-  <circle cx="330" cy="102" r="3.5" fill="#ef4444"/>
-  <line x1="334" y1="102" x2="545" y2="102" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-red)"/>
-  <text x="440" y="96" text-anchor="middle" font-size="9" fill="#f87171">forwarded (no filtering)</text>
+  <text x="475" y="138" text-anchor="middle" font-size="9" fill="#fca5a5">forwarded — no filtering</text>
+  <line x1="356" y1="145" x2="594" y2="145" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-red)"/>
 
-  <!-- Host reconfigures -->
-  <circle cx="555" cy="120" r="3.5" fill="#ef4444"/>
-  <rect x="472" y="123" width="165" height="28" fill="#200808" stroke="#ef4444" stroke-width="1" rx="3"/>
-  <text x="554" y="135" text-anchor="middle" font-size="9" font-weight="600" fill="#fca5a5">host reconfigures</text>
-  <text x="554" y="147" text-anchor="middle" font-size="8" fill="#ef4444">fake gateway installed</text>
+  <rect x="520" y="155" width="140" height="32" fill="none" stroke="#ef4444" stroke-width="1.5" rx="4"/>
+  <text x="590" y="170" text-anchor="middle" font-size="10" font-weight="600" fill="#fca5a5">host reconfigures</text>
+  <text x="590" y="182" text-anchor="middle" font-size="8" fill="#ef4444" opacity="0.8">fake gateway installed</text>
 
-  <!-- Traffic → Attacker (dotted back arrow) -->
-  <line x1="472" y1="162" x2="120" y2="162" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arr-red)"/>
-  <text x="296" y="157" text-anchor="middle" font-size="9" fill="#f87171">host traffic routed to attacker</text>
+  <text x="225" y="200" text-anchor="middle" font-size="9" fill="#fca5a5">host traffic routed to attacker</text>
+  <line x1="516" y1="207" x2="104" y2="207" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arr-red)"/>
 
-  <!-- divider -->
-  <line x1="20" y1="184" x2="680" y2="184" stroke="#1e293b" stroke-width="1" stroke-dasharray="6,4"/>
+  <!-- Divider -->
+  <line x1="30" y1="222" x2="670" y2="222" stroke="#1e293b" stroke-width="1" stroke-dasharray="6,4"/>
 
-  <!-- ── Scenario B: RA Guard enabled ── -->
-  <text x="174" y="200" text-anchor="middle" font-size="10" font-weight="600" fill="#34d399">B — RA Guard enabled on host port</text>
+  <!-- Scenario B -->
+  <text x="350" y="238" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8">SCENARIO B — RA GUARD ON HOST PORT</text>
 
-  <!-- Rogue RA → Switch -->
-  <circle cx="105" cy="216" r="3.5" fill="#ef4444"/>
-  <line x1="109" y1="216" x2="320" y2="216" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-red)"/>
-  <text x="213" y="210" text-anchor="middle" font-size="9" fill="#f87171">rogue RA arrives on host port</text>
+  <text x="225" y="251" text-anchor="middle" font-size="9" fill="#fca5a5">rogue RA arrives on host port</text>
+  <line x1="106" y1="258" x2="344" y2="258" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-red)"/>
 
-  <!-- Switch drops -->
-  <circle cx="330" cy="234" r="3.5" fill="#38bdf8"/>
-  <rect x="248" y="237" width="164" height="28" fill="#0e2040" stroke="#38bdf8" stroke-width="1.5" rx="3"/>
-  <text x="330" y="249" text-anchor="middle" font-size="9" font-weight="600" fill="#bae6fd">RA Guard drops packet</text>
-  <text x="330" y="261" text-anchor="middle" font-size="8" fill="#38bdf8">host port — RAs not permitted</text>
+  <rect x="290" y="268" width="140" height="32" fill="none" stroke="#38bdf8" stroke-width="1.5" rx="4"/>
+  <text x="360" y="283" text-anchor="middle" font-size="10" font-weight="600" fill="#bae6fd">RA Guard drops it</text>
+  <text x="360" y="295" text-anchor="middle" font-size="8" fill="#38bdf8" opacity="0.8">RAs not permitted here</text>
 
-  <!-- Host unaffected -->
-  <rect x="472" y="237" width="165" height="28" fill="#072a1e" stroke="#34d399" stroke-width="1" rx="3"/>
-  <text x="554" y="249" text-anchor="middle" font-size="9" font-weight="600" fill="#86efac">host unaffected</text>
-  <text x="554" y="261" text-anchor="middle" font-size="8" fill="#34d399">no rogue RA received</text>
+  <rect x="540" y="268" width="120" height="32" fill="none" stroke="#34d399" stroke-width="1.5" rx="4"/>
+  <text x="600" y="283" text-anchor="middle" font-size="10" font-weight="600" fill="#86efac">host unaffected</text>
+  <text x="600" y="295" text-anchor="middle" font-size="8" fill="#34d399" opacity="0.8">no rogue RA received</text>
 
-  <!-- Legitimate RA from router port -->
-  <circle cx="330" cy="284" r="3.5" fill="#34d399"/>
-  <line x1="334" y1="284" x2="545" y2="284" stroke="#34d399" stroke-width="1.5" marker-end="url(#arr-green)"/>
-  <text x="440" y="278" text-anchor="middle" font-size="9" fill="#86efac">legitimate RA from router port — forwarded</text>
+  <text x="475" y="308" text-anchor="middle" font-size="9" fill="#86efac">legitimate RA from router port — forwarded</text>
+  <line x1="356" y1="315" x2="594" y2="315" stroke="#34d399" stroke-width="1.5" marker-end="url(#arr-green)"/>
 
-  <!-- Port policy note -->
-  <rect x="20" y="308" width="660" height="22" fill="#080c14" stroke="#1e293b" stroke-width="1" rx="3"/>
-  <text x="350" y="322" text-anchor="middle" font-size="9" fill="#64748b">RA Guard policy: router ports allow RAs · host (access) ports silently drop RAs and Router Redirects</text>
+  <text x="350" y="336" text-anchor="middle" font-size="9" fill="#64748b">Router ports allow RAs; host ports silently drop RAs and Router Redirects</text>
 </svg>

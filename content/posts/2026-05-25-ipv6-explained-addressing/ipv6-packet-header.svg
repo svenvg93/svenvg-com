@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 290" width="700" height="290"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 200" width="700" height="200"
      font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
@@ -8,71 +8,55 @@
     </linearGradient>
   </defs>
 
-  <rect width="700" height="290" fill="url(#bg)" rx="8"/>
-  <g stroke="#0d1a2a" stroke-width="1">
-    <line x1="0" y1="30" x2="700" y2="30"/>
-  </g>
-
-  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">IPv6 BASE HEADER — FIXED 40 BYTES</text>
+  <rect width="700" height="200" fill="url(#bg)" rx="8"/>
 
   <!-- bit ruler labels -->
-  <text x="40"  y="41" font-size="8" fill="#475569">0</text>
-  <text x="111" y="41" font-size="8" fill="#475569">4</text>
-  <text x="263" y="41" font-size="8" fill="#475569">12</text>
-  <text x="651" y="41" font-size="8" fill="#475569">31</text>
+  <text x="40"  y="20" font-size="8" fill="#475569">0</text>
+  <text x="111" y="20" font-size="8" fill="#475569">4</text>
+  <text x="263" y="20" font-size="8" fill="#475569">12</text>
+  <text x="651" y="20" font-size="8" fill="#475569">31</text>
 
   <!-- Row 1: Version(4b) | Traffic Class(8b) | Flow Label(20b) -->
-  <!-- Version: 4b = 77px (x=40..117) -->
-  <rect x="40" y="44" width="77" height="36" fill="#0e0e30" stroke="#4f46e5" stroke-width="1.5" rx="2"/>
-  <text x="78"  y="58" text-anchor="middle" font-size="10" font-weight="600" fill="#a5b4fc">Ver</text>
-  <text x="78"  y="72" text-anchor="middle" font-size="8" fill="#6366f1">4 b</text>
+  <rect x="40" y="26" width="77" height="36" fill="none" stroke="#4f46e5" stroke-width="1.5" rx="2"/>
+  <text x="78"  y="40" text-anchor="middle" font-size="10" font-weight="600" fill="#a5b4fc">Ver</text>
+  <text x="78"  y="54" text-anchor="middle" font-size="8" fill="#6366f1">4 b</text>
 
-  <!-- Traffic Class: 8b = 155px (x=117..272) -->
-  <rect x="117" y="44" width="155" height="36" fill="#0e1a30" stroke="#3b82f6" stroke-width="1.5" rx="2"/>
-  <text x="194" y="58" text-anchor="middle" font-size="10" font-weight="600" fill="#93c5fd">Traffic Class</text>
-  <text x="194" y="72" text-anchor="middle" font-size="8" fill="#3b82f6">8 b · DSCP + ECN</text>
+  <rect x="117" y="26" width="155" height="36" fill="none" stroke="#3b82f6" stroke-width="1.5" rx="2"/>
+  <text x="194" y="40" text-anchor="middle" font-size="10" font-weight="600" fill="#93c5fd">Traffic Class</text>
+  <text x="194" y="54" text-anchor="middle" font-size="8" fill="#3b82f6">8 b · DSCP + ECN</text>
 
-  <!-- Flow Label: 20b = 388px (x=272..660) -->
-  <rect x="272" y="44" width="388" height="36" fill="#042a40" stroke="#38bdf8" stroke-width="1.5" rx="2"/>
-  <text x="466" y="58" text-anchor="middle" font-size="10" font-weight="600" fill="#bae6fd">Flow Label</text>
-  <text x="466" y="72" text-anchor="middle" font-size="8" fill="#38bdf8">20 b · ECMP path selection</text>
+  <rect x="272" y="26" width="388" height="36" fill="none" stroke="#38bdf8" stroke-width="1.5" rx="2"/>
+  <text x="466" y="40" text-anchor="middle" font-size="10" font-weight="600" fill="#bae6fd">Flow Label</text>
+  <text x="466" y="54" text-anchor="middle" font-size="8" fill="#38bdf8">20 b · ECMP path selection</text>
+
+  <text x="662" y="40" font-size="8" fill="#475569" text-anchor="start">4 B</text>
 
   <!-- Row 2: Payload Length(16b) | Next Header(8b) | Hop Limit(8b) -->
-  <!-- Payload Length: 16b = 310px (x=40..350) -->
-  <rect x="40"  y="84" width="310" height="36" fill="#1a1200" stroke="#f59e0b" stroke-width="1.5" rx="2"/>
-  <text x="195" y="98" text-anchor="middle" font-size="10" font-weight="600" fill="#fcd34d">Payload Length</text>
-  <text x="195" y="112" text-anchor="middle" font-size="8" fill="#f59e0b">16 b · bytes after this header</text>
+  <rect x="40" y="66" width="310" height="36" fill="none" stroke="#f59e0b" stroke-width="1.5" rx="2"/>
+  <text x="195" y="80" text-anchor="middle" font-size="10" font-weight="600" fill="#fcd34d">Payload Length</text>
+  <text x="195" y="94" text-anchor="middle" font-size="8" fill="#f59e0b">16 b · bytes after this header</text>
 
-  <!-- Next Header: 8b = 155px (x=350..505) -->
-  <rect x="350" y="84" width="155" height="36" fill="#072a1e" stroke="#34d399" stroke-width="1.5" rx="2"/>
-  <text x="427" y="98" text-anchor="middle" font-size="10" font-weight="600" fill="#86efac">Next Header</text>
-  <text x="427" y="112" text-anchor="middle" font-size="8" fill="#34d399">8 b · 6=TCP 17=UDP 58=ICMPv6</text>
+  <rect x="350" y="66" width="155" height="36" fill="none" stroke="#34d399" stroke-width="1.5" rx="2"/>
+  <text x="427" y="80" text-anchor="middle" font-size="10" font-weight="600" fill="#86efac">Next Header</text>
+  <text x="427" y="94" text-anchor="middle" font-size="8" fill="#34d399">8 b · 6=TCP 17=UDP 58=ICMPv6</text>
 
-  <!-- Hop Limit: 8b = 155px (x=505..660) -->
-  <rect x="505" y="84" width="155" height="36" fill="#1a0e00" stroke="#f97316" stroke-width="1.5" rx="2"/>
-  <text x="582" y="98" text-anchor="middle" font-size="10" font-weight="600" fill="#fed7aa">Hop Limit</text>
-  <text x="582" y="112" text-anchor="middle" font-size="8" fill="#f97316">8 b · equiv. to IPv4 TTL</text>
+  <rect x="505" y="66" width="155" height="36" fill="none" stroke="#f97316" stroke-width="1.5" rx="2"/>
+  <text x="582" y="80" text-anchor="middle" font-size="10" font-weight="600" fill="#fed7aa">Hop Limit</text>
+  <text x="582" y="94" text-anchor="middle" font-size="8" fill="#f97316">8 b · equiv. to IPv4 TTL</text>
+
+  <text x="662" y="80" font-size="8" fill="#475569" text-anchor="start">4 B</text>
 
   <!-- Row 3: Source Address (128b) -->
-  <rect x="40" y="124" width="620" height="36" fill="#1a0a2e" stroke="#8b5cf6" stroke-width="1.5" rx="2"/>
-  <text x="350" y="138" text-anchor="middle" font-size="10" font-weight="600" fill="#c4b5fd">Source Address</text>
-  <text x="350" y="152" text-anchor="middle" font-size="8" fill="#8b5cf6">128 b</text>
+  <rect x="40" y="106" width="620" height="36" fill="none" stroke="#8b5cf6" stroke-width="1.5" rx="2"/>
+  <text x="350" y="120" text-anchor="middle" font-size="10" font-weight="600" fill="#c4b5fd">Source Address</text>
+  <text x="350" y="134" text-anchor="middle" font-size="8" fill="#8b5cf6">128 b</text>
+
+  <text x="662" y="120" font-size="8" fill="#475569" text-anchor="start">16 B</text>
 
   <!-- Row 4: Destination Address (128b) -->
-  <rect x="40" y="164" width="620" height="36" fill="#1a0a2e" stroke="#8b5cf6" stroke-width="1.5" rx="2"/>
-  <text x="350" y="178" text-anchor="middle" font-size="10" font-weight="600" fill="#c4b5fd">Destination Address</text>
-  <text x="350" y="192" text-anchor="middle" font-size="8" fill="#8b5cf6">128 b</text>
+  <rect x="40" y="146" width="620" height="36" fill="none" stroke="#8b5cf6" stroke-width="1.5" rx="2"/>
+  <text x="350" y="160" text-anchor="middle" font-size="10" font-weight="600" fill="#c4b5fd">Destination Address</text>
+  <text x="350" y="174" text-anchor="middle" font-size="8" fill="#8b5cf6">128 b</text>
 
-  <!-- total size annotation -->
-  <text x="662" y="58"  font-size="8" fill="#475569" text-anchor="start">4 B</text>
-  <text x="662" y="102" font-size="8" fill="#475569" text-anchor="start">4 B</text>
-  <text x="662" y="145" font-size="8" fill="#475569" text-anchor="start">16 B</text>
-  <text x="662" y="185" font-size="8" fill="#475569" text-anchor="start">16 B</text>
-
-  <!-- Note box -->
-  <rect x="40" y="210" width="620" height="64" fill="#080c14" stroke="#1e293b" stroke-width="1.5" rx="4"/>
-  <text x="350" y="227" text-anchor="middle" font-size="9" font-weight="600" fill="#94a3b8">No header checksum</text>
-  <text x="350" y="241" text-anchor="middle" font-size="9" fill="#64748b">IPv4 required one because routers modified the TTL field on every hop. IPv6 removes it —</text>
-  <text x="350" y="255" text-anchor="middle" font-size="9" fill="#64748b">upper-layer protocols carry their own integrity checks; link layers provide error detection.</text>
-  <text x="350" y="269" text-anchor="middle" font-size="9" fill="#64748b">Options moved to extension headers keep this header constant-length and router-friendly.</text>
+  <text x="662" y="160" font-size="8" fill="#475569" text-anchor="start">16 B</text>
 </svg>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 310" width="700" height="310" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 256" width="700" height="256" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#080c14"/>
@@ -19,70 +19,60 @@
     </marker>
   </defs>
 
-  <!-- Background -->
-  <rect width="700" height="310" fill="url(#bg)" rx="8"/>
-
-  <!-- Subtle grid line -->
-  <line x1="0" y1="155" x2="700" y2="155" stroke="#0d1a2a" stroke-width="1"/>
-
-  <!-- Header label -->
-  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">HOW 802.11k, r, AND v WORK TOGETHER</text>
+  <rect width="700" height="256" fill="url(#bg)" rx="8"/>
 
   <!-- Actors -->
-  <rect x="20" y="36" width="80" height="28" fill="#0e1a3a" stroke="#3b82f6" stroke-width="1.5" rx="5"/>
-  <text x="60" y="54" text-anchor="middle" font-size="11" font-weight="600" fill="#93c5fd">Client</text>
+  <rect x="20" y="14" width="80" height="28" fill="#0e1a3a" stroke="#3b82f6" stroke-width="1.5" rx="5"/>
+  <text x="60" y="32" text-anchor="middle" font-size="11" font-weight="600" fill="#93c5fd">Client</text>
 
-  <rect x="286" y="36" width="80" height="28" fill="#0e1a3a" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
-  <text x="326" y="54" text-anchor="middle" font-size="11" font-weight="600" fill="#38bdf8">AP 1</text>
+  <rect x="286" y="14" width="80" height="28" fill="#0e1a3a" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
+  <text x="326" y="32" text-anchor="middle" font-size="11" font-weight="600" fill="#38bdf8">AP 1</text>
 
-  <rect x="552" y="36" width="80" height="28" fill="#071810" stroke="#86efac" stroke-width="1.5" rx="5"/>
-  <text x="592" y="54" text-anchor="middle" font-size="11" font-weight="600" fill="#86efac">AP 2</text>
+  <rect x="552" y="14" width="80" height="28" fill="#071810" stroke="#86efac" stroke-width="1.5" rx="5"/>
+  <text x="592" y="32" text-anchor="middle" font-size="11" font-weight="600" fill="#86efac">AP 2</text>
 
   <!-- Lifelines -->
-  <line x1="60" y1="64" x2="60" y2="264" stroke="#1e293b" stroke-width="2" stroke-dasharray="3,3"/>
-  <line x1="326" y1="64" x2="326" y2="264" stroke="#1e293b" stroke-width="2" stroke-dasharray="3,3"/>
-  <line x1="592" y1="64" x2="592" y2="264" stroke="#1e293b" stroke-width="2" stroke-dasharray="3,3"/>
+  <line x1="60" y1="42" x2="60" y2="242" stroke="#1e293b" stroke-width="2" stroke-dasharray="3,3"/>
+  <line x1="326" y1="42" x2="326" y2="242" stroke="#1e293b" stroke-width="2" stroke-dasharray="3,3"/>
+  <line x1="592" y1="42" x2="592" y2="242" stroke="#1e293b" stroke-width="2" stroke-dasharray="3,3"/>
 
   <!-- Step 1: 802.11v — AP1 suggests roam -->
-  <rect x="14" y="70" width="42" height="16" fill="#12084a" stroke="#7c3aed" stroke-width="1" rx="3"/>
-  <text x="35" y="82" text-anchor="middle" font-size="8" font-weight="600" fill="#a78bfa">802.11v</text>
+  <rect x="14" y="48" width="48" height="16" fill="#12084a" stroke="#7c3aed" stroke-width="1" rx="3"/>
+  <text x="38" y="60" text-anchor="middle" font-size="8" font-weight="600" fill="#a78bfa">802.11v</text>
 
-  <line x1="326" y1="92" x2="68" y2="92" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#kvr-arr-v)"/>
-  <text x="193" y="88" text-anchor="middle" font-size="9" fill="#a78bfa">BSS Transition Request — "move to AP 2"</text>
+  <line x1="326" y1="70" x2="68" y2="70" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#kvr-arr-v)"/>
+  <text x="193" y="66" text-anchor="middle" font-size="9" fill="#a78bfa">BSS Transition Request &#8212; "move to AP 2"</text>
 
   <!-- Step 2: 802.11k — Client requests neighbor report -->
-  <rect x="14" y="108" width="42" height="16" fill="#041830" stroke="#38bdf8" stroke-width="1" rx="3"/>
-  <text x="35" y="120" text-anchor="middle" font-size="8" font-weight="600" fill="#38bdf8">802.11k</text>
+  <rect x="14" y="86" width="48" height="16" fill="#041830" stroke="#38bdf8" stroke-width="1" rx="3"/>
+  <text x="38" y="98" text-anchor="middle" font-size="8" font-weight="600" fill="#38bdf8">802.11k</text>
 
-  <line x1="68" y1="130" x2="318" y2="130" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#kvr-arr-b)"/>
-  <text x="193" y="126" text-anchor="middle" font-size="9" fill="#38bdf8">Neighbor Report Request</text>
+  <line x1="68" y1="108" x2="318" y2="108" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#kvr-arr-b)"/>
+  <text x="193" y="104" text-anchor="middle" font-size="9" fill="#38bdf8">Neighbor Report Request</text>
 
-  <line x1="318" y1="150" x2="68" y2="150" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#kvr-arr-b)"/>
-  <text x="193" y="146" text-anchor="middle" font-size="9" fill="#38bdf8">Neighbor Report — AP 2 on ch 36</text>
+  <line x1="318" y1="128" x2="68" y2="128" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#kvr-arr-b)"/>
+  <text x="193" y="124" text-anchor="middle" font-size="9" fill="#38bdf8">Neighbor Report &#8212; AP 2 on ch 36</text>
 
   <!-- Step 3: 802.11r — Pre-auth via AP1 -->
-  <rect x="14" y="164" width="42" height="16" fill="#041008" stroke="#86efac" stroke-width="1" rx="3"/>
-  <text x="35" y="176" text-anchor="middle" font-size="8" font-weight="600" fill="#86efac">802.11r</text>
+  <rect x="14" y="142" width="48" height="16" fill="#041008" stroke="#86efac" stroke-width="1" rx="3"/>
+  <text x="38" y="154" text-anchor="middle" font-size="8" font-weight="600" fill="#86efac">802.11r</text>
 
-  <line x1="68" y1="188" x2="318" y2="188" stroke="#34d399" stroke-width="1.5" marker-end="url(#kvr-arr-g)"/>
-  <text x="193" y="184" text-anchor="middle" font-size="9" fill="#34d399">FT Auth Request (to AP2, via AP1)</text>
+  <line x1="68" y1="166" x2="318" y2="166" stroke="#34d399" stroke-width="1.5" marker-end="url(#kvr-arr-g)"/>
+  <text x="193" y="162" text-anchor="middle" font-size="9" fill="#34d399">FT Auth Request (to AP2, via AP1)</text>
 
   <!-- AP1 forwards to AP2 -->
-  <line x1="334" y1="188" x2="544" y2="188" stroke="#34d399" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#kvr-arr-g)"/>
-  <text x="439" y="184" text-anchor="middle" font-size="9" fill="#34d399">forwarded</text>
+  <line x1="334" y1="166" x2="544" y2="166" stroke="#34d399" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#kvr-arr-g)"/>
+  <text x="439" y="162" text-anchor="middle" font-size="9" fill="#34d399">forwarded</text>
 
-  <line x1="544" y1="204" x2="334" y2="204" stroke="#34d399" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#kvr-arr-g)"/>
-  <line x1="318" y1="204" x2="68" y2="204" stroke="#34d399" stroke-width="1.5" marker-end="url(#kvr-arr-g)"/>
-  <text x="193" y="216" text-anchor="middle" font-size="9" fill="#34d399">FT Auth Response — keys ready</text>
+  <line x1="544" y1="182" x2="334" y2="182" stroke="#34d399" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#kvr-arr-g)"/>
+  <line x1="318" y1="182" x2="68" y2="182" stroke="#34d399" stroke-width="1.5" marker-end="url(#kvr-arr-g)"/>
+  <text x="193" y="194" text-anchor="middle" font-size="9" fill="#34d399">FT Auth Response &#8212; keys ready</text>
 
   <!-- Step 4: Fast handoff -->
-  <line x1="68" y1="236" x2="544" y2="236" stroke="#93c5fd" stroke-width="2" marker-end="url(#kvr-arr)"/>
-  <text x="306" y="232" text-anchor="middle" font-size="9" font-weight="600" fill="#93c5fd">FT Reassociation — connected to AP 2 (&lt;50ms)</text>
+  <line x1="68" y1="214" x2="544" y2="214" stroke="#93c5fd" stroke-width="2" marker-end="url(#kvr-arr)"/>
+  <text x="306" y="210" text-anchor="middle" font-size="9" font-weight="600" fill="#93c5fd">FT Reassociation &#8212; connected to AP 2 (&lt;50ms)</text>
 
   <!-- Connected indicator -->
-  <rect x="544" y="242" width="104" height="16" fill="#071810" stroke="#86efac" stroke-width="1" rx="3"/>
-  <text x="596" y="254" text-anchor="middle" font-size="9" font-weight="600" fill="#86efac">handoff complete</text>
-
-  <!-- Footer caption -->
-  <text x="350" y="292" text-anchor="middle" font-size="9" fill="#94a3b8">v triggers the roam  ·  k provides the candidate  ·  r makes the handoff fast</text>
+  <rect x="544" y="220" width="104" height="16" fill="none" stroke="#86efac" stroke-width="1" rx="3"/>
+  <text x="596" y="232" text-anchor="middle" font-size="9" font-weight="600" fill="#86efac">handoff complete</text>
 </svg>

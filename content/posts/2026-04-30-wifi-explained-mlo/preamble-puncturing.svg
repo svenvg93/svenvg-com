@@ -1,94 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 250" width="700" height="250" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 200" width="700" height="200" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#080c14"/>
       <stop offset="100%" stop-color="#0d1520"/>
     </linearGradient>
-    <clipPath id="clip-r1">
-      <rect x="62" y="58" width="601" height="38" rx="4"/>
-    </clipPath>
-    <clipPath id="clip-r2">
-      <rect x="62" y="138" width="601" height="38" rx="4"/>
-    </clipPath>
   </defs>
 
-  <!-- Background -->
-  <rect width="700" height="250" fill="url(#bg)" rx="8"/>
+  <rect width="700" height="200" fill="url(#bg)" rx="8"/>
 
-  <!-- Grid line -->
-  <line x1="62" y1="115" x2="663" y2="115" stroke="#0d1a2a" stroke-width="1"/>
+  <text x="30" y="35" font-size="11" font-weight="600" fill="#7dd3fc">Without puncturing — 160 MHz effective</text>
+  <rect x="30" y="45" width="300" height="36" fill="none" stroke="#38bdf8" stroke-width="1.5" rx="4"/>
+  <text x="180" y="68" text-anchor="middle" font-size="10" font-weight="600" fill="#bae6fd">Active — 160 MHz</text>
+  <rect x="332" y="45" width="150" height="36" fill="none" stroke="#ef4444" stroke-width="1.5" rx="4"/>
+  <text x="407" y="68" text-anchor="middle" font-size="10" font-weight="600" fill="#fca5a5">Interference</text>
+  <rect x="484" y="45" width="150" height="36" fill="none" stroke="#334155" stroke-width="1.5" rx="4"/>
+  <text x="559" y="68" text-anchor="middle" font-size="10" fill="#64748b">Unused</text>
 
-  <!-- Header label -->
-  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">PREAMBLE PUNCTURING — WIDE CHANNEL AROUND INTERFERENCE</text>
+  <line x1="30" y1="100" x2="670" y2="100" stroke="#0d1a2a" stroke-width="1"/>
 
-  <!-- WITHOUT PUNCTURING label -->
-  <text x="62"  y="50" font-size="11" font-weight="600" fill="#7dd3fc">Without Puncturing</text>
-  <text x="663" y="50" text-anchor="end" font-size="10" font-weight="600" fill="#f87171">160 MHz effective</text>
+  <text x="30" y="123" font-size="11" font-weight="600" fill="#7dd3fc">With Preamble Puncturing — 240 MHz effective</text>
+  <rect x="30" y="133" width="300" height="36" fill="none" stroke="#38bdf8" stroke-width="1.5" rx="4"/>
+  <text x="180" y="156" text-anchor="middle" font-size="10" font-weight="600" fill="#bae6fd">Active — 160 MHz</text>
+  <rect x="332" y="133" width="150" height="36" fill="none" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4,3" rx="4"/>
+  <text x="407" y="156" text-anchor="middle" font-size="10" fill="#94a3b8">Punctured — skipped</text>
+  <rect x="484" y="133" width="150" height="36" fill="none" stroke="#38bdf8" stroke-width="1.5" rx="4"/>
+  <text x="559" y="156" text-anchor="middle" font-size="10" font-weight="600" fill="#bae6fd">Active — 80 MHz</text>
 
-  <!-- Segment fills clipped -->
-  <rect x="62"  y="58" width="300" height="38" fill="#0e1a3a" clip-path="url(#clip-r1)"/>
-  <rect x="362" y="58" width="150" height="38" fill="#150808" clip-path="url(#clip-r1)"/>
-  <rect x="512" y="58" width="151" height="38" fill="#0e1a2e" clip-path="url(#clip-r1)"/>
-
-  <!-- Outer channel border -->
-  <rect x="62" y="58" width="601" height="38" fill="none" stroke="#1e3a5f" stroke-width="1.5" rx="4"/>
-  <!-- Internal dividers -->
-  <line x1="362" y1="60" x2="362" y2="94" stroke="#1e3a5f" stroke-width="1.5"/>
-  <line x1="512" y1="60" x2="512" y2="94" stroke="#1e3a5f" stroke-width="1.5"/>
-
-  <!-- Segment labels -->
-  <text x="212" y="81" text-anchor="middle" font-size="11" font-weight="600" fill="#7dd3fc">Active — 160 MHz</text>
-  <text x="437" y="75" text-anchor="middle" font-size="10" font-weight="600" fill="#f87171">Interference</text>
-  <text x="437" y="88" text-anchor="middle" font-size="9"  fill="#fca5a5">80 MHz</text>
-  <text x="588" y="75" text-anchor="middle" font-size="10" fill="#94a3b8">Unused</text>
-  <text x="588" y="88" text-anchor="middle" font-size="9"  fill="#94a3b8">80 MHz</text>
-
-  <!-- WITH PREAMBLE PUNCTURING label -->
-  <text x="62"  y="130" font-size="11" font-weight="600" fill="#7dd3fc">With Preamble Puncturing</text>
-  <text x="663" y="130" text-anchor="end" font-size="10" font-weight="600" fill="#86efac">240 MHz effective</text>
-
-  <!-- Segment fills clipped -->
-  <rect x="62"  y="138" width="300" height="38" fill="#0e1a3a" clip-path="url(#clip-r2)"/>
-  <rect x="362" y="138" width="150" height="38" fill="#0e1a2e" clip-path="url(#clip-r2)"/>
-  <rect x="512" y="138" width="151" height="38" fill="#0e1a3a" clip-path="url(#clip-r2)"/>
-
-  <!-- Diagonal hatch on punctured block -->
-  <g clip-path="url(#clip-r2)">
-    <line x1="362" y1="138" x2="412" y2="176" stroke="#1e3a5f" stroke-width="1"/>
-    <line x1="382" y1="138" x2="432" y2="176" stroke="#1e3a5f" stroke-width="1"/>
-    <line x1="402" y1="138" x2="452" y2="176" stroke="#1e3a5f" stroke-width="1"/>
-    <line x1="422" y1="138" x2="472" y2="176" stroke="#1e3a5f" stroke-width="1"/>
-    <line x1="442" y1="138" x2="492" y2="176" stroke="#1e3a5f" stroke-width="1"/>
-    <line x1="462" y1="138" x2="512" y2="176" stroke="#1e3a5f" stroke-width="1"/>
-  </g>
-
-  <!-- Outer channel border -->
-  <rect x="62" y="138" width="601" height="38" fill="none" stroke="#1e3a5f" stroke-width="1.5" rx="4"/>
-  <!-- Internal dividers -->
-  <line x1="362" y1="140" x2="362" y2="174" stroke="#334155" stroke-width="1.5"/>
-  <line x1="512" y1="140" x2="512" y2="174" stroke="#334155" stroke-width="1.5"/>
-
-  <!-- Segment labels -->
-  <text x="212" y="161" text-anchor="middle" font-size="11" font-weight="600" fill="#7dd3fc">Active — 160 MHz</text>
-  <text x="437" y="155" text-anchor="middle" font-size="10" font-weight="600" fill="#94a3b8">PUNCTURED</text>
-  <text x="437" y="168" text-anchor="middle" font-size="9"  fill="#94a3b8">80 MHz skipped</text>
-  <text x="588" y="155" text-anchor="middle" font-size="11" font-weight="600" fill="#7dd3fc">Active</text>
-  <text x="588" y="168" text-anchor="middle" font-size="10" fill="#7dd3fc">80 MHz</text>
-
-  <!-- Active-span annotation lines -->
-  <line x1="62"  y1="192" x2="362" y2="192" stroke="#38bdf8" stroke-width="1.5"/>
-  <line x1="512" y1="192" x2="663" y2="192" stroke="#38bdf8" stroke-width="1.5"/>
-  <text x="437" y="200" text-anchor="middle" font-size="10" font-weight="600" fill="#7dd3fc">240 MHz active (160 + 80)</text>
-
-  <!-- Frequency axis -->
-  <line x1="62" y1="212" x2="663" y2="212" stroke="#1e3a5f" stroke-width="1"/>
-  <text x="62"  y="224" text-anchor="middle" font-size="9" fill="#94a3b8">0</text>
-  <text x="212" y="224" text-anchor="middle" font-size="9" fill="#94a3b8">80 MHz</text>
-  <text x="362" y="224" text-anchor="middle" font-size="9" fill="#94a3b8">160 MHz</text>
-  <text x="512" y="224" text-anchor="middle" font-size="9" fill="#94a3b8">240 MHz</text>
-  <text x="663" y="224" text-anchor="middle" font-size="9" fill="#94a3b8">320 MHz</text>
-
-  <!-- Footer caption -->
-  <text x="350" y="242" text-anchor="middle" font-size="9" fill="#94a3b8">The preamble bitmap signals which 20 MHz sub-channels are active — clients skip the punctured region entirely</text>
+  <text x="350" y="190" text-anchor="middle" font-size="9" fill="#64748b">The 80 MHz interference zone is skipped; both sides stay active instead of falling back to 160 MHz</text>
 </svg>

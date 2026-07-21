@@ -6,107 +6,60 @@
       <stop offset="0%" stop-color="#080c14"/>
       <stop offset="100%" stop-color="#0d1520"/>
     </linearGradient>
-    <linearGradient id="arr-large" x1="90" y1="114" x2="280" y2="114" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#6366f1"/>
-      <stop offset="100%" stop-color="#3b82f6"/>
-    </linearGradient>
-    <linearGradient id="arr-ptb" x1="280" y1="168" x2="90" y2="168" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#f87171"/>
-      <stop offset="100%" stop-color="#ef4444"/>
-    </linearGradient>
-    <linearGradient id="arr-frag1-left" x1="90" y1="236" x2="280" y2="236" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#6366f1"/>
-      <stop offset="100%" stop-color="#3b82f6"/>
-    </linearGradient>
-    <linearGradient id="arr-frag1-right" x1="360" y1="236" x2="545" y2="236" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#3b82f6"/>
-      <stop offset="100%" stop-color="#86efac"/>
-    </linearGradient>
-    <linearGradient id="arr-frag2-left" x1="90" y1="260" x2="280" y2="260" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#6366f1"/>
-      <stop offset="100%" stop-color="#3b82f6"/>
-    </linearGradient>
-    <linearGradient id="arr-frag2-right" x1="360" y1="260" x2="545" y2="260" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#3b82f6"/>
-      <stop offset="100%" stop-color="#86efac"/>
-    </linearGradient>
-    <marker id="arr-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-      <polygon points="0,0 8,3 0,6" fill="#3b82f6"/>
+    <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#34d399"/>
     </marker>
-    <marker id="arr-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+    <marker id="arr-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
       <polygon points="0,0 8,3 0,6" fill="#ef4444"/>
-    </marker>
-    <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-      <polygon points="0,0 8,3 0,6" fill="#86efac"/>
     </marker>
   </defs>
 
   <rect width="700" height="350" fill="url(#bg)" rx="8"/>
 
-  <!-- subtle grid -->
-  <g stroke="#0d1a2a" stroke-width="1">
-    <line x1="0" y1="30" x2="700" y2="30"/>
-  </g>
+  <!-- Participants -->
+  <rect x="40" y="30" width="120" height="44" fill="none" stroke="#34d399" stroke-width="1.5" rx="5"/>
+  <text x="100" y="52" text-anchor="middle" font-size="13" font-weight="700" fill="#86efac">Source</text>
+  <text x="100" y="67" text-anchor="middle" font-size="9" fill="#34d399">MTU 1500</text>
 
-  <!-- header -->
-  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">IPv6 FRAGMENTATION — SOURCE FRAGMENTS ONLY, ROUTERS NEVER FRAGMENT</text>
+  <rect x="290" y="30" width="120" height="44" fill="none" stroke="#34d399" stroke-width="1.5" rx="5"/>
+  <text x="350" y="52" text-anchor="middle" font-size="13" font-weight="700" fill="#86efac">Router</text>
+  <text x="350" y="67" text-anchor="middle" font-size="9" fill="#34d399">MTU 1280</text>
 
-  <!-- Column headers -->
-  <rect x="20" y="34" width="130" height="40" fill="#0a0a1f" stroke="#6366f1" stroke-width="1.5" rx="5"/>
-  <text x="85" y="52" text-anchor="middle" font-size="11" font-weight="600" fill="#a5b4fc">SOURCE</text>
-  <text x="85" y="67" text-anchor="middle" font-size="8" fill="#818cf8">MTU: 1500 B</text>
-
-  <rect x="285" y="34" width="130" height="40" fill="#1a1000" stroke="#92400e" stroke-width="1.5" rx="5"/>
-  <text x="350" y="52" text-anchor="middle" font-size="11" font-weight="600" fill="#fcd34d">ROUTER</text>
-  <text x="350" y="67" text-anchor="middle" font-size="8" fill="#f59e0b">next-hop MTU: 1280 B</text>
-
-  <rect x="550" y="34" width="130" height="40" fill="#071810" stroke="#166534" stroke-width="1.5" rx="5"/>
-  <text x="615" y="52" text-anchor="middle" font-size="11" font-weight="600" fill="#86efac">DEST</text>
-  <text x="615" y="67" text-anchor="middle" font-size="8" fill="#4ade80">reassembles</text>
+  <rect x="540" y="30" width="120" height="44" fill="none" stroke="#34d399" stroke-width="1.5" rx="5"/>
+  <text x="600" y="52" text-anchor="middle" font-size="13" font-weight="700" fill="#86efac">Destination</text>
+  <text x="600" y="67" text-anchor="middle" font-size="9" fill="#34d399">reassembles</text>
 
   <!-- Lifelines -->
-  <line x1="85" y1="74" x2="85" y2="300" stroke="#1e293b" stroke-width="2"/>
-  <line x1="350" y1="74" x2="350" y2="300" stroke="#1e293b" stroke-width="2"/>
-  <line x1="615" y1="74" x2="615" y2="300" stroke="#1e293b" stroke-width="2"/>
+  <line x1="100" y1="74" x2="100" y2="310" stroke="#1e293b" stroke-width="1.5"/>
+  <line x1="350" y1="74" x2="350" y2="310" stroke="#1e293b" stroke-width="1.5"/>
+  <line x1="600" y1="74" x2="600" y2="310" stroke="#1e293b" stroke-width="1.5"/>
 
-  <!-- SCENARIO A label -->
-  <text x="350" y="92" text-anchor="middle" font-size="10" font-weight="600" fill="#93c5fd">Scenario A — packet exceeds next-hop MTU</text>
+  <!-- Scenario A -->
+  <text x="350" y="95" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8">Scenario A — packet exceeds next-hop MTU</text>
 
-  <!-- Large packet: Source → Router -->
-  <text x="212" y="108" text-anchor="middle" font-size="9" fill="#a5b4fc">large packet · 2000 B</text>
-  <line x1="90" y1="114" x2="280" y2="114" stroke="url(#arr-large)" stroke-width="1.5" marker-end="url(#arr-blue)"/>
+  <text x="225" y="108" text-anchor="middle" font-size="10" fill="#86efac">2000 B packet</text>
+  <line x1="106" y1="115" x2="344" y2="115" stroke="#34d399" stroke-width="1.5" marker-end="url(#arr-green)"/>
 
-  <!-- Router drops -->
-  <text x="350" y="132" text-anchor="middle" font-size="11" font-weight="600" fill="#f87171">drops packet</text>
-  <text x="350" y="146" text-anchor="middle" font-size="8" fill="#92400e">never fragments</text>
+  <text x="350" y="138" text-anchor="middle" font-size="12" font-weight="700" fill="#ef4444">drop — never fragments</text>
 
-  <!-- ICMPv6 PTB: Router → Source (dashed) -->
-  <text x="212" y="162" text-anchor="middle" font-size="9" fill="#f87171">ICMPv6 Packet Too Big · MTU=1280</text>
-  <line x1="280" y1="168" x2="90" y2="168" stroke="url(#arr-ptb)" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-red)"/>
-  <text x="212" y="181" text-anchor="middle" font-size="8" fill="#94a3b8">source reduces size and retransmits</text>
+  <text x="225" y="168" text-anchor="middle" font-size="10" fill="#fca5a5">ICMPv6 Packet Too Big — MTU 1280</text>
+  <line x1="344" y1="175" x2="106" y2="175" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-red)"/>
+  <text x="225" y="192" text-anchor="middle" font-size="9" fill="#94a3b8">source reduces size and retransmits</text>
 
-  <!-- Divider between scenarios -->
-  <line x1="40" y1="196" x2="660" y2="196" stroke="#1e293b" stroke-width="1" stroke-dasharray="6,4"/>
+  <line x1="30" y1="208" x2="670" y2="208" stroke="#1e293b" stroke-width="1" stroke-dasharray="6,4"/>
 
-  <!-- SCENARIO B label -->
-  <text x="350" y="212" text-anchor="middle" font-size="10" font-weight="600" fill="#93c5fd">Scenario B — source fragments after receiving Packet Too Big</text>
+  <!-- Scenario B -->
+  <text x="350" y="225" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8">Scenario B — source fragments to fit 1280 B</text>
 
-  <!-- frag 1 -->
-  <text x="212" y="230" text-anchor="middle" font-size="9" fill="#a5b4fc">frag 1  &lt;=1280 B</text>
-  <line x1="90" y1="236" x2="280" y2="236" stroke="url(#arr-frag1-left)" stroke-width="1.5" marker-end="url(#arr-blue)"/>
-  <line x1="360" y1="236" x2="545" y2="236" stroke="url(#arr-frag1-right)" stroke-width="1.5" marker-end="url(#arr-green)"/>
+  <text x="225" y="238" text-anchor="middle" font-size="10" fill="#86efac">fragment 1 ≤ 1280 B</text>
+  <line x1="106" y1="245" x2="344" y2="245" stroke="#34d399" stroke-width="1.5" marker-end="url(#arr-green)"/>
+  <line x1="356" y1="245" x2="594" y2="245" stroke="#34d399" stroke-width="1.5" marker-end="url(#arr-green)"/>
 
-  <!-- frag 2 -->
-  <text x="212" y="254" text-anchor="middle" font-size="9" fill="#a5b4fc">frag 2  &lt;=1280 B</text>
-  <line x1="90" y1="260" x2="280" y2="260" stroke="url(#arr-frag2-left)" stroke-width="1.5" marker-end="url(#arr-blue)"/>
-  <line x1="360" y1="260" x2="545" y2="260" stroke="url(#arr-frag2-right)" stroke-width="1.5" marker-end="url(#arr-green)"/>
+  <text x="225" y="266" text-anchor="middle" font-size="10" fill="#86efac">fragment 2 ≤ 1280 B</text>
+  <line x1="106" y1="273" x2="344" y2="273" stroke="#34d399" stroke-width="1.5" marker-end="url(#arr-green)"/>
+  <line x1="356" y1="273" x2="594" y2="273" stroke="#34d399" stroke-width="1.5" marker-end="url(#arr-green)"/>
 
-  <!-- Reassemble note at DEST -->
-  <text x="615" y="278" text-anchor="middle" font-size="9" font-weight="600" fill="#86efac">reassembles →</text>
-  <text x="615" y="292" text-anchor="middle" font-size="9" font-weight="600" fill="#86efac">complete packet</text>
+  <text x="600" y="296" text-anchor="middle" font-size="10" font-weight="600" fill="#86efac">reassembles into original packet</text>
 
-  <!-- Key rule box -->
-  <rect x="30" y="308" width="640" height="32" fill="#150808" stroke="#7f1d1d" stroke-width="1.5" rx="5"/>
-  <text x="350" y="323" text-anchor="middle" font-size="10" font-weight="600" fill="#f87171">IPv6 routers NEVER fragment — only source nodes do · minimum link MTU: 1280 B (RFC 8200)</text>
-  <text x="350" y="337" text-anchor="middle" font-size="9" fill="#94a3b8">Blocking Packet Too Big ICMPv6 prevents PMTUD — large connections stall silently with no error message</text>
+  <text x="350" y="330" text-anchor="middle" font-size="9" fill="#64748b">Routers never fragment — only the source does · minimum link MTU is 1280 B (RFC 8200)</text>
 </svg>

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 310" width="700" height="310"
      font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
   <defs>
@@ -5,86 +6,44 @@
       <stop offset="0%" stop-color="#080c14"/>
       <stop offset="100%" stop-color="#0d1520"/>
     </linearGradient>
-    <!-- Feeder fiber: OLT (red) → Splitter (blue) -->
-    <linearGradient id="arr-feeder" x1="165" y1="170" x2="270" y2="170" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#ef4444"/>
-      <stop offset="100%" stop-color="#3b82f6"/>
-    </linearGradient>
-    <!-- Drop fibers: Splitter (blue) → ONT (green) -->
-    <linearGradient id="arr-drop1" x1="400" y1="135" x2="514" y2="92" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#3b82f6"/>
-      <stop offset="100%" stop-color="#34d399"/>
-    </linearGradient>
-    <linearGradient id="arr-drop2" x1="400" y1="170" x2="514" y2="170" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#3b82f6"/>
-      <stop offset="100%" stop-color="#34d399"/>
-    </linearGradient>
-    <linearGradient id="arr-drop3" x1="400" y1="205" x2="514" y2="250" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#3b82f6"/>
-      <stop offset="100%" stop-color="#34d399"/>
-    </linearGradient>
-    <!-- Arrow markers -->
-    <marker id="arr-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
-      <polygon points="0,0 8,3 0,6" fill="#3b82f6"/>
+    <marker id="arr-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#ef4444"/>
     </marker>
-    <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
-      <polygon points="0,0 8,3 0,6" fill="#34d399"/>
+    <marker id="arr-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#38bdf8"/>
     </marker>
   </defs>
 
-  <!-- Background -->
   <rect width="700" height="310" fill="url(#bg)" rx="8"/>
 
-  <!-- Header -->
-  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600"
-        fill="#94a3b8" letter-spacing="1">XGS-PON ARCHITECTURE — OLT · ODN · ONT</text>
-  <line x1="0" y1="36" x2="700" y2="36" stroke="#0d1a2a" stroke-width="1"/>
+  <!-- OLT (red zone: ISP / external source) -->
+  <rect x="30" y="120" width="130" height="70" fill="none" stroke="#ef4444" stroke-width="1.5" rx="5"/>
+  <text x="95" y="150" text-anchor="middle" font-size="13" font-weight="700" fill="#fca5a5">OLT</text>
+  <text x="95" y="168" text-anchor="middle" font-size="10" fill="#ef4444" opacity="0.8">ISP Central Office</text>
 
-  <!-- ── OLT (red / ISP zone) ── -->
-  <rect x="25" y="132" width="140" height="75" fill="#150808" stroke="#7f1d1d" stroke-width="1.5" rx="5"/>
-  <text x="95" y="161" text-anchor="middle" font-size="12" font-weight="600" fill="#f87171">OLT</text>
-  <text x="95" y="178" text-anchor="middle" font-size="9" fill="#94a3b8">ISP Central Office</text>
-  <text x="95" y="196" text-anchor="middle" font-size="8" fill="#94a3b8">1 port per PON tree</text>
+  <line x1="160" y1="155" x2="283" y2="155" stroke="#ef4444" stroke-width="1.5" marker-end="url(#arr-red)"/>
 
-  <!-- Feeder fiber arrow (dashed — shared fiber from ISP to field) -->
-  <line x1="165" y1="170" x2="263" y2="170"
-        stroke="url(#arr-feeder)" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-blue)"/>
-  <text x="214" y="162" text-anchor="middle" font-size="9" fill="#94a3b8">feeder fiber</text>
-  <text x="214" y="184" text-anchor="middle" font-size="8" fill="#94a3b8">1577 nm · 1270 nm</text>
+  <!-- Splitter (blue zone: passive ODN) -->
+  <rect x="290" y="100" width="130" height="110" fill="none" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
+  <text x="355" y="150" text-anchor="middle" font-size="13" font-weight="700" fill="#bae6fd">Splitter</text>
+  <text x="355" y="168" text-anchor="middle" font-size="10" fill="#38bdf8" opacity="0.8">1:32 passive</text>
 
-  <!-- ── Splitter (blue / ODN) ── -->
-  <rect x="270" y="115" width="130" height="110" fill="#0e1a3a" stroke="#3b82f6" stroke-width="1.5" rx="5"/>
-  <text x="335" y="147" text-anchor="middle" font-size="12" font-weight="600" fill="#93c5fd">SPLITTER</text>
-  <text x="335" y="165" text-anchor="middle" font-size="9" fill="#94a3b8">Passive ODN</text>
-  <text x="335" y="182" text-anchor="middle" font-size="9" fill="#94a3b8">ratio  1 : 32</text>
-  <text x="335" y="199" text-anchor="middle" font-size="8" fill="#94a3b8">no power required</text>
-  <text x="335" y="214" text-anchor="middle" font-size="8" fill="#94a3b8">no configuration</text>
+  <line x1="420" y1="155" x2="553" y2="76" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#arr-blue)"/>
+  <line x1="420" y1="155" x2="553" y2="154.5" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#arr-blue)"/>
+  <line x1="420" y1="155" x2="553" y2="233" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#arr-blue)"/>
 
-  <!-- To ONT 1 (diagonal up) -->
-  <line x1="400" y1="135" x2="514" y2="92"
-        stroke="url(#arr-drop1)" stroke-width="1.5" marker-end="url(#arr-green)"/>
-  <!-- To ONT 2 (horizontal) -->
-  <line x1="400" y1="170" x2="514" y2="170"
-        stroke="url(#arr-drop2)" stroke-width="1.5" marker-end="url(#arr-green)"/>
-  <!-- To ONT 3 (diagonal down) -->
-  <line x1="400" y1="205" x2="514" y2="250"
-        stroke="url(#arr-drop3)" stroke-width="1.5" marker-end="url(#arr-green)"/>
+  <!-- ONT 1 (green zone: subscriber) -->
+  <rect x="560" y="45" width="120" height="55" fill="none" stroke="#34d399" stroke-width="1.5" rx="5"/>
+  <text x="620" y="68" text-anchor="middle" font-size="13" font-weight="700" fill="#86efac">ONT</text>
+  <text x="620" y="86" text-anchor="middle" font-size="10" fill="#34d399" opacity="0.8">Home 1</text>
 
-  <!-- ── ONT 1 (green / subscriber) ── -->
-  <rect x="515" y="62" width="155" height="60" fill="#071810" stroke="#166534" stroke-width="1.5" rx="5"/>
-  <text x="592" y="88" text-anchor="middle" font-size="12" font-weight="600" fill="#86efac">ONT</text>
-  <text x="592" y="106" text-anchor="middle" font-size="9" fill="#94a3b8">Home 1</text>
-  <text x="592" y="118" text-anchor="middle" font-size="8" fill="#94a3b8">10 G symmetric</text>
+  <!-- ONT 2 -->
+  <rect x="560" y="127" width="120" height="55" fill="none" stroke="#34d399" stroke-width="1.5" rx="5"/>
+  <text x="620" y="150" text-anchor="middle" font-size="13" font-weight="700" fill="#86efac">ONT</text>
+  <text x="620" y="168" text-anchor="middle" font-size="10" fill="#34d399" opacity="0.8">Home 2</text>
 
-  <!-- ── ONT 2 ── -->
-  <rect x="515" y="142" width="155" height="60" fill="#071810" stroke="#166534" stroke-width="1.5" rx="5"/>
-  <text x="592" y="168" text-anchor="middle" font-size="12" font-weight="600" fill="#86efac">ONT</text>
-  <text x="592" y="186" text-anchor="middle" font-size="9" fill="#94a3b8">Home 2</text>
-  <text x="592" y="198" text-anchor="middle" font-size="8" fill="#94a3b8">10 G symmetric</text>
-
-  <!-- ── ONT N ── -->
-  <rect x="515" y="222" width="155" height="60" fill="#071810" stroke="#166534" stroke-width="1.5" rx="5"/>
-  <text x="592" y="248" text-anchor="middle" font-size="12" font-weight="600" fill="#86efac">ONT</text>
-  <text x="592" y="265" text-anchor="middle" font-size="9" fill="#94a3b8">Home N · up to 32</text>
-  <text x="592" y="277" text-anchor="middle" font-size="8" fill="#94a3b8">AES-128 per subscriber</text>
+  <!-- ONT 3 -->
+  <rect x="560" y="209" width="120" height="55" fill="none" stroke="#34d399" stroke-width="1.5" rx="5"/>
+  <text x="620" y="232" text-anchor="middle" font-size="13" font-weight="700" fill="#86efac">ONT</text>
+  <text x="620" y="250" text-anchor="middle" font-size="10" fill="#34d399" opacity="0.8">Home 3 of 32</text>
 </svg>

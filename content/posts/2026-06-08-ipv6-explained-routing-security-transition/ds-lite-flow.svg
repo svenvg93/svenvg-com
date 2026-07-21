@@ -1,75 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 210" width="700" height="210"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 190" width="700" height="190"
      font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#080c14"/>
       <stop offset="100%" stop-color="#0d1520"/>
     </linearGradient>
-    <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-      <polygon points="0,0 8,3 0,6" fill="#4ade80"/>
+    <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#34d399"/>
     </marker>
-    <marker id="arr-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+    <marker id="arr-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
       <polygon points="0,0 8,3 0,6" fill="#38bdf8"/>
-    </marker>
-    <marker id="arr-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-      <polygon points="0,0 8,3 0,6" fill="#f87171"/>
     </marker>
   </defs>
 
-  <rect width="700" height="210" fill="url(#bg)" rx="8"/>
+  <rect width="700" height="190" fill="url(#bg)" rx="8"/>
 
-  <g stroke="#0d1a2a" stroke-width="1">
-    <line x1="0" y1="36" x2="700" y2="36"/>
-  </g>
+  <!-- LAN Device -->
+  <rect x="20" y="65" width="110" height="60" fill="none" stroke="#34d399" stroke-width="1.5" rx="5"/>
+  <text x="75" y="90" text-anchor="middle" font-size="13" font-weight="700" fill="#86efac">LAN Device</text>
+  <text x="75" y="108" text-anchor="middle" font-size="9" fill="#34d399" font-family="'Courier New',monospace">192.168.1.x</text>
 
-  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">DS-LITE — IPv4 OVER IPv6-ONLY ACCESS NETWORK</text>
+  <!-- Home Router / B4 -->
+  <rect x="175" y="65" width="140" height="60" fill="none" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
+  <text x="245" y="90" text-anchor="middle" font-size="13" font-weight="700" fill="#bae6fd">Home Router</text>
+  <text x="245" y="108" text-anchor="middle" font-size="9" fill="#38bdf8" opacity="0.8">B4 element</text>
 
-  <!-- Zone: Home LAN -->
-  <rect x="10" y="44" width="285" height="120" fill="#071810" fill-opacity="0.4" stroke="#166534" stroke-width="1" stroke-dasharray="4,3" rx="5"/>
-  <text x="152" y="58" text-anchor="middle" font-size="9" fill="#4ade80" letter-spacing="1">HOME LAN</text>
+  <!-- AFTR -->
+  <rect x="430" y="65" width="110" height="60" fill="none" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
+  <text x="485" y="90" text-anchor="middle" font-size="13" font-weight="700" fill="#bae6fd">AFTR</text>
+  <text x="485" y="108" text-anchor="middle" font-size="9" fill="#38bdf8" opacity="0.8">ISP gateway</text>
 
-  <!-- Zone: ISP / Internet -->
-  <rect x="395" y="44" width="295" height="120" fill="#0e1a3a" fill-opacity="0.3" stroke="#1e3a5f" stroke-width="1" stroke-dasharray="4,3" rx="5"/>
-  <text x="542" y="58" text-anchor="middle" font-size="9" fill="#60a5fa" letter-spacing="1">ISP / INTERNET</text>
+  <!-- IPv4 Internet -->
+  <rect x="575" y="65" width="115" height="60" fill="none" stroke="#ef4444" stroke-width="1.5" rx="5"/>
+  <text x="632" y="90" text-anchor="middle" font-size="13" font-weight="700" fill="#fca5a5">IPv4 Internet</text>
+  <text x="632" y="108" text-anchor="middle" font-size="9" fill="#ef4444" opacity="0.8">CGN — shared pool</text>
 
-  <!-- Node: LAN Device -->
-  <rect x="22" y="80" width="100" height="48" fill="#071810" stroke="#166534" stroke-width="1.5" rx="5"/>
-  <text x="72" y="100" text-anchor="middle" font-size="10" font-weight="600" fill="#86efac">LAN Device</text>
-  <text x="72" y="118" text-anchor="middle" font-size="8" fill="#4ade80" font-family="'Courier New',monospace">192.168.1.x</text>
+  <!-- Arrows -->
+  <line x1="130" y1="95" x2="171" y2="95" stroke="#34d399" stroke-width="1.5" marker-end="url(#arr-green)"/>
+  <text x="152" y="85" text-anchor="middle" font-size="8" fill="#86efac">IPv4</text>
 
-  <!-- Node: Home Router / B4 -->
-  <rect x="165" y="80" width="118" height="48" fill="#071428" stroke="#0e4060" stroke-width="1.5" rx="5"/>
-  <text x="224" y="99" text-anchor="middle" font-size="10" font-weight="600" fill="#bae6fd">Home Router</text>
-  <text x="224" y="114" text-anchor="middle" font-size="8" fill="#38bdf8">B4 element</text>
-  <text x="224" y="123" text-anchor="middle" font-size="7" fill="#475569" font-family="'Courier New',monospace">encapsulates IPv4→IPv6</text>
+  <line x1="315" y1="95" x2="426" y2="95" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arr-blue)"/>
+  <text x="370" y="82" text-anchor="middle" font-size="9" font-weight="600" fill="#bae6fd">IPv4-in-IPv6 tunnel</text>
+  <text x="370" y="111" text-anchor="middle" font-size="8" fill="#475569">IPv6-only access network</text>
 
-  <!-- Node: AFTR -->
-  <rect x="407" y="80" width="100" height="48" fill="#1a0e28" stroke="#5b21b6" stroke-width="1.5" rx="5"/>
-  <text x="457" y="99" text-anchor="middle" font-size="10" font-weight="600" fill="#c4b5fd">AFTR</text>
-  <text x="457" y="114" text-anchor="middle" font-size="8" fill="#a78bfa">ISP gateway</text>
-  <text x="457" y="123" text-anchor="middle" font-size="7" fill="#475569" font-family="'Courier New',monospace">decap + NAT44</text>
+  <line x1="540" y1="95" x2="571" y2="95" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#arr-blue)"/>
+  <text x="555" y="85" text-anchor="middle" font-size="8" fill="#bae6fd">IPv4</text>
 
-  <!-- Node: IPv4 Internet -->
-  <rect x="560" y="80" width="118" height="48" fill="#150808" stroke="#7f1d1d" stroke-width="1.5" rx="5"/>
-  <text x="619" y="100" text-anchor="middle" font-size="10" font-weight="600" fill="#f87171">IPv4 Internet</text>
-  <text x="619" y="118" text-anchor="middle" font-size="8" fill="#ef4444">shared NAT pool</text>
-
-  <!-- Arrow: Device → B4 -->
-  <line x1="124" y1="104" x2="161" y2="104"
-        stroke="#4ade80" stroke-width="1.5" marker-end="url(#arr-green)"/>
-  <text x="143" y="98" text-anchor="middle" font-size="8" fill="#4ade80">IPv4</text>
-
-  <!-- Arrow: B4 → AFTR (dashed, IPv6 tunnel) -->
-  <line x1="285" y1="99" x2="403" y2="99"
-        stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arr-blue)"/>
-  <text x="344" y="91" text-anchor="middle" font-size="8" fill="#38bdf8" font-weight="600">IPv4-in-IPv6 tunnel</text>
-  <text x="344" y="116" text-anchor="middle" font-size="8" fill="#475569">IPv6-only access network</text>
-
-  <!-- Arrow: AFTR → Internet -->
-  <line x1="509" y1="104" x2="556" y2="104"
-        stroke="#f87171" stroke-width="1.5" marker-end="url(#arr-red)"/>
-  <text x="533" y="98" text-anchor="middle" font-size="8" fill="#f87171">IPv4</text>
-
-  <text x="350" y="196" text-anchor="middle" font-size="9" fill="#475569">IPv6 traffic is unaffected — it flows directly using the delegated prefix without tunneling</text>
+  <text x="350" y="165" text-anchor="middle" font-size="9" fill="#64748b">IPv6 traffic is unaffected — it flows directly via the delegated prefix, without tunneling</text>
 </svg>

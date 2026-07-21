@@ -4,7 +4,7 @@ Reference for all cover images and inline diagrams across the blog. Follow this 
 
 **Two distinct systems, don't mix them:**
 - **Cover images** (this post's OG/thumbnail image, `cover.svg`) — canvas, typography, background, and the **shape catalog** sections below. As of the latest redesign, covers are deliberately minimal: a dark gradient, one small abstract shape, and bold typography. They do **not** use the hex-node/topology/monitoring-tool patterns further down this doc — those were the old cover style (network diagrams with labeled nodes and arrows) and were retired for being too busy/cluttered at thumbnail size.
-- **Inline diagrams** (the illustrations embedded in post bodies, e.g. `slaac-flow.svg`, `pd-exchange.svg`) — smaller canvas (sized to the post's content width, not 1200×630), and they still use the full pattern library documented from "Zone color coding" onward: router/node hexagons, three-zone topology, monitoring tool nodes, terminal panels, callout labels, etc. Nothing about inline diagrams has changed — only cover images were redesigned.
+- **Inline diagrams** (the illustrations embedded in post bodies, e.g. `slaac-flow.svg`, `pd-exchange.svg`) — smaller canvas (sized to the post's content width, not 1200×630). **As of the latest redesign, these are also minimal**: plain unfilled rectangles and lines, zone colors (red/blue/green) or the post's single accent color, one label + at most one detail line per box — see "Inline diagram: plain box pattern" below. They no longer use the old hex-node/topology/monitoring-tool/terminal-panel patterns further down this doc; those sections are kept for historical reference (marked retired) since some of the underlying conventions — zone colors, the accent-color system — are still current.
 
 ---
 
@@ -213,7 +213,45 @@ The visual "center" of the safe zone (y=0–390) is y=195. For flow-based diagra
 
 ## Inline diagram patterns
 
-> **Everything from here through "Symmetric branch layout" below applies to in-article inline diagrams only** (the smaller illustrations embedded in post bodies, e.g. `slaac-flow.svg`, `pd-exchange.svg`, `mlo-mlsr.svg`). **None of it applies to cover images** — covers use the shape catalog above instead. This is the pattern library that used to also define the old cover style; it's kept here because inline diagrams still use it, just at a smaller, content-width canvas rather than 1200×630.
+> **Everything from here through "Symmetric branch layout" below applies to in-article inline diagrams only** (the smaller illustrations embedded in post bodies, e.g. `slaac-flow.svg`, `pd-exchange.svg`). **None of it applies to cover images** — covers use the shape catalog above instead.
+
+## Inline diagram: plain box pattern (current)
+
+This is the current style for every inline diagram on the site. It replaced an earlier hex-node/glow/multi-badge style (documented further down, marked retired, kept for historical reference only).
+
+**Reference implementation**: `content/posts/2024-05-21-traefik-reverse-proxy-guide/traefik-architecture.svg` — read the actual file rather than relying solely on the snippet below.
+
+Core rules:
+- **Plain unfilled rectangles**, not hexagons: `fill="none" stroke="COLOR" stroke-width="1.5" rx="5"`.
+- **Straight lines with a small arrow marker** connecting boxes — no curved bezier arrows unless the layout genuinely needs to route around something.
+- **One bold label + at most one smaller detail line per box.** No header text band across the top of the canvas, no footer caption band, no multi-line annotation lists inside a box.
+- **No decorative background** — no glow radial gradients, no hex-grid/dot-grid texture, no multi-layer scenes. Just the plain dark background gradient (see "Background" above — same gradients used for covers apply here).
+- Keep the diagram's actual canvas size as previously set for that file (these are sized to content width, not the 1200×630 cover canvas) — don't resize existing diagrams as part of a style pass unless the content genuinely requires it.
+
+**Color: zone colors vs. single accent — pick one per diagram:**
+- **Zone colors**, when the diagram has a natural external/central/trusted structure (most topology and many sequence diagrams): red `#ef4444` for the external/untrusted/attacker actor, blue `#38bdf8` for the central device/main subject, green `#34d399` for the trusted/destination side. Use whichever zones actually apply — a two-actor exchange might only need blue+green. Always pair a zone's stroke/arrow color with its light text variant for labels (see "Text contrast" below): `#fca5a5` on red, `#bae6fd` on blue, `#86efac` on green.
+- **Single accent color** (the post's own established color — check `cover.svg` if unsure), when there's no natural zone split: a bit-field diagram, a straightforward pipeline with no security boundary, a notation/reference diagram.
+
+**Example** (from the reference file — a 3-box topology using zone colors):
+```xml
+<rect x="50" y="80" width="130" height="50" fill="none" stroke="#ef4444" stroke-width="1.5" rx="5"/>
+<text x="115" y="102" text-anchor="middle" font-size="13" font-weight="600" fill="#fca5a5">Internet</text>
+<text x="115" y="118" text-anchor="middle" font-size="10" fill="#ef4444" opacity="0.8">HTTPS · :443</text>
+
+<line x1="180" y1="105" x2="255" y2="105" stroke="#ef4444" stroke-width="1.5" marker-end="url(#arr-red)"/>
+
+<rect x="257" y="65" width="185" height="80" fill="none" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
+<text x="349" y="93" text-anchor="middle" font-size="14" font-weight="700" fill="#bae6fd">Traefik</text>
+<text x="349" y="113" text-anchor="middle" font-size="10" fill="#38bdf8" opacity="0.8">Routing · TLS termination</text>
+```
+
+**Proportional diagrams** (channel width, spectrum allocation, timing/waveform, bit-field widths) keep their real proportional accuracy — that precision is the whole point — but render it with the same plain-box discipline: flat labeled segments on a simple axis, not glows/gradients/decorative layering.
+
+**Consolidate near-duplicate diagrams where a companion text table already does the summarizing work.** Example: a post with one diagram per mode of a 4-mode comparison, plus a text table comparing all 4 modes, is carrying redundant content — combine the diagrams (e.g. 2 states per figure) rather than keeping one figure per mode.
+
+> **Verification note**: same as covers — no SVG rasterizer available in this environment, so every diagram is checked by coordinate math, not by looking at it. Before considering a redrawn diagram done: (1) no two `<rect>` elements overlap (check every pair's bounding box), (2) every element is within the canvas `viewBox`, (3) text labels aren't wider than their containing box (`len(text) × font_size × 0.55` should be less than box width minus ~16px padding), (4) single `<defs>` block, (5) no `<animate>`, no emoji. A real overlap bug was caught this way during the prototype for this pattern — verification is not optional.
+
+> The sections below mix still-current material (zone colors, accent colors, general layout principles) with hex-node/glow-specific patterns that are now retired. Each retired section is individually marked — look for the **Retired** tag. Everything else is still accurate.
 
 ## Horizontal layout & centering
 
@@ -314,7 +352,9 @@ Keep glow `stop-opacity` ≤ 0.15 — subtle texture only, not a spotlight.
 
 ---
 
-## Router / node hexagon pattern
+## Router / node hexagon pattern — **Retired**
+
+> Superseded by the plain box pattern above. Kept for historical reference only.
 
 All router and device nodes — whether central or left-side — use the same **pointy-top hexagon** shape. Size and position vary by role.
 
@@ -380,7 +420,9 @@ The hex-fill gradient is a dark tint of the accent color. One `id="hex-fill"` pe
 
 ---
 
-## Three-zone router topology pattern
+## Three-zone router topology pattern — **Retired**
+
+> Superseded by the plain box pattern above (still use the zone colors — red/blue/green — just with plain rectangles instead of a globe/hexagon/bridge-block scene). Kept for historical reference only.
 
 Used when an inline diagram shows **setting up a router or gateway** — the classic Internet → Router → LAN flow.
 
@@ -474,7 +516,9 @@ Four pills positioned symmetrically around x=600. Total pill width + gaps = 264p
 
 ---
 
-## Three-hex monitoring flow pattern
+## Three-hex monitoring flow pattern — **Retired**
+
+> Superseded by the plain box pattern above. Kept for historical reference only.
 
 Used when a post shows a **source → processor → destination** flow with three peer services of roughly equal importance. All three hexes share the same center y (cy=215).
 
@@ -515,7 +559,9 @@ Right (cx=940, cy=215, r=70):  outer "940,145 1001,180 1001,250 940,285 879,250 
 
 ---
 
-## Setup flow pattern
+## Setup flow pattern — **Retired**
+
+> Superseded by the plain box pattern above. Kept for historical reference only.
 
 Used when a post is about **installing or configuring** a tool, rather than showing its data flows. Shows the progression: config file → service → running result.
 
@@ -572,7 +618,9 @@ Use a single arrow marker `id="arr"` in `<defs>` filled with the series accent c
 
 ---
 
-## Monitoring tool mini hexagon nodes
+## Monitoring tool mini hexagon nodes — **Retired**
+
+> Superseded by the plain box pattern above (still use each tool's established color — Prometheus red, Loki purple, Grafana orange — just with plain rectangles). Kept for historical reference only.
 
 Used on monitoring-flow inline diagrams to represent destination tools (Prometheus, Loki, Grafana). Each tool gets a **pointy-top mini hexagon** at cx=880 on the right side of the canvas.
 
@@ -685,7 +733,7 @@ When only one tool is the destination (e.g. Loki-only diagram), use a larger hex
 
 ## Symmetric branch layout
 
-When showing multiple route/output branches from a central node, branches **must be placed symmetrically** around the node's vertical center. Equal vertical offset above and below:
+Still current — this general principle applies to plain boxes too, not just hexagons. When showing multiple route/output branches from a central node, branches **must be placed symmetrically** around the node's vertical center. Equal vertical offset above and below:
 
 ```
 node center y = Y
@@ -824,7 +872,9 @@ Use sparingly — one texture type per diagram.
 
 ---
 
-## Terminal / code panel pattern
+## Terminal / code panel pattern — **Retired**
+
+> Superseded by the plain box pattern above. Kept for historical reference only.
 
 Used in Traefik and Smokeping inline setup diagrams. Standard panel with macOS-style traffic lights.
 
@@ -902,17 +952,17 @@ Labels inside or adjacent to colored elements must be legible against dark backg
 
 ## Checklist for new inline diagrams
 
-- [ ] Canvas sized to content width (not 1200×630 — that's covers only)
-- [ ] Main diagram element is centered at `x` = half the canvas width
-- [ ] Left edge padding ≈ right edge padding (within ~40px); gap from central element to left content ≈ gap from central element to right content (within ~40px)
-- [ ] After repositioning any flanking element, all gradient `x1`/`y1`/`x2`/`y2` coordinates updated to match new arrow positions
-- [ ] Zone colors follow the red/blue/green/orange/purple convention
-- [ ] Branch routes from a central node are placed symmetrically (equal y offset above and below)
-- [ ] All text labels use light variants of zone colors, not the dark base colors
+- [ ] Canvas sized to content width (not 1200×630 — that's covers only), matching the file's existing size if redrawing
+- [ ] Plain unfilled rectangles (`fill="none" stroke="COLOR"`), not hexagons; straight lines with a small arrow marker, not curved unless genuinely needed
+- [ ] One bold label + at most one detail line per box; no header band, no footer caption band, no decorative background (no glow/hex-grid/dot-grid texture)
+- [ ] Color choice made deliberately: zone colors (red/blue/green) if there's a natural external/central/trusted structure, otherwise the post's single accent color
+- [ ] All text labels use light zone-color variants (`#fca5a5`/`#bae6fd`/`#86efac`), not the dark base colors
+- [ ] Main diagram element roughly centered on the canvas; left/right padding roughly balanced (within ~40px)
+- [ ] Branch routes from a central node are placed symmetrically (equal y offset above and below), if applicable
+- [ ] Proportional diagrams (channel width, timing, bit-fields) keep real proportional accuracy, rendered plainly
+- [ ] **No two `<rect>` elements overlap** — checked with a script (bounding-box pairwise overlap test), not by eye
+- [ ] Every element's coordinates fall within the canvas `viewBox`
+- [ ] Text width estimate (`chars × font_size × 0.55`) fits within its box with margin
 - [ ] No `<animate>` elements, no emoji characters in `<text>`
-- [ ] No second `<defs>` block
-- [ ] **Setup flow diagrams**: left panel and right panel both 260px wide, panels at y=80 (centered on y=215); arrows at y=215
-- [ ] **Monitoring tool nodes**: mini hexagons at cx=880; three-tool layout at cy=165/255/345; two-tool at cy=155/275; gradient arrows use `gradientUnits="userSpaceOnUse"`; tip markers match destination tool color
-- [ ] **Device source nodes**: left-side device hexagon at cx=220 (r=70); cy=215 for three-hex inline flow, cy=255 for diverging monitoring flow; right face departure at x=281
-- [ ] **Three-zone router topology**: globe at cx=190 cy=210 r=74; router hex r=90 at (600,210); LAN bridge x=874 y=180; config pills at y=318; WAN arrow dashed, LAN arrow solid
-- [ ] **Three-hex monitoring flow**: all three hexes at cy=215; left r=70 at cx=220, center r=82 at cx=600, right r=70 at cx=940; horizontal arrows at y=215
+- [ ] Single top-level `<defs>` block
+- [ ] If consolidating multiple near-duplicate diagrams (e.g. one-per-mode when a text table already compares all modes), confirm the merged diagram still preserves every distinct technical point from the originals

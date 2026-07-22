@@ -3,7 +3,6 @@ title: "Traefik Reverse Proxy: Installing on Docker & Bare Metal"
 description: Install Traefik as a reverse proxy via Docker or bare metal with automatic Let's Encrypt SSL through the Cloudflare DNS challenge.
 date: 2024-05-21
 draft: false
-cover: cover.svg
 categories:
   - Networking
   - Reverse Proxy

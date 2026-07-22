@@ -9,7 +9,6 @@ tags:
   - docker
   - grafana
   - prometheus
-cover: cover.svg
 ---
 
 Collecting metrics is only half the picture — you also need to know when something breaks, and you need your dashboards to survive a container rebuild. This post covers both: Grafana Alerting evaluates rules against your Prometheus data and fires notifications to a contact point of your choice, and dashboard provisioning loads dashboards from JSON files on disk so they're never lost and always in version control.

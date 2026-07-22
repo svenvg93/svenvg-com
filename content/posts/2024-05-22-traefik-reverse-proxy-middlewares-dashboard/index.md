@@ -3,7 +3,6 @@ title: "Traefik Reverse Proxy: Middlewares & Dashboard Security"
 description: Lock down Traefik with IPAllowList, BasicAuth, and security header middlewares, then move the dashboard behind TLS and authentication instead of the insecure default.
 date: 2024-05-22
 draft: false
-cover: cover.svg
 categories:
   - Networking
   - Reverse Proxy

@@ -8,7 +8,6 @@ categories:
   - Router
 tags:
   - mikrotik
-cover: cover.svg
 ---
 
 MikroTik routers are a popular choice for homelabs thanks to their flexibility and affordability. This guide walks through a clean, from-scratch configuration covering LAN, WAN, NAT, and firewall rules.

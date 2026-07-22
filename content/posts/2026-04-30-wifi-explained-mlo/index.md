@@ -3,7 +3,6 @@ title: "WiFi Explained: WiFi 7 Spectrum & Multi-Link Operation"
 description: WiFi 7 changes how a client uses spectrum, not just how fast a single link runs. Here's how Multi-RU and Preamble Puncturing make wide channels usable around interference, and how Multi-Link Operation lets a client use several bands as one logical link.
 date: 2026-04-30
 draft: false
-cover: cover.svg
 categories:
   - Networking
 tags:

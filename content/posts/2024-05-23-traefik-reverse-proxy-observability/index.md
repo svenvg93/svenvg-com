@@ -3,7 +3,6 @@ title: "Traefik Reverse Proxy: Observability with Prometheus, Loki & Grafana"
 description: Collect Traefik metrics with Prometheus and centralize its logs with Grafana Alloy and Loki, so routers, services, and entry points are all visible in Grafana.
 date: 2024-05-23
 draft: false
-cover: cover.svg
 categories:
   - Monitoring
 tags:

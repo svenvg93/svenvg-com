@@ -3,7 +3,6 @@ title: "WiFi Explained: WPA3, SAE, PMF, and OWE"
 description: WPA3 fixes real weaknesses in WPA2 — but not the ones most people think. Here's what SAE, Protected Management Frames, and OWE actually do under the hood.
 date: 2026-05-07
 draft: false
-cover: cover.svg
 categories:
   - Networking
   - Security

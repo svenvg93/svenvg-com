@@ -3,7 +3,6 @@ title: "XGS-PON Explained"
 description: XGS-PON is the 10-gigabit symmetric fiber standard behind most new FTTH deployments. This post covers the full stack — physical architecture, wavelength multiplexing, upstream TDMA, PLOAM registration, GEM port encapsulation, T-CONT QoS, and dynamic bandwidth allocation.
 date: 2026-05-19
 draft: false
-cover: cover.svg
 categories:
   - Networking
 tags:

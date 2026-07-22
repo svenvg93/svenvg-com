@@ -3,21 +3,17 @@ title: "About"
 date: 2026-03-01
 ---
 
-I’m Sven — a network designer with over 10 years in fixed access networks at Dutch ISPs. I specialize in CPE platforms, TR-069, and Zero-Touch Provisioning (ZTP). By night, I run a homelab where I test the things I can’t experiment with at work.
-
-Based in the Netherlands.
+I’m Sven, a network designer based in the Netherlands. I spend my days on CPE platforms, TR-069, and zero-touch provisioning for a Dutch ISP, and my evenings breaking things in my homelab so I don’t have to break them at work. This site is where that homelab work turns into write-ups.
 
 ## What I write about
 
-This blog is where I document what I build and learn. You’ll find practical guides and deep dives on:
+You’ll find practical guides and deep dives on:
 
-- **Networking fundamentals** — IPv6 addressing/autoconfiguration/routing, WiFi 6/7 internals, XGS-PON, encrypted DNS
-- **Networking** — Traefik, MikroTik, VyOS, UniFi, Tailscale
+- **Networking fundamentals** — WiFi 6/7 internals, XGS-PON, encrypted DNS
+- **Networking** — Traefik, MikroTik, VyOS, UniFi
 - **Self-hosting** — Docker, monitoring stacks
-- **Automation** — Ansible, GitHub Actions, GitOps
-- **Infrastructure** — Cloudflare, DNS, SSL, CI/CD
-
-My homelab is where I test ideas before they become guides. If something works well there, it usually ends up here.
+- **Automation** — Dependabot, GitHub Actions, CI/CD
+- **Infrastructure** — Cloudflare, DNS, SSL
 
 ## Explore
 

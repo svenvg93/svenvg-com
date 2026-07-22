@@ -14,10 +14,10 @@
       <stop offset="0%" stop-color="#34d399"/>
       <stop offset="100%" stop-color="#3b82f6"/>
     </linearGradient>
-    <marker id="arrowheadLeft" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+    <marker id="arrowheadLeft" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
       <polygon points="0,0 8,3 0,6" fill="#34d399"/>
     </marker>
-    <marker id="arrowheadRight" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+    <marker id="arrowheadRight" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
       <polygon points="0,0 8,3 0,6" fill="#3b82f6"/>
     </marker>
   </defs>

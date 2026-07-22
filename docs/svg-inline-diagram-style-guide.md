@@ -426,7 +426,6 @@ Use the same accent colors as the cover for the series this diagram belongs to. 
 | Unifi | Blue / Indigo | `#818cf8` / `#60a5fa` |
 | WiFi Explained | Sky 400 | `#38bdf8` |
 | Traefik Essentials | Teal | `#37BEC3` |
-| Ansible Essentials | Red 600 | `#dc2626` |
 | Grafana Observability | Orange | `#f97316` |
 | IPv6 Explained | Indigo | `#6366f1` |
 

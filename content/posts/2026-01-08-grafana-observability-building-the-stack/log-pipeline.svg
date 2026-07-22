@@ -14,34 +14,34 @@
   <rect width="700" height="260" fill="url(#bg)" rx="8"/>
 
   <!-- System Logs -->
-  <rect x="50" y="60" width="150" height="55" fill="none" stroke="#f97316" stroke-width="1.5" rx="5"/>
-  <text x="125" y="82" text-anchor="middle" font-size="13" font-weight="700" fill="#fed7aa">System Logs</text>
-  <text x="125" y="99" text-anchor="middle" font-size="9" fill="#f97316" opacity="0.8">/var/log/*.log</text>
+  <rect x="40" y="60" width="150" height="55" fill="none" stroke="#f97316" stroke-width="1.5" rx="5"/>
+  <text x="115" y="82" text-anchor="middle" font-size="13" font-weight="700" fill="#fed7aa">System Logs</text>
+  <text x="115" y="99" text-anchor="middle" font-size="9" fill="#f97316" opacity="0.8">/var/log/*.log</text>
 
   <!-- Docker Socket -->
-  <rect x="50" y="145" width="150" height="55" fill="none" stroke="#f97316" stroke-width="1.5" rx="5"/>
-  <text x="125" y="167" text-anchor="middle" font-size="13" font-weight="700" fill="#fed7aa">Docker Socket</text>
-  <text x="125" y="184" text-anchor="middle" font-size="9" fill="#f97316" opacity="0.8">/var/run/docker.sock</text>
+  <rect x="40" y="145" width="150" height="55" fill="none" stroke="#f97316" stroke-width="1.5" rx="5"/>
+  <text x="115" y="167" text-anchor="middle" font-size="13" font-weight="700" fill="#fed7aa">Docker Socket</text>
+  <text x="115" y="184" text-anchor="middle" font-size="9" fill="#f97316" opacity="0.8">/var/run/docker.sock</text>
 
   <!-- System Logs -> Alloy -->
-  <line x1="200" y1="87.5" x2="290" y2="87.5" stroke="#f97316" stroke-width="1.5" marker-end="url(#arr-orange)"/>
-  <text x="245" y="79" text-anchor="middle" font-size="8" fill="#fdba74">source.file</text>
+  <line x1="190" y1="87.5" x2="280" y2="87.5" stroke="#f97316" stroke-width="1.5" marker-end="url(#arr-orange)"/>
+  <text x="235" y="79" text-anchor="middle" font-size="8" fill="#fdba74">source.file</text>
 
   <!-- Docker -> Alloy -->
-  <line x1="200" y1="172.5" x2="290" y2="172.5" stroke="#f97316" stroke-width="1.5" marker-end="url(#arr-orange)"/>
-  <text x="245" y="189" text-anchor="middle" font-size="8" fill="#fdba74">source.docker</text>
+  <line x1="190" y1="172.5" x2="280" y2="172.5" stroke="#f97316" stroke-width="1.5" marker-end="url(#arr-orange)"/>
+  <text x="235" y="189" text-anchor="middle" font-size="8" fill="#fdba74">source.docker</text>
 
   <!-- Alloy -->
-  <rect x="290" y="70" width="170" height="120" fill="none" stroke="#f97316" stroke-width="1.5" rx="5"/>
-  <text x="375" y="126" text-anchor="middle" font-size="13" font-weight="700" fill="#fed7aa">Grafana Alloy</text>
-  <text x="375" y="143" text-anchor="middle" font-size="9" fill="#f97316" opacity="0.8">file + docker log sources</text>
+  <rect x="280" y="70" width="170" height="120" fill="none" stroke="#f97316" stroke-width="1.5" rx="5"/>
+  <text x="365" y="126" text-anchor="middle" font-size="13" font-weight="700" fill="#fed7aa">Grafana Alloy</text>
+  <text x="365" y="143" text-anchor="middle" font-size="9" fill="#f97316" opacity="0.8">file + docker log sources</text>
 
   <!-- Alloy -> Loki -->
-  <line x1="460" y1="130" x2="550" y2="130" stroke="#f97316" stroke-width="1.5" marker-end="url(#arr-orange)"/>
-  <text x="505" y="122" text-anchor="middle" font-size="8" fill="#fdba74">static labels + push</text>
+  <line x1="450" y1="130" x2="540" y2="130" stroke="#f97316" stroke-width="1.5" marker-end="url(#arr-orange)"/>
+  <text x="495" y="122" text-anchor="middle" font-size="8" fill="#fdba74">static labels + push</text>
 
   <!-- Loki -->
-  <rect x="550" y="95" width="120" height="70" fill="none" stroke="#f97316" stroke-width="1.5" rx="5"/>
-  <text x="610" y="124" text-anchor="middle" font-size="13" font-weight="700" fill="#fed7aa">Loki</text>
-  <text x="610" y="141" text-anchor="middle" font-size="9" fill="#f97316" opacity="0.8">logs · :3100</text>
+  <rect x="540" y="95" width="120" height="70" fill="none" stroke="#f97316" stroke-width="1.5" rx="5"/>
+  <text x="600" y="124" text-anchor="middle" font-size="13" font-weight="700" fill="#fed7aa">Loki</text>
+  <text x="600" y="141" text-anchor="middle" font-size="9" fill="#f97316" opacity="0.8">logs · :3100</text>
 </svg>

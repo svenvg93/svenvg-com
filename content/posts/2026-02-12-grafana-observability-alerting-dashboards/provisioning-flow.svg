@@ -39,5 +39,5 @@
 
   <!-- poll loop -->
   <path d="M 355,130 Q 257,170 160,130" fill="none" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#arr-muted)"/>
-  <text x="257" y="163" text-anchor="middle" font-size="8" fill="#475569">re-polls on file change</text>
+  <text x="257" y="163" text-anchor="middle" font-size="8" fill="#94a3b8">re-polls on file change</text>
 </svg>

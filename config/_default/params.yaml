@@ -1,6 +1,6 @@
 # Basic site info with SEO
 description: "Personal blog by Sven van Ginkel, focused on homelab networking, self-hosting, observability, and automation. Sharing practical guides for building reliable, well-monitored infrastructure."
-keywords: ["Self-Hosting", "Homelab", "Networking", "Linux", "Automation", "Infrastructure", "Ansible", "Docker", "Tailscale"]
+keywords: ["Self-Hosting", "Homelab", "Networking", "Linux", "Automation", "Infrastructure", "Docker", "Tailscale"]
 defaultAuthor: "Sven van Ginkel"
 language: "en-US"
 shortName: "Sven van Ginkel"  # PWA

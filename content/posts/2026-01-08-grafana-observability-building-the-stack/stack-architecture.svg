@@ -14,38 +14,39 @@
   <rect width="700" height="240" fill="url(#bg)" rx="8"/>
 
   <!-- Grafana Alloy (collector) -->
-  <rect x="60" y="68" width="150" height="114" fill="none" stroke="#f97316" stroke-width="1.5" rx="5"/>
-  <text x="135" y="120" text-anchor="middle" font-size="13" font-weight="700" fill="#fed7aa">Grafana Alloy</text>
-  <text x="135" y="137" text-anchor="middle" font-size="9" fill="#f97316" opacity="0.8">telemetry collector</text>
+  <rect x="45" y="68" width="150" height="114" fill="none" stroke="#f97316" stroke-width="1.5" rx="5"/>
+  <text x="120" y="120" text-anchor="middle" font-size="13" font-weight="700" fill="#fed7aa">Grafana Alloy</text>
+  <text x="120" y="137" text-anchor="middle" font-size="9" fill="#f97316" opacity="0.8">telemetry collector</text>
 
   <!-- Alloy -> Prometheus -->
-  <line x1="210" y1="75" x2="300" y2="75" stroke="#f97316" stroke-width="1.5" marker-end="url(#arr-orange)"/>
-  <text x="255" y="67" text-anchor="middle" font-size="8" fill="#fdba74">remote_write</text>
+  <line x1="195" y1="75" x2="285" y2="75" stroke="#f97316" stroke-width="1.5" marker-end="url(#arr-orange)"/>
+  <text x="240" y="67" text-anchor="middle" font-size="8" fill="#fdba74">remote_write</text>
 
   <!-- Alloy -> Loki -->
-  <line x1="210" y1="175" x2="300" y2="175" stroke="#f97316" stroke-width="1.5" marker-end="url(#arr-orange)"/>
-  <text x="255" y="192" text-anchor="middle" font-size="8" fill="#fdba74">push logs</text>
+  <line x1="195" y1="175" x2="285" y2="175" stroke="#f97316" stroke-width="1.5" marker-end="url(#arr-orange)"/>
+  <text x="240" y="192" text-anchor="middle" font-size="8" fill="#fdba74">push logs</text>
 
   <!-- Prometheus -->
-  <rect x="300" y="50" width="140" height="50" fill="none" stroke="#f97316" stroke-width="1.5" rx="5"/>
-  <text x="370" y="72" text-anchor="middle" font-size="13" font-weight="700" fill="#fed7aa">Prometheus</text>
-  <text x="370" y="89" text-anchor="middle" font-size="9" fill="#f97316" opacity="0.8">metrics · :9090</text>
+  <rect x="285" y="50" width="140" height="50" fill="none" stroke="#f97316" stroke-width="1.5" rx="5"/>
+  <text x="355" y="72" text-anchor="middle" font-size="13" font-weight="700" fill="#fed7aa">Prometheus</text>
+  <text x="355" y="89" text-anchor="middle" font-size="9" fill="#f97316" opacity="0.8">metrics · :9090</text>
 
   <!-- Loki -->
-  <rect x="300" y="150" width="140" height="50" fill="none" stroke="#f97316" stroke-width="1.5" rx="5"/>
-  <text x="370" y="172" text-anchor="middle" font-size="13" font-weight="700" fill="#fed7aa">Loki</text>
-  <text x="370" y="189" text-anchor="middle" font-size="9" fill="#f97316" opacity="0.8">logs · :3100</text>
+  <rect x="285" y="150" width="140" height="50" fill="none" stroke="#f97316" stroke-width="1.5" rx="5"/>
+  <text x="355" y="172" text-anchor="middle" font-size="13" font-weight="700" fill="#fed7aa">Loki</text>
+  <text x="355" y="189" text-anchor="middle" font-size="9" fill="#f97316" opacity="0.8">logs · :3100</text>
 
   <!-- Prometheus -> Grafana -->
-  <line x1="440" y1="75" x2="530" y2="110" stroke="#f97316" stroke-width="1.5" marker-end="url(#arr-orange)"/>
-  <text x="485" y="82" text-anchor="middle" font-size="8" fill="#fdba74">query</text>
+  <line x1="425" y1="75" x2="515" y2="110" stroke="#f97316" stroke-width="1.5" marker-end="url(#arr-orange)"/>
+  <text x="470" y="82" text-anchor="middle" font-size="8" fill="#fdba74">query</text>
 
   <!-- Loki -> Grafana -->
-  <line x1="440" y1="175" x2="530" y2="140" stroke="#f97316" stroke-width="1.5" marker-end="url(#arr-orange)"/>
-  <text x="485" y="167" text-anchor="middle" font-size="8" fill="#fdba74">query</text>
+  <line x1="425" y1="175" x2="515" y2="140" stroke="#f97316" stroke-width="1.5" marker-end="url(#arr-orange)"/>
+  <rect x="454" y="158" width="32" height="12" fill="#080c14" rx="2"/>
+  <text x="470" y="167" text-anchor="middle" font-size="8" fill="#fdba74">query</text>
 
   <!-- Grafana -->
-  <rect x="530" y="90" width="140" height="70" fill="none" stroke="#f97316" stroke-width="1.5" rx="5"/>
-  <text x="600" y="119" text-anchor="middle" font-size="13" font-weight="700" fill="#fed7aa">Grafana</text>
-  <text x="600" y="136" text-anchor="middle" font-size="9" fill="#f97316" opacity="0.8">dashboards · :3000</text>
+  <rect x="515" y="90" width="140" height="70" fill="none" stroke="#f97316" stroke-width="1.5" rx="5"/>
+  <text x="585" y="119" text-anchor="middle" font-size="13" font-weight="700" fill="#fed7aa">Grafana</text>
+  <text x="585" y="136" text-anchor="middle" font-size="9" fill="#f97316" opacity="0.8">dashboards · :3000</text>
 </svg>

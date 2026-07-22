@@ -5,13 +5,13 @@
       <stop offset="0%" stop-color="#080c14"/>
       <stop offset="100%" stop-color="#0d1520"/>
     </linearGradient>
-    <marker id="wh-arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+    <marker id="wh-arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
       <polygon points="0,0 8,3 0,6" fill="#94a3b8"/>
     </marker>
-    <marker id="wh-arr-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+    <marker id="wh-arr-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
       <polygon points="0,0 8,3 0,6" fill="#ef4444"/>
     </marker>
-    <marker id="wh-arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+    <marker id="wh-arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
       <polygon points="0,0 8,3 0,6" fill="#4ade80"/>
     </marker>
   </defs>
@@ -101,9 +101,9 @@
   <text x="471" y="157" text-anchor="middle" font-size="9" fill="#4ade80">Confirm</text>
 
   <!-- Attacker gets nothing -->
-  <text x="642" y="131" text-anchor="middle" font-size="9" fill="#94a3b8">nothing</text>
-  <text x="642" y="144" text-anchor="middle" font-size="9" fill="#94a3b8">to crack</text>
-  <text x="642" y="157" text-anchor="middle" font-size="20" fill="#1e293b">&#8709;</text>
+  <text x="655" y="131" font-size="9" fill="#94a3b8">nothing</text>
+  <text x="655" y="144" font-size="9" fill="#94a3b8">to crack</text>
+  <text x="655" y="163" font-size="20" fill="#1e293b">&#8709;</text>
 
   <!-- Result label -->
   <rect x="372" y="188" width="308" height="24" fill="none" stroke="#4ade80" stroke-width="1" rx="4"/>

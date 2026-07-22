@@ -36,18 +36,18 @@
   <line x1="170" y1="138" x2="220" y2="184" stroke="#475569" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arr-n)"/>
 
   <!-- ===== Right: eMLSR ===== -->
-  <rect x="380" y="106" width="140" height="48" fill="none" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
-  <text x="450" y="126" text-anchor="middle" font-size="13" font-weight="700" fill="#bae6fd">eMLSR</text>
-  <text x="450" y="142" text-anchor="middle" font-size="10" fill="#38bdf8">passive multi-RX</text>
+  <rect x="360" y="106" width="140" height="48" fill="none" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
+  <text x="430" y="126" text-anchor="middle" font-size="13" font-weight="700" fill="#bae6fd">eMLSR</text>
+  <text x="430" y="142" text-anchor="middle" font-size="10" fill="#38bdf8">passive multi-RX</text>
 
-  <rect x="570" y="52" width="120" height="48" fill="none" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
-  <text x="630" y="72" text-anchor="middle" font-size="13" font-weight="600" fill="#bae6fd">5 GHz</text>
-  <text x="630" y="88" text-anchor="middle" font-size="10" fill="#38bdf8">active TX</text>
+  <rect x="550" y="52" width="120" height="48" fill="none" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
+  <text x="610" y="72" text-anchor="middle" font-size="13" font-weight="600" fill="#bae6fd">5 GHz</text>
+  <text x="610" y="88" text-anchor="middle" font-size="10" fill="#38bdf8">active TX</text>
 
-  <rect x="570" y="160" width="120" height="48" fill="none" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
-  <text x="630" y="180" text-anchor="middle" font-size="13" font-weight="600" fill="#bae6fd">6 GHz</text>
-  <text x="630" y="196" text-anchor="middle" font-size="10" fill="#38bdf8">listening (RX)</text>
+  <rect x="550" y="160" width="120" height="48" fill="none" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
+  <text x="610" y="180" text-anchor="middle" font-size="13" font-weight="600" fill="#bae6fd">6 GHz</text>
+  <text x="610" y="196" text-anchor="middle" font-size="10" fill="#38bdf8">listening (RX)</text>
 
-  <line x1="520" y1="122" x2="570" y2="78" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#arr-a)"/>
-  <line x1="520" y1="138" x2="570" y2="184" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arr-a)"/>
+  <line x1="500" y1="122" x2="550" y2="78" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#arr-a)"/>
+  <line x1="500" y1="138" x2="550" y2="184" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arr-a)"/>
 </svg>

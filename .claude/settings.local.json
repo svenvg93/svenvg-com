@@ -3,7 +3,9 @@
     "allow": [
       "WebFetch(domain:hugo-narrow-docs.vercel.app)",
       "Bash(pip3 install:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(git -C . log --oneline -- public)",
+      "Bash(git -C . status --porcelain -- public)"
     ]
   }
 }

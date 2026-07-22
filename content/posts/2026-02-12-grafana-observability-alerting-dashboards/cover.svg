@@ -20,7 +20,16 @@
   <rect width="1200" height="630" fill="url(#bg)"/>
   <rect width="1200" height="630" fill="url(#glow)"/>
 
-  <polygon points="450,-50 -50,120 250,370" fill="none" stroke="#f97316" stroke-width="1.5" stroke-opacity="0.15"/>
+  <g fill="#f97316">
+    <circle cx="180" cy="80" r="4" opacity="0.25"/>
+    <circle cx="240" cy="130" r="6" opacity="0.18"/>
+    <circle cx="310" cy="70" r="3" opacity="0.3"/>
+    <circle cx="260" cy="200" r="5" opacity="0.15"/>
+    <circle cx="340" cy="160" r="3" opacity="0.22"/>
+    <circle cx="190" cy="220" r="4" opacity="0.12"/>
+    <circle cx="380" cy="90" r="2.5" opacity="0.28"/>
+    <circle cx="320" cy="260" r="3.5" opacity="0.1"/>
+  </g>
 
   <rect x="576" y="466" width="48" height="4" rx="2" fill="#f97316"/>
 

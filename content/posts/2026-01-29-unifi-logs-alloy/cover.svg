@@ -31,6 +31,6 @@
 
   <rect x="0" y="390" width="1200" height="240" fill="url(#textbg)"/>
 
-  <text x="600" y="500" text-anchor="middle" font-size="13" fill="#f97316" letter-spacing="3" font-weight="600">GRAFANA OBSERVABILITY</text>
+  <text x="600" y="500" text-anchor="middle" font-size="13" fill="#f97316" letter-spacing="3" font-weight="600">NETWORKING · OBSERVABILITY</text>
   <text x="600" y="545" text-anchor="middle" font-size="40" font-weight="700" fill="#f1f5f9">Unifi Syslog with Alloy and Loki</text>
 </svg>

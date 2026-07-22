@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 270" width="700" height="270"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <marker id="arr-indigo" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#6366f1"/>
+    </marker>
+    <marker id="arr-indigo-both" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto-start-reverse" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#6366f1"/>
+    </marker>
+  </defs>
+
+  <rect width="700" height="270" fill="url(#bg)" rx="8"/>
+
+  <line x1="0" y1="36" x2="700" y2="36" stroke="#0d1a2a" stroke-width="1"/>
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">VYOS — INPUT / FORWARD / OUTPUT CHAINS</text>
+
+  <!-- Row 1: INPUT chain -->
+  <rect x="20" y="55" width="150" height="50" fill="none" stroke="#3b82f6" stroke-width="1.5" rx="5"/>
+  <text x="95" y="75" text-anchor="middle" font-size="12" font-weight="600" fill="#93c5fd">Admin Client</text>
+  <text x="95" y="91" text-anchor="middle" font-size="9" fill="#3b82f6" opacity="0.8">SSH / Web UI</text>
+
+  <rect x="250" y="55" width="220" height="50" fill="none" stroke="#6366f1" stroke-width="1.5" rx="5"/>
+  <text x="360" y="75" text-anchor="middle" font-size="12" font-weight="600" fill="#a5b4fc">INPUT chain</text>
+  <text x="360" y="91" text-anchor="middle" font-size="9" fill="#818cf8">established + LAN access</text>
+
+  <rect x="550" y="55" width="130" height="50" fill="none" stroke="#3b82f6" stroke-width="1.5" rx="5"/>
+  <text x="615" y="75" text-anchor="middle" font-size="12" font-weight="600" fill="#93c5fd">VyOS Router</text>
+  <text x="615" y="91" text-anchor="middle" font-size="9" fill="#3b82f6" opacity="0.8">the router itself</text>
+
+  <line x1="170" y1="80" x2="250" y2="80" stroke="#6366f1" stroke-width="1.5" marker-end="url(#arr-indigo)"/>
+  <line x1="470" y1="80" x2="550" y2="80" stroke="#6366f1" stroke-width="1.5" marker-end="url(#arr-indigo)"/>
+
+  <!-- Row 2: FORWARD chain -->
+  <rect x="20" y="125" width="150" height="50" fill="none" stroke="#ef4444" stroke-width="1.5" rx="5"/>
+  <text x="95" y="145" text-anchor="middle" font-size="12" font-weight="600" fill="#fca5a5">WAN</text>
+  <text x="95" y="161" text-anchor="middle" font-size="9" fill="#ef4444" opacity="0.8">external network</text>
+
+  <rect x="250" y="125" width="220" height="50" fill="none" stroke="#6366f1" stroke-width="1.5" rx="5"/>
+  <text x="360" y="145" text-anchor="middle" font-size="12" font-weight="600" fill="#a5b4fc">FORWARD chain</text>
+  <text x="360" y="161" text-anchor="middle" font-size="9" fill="#818cf8">LAN &#8644; WAN forwarding</text>
+
+  <rect x="550" y="125" width="130" height="50" fill="none" stroke="#34d399" stroke-width="1.5" rx="5"/>
+  <text x="615" y="145" text-anchor="middle" font-size="12" font-weight="600" fill="#86efac">LAN (br0)</text>
+  <text x="615" y="161" text-anchor="middle" font-size="9" fill="#34d399" opacity="0.8" font-family="'Courier New',monospace">192.168.1.0/24</text>
+
+  <line x1="170" y1="150" x2="250" y2="150" stroke="#6366f1" stroke-width="1.5" marker-start="url(#arr-indigo-both)" marker-end="url(#arr-indigo-both)"/>
+  <line x1="470" y1="150" x2="550" y2="150" stroke="#6366f1" stroke-width="1.5" marker-start="url(#arr-indigo-both)" marker-end="url(#arr-indigo-both)"/>
+
+  <!-- Row 3: OUTPUT chain -->
+  <rect x="20" y="195" width="150" height="50" fill="none" stroke="#3b82f6" stroke-width="1.5" rx="5"/>
+  <text x="95" y="215" text-anchor="middle" font-size="12" font-weight="600" fill="#93c5fd">VyOS Router</text>
+  <text x="95" y="231" text-anchor="middle" font-size="9" fill="#3b82f6" opacity="0.8">outbound requests</text>
+
+  <rect x="250" y="195" width="220" height="50" fill="none" stroke="#6366f1" stroke-width="1.5" rx="5"/>
+  <text x="360" y="215" text-anchor="middle" font-size="12" font-weight="600" fill="#a5b4fc">OUTPUT chain</text>
+  <text x="360" y="231" text-anchor="middle" font-size="9" fill="#818cf8">default: accept</text>
+
+  <rect x="550" y="195" width="130" height="50" fill="none" stroke="#ef4444" stroke-width="1.5" rx="5"/>
+  <text x="615" y="215" text-anchor="middle" font-size="12" font-weight="600" fill="#fca5a5">WAN</text>
+  <text x="615" y="231" text-anchor="middle" font-size="9" fill="#ef4444" opacity="0.8">NTP, updates</text>
+
+  <line x1="170" y1="220" x2="250" y2="220" stroke="#6366f1" stroke-width="1.5" marker-end="url(#arr-indigo)"/>
+  <line x1="470" y1="220" x2="550" y2="220" stroke="#6366f1" stroke-width="1.5" marker-end="url(#arr-indigo)"/>
+</svg>

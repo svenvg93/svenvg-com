@@ -12,6 +12,8 @@ tags:
 
 MikroTik routers are a popular choice for homelabs thanks to their flexibility and affordability. This guide walks through a clean, from-scratch configuration covering LAN, WAN, NAT, and firewall rules.
 
+![](router-topology.svg "Traffic flows from the WAN through NAT and the firewall into the LAN bridge, where DHCP hands out addresses to connected devices.")
+
 ## Connect to the router
 
 You'll need a terminal connection to paste the commands below. Two options:

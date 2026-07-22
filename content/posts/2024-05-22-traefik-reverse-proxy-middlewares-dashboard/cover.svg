@@ -6,7 +6,7 @@
       <stop offset="0%" stop-color="#080c14"/>
       <stop offset="100%" stop-color="#0d1520"/>
     </linearGradient>
-    <radialGradient id="glow" cx="82%" cy="18%" r="42%">
+    <radialGradient id="glow" cx="18%" cy="18%" r="42%">
       <stop offset="0%" stop-color="#37BEC3" stop-opacity="0.16"/>
       <stop offset="100%" stop-color="#37BEC3" stop-opacity="0"/>
     </radialGradient>
@@ -21,9 +21,13 @@
   <rect width="1200" height="630" fill="url(#bg)"/>
   <rect width="1200" height="630" fill="url(#glow)"/>
 
-  <!-- Two thin concentric rings, pure abstract texture, off to the upper right -->
-  <circle cx="990" cy="105" r="280" fill="none" stroke="#37BEC3" stroke-width="1" stroke-opacity="0.18"/>
-  <circle cx="990" cy="105" r="200" fill="none" stroke="#37BEC3" stroke-width="1" stroke-opacity="0.12"/>
+  <!-- Stacked layers, abstracting a middleware chain -->
+  <g fill="none" stroke="#37BEC3" stroke-width="1.5">
+    <rect x="60" y="70" width="150" height="36" rx="6" stroke-opacity="0.30"/>
+    <rect x="100" y="120" width="150" height="36" rx="6" stroke-opacity="0.22"/>
+    <rect x="140" y="170" width="150" height="36" rx="6" stroke-opacity="0.15"/>
+    <rect x="180" y="220" width="150" height="36" rx="6" stroke-opacity="0.10"/>
+  </g>
 
   <!-- Short accent rule, sits right above the eyebrow label -->
   <rect x="576" y="466" width="48" height="4" rx="2" fill="#37BEC3"/>
@@ -35,5 +39,5 @@
   <text x="600" y="500" text-anchor="middle" font-size="13" fill="#37BEC3" letter-spacing="3" font-weight="600">TRAEFIK REVERSE PROXY</text>
 
   <!-- Title -->
-  <text x="600" y="545" text-anchor="middle" font-size="40" font-weight="700" fill="#f1f5f9">Installing on Docker &amp; Bare Metal</text>
+  <text x="600" y="545" text-anchor="middle" font-size="40" font-weight="700" fill="#f1f5f9">Middlewares &amp; Dashboard Security</text>
 </svg>

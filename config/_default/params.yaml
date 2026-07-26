@@ -62,15 +62,22 @@ comments:
   enabled: false
 
 analytics:
-  enabled: true
+  enabled: false
+  baidu:
+    enabled: false
+    id: "your-baidu-analytics-id"
+  clarity:
+    enabled: false
+    id: "your-clarity-analytics-id"
   google:
-    enabled: true
-    id: "G-TY2X9VQNYT"
+    enabled: false
+    id: "your-google-analytics-id"
   umami:
-    enabled: true
-    id: "9c123874-4534-4290-9af2-76179151baba"
-    src: "https://cloud.umami.is/script.js"
-    domains: "svenvg.com"
+    enabled: false
+    id: "your-umami-website-id"
+    src: "https://umami.com/myscript.js"
+    domains: "example.domain.com"
+
 
 katex:
   enabled: false

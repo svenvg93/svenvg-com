@@ -37,12 +37,6 @@ footer:
     params:
       icon: about
 
-  - name: Contact
-    url: mailto:svenvanginkel@icloud.com
-    weight: 20
-    params:
-      icon: contact
-
   - name: Resume
     pageRef: /resume
     weight: 30

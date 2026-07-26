@@ -7,7 +7,6 @@ description: "Professional resume"
 name: "Sven van Ginkel"
 jobtitle: "Designer Fixed Access"
 location: "Vlaardingen, The Netherlands"
-email: "svenvanginkel@icloud.com"
 linkedin: "https://www.linkedin.com/in/svenvanginkel"
 github: "https://github.com/svenvg93"
 

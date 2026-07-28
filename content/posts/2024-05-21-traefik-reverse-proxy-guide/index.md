@@ -24,7 +24,7 @@ This is part of a series:
 3. [Observability with Prometheus, Loki & Grafana][3]
 4. [TCP and UDP Routing][4]
 
-![](traefik-architecture.svg)
+![Internet traffic reaches Traefik over HTTPS on port 443, which terminates TLS and routes requests to service-a and service-b behind it](traefik-architecture.svg "Internet traffic reaches Traefik over HTTPS on port 443, which terminates TLS and routes requests to service-a and service-b behind it")
 
 ## Cloudflare API Token
 

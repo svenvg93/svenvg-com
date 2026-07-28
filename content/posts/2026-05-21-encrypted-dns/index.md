@@ -41,7 +41,7 @@ Like DoH, DoT supports two privacy profiles (RFC 8310):
 - **Opportunistic** — the client upgrades to DoT if the resolver supports it, falls back to plain DNS if not.
 - **Strict** — the client requires a verified TLS connection and refuses to fall back. Queries fail rather than leak unencrypted.
 
-![](dot-diagram.svg "DoT — DNS queries wrapped in TLS on port 853")
+![DoT — DNS queries wrapped in TLS on port 853](dot-diagram.svg "DoT — DNS queries wrapped in TLS on port 853")
 
 ## DNS-over-HTTPS (DoH)
 
@@ -54,7 +54,7 @@ There are two modes of DoH deployment:
 - **Opportunistic mode** — the client upgrades to DoH if the resolver supports it, falls back to plain DNS if it doesn't. Provides encryption when available but doesn't guarantee it.
 - **Strict mode** — the client refuses to fall back to plain DNS if DoH fails. Queries fail rather than leak unencrypted. This is what you want for a security guarantee.
 
-![](doh-diagram.svg "DoH — DNS inside HTTPS on port 443, indistinguishable from web traffic")
+![DoH — DNS inside HTTPS on port 443, indistinguishable from web traffic](doh-diagram.svg "DoH — DNS inside HTTPS on port 443, indistinguishable from web traffic")
 
 ## DNS-over-QUIC (DoQ)
 
@@ -67,7 +67,7 @@ QUIC provides two advantages over TLS-over-TCP:
 
 DoQ's trade-off is maturity. Client support is narrower than DoH or DoT — it's available in `kdig`, `dnslookup`, and some mobile resolvers, but not yet in most OS stub resolvers or browsers. Resolver support is also limited; Cloudflare supports it, but it's not as universally deployed as DoH.
 
-![](doq-diagram.svg "DoQ — DNS over QUIC transport on port 853/UDP")
+![DoQ — DNS over QUIC transport on port 853/UDP](doq-diagram.svg "DoQ — DNS over QUIC transport on port 853/UDP")
 
 ## Trade-offs
 

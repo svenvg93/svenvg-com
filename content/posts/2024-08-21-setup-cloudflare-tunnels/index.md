@@ -12,7 +12,7 @@ mermaid: true
 ---
 In the world of self-hosting, secure and reliable server access is crucial. Cloudflare Zero Trust offers a solution through Cloudflare Tunnels, allowing secure access to self-hosted services without opening ports or changing firewall settings. By creating an outbound-only connection to Cloudflare, traffic remains encrypted and routed through its global network, enhancing security and performance while protecting your server from direct attacks.
 
-![](tunnel-architecture.svg)
+![cloudflared opens an outbound-only connection to the Cloudflare Edge, which handles TLS and DDoS protection before proxying the browser's request in — no inbound ports opened on the home network](tunnel-architecture.svg "cloudflared opens an outbound-only connection to the Cloudflare Edge, which handles TLS and DDoS protection before proxying the browser's request in — no inbound ports opened on the home network")
 
 ## Create Cloudflare Tunnel
 

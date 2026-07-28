@@ -171,7 +171,7 @@ L>* 192.168.1.1/32 is directly connected, br0, weight 1, 00:07:15
 
 In VyOS (and most firewall systems using Netfilter/iptables), traffic filtering is managed through three main chains: INPUT, OUTPUT, and FORWARD. Understanding these chains is crucial for configuring firewall rules effectively.
 
-![](firewall-chains.svg "Each chain handles a different traffic direction: INPUT filters what reaches the router itself, FORWARD filters traffic passing between networks, and OUTPUT filters what the router sends out.")
+![Each chain handles a different traffic direction: INPUT filters what reaches the router itself, FORWARD filters traffic passing between networks, and OUTPUT filters what the router sends out.](firewall-chains.svg "Each chain handles a different traffic direction: INPUT filters what reaches the router itself, FORWARD filters traffic passing between networks, and OUTPUT filters what the router sends out.")
 
 ### Input Chain
 

@@ -93,7 +93,7 @@ The configuration above is a **split-tunnel** setup. Only traffic destined for t
 
 If you want **all internet traffic** to go through the VPN (full-tunnel setup), additional configuration is required.
 
-![](tunnel-modes.svg "In split-tunnel mode only LAN-bound traffic uses the VPN; in full-tunnel mode all traffic, including internet-bound, is routed through it.")
+![In split-tunnel mode only LAN-bound traffic uses the VPN; in full-tunnel mode all traffic, including internet-bound, is routed through it.](tunnel-modes.svg "In split-tunnel mode only LAN-bound traffic uses the VPN; in full-tunnel mode all traffic, including internet-bound, is routed through it.")
 
 ### Modify the Client Configuration
 

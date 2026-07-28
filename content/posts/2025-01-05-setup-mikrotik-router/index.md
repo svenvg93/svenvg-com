@@ -12,7 +12,7 @@ tags:
 
 MikroTik routers are a popular choice for homelabs thanks to their flexibility and affordability. This guide walks through a clean, from-scratch configuration covering LAN, WAN, NAT, and firewall rules.
 
-![](router-topology.svg "Traffic flows from the WAN through NAT and the firewall into the LAN bridge, where DHCP hands out addresses to connected devices.")
+![Traffic flows from the WAN through NAT and the firewall into the LAN bridge, where DHCP hands out addresses to connected devices.](router-topology.svg "Traffic flows from the WAN through NAT and the firewall into the LAN bridge, where DHCP hands out addresses to connected devices.")
 
 ## Connect to the router
 
@@ -244,4 +244,4 @@ set winbox address=192.168.1.0/24
 
 ---
 
-Your MikroTik router is now configured with a secure baseline. From here you can expand with VLANs, more granular firewall rules, or additional services like a VPN.
+Your MikroTik router is now configured with a secure baseline. From here you can expand with VLANs, more granular firewall rules, or additional services like a [WireGuard VPN]({{< ref "/posts/2026-03-04-mikrotik-wireguard" >}}).

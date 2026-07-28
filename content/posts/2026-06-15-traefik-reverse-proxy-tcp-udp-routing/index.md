@@ -69,7 +69,7 @@ entryPoints:
 
 The most common TCP use case is forwarding TLS traffic without terminating it — the backend handles TLS itself, and Traefik reads only the SNI name to decide where to send it. Set `passthrough: true` so Traefik does not attempt to decrypt the connection.
 
-![](tcp-sni-routing.svg "TLS passthrough — Traefik reads the SNI from the ClientHello and routes to the matching backend without decrypting")
+![TLS passthrough — Traefik reads the SNI from the ClientHello and routes to the matching backend without decrypting](tcp-sni-routing.svg "TLS passthrough — Traefik reads the SNI from the ClientHello and routes to the matching backend without decrypting")
 
 ```yaml {filename="conf.d/https-passthrough.yml"}
 tcp:

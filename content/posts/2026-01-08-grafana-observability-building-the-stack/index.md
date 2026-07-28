@@ -21,7 +21,7 @@ Before you can collect metrics or centralize logs, you need somewhere to store a
 - **Grafana** — visualization
 - **Grafana Alloy** — telemetry collection agent
 
-![](stack-architecture.svg)
+![Grafana Alloy remote-writes metrics to Prometheus and pushes logs to Loki, with Grafana querying both to render dashboards](stack-architecture.svg "Grafana Alloy remote-writes metrics to Prometheus and pushes logs to Loki, with Grafana querying both to render dashboards")
 
 ## Prometheus
 
@@ -355,7 +355,7 @@ Open the Alloy web UI at `http://<HOST_IP>:12345` to verify all components are g
 
 Running Alloy as a systemd service is an alternative to the Docker container above — useful when you want the agent to have direct access to the host filesystem without volume mounts, or to have it start earlier in the boot process than Docker.
 
-![](alloy-systemd.svg)
+![Alloy running as a systemd unit, granted host log and Docker socket access via the adm group and CAP_DAC_READ_SEARCH, remote-writing metrics and logs to Prometheus and Loki](alloy-systemd.svg "Alloy running as a systemd unit, granted host log and Docker socket access via the adm group and CAP_DAC_READ_SEARCH, remote-writing metrics and logs to Prometheus and Loki")
 
 #### Install
 
@@ -467,7 +467,7 @@ Open the Alloy web UI at `http://<HOST_IP>:12345` and verify all components show
 
 With the full stack running — whether Alloy is deployed as a Docker container or a systemd service — it's time to start adding collectors. Alloy's built-in exporters and log collectors gather host metrics, Docker container metrics, system logs, and Docker container logs, all through the single agent instead of separate containers per exporter. Metrics land in Prometheus, logs land in Loki, and both are visualized in Grafana.
 
-![](metrics-pipeline.svg)
+![The unix exporter reads host metrics from the filesystem and the cAdvisor exporter reads container metrics from the Docker socket; Alloy relabels both and remote-writes them to Prometheus](metrics-pipeline.svg "The unix exporter reads host metrics from the filesystem and the cAdvisor exporter reads container metrics from the Docker socket; Alloy relabels both and remote-writes them to Prometheus")
 
 ## Host Metrics
 
@@ -561,7 +561,7 @@ This exporter needs the Docker socket mounted into the Alloy container — see [
 
 ## System Logs
 
-![](log-pipeline.svg)
+![Alloy tails system logs from /var/log and container logs from the Docker socket, attaches static labels, and pushes both to Loki](log-pipeline.svg "Alloy tails system logs from /var/log and container logs from the Docker socket, attaches static labels, and pushes both to Loki")
 
 Centralized logging complements metrics by letting you search and correlate events across your infrastructure. Create an Alloy config file to collect `auth.log` and `syslog` from the host:
 
@@ -731,3 +731,5 @@ You can create your own dashboards or use these as a starting point:
 
 [1]: https://github.com/svenvg93/Grafana-Dashboard/tree/master/systems
 [2]: https://github.com/svenvg93/Grafana-Dashboard/tree/master/docker
+
+With the stack running, you can extend it further: forward [UniFi syslog events]({{< ref "/posts/2026-01-29-unifi-logs-alloy" >}}) through Alloy into Loki, or move on to [alerting and dashboards as code]({{< ref "/posts/2026-02-12-grafana-observability-alerting-dashboards" >}}) to provision both from version control.

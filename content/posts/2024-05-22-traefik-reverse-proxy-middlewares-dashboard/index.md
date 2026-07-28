@@ -18,7 +18,7 @@ When a request reaches Traefik, it is matched against a router. Before that requ
 
 Middlewares are reusable — you define one and attach it to as many routers as you want. You never change the app itself.
 
-![](middleware-flow.svg "Request pipeline — middlewares sit between the router and the service")
+![Request pipeline — middlewares sit between the router and the service](middleware-flow.svg "Request pipeline — middlewares sit between the router and the service")
 
 ## How Middlewares Work
 
@@ -148,7 +148,7 @@ http:
         - secure-headers
 ```
 
-![](middleware-chain.svg "Chain order: IP check → auth → security headers → service")
+![Chain order: IP check → auth → security headers → service](middleware-chain.svg "Chain order: IP check → auth → security headers → service")
 
 A request from outside your LAN is blocked by `lan-only` and never reaches `my-auth`. A request from inside with wrong credentials is blocked by `my-auth` and never reaches the service. Only a request that passes all checks gets through — and it arrives at your service with the security headers already attached to the response.
 

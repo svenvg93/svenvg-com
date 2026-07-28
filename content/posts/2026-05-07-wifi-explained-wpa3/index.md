@@ -23,7 +23,7 @@ Two attacks made this concrete:
 
 Both attacks share the same root problem: the PSK is a static secret, and any captured material can be attacked indefinitely after the fact.
 
-![](wpa3-handshake-comparison.svg "WPA2 4-way handshake vs WPA3 SAE — attacker captures everything in WPA2, nothing useful in WPA3")
+![WPA2 4-way handshake vs WPA3 SAE — attacker captures everything in WPA2, nothing useful in WPA3](wpa3-handshake-comparison.svg "WPA2 4-way handshake vs WPA3 SAE — attacker captures everything in WPA2, nothing useful in WPA3")
 
 ## SAE: Simultaneous Authentication of Equals
 
@@ -49,7 +49,7 @@ WPA3 mandates PMF (802.11w). Management frames are now cryptographically protect
 
 PMF was optional in WPA2 (and widely ignored). Making it mandatory in WPA3 removes a class of denial-of-service attacks that have existed since the beginning of wifi.
 
-![](wpa3-pmf.svg "PMF — spoofed deauth attack blocked vs accepted")
+![PMF — spoofed deauth attack blocked vs accepted](wpa3-pmf.svg "PMF — spoofed deauth attack blocked vs accepted")
 
 ## OWE: Opportunistic Wireless Encryption
 
@@ -114,3 +114,5 @@ WPA3 solves the offline cracking and deauth spoofing problems well. It doesn't s
 | Open network encryption | No | OWE (optional) |
 | Minimum password requirement | None | None (but harder to crack) |
 | Password element derivation | Hunting-and-pecking | H2E (mandatory since WPA3 R2) |
+
+For how WiFi 7 changes spectrum use and link behavior on top of this, see [WiFi Explained: WiFi 7 Spectrum & Multi-Link Operation]({{< ref "/posts/2026-04-30-wifi-explained-mlo" >}}).

@@ -25,7 +25,7 @@ Two key benefits follow from this:
 
 Multi-RU is negotiated through the same Trigger Frame mechanism as WiFi 6 OFDMA, extended to carry per-client RU lists rather than single RU assignments. The AP is in full control of the allocation — the client receives exactly the sub-bands the Trigger Frame specifies.
 
-![](multi-ru-allocation.svg "Multi-RU — WiFi 6 contiguous blocks vs WiFi 7 non-contiguous assignment across the same channel")
+![Multi-RU — WiFi 6 contiguous blocks vs WiFi 7 non-contiguous assignment across the same channel](multi-ru-allocation.svg "Multi-RU — WiFi 6 contiguous blocks vs WiFi 7 non-contiguous assignment across the same channel")
 
 ## Preamble Puncturing: Wide Channels Around Interference
 
@@ -42,7 +42,7 @@ Puncturing is not arbitrary. The standard defines valid puncturing patterns — 
 - DFS environments where a radar detection on one sub-band would otherwise force the whole channel down
 - Coexistence scenarios where a neighbouring legacy network occupies a fixed portion of the spectrum
 
-![](preamble-puncturing.svg "Preamble Puncturing — 320 MHz channel with interference zone skipped, 240 MHz remains active")
+![Preamble Puncturing — 320 MHz channel with interference zone skipped, 240 MHz remains active](preamble-puncturing.svg "Preamble Puncturing — 320 MHz channel with interference zone skipped, 240 MHz remains active")
 
 ## WiFi 7 Spectrum Features Together
 
@@ -60,7 +60,7 @@ Band steering and load balancing are workarounds for this: the AP nudges clients
 
 MLO eliminates that constraint.
 
-![](mlo-before-after.svg "WiFi 6 vs WiFi 7 MLO — before and after comparison")
+![WiFi 6 vs WiFi 7 MLO — before and after comparison](mlo-before-after.svg "WiFi 6 vs WiFi 7 MLO — before and after comparison")
 
 ### What MLO Does
 
@@ -86,7 +86,7 @@ The baseline MLO mode. The device uses a single radio that can only be tuned to 
 
 MLSR enables basic multi-link functionality such as link fallback and simple load distribution, but the switching overhead limits how quickly it can react to changing conditions. It is primarily a baseline implementation for devices with strict cost or hardware constraints.
 
-![](mlo-single-radio.svg "MLSR vs eMLSR — both use a single radio for transmission; eMLSR adds passive multi-band listening")
+![MLSR vs eMLSR — both use a single radio for transmission; eMLSR adds passive multi-band listening](mlo-single-radio.svg "MLSR vs eMLSR — both use a single radio for transmission; eMLSR adds passive multi-band listening")
 
 #### eMLSR — Enhanced Multi-Link Single Radio
 
@@ -100,7 +100,7 @@ NSTR introduces a second radio, but with a constraint: the device cannot transmi
 
 NSTR provides better channel utilization, dynamic load distribution, and redundancy compared to single-radio modes. But throughput gains are lower than STR because the two links can't independently carry bidirectional traffic at the same time.
 
-![](mlo-multi-radio.svg "NSTR vs STR — coordinated TX/idle radios compared to fully independent, simultaneous TX/RX radios")
+![NSTR vs STR — coordinated TX/idle radios compared to fully independent, simultaneous TX/RX radios](mlo-multi-radio.svg "NSTR vs STR — coordinated TX/idle radios compared to fully independent, simultaneous TX/RX radios")
 
 #### STR — Simultaneous Transmit and Receive
 
@@ -133,7 +133,7 @@ MLO operates at the 802.11 MAC layer. It is not the same as 802.3ad link aggrega
 
 From the perspective of the OS and applications, an MLO connection is a single network interface with a single IP address. The multi-link coordination happens below that level.
 
-![](mlo-vs-lacp.svg "MLO vs LACP — layer comparison showing where each operates in the stack")
+![MLO vs LACP — layer comparison showing where each operates in the stack](mlo-vs-lacp.svg "MLO vs LACP — layer comparison showing where each operates in the stack")
 
 ### Real-World Status
 
@@ -146,3 +146,5 @@ The areas to watch:
 - **Driver maturity on Linux** — Linux WiFi 7 / MLO support has improved rapidly in kernel 6.x but is still catching up to the Windows and macOS stacks.
 
 MLO's practical impact will grow as client support matures. The AP side is largely ready — the constraint now is the client device installed base.
+
+For the security side of WiFi 7 and beyond, see [WiFi Explained: WPA3, SAE, PMF, and OWE]({{< ref "/posts/2026-05-07-wifi-explained-wpa3" >}}).

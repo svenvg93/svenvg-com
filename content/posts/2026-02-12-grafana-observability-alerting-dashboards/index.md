@@ -29,7 +29,7 @@ Three components work together:
 
 All three can be provisioned from YAML files, keeping your alerting config in version control alongside the rest of your stack.
 
-![](alert-evaluation.svg)
+![An alert rule evaluates Query A over a time series, reduces it to a scalar, then Query B compares it against a threshold to decide the FIRING or NORMAL state](alert-evaluation.svg "An alert rule evaluates Query A over a time series, reduces it to a scalar, then Query B compares it against a threshold to decide the FIRING or NORMAL state")
 
 ## Directory Structure
 
@@ -104,7 +104,7 @@ policies:
 
 You can also split alerts into categories such as `system`, `infra`, and `docker`. The useful part is not just the folder layout in Grafana, but the labels on each rule. Once a rule carries a label like `scope: system`, you can route or filter it however you like later.
 
-![](alert-routing.svg)
+![Rules labeled scope=system, scope=infra, and scope=docker all converge on one notification policy, which routes by label to a Discord contact point](alert-routing.svg "Rules labeled scope=system, scope=infra, and scope=docker all converge on one notification policy, which routes by label to a Discord contact point")
 
 ```yaml {filename="alerting/policies.yaml"}
 apiVersion: 1
@@ -350,7 +350,7 @@ Dashboards created through the Grafana UI are stored in its SQLite database insi
 
 Grafana's provisioning system reads a configuration file at startup that points to one or more directories. Any `.json` file it finds there is loaded as a dashboard and placed in the specified folder. If the file changes on disk, Grafana picks up the update within the configured interval — no restart required.
 
-![](provisioning-flow.svg)
+![A provisioner polls the dashboard JSON files every 30 seconds and loads them into Grafana, re-polling immediately whenever a file changes](provisioning-flow.svg "A provisioner polls the dashboard JSON files every 30 seconds and loads them into Grafana, re-polling immediately whenever a file changes")
 
 ### Directory Structure
 

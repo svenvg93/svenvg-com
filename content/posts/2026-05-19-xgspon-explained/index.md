@@ -25,7 +25,7 @@ With active Ethernet, the ISP runs a dedicated fiber to each subscriber. PON ins
 - **ODN (Optical Distribution Network):** Everything between the OLT and the subscribers' homes — fiber cables, connectors, and passive optical splitters. Splitters can be cascaded: a 1:4 feeding into four 1:8 splitters gives an effective 1:32 ratio.
 - **ONT (Optical Network Terminal):** The device at the subscriber's home. The ISP often calls it an ONU (Optical Network Unit) or "fiber modem." It converts the optical signal to Ethernet and handles all PON protocol logic.
 
-![](architecture.svg "XGS-PON architecture — OLT feeds one feeder fiber into a passive splitter, which fans out to up to 32 ONTs via drop fibers")
+![XGS-PON architecture — OLT feeds one feeder fiber into a passive splitter, which fans out to up to 32 ONTs via drop fibers](architecture.svg "XGS-PON architecture — OLT feeds one feeder fiber into a passive splitter, which fans out to up to 32 ONTs via drop fibers")
 
 ## Wavelengths: How Upstream and Downstream Share One Fiber
 
@@ -35,7 +35,7 @@ XGS-PON uses:
 - **1577 nm** for downstream (OLT → ONT)
 - **1270 nm** for upstream (ONT → OLT)
 
-![](wdm.svg "WDM on a single fiber strand — 1577 nm downstream and 1270 nm upstream travel simultaneously in opposite directions")
+![WDM on a single fiber strand — 1577 nm downstream and 1270 nm upstream travel simultaneously in opposite directions](wdm.svg "WDM on a single fiber strand — 1577 nm downstream and 1270 nm upstream travel simultaneously in opposite directions")
 
 The ONT's optical filters cleanly separate the two directions — 1577 nm to the receiver, 1270 nm from the transmitter. Third-party SFP+ transceivers must match these exact wavelengths to communicate with the OLT. GPON uses different wavelengths, so GPON and XGS-PON ONTs are not interchangeable.
 
@@ -45,7 +45,7 @@ The OLT broadcasts all downstream traffic at 1577 nm. Every ONT on the PON tree 
 
 During registration, each ONT is provisioned with its own **AES-128** key. The OLT encrypts each ONT's traffic with that key; each ONT checks the **GEM Port ID** to filter its own frames and discards the rest.
 
-![](aes128.svg "Downstream broadcast with per-ONT AES-128 encryption — each ONT accepts only its own frames and discards the rest")
+![Downstream broadcast with per-ONT AES-128 encryption — each ONT accepts only its own frames and discards the rest](aes128.svg "Downstream broadcast with per-ONT AES-128 encryption — each ONT accepts only its own frames and discards the rest")
 
 The PON model is broadcast-then-filter — AES-128 per subscriber enforces privacy where a switch would use unicast forwarding.
 
@@ -57,7 +57,7 @@ If ONTs transmitted simultaneously, signals would collide at the splitter. PON s
 2. The ONT waits for its grant window, transmits exactly the permitted amount, then goes silent.
 3. The OLT compensates for **ranging** — each ONT is at a different physical distance, so the OLT measures round-trip delay during initialization and adjusts grant timing so all bursts arrive without overlapping.
 
-![](tdma.svg "Upstream TDMA time slot allocation — each ONT transmits in its assigned slot; only one ONT is active at any moment")
+![Upstream TDMA time slot allocation — each ONT transmits in its assigned slot; only one ONT is active at any moment](tdma.svg "Upstream TDMA time slot allocation — each ONT transmits in its assigned slot; only one ONT is active at any moment")
 
 The grant cycle runs at 125 µs per frame. XGS-PON's upstream line rate is 9.95328 Gbit/s — "symmetric" means downstream and upstream are both rated at 10G nominal.
 
@@ -73,7 +73,7 @@ The registration sequence:
 4. **AES-128 Key Exchange.** The OLT provisions the ONT's per-subscriber AES-128 encryption key.
 5. **Data Path Active.** The OLT activates GEM port mappings and T-CONT assignments; the ONT begins passing subscriber traffic.
 
-![](ploam.svg "PLOAM registration sequence — five steps from Serial Number discovery to data path active")
+![PLOAM registration sequence — five steps from Serial Number discovery to data path active](ploam.svg "PLOAM registration sequence — five steps from Serial Number discovery to data path active")
 
 Third-party transceivers must present the serial number the OLT has provisioned. Some ISPs also require an LOID and password; a mismatch means the OLT rejects registration at step 1.
 

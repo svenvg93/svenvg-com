@@ -14,7 +14,7 @@ tags:
 
 ## Prerequisites
 
-- Traefik running — see [Installing on Docker & Bare Metal][1]
+- Traefik running — see the [installation guide][1]
 - Grafana, Prometheus, Loki, and Alloy already running — see [Setting Up Your Observability Stack][stack]
 
 Traefik exposes metrics on EntryPoints, Routers, Services, and more. This post shows you how to collect these metrics with Prometheus and aggregate logs with Loki via Grafana Alloy for a complete monitoring solution.

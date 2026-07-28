@@ -12,7 +12,7 @@ tags:
 
 ## Prerequisites
 
-- Traefik running with a working certificate resolver — see [Installing on Docker & Bare Metal][1]
+- Traefik running with a working certificate resolver — see the [installation guide][1]
 
 When a request reaches Traefik, it is matched against a router. Before that request is forwarded to your service, middlewares have a chance to inspect or modify it. A middleware can reject the request outright (wrong IP, missing credentials), rewrite headers, or add security headers to the response on the way back.
 

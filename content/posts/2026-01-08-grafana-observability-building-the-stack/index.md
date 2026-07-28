@@ -1,6 +1,6 @@
 ---
 title: "Grafana Observability: Building the Stack"
-description: Install Prometheus, Loki, Grafana, and Grafana Alloy with Docker Compose or systemd, then wire up host, container, and log collectors to build a complete homelab observability stack from scratch.
+description: Install Prometheus, Loki, and Grafana, then wire up Grafana Alloy collectors for host, container, and log metrics to build a complete homelab observability stack from scratch.
 date: 2026-01-08
 draft: false
 categories:
@@ -11,7 +11,6 @@ tags:
   - prometheus
   - loki
   - alloy
-  - systemd
 ---
 
 Before you can collect metrics or centralize logs, you need somewhere to store and visualize them — and an agent to collect the data. This post sets up all four components of a Grafana observability stack:
@@ -256,214 +255,7 @@ Connect Grafana to Prometheus and Loki:
 
 Alloy is the telemetry collection agent that replaces Promtail and Grafana Agent. It collects metrics, logs, and traces and forwards them to Prometheus and Loki using a modular config — each collector lives in its own `.alloy` file, and every file in the config directory is loaded automatically.
 
-You can run Alloy two ways, and both are covered below:
-
-- **Docker** — simplest if the rest of your stack is already containerized on the same host
-- **systemd** — installs Alloy directly on the host, giving it native access to resources like `/var/log` or the Docker socket without volume mounts, and lets it start earlier in the boot sequence than Docker itself
-
-### Alloy (Docker)
-
-Create a directory for Alloy and its config files:
-
-```bash
-mkdir -p alloy/config
-nano alloy/docker-compose.yml
-```
-
-```yaml {filename="docker-compose.yml"}
-services:
-  alloy:
-    image: grafana/alloy:latest
-    container_name: alloy
-    hostname: ${HOSTNAME}
-    restart: unless-stopped
-    environment:
-      - TZ=Europe/Amsterdam
-    ports:
-      - "12345:12345"
-    volumes:
-      - ./config/:/etc/alloy/config/:ro
-      - alloy-data:/var/lib/alloy/data
-    command:
-      - run
-      - --server.http.listen-addr=0.0.0.0:12345
-      - --storage.path=/var/lib/alloy/data
-      - /etc/alloy/config/
-    networks:
-      - backend
-
-networks:
-  backend:
-    name: backend
-
-volumes:
-  alloy-data:
-    name: alloy-data
-```
-
-Alloy loads every `.alloy` file in the `config/` directory automatically — adding a new collector is as simple as dropping in a new file. Port `12345` is the Alloy web UI for debugging component status.
-
-#### Endpoints
-
-Create `endpoint.alloy` to centralize write destinations. All collector configs reference these by name:
-
-```bash
-nano alloy/config/endpoint.alloy
-```
-
-```hcl {filename="endpoint.alloy"}
-loki.write "default" {
-  endpoint {
-    url = "http://loki:3100/loki/api/v1/push"
-  }
-}
-
-prometheus.remote_write "default" {
-  endpoint {
-    url = "http://prometheus:9090/api/v1/write"
-  }
-}
-```
-
-#### Self-Monitoring
-
-Create `self.alloy` so Alloy reports its own health metrics to Prometheus:
-
-```bash
-nano alloy/config/self.alloy
-```
-
-```hcl {filename="self.alloy"}
-prometheus.exporter.self "alloy_metrics" {}
-
-prometheus.scrape "alloy_metrics" {
-  targets         = prometheus.exporter.self.alloy_metrics.targets
-  scrape_interval = "60s"
-  forward_to      = [prometheus.remote_write.default.receiver]
-}
-```
-
-Start Alloy:
-
-```bash
-docker compose -f alloy/docker-compose.yml up -d
-```
-
-Open the Alloy web UI at `http://<HOST_IP>:12345` to verify all components are green.
-
-### Alloy (systemd)
-
-Running Alloy as a systemd service is an alternative to the Docker container above — useful when you want the agent to have direct access to the host filesystem without volume mounts, or to have it start earlier in the boot process than Docker.
-
-![Alloy running as a systemd unit, granted host log and Docker socket access via the adm group and CAP_DAC_READ_SEARCH, remote-writing metrics and logs to Prometheus and Loki](alloy-systemd.svg "Alloy running as a systemd unit, granted host log and Docker socket access via the adm group and CAP_DAC_READ_SEARCH, remote-writing metrics and logs to Prometheus and Loki")
-
-#### Install
-
-Add the Grafana apt repository and install the `alloy` package:
-
-```bash
-sudo apt-get install -y apt-transport-https software-properties-common wget
-
-sudo mkdir -p /etc/apt/keyrings/
-wget -q -O - https://apt.grafana.com/gpg.key | gpg --dearmor | sudo tee /etc/apt/keyrings/grafana.gpg > /dev/null
-
-echo "deb [signed-by=/etc/apt/keyrings/grafana.gpg] https://apt.grafana.com stable main" | \
-  sudo tee /etc/apt/sources.list.d/grafana.list
-
-sudo apt-get update
-sudo apt-get install -y alloy
-```
-
-The package creates an `alloy` system user, installs the binary at `/usr/bin/alloy`, and registers a systemd unit. It does not start automatically after install.
-
-#### Configure
-
-The systemd unit reads startup options from `/etc/default/alloy`. Edit it to load a config directory instead of a single file — the same pattern used in the Docker setup:
-
-```bash
-sudo nano /etc/default/alloy
-```
-
-```bash {filename="/etc/default/alloy"}
-CONFIG_FILE="/etc/alloy/config/"
-CUSTOM_ARGS="--server.http.listen-addr=0.0.0.0:12345"
-STATE_DIRECTORY="/var/lib/alloy"
-```
-
-By default Alloy only listens on `localhost:12345`, so `CUSTOM_ARGS` is used here to expose the web UI on all interfaces. This is optional.
-
-Create the config directory:
-
-```bash
-sudo mkdir -p /etc/alloy/config
-```
-
-The `endpoint.alloy` and `self.alloy` files are the same config as the Docker path above — copy them into `/etc/alloy/config/`. The one difference: since the systemd service isn't on the Docker `backend` network, replace the `loki` and `prometheus` hostnames in `endpoint.alloy` with the actual IP or hostname of your Prometheus and Loki instances, e.g. `http://<HOST>:3100/loki/api/v1/push` and `http://<HOST>:9090/api/v1/write`.
-
-Fix permissions so the config files are readable by the `alloy` user:
-
-```bash
-sudo chown -R alloy:alloy /etc/alloy/config
-sudo chmod -R 750 /etc/alloy/config
-```
-
-#### Permissions
-
-The `alloy` user only has access to its own files by default. If you plan to collect system logs or Docker container stats and logs, you need to grant it read access to those resources.
-
-**System logs** (`/var/log`):
-
-```bash
-sudo usermod -aG adm alloy
-```
-
-**Docker container logs and stats:**
-
-Adding the `alloy` user to the `docker` group is not enough — Docker's cgroup files and log directories are owned by root and require `CAP_DAC_READ_SEARCH` to traverse. Create a systemd drop-in to grant that capability:
-
-```bash
-sudo mkdir -p /etc/systemd/system/alloy.service.d
-sudo tee /etc/systemd/system/alloy.service.d/capabilities.conf <<'EOF'
-[Service]
-AmbientCapabilities=CAP_DAC_READ_SEARCH
-CapabilityBoundingSet=CAP_DAC_READ_SEARCH
-EOF
-sudo systemctl daemon-reload
-sudo usermod -aG docker alloy
-```
-
-A service restart is required after any permission change.
-
-#### Start
-
-Enable and start the service:
-
-```bash
-sudo systemctl enable alloy
-sudo systemctl start alloy
-```
-
-Check that it came up cleanly:
-
-```bash
-sudo systemctl status alloy
-```
-
-You should see `active (running)`. If it failed, check the journal:
-
-```bash
-sudo journalctl -u alloy -n 50
-```
-
-#### Verify
-
-Confirm Alloy is healthy and listening:
-
-```bash
-curl -s http://localhost:12345/-/healthy
-```
-
-Open the Alloy web UI at `http://<HOST_IP>:12345` and verify all components show green. The `prometheus.remote_write.default` and `loki.write.default` components should both be running.
+Install it now — see [Installing on Docker][alloy-docker] or [Installing on Bare Metal][alloy-bare-metal] — then come back here to configure host, container, and log collectors.
 
 With the full stack running — whether Alloy is deployed as a Docker container or a systemd service — it's time to start adding collectors. Alloy's built-in exporters and log collectors gather host metrics, Docker container metrics, system logs, and Docker container logs, all through the single agent instead of separate containers per exporter. Metrics land in Prometheus, logs land in Loki, and both are visualized in Grafana.
 
@@ -731,5 +523,7 @@ You can create your own dashboards or use these as a starting point:
 
 [1]: https://github.com/svenvg93/Grafana-Dashboard/tree/master/systems
 [2]: https://github.com/svenvg93/Grafana-Dashboard/tree/master/docker
+[alloy-docker]: {{< ref "/posts/2026-01-08-grafana-alloy-docker" >}}
+[alloy-bare-metal]: {{< ref "/posts/2026-01-08-grafana-alloy-bare-metal" >}}
 
 With the stack running, you can extend it further: forward [UniFi syslog events]({{< ref "/posts/2026-01-29-unifi-logs-alloy" >}}) through Alloy into Loki, or move on to [alerting and dashboards as code]({{< ref "/posts/2026-02-12-grafana-observability-alerting-dashboards" >}}) to provision both from version control.

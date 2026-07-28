@@ -20,7 +20,7 @@ This guide we will only focus on device logs. Securtiy and firewall logs are out
 
 ## Prerequisites
 
-- Grafana Alloy installed (or can be deployed via Docker)
+- Grafana Alloy installed — see [Installing on Docker]({{< ref "/posts/2026-01-08-grafana-alloy-docker" >}}) or [Installing on Bare Metal]({{< ref "/posts/2026-01-08-grafana-alloy-bare-metal" >}})
 - Grafana and Loki instance running (see my [Building the Stack]({{< ref "/posts/2026-01-08-grafana-observability-building-the-stack" >}}) post)
 - Unifi Controller with network devices configured
 

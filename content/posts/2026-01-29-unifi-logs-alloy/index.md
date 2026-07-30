@@ -14,7 +14,7 @@ tags:
 
 Unifi network devices generate valuable logs that can help you troubleshoot network issues and monitor your devices. By sending these syslog messages to Loki using Grafana Alloy, you can centralize your network logs alongside your application logs for unified observability.
 
-This guide we will only focus on device logs. Securtiy and firewall logs are out of scope.
+This guide only covers device logs — security and firewall logs are out of scope.
 
 ![Alloy pipeline diagram](alloy-pipeline.svg)
 
@@ -33,64 +33,53 @@ Grafana Alloy is the next-generation telemetry collector that replaces Promtail.
 - Lower resource usage compared to traditional collectors
 - Unified configuration for all telemetry types
 
-## Setup Grafana Alloy
+## Open the Syslog Port
 
-First, create a folder to hold the Docker Compose file and Alloy configuration:
+Alloy needs to listen on UDP 514 for incoming syslog messages. This uses the same Alloy instance set up in the install posts above, so you only need to expose the extra port — nothing else about the existing install changes.
 
-```bash
-mkdir alloy
-```
-
-Create the Docker Compose file:
-
-```bash
-nano alloy/docker-compose.yml
-```
-
-Paste the following content:
+{{< tabs >}}
+{{< tab label="Docker" >}}
+Add the UDP port mapping to your existing `alloy/docker-compose.yml`:
 
 ```yaml {filename="docker-compose.yml"}
-services:
-  alloy:
-    image: grafana/alloy:latest
-    container_name: alloy
-    restart: unless-stopped
-    environment:
-      - TZ=Europe/Amsterdam
-    ports:
-      - "12345:12345"
-      - "514:514/udp"  # Syslog UDP
-    volumes:
-      - ./config.alloy:/etc/alloy/config.alloy:ro
-      - alloy-data:/var/lib/alloy/data
-    command:
-      - run
-      - --server.http.listen-addr=0.0.0.0:12345
-      - --storage.path=/var/lib/alloy/data
-      - /etc/alloy/config.alloy
-    networks:
-      - backend
-
-networks:
-  backend:
-    name: backend
-
-volumes:
-  alloy-data:
-    name: alloy-data
+ports:
+  - "12345:12345"
+  - "514:514/udp"  # Syslog UDP
 ```
+
+Recreate the container to pick up the new port:
+
+```bash
+docker compose -f alloy/docker-compose.yml up -d
+```
+{{< /tab >}}
+{{< tab label="systemd" >}}
+No compose file to edit — the systemd service already listens on whatever ports its config defines. Just make sure your firewall allows inbound UDP/514, e.g. with `ufw`:
+
+```bash
+sudo ufw allow 514/udp
+```
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Configure Alloy for Syslog
 
-Create the Alloy configuration file:
+Add a new collector file to your existing Alloy config directory — `unifi-syslog.alloy`:
 
+{{< tabs >}}
+{{< tab label="Docker" >}}
 ```bash
-nano alloy/config.alloy
+nano alloy/config/unifi-syslog.alloy
 ```
+{{< /tab >}}
+{{< tab label="systemd" >}}
+```bash
+sudo nano /etc/alloy/config/unifi-syslog.alloy
+```
+{{< /tab >}}
+{{< /tabs >}}
 
-Paste the following configuration:
-
-```hcl {filename="config.alloy"}
+```hcl {filename="unifi-syslog.alloy"}
 /* UniFi Syslog (RFC3164) - Relabel rules to capture syslog metadata */
 loki.relabel "unifi_syslog" {
   forward_to = []
@@ -192,13 +181,6 @@ loki.process "unifi" {
 
   forward_to = [loki.write.default.receiver]
 }
-
-// Loki write endpoint
-loki.write "default" {
-  endpoint {
-    url = "http://loki:3100/loki/api/v1/push"
-  }
-}
 ```
 
 ### Configuration Breakdown
@@ -231,25 +213,28 @@ The pipeline handles both:
 2. A second regex extracts the `app` (process name) and strips the cleaned `message` as the log line output.
 3. A `stage.match` block runs only for `stahtd` logs, pulling the embedded JSON payload out into structured metadata for richer querying.
 
-#### 4. Loki Write (`loki.write "default"`)
+#### 4. Loki Write
 
-Sends batched logs to the Loki push API at `http://loki:3100`. Uses the Docker network name `loki` to reach Loki on the same backend network; retries and batching are handled automatically.
+The pipeline forwards to `loki.write.default.receiver` — the same `loki.write "default"` component already defined in `endpoint.alloy` from the install post. No new write endpoint is needed; every collector in the config directory shares it.
 
-## Start Alloy
+## Reload Alloy
 
-Deploy the Alloy container:
+Since Alloy loads every file in the config directory automatically, dropping in `unifi-syslog.alloy` is enough — restart the service to pick it up:
 
+{{< tabs >}}
+{{< tab label="Docker" >}}
 ```bash
-docker compose -f alloy/docker-compose.yml up -d
+docker compose -f alloy/docker-compose.yml up -d alloy
 ```
-
-Verify Alloy is running and check the logs:
-
+{{< /tab >}}
+{{< tab label="systemd" >}}
 ```bash
-docker logs alloy
+sudo systemctl restart alloy
 ```
+{{< /tab >}}
+{{< /tabs >}}
 
-You should see messages indicating that Alloy has started and the syslog listener is active.
+Open the Alloy web UI at `http://<HOST_IP>:12345` and confirm `loki.source.syslog.unifi` shows healthy.
 
 ## Configure Unifi Devices
 
@@ -259,7 +244,7 @@ Now configure your Unifi Controller to send syslog messages to Alloy.
 
 1. Open your Unifi Controller
 2. Navigate to **Settings** > **Cyber Secure**
-3. Go to  to **Traffic Logging**
+3. Go to **Traffic Logging**
 4. Set **Activity Logging (Syslog)** to **SIEM Server**
 5. Set the **IP Address** to your Alloy server IP (e.g., `192.168.1.100`)
 6. Set the **Port** to `514`
@@ -267,43 +252,26 @@ Now configure your Unifi Controller to send syslog messages to Alloy.
 
 ## Verify Log Collection
 
-After configuring your Unifi devices, logs should start flowing to Loki within seconds.
+After configuring your Unifi devices, logs should start flowing to Loki within seconds. Open Grafana's **Explore** view, select the **Loki** datasource, and run:
 
-### Check in Grafana
-
-1. Open Grafana and navigate to **Explore**
-2. Select **Loki** as the datasource
-3. Run a query to see Unifi logs:
-
-```
+```logql
 {job="unifi"}
 ```
 
-You should see syslog messages from your Unifi devices, including authentication events, DHCP assignments, wireless connections, and security events.
+You should see syslog messages from your Unifi devices, including authentication events, DHCP assignments, and wireless connections.
 
 ## Example Queries
 
-With the labels and processing configured above, you can create powerful queries to analyze your network logs.
-
-### Basic Queries
-
-**All Unifi logs:**
-```
-{job="unifi"}
-```
+With the labels and processing configured above, you can filter down further:
 
 **Logs from a specific device:**
-```
+```logql
 {job="unifi", host="UCG-Fiber"}
 ```
 
 **Logs from a specific application:**
-```
+```logql
 {job="unifi", app="hostapd"}
 ```
 
-## Summary
-
-With Grafana Alloy configured to receive Unifi syslog messages, you now have centralized network logging alongside your application logs in Loki. This unified observability platform makes it easier to correlate network events with application behavior, troubleshoot issues, and maintain security.
-
-The modern Alloy architecture provides better performance and more flexible log processing compared to traditional syslog daemons, while integrating seamlessly with the Grafana ecosystem.
+With Unifi logs flowing into the same Loki instance as the rest of your stack, you can correlate them with the host, container, and system logs set up in [Building the Stack]({{< ref "/posts/2026-01-08-grafana-observability-building-the-stack" >}}) — or move on to [alerting and dashboards as code]({{< ref "/posts/2026-02-12-grafana-observability-alerting-dashboards" >}}) to provision both from version control.

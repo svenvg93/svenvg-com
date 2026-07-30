@@ -259,16 +259,16 @@ Install it now — see [Installing on Docker][alloy-docker] or [Installing on Ba
 
 With the full stack running — whether Alloy is deployed as a Docker container or a systemd service — it's time to start adding collectors. Alloy's built-in exporters and log collectors gather host metrics, Docker container metrics, system logs, and Docker container logs, all through the single agent instead of separate containers per exporter. Metrics land in Prometheus, logs land in Loki, and both are visualized in Grafana.
 
+Save each config file below into the Alloy config directory you set up in the install posts above — `alloy/config/` for Docker, `/etc/alloy/config/` for systemd.
+
 ![The unix exporter reads host metrics from the filesystem and the cAdvisor exporter reads container metrics from the Docker socket; Alloy relabels both and remote-writes them to Prometheus](metrics-pipeline.svg "The unix exporter reads host metrics from the filesystem and the cAdvisor exporter reads container metrics from the Docker socket; Alloy relabels both and remote-writes them to Prometheus")
 
 ## Host Metrics
 
-Create an Alloy config file for host system metrics:
+Create an Alloy config file for host system metrics, `unix.alloy`:
 
-```bash
-nano alloy/config/unix.alloy
-```
-
+{{< tabs >}}
+{{< tab label="Docker" >}}
 ```hcl {filename="unix.alloy"}
 prometheus.exporter.unix "unix" {
   rootfs_path = "/rootfs"
@@ -297,6 +297,38 @@ prometheus.scrape "unix" {
   forward_to = [prometheus.remote_write.default.receiver]
 }
 ```
+{{< /tab >}}
+{{< tab label="systemd" >}}
+```hcl {filename="unix.alloy"}
+prometheus.exporter.unix "unix" {
+  rootfs_path = "/"
+  procfs_path = "/proc"
+  sysfs_path  = "/sys"
+  disable_collectors = ["ipvs", "btrfs", "infiniband", "xfs", "zfs"]
+  enable_collectors  = ["meminfo", "processes"]
+
+  filesystem {
+    fs_types_exclude     = "^(autofs|binfmt_misc|bpf|cgroup2?|configfs|debugfs|devpts|devtmpfs|tmpfs|fusectl|hugetlbfs|iso9660|mqueue|nsfs|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|selinuxfs|squashfs|sysfs|tracefs)$"
+    mount_points_exclude = "^/(dev|proc|run/credentials/.+|sys|var/lib/docker/.+)($|/)"
+    mount_timeout        = "5s"
+  }
+
+  netclass {
+    ignored_devices = "^(veth.*|cali.*|[a-f0-9]{15})$"
+  }
+
+  netdev {
+    device_exclude = "^(veth.*|cali.*|[a-f0-9]{15})$"
+  }
+}
+
+prometheus.scrape "unix" {
+  targets    = prometheus.exporter.unix.unix.targets
+  forward_to = [prometheus.remote_write.default.receiver]
+}
+```
+{{< /tab >}}
+{{< /tabs >}}
 
 Because Alloy runs inside Docker with the host filesystem bind-mounted at `/rootfs`, the `rootfs_path`, `procfs_path`, and `sysfs_path` fields tell the exporter where to find real system data rather than the container's own filesystem.
 
@@ -310,11 +342,7 @@ This exporter needs the host filesystem mounted read-only into the Alloy contain
 
 ## Container Metrics
 
-Create an Alloy config file for Docker container metrics:
-
-```bash
-nano alloy/config/docker-metrics.alloy
-```
+Create an Alloy config file for Docker container metrics, `docker-metrics.alloy`:
 
 ```hcl {filename="docker-metrics.alloy"}
 // Docker container metrics (CPU, memory, network per container)
@@ -356,10 +384,6 @@ This exporter needs the Docker socket mounted into the Alloy container — see [
 ![Alloy tails system logs from /var/log and container logs from the Docker socket, attaches static labels, and pushes both to Loki](log-pipeline.svg "Alloy tails system logs from /var/log and container logs from the Docker socket, attaches static labels, and pushes both to Loki")
 
 Centralized logging complements metrics by letting you search and correlate events across your infrastructure. Create an Alloy config file to collect `auth.log` and `syslog` from the host:
-
-```bash
-nano alloy/config/syslog.alloy
-```
 
 ```hcl {filename="syslog.alloy"}
 // System auth.log collection
@@ -413,11 +437,7 @@ This collector needs the host's `/var/log` directory mounted into the Alloy cont
 
 Alloy can automatically discover and collect logs from all running Docker containers — no manual configuration needed per container.
 
-Create an Alloy config file for Docker log collection:
-
-```bash
-nano alloy/config/docker-logs.alloy
-```
+Create an Alloy config file for Docker log collection, `docker-logs.alloy`:
 
 ```hcl {filename="docker-logs.alloy"}
 // Discover all running Docker containers
@@ -464,6 +484,8 @@ This automatically picks up containers as they start and stop — no Alloy resta
 
 ## Apply & Verify
 
+{{< tabs >}}
+{{< tab label="Docker" >}}
 All four collectors above need volume mounts added to your Alloy `docker-compose.yml`:
 
 ```yaml {filename="docker-compose.yml"}
@@ -480,6 +502,19 @@ Recreate the Alloy container to pick up both the new mounts and the new config f
 ```bash
 docker compose up -d alloy
 ```
+{{< /tab >}}
+{{< tab label="systemd" >}}
+No volume mounts are needed — the `adm`/`docker` group membership and `CAP_DAC_READ_SEARCH` capability set up when installing Alloy already grant it direct access to `/var/log` and the Docker socket.
+
+Fix ownership and permissions on the new config files, then restart the service to pick them up:
+
+```bash
+sudo chown -R alloy:alloy /etc/alloy/config
+sudo chmod -R 750 /etc/alloy/config
+sudo systemctl restart alloy
+```
+{{< /tab >}}
+{{< /tabs >}}
 
 Open the Alloy web UI and confirm all four components are healthy:
 

@@ -33,18 +33,26 @@ All three can be provisioned from YAML files, keeping your alerting config in ve
 
 ## Directory Structure
 
-Add an `alerting/` folder inside your existing Grafana provisioning directory:
+This is the first time file-based provisioning shows up in this series — in [Building the Stack]({{< ref "/posts/2026-01-08-grafana-observability-building-the-stack" >}}) the Prometheus and Loki datasources were added by hand through the Grafana UI, and they can stay that way; provisioning here only applies to alerting (and, further down, dashboards).
+
+Create a `provisioning/` folder next to your Grafana `docker-compose.yml`, with an `alerting/` subfolder:
 
 ```bash
 grafana/
 └── provisioning/
-    ├── datasources/
-    ├── dashboards/
     └── alerting/
         ├── contact-points.yaml
         ├── policies.yaml
         ├── rules.yaml
         └── templates.yaml
+```
+
+Mount it into the Grafana container so the files above are actually picked up. Add the volume to your existing `docker-compose.yml`:
+
+```yaml {filename="docker-compose.yml"}
+volumes:
+  - grafana_data:/var/lib/grafana
+  - ./provisioning:/etc/grafana/provisioning
 ```
 
 ## Contact Point
@@ -324,10 +332,10 @@ Replace `ddmvax2tzuv40c` with your own dashboard UID, found at the bottom of the
 
 ## Apply Configuration
 
-Restart Grafana to load the provisioned files:
+Recreate the Grafana container so it picks up the new `provisioning/` volume mount along with the alerting files:
 
 ```bash
-docker restart grafana
+docker compose -f grafana/docker-compose.yml up -d
 ```
 
 ## Verification
@@ -354,12 +362,11 @@ Grafana's provisioning system reads a configuration file at startup that points 
 
 ### Directory Structure
 
-Add a `dashboards/` directory inside your existing provisioning folder:
+Add a `dashboards/` directory inside the `provisioning/` folder you created earlier for alerting — it's already mounted into the container, so no new volume is needed:
 
 ```bash
 grafana/
 └── provisioning/
-    ├── datasources/
     ├── alerting/
     └── dashboards/
         ├── dashboards.yaml
@@ -417,18 +424,6 @@ A few settings worth noting:
 - **`updateIntervalSeconds: 30`** — Grafana polls the directory every 30 seconds and reloads any changed JSON files. This means you can update a dashboard file and see the change in the UI without restarting the container.
 - **`allowUiUpdates: true`** — You can still edit the dashboard in the Grafana UI. Changes made through the UI are written back to the JSON file on disk. Without this, any UI edits are discarded on the next reload.
 - **`disableDeletion: false`** — If you delete a JSON file, Grafana removes the dashboard from the UI on the next poll.
-
-### Volume Mount
-
-The provisioning directory needs to be mounted into the Grafana container. Add the volume mount to your `docker-compose.yml`:
-
-```yaml {filename="docker-compose.yml"}
-volumes:
-  - grafana_data:/var/lib/grafana
-  - ./provisioning:/etc/grafana/provisioning
-```
-
-The entire `provisioning/` directory is mounted at once, so datasources, alerting rules, and dashboards all load from the same mount.
 
 ### Exporting Dashboards from the UI
 

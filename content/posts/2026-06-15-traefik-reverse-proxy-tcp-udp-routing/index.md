@@ -216,4 +216,4 @@ udp:
 
 A TLS connection to `:443` is matched by SNI and forwarded encrypted to `192.168.1.10:443`. A connection to `:5432` goes straight to the PostgreSQL server on `192.168.1.20`. A UDP packet to `:53` is forwarded to the DNS resolver on `192.168.1.1`.
 
-[1]: {{< ref "/posts/2024-05-21-traefik-reverse-proxy-guide" >}}
+[1]: {{< ref "/posts/2024-05-21-traefik-reverse-proxy-install" >}}

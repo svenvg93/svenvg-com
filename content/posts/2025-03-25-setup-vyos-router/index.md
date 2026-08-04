@@ -20,7 +20,7 @@ VyOS offers powerful routing, firewalling, making it an excellent choice for hom
 
 **Note**: VyOS rolling release images are built from the latest development code, incorporating the newest changes from maintainers and community contributors. While they receive automated testing to ensure they boot and load configurations, they may include experimental features, bugs, and compatibility issues. As a result, they are not recommended for production use.
 
-VyOS can run on various diffrent platforms. Both baremetal as well als cloud platforms. In this guide we will use the "bare metal" installation inside of a VM.
+VyOS can run on various different platforms. Both bare metal as well as cloud platforms. In this guide we will use the "bare metal" installation inside of a VM.
 
 After you [download][2] the latests version, boot from the image using the appropriate method for your platform (USB, virtual machine, or PXE).
 
@@ -283,7 +283,7 @@ commit; save
 
 ### User
 
-For security best practices, it's recommended to remove the default `vyos` user and create a new one with administrative privileges. Even thought the command suggest that the password will be saved in plaintext, when committing the changes the system will encrypt it by default. 
+For security best practices, it's recommended to remove the default `vyos` user and create a new one with administrative privileges. Even though the command suggests that the password will be saved in plaintext, when committing the changes the system will encrypt it by default. 
 
 ```bash
 set system login user admin authentication plaintext-password admin

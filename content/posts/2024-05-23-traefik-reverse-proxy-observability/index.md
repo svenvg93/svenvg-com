@@ -158,7 +158,7 @@ Open the Alloy Web UI and confirm the `loki.source.file` component is healthy, t
 
 You can use the pre-built [Traefik Dashboard][grafana-dashboard] from GitHub, or explore available metrics from the [official Traefik metrics overview][metrics-overview].
 
-[1]: {{< ref "/posts/2024-05-21-traefik-reverse-proxy-guide" >}}
+[1]: {{< ref "/posts/2024-05-21-traefik-reverse-proxy-install" >}}
 [stack]: {{< ref "/posts/2026-01-08-grafana-observability-building-the-stack" >}}
 [grafana-dashboard]: https://github.com/svenvg93/Grafana-Dashboard/tree/master/traefik
 [metrics-overview]: https://doc.traefik.io/traefik/observability/metrics/overview/#global-metrics

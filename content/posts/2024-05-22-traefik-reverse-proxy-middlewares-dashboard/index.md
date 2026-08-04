@@ -249,7 +249,7 @@ The three middlewares above cover the most common homelab needs, but Traefik has
 
 With the dashboard secured, the next step is watching Traefik itself — see [Observability with Prometheus, Loki & Grafana][3] to collect metrics and centralize logs.
 
-[1]: {{< ref "/posts/2024-05-21-traefik-reverse-proxy-guide" >}}
+[1]: {{< ref "/posts/2024-05-21-traefik-reverse-proxy-install" >}}
 [3]: {{< ref "/posts/2024-05-23-traefik-reverse-proxy-observability" >}}
 [middleware-docs]: https://doc.traefik.io/traefik/middlewares/http/overview/
 [api-docs]: https://doc.traefik.io/traefik/operations/api/

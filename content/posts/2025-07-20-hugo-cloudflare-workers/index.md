@@ -38,7 +38,7 @@ To enable deployment, you’ll need to add a `wrangler.jsonc` file. This configu
 ```
 **Note:** Replace the name value with your own domain or project name.
 
-Commit the files to your Git repro.
+Commit the files to your Git repo.
 
 ## Set Up Cloudflare Worker
 
@@ -52,7 +52,7 @@ Next, configure your Cloudflare Worker to deploy the site:
 6. Enter a Project name of your choice
 7. Leave the remaining settings at their defaults and click Create and Deploy
 
-Cloudflare will now build and deploy your website. After a few minutes, you can preview it at the automatically generated **.workers.dev* URL.
+Cloudflare will now build and deploy your website. After a few minutes, you can preview it at the automatically generated `*.workers.dev` URL.
 
 ### Custom Domain
 

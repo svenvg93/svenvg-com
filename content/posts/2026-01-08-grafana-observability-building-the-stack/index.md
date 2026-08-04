@@ -255,7 +255,7 @@ Connect Grafana to Prometheus and Loki:
 
 Alloy is the telemetry collection agent that replaces Promtail and Grafana Agent. It collects metrics, logs, and traces and forwards them to Prometheus and Loki using a modular config — each collector lives in its own `.alloy` file, and every file in the config directory is loaded automatically.
 
-Install it now — see [Installing on Docker][alloy-docker] or [Installing on Bare Metal][alloy-bare-metal] — then come back here to configure host, container, and log collectors.
+Install it now — see [Installing Grafana Alloy][alloy-install] — then come back here to configure host, container, and log collectors.
 
 With the full stack running — whether Alloy is deployed as a Docker container or a systemd service — it's time to start adding collectors. Alloy's built-in exporters and log collectors gather host metrics, Docker container metrics, system logs, and Docker container logs, all through the single agent instead of separate containers per exporter. Metrics land in Prometheus, logs land in Loki, and both are visualized in Grafana.
 
@@ -558,7 +558,6 @@ You can create your own dashboards or use these as a starting point:
 
 [1]: https://github.com/svenvg93/Grafana-Dashboard/tree/master/systems
 [2]: https://github.com/svenvg93/Grafana-Dashboard/tree/master/docker
-[alloy-docker]: {{< ref "/posts/2026-01-08-grafana-alloy-docker" >}}
-[alloy-bare-metal]: {{< ref "/posts/2026-01-08-grafana-alloy-bare-metal" >}}
+[alloy-install]: {{< ref "/posts/2026-01-08-grafana-alloy-install" >}}
 
 With the stack running, you can extend it further: forward [UniFi syslog events]({{< ref "/posts/2026-01-29-unifi-logs-alloy" >}}) through Alloy into Loki, or move on to [alerting and dashboards as code]({{< ref "/posts/2026-02-12-grafana-observability-alerting-dashboards" >}}) to provision both from version control.

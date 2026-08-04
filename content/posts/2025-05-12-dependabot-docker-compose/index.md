@@ -12,6 +12,11 @@ tags:
 
 Keeping dependencies up to date is essential for security and maintainability—but manually managing updates across multiple `docker-compose.yml` files in a project can be tedious. In this post, I’ll show you a small Bash script I wrote to automate the generation of a `dependabot.yml` file. It scans your repo for all Docker Compose files and configures Dependabot to check them for updates monthly. It’s lightweight, efficient, and ensures you never miss a patch. Let’s dive in. We will automate the updating the `dependabot.yml` with Github Actions.
 
+## Prerequisites
+
+- A GitHub repository containing one or more `docker-compose.yml` files
+- GitHub Actions enabled on the repository (used later in this post)
+
 ## What is dependabot?
 [Dependabot][1] is a built-in GitHub tool that automatically checks your project dependencies for updates. It can open pull requests when new versions of your dependencies are available - helping you stay secure and up to date with minimal effort. For Docker Compose projects, it monitors container image tags and notifies you when a newer version is published.
 
@@ -89,7 +94,7 @@ fi
 # Append the schedule block
 cat >> "$tmpfile" <<'YAML'
     schedule:
-      interval: "daily"
+      interval: "monthly"
 YAML
 
 # Install if changed

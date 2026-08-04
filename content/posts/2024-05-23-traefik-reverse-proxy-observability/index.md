@@ -49,7 +49,7 @@ Add a scrape job to your `prometheus.yml`:
 ```yaml {filename="prometheus.yml"}
 scrape_configs:
   - job_name: 'traefik'
-    scrape_interval: 5s
+    scrape_interval: 15s
     static_configs:
       - targets: ['<traefik-ip>:8080']
 ```
@@ -158,7 +158,10 @@ Open the Alloy Web UI and confirm the `loki.source.file` component is healthy, t
 
 You can use the pre-built [Traefik Dashboard][grafana-dashboard] from GitHub, or explore available metrics from the [official Traefik metrics overview][metrics-overview].
 
+With metrics and logs flowing, the last piece of the series covers routing traffic Traefik can't inspect at Layer 7 — see [TCP and UDP Routing][tcp-udp] for databases, DNS, and other non-HTTP services.
+
 [1]: {{< ref "/posts/2024-05-21-traefik-reverse-proxy-install" >}}
 [stack]: {{< ref "/posts/2026-01-08-grafana-observability-building-the-stack" >}}
 [grafana-dashboard]: https://github.com/svenvg93/Grafana-Dashboard/tree/master/traefik
 [metrics-overview]: https://doc.traefik.io/traefik/observability/metrics/overview/#global-metrics
+[tcp-udp]: {{< ref "/posts/2026-06-15-traefik-reverse-proxy-tcp-udp-routing" >}}

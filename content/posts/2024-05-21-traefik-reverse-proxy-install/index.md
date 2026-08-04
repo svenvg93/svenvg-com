@@ -28,6 +28,11 @@ This is part of a series:
 
 ![Internet traffic reaches Traefik over HTTPS on port 443, which terminates TLS and routes requests to service-a and service-b behind it](traefik-architecture.svg "Internet traffic reaches Traefik over HTTPS on port 443, which terminates TLS and routes requests to service-a and service-b behind it")
 
+## Prerequisites
+
+- A domain name with DNS managed by Cloudflare (for the DNS-01 ACME challenge)
+- A server running Docker (Docker track) or a Linux host (systemd track)
+
 ## Cloudflare API Token
 
 Traefik uses the DNS-01 ACME challenge to obtain certificates. This works by creating a temporary DNS TXT record to prove domain ownership, which means it works even for services not exposed to the internet. This guide uses Cloudflare as the DNS provider — see the [lego docs][lego] for other providers.
@@ -50,7 +55,7 @@ Add the following configuration to the file:
 ```yaml {filename="docker-compose.yml"}
 services:
   traefik:
-    image: traefik:3.6.7
+    image: traefik:3.7.10
     container_name: traefik
     restart: unless-stopped
     security_opt:
@@ -103,6 +108,8 @@ networks:
     name: traefik
 ```
 
+`delaybeforecheck=60s` gives the DNS TXT record time to propagate before Traefik asks Let's Encrypt to verify it — without it, the ACME challenge can fail on a lookup that just hasn't propagated yet.
+
 **Store your credentials** — the API token you created above, along with your domain and Let's Encrypt contact email — in a `.env` file in the same directory as your `docker-compose.yml`:
 
 ```bash
@@ -128,7 +135,7 @@ Access the dashboard at `http://<server-ip>:8080`.
 **Download the binary.** Grab the latest release from GitHub. The `ARCH` variable auto-detects your architecture so the same commands work on both `amd64` and `arm64` machines.
 
 ```bash
-TRAEFIK_VERSION="3.3.4"
+TRAEFIK_VERSION="3.7.10"
 ARCH=$(dpkg --print-architecture 2>/dev/null || uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/')
 wget https://github.com/traefik/traefik/releases/download/v${TRAEFIK_VERSION}/traefik_v${TRAEFIK_VERSION}_linux_${ARCH}.tar.gz
 tar -xzf traefik_v${TRAEFIK_VERSION}_linux_${ARCH}.tar.gz

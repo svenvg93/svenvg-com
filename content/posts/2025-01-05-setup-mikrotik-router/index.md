@@ -14,6 +14,11 @@ MikroTik routers are a popular choice for homelabs thanks to their flexibility a
 
 ![Traffic flows from the WAN through NAT and the firewall into the LAN bridge, where DHCP hands out addresses to connected devices.](router-topology.svg "Traffic flows from the WAN through NAT and the firewall into the LAN bridge, where DHCP hands out addresses to connected devices.")
 
+## Prerequisites
+
+- A MikroTik router running RouterOS
+- A way to connect to it — serial cable or Ethernet, covered below
+
 ## Connect to the router
 
 You'll need a terminal connection to paste the commands below. Two options:
@@ -175,7 +180,7 @@ add action=accept chain=input comment="Allow established,related" connection-sta
 add action=drop chain=input comment="Drop invalid" connection-state=invalid
 add action=drop chain=input comment="Drop SYN+RST" connection-state=new protocol=tcp tcp-flags=syn,rst
 add action=drop chain=input comment="Drop FIN+SYN" connection-state=new protocol=tcp tcp-flags=fin,syn
-add action=accept chain=input comment="Allow WireGuard" dst-port=13231 in-interface-list=WAN protocol=udp
+add action=accept chain=input comment="Allow WireGuard" dst-port=51820 in-interface-list=WAN protocol=udp
 add action=accept chain=input comment="Allow traffic from LAN interface list to the router" in-interface-list=LAN
 add action=drop chain=input comment="Drop all else"
 add action=accept chain=output comment="Allow established,related" connection-state=established,related

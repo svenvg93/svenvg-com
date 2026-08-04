@@ -115,6 +115,8 @@ tcp:
 
 Because there is no way to distinguish between plain-TCP connections on the same port, one entry point per service is the cleanest approach — you cannot multiplex two plain-TCP backends on `:5432`.
 
+Traefik is just forwarding raw bytes here — it isn't terminating TLS or doing any authentication on this path, so a plain-TCP entry point gives the backend's own auth the same exposure it would have if the port were opened directly on the firewall. Only expose entry points like this to the internet for services that are safe to expose directly (e.g. already require strong auth); for anything else, keep the entry point bound to your LAN or a VPN instead.
+
 **Docker labels:**
 
 The entry point still needs to be in the static config, but the router can be wired up via labels on the service container:
@@ -215,5 +217,7 @@ udp:
 ```
 
 A TLS connection to `:443` is matched by SNI and forwarded encrypted to `192.168.1.10:443`. A connection to `:5432` goes straight to the PostgreSQL server on `192.168.1.20`. A UDP packet to `:53` is forwarded to the DNS resolver on `192.168.1.1`.
+
+That covers HTTP, TCP, and UDP — between this and the rest of the series, Traefik is now handling routing, security, and observability for everything running behind it.
 
 [1]: {{< ref "/posts/2024-05-21-traefik-reverse-proxy-install" >}}

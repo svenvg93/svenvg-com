@@ -16,9 +16,16 @@ VyOS provides a free routing platform that competes directly with other commerci
 
 VyOS offers powerful routing, firewalling, making it an excellent choice for homelabbers who want more than what consumer routers can provide. In this post, we’ll walk you through the essential steps to install and configure VyOS, so you can build a more secure and efficient network tailored to your needs.
 
+## Prerequisites
+
+- A downloaded VyOS image — see [download][2]
+- Bare metal hardware or a VM to install it on
+
 ## Installation
 
-**Note**: VyOS rolling release images are built from the latest development code, incorporating the newest changes from maintainers and community contributors. While they receive automated testing to ensure they boot and load configurations, they may include experimental features, bugs, and compatibility issues. As a result, they are not recommended for production use.
+**Note**: VyOS rolling release images are built from the latest development code, incorporating the newest changes from maintainers and community contributors. While they receive automated testing to ensure they boot and load configurations, they may include experimental features, bugs, and compatibility issues.
+
+Use the rolling release for a homelab where you want the newest features and don't mind the occasional rough edge. For a production firewall, use a numbered LTS release instead — VyOS publishes those as a separate, stability-focused track from the free rolling builds. This guide uses the rolling release throughout.
 
 VyOS can run on various different platforms. Both bare metal as well as cloud platforms. In this guide we will use the "bare metal" installation inside of a VM.
 

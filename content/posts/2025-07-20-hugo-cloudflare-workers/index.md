@@ -15,6 +15,11 @@ While Cloudflare hasn’t explicitly stated the future of Pages, it’s clear th
 
 In this post, I’ll walk you through how to set up your Hugo site for deployment using Cloudflare Workers.
 
+## Prerequisites
+
+- An existing Hugo site in a Git repository
+- A Cloudflare account
+
 ## Add Worker Files to Your Repository
 
 To enable deployment, you’ll need to add a `wrangler.jsonc` file. This configuration file tells Cloudflare how to build and serve your site correctly.

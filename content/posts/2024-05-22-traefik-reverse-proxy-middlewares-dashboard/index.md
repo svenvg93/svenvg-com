@@ -36,7 +36,7 @@ This is useful for services that should only be reachable from your home network
 
 ```yaml {filename="docker-compose.yml"}
 labels:
-  - "traefik.http.middlewares.lan-only.ipallowlist.sourcerange=192.168.0.0/16,127.0.0.1/32"
+  - "traefik.http.middlewares.lan-only.ipallowlist.sourcerange=192.168.0.0/24,127.0.0.1/32"
   - "traefik.http.routers.myapp.middlewares=lan-only"
 ```
 
@@ -48,7 +48,7 @@ http:
     lan-only:
       ipAllowList:
         sourceRange:
-          - "192.168.0.0/16"
+          - "192.168.0.0/24"
           - "127.0.0.1/32"
 ```
 

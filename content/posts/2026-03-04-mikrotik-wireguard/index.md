@@ -32,7 +32,7 @@ Create a WireGuard interface on the router. This will automatically generate a p
 
 ```bash {filename="WireGuard Interface"}
 /interface wireguard
-add name=wireguard1 listen-port=13231 mtu=1420 comment="Remote VPN"
+add name=wireguard1 listen-port=51820 mtu=1420 comment="Remote VPN"
 ```
 
 Assign an IP address to the WireGuard interface. This will be the gateway address for the VPN subnet.
@@ -48,7 +48,7 @@ Add firewall rules to allow WireGuard traffic and permit communication between V
 
 ```bash {filename="Firewall Configuration"}
 /ip firewall filter
-add chain=input action=accept protocol=udp dst-port=13231 in-interface-list=WAN comment="Allow WireGuard"
+add chain=input action=accept protocol=udp dst-port=51820 in-interface-list=WAN comment="Allow WireGuard"
 add chain=forward action=accept in-interface=wireguard1 out-interface=bridge1 comment="WG to LAN"
 add chain=forward action=accept in-interface=bridge1 out-interface=wireguard1 comment="LAN to WG"
 ```
@@ -81,10 +81,10 @@ Address = 192.168.100.2/32
 [Peer]
 PublicKey = [ROUTER-PUBLIC-KEY]
 AllowedIPs = 192.168.100.0/24, 192.168.1.0/24
-Endpoint = [YOUR-PUBLIC-IP]:13231
+Endpoint = [YOUR-PUBLIC-IP]:51820
 ```
 
-- **Endpoint**: Your router’s public IP address or hostname and the WireGuard listen port. (e.g., `your-public-ip:13231`)
+- **Endpoint**: Your router’s public IP address or hostname and the WireGuard listen port. (e.g., `your-public-ip:51820`)
 - **AllowedIPs**: Defines which networks are reachable through the VPN tunnel.
 - **PublicKey**: Retrieve it from the router with `/interface wireguard print`. This must be the **router's public key**, not the client's.
 

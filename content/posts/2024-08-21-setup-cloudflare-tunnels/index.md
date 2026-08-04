@@ -14,6 +14,11 @@ In the world of self-hosting, secure and reliable server access is crucial. Clou
 
 ![cloudflared opens an outbound-only connection to the Cloudflare Edge, which handles TLS and DDoS protection before proxying the browser's request in — no inbound ports opened on the home network](tunnel-architecture.svg "cloudflared opens an outbound-only connection to the Cloudflare Edge, which handles TLS and DDoS protection before proxying the browser's request in — no inbound ports opened on the home network")
 
+## Prerequisites
+
+- A Cloudflare account with a domain added and DNS managed by Cloudflare
+- Docker installed on the host that will run `cloudflared`
+
 ## Create Cloudflare Tunnel
 
 ### Docker compose

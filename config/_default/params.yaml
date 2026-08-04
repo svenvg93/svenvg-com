@@ -1,6 +1,6 @@
 # Basic site info with SEO
-description: "Personal blog by Sven van Ginkel, focused on homelab networking, self-hosting, observability, and automation. Sharing practical guides for building reliable, well-monitored infrastructure."
-keywords: ["Self-Hosting", "Homelab", "Networking", "Linux", "Automation", "Infrastructure", "Docker", "Tailscale"]
+description: "Sven van Ginkel — a network engineer sharing homelab guides on networking, self-hosting, observability, and automation, shaped by real ISP experience."
+keywords: ["Self-Hosting", "Homelab", "Networking", "Network Engineering", "WiFi", "DNS", "Linux", "Automation", "Infrastructure", "Docker"]
 defaultAuthor: "Sven van Ginkel"
 language: "en-US"
 shortName: "Sven van Ginkel"  # PWA
@@ -23,8 +23,8 @@ header:
 
 author:
   name: "Sven van Ginkel"
-  title: "Self-Hosting • Homelab • Network Engineering"
-  description: "Sharing practical guides on homelab networking, self-hosting, observability, and automation — building reliable, well-monitored infrastructure."
+  title: "Network Engineer • Homelab • Self-Hosting"
+  description: "I design CPE and provisioning systems for an ISP by day, and break things in my homelab by night — sharing the practical guides that come out of both."
   avatar: "/image.png"
   social:
     - name: "GitHub"

@@ -9,7 +9,7 @@ I’m Sven, a network designer based in the Netherlands. I spend my days on CPE 
 
 You’ll find practical guides and deep dives on:
 
-- **Networking fundamentals** — WiFi 6/7 internals, XGS-PON, encrypted DNS
+- **Networking fundamentals** — WiFi 6/7 internals, XGS-PON, encrypted DNS, IPv6
 - **Networking** — Traefik, MikroTik, VyOS, UniFi
 - **Self-hosting** — Docker, monitoring stacks
 - **Automation** — Dependabot, GitHub Actions, CI/CD

@@ -7,6 +7,7 @@ categories:
   - Networking
 tags:
   - ipv6
+  - security
 ---
 
 In IPv4, a home router gets one public IP address from the ISP and uses NAT to share it across all devices on the LAN. IPv6 is designed differently: there's no NAT, so every device needs a public address. The mechanism that makes this work at scale is **prefix delegation** — the ISP delegates an entire address block to your router, which subdivides it and advertises smaller prefixes to each of its networks. Understanding how the router acquires that block is the foundation for IPv6 routing — and, once every device is directly addressable, for securing the network at the border and the link layer.
@@ -15,7 +16,7 @@ In IPv4, a home router gets one public IP address from the ISP and uses NAT to s
 
 Prefix delegation is negotiated through **DHCPv6-PD** (DHCPv6 Prefix Delegation), defined in [RFC 8415][1]. It uses the same 4-step exchange as DHCPv6 (covered in [SLAAC, Neighbor Discovery & Multicast]({{< ref "/posts/2026-08-11-ipv6-explained-slaac-multicast" >}})), but the router requests a prefix block rather than a single address. The router acts as a DHCPv6-PD client on its WAN interface; the ISP's DHCPv6 server assigns a prefix and its lease time, and the router owns that prefix for the duration of the lease, responsible for routing all traffic destined to it.
 
-![](pd-exchange.svg "DHCPv6-PD exchange — router requests prefix delegation from ISP, receives /48 or /56")
+![DHCPv6-PD exchange — router requests prefix delegation from ISP, receives /48 or /56](pd-exchange.svg "DHCPv6-PD exchange — router requests prefix delegation from ISP, receives /48 or /56")
 
 ## Prefix Sizes
 
@@ -45,7 +46,7 @@ With a `/56` delegation of `2001:db8:abcd:ab00::/56`, the router has 8 bits of s
 2001:db8:abcd:abff::/64  ← subnet 255
 ```
 
-![](pd-subdivision.svg "Prefix subdivision — /56 from ISP split into /64 subnets per VLAN")
+![Prefix subdivision — /56 from ISP split into /64 subnets per VLAN](pd-subdivision.svg "Prefix subdivision — /56 from ISP split into /64 subnets per VLAN")
 
 The router adds a route for the entire delegated prefix pointing to itself on the WAN side, and routes individual `/64` subnets to the correct internal interfaces.
 
@@ -63,7 +64,7 @@ With the router's prefix subdivided across subnets and advertised via RA, every 
 
 IPv6 restores end-to-end connectivity. A device with a GUA (Global Unicast Address) is directly reachable from anywhere on the internet — no port forwarding required. The router forwards packets to the correct internal host based on the destination address.
 
-![](e2e-reachability.svg "End-to-end reachability — IPv6 device reachable directly vs IPv4 behind NAT")
+![End-to-end reachability — IPv6 device reachable directly vs IPv4 behind NAT](e2e-reachability.svg "End-to-end reachability — IPv6 device reachable directly vs IPv4 behind NAT")
 
 ## NAT Is Not Security
 
@@ -97,9 +98,9 @@ A correct IPv6 firewall on a home or homelab router:
 
 IPv6 removes in-path fragmentation entirely. In IPv4, routers can fragment packets that exceed the link MTU and reassemble at the destination. IPv6 **routers never fragment** — only the source node does, using a Fragment extension header. If a router receives an IPv6 packet too large for the next-hop link, it drops it and sends an ICMPv6 **Packet Too Big** message back to the source, which reduces its packet size and retransmits. This mechanism is Path MTU Discovery (PMTUD), and it depends on those messages reaching the sender — blocking ICMPv6 breaks it silently (more on this below).
 
-IPv6 also mandates a minimum link MTU of **1280 bytes** (RFC 8200 §5). Any IPv6-capable link must support at least this size without fragmentation. Hosts that need to send larger packets must either use PMTUD or fragment at the source.
+IPv6 also mandates a minimum link MTU of **1280 bytes** ([RFC 8200][14] §5). Any IPv6-capable link must support at least this size without fragmentation. Hosts that need to send larger packets must either use PMTUD or fragment at the source.
 
-![](ipv6-fragmentation.svg "IPv6 fragmentation — source fragments only, routers send Packet Too Big and drop oversized packets")
+![IPv6 fragmentation — source fragments only, routers send Packet Too Big and drop oversized packets](ipv6-fragmentation.svg "IPv6 fragmentation — source fragments only, routers send Packet Too Big and drop oversized packets")
 
 **ICMPv6:** Must not be blocked globally. Several ICMPv6 types are required for IPv6 to function:
 
@@ -116,7 +117,7 @@ IPv6 also mandates a minimum link MTU of **1280 bytes** (RFC 8200 §5). Any IPv6
 
 Blocking all ICMPv6 is a common mistake that breaks address autoconfiguration, neighbor discovery, and path MTU discovery.
 
-![](firewall-policy.svg "IPv6 firewall policy — default-deny inbound, stateful return traffic, required ICMPv6 permitted")
+![IPv6 firewall policy — default-deny inbound, stateful return traffic, required ICMPv6 permitted](firewall-policy.svg "IPv6 firewall policy — default-deny inbound, stateful return traffic, required ICMPv6 permitted")
 
 ## ULA for Internal Services
 
@@ -139,11 +140,11 @@ RA Guard operates at layer 2, making it transparent to hosts. Configuration is p
 - **Router ports** — uplinks, trunk ports, or ports connected to known routers. RAs are permitted.
 - **Host ports** — access ports connected to end devices. RAs are dropped.
 
-The limitation of basic RA Guard is extension header evasion: an attacker can encapsulate a Router Advertisement inside a fragmented packet, splitting the RA across multiple Fragment extension headers, and a naive implementation that only inspects unfragmented packets won't recognize it. RFC 7113 updates RA Guard to require that implementations either reassemble fragments before applying the policy, or drop all fragmented packets that could contain RA content on host ports.
+The limitation of basic RA Guard is extension header evasion: an attacker can encapsulate a Router Advertisement inside a fragmented packet, splitting the RA across multiple Fragment extension headers, and a naive implementation that only inspects unfragmented packets won't recognize it. [RFC 7113][15] updates RA Guard to require that implementations either reassemble fragments before applying the policy, or drop all fragmented packets that could contain RA content on host ports.
 
 RA Guard does not protect against attacks on the router port itself or from devices connected to unmanaged switches.
 
-![](ra-guard-sequence.svg "RA Guard sequence — rogue RA blocked on host port; legitimate RA from router port forwarded")
+![RA Guard sequence — rogue RA blocked on host port; legitimate RA from router port forwarded](ra-guard-sequence.svg "RA Guard sequence — rogue RA blocked on host port; legitimate RA from router port forwarded")
 
 ## DHCPv6 Guard
 
@@ -170,7 +171,7 @@ With ND Inspection active, the switch validates every Neighbor Advertisement and
 
 The binding table must be populated before it enforces — typically via DHCPv6 snooping on stateful networks, or via explicit seeding on SLAAC networks. SLAAC poses a challenge: addresses are self-generated, so there is no DHCP exchange for the switch to observe. Some implementations learn bindings from DAD Neighbor Solicitations, which are sent from `::` and include the candidate address in the target field. Others require manual binding entry or rely on NDP inspection of Neighbor Advertisements during address assignment.
 
-![](nd-inspection.svg "ND Inspection binding table — valid packet forwarded; spoofed source address or wrong port dropped")
+![ND Inspection binding table — valid packet forwarded; spoofed source address or wrong port dropped](nd-inspection.svg "ND Inspection binding table — valid packet forwarded; spoofed source address or wrong port dropped")
 
 ## SEND
 
@@ -201,7 +202,7 @@ DS-Lite (Dual-Stack Lite, [RFC 6333][6]) is how many ISPs provide IPv4 access ov
 
 Traffic flow: your device sends an IPv4 packet → B4 wraps it in an IPv6 header addressed to the AFTR → tunneled over the ISP's IPv6 network → AFTR unwraps and NATs it to the IPv4 internet.
 
-![](ds-lite-flow.svg "DS-Lite — IPv4 traffic encapsulated in IPv6 and carried to the ISP's AFTR for NAT44")
+![DS-Lite — IPv4 traffic encapsulated in IPv6 and carried to the ISP's AFTR for NAT44](ds-lite-flow.svg "DS-Lite — IPv4 traffic encapsulated in IPv6 and carried to the ISP's AFTR for NAT44")
 
 Your devices still see an IPv4 address on your LAN and still run a private range like `192.168.0.0/24` internally. What changes is that you never get a public IPv4 address — you share one with other customers behind the AFTR. This is carrier-grade NAT (CGN): your public IPv4 is not exclusive, and port forwarding isn't possible unless the ISP provides an exception. IPv6 traffic is unaffected — it flows directly using your delegated prefix, without tunneling.
 
@@ -225,7 +226,7 @@ The problem is that an IPv6-only client asking for `example.com` will only get a
 
 From the client's perspective, it made an IPv6 connection to `example.com` and never needed an IPv4 stack. DNS64 only synthesises records when no native AAAA exists — servers that already have IPv6 are reached directly, without NAT64.
 
-![](nat64-dns64.svg "NAT64 + DNS64 — DNS64 synthesises a AAAA from the A record; NAT64 translates the IPv6 packet to IPv4 at the network edge")
+![NAT64 + DNS64 — DNS64 synthesises a AAAA from the A record; NAT64 translates the IPv6 packet to IPv4 at the network edge](nat64-dns64.svg "NAT64 + DNS64 — DNS64 synthesises a AAAA from the A record; NAT64 translates the IPv6 packet to IPv4 at the network edge")
 
 ### When Each Is Used
 
@@ -248,6 +249,14 @@ None of these are things you configure — the ISP's provisioning determines whi
 
 These mechanisms are invisible to most users. They matter for homelab use when port forwarding does not work as expected on a DS-Lite connection, or when self-hosted services are unreachable from mobile networks that use NAT64.
 
+## Recap
+
+- DHCPv6-PD delegates a whole prefix (typically `/48` or `/56`) to the router, which subdivides it into `/64`s per subnet — there's no NAT, so every device gets a real address.
+- A stateful firewall replaces NAT's incidental filtering with an explicit default-deny inbound policy; required ICMPv6 types (RS/RA/NS/NA, Packet Too Big, and the other error types) must stay permitted or SLAAC and PMTUD break silently.
+- IPv6 fragmentation happens only at the source — routers drop oversized packets and send Packet Too Big instead of fragmenting in-path.
+- The border firewall and the link layer are separate attack surfaces: RA Guard, DHCPv6 Guard, and ND Inspection close rogue-router and spoofing risks that a WAN-facing firewall never sees, because they never cross the border.
+- DS-Lite, PCP, and NAT64/DNS64 bridge the gap while IPv4 infrastructure still exists — DS-Lite and MAP-E/MAP-T carry IPv4 over an IPv6-only access network, NAT64/DNS64 gives IPv6-only clients a path to IPv4-only servers.
+
 That covers addressing, autoconfiguration, and routing — the three pieces needed to actually run IPv6 on a network, end to end, with no NAT in the way.
 
 [1]: https://datatracker.ietf.org/doc/html/rfc8415
@@ -263,3 +272,5 @@ That covers addressing, autoconfiguration, and routing — the three pieces need
 [11]: https://datatracker.ietf.org/doc/html/rfc5969
 [12]: https://datatracker.ietf.org/doc/html/rfc7597
 [13]: https://datatracker.ietf.org/doc/html/rfc7599
+[14]: https://datatracker.ietf.org/doc/html/rfc8200
+[15]: https://datatracker.ietf.org/doc/html/rfc7113

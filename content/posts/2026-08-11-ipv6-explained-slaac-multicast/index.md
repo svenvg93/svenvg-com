@@ -7,6 +7,7 @@ categories:
   - Networking
 tags:
   - ipv6
+  - slaac
 ---
 
 IPv4 needed two separate protocols to get a device onto a network: ARP to resolve layer-2 addresses, and DHCP to assign an IP. IPv6 replaces both with a single unified system built on multicast rather than broadcast — the Neighbor Discovery Protocol (NDP), defined in [RFC 4861][1]. SLAAC (Stateless Address Autoconfiguration) is built on top of NDP, and DHCPv6 extends it where stateful assignment is needed. None of it would work without IPv6's multicast model, which is why this guide covers both together: how a device gets and resolves an address, and the multicast mechanics that make it possible.
@@ -37,7 +38,7 @@ SLAAC proceeds through four steps, all without a server:
 
 4. **Router Advertisement (RA) and address construction** — the router replies with an RA containing the network prefix (e.g. `2001:db8::/64`), its own link-local address as the default gateway, and MTU. The device combines the prefix with its self-generated interface identifier to form a full 128-bit global unicast address, then runs DAD again before using it. No server is needed for any of this — the device can reach the internet as soon as address construction and DAD complete.
 
-![](slaac-flow.svg "SLAAC flow — RS, RA, and address construction from prefix + interface ID")
+![SLAAC flow — RS, RA, and address construction from prefix + interface ID](slaac-flow.svg "SLAAC flow — RS, RA, and address construction from prefix + interface ID")
 
 Routers also send periodic unsolicited RAs — RFC 4861 specifies the interval is chosen randomly between `MinRtrAdvInterval` (default 200 s) and `MaxRtrAdvInterval` (default 600 s) to prevent synchronisation across devices. A device that receives an RA with a lifetime of zero treats that router as no longer available.
 
@@ -66,13 +67,13 @@ This distinction is what lets an ISP rotate a delegated prefix gracefully: the o
 
 ## Router Preference
 
-A link with more than one router sending RAs — two gateways for redundancy, a homelab router plus a separate VPN/failover box — needs a way for hosts to pick between them beyond "whichever RA arrived most recently." **RFC 4191** adds a 2-bit Default Router Preference to the RA: High, Medium (the default when unset), or Low. Hosts prefer routers advertising High over Medium over Low, falling back to a lower-preference router only once higher-preference ones stop sending RAs or advertise a zero lifetime.
+A link with more than one router sending RAs — two gateways for redundancy, a homelab router plus a separate VPN/failover box — needs a way for hosts to pick between them beyond "whichever RA arrived most recently." **[RFC 4191][3]** adds a 2-bit Default Router Preference to the RA: High, Medium (the default when unset), or Low. Hosts prefer routers advertising High over Medium over Low, falling back to a lower-preference router only once higher-preference ones stop sending RAs or advertise a zero lifetime.
 
 This isn't shared-address failover like VRRP or HSRP — each router keeps its own link-local address, and preference only changes which one hosts pick as default gateway, not how quickly a failure is detected. It's most useful for asymmetric setups: preferring a router with a working WAN uplink over a secondary box that only routes to an internal segment.
 
 ## Interface Identifier in SLAAC
 
-SLAAC lets the device choose how it generates the interface ID — Modified EUI-64 (derived from the MAC) or a random privacy-extension address (RFC 8981). The mechanics and trade-offs are covered under [Interface Identifiers]({{< ref "/posts/2026-08-04-ipv6-explained-addressing" >}}#interface-identifiers) in the Addressing guide; the short version is that most operating systems default to random, periodically rotated IDs for outbound connections.
+SLAAC lets the device choose how it generates the interface ID — Modified EUI-64 (derived from the MAC) or a random privacy-extension address ([RFC 8981][4]). The mechanics and trade-offs are covered under [Interface Identifiers]({{< ref "/posts/2026-08-04-ipv6-explained-addressing" >}}#interface-identifiers) in the Addressing guide; the short version is that most operating systems default to random, periodically rotated IDs for outbound connections.
 
 ## DHCPv6
 
@@ -82,7 +83,7 @@ DHCPv6 works similarly to DHCPv4 in structure — client sends a Solicit, server
 
 **Stateless DHCPv6** doesn't assign addresses — the device uses SLAAC for its address, but contacts DHCPv6 to get DNS servers and other options. This is what the O flag triggers, and it's very common: SLAAC handles the address, DHCPv6 handles the configuration.
 
-![](dhcpv6-flow.svg "DHCPv6 exchange — Solicit, Advertise, Request, Reply for stateful address assignment")
+![DHCPv6 exchange — Solicit, Advertise, Request, Reply for stateful address assignment](dhcpv6-flow.svg "DHCPv6 exchange — Solicit, Advertise, Request, Reply for stateful address assignment")
 
 One important difference from DHCPv4: DHCPv6 does not carry the default gateway. That information comes only from Router Advertisements, so even a network using stateful DHCPv6 for addresses still needs the router to send RAs for gateway discovery.
 
@@ -101,7 +102,7 @@ When a device wants to send a packet to another IPv6 address on the same link, i
 
 This is the key improvement over ARP broadcast: instead of every device on the segment processing the request, only the device (or small handful of devices) whose address matches receives it — significantly reducing interrupt load on a large segment.
 
-![](ndp-resolution.svg "NDP address resolution — NS to solicited-node multicast, NA unicast reply")
+![NDP address resolution — NS to solicited-node multicast, NA unicast reply](ndp-resolution.svg "NDP address resolution — NS to solicited-node multicast, NA unicast reply")
 
 Resolved mappings are stored in the **neighbor cache**, equivalent to ARP's cache. Entries move through a small set of states (Reachable, Stale, Probe, and others) that periodically re-verify a neighbor is still alive — a stale entry keeps working for new traffic while the device quietly confirms reachability in the background, and only gets removed if that confirmation fails.
 
@@ -109,7 +110,7 @@ Resolved mappings are stored in the **neighbor cache**, equivalent to ARP's cach
 
 DAD applies to every new unicast address — SLAAC-generated, DHCPv6-assigned, or manually configured — not just the link-local address covered in step 2 above. The brief delay visible between interface up and address availability is DAD in progress. If a conflict is detected (another device replies with a NA), the address is abandoned and not used.
 
-![](ndp-dad.svg "DAD flow — NS with source :: sent to solicited-node multicast, no reply means address is unique")
+![DAD flow — NS with source :: sent to solicited-node multicast, no reply means address is unique](ndp-dad.svg "DAD flow — NS with source :: sent to solicited-node multicast, no reply means address is unique")
 
 ## NDP vs ARP
 
@@ -150,8 +151,8 @@ ff  |flags (4 bits)| scope (4 bits) | group ID (112 bits)
 
 **Flags** — the most significant flag bit is unused (0). The remaining three bits are:
 
-- **R (Rendezvous Point)** — used in PIM-SM multicast routing; the RP address is embedded in the group address (RFC 3956).
-- **P (Prefix-based)** — the group address is derived from a unicast prefix (RFC 3306), allowing locally scoped multicast without a central allocation.
+- **R (Rendezvous Point)** — used in PIM-SM multicast routing; the RP address is embedded in the group address ([RFC 3956][5]).
+- **P (Prefix-based)** — the group address is derived from a unicast prefix (RFC 3306), allowing locally scoped multicast without a central allocation. See [RFC 3306][6].
 - **T (Transient)** — 0 means the address is a well-known, permanently assigned group. 1 means it was dynamically assigned and is not a permanent IANA allocation.
 
 **Scope** — controls how far the multicast packet travels:
@@ -167,7 +168,7 @@ ff  |flags (4 bits)| scope (4 bits) | group ID (112 bits)
 
 Most multicast traffic relevant to NDP and SLAAC uses scope 2 (link-local). These packets never cross a router, regardless of the routing table.
 
-![](multicast-address-structure.svg "IPv6 multicast address structure — ff prefix, flags (R/P/T), scope, and 112-bit group ID")
+![IPv6 multicast address structure — ff prefix, flags (R/P/T), scope, and 112-bit group ID](multicast-address-structure.svg "IPv6 multicast address structure — ff prefix, flags (R/P/T), scope, and 112-bit group ID")
 
 ## Well-Known Multicast Groups
 
@@ -196,9 +197,9 @@ MLD is IPv6's replacement for IGMP (used in IPv4). It runs between hosts and the
 
 ### MLD Versions
 
-**MLDv1** (RFC 2710) — works at the group level. A host joins or leaves a group. The router periodically sends General Queries; hosts respond with Reports for each group they belong to. A leave triggers a Group-Specific Query to check whether any other host on the link still wants the group before the router stops forwarding.
+**MLDv1** ([RFC 2710][7]) — works at the group level. A host joins or leaves a group. The router periodically sends General Queries; hosts respond with Reports for each group they belong to. A leave triggers a Group-Specific Query to check whether any other host on the link still wants the group before the router stops forwarding.
 
-**MLDv2** (RFC 3810) — adds source filtering. A host can specify not just which groups it wants, but also which sources within a group it will accept (INCLUDE mode) or exclude (EXCLUDE mode). This is required for SSM (Source-Specific Multicast) and allows more precise traffic control.
+**MLDv2** ([RFC 3810][8]) — adds source filtering. A host can specify not just which groups it wants, but also which sources within a group it will accept (INCLUDE mode) or exclude (EXCLUDE mode). This is required for SSM (Source-Specific Multicast) and allows more precise traffic control.
 
 Most modern deployments use MLDv2. MLDv1 interoperability is maintained.
 
@@ -223,9 +224,26 @@ For IPv6, MLD snooping has one critical implication: **solicited-node multicast 
 
 Switches that implement MLD snooping without correctly handling the solicited-node range are a common source of intermittent IPv6 connectivity failures on managed networks.
 
-![](mld-snooping.svg "MLD snooping — switch floods multicast without it; with it, only subscribed ports receive traffic")
+![MLD snooping — switch floods multicast without it; with it, only subscribed ports receive traffic](mld-snooping.svg "MLD snooping — switch floods multicast without it; with it, only subscribed ports receive traffic")
 
 Multicast does not automatically cross routers — a group joined on one link isn't reachable from another link without a multicast routing protocol (PIM) coordinating between them. That's a separate concern from everything above, which is all about a single link, and not one most dual-stack deployments need to touch.
 
+## Recap
+
+- NDP (built on ICMPv6) replaces both ARP and DHCP's core role: RS/RA for router and prefix discovery, NS/NA for address resolution and DAD.
+- SLAAC builds a global address with no server: link-local address, DAD, RS/RA, then prefix + interface ID.
+- The RA's M/O flags choose stateful vs. stateless DHCPv6 (or pure SLAAC); PIO's A/L flags control SLAAC eligibility and on-link status per prefix, independently of M/O.
+- DHCPv6 never carries the default gateway — that always comes from RAs, even on fully stateful networks.
+- IPv6 has no broadcast: multicast (`ff00::/8`) does everything broadcast used to, scoped by the 4-bit scope field, with MLD telling routers and switches who's listening.
+- Solicited-node multicast is what makes NDP address resolution efficient instead of interrupting every device on the segment — and switches must forward it correctly or IPv6 connectivity breaks intermittently.
+
+With addresses assigned and resolvable on the link, the next piece is getting traffic in and out of that link — see [Routing, Security & Transition]({{< ref "/posts/2026-08-18-ipv6-explained-routing-security-transition" >}}).
+
 [1]: https://datatracker.ietf.org/doc/html/rfc4861
 [2]: https://datatracker.ietf.org/doc/html/rfc8106
+[3]: https://datatracker.ietf.org/doc/html/rfc4191
+[4]: https://datatracker.ietf.org/doc/html/rfc8981
+[5]: https://datatracker.ietf.org/doc/html/rfc3956
+[6]: https://datatracker.ietf.org/doc/html/rfc3306
+[7]: https://datatracker.ietf.org/doc/html/rfc2710
+[8]: https://datatracker.ietf.org/doc/html/rfc3810

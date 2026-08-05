@@ -7,6 +7,7 @@ categories:
   - Networking
 tags:
   - ipv6
+  - addressing
 ---
 
 IPv4 uses 32-bit addresses. That gives roughly 4.3 billion unique values — a number that made sense in 1981 and became a serious problem by the 2000s. IANA exhausted its IPv4 pool in 2011. IPv6 uses 128-bit addresses, which provides 340 undecillion unique values — enough that address conservation is no longer a design constraint.
@@ -35,7 +36,7 @@ Second, one contiguous run of all-zero groups can be replaced with `::`:
 
 The `::` can only appear once in an address. `::1` is the loopback address (equivalent to `127.0.0.1`). `::` alone is the unspecified address.
 
-![](address-notation.svg "IPv6 address notation — full form, zero-compressed, and double-colon shorthand")
+![IPv6 address notation — full form, zero-compressed, and double-colon shorthand](address-notation.svg "IPv6 address notation — full form, zero-compressed, and double-colon shorthand")
 
 ## Address Types
 
@@ -53,15 +54,15 @@ Not all unicast addresses are the same. IPv6 defines several ranges with differe
 
 **Global Unicast Addresses (GUA)** — publicly routable, globally unique. The `2000::/3` block covers most of this range. These are what devices use to communicate on the internet. ISPs assign GUA prefixes to home and business networks.
 
-**Unique Local Addresses (ULA)** — private, not routed on the internet. The `fc00::/7` range (in practice `fd00::/8`). Equivalent to RFC 1918 space in IPv4 (`192.168.x.x`, `10.x.x.x`). Use these for internal services that should never be reachable from outside.
+**Unique Local Addresses (ULA)** — private, not routed on the internet. The `fc00::/7` range (in practice `fd00::/8`). Equivalent to [RFC 1918][1] space in IPv4 (`192.168.x.x`, `10.x.x.x`). Use these for internal services that should never be reachable from outside.
 
 **Link-Local Addresses** — valid only on a single link (network segment), never forwarded by routers. Always start with `fe80::/10`. Every IPv6 interface has one automatically — they're used for router discovery and Neighbor Discovery Protocol before any other address is configured.
 
-**Documentation prefix** — `2001:db8::/32` is reserved by IANA (RFC 3849) exclusively for documentation and examples. It is never routed on the internet. All address examples throughout this guide use `2001:db8::` addresses for this reason — they cannot be confused with real addresses.
+**Documentation prefix** — `2001:db8::/32` is reserved by IANA ([RFC 3849][2]) exclusively for documentation and examples. It is never routed on the internet. All address examples throughout this guide use `2001:db8::` addresses for this reason — they cannot be confused with real addresses.
 
 Because every interface has its own link-local address, and a host with several interfaces has one per interface, the address alone doesn't say which interface to use it on. Connecting to one requires a **zone ID** (also called scope ID) appended to the address: `fe80::1%eth0` on Linux, `fe80::1%en0` on macOS, `fe80::1%12` (interface index) on Windows. Forgetting the zone ID is the most common reason `ping fe80::...` or `ssh fe80::...` fails outright — the address by itself is ambiguous, not invalid.
 
-![](address-types.svg "IPv6 address types — GUA, ULA, and link-local with their prefixes and scopes")
+![IPv6 address types — GUA, ULA, and link-local with their prefixes and scopes](address-types.svg "IPv6 address types — GUA, ULA, and link-local with their prefixes and scopes")
 
 ## Address Structure
 
@@ -82,15 +83,15 @@ The interface identifier can be generated several ways:
 
 **Modified EUI-64** — derived from the device's MAC address. The 48-bit MAC is split in two, `fffe` is inserted in the middle, and bit 6 of the first byte is flipped (the Universal/Local bit, signalling the address was derived from a MAC) — the bit flip is what makes it "modified" rather than plain IEEE EUI-64. This produces a globally unique 64-bit identifier — but also embeds the MAC, which is a privacy concern.
 
-![](eui64-construction.svg "Modified EUI-64 construction — MAC address split, fffe inserted, U/L bit flipped to produce the 64-bit interface ID")
+![Modified EUI-64 construction — MAC address split, fffe inserted, U/L bit flipped to produce the 64-bit interface ID](eui64-construction.svg "Modified EUI-64 construction — MAC address split, fffe inserted, U/L bit flipped to produce the 64-bit interface ID")
 
-**Privacy extensions (RFC 8981)** — the interface ID is randomly generated and rotated periodically. Most modern operating systems use this by default for outbound connections to prevent tracking across networks.
+**Privacy extensions ([RFC 8981][3])** — the interface ID is randomly generated and rotated periodically. Most modern operating systems use this by default for outbound connections to prevent tracking across networks.
 
 **Manual / static** — set explicitly. Common on routers, servers, and infrastructure where a stable address matters.
 
 ## Source Address Selection
 
-A single interface often ends up with several valid addresses at once — a GUA, sometimes a ULA, and if privacy extensions are enabled, both a stable and a temporary GUA. When a device opens an outbound connection, something has to decide which one to use as the source. **RFC 6724** defines the default algorithm every major OS implements. The rules that matter in practice, in order:
+A single interface often ends up with several valid addresses at once — a GUA, sometimes a ULA, and if privacy extensions are enabled, both a stable and a temporary GUA. When a device opens an outbound connection, something has to decide which one to use as the source. **[RFC 6724][4]** defines the default algorithm every major OS implements. The rules that matter in practice, in order:
 
 - **Scope match first** — a global destination gets a global (GUA) source, a link-local destination gets a link-local source. This is why adding a [ULA]({{< ref "/posts/2026-08-18-ipv6-explained-routing-security-transition" >}}#ula-for-internal-services) to a network doesn't disrupt normal internet-bound traffic: ULA only gets selected as a source when the destination is also ULA.
 - **Prefer temporary over stable, when both exist** — if privacy extensions are enabled, the OS defaults to the temporary address for new outbound connections, which is what actually makes privacy extensions private. A device with only a stable address (typical for a server or router) just uses it — there's nothing to prefer over.
@@ -131,7 +132,7 @@ The IPv6 base header is fixed at **40 bytes**. Unlike IPv4 — which has a varia
 
 There is no header checksum. IPv4 included one because routers modified the TTL field in transit, requiring recomputation at every hop. IPv6's Hop Limit fills the same role but without a checksum — upper-layer protocols carry their own integrity checks, and link layers provide error detection.
 
-![](ipv6-packet-header.svg "IPv6 base header — 40-byte fixed structure with field sizes and purpose")
+![IPv6 base header — 40-byte fixed structure with field sizes and purpose](ipv6-packet-header.svg "IPv6 base header — 40-byte fixed structure with field sizes and purpose")
 
 ## Extension Headers
 
@@ -148,8 +149,23 @@ IPv6 replaces the IPv4 options field with **extension headers** — additional h
 | 60 | Destination Options | A second occurrence: options meant only for the final destination, versus the earlier occurrence, meant for intermediate destinations listed in a Routing header. |
 | 59 | No Next Header | Terminates the chain when there's no upper-layer payload. |
 
-Extension headers must appear in the order listed above, as defined by RFC 8200. In practice, the only ones you'll actually encounter are Fragment (source fragmentation and PMTUD) and ESP/AH (VPN traffic).
+Extension headers must appear in the order listed above, as defined by [RFC 8200][5]. In practice, the only ones you'll actually encounter are Fragment (source fragmentation and PMTUD) and ESP/AH (VPN traffic).
 
-![](extension-headers.svg "Extension header chaining — Next Header field links base header to extension headers to upper-layer protocol")
+![Extension header chaining — Next Header field links base header to extension headers to upper-layer protocol](extension-headers.svg "Extension header chaining — Next Header field links base header to extension headers to upper-layer protocol")
+
+## Recap
+
+- IPv6 addresses are 128 bits, written as eight hex groups with two shortening rules: leading zeros dropped, one run of zero groups collapsed to `::`.
+- Three address types: unicast, multicast, anycast — no broadcast.
+- GUA, ULA, and link-local cover the three scopes that matter day to day; `2001:db8::/32` is reserved for documentation.
+- The standard subnet is `/64`: 64 bits of prefix, 64 bits of interface ID. ISPs typically delegate a `/48` or `/56`, leaving plenty of `/64` subnets to allocate.
+- Interface IDs come from Modified EUI-64, RFC 8981 privacy extensions, or manual assignment — each with different stability and privacy trade-offs.
+- The 40-byte fixed base header pushes all options into a chain of extension headers, removing the need for a header checksum.
 
 With addressing and the packet format covered, the next question is how a device actually gets one of these addresses in the first place — see [SLAAC, Neighbor Discovery & Multicast]({{< ref "/posts/2026-08-11-ipv6-explained-slaac-multicast" >}}).
+
+[1]: https://datatracker.ietf.org/doc/html/rfc1918
+[2]: https://datatracker.ietf.org/doc/html/rfc3849
+[3]: https://datatracker.ietf.org/doc/html/rfc8981
+[4]: https://datatracker.ietf.org/doc/html/rfc6724
+[5]: https://datatracker.ietf.org/doc/html/rfc8200

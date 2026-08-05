@@ -73,7 +73,7 @@ add bridge=bridge1 interface=ether13
 add bridge=bridge1 interface=ether14
 add bridge=bridge1 interface=ether15
 add bridge=bridge1 interface=ether16
-/interface bridge settings set use-ip-firewall=no
+/interface bridge set bridge1 dhcp-snooping=yes
 /interface list
 add name=LAN
 /interface list member

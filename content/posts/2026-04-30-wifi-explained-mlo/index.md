@@ -147,4 +147,4 @@ The areas to watch:
 
 MLO's practical impact will grow as client support matures. The AP side is largely ready — the constraint now is the client device installed base.
 
-For the security side of WiFi 7 and beyond, see [WiFi Explained: WPA3, SAE, PMF, and OWE]({{< ref "/posts/2026-05-07-wifi-explained-wpa3" >}}).
+For the security side of WiFi 7 and beyond, see [WiFi Explained: WPA3, SAE, PMF, and OWE]({{< ref "/posts/2026-05-07-wifi-explained-wpa3" >}}). For how clients move between APs and bands once connected, see [WiFi Explained: Roaming and Client Management]({{< ref "/posts/2026-05-11-wifi-explained-roaming" >}}).

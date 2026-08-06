@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" width="700" height="300" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="700" height="300" fill="url(#bg)" rx="8"/>
+
+  <line x1="0" y1="36" x2="700" y2="36" stroke="#0d1a2a" stroke-width="1"/>
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">ONE LAYER VS TWO LAYERS</text>
+
+  <!-- === Left column: CWMP === -->
+  <rect x="40" y="36" width="290" height="230" fill="#1a0a00" stroke="#f97316" stroke-width="1.5" rx="8"/>
+  <text x="185" y="56" text-anchor="middle" font-size="12" font-weight="700" fill="#f97316">CWMP</text>
+  <text x="185" y="70" text-anchor="middle" font-size="10" fill="#fb923c">one layer: SOAP over HTTP(S)</text>
+
+  <rect x="56" y="82" width="258" height="44" fill="#150a00" stroke="#f97316" stroke-width="1" rx="4"/>
+  <text x="185" y="100" text-anchor="middle" font-size="10" font-weight="600" fill="#fdba74">HTTP POST body IS the message</text>
+  <text x="185" y="115" text-anchor="middle" font-size="9" fill="#f97316">No separate transport envelope</text>
+
+  <text x="185" y="140" text-anchor="middle" font-size="14" fill="#94a3b8">&#x2193;</text>
+
+  <rect x="56" y="146" width="258" height="44" fill="#150a00" stroke="#f97316" stroke-width="1" rx="4"/>
+  <text x="185" y="164" text-anchor="middle" font-size="10" font-weight="600" fill="#fdba74">cwmp:ID header</text>
+  <text x="185" y="179" text-anchor="middle" font-size="9" fill="#f97316">Correlates request with response</text>
+
+  <text x="185" y="204" text-anchor="middle" font-size="14" fill="#94a3b8">&#x2193;</text>
+
+  <rect x="56" y="210" width="258" height="44" fill="#150808" stroke="#7c2d12" stroke-width="1" rx="4"/>
+  <text x="185" y="228" text-anchor="middle" font-size="10" font-weight="600" fill="#fdba74">Body: the RPC itself</text>
+  <text x="185" y="243" text-anchor="middle" font-size="9" fill="#f97316">GetParameterValues, Fault, etc.</text>
+
+  <!-- === Right column: USP === -->
+  <rect x="370" y="36" width="290" height="230" fill="#041008" stroke="#34d399" stroke-width="1.5" rx="8"/>
+  <text x="515" y="56" text-anchor="middle" font-size="12" font-weight="700" fill="#34d399">USP</text>
+  <text x="515" y="70" text-anchor="middle" font-size="10" fill="#86efac">two layers: Record wraps Msg</text>
+
+  <!-- Outer: Record -->
+  <rect x="386" y="82" width="258" height="172" fill="#031006" stroke="#34d399" stroke-width="1.5" rx="6"/>
+  <text x="398" y="98" font-size="10" font-weight="700" fill="#86efac">Record</text>
+  <text x="398" y="112" font-size="8" fill="#34d399">version &#183; to_id &#183; from_id</text>
+  <text x="398" y="124" font-size="8" fill="#34d399">payload_security (PLAINTEXT / TLS12)</text>
+
+  <!-- Inner: Msg -->
+  <rect x="400" y="136" width="230" height="104" fill="#02170e" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
+  <text x="412" y="152" font-size="10" font-weight="700" fill="#bae6fd">Msg</text>
+  <text x="412" y="168" font-size="8" fill="#38bdf8">header: msg_id, msg_type</text>
+  <text x="412" y="182" font-size="8" fill="#38bdf8">body: request / response / error</text>
+  <text x="412" y="202" font-size="8" fill="#94a3b8">(the payload carried inside</text>
+  <text x="412" y="214" font-size="8" fill="#94a3b8">the Record above)</text>
+
+  <text x="350" y="284" text-anchor="middle" font-size="9" fill="#94a3b8">USP separates routing (Record) from the operation (Msg) because one Agent may face several Controllers</text>
+</svg>

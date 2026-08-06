@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 250" width="760" height="250"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <marker id="arr-muted" markerWidth="7" markerHeight="6" refX="6" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 7,3 0,6" fill="#94a3b8"/>
+    </marker>
+  </defs>
+
+  <rect width="760" height="250" fill="url(#bg)" rx="8"/>
+
+  <text x="380" y="24" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">DIAGNOSTICS STATE MACHINE</text>
+
+  <!-- Step 1: ACS SetParameterValues -->
+  <rect x="18" y="60" width="130" height="90" fill="#1a0000" stroke="#ef4444" stroke-width="1.5" rx="6"/>
+  <text x="83" y="82" text-anchor="middle" font-size="9" font-weight="700" fill="#fca5a5" opacity="0.8">ACS</text>
+  <text x="83" y="100" text-anchor="middle" font-size="10" font-weight="700" fill="#fca5a5">SetParameterValues</text>
+  <text x="83" y="120" text-anchor="middle" font-size="8" fill="#ef4444">DiagnosticsState</text>
+  <text x="83" y="131" text-anchor="middle" font-size="8" fill="#ef4444">= Requested + inputs</text>
+
+  <line x1="148" y1="105" x2="166" y2="105" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#arr-muted)"/>
+
+  <!-- Step 2: CPE runs test -->
+  <rect x="168" y="60" width="130" height="90" fill="#041008" stroke="#34d399" stroke-width="1.5" rx="6"/>
+  <text x="233" y="82" text-anchor="middle" font-size="9" font-weight="700" fill="#86efac" opacity="0.8">CPE</text>
+  <text x="233" y="100" text-anchor="middle" font-size="10" font-weight="700" fill="#86efac">Runs Test</text>
+  <text x="233" y="120" text-anchor="middle" font-size="8" fill="#34d399">Asynchronous &#8212;</text>
+  <text x="233" y="131" text-anchor="middle" font-size="8" fill="#34d399">independent of the session</text>
+
+  <line x1="298" y1="105" x2="316" y2="105" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#arr-muted)"/>
+
+  <!-- Step 3: CPE finishes -->
+  <rect x="318" y="60" width="130" height="90" fill="#041008" stroke="#34d399" stroke-width="1.5" rx="6"/>
+  <text x="383" y="82" text-anchor="middle" font-size="9" font-weight="700" fill="#86efac" opacity="0.8">CPE</text>
+  <text x="383" y="100" text-anchor="middle" font-size="10" font-weight="700" fill="#86efac">Test Finishes</text>
+  <text x="383" y="120" text-anchor="middle" font-size="8" fill="#34d399">DiagnosticsState =</text>
+  <text x="383" y="131" text-anchor="middle" font-size="8" fill="#34d399">Complete or Error_*</text>
+
+  <line x1="448" y1="105" x2="466" y2="105" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#arr-muted)"/>
+
+  <!-- Step 4: CPE Informs -->
+  <rect x="468" y="60" width="130" height="90" fill="#041008" stroke="#34d399" stroke-width="1.5" rx="6"/>
+  <text x="533" y="82" text-anchor="middle" font-size="9" font-weight="700" fill="#86efac" opacity="0.8">CPE</text>
+  <text x="533" y="100" text-anchor="middle" font-size="10" font-weight="700" fill="#86efac">Inform</text>
+  <text x="533" y="120" text-anchor="middle" font-size="8" fill="#34d399">Event 8:</text>
+  <text x="533" y="131" text-anchor="middle" font-size="8" fill="#34d399">DIAGNOSTICS COMPLETE</text>
+
+  <line x1="598" y1="105" x2="616" y2="105" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#arr-muted)"/>
+
+  <!-- Step 5: ACS reads results -->
+  <rect x="618" y="60" width="124" height="90" fill="#1a0000" stroke="#ef4444" stroke-width="1.5" rx="6"/>
+  <text x="680" y="82" text-anchor="middle" font-size="9" font-weight="700" fill="#fca5a5" opacity="0.8">ACS</text>
+  <text x="680" y="100" text-anchor="middle" font-size="10" font-weight="700" fill="#fca5a5">GetParameterValues</text>
+  <text x="680" y="120" text-anchor="middle" font-size="8" fill="#ef4444">Reads the result</text>
+  <text x="680" y="131" text-anchor="middle" font-size="8" fill="#ef4444">parameters</text>
+
+  <!-- Final banner -->
+  <rect x="280" y="190" width="200" height="42" fill="none" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
+  <text x="380" y="210" text-anchor="middle" font-size="12" font-weight="700" fill="#bae6fd">Result Available</text>
+  <text x="380" y="224" text-anchor="middle" font-size="9" fill="#38bdf8" opacity="0.8">no polling required to get here</text>
+
+  <path d="M 680,150 C 680,195 500,195 482,205" fill="none" stroke="#38bdf8" stroke-width="1.2" stroke-dasharray="3,3" marker-end="url(#arr-muted)"/>
+</svg>

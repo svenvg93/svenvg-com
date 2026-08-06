@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 340" width="700" height="340"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <linearGradient id="g1" x1="108" y1="100" x2="592" y2="100" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#ef4444"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="592" y1="140" x2="108" y2="140" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+    <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#34d399"/>
+    </marker>
+    <marker id="arr-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#ef4444"/>
+    </marker>
+  </defs>
+
+  <rect width="700" height="340" fill="url(#bg)" rx="8"/>
+
+  <!-- Agent (green zone) -->
+  <rect x="40" y="25" width="120" height="44" fill="none" stroke="#34d399" stroke-width="1.5" rx="5"/>
+  <text x="100" y="52" text-anchor="middle" font-size="13" font-weight="700" fill="#86efac">Agent</text>
+
+  <!-- DHCP Server (red zone) -->
+  <rect x="530" y="25" width="130" height="44" fill="none" stroke="#ef4444" stroke-width="1.5" rx="5"/>
+  <text x="595" y="48" text-anchor="middle" font-size="12" font-weight="700" fill="#fca5a5">DHCP</text>
+  <text x="595" y="62" text-anchor="middle" font-size="12" font-weight="700" fill="#fca5a5">Server</text>
+
+  <!-- Lifelines -->
+  <line x1="100" y1="69" x2="100" y2="155" stroke="#34d399" stroke-width="1" stroke-dasharray="4,4" opacity="0.4"/>
+  <line x1="595" y1="69" x2="595" y2="155" stroke="#ef4444" stroke-width="1" stroke-dasharray="4,4" opacity="0.4"/>
+
+  <!-- Message 1 -->
+  <line x1="108" y1="100" x2="587" y2="100" stroke="url(#g1)" stroke-width="1.5" marker-end="url(#arr-red)"/>
+  <text x="350" y="92" text-anchor="middle" font-size="9" fill="#86efac">1 &#183; Option 124: Vendor Class (BBF EN 3561, &quot;usp&quot;)</text>
+
+  <!-- Message 2 -->
+  <line x1="587" y1="140" x2="108" y2="140" stroke="url(#g2)" stroke-width="1.5" marker-end="url(#arr-green)"/>
+  <text x="350" y="132" text-anchor="middle" font-size="9" fill="#fca5a5">2 &#183; Option 125: Vendor-Specific Info (Controller details)</text>
+
+  <!-- Breakout: encapsulated sub-options -->
+  <rect x="100" y="175" width="500" height="140" fill="none" stroke="#38bdf8" stroke-width="1.5" rx="6"/>
+  <text x="350" y="195" text-anchor="middle" font-size="10" font-weight="700" fill="#bae6fd">Encapsulated in Option 125</text>
+
+  <line x1="120" y1="205" x2="680" y2="205" stroke="#0d1a2a" stroke-width="1"/>
+
+  <text x="120" y="222" font-size="9" fill="#94a3b8">25</text>
+  <text x="150" y="222" font-size="9" fill="#bae6fd">Controller URL / FQDN</text>
+
+  <text x="120" y="242" font-size="9" fill="#94a3b8">26</text>
+  <text x="150" y="242" font-size="9" fill="#bae6fd">Provisioning Code</text>
+
+  <text x="120" y="262" font-size="9" fill="#94a3b8">27</text>
+  <text x="150" y="262" font-size="9" fill="#bae6fd">Retry Minimum Wait Interval</text>
+
+  <text x="120" y="282" font-size="9" fill="#94a3b8">28</text>
+  <text x="150" y="282" font-size="9" fill="#bae6fd">Retry Interval Multiplier</text>
+
+  <text x="120" y="302" font-size="9" fill="#94a3b8">29</text>
+  <text x="150" y="302" font-size="9" fill="#bae6fd">Controller Endpoint ID</text>
+
+  <text x="450" y="222" font-size="8" fill="#38bdf8" opacity="0.85">All five decoded as</text>
+  <text x="450" y="234" font-size="8" fill="#38bdf8" opacity="0.85">strings, including the</text>
+  <text x="450" y="246" font-size="8" fill="#38bdf8" opacity="0.85">numeric-looking ones</text>
+</svg>

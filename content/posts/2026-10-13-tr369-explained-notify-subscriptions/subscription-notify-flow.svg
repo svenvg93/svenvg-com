@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 330" width="700" height="330"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <linearGradient id="g1" x1="592" y1="95" x2="108" y2="95" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="108" y1="130" x2="592" y2="130" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#ef4444"/>
+    </linearGradient>
+    <linearGradient id="g3" x1="108" y1="215" x2="592" y2="215" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#ef4444"/>
+    </linearGradient>
+    <linearGradient id="g4" x1="592" y1="250" x2="108" y2="250" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+    <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#34d399"/>
+    </marker>
+    <marker id="arr-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#ef4444"/>
+    </marker>
+  </defs>
+
+  <rect width="700" height="330" fill="url(#bg)" rx="8"/>
+
+  <!-- Agent (green) -->
+  <rect x="40" y="25" width="120" height="44" fill="none" stroke="#34d399" stroke-width="1.5" rx="5"/>
+  <text x="100" y="52" text-anchor="middle" font-size="13" font-weight="700" fill="#86efac">Agent</text>
+
+  <!-- Controller (red) -->
+  <rect x="540" y="25" width="120" height="44" fill="none" stroke="#ef4444" stroke-width="1.5" rx="5"/>
+  <text x="600" y="52" text-anchor="middle" font-size="13" font-weight="700" fill="#fca5a5">Controller</text>
+
+  <!-- Lifelines -->
+  <line x1="100" y1="69" x2="100" y2="300" stroke="#34d399" stroke-width="1" stroke-dasharray="4,4" opacity="0.4"/>
+  <line x1="600" y1="69" x2="600" y2="300" stroke="#ef4444" stroke-width="1" stroke-dasharray="4,4" opacity="0.4"/>
+
+  <!-- Step 1: Add (Controller -> Agent) -->
+  <line x1="592" y1="95" x2="108" y2="95" stroke="url(#g1)" stroke-width="1.5" marker-end="url(#arr-green)"/>
+  <text x="350" y="87" text-anchor="middle" font-size="9" fill="#fca5a5">1 &#183; Add: Subscription (NotifType=ValueChange)</text>
+
+  <!-- Step 2: AddResp (Agent -> Controller) -->
+  <line x1="108" y1="130" x2="592" y2="130" stroke="url(#g2)" stroke-width="1.5" marker-end="url(#arr-red)"/>
+  <text x="350" y="122" text-anchor="middle" font-size="9" fill="#86efac">2 &#183; AddResp: subscription created</text>
+
+  <!-- Divider: time passes -->
+  <line x1="60" y1="163" x2="640" y2="163" stroke="#94a3b8" stroke-width="1" stroke-dasharray="2,5" opacity="0.5"/>
+  <text x="350" y="180" text-anchor="middle" font-size="9" font-style="italic" fill="#94a3b8">time passes &#8212; the watched parameter changes</text>
+
+  <!-- Step 3: Notify (Agent -> Controller) -->
+  <line x1="108" y1="215" x2="592" y2="215" stroke="url(#g3)" stroke-width="1.5" marker-end="url(#arr-red)"/>
+  <text x="350" y="207" text-anchor="middle" font-size="9" fill="#86efac">3 &#183; Notify: value_change</text>
+
+  <!-- Step 4: NotifyResponse (Controller -> Agent) -->
+  <line x1="592" y1="250" x2="108" y2="250" stroke="url(#g4)" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-green)"/>
+  <text x="350" y="242" text-anchor="middle" font-size="9" fill="#fca5a5">4 &#183; NotifyResponse (since send_resp: true)</text>
+
+  <!-- Final note -->
+  <rect x="230" y="275" width="240" height="40" fill="none" stroke="#38bdf8" stroke-width="1.5" rx="5"/>
+  <text x="350" y="294" text-anchor="middle" font-size="11" font-weight="700" fill="#bae6fd">Subscription stays active</text>
+  <text x="350" y="308" text-anchor="middle" font-size="8" fill="#38bdf8" opacity="0.8">steps 3&#8211;4 repeat on every change</text>
+</svg>

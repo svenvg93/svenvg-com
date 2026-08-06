@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" width="700" height="300" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="700" height="300" fill="url(#bg)" rx="8"/>
+
+  <line x1="0" y1="36" x2="700" y2="36" stroke="#0d1a2a" stroke-width="1"/>
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">REACHING A DEVICE BEHIND CGNAT</text>
+
+  <!-- === Left column: CWMP Connection Request/STUN === -->
+  <rect x="40" y="36" width="290" height="230" fill="#1a0a00" stroke="#f97316" stroke-width="1.5" rx="8"/>
+  <text x="185" y="56" text-anchor="middle" font-size="12" font-weight="700" fill="#f97316">CWMP</text>
+  <text x="185" y="70" text-anchor="middle" font-size="10" fill="#fb923c">Connection Request + STUN</text>
+
+  <rect x="56" y="80" width="258" height="34" fill="#150a00" stroke="#f97316" stroke-width="1" rx="4"/>
+  <text x="185" y="96" text-anchor="middle" font-size="10" font-weight="600" fill="#fdba74">No persistent connection</text>
+  <text x="185" y="108" text-anchor="middle" font-size="9" fill="#f97316">CPE only connects during a session</text>
+
+  <text x="185" y="128" text-anchor="middle" font-size="14" fill="#94a3b8">&#x2193;</text>
+
+  <rect x="56" y="134" width="258" height="46" fill="#150a00" stroke="#f97316" stroke-width="1" rx="4"/>
+  <text x="185" y="150" text-anchor="middle" font-size="10" font-weight="600" fill="#fdba74">ACS needs a UDP/STUN detour</text>
+  <text x="185" y="164" text-anchor="middle" font-size="9" fill="#f97316">Learns the NAT-mapped address via</text>
+  <text x="185" y="174" text-anchor="middle" font-size="9" fill="#f97316">a STUN server first</text>
+
+  <text x="185" y="200" text-anchor="middle" font-size="14" fill="#94a3b8">&#x2193;</text>
+
+  <rect x="56" y="206" width="258" height="34" fill="#150808" stroke="#7c2d12" stroke-width="1" rx="4"/>
+  <text x="185" y="222" text-anchor="middle" font-size="10" font-weight="600" fill="#fdba74">Extra round trip, every time</text>
+  <text x="185" y="234" text-anchor="middle" font-size="9" fill="#f97316">Before the session even starts</text>
+
+  <!-- === Right column: USP over MQTT === -->
+  <rect x="370" y="36" width="290" height="230" fill="#041008" stroke="#34d399" stroke-width="1.5" rx="8"/>
+  <text x="515" y="56" text-anchor="middle" font-size="12" font-weight="700" fill="#34d399">USP over MQTT</text>
+  <text x="515" y="70" text-anchor="middle" font-size="10" fill="#86efac">persistent pub/sub</text>
+
+  <rect x="386" y="80" width="258" height="34" fill="#031006" stroke="#34d399" stroke-width="1" rx="4"/>
+  <text x="515" y="96" text-anchor="middle" font-size="10" font-weight="600" fill="#86efac">Agent holds an open connection</text>
+  <text x="515" y="108" text-anchor="middle" font-size="9" fill="#34d399">Long-lived link out to an MQTT broker</text>
+
+  <text x="515" y="128" text-anchor="middle" font-size="14" fill="#94a3b8">&#x2193;</text>
+
+  <rect x="386" y="134" width="258" height="46" fill="#031006" stroke="#34d399" stroke-width="1" rx="4"/>
+  <text x="515" y="150" text-anchor="middle" font-size="10" font-weight="600" fill="#86efac">Controller just publishes</text>
+  <text x="515" y="164" text-anchor="middle" font-size="9" fill="#34d399">Broker delivers over the connection</text>
+  <text x="515" y="174" text-anchor="middle" font-size="9" fill="#34d399">the Agent already has open</text>
+
+  <text x="515" y="200" text-anchor="middle" font-size="14" fill="#94a3b8">&#x2193;</text>
+
+  <rect x="386" y="206" width="258" height="34" fill="#041a10" stroke="#166534" stroke-width="1" rx="4"/>
+  <text x="515" y="222" text-anchor="middle" font-size="10" font-weight="600" fill="#86efac">Nothing inbound to reach</text>
+  <text x="515" y="234" text-anchor="middle" font-size="9" fill="#34d399">CGNAT never enters the picture</text>
+
+  <text x="350" y="286" text-anchor="middle" font-size="9" fill="#94a3b8">The Agent is always reachable because it never stopped being connected</text>
+</svg>

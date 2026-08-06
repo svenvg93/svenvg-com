@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" width="700" height="300" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="700" height="300" fill="url(#bg)" rx="8"/>
+
+  <line x1="0" y1="36" x2="700" y2="36" stroke="#0d1a2a" stroke-width="1"/>
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">PARAMETER NOTIFICATION &#8212; PASSIVE VS ACTIVE</text>
+
+  <!-- === Left column: Passive (level 1) === -->
+  <rect x="40" y="36" width="290" height="230" fill="#0a1420" stroke="#38bdf8" stroke-width="1.5" rx="8"/>
+  <text x="185" y="56" text-anchor="middle" font-size="12" font-weight="700" fill="#38bdf8">Passive &#8212; Level 1</text>
+  <text x="185" y="70" text-anchor="middle" font-size="10" fill="#7dd3fc">reported, not urgent</text>
+
+  <rect x="56" y="80" width="258" height="34" fill="#08101c" stroke="#38bdf8" stroke-width="1" rx="4"/>
+  <text x="185" y="96" text-anchor="middle" font-size="10" font-weight="600" fill="#bae6fd">Parameter changes locally</text>
+  <text x="185" y="108" text-anchor="middle" font-size="9" fill="#38bdf8">e.g. a subscriber edits a setting directly</text>
+
+  <text x="185" y="128" text-anchor="middle" font-size="14" fill="#94a3b8">&#x2193;</text>
+
+  <rect x="56" y="134" width="258" height="34" fill="#08101c" stroke="#38bdf8" stroke-width="1" rx="4"/>
+  <text x="185" y="150" text-anchor="middle" font-size="10" font-weight="600" fill="#bae6fd">Change is queued</text>
+  <text x="185" y="162" text-anchor="middle" font-size="9" fill="#38bdf8">No new session opened for it</text>
+
+  <text x="185" y="182" text-anchor="middle" font-size="14" fill="#94a3b8">&#x2193;</text>
+
+  <rect x="56" y="188" width="258" height="42" fill="#0a1420" stroke="#0369a1" stroke-width="1" rx="4"/>
+  <text x="185" y="204" text-anchor="middle" font-size="10" font-weight="600" fill="#bae6fd">Rides the next Inform</text>
+  <text x="185" y="218" text-anchor="middle" font-size="9" fill="#38bdf8">Reported whenever one happens anyway</text>
+
+  <!-- === Right column: Active (level 2) === -->
+  <rect x="370" y="36" width="290" height="230" fill="#1a0a00" stroke="#f97316" stroke-width="1.5" rx="8"/>
+  <text x="515" y="56" text-anchor="middle" font-size="12" font-weight="700" fill="#f97316">Active &#8212; Level 2</text>
+  <text x="515" y="70" text-anchor="middle" font-size="10" fill="#fb923c">urgent, wakes a session</text>
+
+  <rect x="386" y="80" width="258" height="34" fill="#150a00" stroke="#f97316" stroke-width="1" rx="4"/>
+  <text x="515" y="96" text-anchor="middle" font-size="10" font-weight="600" fill="#fdba74">Parameter changes locally</text>
+  <text x="515" y="108" text-anchor="middle" font-size="9" fill="#f97316">e.g. WAN IP address renews</text>
+
+  <text x="515" y="128" text-anchor="middle" font-size="14" fill="#94a3b8">&#x2193;</text>
+
+  <rect x="386" y="134" width="258" height="34" fill="#150a00" stroke="#f97316" stroke-width="1" rx="4"/>
+  <text x="515" y="150" text-anchor="middle" font-size="10" font-weight="600" fill="#fdba74">CPE opens a session now</text>
+  <text x="515" y="162" text-anchor="middle" font-size="9" fill="#f97316">Doesn't wait for the schedule</text>
+
+  <text x="515" y="182" text-anchor="middle" font-size="14" fill="#94a3b8">&#x2193;</text>
+
+  <rect x="386" y="188" width="258" height="42" fill="#1a0a00" stroke="#7c2d12" stroke-width="1" rx="4"/>
+  <text x="515" y="204" text-anchor="middle" font-size="10" font-weight="600" fill="#fdba74">Inform sent immediately</text>
+  <text x="515" y="218" text-anchor="middle" font-size="9" fill="#f97316">Event code 4 VALUE CHANGE</text>
+
+  <text x="350" y="278" text-anchor="middle" font-size="9" fill="#94a3b8">Set per-parameter with SetParameterAttributes &#8212; active is reserved for things the ACS can't afford to learn about late</text>
+</svg>

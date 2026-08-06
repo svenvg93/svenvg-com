@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" width="700" height="300" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="700" height="300" fill="url(#bg)" rx="8"/>
+
+  <line x1="0" y1="36" x2="700" y2="36" stroke="#0d1a2a" stroke-width="1"/>
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">FAULT RESPONSES &#8212; GPV VS SPV</text>
+
+  <!-- === Left column: GetParameterValues === -->
+  <rect x="40" y="36" width="290" height="230" fill="#0a1420" stroke="#38bdf8" stroke-width="1.5" rx="8"/>
+  <text x="185" y="56" text-anchor="middle" font-size="12" font-weight="700" fill="#38bdf8">GetParameterValues</text>
+  <text x="185" y="70" text-anchor="middle" font-size="10" fill="#7dd3fc">single top-level fault</text>
+
+  <rect x="56" y="80" width="258" height="34" fill="#08101c" stroke="#38bdf8" stroke-width="1" rx="4"/>
+  <text x="185" y="96" text-anchor="middle" font-size="10" font-weight="600" fill="#bae6fd">Request: 3 parameter paths</text>
+  <text x="185" y="108" text-anchor="middle" font-size="9" fill="#38bdf8">One of them doesn't exist on this CPE</text>
+
+  <text x="185" y="128" text-anchor="middle" font-size="14" fill="#94a3b8">&#x2193;</text>
+
+  <rect x="56" y="134" width="258" height="46" fill="#08101c" stroke="#38bdf8" stroke-width="1" rx="4"/>
+  <text x="185" y="150" text-anchor="middle" font-size="10" font-weight="600" fill="#bae6fd">One Fault returned</text>
+  <text x="185" y="163" text-anchor="middle" font-size="9" fill="#38bdf8">Code 9005 &#8212; Invalid parameter name</text>
+  <text x="185" y="174" text-anchor="middle" font-size="9" fill="#38bdf8">covers the whole call</text>
+
+  <text x="185" y="200" text-anchor="middle" font-size="14" fill="#94a3b8">&#x2193;</text>
+
+  <rect x="56" y="206" width="258" height="34" fill="#0a1420" stroke="#0369a1" stroke-width="1" rx="4"/>
+  <text x="185" y="222" text-anchor="middle" font-size="10" font-weight="600" fill="#bae6fd">No values returned</text>
+  <text x="185" y="234" text-anchor="middle" font-size="9" fill="#38bdf8">ACS can't tell which path was bad</text>
+
+  <!-- === Right column: SetParameterValues === -->
+  <rect x="370" y="36" width="290" height="230" fill="#1a0a00" stroke="#f97316" stroke-width="1.5" rx="8"/>
+  <text x="515" y="56" text-anchor="middle" font-size="12" font-weight="700" fill="#f97316">SetParameterValues</text>
+  <text x="515" y="70" text-anchor="middle" font-size="10" fill="#fb923c">per-parameter fault list</text>
+
+  <rect x="386" y="80" width="258" height="34" fill="#150a00" stroke="#f97316" stroke-width="1" rx="4"/>
+  <text x="515" y="96" text-anchor="middle" font-size="10" font-weight="600" fill="#fdba74">Request: 3 path/value pairs</text>
+  <text x="515" y="108" text-anchor="middle" font-size="9" fill="#f97316">One value is out of range</text>
+
+  <text x="515" y="128" text-anchor="middle" font-size="14" fill="#94a3b8">&#x2193;</text>
+
+  <rect x="386" y="134" width="258" height="46" fill="#150a00" stroke="#f97316" stroke-width="1" rx="4"/>
+  <text x="515" y="150" text-anchor="middle" font-size="10" font-weight="600" fill="#fdba74">SetParameterValuesFault list</text>
+  <text x="515" y="163" text-anchor="middle" font-size="9" fill="#f97316">Names the exact path, code 9007 &#8212;</text>
+  <text x="515" y="174" text-anchor="middle" font-size="9" fill="#f97316">Invalid parameter value</text>
+
+  <text x="515" y="200" text-anchor="middle" font-size="14" fill="#94a3b8">&#x2193;</text>
+
+  <rect x="386" y="206" width="258" height="34" fill="#1a0a00" stroke="#7c2d12" stroke-width="1" rx="4"/>
+  <text x="515" y="222" text-anchor="middle" font-size="10" font-weight="600" fill="#fdba74">All 3 rejected</text>
+  <text x="515" y="234" text-anchor="middle" font-size="9" fill="#f97316">Atomic &#8212; but the ACS knows which one to fix</text>
+
+  <text x="350" y="278" text-anchor="middle" font-size="9" fill="#94a3b8">SPV's atomicity means one bad value blocks the whole batch &#8212; but the fault always says exactly which one</text>
+</svg>

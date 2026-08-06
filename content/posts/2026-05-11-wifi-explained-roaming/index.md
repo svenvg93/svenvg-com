@@ -12,6 +12,8 @@ tags:
 
 Move far enough from your router and your device will eventually roam to a closer AP. The question is when — and with multiple APs in a home or office, the answer is often "much later than it should." This is the sticky client problem. Solving it requires understanding both how clients decide when to roam and how the AP can guide them — including band steering, which is the bluntest tool in this kit.
 
+This assumes transmit power, channel, and channel width are already reasonably tuned — see [WiFi Explained: Transmit Power, Channel Selection & Width]({{< ref "/posts/2026-05-09-wifi-explained-channels" >}}) if you haven't set those yet.
+
 ## Who Decides When to Roam
 
 The client does. Always. The AP cannot force a client off its radio — it can only suggest (more on that later). The client monitors its current signal, decides when it's degraded enough to justify roaming, scans for alternatives, authenticates with the new AP, and reassociates.

@@ -10,6 +10,9 @@ tags:
   - cwmp
   - usp
   - isp
+series:
+  - "TR-369 Explained"
+series_order: 4
 ---
 
 The [RPCs and data model post]({{< ref "/posts/2026-09-01-tr069-explained-rpcs-data-model" >}}) walked through CWMP's SOAP envelope and its RPC set. The [USP overview post]({{< ref "/posts/2026-09-15-tr369-explained-what-changes" >}}) mentioned in passing that USP collapses those RPCs into a smaller, more uniform set of messages. This post puts them side by side — the actual message shapes, not just the naming change.

@@ -10,6 +10,9 @@ tags:
   - systemd
   - alloy
   - grafana
+series:
+  - "Grafana Observability"
+series_order: 1
 ---
 
 ## What is Grafana Alloy

@@ -8,6 +8,9 @@ categories:
 tags:
   - ipv6
   - security
+series:
+  - "IPv6 Explained"
+series_order: 3
 ---
 
 In IPv4, a home router gets one public IP address from the ISP and uses NAT to share it across all devices on the LAN. IPv6 is designed differently: there's no NAT, so every device needs a public address. The mechanism that makes this work at scale is **prefix delegation** — the ISP delegates an entire address block to your router, which subdivides it and advertises smaller prefixes to each of its networks. Understanding how the router acquires that block is the foundation for IPv6 routing — and, once every device is directly addressable, for securing the network at the border and the link layer.

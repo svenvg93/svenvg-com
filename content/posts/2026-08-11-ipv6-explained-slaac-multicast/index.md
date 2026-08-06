@@ -8,6 +8,9 @@ categories:
 tags:
   - ipv6
   - slaac
+series:
+  - "IPv6 Explained"
+series_order: 2
 ---
 
 IPv4 needed two separate protocols to get a device onto a network: ARP to resolve layer-2 addresses, and DHCP to assign an IP. IPv6 replaces both with a single unified system built on multicast rather than broadcast — the Neighbor Discovery Protocol (NDP), defined in [RFC 4861][1]. SLAAC (Stateless Address Autoconfiguration) is built on top of NDP, and DHCPv6 extends it where stateful assignment is needed. None of it would work without IPv6's multicast model, which is why this guide covers both together: how a device gets and resolves an address, and the multicast mechanics that make it possible.

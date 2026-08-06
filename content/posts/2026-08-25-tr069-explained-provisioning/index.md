@@ -9,6 +9,9 @@ tags:
   - tr-069
   - cwmp
   - isp
+series:
+  - "TR-069 Explained"
+series_order: 1
 ---
 
 Every ISP-supplied router, ONT, or modem gets managed remotely without a technician ever logging into it. TR-069[1] — formally CWMP, the CPE WAN Management Protocol, defined by the Broadband Forum — is the standard behind most of that: it's how a CPE finds the operator's management server, registers itself, and gets configured with zero manual input. TR-369 (USP) is the newer successor, but TR-069 remains the dominant protocol on deployed CPE today. This post covers the session and provisioning flow — how a device gets from factory default to fully configured.

@@ -9,6 +9,9 @@ tags:
   - tr-069
   - cwmp
   - isp
+series:
+  - "TR-069 Explained"
+series_order: 2
 ---
 
 The [previous post]({{< ref "/posts/2026-08-25-tr069-explained-provisioning" >}}) covered when a CWMP session happens and how it opens and closes. This one covers what actually moves through it: the RPCs an ACS uses to read and write configuration, the data model those RPCs operate on, and how the ACS learns about changes it didn't make itself.

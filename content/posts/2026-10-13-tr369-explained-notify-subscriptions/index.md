@@ -10,6 +10,9 @@ tags:
   - cwmp
   - usp
   - isp
+series:
+  - "TR-369 Explained"
+series_order: 5
 ---
 
 The [RPCs and data model post]({{< ref "/posts/2026-09-01-tr069-explained-rpcs-data-model" >}}) covered CWMP's notification levels — a parameter set to passive or active reports its own value changes, and that's the entire feature. USP replaces this with something considerably broader: **[Subscriptions][1]**, backed by a dedicated **[Notify][2]** message that covers six distinct kinds of event, not just "a value changed."

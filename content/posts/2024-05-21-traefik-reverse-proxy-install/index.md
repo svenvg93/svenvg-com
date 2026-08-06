@@ -11,6 +11,9 @@ tags:
   - cloudflare
   - docker
   - systemd
+series:
+  - "Traefik Reverse Proxy"
+series_order: 1
 ---
 
 ## What is Traefik

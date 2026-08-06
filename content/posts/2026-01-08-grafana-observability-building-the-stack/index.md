@@ -11,6 +11,9 @@ tags:
   - prometheus
   - loki
   - alloy
+series:
+  - "Grafana Observability"
+series_order: 2
 ---
 
 Before you can collect metrics or centralize logs, you need somewhere to store and visualize them — and an agent to collect the data. This post sets up all four components of a Grafana observability stack:

@@ -8,6 +8,9 @@ categories:
 tags:
   - wifi
   - wifi7
+series:
+  - "WiFi Explained"
+series_order: 3
 ---
 
 Three settings sit on every AP's radio configuration page: transmit power, channel, and channel width. Most installs leave them on auto and move on — which is often fine, but understanding what they actually control is the difference between a network that works and one that works well. Get these wrong and no amount of roaming or band-steering tuning fixes it.

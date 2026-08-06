@@ -10,6 +10,9 @@ tags:
   - cwmp
   - usp
   - isp
+series:
+  - "TR-369 Explained"
+series_order: 2
 ---
 
 The [previous post]({{< ref "/posts/2026-09-15-tr369-explained-what-changes" >}}) covered why USP supports multiple independent Controllers managing one Agent. This one covers the mechanics behind that: how an Agent actually finds a Controller to talk to, since USP doesn't have a single "ACS URL" field the way a CWMP Endpoint does — [Discovery][1] is a defined process in its own right, with three distinct mechanisms.

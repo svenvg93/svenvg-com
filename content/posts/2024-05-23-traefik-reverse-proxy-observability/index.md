@@ -10,6 +10,9 @@ tags:
   - prometheus
   - grafana
   - loki
+series:
+  - "Traefik Reverse Proxy"
+series_order: 3
 ---
 
 ## Prerequisites

@@ -8,6 +8,9 @@ categories:
 tags:
   - ipv6
   - addressing
+series:
+  - "IPv6 Explained"
+series_order: 1
 ---
 
 IPv4 uses 32-bit addresses. That gives roughly 4.3 billion unique values — a number that made sense in 1981 and became a serious problem by the 2000s. IANA exhausted its IPv4 pool in 2011. IPv6 uses 128-bit addresses, which provides 340 undecillion unique values — enough that address conservation is no longer a design constraint.

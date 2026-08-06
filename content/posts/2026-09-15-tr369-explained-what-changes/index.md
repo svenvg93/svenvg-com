@@ -10,6 +10,9 @@ tags:
   - cwmp
   - usp
   - isp
+series:
+  - "TR-369 Explained"
+series_order: 1
 ---
 
 Everything in this series so far has been CWMP — the CPE WAN Management Protocol behind TR-069. The Broadband Forum's designated successor is **[TR-369, the User Services Platform (USP)][1]**. It's not a hypothetical future replacement; it's a published, deployed standard, and understanding what it actually changes (and what it deliberately keeps) matters for anyone working with CWMP today.

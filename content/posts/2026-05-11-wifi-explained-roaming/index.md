@@ -8,6 +8,9 @@ categories:
 tags:
   - wifi
   - wifi7
+series:
+  - "WiFi Explained"
+series_order: 4
 ---
 
 Move far enough from your router and your device will eventually roam to a closer AP. The question is when — and with multiple APs in a home or office, the answer is often "much later than it should." This is the sticky client problem. Solving it requires understanding both how clients decide when to roam and how the AP can guide them — including band steering, which is the bluntest tool in this kit.

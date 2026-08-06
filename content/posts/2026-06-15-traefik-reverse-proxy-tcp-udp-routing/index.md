@@ -8,6 +8,9 @@ categories:
   - Reverse Proxy
 tags:
   - traefik
+series:
+  - "Traefik Reverse Proxy"
+series_order: 4
 ---
 
 HTTP routing works because Traefik can read the request — the hostname, the path, the headers — and make a decision based on what it sees. Not every service speaks HTTP. For databases, DNS resolvers, game servers, or anything else that uses raw TCP or UDP, Traefik operates at Layer 4: it sees the port and, for TLS connections, the SNI name. That is enough to route most non-HTTP traffic without running a separate proxy.

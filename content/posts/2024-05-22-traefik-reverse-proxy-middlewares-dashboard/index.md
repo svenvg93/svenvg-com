@@ -8,6 +8,9 @@ categories:
   - Reverse Proxy
 tags:
   - traefik
+series:
+  - "Traefik Reverse Proxy"
+series_order: 2
 ---
 
 ## Prerequisites

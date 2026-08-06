@@ -10,6 +10,9 @@ tags:
   - cwmp
   - usp
   - isp
+series:
+  - "TR-369 Explained"
+series_order: 3
 ---
 
 The [USP overview post]({{< ref "/posts/2026-09-15-tr369-explained-what-changes" >}}) covered the headline architectural change from CWMP: USP explicitly supports multiple Controllers managing one Agent at the same time. That raises an obvious question — what stops one Controller from reconfiguring settings another Controller depends on, or reading data it has no business seeing? The answer is **[Controller Trust][1]**: a role-based permission model that decides exactly what each Controller is allowed to touch.

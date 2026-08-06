@@ -9,6 +9,9 @@ tags:
   - tr-069
   - cwmp
   - isp
+series:
+  - "TR-069 Explained"
+series_order: 3
 ---
 
 The [RPCs and data model post]({{< ref "/posts/2026-09-01-tr069-explained-rpcs-data-model" >}}) covered reading and writing configuration — calls that complete immediately, because they only touch values already sitting on the CPE. Diagnostics are different: running a ping sweep or a throughput test takes real time, sometimes tens of seconds, and can't just block an RPC call until it's done. CWMP handles this with an asynchronous state machine instead, and it's the same pattern regardless of which diagnostic is running.

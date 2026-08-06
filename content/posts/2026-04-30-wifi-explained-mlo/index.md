@@ -8,6 +8,9 @@ categories:
 tags:
   - wifi
   - wifi7
+series:
+  - "WiFi Explained"
+series_order: 1
 ---
 
 Every WiFi generation before 802.11be improved throughput mainly by making individual links faster — wider channels, more spatial streams, better modulation. WiFi 7 does that too, but it also changes how a client uses spectrum in the first place: **Multi-RU** and **Preamble Puncturing** make wide channels usable even when part of the spectrum is occupied, and **Multi-Link Operation (MLO)** lets a client maintain simultaneous connections across multiple bands instead of picking one and staying on it.

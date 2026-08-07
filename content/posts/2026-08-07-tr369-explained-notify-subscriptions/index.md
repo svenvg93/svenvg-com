@@ -1,7 +1,7 @@
 ---
 title: "TR-369 Explained: Subscriptions and the Notify Message"
 description: CWMP only ever had one thing worth getting notified about — a parameter value changing. USP formalizes six distinct notification types through Subscription objects and a single Notify message, covering object lifecycle and command completion CWMP never had a clean way to signal.
-date: 2026-10-13
+date: 2026-08-07
 draft: false
 categories:
   - Networking
@@ -15,11 +15,11 @@ series:
 series_order: 5
 ---
 
-The [RPCs and data model post]({{< ref "/posts/2026-09-01-tr069-explained-rpcs-data-model" >}}) covered CWMP's notification levels — a parameter set to passive or active reports its own value changes, and that's the entire feature. USP replaces this with something considerably broader: **[Subscriptions][1]**, backed by a dedicated **[Notify][2]** message that covers six distinct kinds of event, not just "a value changed."
+The [RPCs and data model post]({{< ref "/posts/2026-08-02-tr069-explained-rpcs-data-model" >}}) covered CWMP's notification levels — a parameter set to passive or active reports its own value changes, and that's the entire feature. USP replaces this with something considerably broader: **[Subscriptions][1]**, backed by a dedicated **[Notify][2]** message that covers six distinct kinds of event, not just "a value changed."
 
 ## The Subscription Object
 
-A Controller doesn't flip an attribute on a parameter the way CWMP's `SetParameterAttributes` did. It creates an object instance — using the `Add` message from the [previous post]({{< ref "/posts/2026-10-06-tr369-explained-cwmp-vs-usp-messages" >}}) — under `Device.LocalAgent.Subscription.{i}.`, with a handful of key fields:
+A Controller doesn't flip an attribute on a parameter the way CWMP's `SetParameterAttributes` did. It creates an object instance — using the `Add` message from the [previous post]({{< ref "/posts/2026-08-06-tr369-explained-cwmp-vs-usp-messages" >}}) — under `Device.LocalAgent.Subscription.{i}.`, with a handful of key fields:
 
 | Field | Purpose |
 |-------|---------|
@@ -42,7 +42,7 @@ CWMP had one notification concept: a parameter's value changed. USP's `NotifType
 | `Event` | A data-model-defined event fires — arbitrary, object-specific occurrences |
 | `OnBoardRequest` | An Agent contacts a Controller for the first time, or on `SendOnBoardRequest()` |
 
-`ObjectCreation`, `ObjectDeletion`, and `OperationComplete` don't have a real CWMP equivalent at all. CWMP's closest attempts were the `Inform` event codes covered in the [provisioning post]({{< ref "/posts/2026-08-25-tr069-explained-provisioning" >}}) — `7 TRANSFER COMPLETE`, `8 DIAGNOSTICS COMPLETE` — special-cased signals bolted onto the one mechanism CWMP had, rather than a general-purpose way to say "this asynchronous thing finished." USP folds all of that into one message type.
+`ObjectCreation`, `ObjectDeletion`, and `OperationComplete` don't have a real CWMP equivalent at all. CWMP's closest attempts were the `Inform` event codes covered in the [provisioning post]({{< ref "/posts/2026-07-31-tr069-explained-provisioning" >}}) — `7 TRANSFER COMPLETE`, `8 DIAGNOSTICS COMPLETE` — special-cased signals bolted onto the one mechanism CWMP had, rather than a general-purpose way to say "this asynchronous thing finished." USP folds all of that into one message type.
 
 ![CWMP has one notification concept — value changed; USP's Subscription model covers six, including object lifecycle and command completion CWMP had no general mechanism for](cwmp-vs-usp-notification-types.svg "CWMP has one notification concept — value changed; USP's Subscription model covers six, including object lifecycle and command completion CWMP had no general mechanism for")
 
@@ -74,7 +74,7 @@ The Agent sends this on its own initiative the moment the watched value changes 
 
 CWMP's notification levels split into passive (ride the next scheduled `Inform`) and active (open a new session immediately) specifically because opening an HTTP session for every minor value change was expensive — passive existed as a cost-saving compromise, covered in the RPCs post. USP's Subscription model doesn't have that split; every triggered notification results in its own `Notify` message.
 
-That's a reasonable design point rather than an oversight: the [MTP post]({{< ref "/posts/2026-09-15-tr369-explained-what-changes" >}}) covered how MQTT and WebSockets keep a persistent connection open. Sending a `Notify` over a connection that's already up costs far less than CWMP paid to open a fresh session — the specific expense that justified a "cheap but delayed" passive tier mostly disappears once the transport itself stopped being the bottleneck.
+That's a reasonable design point rather than an oversight: the [MTP post]({{< ref "/posts/2026-08-03-tr369-explained-what-changes" >}}) covered how MQTT and WebSockets keep a persistent connection open. Sending a `Notify` over a connection that's already up costs far less than CWMP paid to open a fresh session — the specific expense that justified a "cheap but delayed" passive tier mostly disappears once the transport itself stopped being the bottleneck.
 
 ## Recap
 

@@ -1,7 +1,7 @@
 ---
 title: "TR-369 Explained: Messages vs CWMP's RPCs"
 description: The USP overview post mentioned that CWMP's RPCs become a smaller, more uniform set of USP messages — this post shows exactly what that looks like, with the actual message shapes for Get, Set, and error reporting side by side with their CWMP equivalents.
-date: 2026-10-06
+date: 2026-08-06
 draft: false
 categories:
   - Networking
@@ -15,7 +15,7 @@ series:
 series_order: 4
 ---
 
-The [RPCs and data model post]({{< ref "/posts/2026-09-01-tr069-explained-rpcs-data-model" >}}) walked through CWMP's SOAP envelope and its RPC set. The [USP overview post]({{< ref "/posts/2026-09-15-tr369-explained-what-changes" >}}) mentioned in passing that USP collapses those RPCs into a smaller, more uniform set of messages. This post puts them side by side — the actual message shapes, not just the naming change.
+The [RPCs and data model post]({{< ref "/posts/2026-08-02-tr069-explained-rpcs-data-model" >}}) walked through CWMP's SOAP envelope and its RPC set. The [USP overview post]({{< ref "/posts/2026-08-03-tr369-explained-what-changes" >}}) mentioned in passing that USP collapses those RPCs into a smaller, more uniform set of messages. This post puts them side by side — the actual message shapes, not just the naming change.
 
 One note before diving in: USP normally encodes messages as binary Protocol Buffers, not human-readable text. The JSON shown below is the same structure in the readable form the Broadband Forum's own [message documentation][1] and [conformance tests][2] use — it's not the literal bytes on the wire, the way the CWMP SOAP/XML in the earlier posts genuinely was.
 
@@ -113,7 +113,7 @@ The interesting field here is `allow_partial`. CWMP's `SetParameterValues`, cove
 }
 ```
 
-Line this up against the [`SetParameterValuesFault` example]({{< ref "/posts/2026-09-01-tr069-explained-rpcs-data-model" >}}) from the RPCs post and the shape is nearly identical: a top-level failure code, plus a `param_errs` list naming exactly which parameter caused it and why — the same problem (atomic writes need per-parameter blame) solved the same way, just wearing USP's field names instead of CWMP's `SetParameterValuesFault`/`FaultCode`/`FaultString`.
+Line this up against the [`SetParameterValuesFault` example]({{< ref "/posts/2026-08-02-tr069-explained-rpcs-data-model" >}}) from the RPCs post and the shape is nearly identical: a top-level failure code, plus a `param_errs` list naming exactly which parameter caused it and why — the same problem (atomic writes need per-parameter blame) solved the same way, just wearing USP's field names instead of CWMP's `SetParameterValuesFault`/`FaultCode`/`FaultString`.
 
 ## The Ad Hoc RPCs Collapse into Operate
 
@@ -143,7 +143,7 @@ Notification is deliberately missing from this table — CWMP's active/passive p
 - Error reporting keeps the same shape as CWMP's `SetParameterValuesFault` — a top-level failure code plus a per-parameter `param_errs` list — just with USP's own field names.
 - CWMP's four independent one-off RPCs (`Reboot`, `FactoryReset`, `Download`, `Upload`) all become a single `Operate` message invoked against a command path in the data model.
 
-See [TR-369 Explained: Subscriptions and the Notify Message]({{< ref "/posts/2026-10-13-tr369-explained-notify-subscriptions" >}}) for the notification side left out of this table.
+See [TR-369 Explained: Subscriptions and the Notify Message]({{< ref "/posts/2026-08-07-tr369-explained-notify-subscriptions" >}}) for the notification side left out of this table.
 
 [1]: https://tr369.org/understanding-usp-messages/
 [2]: https://usp-test.broadband-forum.org/

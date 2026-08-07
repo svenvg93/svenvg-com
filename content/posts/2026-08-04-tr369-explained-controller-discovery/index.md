@@ -1,7 +1,7 @@
 ---
 title: "TR-369 Explained: How an Agent Discovers Its Controller"
 description: The previous post covered why USP supports multiple Controllers per Agent — this one covers how an Agent actually finds one, or several, in the first place. DHCP options 124/125, DNS-SD service records, and mDNS on the local network.
-date: 2026-09-22
+date: 2026-08-04
 draft: false
 categories:
   - Networking
@@ -15,7 +15,7 @@ series:
 series_order: 2
 ---
 
-The [previous post]({{< ref "/posts/2026-09-15-tr369-explained-what-changes" >}}) covered why USP supports multiple independent Controllers managing one Agent. This one covers the mechanics behind that: how an Agent actually finds a Controller to talk to, since USP doesn't have a single "ACS URL" field the way a CWMP Endpoint does — [Discovery][1] is a defined process in its own right, with three distinct mechanisms.
+The [previous post]({{< ref "/posts/2026-08-03-tr369-explained-what-changes" >}}) covered why USP supports multiple independent Controllers managing one Agent. This one covers the mechanics behind that: how an Agent actually finds a Controller to talk to, since USP doesn't have a single "ACS URL" field the way a CWMP Endpoint does — [Discovery][1] is a defined process in its own right, with three distinct mechanisms.
 
 ## What the Agent Actually Needs to Learn
 
@@ -25,7 +25,7 @@ USP defines three ways an Agent can learn this: **DHCP**, **DNS-SD**, and **mDNS
 
 ## DHCP-Based Discovery
 
-This is the USP analog of the [ACS URL via DHCP option 43]({{< ref "/posts/2026-08-25-tr069-explained-provisioning" >}}) covered in the provisioning post — but built to avoid the exact problem option 43 has. Option 43 is a flat, vendor-specific blob with no standard internal structure, so when a network has several unrelated vendors all repurposing the same option for their own provisioning needs, nothing stops their data from colliding or being misread by the wrong device.
+This is the USP analog of the [ACS URL via DHCP option 43]({{< ref "/posts/2026-07-31-tr069-explained-provisioning" >}}) covered in the provisioning post — but built to avoid the exact problem option 43 has. Option 43 is a flat, vendor-specific blob with no standard internal structure, so when a network has several unrelated vendors all repurposing the same option for their own provisioning needs, nothing stops their data from colliding or being misread by the wrong device.
 
 USP avoids this by using DHCP's **vendor-identifying** options instead, which are keyed to an IANA-assigned enterprise number rather than shared blindly:
 
@@ -79,6 +79,6 @@ This is the path a local smart-home hub would use to find Agents on its own netw
 - **DNS-SD discovery** uses eight IANA-registered service names (`usp-agt-*`/`usp-ctr-*`, one pair per MTP) and the standard PTR → SRV → TXT → A/AAAA record chain to resolve a Controller.
 - **mDNS** handles discovery on a local network with no DHCP or DNS infrastructure to lean on, resolving `.local` addresses directly between Agent and Controller.
 
-Finding a Controller is only half the story — once an Agent has more than one, something has to stop them from stepping on each other. See [TR-369 Explained: Keeping Multiple Controllers From Stepping on Each Other]({{< ref "/posts/2026-09-29-tr369-explained-controller-trust" >}}) for the Controller Trust permission model that makes that safe.
+Finding a Controller is only half the story — once an Agent has more than one, something has to stop them from stepping on each other. See [TR-369 Explained: Keeping Multiple Controllers From Stepping on Each Other]({{< ref "/posts/2026-08-05-tr369-explained-controller-trust" >}}) for the Controller Trust permission model that makes that safe.
 
 [1]: https://github.com/BroadbandForum/usp/blob/master/specification/discovery/index.md

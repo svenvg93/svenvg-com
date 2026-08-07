@@ -1,7 +1,7 @@
 ---
 title: "WiFi Explained: Roaming and Client Management"
 description: Sticky clients, band steering, and why 802.11k/r/v are the right tools. How APs guide clients between radios and access points — and what to do when the defaults cause problems.
-date: 2026-05-11
+date: 2026-05-06
 draft: false
 categories:
   - Networking
@@ -15,7 +15,7 @@ series_order: 4
 
 Move far enough from your router and your device will eventually roam to a closer AP. The question is when — and with multiple APs in a home or office, the answer is often "much later than it should." This is the sticky client problem. Solving it requires understanding both how clients decide when to roam and how the AP can guide them — including band steering, which is the bluntest tool in this kit.
 
-This assumes transmit power, channel, and channel width are already reasonably tuned — see [WiFi Explained: Transmit Power, Channel Selection & Width]({{< ref "/posts/2026-05-09-wifi-explained-channels" >}}) if you haven't set those yet.
+This assumes transmit power, channel, and channel width are already reasonably tuned — see [WiFi Explained: Transmit Power, Channel Selection & Width]({{< ref "/posts/2026-05-04-wifi-explained-channels" >}}) if you haven't set those yet.
 
 ## Who Decides When to Roam
 
@@ -164,6 +164,6 @@ These recommendations are ordered from most impactful to most specific:
 
 **If you're on WiFi 7, let MLO handle band selection.** Multi-Link Operation makes band steering largely obsolete for WiFi 7 clients — the device maintains links on multiple bands simultaneously and the AP distributes traffic dynamically. MLO is a structural solution rather than a heuristic one. See [WiFi Explained: WiFi 7 Spectrum & Multi-Link Operation]({{< ref "/posts/2026-04-30-wifi-explained-mlo" >}}) for details.
 
-For the security side of WPA3, SAE, and PMF, see [WiFi Explained: WPA3, SAE, PMF, and OWE]({{< ref "/posts/2026-05-07-wifi-explained-wpa3" >}}).
+For the security side of WPA3, SAE, and PMF, see [WiFi Explained: WPA3, SAE, PMF, and OWE]({{< ref "/posts/2026-05-02-wifi-explained-wpa3" >}}).
 
 [1]: https://support.apple.com/en-us/guide/deployment/dep98f116c0f/web

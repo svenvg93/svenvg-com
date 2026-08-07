@@ -3,7 +3,7 @@ title: "About"
 date: 2026-03-01
 ---
 
-I’m Sven, a network designer based in the Netherlands. I spend my days on CPE platforms, TR-069, and zero-touch provisioning for a Dutch ISP, and my evenings breaking things in my homelab so I don’t have to break them at work. This site is where that homelab work turns into write-ups.
+I’m Sven, a network designer in the Netherlands. By day I work on CPE platforms, TR-069/TR-369, and zero-touch provisioning for a Dutch ISP; by night my homelab is where I get to play around with new things. This site is where that homelab work turns into write-ups.
 
 ## What I write about
 

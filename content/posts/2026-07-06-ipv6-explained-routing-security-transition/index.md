@@ -1,7 +1,7 @@
 ---
 title: "IPv6 Explained: Routing, Security & Transition"
 description: How DHCPv6-PD and firewalling work without NAT, how RA Guard and ND Inspection secure the link layer, and how DS-Lite and NAT64 bridge IPv4 and IPv6.
-date: 2026-08-18
+date: 2026-07-06
 draft: false
 categories:
   - Networking
@@ -17,7 +17,7 @@ In IPv4, a home router gets one public IP address from the ISP and uses NAT to s
 
 ## DHCPv6-PD
 
-Prefix delegation is negotiated through **DHCPv6-PD** (DHCPv6 Prefix Delegation), defined in [RFC 8415][1]. It uses the same 4-step exchange as DHCPv6 (covered in [SLAAC, Neighbor Discovery & Multicast]({{< ref "/posts/2026-08-11-ipv6-explained-slaac-multicast" >}})), but the router requests a prefix block rather than a single address. The router acts as a DHCPv6-PD client on its WAN interface; the ISP's DHCPv6 server assigns a prefix and its lease time, and the router owns that prefix for the duration of the lease, responsible for routing all traffic destined to it.
+Prefix delegation is negotiated through **DHCPv6-PD** (DHCPv6 Prefix Delegation), defined in [RFC 8415][1]. It uses the same 4-step exchange as DHCPv6 (covered in [SLAAC, Neighbor Discovery & Multicast]({{< ref "/posts/2026-07-04-ipv6-explained-slaac-multicast" >}})), but the router requests a prefix block rather than a single address. The router acts as a DHCPv6-PD client on its WAN interface; the ISP's DHCPv6 server assigns a prefix and its lease time, and the router owns that prefix for the duration of the lease, responsible for routing all traffic destined to it.
 
 ![DHCPv6-PD exchange — router requests prefix delegation from ISP, receives /48 or /56](pd-exchange.svg "DHCPv6-PD exchange — router requests prefix delegation from ISP, receives /48 or /56")
 
@@ -36,7 +36,7 @@ A `/64` delegation is the worst case: the router can use it for exactly one subn
 
 ## Subdividing the Prefix
 
-Once the router has a delegated prefix, it carves it into `/64` subnets and assigns one to each interface or VLAN. It then sends Router Advertisements on each interface with the appropriate prefix, triggering [SLAAC]({{< ref "/posts/2026-08-11-ipv6-explained-slaac-multicast" >}}#slaac) on the clients.
+Once the router has a delegated prefix, it carves it into `/64` subnets and assigns one to each interface or VLAN. It then sends Router Advertisements on each interface with the appropriate prefix, triggering [SLAAC]({{< ref "/posts/2026-07-04-ipv6-explained-slaac-multicast" >}}#slaac) on the clients.
 
 With a `/56` delegation of `2001:db8:abcd:ab00::/56`, the router has 8 bits of subnet space — bits 56 to 63. In the fourth 16-bit group `abXX`, the first byte `ab` is part of the ISP's fixed /56 prefix; the second byte `XX` (00–ff) is the subnet field the router controls:
 
@@ -126,13 +126,13 @@ Blocking all ICMPv6 is a common mistake that breaks address autoconfiguration, n
 
 Not every internal service should be reachable from the internet. A database, a management interface, or an internal monitoring stack should be accessible within the network but not from outside.
 
-In IPv4 this is handled by not port-forwarding. In IPv6, the equivalent is assigning the service a [ULA address]({{< ref "/posts/2026-08-04-ipv6-explained-addressing" >}}#scope-and-address-ranges) instead of or in addition to its GUA — not routed on the internet, so the ISP drops it at the border. The firewall can also block inbound traffic to GUA addresses of internal-only services.
+In IPv4 this is handled by not port-forwarding. In IPv6, the equivalent is assigning the service a [ULA address]({{< ref "/posts/2026-07-02-ipv6-explained-addressing" >}}#scope-and-address-ranges) instead of or in addition to its GUA — not routed on the internet, so the ISP drops it at the border. The firewall can also block inbound traffic to GUA addresses of internal-only services.
 
 Using ULA for internal services makes the intent explicit in the address itself, rather than relying solely on firewall rules that might change.
 
 ## First-Hop Security
 
-Everything above secures the border: the firewall decides what may cross from the WAN onto the LAN. But IPv6 also moves address assignment and router discovery onto the LAN's own link layer, where hosts trust Router Advertisements from any router and Neighbor Advertisements from any host by default — the rogue-RA and neighbor-cache risks already touched on in [SLAAC, Neighbor Discovery & Multicast]({{< ref "/posts/2026-08-11-ipv6-explained-slaac-multicast" >}}) are just as real on a well-firewalled network, because they never cross the border at all. Closing them takes switch-level mechanisms, not firewall rules.
+Everything above secures the border: the firewall decides what may cross from the WAN onto the LAN. But IPv6 also moves address assignment and router discovery onto the LAN's own link layer, where hosts trust Router Advertisements from any router and Neighbor Advertisements from any host by default — the rogue-RA and neighbor-cache risks already touched on in [SLAAC, Neighbor Discovery & Multicast]({{< ref "/posts/2026-07-04-ipv6-explained-slaac-multicast" >}}) are just as real on a well-firewalled network, because they never cross the border at all. Closing them takes switch-level mechanisms, not firewall rules.
 
 ## RA Guard
 

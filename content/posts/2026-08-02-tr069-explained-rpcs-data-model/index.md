@@ -1,7 +1,7 @@
 ---
 title: "TR-069 Explained: RPCs and the TR-181 Data Model"
 description: A CWMP session gives an ACS a channel to a CPE — the RPCs and the data model are what it actually does with it. This post covers the core RPC set, how parameters are addressed as a tree, TR-098 vs TR-181, and how the ACS finds out about changes it didn't make.
-date: 2026-09-01
+date: 2026-08-02
 draft: false
 categories:
   - Networking
@@ -14,7 +14,7 @@ series:
 series_order: 2
 ---
 
-The [previous post]({{< ref "/posts/2026-08-25-tr069-explained-provisioning" >}}) covered when a CWMP session happens and how it opens and closes. This one covers what actually moves through it: the RPCs an ACS uses to read and write configuration, the data model those RPCs operate on, and how the ACS learns about changes it didn't make itself.
+The [previous post]({{< ref "/posts/2026-07-31-tr069-explained-provisioning" >}}) covered when a CWMP session happens and how it opens and closes. This one covers what actually moves through it: the RPCs an ACS uses to read and write configuration, the data model those RPCs operate on, and how the ACS learns about changes it didn't make itself.
 
 ## The Core RPCs
 
@@ -192,7 +192,7 @@ Active notification is reserved for parameters where the ACS needs to know promp
 - RPC failures come back as a `Fault` with a numeric code (`9002`–`9008` cover the common parameter-related ones); `GetParameterValues` returns one top-level fault, while `SetParameterValues` returns a per-parameter `SetParameterValuesFault` list naming exactly which value in the batch was rejected.
 - Notification level `1` (passive) reports a change on the next scheduled Inform; level `2` (active) triggers an immediate session with event code `4 VALUE CHANGE` — that's how the ACS learns about changes it didn't make itself.
 
-Reading and writing values covers configuration — but some things a CPE does, like running a connectivity check or a speed test, take real time and can't complete inside a single RPC. See [TR-069 Explained: Remote Diagnostics]({{< ref "/posts/2026-09-08-tr069-explained-diagnostics" >}}) for how CWMP handles that.
+Reading and writing values covers configuration — but some things a CPE does, like running a connectivity check or a speed test, take real time and can't complete inside a single RPC. See [TR-069 Explained: Remote Diagnostics]({{< ref "/posts/2026-08-04-tr069-explained-diagnostics" >}}) for how CWMP handles that.
 
 [1]: https://www.broadband-forum.org/pdfs/tr-098-1-0-0.pdf
 [2]: https://device-data-model.broadband-forum.org/

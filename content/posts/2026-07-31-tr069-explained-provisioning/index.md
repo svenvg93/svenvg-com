@@ -1,7 +1,7 @@
 ---
 title: "TR-069 Explained: CPE Provisioning and the ACS Session"
 description: TR-069 is the Broadband Forum protocol behind zero-touch CPE provisioning at nearly every ISP. This post covers how a CPE finds its ACS, the Inform session that follows, and how the ACS reaches back into a device sitting behind CGNAT.
-date: 2026-08-25
+date: 2026-07-31
 draft: false
 categories:
   - Networking
@@ -141,6 +141,6 @@ The problem: that WAN-side listener is exactly what CGNAT breaks. A CPE behind c
 - Zero-touch provisioning works because `BOOTSTRAP` tells the ACS "this device has no state" — it can push a subscriber's full config on first contact with no manual setup.
 - Between check-ins, the ACS reaches a CPE via Connection Request — a direct HTTP GET when possible, or a STUN-mediated UDP notification when the CPE sits behind CGNAT.
 
-This covers when a session happens and how it opens and closes — see [TR-069 Explained: RPCs and the TR-181 Data Model]({{< ref "/posts/2026-09-01-tr069-explained-rpcs-data-model" >}}) for what actually gets read and written once it does.
+This covers when a session happens and how it opens and closes — see [TR-069 Explained: RPCs and the TR-181 Data Model]({{< ref "/posts/2026-08-02-tr069-explained-rpcs-data-model" >}}) for what actually gets read and written once it does.
 
 [1]: https://www.broadband-forum.org/pdfs/tr-069-1-6-1.pdf

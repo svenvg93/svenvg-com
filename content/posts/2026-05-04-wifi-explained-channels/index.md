@@ -1,7 +1,7 @@
 ---
 title: "WiFi Explained: Transmit Power, Channel Selection & Width"
 description: Transmit power, channel selection, and channel width shape how well a WiFi network performs before roaming or band steering ever enter the picture. Here's what each setting actually controls, and how to tune them together.
-date: 2026-05-09
+date: 2026-05-04
 draft: false
 categories:
   - Networking
@@ -115,4 +115,4 @@ A reasonable starting point for a multi-AP environment:
 
 These are starting points, not rules. A single-AP home network can run full power and wide channels without issue. A venue with 50 APs needs tighter power and narrower channel discipline to keep the co-channel interference manageable.
 
-Once these are dialed in, the next question is what happens once a network has more than one AP or more than one band: how — and when — does a client actually move between them? See [WiFi Explained: Roaming and Client Management]({{< ref "/posts/2026-05-11-wifi-explained-roaming" >}}) for that.
+Once these are dialed in, the next question is what happens once a network has more than one AP or more than one band: how — and when — does a client actually move between them? See [WiFi Explained: Roaming and Client Management]({{< ref "/posts/2026-05-06-wifi-explained-roaming" >}}) for that.

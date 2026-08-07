@@ -1,7 +1,7 @@
 ---
 title: "TR-369 Explained: What Actually Changes from TR-069"
 description: TR-369, the User Services Platform, is the Broadband Forum's designated successor to CWMP — not a hypothetical future standard. This post covers what actually changes for a device that speaks USP instead of TR-069, and why most of what came before still applies.
-date: 2026-09-15
+date: 2026-08-03
 draft: false
 categories:
   - Networking
@@ -19,7 +19,7 @@ Everything in this series so far has been CWMP — the CPE WAN Management Protoc
 
 ## Same Data Model, Different Protocol
 
-Start with the good news: the parameter tree from the [RPCs and data model post]({{< ref "/posts/2026-09-01-tr069-explained-rpcs-data-model" >}}) mostly carries over unchanged. TR-181 Issue 2 is explicitly titled "Device Data Model for **CWMP Endpoints and USP Agents**" — the same `Device.WiFi.SSID.1.SSID`-style tree serves both protocols. What changes with USP isn't what gets managed, it's how the message asking for it gets there.
+Start with the good news: the parameter tree from the [RPCs and data model post]({{< ref "/posts/2026-08-02-tr069-explained-rpcs-data-model" >}}) mostly carries over unchanged. TR-181 Issue 2 is explicitly titled "Device Data Model for **CWMP Endpoints and USP Agents**" — the same `Device.WiFi.SSID.1.SSID`-style tree serves both protocols. What changes with USP isn't what gets managed, it's how the message asking for it gets there.
 
 This is deliberate: a CPE vendor can adopt USP without redesigning its entire parameter model, and an ACS/Controller platform that already understands TR-181 isn't starting from zero.
 
@@ -37,7 +37,7 @@ These four MTPs aren't interchangeable in what they solve, though. **MQTT, WebSo
 
 ## Solving the NAT Problem for Real
 
-This is where the change actually matters in practice. The [provisioning post]({{< ref "/posts/2026-08-25-tr069-explained-provisioning" >}}) covered how CWMP handles an ACS needing to reach a CPE behind CGNAT: a Connection Request to a WAN-side listener when possible, and a STUN-mediated UDP workaround when it isn't — a workaround built on top of a fundamentally poll/request-response protocol.
+This is where the change actually matters in practice. The [provisioning post]({{< ref "/posts/2026-07-31-tr069-explained-provisioning" >}}) covered how CWMP handles an ACS needing to reach a CPE behind CGNAT: a Connection Request to a WAN-side listener when possible, and a STUN-mediated UDP workaround when it isn't — a workaround built on top of a fundamentally poll/request-response protocol.
 
 With MQTT (or WebSockets or STOMP) as the MTP, the problem doesn't need a workaround at all. The Agent holds a persistent outbound connection — to an MQTT broker, or a WebSocket held open to a Controller-side endpoint — the same kind of long-lived connection a chat app keeps open. The Controller sends a message whenever it needs to, and it's delivered over the connection the Agent already has open. There's no WAN-side listener to reach, no CGNAT mapping to punch through, because the Agent never needed to accept an inbound connection in the first place.
 
@@ -45,7 +45,7 @@ With MQTT (or WebSockets or STOMP) as the MTP, the problem doesn't need a workar
 
 ## RPCs Become Uniform: Get/Set/Add/Delete/Operate
 
-CWMP's RPC set, covered in the [previous post]({{< ref "/posts/2026-09-01-tr069-explained-rpcs-data-model" >}}), mixes generic parameter access (`GetParameterValues`, `SetParameterValues`) with a handful of special-purpose methods bolted on separately (`Reboot`, `FactoryReset`, `Download`, `Upload` are each their own SOAP RPC). USP keeps the same four core verbs — Get, Set, Add, Delete — but formalizes actions as **Operate**, invoked against a command path in the data model itself, rather than as one-off RPCs outside it. Rebooting a USP Agent means calling Operate against `Device.Reboot()` in the data model, not calling a specially-defined `Reboot` method — one uniform mechanism instead of a growing list of special cases.
+CWMP's RPC set, covered in the [previous post]({{< ref "/posts/2026-08-02-tr069-explained-rpcs-data-model" >}}), mixes generic parameter access (`GetParameterValues`, `SetParameterValues`) with a handful of special-purpose methods bolted on separately (`Reboot`, `FactoryReset`, `Download`, `Upload` are each their own SOAP RPC). USP keeps the same four core verbs — Get, Set, Add, Delete — but formalizes actions as **Operate**, invoked against a command path in the data model itself, rather than as one-off RPCs outside it. Rebooting a USP Agent means calling Operate against `Device.Reboot()` in the data model, not calling a specially-defined `Reboot` method — one uniform mechanism instead of a growing list of special cases.
 
 ## Migration: Dual-Stack Devices
 
@@ -61,6 +61,6 @@ Because the data model is shared, a device isn't forced into a flag-day cutover.
 - CWMP's ad hoc special RPCs (`Reboot`, `Download`, ...) become a single uniform `Operate` verb against command paths in the data model.
 - Shared data models let a device run as both a CWMP Endpoint and a USP Agent during migration — adoption doesn't require a hard cutover.
 
-Multiple Controllers is the model — but how does an Agent find any of them in the first place? See [TR-369 Explained: How an Agent Discovers Its Controller]({{< ref "/posts/2026-09-22-tr369-explained-controller-discovery" >}}) for the DHCP, DNS-SD, and mDNS mechanisms behind it.
+Multiple Controllers is the model — but how does an Agent find any of them in the first place? See [TR-369 Explained: How an Agent Discovers Its Controller]({{< ref "/posts/2026-08-04-tr369-explained-controller-discovery" >}}) for the DHCP, DNS-SD, and mDNS mechanisms behind it.
 
 [1]: https://usp.technology/specification/

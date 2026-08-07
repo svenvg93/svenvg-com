@@ -1,7 +1,7 @@
 ---
 title: "TR-369 Explained: Keeping Multiple Controllers From Stepping on Each Other"
 description: USP lets an ISP, a device vendor, and a smart-home platform all manage the same Agent independently — which raises an obvious question. This post covers the Controller Trust role and permission model that makes that safe rather than chaotic.
-date: 2026-09-29
+date: 2026-08-05
 draft: false
 categories:
   - Networking
@@ -15,7 +15,7 @@ series:
 series_order: 3
 ---
 
-The [USP overview post]({{< ref "/posts/2026-09-15-tr369-explained-what-changes" >}}) covered the headline architectural change from CWMP: USP explicitly supports multiple Controllers managing one Agent at the same time. That raises an obvious question — what stops one Controller from reconfiguring settings another Controller depends on, or reading data it has no business seeing? The answer is **[Controller Trust][1]**: a role-based permission model that decides exactly what each Controller is allowed to touch.
+The [USP overview post]({{< ref "/posts/2026-08-03-tr369-explained-what-changes" >}}) covered the headline architectural change from CWMP: USP explicitly supports multiple Controllers managing one Agent at the same time. That raises an obvious question — what stops one Controller from reconfiguring settings another Controller depends on, or reading data it has no business seeing? The answer is **[Controller Trust][1]**: a role-based permission model that decides exactly what each Controller is allowed to touch.
 
 ## Roles: The Unit of Trust
 
@@ -54,7 +54,7 @@ The ISP's Controller can change WAN configuration but only observe WiFi settings
 
 ## Enforcement Happens Per-Request
 
-Every message a Controller sends is checked against its Role's permissions before the Agent acts on it — the same way [SetParameterValues fault checking]({{< ref "/posts/2026-09-01-tr069-explained-rpcs-data-model" >}}) validates a request before applying it, just with an added layer of "is this Controller even allowed to ask this at all." A `Get` for a parameter the Role has no `r` on simply doesn't return that value; an `Operate` call against a command the Role has no `x` on for `CommandEvent` is refused outright. The Agent, not the Controller, is what's actually trusted to hold the line.
+Every message a Controller sends is checked against its Role's permissions before the Agent acts on it — the same way [SetParameterValues fault checking]({{< ref "/posts/2026-08-02-tr069-explained-rpcs-data-model" >}}) validates a request before applying it, just with an added layer of "is this Controller even allowed to ask this at all." A `Get` for a parameter the Role has no `r` on simply doesn't return that value; an `Operate` call against a command the Role has no `x` on for `CommandEvent` is refused outright. The Agent, not the Controller, is what's actually trusted to hold the line.
 
 ## What Permissions Don't Solve
 
@@ -68,6 +68,6 @@ Roles scope what each Controller *can* touch — they don't arbitrate what happe
 - Enforcement happens per-request at the Agent — a Controller without the right permission simply gets refused, not trusted to self-restrict.
 - Permissions prevent Controllers from reaching into each other's scope; they don't arbitrate simultaneous writes within a scope two Controllers both happen to share.
 
-This has all been about who's allowed to do what — not what the messages doing it actually look like. See [TR-369 Explained: Messages vs CWMP's RPCs]({{< ref "/posts/2026-10-06-tr369-explained-cwmp-vs-usp-messages" >}}) for `Get`, `Set`, and the rest, lined up against their CWMP equivalents.
+This has all been about who's allowed to do what — not what the messages doing it actually look like. See [TR-369 Explained: Messages vs CWMP's RPCs]({{< ref "/posts/2026-08-06-tr369-explained-cwmp-vs-usp-messages" >}}) for `Get`, `Set`, and the rest, lined up against their CWMP equivalents.
 
 [1]: https://github.com/BroadbandForum/usp-test/blob/master/02-authentication-and-access-control.md

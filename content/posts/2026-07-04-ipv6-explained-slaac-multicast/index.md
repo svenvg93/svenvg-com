@@ -1,7 +1,7 @@
 ---
 title: "IPv6 Explained: SLAAC, Neighbor Discovery & Multicast"
 description: How IPv6 devices autoconfigure and resolve each other via SLAAC and Neighbor Discovery, and how multicast and MLD replace broadcast to make that possible.
-date: 2026-08-11
+date: 2026-07-04
 draft: false
 categories:
   - Networking
@@ -76,7 +76,7 @@ This isn't shared-address failover like VRRP or HSRP — each router keeps its o
 
 ## Interface Identifier in SLAAC
 
-SLAAC lets the device choose how it generates the interface ID — Modified EUI-64 (derived from the MAC) or a random privacy-extension address ([RFC 8981][4]). The mechanics and trade-offs are covered under [Interface Identifiers]({{< ref "/posts/2026-08-04-ipv6-explained-addressing" >}}#interface-identifiers) in the Addressing guide; the short version is that most operating systems default to random, periodically rotated IDs for outbound connections.
+SLAAC lets the device choose how it generates the interface ID — Modified EUI-64 (derived from the MAC) or a random privacy-extension address ([RFC 8981][4]). The mechanics and trade-offs are covered under [Interface Identifiers]({{< ref "/posts/2026-07-02-ipv6-explained-addressing" >}}#interface-identifiers) in the Addressing guide; the short version is that most operating systems default to random, periodically rotated IDs for outbound connections.
 
 ## DHCPv6
 
@@ -123,7 +123,7 @@ DAD applies to every new unicast address — SLAAC-generated, DHCPv6-assigned, o
 | Mechanism | Broadcast | Solicited-node multicast |
 | Router discovery | Separate (DHCP / manual) | Built-in (RS/RA) |
 | Address conflict detection | Gratuitous ARP (optional) | DAD (mandatory) |
-| Authentication | None | Optional ([SEND]({{< ref "/posts/2026-08-18-ipv6-explained-routing-security-transition" >}}#send)) |
+| Authentication | None | Optional ([SEND]({{< ref "/posts/2026-07-06-ipv6-explained-routing-security-transition" >}}#send)) |
 | Scope | Link-local | Link-local |
 
 The multicast model means NDP is quieter than ARP on large segments — each NS reaches at most a small fraction of devices. It also means IPv6 is more dependent on multicast working correctly on the underlying network. Switches and wireless APs that filter multicast aggressively can break NDP.
@@ -215,7 +215,7 @@ Most modern deployments use MLDv2. MLDv1 interoperability is maintained.
 | 132 | Multicast Listener Done (v1) | Host → router. Announces departure from a group. |
 | 143 | Multicast Listener Report (v2) | Host → router. Includes source-filter information. |
 
-All MLD messages are sent with a Hop Limit of 1 and the Router Alert option in a [Hop-by-Hop extension header]({{< ref "/posts/2026-08-04-ipv6-explained-addressing" >}}#extension-headers) — this ensures they are not forwarded beyond the local link and that routers process them even if they are not the destination.
+All MLD messages are sent with a Hop Limit of 1 and the Router Alert option in a [Hop-by-Hop extension header]({{< ref "/posts/2026-07-02-ipv6-explained-addressing" >}}#extension-headers) — this ensures they are not forwarded beyond the local link and that routers process them even if they are not the destination.
 
 ## MLD Snooping
 
@@ -240,7 +240,7 @@ Multicast does not automatically cross routers — a group joined on one link is
 - IPv6 has no broadcast: multicast (`ff00::/8`) does everything broadcast used to, scoped by the 4-bit scope field, with MLD telling routers and switches who's listening.
 - Solicited-node multicast is what makes NDP address resolution efficient instead of interrupting every device on the segment — and switches must forward it correctly or IPv6 connectivity breaks intermittently.
 
-With addresses assigned and resolvable on the link, the next piece is getting traffic in and out of that link — see [Routing, Security & Transition]({{< ref "/posts/2026-08-18-ipv6-explained-routing-security-transition" >}}).
+With addresses assigned and resolvable on the link, the next piece is getting traffic in and out of that link — see [Routing, Security & Transition]({{< ref "/posts/2026-07-06-ipv6-explained-routing-security-transition" >}}).
 
 [1]: https://datatracker.ietf.org/doc/html/rfc4861
 [2]: https://datatracker.ietf.org/doc/html/rfc8106

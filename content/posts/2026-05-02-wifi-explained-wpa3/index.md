@@ -1,7 +1,7 @@
 ---
 title: "WiFi Explained: WPA3, SAE, PMF, and OWE"
 description: WPA3 fixes real weaknesses in WPA2 — but not the ones most people think. Here's what SAE, Protected Management Frames, and OWE actually do under the hood.
-date: 2026-05-07
+date: 2026-05-02
 draft: false
 categories:
   - Networking
@@ -118,4 +118,4 @@ WPA3 solves the offline cracking and deauth spoofing problems well. It doesn't s
 | Minimum password requirement | None | None (but harder to crack) |
 | Password element derivation | Hunting-and-pecking | H2E (mandatory since WPA3 R2) |
 
-For how WiFi 7 changes spectrum use and link behavior on top of this, see [WiFi Explained: WiFi 7 Spectrum & Multi-Link Operation]({{< ref "/posts/2026-04-30-wifi-explained-mlo" >}}). For how clients roam between APs and bands, see [WiFi Explained: Roaming and Client Management]({{< ref "/posts/2026-05-11-wifi-explained-roaming" >}}).
+For how WiFi 7 changes spectrum use and link behavior on top of this, see [WiFi Explained: WiFi 7 Spectrum & Multi-Link Operation]({{< ref "/posts/2026-04-30-wifi-explained-mlo" >}}). For how clients roam between APs and bands, see [WiFi Explained: Roaming and Client Management]({{< ref "/posts/2026-05-06-wifi-explained-roaming" >}}).

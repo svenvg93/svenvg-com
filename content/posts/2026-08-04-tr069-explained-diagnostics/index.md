@@ -1,7 +1,7 @@
 ---
 title: "TR-069 Explained: Remote Diagnostics"
 description: An ACS can't just ask a CPE "what's your ping time" and get an instant answer — running a diagnostic takes time, so CWMP handles it as an asynchronous state machine. This post covers that pattern, and how it's used for connectivity checks and remote speed tests.
-date: 2026-09-08
+date: 2026-08-04
 draft: false
 categories:
   - Networking
@@ -14,7 +14,7 @@ series:
 series_order: 3
 ---
 
-The [RPCs and data model post]({{< ref "/posts/2026-09-01-tr069-explained-rpcs-data-model" >}}) covered reading and writing configuration — calls that complete immediately, because they only touch values already sitting on the CPE. Diagnostics are different: running a ping sweep or a throughput test takes real time, sometimes tens of seconds, and can't just block an RPC call until it's done. CWMP handles this with an asynchronous state machine instead, and it's the same pattern regardless of which diagnostic is running.
+The [RPCs and data model post]({{< ref "/posts/2026-08-02-tr069-explained-rpcs-data-model" >}}) covered reading and writing configuration — calls that complete immediately, because they only touch values already sitting on the CPE. Diagnostics are different: running a ping sweep or a throughput test takes real time, sometimes tens of seconds, and can't just block an RPC call until it's done. CWMP handles this with an asynchronous state machine instead, and it's the same pattern regardless of which diagnostic is running.
 
 ## The Diagnostics State Machine
 
@@ -130,6 +130,6 @@ This is the mechanism behind "speed test" buttons in ISP-provided router admin p
 - `DownloadDiagnostics`/`UploadDiagnostics` are remote speed tests: the phase timestamps (`ROMTime`, `TCPOpen*Time`, `BOMTime`, `EOMTime`) let the ACS isolate pure transfer throughput from DNS and TCP setup overhead.
 - `TraceRoute` gives the hop-by-hop path when the problem is somewhere between the CPE and a specific destination rather than on the WAN link itself.
 
-Everything in this series so far is CWMP. See [TR-369 Explained: What Actually Changes from TR-069]({{< ref "/posts/2026-09-15-tr369-explained-what-changes" >}}) for what the Broadband Forum's designated successor protocol does differently — and what it deliberately keeps the same.
+Everything in this series so far is CWMP. See [TR-369 Explained: What Actually Changes from TR-069]({{< ref "/posts/2026-08-03-tr369-explained-what-changes" >}}) for what the Broadband Forum's designated successor protocol does differently — and what it deliberately keeps the same.
 
 [1]: https://device-data-model.broadband-forum.org/

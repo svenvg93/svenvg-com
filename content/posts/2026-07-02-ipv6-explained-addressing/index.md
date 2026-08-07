@@ -1,7 +1,7 @@
 ---
 title: "IPv6 Explained: Addressing"
 description: How IPv6 addresses are notated and typed, how the 64-bit prefix/interface-ID split and subnetting work, and how the packet header is structured.
-date: 2026-08-04
+date: 2026-07-02
 draft: false
 categories:
   - Networking
@@ -96,7 +96,7 @@ The interface identifier can be generated several ways:
 
 A single interface often ends up with several valid addresses at once — a GUA, sometimes a ULA, and if privacy extensions are enabled, both a stable and a temporary GUA. When a device opens an outbound connection, something has to decide which one to use as the source. **[RFC 6724][4]** defines the default algorithm every major OS implements. The rules that matter in practice, in order:
 
-- **Scope match first** — a global destination gets a global (GUA) source, a link-local destination gets a link-local source. This is why adding a [ULA]({{< ref "/posts/2026-08-18-ipv6-explained-routing-security-transition" >}}#ula-for-internal-services) to a network doesn't disrupt normal internet-bound traffic: ULA only gets selected as a source when the destination is also ULA.
+- **Scope match first** — a global destination gets a global (GUA) source, a link-local destination gets a link-local source. This is why adding a [ULA]({{< ref "/posts/2026-07-06-ipv6-explained-routing-security-transition" >}}#ula-for-internal-services) to a network doesn't disrupt normal internet-bound traffic: ULA only gets selected as a source when the destination is also ULA.
 - **Prefer temporary over stable, when both exist** — if privacy extensions are enabled, the OS defaults to the temporary address for new outbound connections, which is what actually makes privacy extensions private. A device with only a stable address (typical for a server or router) just uses it — there's nothing to prefer over.
 - **Longest matching prefix** — among otherwise-equal candidates, prefer the source address that shares the most prefix bits with the destination.
 
@@ -146,7 +146,7 @@ IPv6 replaces the IPv4 options field with **extension headers** — additional h
 | 0 | Hop-by-Hop Options | Processed by every node along the path. Rarely encountered — often filtered as a DoS vector. |
 | 60 | Destination Options | Options for the packet's destination(s). Can appear twice (see below). Rarely encountered. |
 | 43 | Routing | Specifies an explicit path through the network. The original type (RH0) was deprecated as a DoS vector. Rarely encountered. |
-| 44 | Fragment | Carries fragmentation state when a source has split a packet that exceeds path MTU — see [Fragmentation]({{< ref "/posts/2026-08-18-ipv6-explained-routing-security-transition" >}}#fragmentation) for how routers handle oversized packets. |
+| 44 | Fragment | Carries fragmentation state when a source has split a packet that exceeds path MTU — see [Fragmentation]({{< ref "/posts/2026-07-06-ipv6-explained-routing-security-transition" >}}#fragmentation) for how routers handle oversized packets. |
 | 51 | AH | IPsec Authentication Header — integrity and origin authentication without encryption. |
 | 50 | ESP | IPsec Encapsulating Security Payload — encryption. |
 | 60 | Destination Options | A second occurrence: options meant only for the final destination, versus the earlier occurrence, meant for intermediate destinations listed in a Routing header. |
@@ -165,7 +165,7 @@ Extension headers must appear in the order listed above, as defined by [RFC 8200
 - Interface IDs come from Modified EUI-64, RFC 8981 privacy extensions, or manual assignment — each with different stability and privacy trade-offs.
 - The 40-byte fixed base header pushes all options into a chain of extension headers, removing the need for a header checksum.
 
-With addressing and the packet format covered, the next question is how a device actually gets one of these addresses in the first place — see [SLAAC, Neighbor Discovery & Multicast]({{< ref "/posts/2026-08-11-ipv6-explained-slaac-multicast" >}}).
+With addressing and the packet format covered, the next question is how a device actually gets one of these addresses in the first place — see [SLAAC, Neighbor Discovery & Multicast]({{< ref "/posts/2026-07-04-ipv6-explained-slaac-multicast" >}}).
 
 [1]: https://datatracker.ietf.org/doc/html/rfc1918
 [2]: https://datatracker.ietf.org/doc/html/rfc3849

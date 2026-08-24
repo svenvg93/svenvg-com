@@ -24,7 +24,7 @@ header:
 author:
   name: "Sven van Ginkel"
   title: "Network Engineer • Homelab • Self-Hosting"
-  description: "I design CPE and provisioning systems for an ISP by day, and break things in my homelab by night — sharing the practical guides that come out of both."
+  description: "I design CPE and provisioning systems for an ISP by day, and self-host and break things in my homelab by night — sharing the practical guides that come out of both."
   avatar: "/image.png"
   social:
     - name: "GitHub"

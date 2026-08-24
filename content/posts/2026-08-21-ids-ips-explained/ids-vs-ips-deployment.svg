@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 350" width="700" height="350"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+
+    <linearGradient id="grad-wan-switch" x1="150" y1="81" x2="163" y2="81" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#f87171"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    <linearGradient id="grad-switch-lan" x1="275" y1="81" x2="573" y2="81" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+    <linearGradient id="grad-mirror" x1="220" y1="104" x2="220" y2="138" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <linearGradient id="grad-wan-ips" x1="150" y1="243" x2="163" y2="243" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#f87171"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    <linearGradient id="grad-ips-lan" x1="275" y1="243" x2="573" y2="243" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+
+    <marker id="arr-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#3b82f6"/>
+    </marker>
+    <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#34d399"/>
+    </marker>
+    <marker id="arr-amber" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#d97706"/>
+    </marker>
+  </defs>
+
+  <rect width="700" height="350" fill="url(#bg)" rx="8"/>
+
+  <line x1="0" y1="36" x2="700" y2="36" stroke="#0d1a2a" stroke-width="1"/>
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">IDS VS IPS &#8212; DEPLOYMENT: PASSIVE VS INLINE</text>
+
+  <!-- ================= IDS — passive / out-of-band ================= -->
+  <text x="350" y="52" text-anchor="middle" font-size="10" font-weight="600" fill="#94a3b8" letter-spacing="0.5">IDS &#8212; PASSIVE / OUT-OF-BAND</text>
+
+  <!-- Row 1: real traffic path -->
+  <rect x="20" y="60" width="130" height="42" fill="#150808" stroke="#7f1d1d" stroke-width="1.5" rx="5"/>
+  <text x="85" y="82" text-anchor="middle" font-size="12" font-weight="600" fill="#f87171">Internet / WAN</text>
+  <text x="85" y="97" text-anchor="middle" font-size="9" fill="#f87171" opacity="0.8">source of traffic</text>
+
+  <rect x="165" y="60" width="110" height="42" fill="#0e1a3a" stroke="#3b82f6" stroke-width="1.5" rx="5"/>
+  <text x="220" y="82" text-anchor="middle" font-size="12" font-weight="600" fill="#93c5fd">Switch</text>
+  <text x="220" y="97" text-anchor="middle" font-size="9" fill="#93c5fd" opacity="0.8">SPAN / mirror port</text>
+
+  <rect x="575" y="60" width="105" height="42" fill="#071810" stroke="#166534" stroke-width="1.5" rx="5"/>
+  <text x="627" y="82" text-anchor="middle" font-size="12" font-weight="600" fill="#86efac">LAN</text>
+  <text x="627" y="97" text-anchor="middle" font-size="9" fill="#86efac" opacity="0.8">destination</text>
+
+  <line x1="150" y1="81" x2="163" y2="81" stroke="url(#grad-wan-switch)" stroke-width="1.5" marker-end="url(#arr-blue)"/>
+  <line x1="275" y1="81" x2="573" y2="81" stroke="url(#grad-switch-lan)" stroke-width="1.5" marker-end="url(#arr-green)"/>
+  <text x="424" y="73" text-anchor="middle" font-size="8" fill="#94a3b8">real, unmodified traffic</text>
+
+  <!-- Mirrored copy drops down to the sensor -->
+  <line x1="220" y1="104" x2="220" y2="138" stroke="url(#grad-mirror)" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr-amber)"/>
+  <text x="234" y="124" text-anchor="start" font-size="8" fill="#fcd34d">copy (mirrored)</text>
+
+  <!-- Row 2: sensor sees only the copy, and can only alert -->
+  <rect x="165" y="140" width="110" height="42" fill="#1a1200" stroke="#d97706" stroke-width="1.5" rx="5"/>
+  <text x="220" y="162" text-anchor="middle" font-size="12" font-weight="600" fill="#fde68a">IDS Sensor</text>
+  <text x="220" y="177" text-anchor="middle" font-size="9" fill="#fde68a" opacity="0.8">inspects the copy</text>
+
+  <rect x="575" y="140" width="105" height="42" fill="#1a1200" stroke="#d97706" stroke-width="1.5" rx="5"/>
+  <text x="627" y="162" text-anchor="middle" font-size="12" font-weight="600" fill="#fde68a">Alert</text>
+  <text x="627" y="177" text-anchor="middle" font-size="9" fill="#fde68a" opacity="0.8">after the fact</text>
+
+  <line x1="275" y1="161" x2="573" y2="161" stroke="#d97706" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr-amber)"/>
+  <text x="424" y="153" text-anchor="middle" font-size="8" fill="#94a3b8">alert only &#8212; too late to block</text>
+
+  <line x1="0" y1="196" x2="700" y2="196" stroke="#0d1a2a" stroke-width="1"/>
+
+  <!-- ================= IPS — inline ================= -->
+  <text x="350" y="214" text-anchor="middle" font-size="10" font-weight="600" fill="#94a3b8" letter-spacing="0.5">IPS &#8212; INLINE (SITS IN THE PATH)</text>
+
+  <rect x="20" y="222" width="130" height="42" fill="#150808" stroke="#7f1d1d" stroke-width="1.5" rx="5"/>
+  <text x="85" y="244" text-anchor="middle" font-size="12" font-weight="600" fill="#f87171">Internet / WAN</text>
+  <text x="85" y="259" text-anchor="middle" font-size="9" fill="#f87171" opacity="0.8">source of traffic</text>
+
+  <rect x="165" y="222" width="110" height="42" fill="#0e1a3a" stroke="#3b82f6" stroke-width="1.5" rx="5"/>
+  <text x="220" y="244" text-anchor="middle" font-size="12" font-weight="600" fill="#93c5fd">IPS Sensor</text>
+  <text x="220" y="259" text-anchor="middle" font-size="9" fill="#93c5fd" opacity="0.8">sits inline</text>
+
+  <rect x="575" y="222" width="105" height="42" fill="#071810" stroke="#166534" stroke-width="1.5" rx="5"/>
+  <text x="627" y="244" text-anchor="middle" font-size="12" font-weight="600" fill="#86efac">LAN</text>
+  <text x="627" y="259" text-anchor="middle" font-size="9" fill="#86efac" opacity="0.8">destination</text>
+
+  <line x1="150" y1="243" x2="163" y2="243" stroke="url(#grad-wan-ips)" stroke-width="1.5" marker-end="url(#arr-blue)"/>
+  <line x1="275" y1="243" x2="573" y2="243" stroke="url(#grad-ips-lan)" stroke-width="1.5" marker-end="url(#arr-green)"/>
+  <text x="424" y="235" text-anchor="middle" font-size="8" fill="#4ade80">forwarded (allowed)</text>
+
+  <!-- Branch: a malicious packet is dropped before it ever arrives -->
+  <line x1="220" y1="264" x2="220" y2="292" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <g stroke="#ef4444" stroke-width="2" stroke-linecap="round">
+    <line x1="215" y1="293" x2="225" y2="303"/>
+    <line x1="225" y1="293" x2="215" y2="303"/>
+  </g>
+  <text x="236" y="302" text-anchor="start" font-size="9" fill="#fca5a5">dropped / reset &#8212; never delivered</text>
+
+  <text x="350" y="334" text-anchor="middle" font-size="9" fill="#94a3b8">IDS reacts after delivery &#8212; IPS can act before the packet ever arrives</text>
+</svg>

@@ -192,7 +192,5 @@ Active notification is reserved for parameters where the ACS needs to know promp
 - RPC failures come back as a `Fault` with a numeric code (`9002`–`9008` cover the common parameter-related ones); `GetParameterValues` returns one top-level fault, while `SetParameterValues` returns a per-parameter `SetParameterValuesFault` list naming exactly which value in the batch was rejected.
 - Notification level `1` (passive) reports a change on the next scheduled Inform; level `2` (active) triggers an immediate session with event code `4 VALUE CHANGE` — that's how the ACS learns about changes it didn't make itself.
 
-Reading and writing values covers configuration — but some things a CPE does, like running a connectivity check or a speed test, take real time and can't complete inside a single RPC. See [TR-069 Explained: Remote Diagnostics]({{< ref "/posts/2026-08-04-tr069-explained-diagnostics" >}}) for how CWMP handles that.
-
 [1]: https://www.broadband-forum.org/pdfs/tr-098-1-0-0.pdf
 [2]: https://device-data-model.broadband-forum.org/

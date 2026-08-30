@@ -61,6 +61,6 @@ Because the data model is shared, a device isn't forced into a flag-day cutover.
 - CWMP's ad hoc special RPCs (`Reboot`, `Download`, ...) become a single uniform `Operate` verb against command paths in the data model.
 - Shared data models let a device run as both a CWMP Endpoint and a USP Agent during migration — adoption doesn't require a hard cutover.
 
-Multiple Controllers is the model — but how does an Agent find any of them in the first place? See [TR-369 Explained: How an Agent Discovers Its Controller]({{< ref "/posts/2026-08-04-tr369-explained-controller-discovery" >}}) for the DHCP, DNS-SD, and mDNS mechanisms behind it.
+Multiple Controllers is the model — but how does an Agent find any of them in the first place, and what stops them from stepping on each other once it has? See [TR-369 Explained: Controller Discovery and Trust]({{< ref "/posts/2026-08-04-tr369-explained-controller-discovery-trust" >}}) for the DHCP, DNS-SD, and mDNS discovery mechanisms, plus the Role/Permission model that keeps multiple Controllers safely scoped.
 
 [1]: https://usp.technology/specification/

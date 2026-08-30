@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 370" width="700" height="370"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="700" height="370" fill="url(#bg)" rx="8"/>
+
+  <line x1="0" y1="36" x2="700" y2="36" stroke="#0d1a2a" stroke-width="1"/>
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">ZONE FIREWALL &#8212; DEFAULT POLICY MATRIX</text>
+
+  <text x="350" y="50" text-anchor="middle" font-size="9" fill="#94a3b8">Rows = source zone &#8212; columns = destination zone</text>
+
+  <!-- ================= Column headers (destination zones) ================= -->
+  <rect x="117" y="62" width="100" height="22" fill="#071810" stroke="#166534" stroke-width="1.5" rx="5"/>
+  <text x="167" y="77" text-anchor="middle" font-size="12" font-weight="600" fill="#86efac">Internal</text>
+
+  <rect x="231" y="62" width="100" height="22" fill="#1a1000" stroke="#92400e" stroke-width="1.5" rx="5"/>
+  <text x="281" y="77" text-anchor="middle" font-size="12" font-weight="600" fill="#fcd34d">Hotspot</text>
+
+  <rect x="345" y="62" width="100" height="22" fill="#0e1a3a" stroke="#3b82f6" stroke-width="1.5" rx="5"/>
+  <text x="395" y="77" text-anchor="middle" font-size="12" font-weight="600" fill="#93c5fd">Gateway</text>
+
+  <rect x="459" y="62" width="100" height="22" fill="#150808" stroke="#7f1d1d" stroke-width="1.5" rx="5"/>
+  <text x="509" y="77" text-anchor="middle" font-size="12" font-weight="600" fill="#f87171">External</text>
+
+  <rect x="573" y="62" width="100" height="22" fill="#1a0800" stroke="#c2410c" stroke-width="1.5" rx="5"/>
+  <text x="623" y="77" text-anchor="middle" font-size="12" font-weight="600" fill="#fb923c">VPN</text>
+
+  <!-- ================= Row headers (source zones) ================= -->
+  <rect x="23" y="99"  width="84" height="22" fill="#071810" stroke="#166534" stroke-width="1.5" rx="5"/>
+  <text x="65" y="114" text-anchor="middle" font-size="12" font-weight="600" fill="#86efac">Internal</text>
+
+  <rect x="23" y="139" width="84" height="22" fill="#1a1000" stroke="#92400e" stroke-width="1.5" rx="5"/>
+  <text x="65" y="154" text-anchor="middle" font-size="12" font-weight="600" fill="#fcd34d">Hotspot</text>
+
+  <rect x="23" y="179" width="84" height="22" fill="#0e1a3a" stroke="#3b82f6" stroke-width="1.5" rx="5"/>
+  <text x="65" y="194" text-anchor="middle" font-size="12" font-weight="600" fill="#93c5fd">Gateway</text>
+
+  <rect x="23" y="219" width="84" height="22" fill="#150808" stroke="#7f1d1d" stroke-width="1.5" rx="5"/>
+  <text x="65" y="234" text-anchor="middle" font-size="12" font-weight="600" fill="#f87171">External</text>
+
+  <rect x="23" y="259" width="84" height="22" fill="#1a0800" stroke="#c2410c" stroke-width="1.5" rx="5"/>
+  <text x="65" y="274" text-anchor="middle" font-size="12" font-weight="600" fill="#fb923c">VPN</text>
+
+  <!-- ================= Matrix cells ================= -->
+  <!-- Row: Internal (source) -->
+  <rect x="117" y="95" width="100" height="30" fill="none" stroke="#34d399" stroke-width="1.5" rx="4"/>
+  <text x="167" y="114" text-anchor="middle" font-size="11" font-weight="700" fill="#86efac">ALLOW</text>
+
+  <rect x="231" y="95" width="100" height="30" fill="none" stroke="#34d399" stroke-width="1.5" rx="4"/>
+  <text x="281" y="114" text-anchor="middle" font-size="11" font-weight="700" fill="#86efac">ALLOW</text>
+
+  <rect x="345" y="95" width="100" height="30" fill="none" stroke="#34d399" stroke-width="1.5" rx="4"/>
+  <text x="395" y="114" text-anchor="middle" font-size="11" font-weight="700" fill="#86efac">ALLOW</text>
+
+  <rect x="459" y="95" width="100" height="30" fill="none" stroke="#6366f1" stroke-width="1.5" rx="4"/>
+  <text x="509" y="114" text-anchor="middle" font-size="10" font-weight="700" fill="#a5b4fc">POLICY</text>
+
+  <rect x="573" y="95" width="100" height="30" fill="none" stroke="#34d399" stroke-width="1.5" rx="4"/>
+  <text x="623" y="114" text-anchor="middle" font-size="11" font-weight="700" fill="#86efac">ALLOW</text>
+
+  <!-- Row: Hotspot (source) -->
+  <rect x="117" y="135" width="100" height="30" fill="none" stroke="#d97706" stroke-width="1.5" rx="4"/>
+  <text x="167" y="154" text-anchor="middle" font-size="10" font-weight="700" fill="#fde68a">RETURN</text>
+
+  <rect x="231" y="135" width="100" height="30" fill="none" stroke="#ef4444" stroke-width="1.5" rx="4"/>
+  <text x="281" y="154" text-anchor="middle" font-size="11" font-weight="700" fill="#fca5a5">BLOCK</text>
+
+  <rect x="345" y="135" width="100" height="30" fill="none" stroke="#6366f1" stroke-width="1.5" rx="4"/>
+  <text x="395" y="154" text-anchor="middle" font-size="10" font-weight="700" fill="#a5b4fc">POLICY</text>
+
+  <rect x="459" y="135" width="100" height="30" fill="none" stroke="#6366f1" stroke-width="1.5" rx="4"/>
+  <text x="509" y="154" text-anchor="middle" font-size="10" font-weight="700" fill="#a5b4fc">POLICY</text>
+
+  <rect x="573" y="135" width="100" height="30" fill="none" stroke="#d97706" stroke-width="1.5" rx="4"/>
+  <text x="623" y="154" text-anchor="middle" font-size="10" font-weight="700" fill="#fde68a">RETURN</text>
+
+  <!-- Row: Gateway (source) -->
+  <rect x="117" y="175" width="100" height="30" fill="none" stroke="#34d399" stroke-width="1.5" rx="4"/>
+  <text x="167" y="194" text-anchor="middle" font-size="11" font-weight="700" fill="#86efac">ALLOW</text>
+
+  <rect x="231" y="175" width="100" height="30" fill="none" stroke="#34d399" stroke-width="1.5" rx="4"/>
+  <text x="281" y="194" text-anchor="middle" font-size="11" font-weight="700" fill="#86efac">ALLOW</text>
+
+  <rect x="345" y="175" width="100" height="30" fill="none" stroke="#334155" stroke-width="1.5" stroke-dasharray="3,2" rx="4"/>
+  <text x="395" y="194" text-anchor="middle" font-size="12" font-weight="600" fill="#94a3b8">&#8212;</text>
+
+  <rect x="459" y="175" width="100" height="30" fill="none" stroke="#34d399" stroke-width="1.5" rx="4"/>
+  <text x="509" y="194" text-anchor="middle" font-size="11" font-weight="700" fill="#86efac">ALLOW</text>
+
+  <rect x="573" y="175" width="100" height="30" fill="none" stroke="#34d399" stroke-width="1.5" rx="4"/>
+  <text x="623" y="194" text-anchor="middle" font-size="11" font-weight="700" fill="#86efac">ALLOW</text>
+
+  <!-- Row: External (source) -->
+  <rect x="117" y="215" width="100" height="30" fill="none" stroke="#6366f1" stroke-width="1.5" rx="4"/>
+  <text x="167" y="234" text-anchor="middle" font-size="10" font-weight="700" fill="#a5b4fc">POLICY</text>
+
+  <rect x="231" y="215" width="100" height="30" fill="none" stroke="#6366f1" stroke-width="1.5" rx="4"/>
+  <text x="281" y="234" text-anchor="middle" font-size="10" font-weight="700" fill="#a5b4fc">POLICY</text>
+
+  <rect x="345" y="215" width="100" height="30" fill="none" stroke="#6366f1" stroke-width="1.5" rx="4"/>
+  <text x="395" y="234" text-anchor="middle" font-size="10" font-weight="700" fill="#a5b4fc">POLICY</text>
+
+  <rect x="459" y="215" width="100" height="30" fill="none" stroke="#334155" stroke-width="1.5" stroke-dasharray="3,2" rx="4"/>
+  <text x="509" y="234" text-anchor="middle" font-size="12" font-weight="600" fill="#94a3b8">&#8212;</text>
+
+  <rect x="573" y="215" width="100" height="30" fill="none" stroke="#6366f1" stroke-width="1.5" rx="4"/>
+  <text x="623" y="234" text-anchor="middle" font-size="10" font-weight="700" fill="#a5b4fc">POLICY</text>
+
+  <!-- Row: VPN (source) -->
+  <rect x="117" y="255" width="100" height="30" fill="none" stroke="#34d399" stroke-width="1.5" rx="4"/>
+  <text x="167" y="274" text-anchor="middle" font-size="11" font-weight="700" fill="#86efac">ALLOW</text>
+
+  <rect x="231" y="255" width="100" height="30" fill="none" stroke="#d97706" stroke-width="1.5" rx="4"/>
+  <text x="281" y="274" text-anchor="middle" font-size="10" font-weight="700" fill="#fde68a">RETURN</text>
+
+  <rect x="345" y="255" width="100" height="30" fill="none" stroke="#34d399" stroke-width="1.5" rx="4"/>
+  <text x="395" y="274" text-anchor="middle" font-size="11" font-weight="700" fill="#86efac">ALLOW</text>
+
+  <rect x="459" y="255" width="100" height="30" fill="none" stroke="#6366f1" stroke-width="1.5" rx="4"/>
+  <text x="509" y="274" text-anchor="middle" font-size="10" font-weight="700" fill="#a5b4fc">POLICY</text>
+
+  <rect x="573" y="255" width="100" height="30" fill="none" stroke="#34d399" stroke-width="1.5" rx="4"/>
+  <text x="623" y="274" text-anchor="middle" font-size="11" font-weight="700" fill="#86efac">ALLOW</text>
+
+  <!-- ================= Legend ================= -->
+  <rect x="213" y="304" width="10" height="10" rx="2" fill="#34d399"/>
+  <text x="229" y="313" font-size="9" fill="#86efac">Allow</text>
+
+  <rect x="287" y="304" width="10" height="10" rx="2" fill="#ef4444"/>
+  <text x="303" y="313" font-size="9" fill="#fca5a5">Block</text>
+
+  <rect x="361" y="304" width="10" height="10" rx="2" fill="#d97706"/>
+  <text x="377" y="313" font-size="9" fill="#fde68a">Return (established)</text>
+
+  <rect x="228" y="326" width="10" height="10" rx="2" fill="#6366f1"/>
+  <text x="244" y="335" font-size="9" fill="#a5b4fc">Policies (varies)</text>
+
+  <rect x="368" y="326" width="10" height="10" rx="2" fill="#334155"/>
+  <text x="384" y="335" font-size="9" fill="#94a3b8">N/A (same entity)</text>
+
+  <text x="350" y="354" text-anchor="middle" font-size="9" fill="#94a3b8">Internal, Gateway, and VPN allow each other by default; External and Hotspot are Block All or policy-gated</text>
+</svg>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 260" width="700" height="260"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+
+    <linearGradient id="grad-arrow1" x1="110" y1="91" x2="132" y2="91" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#f87171"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    <linearGradient id="grad-arrow2" x1="268" y1="91" x2="290" y2="91" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+    <linearGradient id="grad-arrow3" x1="406" y1="91" x2="428" y2="91" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+    <linearGradient id="grad-arrow4" x1="564" y1="91" x2="586" y2="91" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+
+    <marker id="arr-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#3b82f6"/>
+    </marker>
+    <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#34d399"/>
+    </marker>
+    <marker id="arr-indigo" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#6366f1"/>
+    </marker>
+    <marker id="arr-grey" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <rect width="700" height="260" fill="url(#bg)" rx="8"/>
+
+  <line x1="0" y1="36" x2="700" y2="36" stroke="#0d1a2a" stroke-width="1"/>
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">CAPTURE FILTER (BPF) VS DISPLAY FILTER (WIRESHARK)</text>
+
+  <text x="350" y="52" text-anchor="middle" font-size="9" fill="#94a3b8">One packet's path through both stages &#8212; what happens to it if it doesn't match</text>
+
+  <!-- ================= Main pipeline row ================= -->
+
+  <!-- Box 1: Interface (source) -->
+  <rect x="15" y="66" width="95" height="50" fill="#150808" stroke="#7f1d1d" stroke-width="1.5" rx="5"/>
+  <text x="62" y="86" text-anchor="middle" font-size="12" font-weight="600" fill="#f87171">Interface</text>
+  <text x="62" y="102" text-anchor="middle" font-size="9" fill="#f87171" opacity="0.8">raw packets</text>
+
+  <line x1="110" y1="91" x2="132" y2="91" stroke="url(#grad-arrow1)" stroke-width="1.5" marker-end="url(#arr-blue)"/>
+
+  <!-- Box 2: Capture Filter (BPF) -->
+  <rect x="133" y="66" width="135" height="50" fill="#0e1a3a" stroke="#3b82f6" stroke-width="1.5" rx="5"/>
+  <text x="200" y="86" text-anchor="middle" font-size="12" font-weight="600" fill="#93c5fd">Capture Filter</text>
+  <text x="200" y="102" text-anchor="middle" font-size="9" fill="#93c5fd" opacity="0.8">evaluated at the wire</text>
+
+  <line x1="268" y1="91" x2="290" y2="91" stroke="url(#grad-arrow2)" stroke-width="1.5" marker-end="url(#arr-green)"/>
+
+  <!-- Box 3: capture.pcap (the handoff point) -->
+  <rect x="291" y="66" width="115" height="50" fill="#071810" stroke="#166534" stroke-width="1.5" rx="5"/>
+  <text x="348" y="86" text-anchor="middle" font-size="12" font-weight="600" fill="#86efac" font-family="'Courier New',monospace">capture.pcap</text>
+  <text x="348" y="102" text-anchor="middle" font-size="9" fill="#86efac" opacity="0.8">written to disk</text>
+
+  <line x1="406" y1="91" x2="428" y2="91" stroke="url(#grad-arrow3)" stroke-width="1.5" marker-end="url(#arr-indigo)"/>
+
+  <!-- Box 4: Display Filter (Wireshark) -->
+  <rect x="429" y="66" width="135" height="50" fill="#0a0d28" stroke="#6366f1" stroke-width="1.5" rx="5"/>
+  <text x="496" y="86" text-anchor="middle" font-size="12" font-weight="600" fill="#a5b4fc">Display Filter</text>
+  <text x="496" y="102" text-anchor="middle" font-size="9" fill="#a5b4fc" opacity="0.8">against the saved file</text>
+
+  <line x1="564" y1="91" x2="586" y2="91" stroke="url(#grad-arrow4)" stroke-width="1.5" marker-end="url(#arr-green)"/>
+
+  <!-- Box 5: Analysis view (destination) -->
+  <rect x="587" y="66" width="98" height="50" fill="#071810" stroke="#166534" stroke-width="1.5" rx="5"/>
+  <text x="636" y="86" text-anchor="middle" font-size="12" font-weight="600" fill="#86efac">Analysis</text>
+  <text x="636" y="102" text-anchor="middle" font-size="9" fill="#86efac" opacity="0.8">matches shown</text>
+
+  <!-- ================= Branch: DISCARDED (capture filter, non-matches) ================= -->
+  <line x1="201" y1="116" x2="201" y2="141" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <g stroke="#ef4444" stroke-width="2" stroke-linecap="round">
+    <line x1="196" y1="141" x2="206" y2="151"/>
+    <line x1="206" y1="141" x2="196" y2="151"/>
+  </g>
+  <text x="214" y="150" text-anchor="start" font-size="9" fill="#fca5a5">discarded &#8212; never written to disk</text>
+
+  <!-- ================= Branch: HIDDEN (display filter, non-matches) ================= -->
+  <line x1="497" y1="116" x2="497" y2="135" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr-grey)"/>
+
+  <rect x="422" y="136" width="150" height="76" fill="#0d1420" stroke="#475569" stroke-width="1.5" stroke-dasharray="3,2" rx="5"/>
+  <ellipse cx="497" cy="152" rx="9" ry="5.5" fill="none" stroke="#94a3b8" stroke-width="1.2"/>
+  <circle cx="497" cy="152" r="2" fill="#94a3b8"/>
+  <line x1="488" y1="145" x2="506" y2="159" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round"/>
+  <text x="497" y="176" text-anchor="middle" font-size="12" font-weight="600" fill="#cbd5e1">HIDDEN</text>
+  <text x="497" y="190" text-anchor="middle" font-size="9" fill="#94a3b8">not deleted</text>
+  <text x="497" y="202" text-anchor="middle" font-size="9" fill="#94a3b8" opacity="0.85">still in the file</text>
+
+  <text x="350" y="244" text-anchor="middle" font-size="9" fill="#94a3b8">Capture filters discard before storage, permanently &#8212; display filters only hide after storage, reversibly</text>
+</svg>

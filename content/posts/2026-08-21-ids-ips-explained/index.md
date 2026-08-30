@@ -2,7 +2,7 @@
 title: "IDS/IPS Explained: How Intrusion Detection and Prevention Actually Work"
 description: A firewall filters on address and port. An IDS/IPS looks inside the traffic itself. Here's how signature and anomaly detection work, what separates detection from prevention, and where encryption is breaking the model.
 date: 2026-08-21
-draft: true
+draft: false
 categories:
   - Networking
   - Security

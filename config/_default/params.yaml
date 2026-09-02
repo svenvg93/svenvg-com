@@ -40,15 +40,16 @@ author:
 colorScheme: "default"
 
 home:
-  recentPostsCount: 5
+  recentPostsCount: 4
   contentOrder:
     - author-section
     - recent-posts
     - page-content
+    - featured-projects.html
 
 post:
   showRelated: true
-  relatedPostsCount: 3
+  relatedPostsCount: 2
   license:
     show: true
     author: "Sven van Ginkel"
@@ -127,6 +128,8 @@ readingProgress:
 
 dock: "always" # scroll | always | float
 
+# TOC (Table of Contents)
 toc:
-  enabled: true
-  position: "center" # center | side
+  enabled: true # Enable or disable TOC globally
+  position: "side" # Options: center | side
+  pinned: false # Side mode only: keep the TOC panel always visible when there is enough space

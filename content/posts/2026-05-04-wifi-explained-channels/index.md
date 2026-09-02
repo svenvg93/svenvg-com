@@ -27,6 +27,22 @@ This asymmetry can create a link that appears stronger in one direction than the
 
 **The RSSI shown on the client is downlink signal** — what the AP transmits and the client receives. It says nothing about what the AP can hear back. A client with a full signal bar but a poor uplink retransmits constantly, holds a low data rate, and consumes airtime — without the user seeing any obvious problem.
 
+### Reading the dBm Scale
+
+RSSI (Received Signal Strength Indicator) is how well the receiver hears the transmitter — measured at the Wi-Fi card, not derived from the sender's transmit power. Tools report it in dBm, an absolute power level on a logarithmic scale. Because the received power is a tiny fraction of a milliwatt, the values are negative: **closer to zero is stronger**. −50 dBm is a strong signal; −80 dBm is a weak one.
+
+| RSSI | Rating | What it supports |
+|------|--------|------------------|
+| −30 dBm | Maximum | Only a few feet from the AP. Never seen in normal use. |
+| −67 dBm | Very good | Voice (VoIP / VoWiFi) and streaming video — anything latency-sensitive. |
+| −70 dBm | Usable | Web browsing and email. The practical floor for a reliable connection. |
+| −80 dBm | Poor | Basic connectivity at best; packet loss and retransmits. |
+| −90 dBm | Unusable | Down in the noise floor. The client can barely tell signal from static. |
+
+Every 3 dB is a doubling or halving of power, so the gap between −67 and −70 is larger than it looks, and −80 is not "a bit worse" than −70 — it's an order of magnitude less signal. Design for −67 dBm or better everywhere clients need voice or video, and treat −70 dBm as the edge of the coverage cell rather than a place clients should routinely sit.
+
+Keep the asymmetry above in mind when reading these numbers: −70 dBm *at the client* only describes the downlink. If the client transmits at lower power than the AP, the AP may be hearing that same client at −80 dBm while the signal bar still looks fine.
+
 **High transmit power isn't always better.** At maximum power, the AP's coverage circle expands — but it creates a zone at the outer edge where clients associate based on strong downlink but can't transmit back effectively. It also increases co-channel interference for neighbouring APs. In dense multi-AP environments, lower per-AP power combined with closer spacing outperforms high power with sparse placement.
 
 The right transmit power is set so that the -70 dBm downlink contour roughly matches the range at which client uplinks are still usable — typically 14–18 dBm in multi-AP environments rather than the 23 dBm maximum.

@@ -15,9 +15,9 @@ series:
 series_order: 3
 ---
 
-The [RPCs and data model post]({{< ref "/posts/2026-08-02-tr069-explained-rpcs-data-model" >}}) walked through CWMP's SOAP envelope and its RPC set. The [USP overview post]({{< ref "/posts/2026-08-03-tr369-explained-what-changes" >}}) mentioned in passing that USP collapses those RPCs into a smaller, more uniform set of messages. This post puts them side by side — the actual message shapes, not just the naming change — and covers the notification side CWMP handled with a single mechanism and USP splits into six distinct event types.
+CWMP wraps every RPC in a SOAP envelope carried over HTTP(S). The [USP overview post]({{< ref "/posts/2026-08-03-tr369-explained-what-changes" >}}) mentioned in passing that USP collapses those RPCs into a smaller, more uniform set of messages. This post puts them side by side — the actual message shapes, not just the naming change — and covers the notification side CWMP handled with a single mechanism and USP splits into six distinct event types.
 
-One note before diving in: USP normally encodes messages as binary Protocol Buffers, not human-readable text. The JSON shown below is the same structure in the readable form the Broadband Forum's own [message documentation][1] and [conformance tests][2] use — it's not the literal bytes on the wire, the way the CWMP SOAP/XML in the earlier posts genuinely was.
+One note before diving in: USP normally encodes messages as binary Protocol Buffers, not human-readable text. The JSON shown below is the same structure in the readable form the Broadband Forum's own [message documentation][1] and [conformance tests][2] use — it's not the literal bytes on the wire, the way CWMP's SOAP/XML genuinely is.
 
 ## The Envelope: SOAP vs Record + Msg
 
@@ -62,7 +62,7 @@ CWMP's `cwmp:ID` SOAP header does the same correlation job as `msg_id`, but with
 }
 ```
 
-Structurally this is doing the same job as `GetParameterValues`/`GetParameterValuesResponse` from the RPCs post — but notice `param_paths` isn't restricted to leaf parameters. A `Get` against an *object* path (`Device.WiFi.SSID.` rather than a specific instance's `SSID` parameter) resolves to every matching instance and its children in one call. That's most of what CWMP needed `GetParameterNames` for, folded into the same message used for reading values, rather than kept as a separate discovery RPC.
+Structurally this is doing the same job as CWMP's `GetParameterValues`/`GetParameterValuesResponse` — but notice `param_paths` isn't restricted to leaf parameters. A `Get` against an *object* path (`Device.WiFi.SSID.` rather than a specific instance's `SSID` parameter) resolves to every matching instance and its children in one call. That's most of what CWMP needed `GetParameterNames` for, folded into the same message used for reading values, rather than kept as a separate discovery RPC.
 
 ## Set vs SetParameterValues
 
@@ -83,7 +83,7 @@ Structurally this is doing the same job as `GetParameterValues`/`GetParameterVal
 }
 ```
 
-The interesting field here is `allow_partial`. CWMP's `SetParameterValues`, covered in the RPCs post, is always all-or-nothing — one bad parameter fails the entire call. USP's `Set` makes that a choice: `allow_partial: false` keeps CWMP's atomic behavior, but `allow_partial: true` lets the Agent apply whatever parameters it can and report failures only for the ones that didn't take. USP added a strictness dial CWMP never had at all.
+The interesting field here is `allow_partial`. CWMP's `SetParameterValues` is always all-or-nothing — one bad parameter fails the entire call. USP's `Set` makes that a choice: `allow_partial: false` keeps CWMP's atomic behavior, but `allow_partial: true` lets the Agent apply whatever parameters it can and report failures only for the ones that didn't take. USP added a strictness dial CWMP never had at all.
 
 ## Error Reporting: Fault vs OperationFailure
 
@@ -113,7 +113,7 @@ The interesting field here is `allow_partial`. CWMP's `SetParameterValues`, cove
 }
 ```
 
-Line this up against the [`SetParameterValuesFault` example]({{< ref "/posts/2026-08-02-tr069-explained-rpcs-data-model" >}}) from the RPCs post and the shape is nearly identical: a top-level failure code, plus a `param_errs` list naming exactly which parameter caused it and why — the same problem (atomic writes need per-parameter blame) solved the same way, just wearing USP's field names instead of CWMP's `SetParameterValuesFault`/`FaultCode`/`FaultString`.
+Line this up against CWMP's `SetParameterValuesFault` and the shape is nearly identical: a top-level failure code, plus a `param_errs` list naming exactly which parameter caused it and why — the same problem (atomic writes need per-parameter blame) solved the same way, just wearing USP's field names instead of CWMP's `SetParameterValuesFault`/`FaultCode`/`FaultString`.
 
 ## The Ad Hoc RPCs Collapse into Operate
 
@@ -137,7 +137,7 @@ Notification is a different enough problem to need its own comparison, next — 
 
 ## Subscriptions and the Notify Message
 
-CWMP's notification story is the parameter attribute levels covered in the RPCs post — a parameter set to passive or active reports its own value changes, and that's the entire feature. USP replaces this with something considerably broader: **[Subscriptions][3]**, backed by a dedicated **[Notify][4]** message that covers six distinct kinds of event, not just "a value changed."
+CWMP's notification story is its parameter attribute levels — a parameter set to passive or active reports its own value changes, and that's the entire feature. USP replaces this with something considerably broader: **[Subscriptions][3]**, backed by a dedicated **[Notify][4]** message that covers six distinct kinds of event, not just "a value changed."
 
 ### The Subscription Object
 
@@ -164,7 +164,7 @@ CWMP had one notification concept: a parameter's value changed. USP's `NotifType
 | `Event` | A data-model-defined event fires — arbitrary, object-specific occurrences |
 | `OnBoardRequest` | An Agent contacts a Controller for the first time, or on `SendOnBoardRequest()` |
 
-`ObjectCreation`, `ObjectDeletion`, and `OperationComplete` don't have a real CWMP equivalent at all. CWMP's closest attempts were the `Inform` event codes covered in the [provisioning post]({{< ref "/posts/2026-07-31-tr069-explained-provisioning" >}}) — `7 TRANSFER COMPLETE`, `8 DIAGNOSTICS COMPLETE` — special-cased signals bolted onto the one mechanism CWMP had, rather than a general-purpose way to say "this asynchronous thing finished." USP folds all of that into one message type.
+`ObjectCreation`, `ObjectDeletion`, and `OperationComplete` don't have a real CWMP equivalent at all. CWMP's closest attempts were `Inform` event codes like `7 TRANSFER COMPLETE` and `8 DIAGNOSTICS COMPLETE` — special-cased signals bolted onto the one mechanism CWMP had, rather than a general-purpose way to say "this asynchronous thing finished." USP folds all of that into one message type.
 
 ![CWMP has one notification concept — value changed; USP's Subscription model covers six, including object lifecycle and command completion CWMP had no general mechanism for](cwmp-vs-usp-notification-types.svg "CWMP has one notification concept — value changed; USP's Subscription model covers six, including object lifecycle and command completion CWMP had no general mechanism for")
 
@@ -194,9 +194,9 @@ The Agent sends this on its own initiative the moment the watched value changes 
 
 ### No Passive Mode — And Why That's Fine
 
-CWMP's notification levels split into passive (ride the next scheduled `Inform`) and active (open a new session immediately) specifically because opening an HTTP session for every minor value change was expensive — passive existed as a cost-saving compromise, covered in the RPCs post. USP's Subscription model doesn't have that split; every triggered notification results in its own `Notify` message.
+CWMP's notification levels split into passive (ride the next scheduled `Inform`) and active (open a new session immediately) specifically because opening an HTTP session for every minor value change was expensive — passive existed as a cost-saving compromise. USP's Subscription model doesn't have that split; every triggered notification results in its own `Notify` message.
 
-That's a reasonable design point rather than an oversight: the [MTP post]({{< ref "/posts/2026-08-03-tr369-explained-what-changes" >}}) covered how MQTT and WebSockets keep a persistent connection open. Sending a `Notify` over a connection that's already up costs far less than CWMP paid to open a fresh session — the specific expense that justified a "cheap but delayed" passive tier mostly disappears once the transport itself stopped being the bottleneck.
+That's a reasonable design point rather than an oversight: the [MTP post]({{< ref "/posts/2026-08-03-tr369-explained-what-changes" >}}) covered how every current MTP — WebSocket, MQTT, STOMP — keeps a persistent connection open. Sending a `Notify` over a connection that's already up costs far less than CWMP paid to open a fresh session — the specific expense that justified a "cheap but delayed" passive tier mostly disappears once the transport itself stopped being the bottleneck.
 
 ## Recap
 

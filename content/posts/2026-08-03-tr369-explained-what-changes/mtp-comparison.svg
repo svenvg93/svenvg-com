@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" width="700" height="300" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="700" height="300" fill="url(#bg)" rx="8"/>
+
+  <line x1="0" y1="36" x2="700" y2="36" stroke="#0d1a2a" stroke-width="1"/>
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">USP MESSAGE TRANSFER PROTOCOLS</text>
+
+  <!-- === Left column: DIRECT (green accent) === -->
+  <rect x="40" y="44" width="290" height="222" fill="#041008" stroke="#34d399" stroke-width="1.5" rx="8"/>
+  <text x="185" y="66" text-anchor="middle" font-size="12" font-weight="700" fill="#34d399">DIRECT &#8212; no broker</text>
+  <text x="185" y="82" text-anchor="middle" font-size="10" fill="#86efac">Agent connects straight to Controller</text>
+
+  <rect x="56" y="96" width="258" height="76" fill="#031006" stroke="#34d399" stroke-width="1" rx="4"/>
+  <text x="185" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#86efac">WebSocket</text>
+  <text x="185" y="138" text-anchor="middle" font-size="9" fill="#34d399">TCP on 443 via HTTP upgrade; TLS wss://</text>
+  <text x="185" y="154" text-anchor="middle" font-size="9" fill="#34d399">Best fit: ISP cloud management (default)</text>
+
+  <rect x="56" y="186" width="258" height="76" fill="#031006" stroke="#34d399" stroke-width="1" rx="4"/>
+  <text x="185" y="208" text-anchor="middle" font-size="11" font-weight="700" fill="#86efac">UDS</text>
+  <text x="185" y="228" text-anchor="middle" font-size="9" fill="#34d399">No network at all; OS file permissions</text>
+  <text x="185" y="244" text-anchor="middle" font-size="9" fill="#34d399">Best fit: co-located Agent and Controller</text>
+
+  <!-- === Right column: BROKER-BASED (sky accent) === -->
+  <rect x="370" y="44" width="290" height="222" fill="#04131d" stroke="#38bdf8" stroke-width="1.5" rx="8"/>
+  <text x="515" y="66" text-anchor="middle" font-size="12" font-weight="700" fill="#38bdf8">BROKER-BASED</text>
+  <text x="515" y="82" text-anchor="middle" font-size="10" fill="#7dd3fc">Neither connects to the other directly</text>
+
+  <rect x="430" y="90" width="170" height="20" fill="#03121a" stroke="#38bdf8" stroke-width="1" rx="4"/>
+  <text x="515" y="104" text-anchor="middle" font-size="9" fill="#7dd3fc">message broker in the middle</text>
+
+  <rect x="386" y="122" width="258" height="66" fill="#03121a" stroke="#38bdf8" stroke-width="1" rx="4"/>
+  <text x="515" y="142" text-anchor="middle" font-size="11" font-weight="700" fill="#7dd3fc">MQTT</text>
+  <text x="515" y="160" text-anchor="middle" font-size="9" fill="#38bdf8">TCP pub/sub through a broker; TLS</text>
+  <text x="515" y="176" text-anchor="middle" font-size="9" fill="#38bdf8">Best fit: large fleets; smart-home / IoT</text>
+
+  <rect x="386" y="196" width="258" height="66" fill="#03121a" stroke="#38bdf8" stroke-width="1" rx="4"/>
+  <text x="515" y="216" text-anchor="middle" font-size="11" font-weight="700" fill="#7dd3fc">STOMP</text>
+  <text x="515" y="234" text-anchor="middle" font-size="9" fill="#38bdf8">TCP, text-framed, through a broker; TLS</text>
+  <text x="515" y="250" text-anchor="middle" font-size="9" fill="#38bdf8">Best fit: existing enterprise MQ; legacy</text>
+
+  <text x="350" y="286" text-anchor="middle" font-size="9" fill="#94a3b8">CoAP was a fifth MTP &#8212; deprecated in USP 1.2, obsoleted in 1.3.</text>
+</svg>

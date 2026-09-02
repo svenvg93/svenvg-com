@@ -19,13 +19,13 @@ The [previous post]({{< ref "/posts/2026-08-03-tr369-explained-what-changes" >}}
 
 ## What the Agent Actually Needs to Learn
 
-To reach a Controller, an Agent needs four things: which **MTP** to use (CoAP, MQTT, WebSockets, or STOMP), an **address**, a **port**, and — for MTPs that need one — a **resource path**. Discovery can hand the Agent all of this bundled as a single URL, or as an FQDN that the Agent resolves further via DNS-SD to get the rest.
+To reach a Controller, an Agent needs four things: which **MTP** to use (WebSockets, MQTT, or STOMP — or UDS for a Controller on the same device), an **address**, a **port**, and — for MTPs that need one — a **resource path**. Discovery can hand the Agent all of this bundled as a single URL, or as an FQDN that the Agent resolves further via DNS-SD to get the rest.
 
 USP defines three ways an Agent can learn this: **DHCP**, **DNS-SD**, and **mDNS**. Which one applies depends mostly on whether the Controller is somewhere on the internet (an ISP's own platform) or sitting on the same local network as the Agent (a smart-home hub, say).
 
 ## DHCP-Based Discovery
 
-This is the USP analog of the [ACS URL via DHCP option 43]({{< ref "/posts/2026-07-31-tr069-explained-provisioning" >}}) covered in the provisioning post — but built to avoid the exact problem option 43 has. Option 43 is a flat, vendor-specific blob with no standard internal structure, so when a network has several unrelated vendors all repurposing the same option for their own provisioning needs, nothing stops their data from colliding or being misread by the wrong device.
+This is the USP analog of CWMP's ACS URL delivered via DHCP option 43 — but built to avoid the exact problem option 43 has. Option 43 is a flat, vendor-specific blob with no standard internal structure, so when a network has several unrelated vendors all repurposing the same option for their own provisioning needs, nothing stops their data from colliding or being misread by the wrong device.
 
 USP avoids this by using DHCP's **vendor-identifying** options instead, which are keyed to an IANA-assigned enterprise number rather than shared blindly:
 
@@ -60,6 +60,8 @@ Where DHCP hands the Agent a Controller directly, DNS-SD (DNS Service Discovery)
 | `usp-ctr-mqtt` | MQTT | Controller |
 | `usp-ctr-stomp` | STOMP | Controller |
 | `usp-ctr-ws` | WebSocket | Controller |
+
+The `-coap` names are still registered but no longer used in practice — CoAP was deprecated as a USP MTP in 1.2 and obsoleted in 1.3, leaving MQTT, STOMP, and WebSocket as the discoverable transports. UDS has no service names here: it's a local socket path, not something an Agent finds over the network.
 
 A lookup walks the standard DNS-SD record chain: a **PTR** record finds service instances of a given type, an **SRV** record for that instance gives the actual host and port, a **TXT** record carries attributes (a required `path` for both Agents and Controllers, a `name` for Agents, and an optional `encrypt` flag), and finally an **A**/**AAAA** record resolves the host to an address.
 
@@ -112,7 +114,7 @@ The ISP's Controller can change WAN configuration but only observe WiFi settings
 
 ### Enforcement Happens Per-Request
 
-Every message a Controller sends is checked against its Role's permissions before the Agent acts on it — the same way [SetParameterValues fault checking]({{< ref "/posts/2026-08-02-tr069-explained-rpcs-data-model" >}}) validates a request before applying it, just with an added layer of "is this Controller even allowed to ask this at all." A `Get` for a parameter the Role has no `r` on simply doesn't return that value; an `Operate` call against a command the Role has no `x` on for `CommandEvent` is refused outright. The Agent, not the Controller, is what's actually trusted to hold the line.
+Every message a Controller sends is checked against its Role's permissions before the Agent acts on it — the same way CWMP validates a `SetParameterValues` request before applying it, just with an added layer of "is this Controller even allowed to ask this at all." A `Get` for a parameter the Role has no `r` on simply doesn't return that value; an `Operate` call against a command the Role has no `x` on for `CommandEvent` is refused outright. The Agent, not the Controller, is what's actually trusted to hold the line.
 
 ### What Permissions Don't Solve
 

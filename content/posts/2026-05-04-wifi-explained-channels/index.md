@@ -57,7 +57,7 @@ WiFi channels are slices of the radio spectrum. Choosing them well minimises int
 
 The 2.4 GHz band is 83.5 MHz wide and divided into 13 channels (14 in Japan) spaced 5 MHz apart. A 20 MHz channel overlaps with the four channels on either side. The only three channels that don't overlap with each other in most regions are **1, 6, and 11**.
 
-Using any other channel — 3, 8, 4 — means your transmissions partially overlap with neighbours, causing worse interference than full co-channel overlap would. Co-channel devices at least detect each other via CSMA/CA and back off. Partially-overlapping devices don't detect each other — they transmit simultaneously and corrupt each other's frames without backing off.
+Using any other channel — 3, 4, 8 — means your transmissions partially overlap with neighbours, causing worse interference than full co-channel overlap would. Co-channel devices at least detect each other via CSMA/CA and back off. Partially-overlapping devices don't detect each other — they transmit simultaneously and corrupt each other's frames without backing off.
 
 The practical result: every 2.4 GHz radio in a building should be on 1, 6, or 11. Nothing else.
 
@@ -66,8 +66,8 @@ The practical result: every 2.4 GHz radio in a building should be on 1, 6, or 11
 The 5 GHz band offers up to 25 non-overlapping 20 MHz channels in most regions. It's divided into three sub-bands:
 
 - **UNII-1 (channels 36–48)** — available everywhere, no restrictions, no DFS required. Use these first.
-- **UNII-2 (channels 52–144)** — require **DFS** (Dynamic Frequency Selection). The AP must scan for radar and vacate the channel within 10 seconds if detected. DFS channel changes cause a 30–60 second service interruption on that radio.
-- **UNII-3 (channels 149–165, with 169–177 available in some regions)** — available without DFS in most regions. Good second option after UNII-1.
+- **UNII-2 (channels 52–144)** — require **DFS** (Dynamic Frequency Selection). The AP must vacate the channel within 10 seconds if it detects radar. Moving to a fresh DFS channel then costs a 60-second channel-availability check before the radio can carry traffic again — 10 minutes on the weather-radar channels (120–128).
+- **UNII-3 (channels 149–165)** — available without DFS in most regions. Good second option after UNII-1. Some regions add **UNII-4** (channels 169–177, 5.9 GHz) on top.
 
 Auto channel selection works well on 5 GHz because the band has enough channels that APs can find clean ones without user help.
 

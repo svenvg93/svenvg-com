@@ -64,7 +64,7 @@ OWE doesn't provide authentication. You still don't know if you're on the legiti
 
 ## FILS: Fast Initial Link Setup
 
-OWE improves open networks; FILS (802.11ai, included in WPA3 certification) improves how fast devices reconnect to networks they already know.
+OWE improves open networks; FILS (802.11ai) improves how fast devices reconnect to networks they already know. It isn't part of WPA3 — the Wi-Fi Alliance certifies it separately under Wi-Fi CERTIFIED Optimized Connectivity — but it's a close companion to the SAE and PMF work and often ships alongside it.
 
 On 802.1X/RADIUS enterprise networks, a full EAP exchange on every reconnect adds 300–500 ms before traffic can flow. For a phone moving between APs in a large building, this latency is noticeable on VoIP calls and video streams. FILS shortens this significantly for returning clients:
 

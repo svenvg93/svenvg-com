@@ -13,7 +13,7 @@ series:
 series_order: 4
 ---
 
-Every WiFi generation before 802.11be improved throughput mainly by making individual links faster — wider channels, more spatial streams, better modulation. WiFi 7 does that too, but it also changes how a client uses spectrum in the first place: **Multi-RU** and **Preamble Puncturing** make wide channels usable even when part of the spectrum is occupied, and **Multi-Link Operation (MLO)** lets a client maintain simultaneous connections across multiple bands instead of picking one and staying on it.
+Every WiFi generation before 802.11be improved throughput mainly by making individual links faster — wider channels, more spatial streams, better modulation. WiFi 7 does that too, with 320 MHz channels and 4096-QAM, but it also changes how a client uses spectrum in the first place: **Multi-RU** and **Preamble Puncturing** make wide channels usable even when part of the spectrum is occupied, and **Multi-Link Operation (MLO)** lets a client maintain simultaneous connections across multiple bands instead of picking one and staying on it.
 
 ## Multi-RU: WiFi 7's Flexible Spectrum Allocation
 
@@ -67,7 +67,7 @@ MLO eliminates that constraint.
 
 ### What MLO Does
 
-With MLO, a client and AP negotiate a multi-link setup during association. Instead of one link, they establish multiple — one per band. These operate under a single MAC address and appear to the upper layers as one connection.
+With MLO, a client and AP negotiate a multi-link setup during association. Instead of one link, they establish multiple — one per band. Each radio link keeps its own link-level address, but they sit under a single multi-link device (MLD) MAC address that is what the upper layers see as one connection.
 
 The AP and client can then:
 

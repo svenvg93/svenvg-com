@@ -9,7 +9,8 @@
       "Bash(hugo version *)",
       "Bash(python -c \"import xml.dom.minidom,sys; xml.dom.minidom.parse\\(r'c:\\\\Personal\\\\svenvg-com\\\\content\\\\posts\\\\2026-08-03-tr369-explained-what-changes\\\\mtp-comparison.svg'\\); print\\('well-formed OK'\\)\")",
       "Bash(git checkout *)",
-      "WebFetch(domain:raw.githubusercontent.com)"
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebSearch"
     ]
   }
 }

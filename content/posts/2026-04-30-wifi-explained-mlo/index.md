@@ -10,7 +10,7 @@ tags:
   - wifi7
 series:
   - "WiFi Explained"
-series_order: 1
+series_order: 4
 ---
 
 Every WiFi generation before 802.11be improved throughput mainly by making individual links faster — wider channels, more spatial streams, better modulation. WiFi 7 does that too, but it also changes how a client uses spectrum in the first place: **Multi-RU** and **Preamble Puncturing** make wide channels usable even when part of the spectrum is occupied, and **Multi-Link Operation (MLO)** lets a client maintain simultaneous connections across multiple bands instead of picking one and staying on it.
@@ -57,7 +57,7 @@ Multi-RU and Preamble Puncturing make better use of the spectrum within a single
 
 ### The Problem Before MLO
 
-A WiFi 6 client connected to a tri-band AP is still on one band at a time. If it's on 5GHz and that band gets congested, the client either stays and degrades, or roams to 6GHz — a process that takes time and interrupts traffic. The AP can't split a single flow across bands, and the client can't receive on 2.4GHz while transmitting on 5GHz.
+A WiFi 6 client connected to a tri-band AP is still on one band at a time. If it's on 5 GHz and that band gets congested, the client either stays and degrades, or roams to 6 GHz — a process that takes time and interrupts traffic. The AP can't split a single flow across bands, and the client can't receive on 2.4 GHz while transmitting on 5 GHz.
 
 Band steering and load balancing are workarounds for this: the AP nudges clients between bands based on load. But the client always has one radio active per connection.
 
@@ -77,11 +77,11 @@ The AP and client can then:
 
 The result is lower latency (always use the best available path), higher aggregate throughput (multiple channels active simultaneously), and better reliability.
 
-There is a common misconception that MLO is a single feature that either works or doesn't. In practice, MLO is a family of modes — and an AP and a client device can both advertise WiFi 7 with MLO support while using entirely different modes. The mode with the highest capability, STR, is rarely found on client devices: fitting multiple fully isolated radios into a thin laptop or phone is a genuine hardware challenge, and running them all simultaneously carries a real battery cost. Most client devices implement eMLSR instead, which delivers MLO's latency benefits at much lower power and hardware cost. Understanding which mode a device actually uses matters more than whether it supports MLO at all.
+There is a common misconception that MLO is a single feature that either works or doesn't. In practice, MLO is a family of modes — and an AP and a client device can both advertise WiFi 7 with MLO support while using entirely different modes. The higher-capability multi-radio modes like STR are rarely found on client devices: fitting multiple fully isolated radios into a thin laptop or phone is a genuine hardware challenge, and running them all simultaneously carries a real battery cost. Most client devices implement eMLSR instead, which delivers MLO's latency benefits at much lower power and hardware cost. Understanding which mode a device actually uses matters more than whether it supports MLO at all.
 
 ### The Main MLO Modes
 
-Not all MLO is equal. The standard defines four operating modes based on hardware capability, ordered here from simplest to most capable.
+Not all MLO is equal. The standard defines five operating modes based on hardware capability, ordered here from simplest to most capable.
 
 #### MLSR — Multi-Link Single Radio
 
@@ -101,7 +101,7 @@ eMLSR doesn't deliver parallel throughput — only one link carries active data 
 
 NSTR introduces a second radio, but with a constraint: the device cannot transmit on one link while receiving on another simultaneously. The transmit signal from one radio leaks into the receive chain of the other — a hardware limitation that RF isolation alone can't fully solve. To avoid this, the protocol coordinates both links so that neither is receiving while the other is transmitting: both transmit together, or both are idle.
 
-NSTR provides better channel utilization, dynamic load distribution, and redundancy compared to single-radio modes. But throughput gains are lower than STR because the two links can't independently carry bidirectional traffic at the same time.
+NSTR provides better channel utilisation, dynamic load distribution, and redundancy compared to single-radio modes. But throughput gains are lower than STR because the two links can't independently carry bidirectional traffic at the same time.
 
 ![NSTR vs STR — coordinated TX/idle radios compared to fully independent, simultaneous TX/RX radios](mlo-multi-radio.svg "NSTR vs STR — coordinated TX/idle radios compared to fully independent, simultaneous TX/RX radios")
 
@@ -109,7 +109,11 @@ NSTR provides better channel utilization, dynamic load distribution, and redunda
 
 The device has independent radios for each band and can transmit on one while receiving on another simultaneously — with no coordination constraint between links. This is the highest-capability single-mode and delivers the full MLO benefit: true concurrent use of all links.
 
-The constraint is RF isolation. If the 2.4GHz and 5GHz radios are physically too close, transmitting on one can interfere with reception on the other. STR requires that the AP and client hardware achieve adequate isolation between bands — a non-trivial design challenge, especially for thin client devices. See the diagram above for how STR's fully independent radios compare to NSTR's coordinated pair.
+The constraint is RF isolation. If the 2.4 GHz and 5 GHz radios are physically too close, transmitting on one can interfere with reception on the other. STR requires that the AP and client hardware achieve adequate isolation between bands — a non-trivial design challenge, especially for thin client devices. See the diagram above for how STR's fully independent radios compare to NSTR's coordinated pair.
+
+#### EMLMR — Enhanced Multi-Link Multi-Radio
+
+EMLMR also uses multiple radios, but instead of dedicating a fixed radio to each link it can shift its transmit/receive chains between links on demand — concentrating all spatial streams on one link when that's where the traffic is, then splitting them when both links are busy. This gives STR-like concurrency with more flexible use of a limited antenna count, at the cost of a short reconfiguration delay each time the chains move. It's the most capable mode on paper and correspondingly the rarest in shipping client hardware.
 
 ### Mode Comparison
 
@@ -119,8 +123,9 @@ The constraint is RF isolation. If the 2.4GHz and 5GHz radios are physically too
 | eMLSR | Single | No | Low | Medium |
 | NSTR | Multiple (coordinated) | No | Medium | Medium |
 | STR | Multiple (isolated) | Yes | High | High |
+| EMLMR | Multiple (reconfigurable) | Yes | High | High |
 
-These four modes are the ones formally defined in the 802.11be amendment. In practice, higher-end multi-radio devices may implement smarter link scheduling and dynamic traffic steering on top of STR — adapting in real time to RF conditions, prioritising latency-sensitive flows, and steering frames across links — but this is vendor firmware territory rather than a distinct standard mode.
+These five modes are the ones formally defined in the 802.11be amendment. In practice, higher-end multi-radio devices may implement smarter link scheduling and dynamic traffic steering on top of STR — adapting in real time to RF conditions, prioritising latency-sensitive flows, and steering frames across links — but this is vendor firmware territory rather than a distinct standard mode.
 
 ### What MLO Requires
 
@@ -140,13 +145,13 @@ From the perspective of the OS and applications, an MLO connection is a single n
 
 ### Real-World Status
 
-As of 2025-2026, WiFi 7 APs from major vendors (UniFi, TP-Link BE series, Netgear Orbi 970) support MLO. Client support is growing: recent Qualcomm and MediaTek chipsets implement it, and it's present in newer laptops and phones with WiFi 7 adapters.
+At the time of writing (early 2026), WiFi 7 APs from major vendors (UniFi, TP-Link BE series, Netgear Orbi 970) support MLO. Client support is growing: recent Qualcomm and MediaTek chipsets implement it, and it's present in newer laptops and phones with WiFi 7 adapters.
 
 The areas to watch:
 
 - **eMLSR support on mobile** — Important for battery-powered devices. Support is arriving but not universal.
 - **STR in thin clients** — RF isolation is a genuine hardware challenge. Some devices claiming STR operate in NSTR in practice.
-- **Driver maturity on Linux** — Linux WiFi 7 / MLO support has improved rapidly in kernel 6.x but is still catching up to the Windows and macOS stacks.
+- **Driver maturity on Linux** — Linux WiFi 7 / MLO support has improved rapidly across the 6.x kernel series but, as of early 2026, is still catching up to the Windows and macOS stacks.
 
 MLO's practical impact will grow as client support matures. The AP side is largely ready — the constraint now is the client device installed base.
 

@@ -10,18 +10,18 @@ tags:
   - wifi7
 series:
   - "WiFi Explained"
-series_order: 3
+series_order: 1
 ---
 
 Three settings sit on every AP's radio configuration page: transmit power, channel, and channel width. Most installs leave them on auto and move on — which is often fine, but understanding what they actually control is the difference between a network that works and one that works well. Get these wrong and no amount of roaming or band-steering tuning fixes it.
 
 ## Transmit Power and the Asymmetric Link
 
-A Wi-Fi access point typically transmits around 20–23 dBm (100–200 mW) on 2.4 GHz. On 5 GHz, transmit power is often slightly lower indoors, commonly around 17–21 dBm, while 6 GHz devices are typically in the 14–18 dBm range indoors, depending on regional regulations and device class.
+A WiFi access point typically transmits around 20–23 dBm (100–200 mW) on 2.4 GHz. On 5 GHz, transmit power is often slightly lower indoors, commonly around 17–21 dBm, while 6 GHz devices are typically in the 14–18 dBm range indoors, depending on regional regulations and device class.
 
-Smartphones usually transmit at lower power levels, often around 10–18 dBm (sometimes peaking near 20 dBm), with transmit power dynamically reduced for battery savings and thermal management. Laptops generally fall somewhere in between, commonly around 15–20 dBm depending on the Wi-Fi chipset and antenna design.
+Smartphones usually transmit at lower power levels, often around 10–18 dBm (sometimes peaking near 20 dBm), with transmit power dynamically reduced for battery savings and thermal management. Laptops generally fall somewhere in between, commonly around 15–20 dBm depending on the WiFi chipset and antenna design.
 
-It's also important to remember that Wi-Fi performance is often limited by the client device's transmit power rather than the AP itself. Even if the AP can transmit strongly, the phone or laptop still needs enough transmit power for the AP to reliably receive the response.
+It's also important to remember that WiFi performance is often limited by the client device's transmit power rather than the AP itself. Even if the AP can transmit strongly, the phone or laptop still needs enough transmit power for the AP to reliably receive the response.
 
 This asymmetry can create a link that appears stronger in one direction than the other. A client located 25 metres from the AP may decode the AP's beacon at −65 dBm and display a strong signal indicator. Meanwhile, the AP — receiving the client's weaker uplink transmission — may see that same device at −80 dBm, near the edge of reliable reception.
 
@@ -29,7 +29,7 @@ This asymmetry can create a link that appears stronger in one direction than the
 
 ### Reading the dBm Scale
 
-RSSI (Received Signal Strength Indicator) is how well the receiver hears the transmitter — measured at the Wi-Fi card, not derived from the sender's transmit power. Tools report it in dBm, an absolute power level on a logarithmic scale. Because the received power is a tiny fraction of a milliwatt, the values are negative: **closer to zero is stronger**. −50 dBm is a strong signal; −80 dBm is a weak one.
+RSSI (Received Signal Strength Indicator) is how well the receiver hears the transmitter — measured at the WiFi card, not derived from the sender's transmit power. Tools report it in dBm, an absolute power level on a logarithmic scale. Because the received power is a tiny fraction of a milliwatt, the values are negative: **closer to zero is stronger**. −50 dBm is a strong signal; −80 dBm is a weak one.
 
 | RSSI | Rating | What it supports |
 |------|--------|------------------|
@@ -47,7 +47,7 @@ Keep the asymmetry above in mind when reading these numbers: −70 dBm *at the c
 
 The right transmit power is set so that the -70 dBm downlink contour roughly matches the range at which client uplinks are still usable — typically 14–18 dBm in multi-AP environments rather than the 23 dBm maximum.
 
-![](power-asymmetry.svg "Transmit power asymmetry — AP and client TX power difference and resulting RSSI gap")
+![Transmit power asymmetry — AP and client TX power difference and resulting RSSI gap](power-asymmetry.svg "Transmit power asymmetry — AP and client TX power difference and resulting RSSI gap")
 
 ## Channel Selection
 
@@ -73,17 +73,19 @@ Auto channel selection works well on 5 GHz because the band has enough channels 
 
 ### 6 GHz — The Cleanest Band
 
-WiFi 6E and WiFi 7 add the 6 GHz band (5.925–7.125 GHz), providing up to 59 non-overlapping 20 MHz channels depending on region. No legacy devices use it, and the band is effectively empty compared to the crowded 2.4 and 5 GHz bands. The trade-off is range — 6 GHz attenuates faster through walls and with distance.
+WiFi 6E and WiFi 7 add the 6 GHz band (5.925–7.125 GHz), providing up to 59 non-overlapping 20 MHz channels. No legacy devices use it, and the band is effectively empty compared to the crowded 2.4 and 5 GHz bands. The trade-off is range — 6 GHz attenuates faster through walls and with distance.
+
+How much of the band you actually get depends on region. The US, Canada, South Korea and others opened the full 1200 MHz (5.925–7.125 GHz). The EU and UK currently allow only the lower 500 MHz (5.925–6.425 GHz) for licence-exempt use — about two dozen 20 MHz channels — with the upper half deferred pending WRC-27. The figures below assume the full band; halve them for the EU.
 
 The regulatory picture in 6 GHz is more layered than 5 GHz:
 
 - **Low Power Indoor (LPI)** — the default class for consumer APs. No DFS, no AFC. Max 30 dBm EIRP. Indoor use only.
 - **Standard Power** — higher transmit power (up to 36 dBm EIRP) for outdoor and long-range use, but requires **AFC (Automated Frequency Coordination)**: the AP queries a cloud service that checks whether any licensed incumbent (fixed satellite, point-to-point microwave) is present on the requested channel at the device's location. If clear, the channel is granted. If not, the AP uses a different one.
-- **Very Low Power (VLP)** — no AFC, no DFS, max 21 dBm EIRP. Designed for wearables and IoT.
+- **Very Low Power (VLP)** — no AFC, no DFS, max 14 dBm EIRP. Permitted band-wide and outdoors. Designed for wearables, IoT, and short-range portable use.
 
 Most home and office APs operate as LPI devices, which is why the "no DFS, no AFC" experience is the norm for consumer equipment. Standard Power and AFC are relevant mainly for outdoor enterprise deployments.
 
-![](channel-selection.svg "Channel selection across 2.4, 5, and 6 GHz — usable channels, overlap zones, and DFS")
+![Channel selection across 2.4, 5, and 6 GHz — usable channels, overlap zones, and DFS](channel-selection.svg "Channel selection across 2.4, 5, and 6 GHz — usable channels, overlap zones, and DFS")
 
 ## Channel Width
 
@@ -101,15 +103,22 @@ The 2.4 GHz band is only 83.5 MHz wide. A 40 MHz channel consumes nearly half of
 
 The 6 GHz band is wide enough that 160 MHz channels still leave meaningful non-overlapping alternatives. WiFi 7's 320 MHz channel is designed for 6 GHz and delivers very high throughput where the band is available. The shorter range of 6 GHz limits interference from distant networks, making wide channels more practical here than in 5 GHz.
 
+This is where the regional split bites hardest. On the full 1200 MHz band, 320 MHz gives you three non-overlapping channels and 160 MHz gives you seven. On the EU's lower 500 MHz there is room for exactly one 320 MHz channel and three 160 MHz channels — so 160 MHz is the sensible ceiling for a multi-AP install in Europe, and 320 MHz only makes sense for a single AP.
+
 **Non-overlapping channel availability by width:**
 
 | Band | 20 MHz | 40 MHz | 80 MHz | 160 MHz | 320 MHz |
 |------|--------|--------|--------|---------|---------|
 | 2.4 GHz | 3 | 1–2 | — | — | — |
 | 5 GHz | ~25 | ~12 | ~6 | ~2–3 (DFS) | — |
-| 6 GHz | ~59 | ~29 | ~14 | ~7 | ~3–4 |
+| 6 GHz (full 1200 MHz) | ~59 | ~29 | ~14 | ~7 | ~3 |
+| 6 GHz (EU, 500 MHz) | ~24 | ~12 | ~6 | ~3 | ~1 |
 
-![](channel-width.svg "Channel width trade-off — how wider channels consume available spectrum in 5 and 6 GHz")
+![Channel width trade-off — how wider channels consume available spectrum in 5 and 6 GHz](channel-width.svg "Channel width trade-off — how wider channels consume available spectrum in 5 and 6 GHz")
+
+### Clients Weigh Channel Width When Choosing an AP
+
+Channel width isn't only a capacity decision — some client platforms treat a wider advertised channel as a mark of a better AP. Apple documents this for iOS, iPadOS, macOS, and visionOS: given otherwise comparable candidates, it prefers 160 MHz over 80 MHz, 80 over 40, and 40 over 20. That preference sits below signal strength and PHY capability in the ranking, so it won't drag a client onto a worse channel — but it's a reason not to configure channels narrower than the environment needs. On 6 GHz this aligns with the 160 MHz default recommended above. On 5 GHz it argues against dropping below 80 MHz, not for pushing to 160 MHz at the cost of DFS exposure and fewer clean channels.
 
 ## How Power, Channel, and Width Interact
 
@@ -131,4 +140,4 @@ A reasonable starting point for a multi-AP environment:
 
 These are starting points, not rules. A single-AP home network can run full power and wide channels without issue. A venue with 50 APs needs tighter power and narrower channel discipline to keep the co-channel interference manageable.
 
-Once these are dialed in, the next question is what happens once a network has more than one AP or more than one band: how — and when — does a client actually move between them? See [WiFi Explained: Roaming and Client Management]({{< ref "/posts/2026-05-06-wifi-explained-roaming" >}}) for that.
+Once these are dialed in, the next question is what happens once a network has more than one AP or more than one band: how — and when — does a client actually move between them? See [WiFi Explained: Roaming and Client Management]({{< ref "/posts/2026-05-06-wifi-explained-roaming" >}}) for that. Later parts of this series cover the security layer that sits on top — [WiFi Explained: WPA3, SAE, PMF, and OWE]({{< ref "/posts/2026-05-02-wifi-explained-wpa3" >}}) — and what WiFi 7 changes about spectrum use itself in [WiFi Explained: WiFi 7 Spectrum & Multi-Link Operation]({{< ref "/posts/2026-04-30-wifi-explained-mlo" >}}).

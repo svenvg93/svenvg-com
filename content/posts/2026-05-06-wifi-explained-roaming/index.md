@@ -10,7 +10,7 @@ tags:
   - wifi7
 series:
   - "WiFi Explained"
-series_order: 4
+series_order: 2
 ---
 
 Move far enough from your router and your device will eventually roam to a closer AP. The question is when — and with multiple APs in a home or office, the answer is often "much later than it should." This is the sticky client problem. Solving it requires understanding both how clients decide when to roam and how the AP can guide them — including band steering, which is the bluntest tool in this kit.
@@ -93,7 +93,7 @@ These are sometimes marketed together as **802.11kvr** or **Fast Roaming**. The 
 
 Even with all three standards enabled, clients roam later than they should. The reasons:
 
-- **RSSI thresholds are conservative by default.** Client firmware developers set thresholds that minimize unnecessary roams, since each roam has a cost. The result is clients staying on a degrading signal longer than needed.
+- **RSSI thresholds are conservative by default.** Client firmware developers set thresholds that minimise unnecessary roams, since each roam has a cost. The result is clients staying on a degrading signal longer than needed.
 - **802.11r compatibility issues.** Some enterprise APs or older infrastructure have quirks. If a client can't complete FT, it may fall back to full re-authentication — or fail entirely and not roam.
 - **OS-level roaming logic varies.** iOS, Android, Windows, and Linux all implement roaming differently. Apple devices tend to roam earlier and more aggressively. Some Android devices are notoriously sticky. Apple publishes [recommended WiFi settings for deploying Apple devices][1], including which 802.11r/k/v features to enable.
 - **802.11v is advisory.** A client can simply ignore the suggestion. There's no enforcement mechanism.
@@ -152,7 +152,7 @@ These recommendations are ordered from most impactful to most specific:
 
 **Match security settings across all APs.** Mixing WPA2 and WPA3 transition configurations can introduce re-authentication delays at roam time. Keep the security mode identical on every AP serving the same SSID.
 
-**Separate IoT onto a dedicated 2.4 GHz SSID.** Smart home devices — sensors, cameras, plugs — belong on 2.4 GHz, and segregating them removes them from band steering entirely. This eliminates the most common steering failure mode without touching any steering configuration.
+**Put IoT on a dedicated 2.4 GHz SSID.** Smart home devices — sensors, cameras, plugs — have minimal roaming logic and belong on 2.4 GHz. A dedicated SSID takes them out of band steering entirely — the most common steering failure mode — and lets you apply conservative or disabled roaming settings to them without affecting regular clients.
 
 **Disable band steering on your main SSID if IoT devices share it.** If a dedicated IoT SSID isn't practical right now, disabling steering for the primary SSID is the safer default for a mixed device environment. Band steering failures are hard to debug; removing the variable is faster than tuning it.
 
@@ -160,7 +160,7 @@ These recommendations are ordered from most impactful to most specific:
 
 **Set RSSI kick thresholds for 802.11v.** Configure the signal level below which clients receive a BSS Transition Request — around -70 to -75 dBm is a common starting point. This nudges weak clients toward a better AP or band without forcing a band change through probe suppression.
 
-**Isolate IoT on a dedicated SSID.** Smart home devices often have minimal roaming logic. A dedicated SSID lets you apply conservative or disabled roaming settings to IoT without affecting the behaviour for regular clients.
+**Raise the minimum basic rate.** Disabling the low legacy rates (1, 2, 5.5, and 11 Mbps on 2.4 GHz) pushes beacons and management frames out at a higher rate, which shrinks the effective cell so distant clients can't associate to — and then cling to — an AP they can barely reach. A 12 Mbps minimum is a safe starting point; go higher only where AP spacing is tight enough to guarantee coverage.
 
 **If you're on WiFi 7, let MLO handle band selection.** Multi-Link Operation makes band steering largely obsolete for WiFi 7 clients — the device maintains links on multiple bands simultaneously and the AP distributes traffic dynamically. MLO is a structural solution rather than a heuristic one. See [WiFi Explained: WiFi 7 Spectrum & Multi-Link Operation]({{< ref "/posts/2026-04-30-wifi-explained-mlo" >}}) for details.
 

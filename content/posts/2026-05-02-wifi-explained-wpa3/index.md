@@ -10,7 +10,7 @@ tags:
   - wifi
 series:
   - "WiFi Explained"
-series_order: 2
+series_order: 3
 ---
 
 WPA3 has been around since 2018, but most people enabled it because their router's UI said to — without knowing what actually changed. Some of the improvements are subtle, some are significant, and a few things WPA3 is assumed to fix it doesn't. This post covers the four main components: SAE (the new handshake), PMF (protected management frames), OWE (open network encryption), and the Enterprise 192-bit mode — plus where WPA3 still falls short.
@@ -21,7 +21,7 @@ WPA2-Personal uses a Pre-Shared Key (PSK): a password known to both the AP and t
 
 Two attacks made this concrete:
 
-- **KRACK (2017)** — Key Reinstallation Attack. A flaw in the 4-way handshake implementation allowed an attacker to force nonce reuse, breaking encryption for active sessions.
+- **KRACK (2017)** — Key Reinstallation Attack. A design flaw in the WPA2 4-way handshake itself: replaying a handshake message forces the client to reinstall an already-in-use key, resetting nonces and breaking encryption for active sessions. Correct, spec-compliant implementations were still vulnerable.
 - **PMKID attack (2018)** — An attacker can request a single PMKID frame from an AP without a client being present, then crack the PSK offline. No handshake capture required.
 
 Both attacks share the same root problem: the PSK is a static secret, and any captured material can be attacked indefinitely after the fact.
@@ -42,7 +42,7 @@ SAE does have one known weakness: **Dragonblood (2019)** — a timing and cache 
 
 ## PMF: Protected Management Frames
 
-Management frames (probe requests, authentication, association, deauthentication) were never encrypted in WPA2. An attacker could send a spoofed deauthentication frame to any client, forcing it off the network — no credentials needed. This is the basis of deauth attacks used in everything from wifi jammers to evil twin setups.
+Management frames (probe requests, authentication, association, deauthentication) were never encrypted in WPA2. An attacker could send a spoofed deauthentication frame to any client, forcing it off the network — no credentials needed. This is the basis of deauth attacks used in everything from WiFi jammers to evil twin setups.
 
 WPA3 mandates PMF (802.11w). Management frames are now cryptographically protected:
 
@@ -50,7 +50,7 @@ WPA3 mandates PMF (802.11w). Management frames are now cryptographically protect
 - **Unicast management frames** are encrypted between client and AP.
 - **Broadcast management frames** use a group key to prevent spoofing.
 
-PMF was optional in WPA2 (and widely ignored). Making it mandatory in WPA3 removes a class of denial-of-service attacks that have existed since the beginning of wifi.
+PMF was optional in WPA2 (and widely ignored). Making it mandatory in WPA3 removes a class of denial-of-service attacks that have existed since the beginning of WiFi.
 
 ![PMF — spoofed deauth attack blocked vs accepted](wpa3-pmf.svg "PMF — spoofed deauth attack blocked vs accepted")
 
@@ -69,7 +69,7 @@ OWE improves open networks; FILS (802.11ai, included in WPA3 certification) impr
 On 802.1X/RADIUS enterprise networks, a full EAP exchange on every reconnect adds 300–500 ms before traffic can flow. For a phone moving between APs in a large building, this latency is noticeable on VoIP calls and video streams. FILS shortens this significantly for returning clients:
 
 - The first association is a full EAP exchange. FILS derives and caches a **FILS key** from that session.
-- On subsequent associations to any AP in the same mobility domain, the client presents the cached FILS key material. Most of the EAP exchange is skipped.
+- On subsequent associations to any AP in the same [mobility domain]({{< ref "/posts/2026-05-06-wifi-explained-roaming" >}}#80211r--fast-bss-transition) — the group of APs that coordinate fast transitions — the client presents the cached FILS key material. Most of the EAP exchange is skipped.
 - Authentication completes in 1–2 RTTs rather than a multi-step EAP ladder.
 
 FILS is most relevant in high-density environments — stadiums, hospitals, transit hubs — where many devices reconnect frequently and 802.1X is already in use. It requires support on both the AP and the RADIUS server/supplicant stack. Adoption is narrower than SAE or PMF because it only matters for enterprise networks with 802.1X, not for home WPA3-Personal deployments.
@@ -118,4 +118,4 @@ WPA3 solves the offline cracking and deauth spoofing problems well. It doesn't s
 | Minimum password requirement | None | None (but harder to crack) |
 | Password element derivation | Hunting-and-pecking | H2E (mandatory since WPA3 R2) |
 
-For how WiFi 7 changes spectrum use and link behavior on top of this, see [WiFi Explained: WiFi 7 Spectrum & Multi-Link Operation]({{< ref "/posts/2026-04-30-wifi-explained-mlo" >}}). For how clients roam between APs and bands, see [WiFi Explained: Roaming and Client Management]({{< ref "/posts/2026-05-06-wifi-explained-roaming" >}}).
+For how WiFi 7 changes spectrum use and link behaviour on top of this, see [WiFi Explained: WiFi 7 Spectrum & Multi-Link Operation]({{< ref "/posts/2026-04-30-wifi-explained-mlo" >}}). For how clients roam between APs and bands, see [WiFi Explained: Roaming and Client Management]({{< ref "/posts/2026-05-06-wifi-explained-roaming" >}}).

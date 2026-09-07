@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 260" width="700" height="260"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <marker id="arr-pink" markerWidth="8" markerHeight="6" refX="7" refY="3"
+            orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#ec4899"/>
+    </marker>
+  </defs>
+
+  <rect width="700" height="260" fill="url(#bg)" rx="8"/>
+
+  <!-- subtle grid -->
+  <g stroke="#0d1a2a" stroke-width="1">
+    <line x1="0" y1="72" x2="700" y2="72"/>
+  </g>
+
+  <!-- header -->
+  <line x1="0" y1="36" x2="700" y2="36" stroke="#0d1a2a" stroke-width="1"/>
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600"
+        fill="#94a3b8" letter-spacing="1">ELK STACK — LOGSTASH INGESTS, ELASTICSEARCH STORES, KIBANA VISUALISES</text>
+
+  <!-- Log source (external input) -->
+  <rect x="14" y="94" width="116" height="90" fill="#0d1117" stroke="#94a3b8" stroke-width="1.5" rx="5"/>
+  <text x="72" y="118" text-anchor="middle" font-size="12" font-weight="600" fill="#cbd5e1">Log source</text>
+  <text x="72" y="136" text-anchor="middle" font-size="9" fill="#94a3b8">app / syslog / Beats</text>
+
+  <!-- Logstash -->
+  <rect x="210" y="94" width="116" height="90" fill="#17060f" stroke="#ec4899" stroke-width="1.5" rx="5"/>
+  <text x="268" y="118" text-anchor="middle" font-size="12" font-weight="600" fill="#f472b6">Logstash</text>
+  <text x="268" y="136" text-anchor="middle" font-size="9" fill="#94a3b8">ingest pipeline</text>
+  <text x="268" y="154" text-anchor="middle" font-size="9" fill="#f9a8d4" font-family="'Courier New',monospace">:5044 (beats)</text>
+  <text x="268" y="171" text-anchor="middle" font-size="9" fill="#f9a8d4" font-family="'Courier New',monospace">:50000 (tcp/json)</text>
+
+  <!-- Elasticsearch -->
+  <rect x="406" y="94" width="118" height="90" fill="#17060f" stroke="#ec4899" stroke-width="1.5" rx="5"/>
+  <text x="465" y="118" text-anchor="middle" font-size="12" font-weight="600" fill="#f472b6">Elasticsearch</text>
+  <text x="465" y="136" text-anchor="middle" font-size="9" fill="#94a3b8">store + search</text>
+  <text x="465" y="154" text-anchor="middle" font-size="9" fill="#f9a8d4" font-family="'Courier New',monospace">:9200</text>
+
+  <!-- Kibana -->
+  <rect x="604" y="94" width="82" height="90" fill="#17060f" stroke="#ec4899" stroke-width="1.5" rx="5"/>
+  <text x="645" y="118" text-anchor="middle" font-size="12" font-weight="600" fill="#f472b6">Kibana</text>
+  <text x="645" y="134" text-anchor="middle" font-size="9" fill="#94a3b8">web UI</text>
+  <text x="645" y="150" text-anchor="middle" font-size="9" fill="#f9a8d4" font-family="'Courier New',monospace">:5601</text>
+  <text x="645" y="168" text-anchor="middle" font-size="8" fill="#94a3b8">→ browser (you)</text>
+
+  <!-- arrows: strictly one-directional, solid (real connections) -->
+  <line x1="132" y1="139" x2="209" y2="139" stroke="#ec4899" stroke-width="1.5" marker-end="url(#arr-pink)"/>
+  <text x="170" y="131" text-anchor="middle" font-size="9" fill="#f472b6">events</text>
+
+  <line x1="328" y1="139" x2="405" y2="139" stroke="#ec4899" stroke-width="1.5" marker-end="url(#arr-pink)"/>
+  <text x="366" y="131" text-anchor="middle" font-size="9" fill="#f472b6">index</text>
+
+  <line x1="526" y1="139" x2="603" y2="139" stroke="#ec4899" stroke-width="1.5" marker-end="url(#arr-pink)"/>
+  <text x="564" y="131" text-anchor="middle" font-size="9" fill="#f472b6">query</text>
+
+  <!-- footer -->
+  <text x="350" y="244" text-anchor="middle" font-size="9" fill="#94a3b8">One-way flow — sources ship events, Logstash indexes to Elasticsearch, Kibana serves dashboards to your browser.</text>
+</svg>

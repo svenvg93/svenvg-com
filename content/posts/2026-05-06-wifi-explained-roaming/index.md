@@ -98,6 +98,17 @@ Even with all three standards enabled, clients roam later than they should. The 
 - **OS-level roaming logic varies.** iOS, Android, Windows, and Linux all implement roaming differently. Apple devices tend to roam earlier and more aggressively. Some Android devices are notoriously sticky. Apple publishes [recommended WiFi settings for deploying Apple devices][1], including which 802.11r/k/v features to enable.
 - **802.11v is advisory.** A client can simply ignore the suggestion. There's no enforcement mechanism.
 
+## When the Backhaul Is Wireless (Mesh)
+
+Everything above assumes each AP has its own Ethernet uplink. In a wireless mesh, a satellite AP reaches the network over WiFi — sharing a radio with clients, or on a dedicated backhaul radio on tri-band hardware. That changes the roaming picture:
+
+- **Backhaul costs airtime.** On a two-radio mesh node, client traffic and backhaul traffic compete for the same spectrum. A client that roams onto a mesh satellite gets whatever airtime the backhaul leaves it, and every hop roughly halves throughput.
+- **Over-the-DS 802.11r still works** — the FT frames cross the mesh link instead of Ethernet — but pre-authentication now rides a wireless path that can be congested or flapping. Over-the-air FT is the more predictable choice on mesh.
+- **Steering has to weigh the backhaul.** A satellite with a strong client-facing signal but a weak uplink is a poor roam target. Good mesh firmware folds backhaul quality into its 802.11v suggestions; not all of it does.
+- **A dedicated backhaul radio** (tri-band mesh) removes the airtime split for client traffic, but that band is then off-limits to clients and its range caps how far apart the nodes can sit.
+
+Wire every AP you can. Where a cable genuinely cannot reach, keep the mesh to a single hop and prefer a tri-band node with a dedicated backhaul radio.
+
 ## Band Steering: Guiding Clients Between Bands
 
 Roaming moves clients between access points. Band steering solves a related problem: clients that are in range of a faster band but associate on a slower one anyway.

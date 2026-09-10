@@ -77,6 +77,14 @@ The AP and client can then:
 
 The result is lower latency (always use the best available path), higher aggregate throughput (multiple channels active simultaneously), and better reliability.
 
+### Which Bands MLO Pairs
+
+MLO combines links *across* bands, not within one. A client sets up one link per band it shares with the AP — in practice **2.4 + 5 GHz**, **5 + 6 GHz**, or all three on a tri-band WiFi 7 AP.
+
+Each band plays a different role. 6 GHz is the high-throughput link: wide 160/320 MHz channels and little congestion. 5 GHz is the reliable mid-range anchor. 2.4 GHz is the long-range fallback. Because 6 GHz attenuates fastest, its link is usually the first to fade as the client moves away — and MLO's response is to shift that traffic onto the 5 GHz link with no roam event, which is much of its day-to-day value.
+
+Clients have one radio per band, so the client's radio count sets which pairings are real. A two-radio phone on eMLSR listens on two bands but transmits on one at a time; a laptop with independent 5 and 6 GHz radios can run both at once. A 6 GHz-only deployment cannot do cross-band MLO at all — MLO needs at least two bands in common.
+
 There is a common misconception that MLO is a single feature that either works or doesn't. In practice, MLO is a family of modes — and an AP and a client device can both advertise WiFi 7 with MLO support while using entirely different modes. The higher-capability multi-radio modes like STR are rarely found on client devices: fitting multiple fully isolated radios into a thin laptop or phone is a genuine hardware challenge, and running them all simultaneously carries a real battery cost. Most client devices implement eMLSR instead, which delivers MLO's latency benefits at much lower power and hardware cost. Understanding which mode a device actually uses matters more than whether it supports MLO at all.
 
 ### The Main MLO Modes
@@ -127,9 +135,19 @@ EMLMR also uses multiple radios, but instead of dedicating a fixed radio to each
 
 These five modes are the ones formally defined in the 802.11be amendment. In practice, higher-end multi-radio devices may implement smarter link scheduling and dynamic traffic steering on top of STR — adapting in real time to RF conditions, prioritising latency-sensitive flows, and steering frames across links — but this is vendor firmware territory rather than a distinct standard mode.
 
+### Traffic-to-Link Mapping (T2LM)
+
+By default an MLO device spreads frames across whichever links look best moment to moment. **Traffic-to-Link Mapping (T2LM)** lets the peers pin specific traffic to specific links instead — for example, latency-sensitive classes (voice, gaming, by TID or WMM access category) onto the 6 GHz link and bulk best-effort traffic onto 5 GHz, or one link for downlink and another for uplink.
+
+The mapping is negotiated between the two multi-link devices and can change over time — dropping the 6 GHz mapping when that link weakens, for instance. This is the QoS side of MLO: not just "use the best link" but "keep my call on the clean link even while a download runs on the other one".
+
+Support is early. The mechanism is in 802.11be, but firmware exposure varies and many first-generation WiFi 7 clients ignore T2LM and simply do dynamic frame distribution.
+
 ### What MLO Requires
 
 MLO is not backwards compatible at the protocol level. Both the AP and the client must support WiFi 7 and negotiate MLO during association. A WiFi 7 AP provides no MLO benefit to a WiFi 6 client — that client connects on a single link as usual.
+
+MLO also requires **WPA3 and PMF**. A multi-link association is only set up inside an SAE security context with Protected Management Frames active — there is no WPA2 MLO. The multi-link device derives one pairwise key set during association, then each link is given its own group keys so broadcast and multicast traffic is protected per band. Turning on MLO therefore commits that SSID's MLO-capable clients to WPA3. See [WiFi Explained: WPA3, SAE, PMF, and OWE]({{< ref "/posts/2026-05-02-wifi-explained-wpa3" >}}#wpa3-is-mandatory-on-6-ghz-and-wifi-7).
 
 On the infrastructure side, the AP needs hardware capable of managing multi-link associations: coordinating frame scheduling across bands, maintaining per-link block-ack agreements, and presenting a unified MAC to the client. This is more complex than a standard tri-band AP.
 

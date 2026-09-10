@@ -13,7 +13,7 @@ series:
 series_order: 3
 ---
 
-WPA3 has been around since 2018, but most people enabled it because their router's UI said to — without knowing what actually changed. Some of the improvements are subtle, some are significant, and a few things WPA3 is assumed to fix it doesn't. This post covers the four main components: SAE (the new handshake), PMF (protected management frames), OWE (open network encryption), and the Enterprise 192-bit mode — plus where WPA3 still falls short.
+WPA3 has been around since 2018, but most people enabled it because their router's UI said to — without knowing what actually changed. Some of the improvements are subtle, some are significant, and a few things WPA3 is assumed to fix it doesn't. This post covers the main components — SAE (the new handshake), PMF (protected management frames), OWE (open network encryption), SAE-PK (public-key AP authentication), and the Enterprise 192-bit mode — plus where WPA3 is now mandatory (6 GHz and WiFi 7), how MAC randomisation fits the same privacy story, and where WPA3 still falls short.
 
 ## What Was Wrong with WPA2
 
@@ -39,6 +39,14 @@ SAE replaces the PSK-based 4-way handshake with a Password Authenticated Key Exc
 This directly kills the PMKID and handshake-capture attacks. Offline cracking is no longer possible because there's nothing to crack.
 
 SAE does have one known weakness: **Dragonblood (2019)** — a timing and cache side-channel that could leak information about the password under specific conditions. The root cause was the original password derivation method, which had variable execution time that could be measured by an attacker. This was fixed in WPA3 Release 2 (2020) with **Hash-to-Element (H2E)**: a constant-time derivation that removes the timing signal entirely. Most current APs and clients default to H2E, but older firmware may still fall back to the original method.
+
+## SAE-PK: Authenticating the AP on Public Networks
+
+SAE proves both sides know the password. That is exactly the problem on a network where the password is *public* — a café that prints it on the receipt, a conference SSID on a slide, a hotel lobby sign. Anyone who knows the password can stand up an evil twin with the same SSID and password, and SAE completes normally against it. The client has no way to tell the operator's AP from an impostor that read the same sign.
+
+**SAE-PK** (SAE with Public Key, added in WPA3 Release 3) closes this for operators who opt in. The AP holds a private key, and its public key is fingerprinted into the password string itself — the password is no longer free-form but a generated value like `a2bc-de3f-ghij-klmn` that encodes the fingerprint. During the SAE exchange the AP signs its messages with the private key, and the client checks that signature against the fingerprint carried in the password it was given. An attacker who knows the password still cannot produce the signature without the private key, so the evil twin fails verification.
+
+The trade-offs: the password is machine-generated and longer than users would pick, both AP and client must support it, and adoption so far is thin — it targets hotspot operators, not home networks. It narrows the evil-twin gap for shared-password SAE networks; it does nothing for a normal home network where only trusted people have the password anyway.
 
 ## PMF: Protected Management Frames
 
@@ -94,12 +102,26 @@ One specific risk worth naming: WPA2 clients on the same SSID are still vulnerab
 
 A WPA3-only network gives the full benefit. Transition mode is a practical compromise.
 
+## WPA3 Is Mandatory on 6 GHz and WiFi 7
+
+Transition mode is a 2.4 and 5 GHz concession. It does not exist on 6 GHz.
+
+The regulatory decisions that opened the 6 GHz band (the FCC in the US, and equivalents elsewhere) require that every 6 GHz connection is protected: WPA3-SAE for password networks, OWE for open ones. WPA2, TKIP, and plain unencrypted open are not permitted on a 6 GHz BSS. A 6 GHz radio is WPA3-only by definition — there is nothing to transition from.
+
+The practical effects:
+
+- On a tri-band WPA2/WPA3 transition SSID, the 2.4 and 5 GHz radios accept both, but the 6 GHz radio only admits WPA3 clients. Some vendors will not broadcast the 6 GHz radio at all until WPA3 is enabled on the SSID.
+- **WiFi 6E and WiFi 7 client certification require WPA3 support.** A device carrying the logo can always do SAE.
+- **MLO requires WPA3 and PMF.** A multi-link association is only established inside an SAE security context with Protected Management Frames active — there is no WPA2 MLO. Enabling MLO on an SSID commits its MLO-capable clients to WPA3. See [WiFi Explained: WiFi 7 Spectrum & Multi-Link Operation]({{< ref "/posts/2026-04-30-wifi-explained-mlo" >}}#what-mlo-requires).
+
+If you are deploying 6 GHz or WiFi 7, plan for WPA3-only on that SSID and keep a separate transition-mode SSID on 2.4/5 GHz for legacy gear.
+
 ## What WPA3 Doesn't Fix
 
 | Problem | WPA3 helps? | Why not |
 |---------|-------------|---------|
 | Weak passwords | No | SAE raises the cost of cracking, but a short password is still guessable |
-| Evil twin / rogue AP | No | SAE proves both sides know the password, but anyone who knows the password can impersonate the AP. There is no certificate-based identity. |
+| Evil twin / rogue AP | Partly | Plain SAE doesn't help — anyone who knows the password can impersonate the AP. SAE-PK fixes it for public networks that adopt it; WPA3-Enterprise with EAP-TLS fixes it with certificates. Plain WPA3-Personal has no AP identity check. |
 | Client implementation bugs | No | Dragonblood showed correct-spec implementations can still have exploitable side-channels |
 | Traffic analysis | No | Metadata — timing, packet sizes, destinations — is still visible regardless of encryption |
 | Insider threats | No | Anyone with the password can still observe their own session traffic |
@@ -117,5 +139,7 @@ WPA3 solves the offline cracking and deauth spoofing problems well. It doesn't s
 | Open network encryption | No | OWE (optional) |
 | Minimum password requirement | None | None (but harder to crack) |
 | Password element derivation | Hunting-and-pecking | H2E (mandatory since WPA3 R2) |
+| AP identity check | No | Optional — SAE-PK on public networks |
+| Allowed on 6 GHz | No | Required — WPA2 not permitted |
 
 For how WiFi 7 changes spectrum use and link behaviour on top of this, see [WiFi Explained: WiFi 7 Spectrum & Multi-Link Operation]({{< ref "/posts/2026-04-30-wifi-explained-mlo" >}}). For how clients roam between APs and bands, see [WiFi Explained: Roaming and Client Management]({{< ref "/posts/2026-05-06-wifi-explained-roaming" >}}).

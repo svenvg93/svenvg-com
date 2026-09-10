@@ -15,7 +15,7 @@ series:
 series_order: 3
 ---
 
-CWMP wraps every RPC in a SOAP envelope carried over HTTP(S). The [USP overview post]({{< ref "/posts/2026-08-03-tr369-explained-what-changes" >}}) mentioned in passing that USP collapses those RPCs into a smaller, more uniform set of messages. This post puts them side by side — the actual message shapes, not just the naming change — and covers the notification side CWMP handled with a single mechanism and USP splits into six distinct event types.
+CWMP wraps every RPC in a SOAP envelope carried over HTTP(S). The [first post in this series]({{< ref "/posts/2026-08-03-tr369-explained-what-changes" >}}) mentioned in passing that USP collapses those RPCs into a smaller, more uniform set of messages. This post puts them side by side — the actual message shapes, not just the naming change — and covers the notification side CWMP handled with a single mechanism and USP splits into six distinct event types.
 
 One note before diving in: USP normally encodes messages as binary Protocol Buffers, not human-readable text. The JSON shown below is the same structure in the readable form the Broadband Forum's own [message documentation][1] and [conformance tests][2] use — it's not the literal bytes on the wire, the way CWMP's SOAP/XML genuinely is.
 
@@ -133,11 +133,11 @@ CWMP has no single mechanism for "do a thing" — `Reboot`, `FactoryReset`, `Dow
 | `Reboot` / `FactoryReset` / `Download` / `Upload` | `Operate` | Four separate RPCs collapse into one generic command-invocation message |
 | SOAP `Fault` | `Error` response / `oper_failure` + `param_errs` | Same shape — top-level code plus per-parameter detail |
 
-Notification is a different enough problem to need its own comparison, next — CWMP's active/passive parameter attributes and USP's `Notify` message plus `Subscription` objects work differently enough that lining them up in the table above would flatten the distinction that actually matters.
-
 ## Subscriptions and the Notify Message
 
-CWMP's notification story is its parameter attribute levels — a parameter set to passive or active reports its own value changes, and that's the entire feature. USP replaces this with something considerably broader: **[Subscriptions][3]**, backed by a dedicated **[Notify][4]** message that covers six distinct kinds of event, not just "a value changed."
+Notification is deliberately left out of the table above: CWMP's active/passive parameter attributes and USP's `Notify` message plus `Subscription` objects work differently enough that lining them up as one row would flatten the distinction that actually matters.
+
+CWMP's notification story is its parameter attribute levels — a parameter set to passive or active reports its own value changes, and that's the entire feature. USP replaces this with something considerably broader: **[Subscriptions][3]**, backed by a dedicated **Notify** message that covers six distinct kinds of event, not just "a value changed."
 
 ### The Subscription Object
 
@@ -178,7 +178,7 @@ CWMP had one notification concept: a parameter's value changed. USP's `NotifType
   "body": {
     "request": {
       "notify": {
-        "subscription_id": "wan-ip-watch",
+        "subscription_id": "friendlyname-watch",
         "send_resp": true,
         "value_change": {
           "param_path": "Device.DeviceInfo.FriendlyName",
@@ -196,7 +196,7 @@ The Agent sends this on its own initiative the moment the watched value changes 
 
 CWMP's notification levels split into passive (ride the next scheduled `Inform`) and active (open a new session immediately) specifically because opening an HTTP session for every minor value change was expensive — passive existed as a cost-saving compromise. USP's Subscription model doesn't have that split; every triggered notification results in its own `Notify` message.
 
-That's a reasonable design point rather than an oversight: the [MTP post]({{< ref "/posts/2026-08-03-tr369-explained-what-changes" >}}) covered how every current MTP — WebSocket, MQTT, STOMP — keeps a persistent connection open. Sending a `Notify` over a connection that's already up costs far less than CWMP paid to open a fresh session — the specific expense that justified a "cheap but delayed" passive tier mostly disappears once the transport itself stopped being the bottleneck.
+That's a reasonable design point rather than an oversight: the [first post in this series]({{< ref "/posts/2026-08-03-tr369-explained-what-changes" >}}) covered how every current MTP — WebSocket, MQTT, STOMP — keeps a persistent connection open. Sending a `Notify` over a connection that's already up costs far less than CWMP paid to open a fresh session — the specific expense that justified a "cheap but delayed" passive tier mostly disappears once the transport itself stopped being the bottleneck.
 
 ## Recap
 
@@ -212,5 +212,4 @@ This closes out the TR-369 Explained series: from what changes architecturally, 
 
 [1]: https://tr369.org/understanding-usp-messages/
 [2]: https://usp-test.broadband-forum.org/
-[3]: https://tr369.org/tr-369-usp-notification-types/
-[4]: https://tr369.org/tr369-usp-notify-messages/
+[3]: https://usp.technology/specification/#sec:notifications-and-subscriptions

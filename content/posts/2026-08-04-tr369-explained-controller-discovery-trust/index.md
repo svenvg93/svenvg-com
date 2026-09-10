@@ -1,6 +1,6 @@
 ---
-title: "TR-369 Explained: Controller Discovery and Trust"
-description: How an Agent finds a Controller in the first place — DHCP options 124/125, DNS-SD, and mDNS — and what stops multiple Controllers managing the same Agent from stepping on each other once they're connected.
+title: "TR-369 Explained: DHCP Controller Discovery and Trust"
+description: How an Agent finds a Controller in the first place via DHCP options 124/125, and what stops multiple Controllers managing the same Agent from stepping on each other once they're connected.
 date: 2026-08-04
 draft: false
 categories:
@@ -15,15 +15,15 @@ series:
 series_order: 2
 ---
 
-The [previous post]({{< ref "/posts/2026-08-03-tr369-explained-what-changes" >}}) covered why USP supports multiple independent Controllers managing one Agent. This one covers both halves of what that actually requires: how an Agent finds a Controller to talk to in the first place, since USP doesn't have a single "ACS URL" field the way a CWMP Endpoint does — [Discovery][1] is a defined process with three distinct mechanisms — and, once it's found one or several, what stops those Controllers from reaching into each other's territory.
+The [previous post]({{< ref "/posts/2026-08-03-tr369-explained-what-changes" >}}) covered why USP supports multiple independent Controllers managing one Agent. This one covers both halves of what that actually requires: how an Agent finds a Controller to talk to in the first place, since USP doesn't have a single "ACS URL" field the way a CWMP Endpoint does — [Discovery][1] is a defined process, and this post takes the DHCP path through it — and, once it's found one or several, what stops those Controllers from reaching into each other's territory.
 
 ## What the Agent Actually Needs to Learn
 
-To reach a Controller, an Agent needs four things: which **MTP** to use (WebSockets, MQTT, or STOMP — or UDS for a Controller on the same device), an **address**, a **port**, and — for MTPs that need one — a **resource path**. Discovery can hand the Agent all of this bundled as a single URL, or as an FQDN that the Agent resolves further via DNS-SD to get the rest.
+To reach a Controller, an Agent needs four things: which **MTP** to use (WebSockets, MQTT, or STOMP — or UDS for a Controller on the same device), an **address**, a **port**, and — for MTPs that need one — a **resource path**. Discovery can hand the Agent all of this bundled as a single URL, or as an FQDN the Agent resolves the rest from.
 
-USP defines three ways an Agent can learn this: **DHCP**, **DNS-SD**, and **mDNS**. Which one applies depends mostly on whether the Controller is somewhere on the internet (an ISP's own platform) or sitting on the same local network as the Agent (a smart-home hub, say).
+USP defines three mechanisms for this: **DHCP**, **DNS-SD** (looking a Controller up by service type), and **mDNS** (for a link with no DHCP server or DNS zone to lean on). DNS-SD and mDNS are their own topic; this post covers the DHCP one.
 
-## DHCP-Based Discovery
+## How DHCP Hands Over the Controller
 
 This is the USP analog of CWMP's ACS URL delivered via DHCP option 43 — but built to avoid the exact problem option 43 has. Option 43 is a flat, vendor-specific blob with no standard internal structure, so when a network has several unrelated vendors all repurposing the same option for their own provisioning needs, nothing stops their data from colliding or being misread by the wrong device.
 
@@ -46,34 +46,7 @@ All five are decoded as strings — including the two that look numeric (the ret
 
 Because DHCP itself has no built-in security, the specification is explicit that this is only safe to rely on when the link between the DHCP server and the Agent is one the operator actually controls — and that trust between the Agent and whatever Controller it discovers this way still needs to be established separately, typically with pre-configured certificates rather than assuming the DHCP response itself is trustworthy.
 
-## DNS-SD Discovery
-
-Where DHCP hands the Agent a Controller directly, DNS-SD (DNS Service Discovery) lets it look one up by service type — useful when the Controller's actual endpoint can change without the Agent needing reconfiguration. USP registers eight service names with IANA, one pair per MTP for each role:
-
-| Service Name | MTP | Role |
-|--------------|-----|------|
-| `usp-agt-coap` | CoAP | Agent |
-| `usp-agt-mqtt` | MQTT | Agent |
-| `usp-agt-stomp` | STOMP | Agent |
-| `usp-agt-ws` | WebSocket | Agent |
-| `usp-ctr-coap` | CoAP | Controller |
-| `usp-ctr-mqtt` | MQTT | Controller |
-| `usp-ctr-stomp` | STOMP | Controller |
-| `usp-ctr-ws` | WebSocket | Controller |
-
-The `-coap` names are still registered but no longer used in practice — CoAP was deprecated as a USP MTP in 1.2 and obsoleted in 1.3, leaving MQTT, STOMP, and WebSocket as the discoverable transports. UDS has no service names here: it's a local socket path, not something an Agent finds over the network.
-
-A lookup walks the standard DNS-SD record chain: a **PTR** record finds service instances of a given type, an **SRV** record for that instance gives the actual host and port, a **TXT** record carries attributes (a required `path` for both Agents and Controllers, a `name` for Agents, and an optional `encrypt` flag), and finally an **A**/**AAAA** record resolves the host to an address.
-
-![DNS-SD Controller lookup — PTR finds service instances, SRV gives host and port, TXT carries the resource path, A/AAAA resolves the address](dns-sd-lookup-flow.svg "DNS-SD Controller lookup — PTR finds service instances, SRV gives host and port, TXT carries the resource path, A/AAAA resolves the address")
-
-## mDNS on the Local Network
-
-DHCP and DNS-SD both assume some shared infrastructure — a DHCP server or a real DNS zone. On a local network with neither, USP falls back to **mDNS** (RFC 6762) — the same `.local` multicast mechanism used for LAN service discovery generally. An Agent resolving a Controller FQDN ending in `.local` does it via mDNS instead of the ordinary DNS hierarchy, and any USP Endpoint supporting mDNS is required to implement both the client and server sides — since a Controller discovering Agents on the LAN needs to receive queries, not just send them.
-
-This is the path a local smart-home hub would use to find Agents on its own network, as distinct from an ISP's cloud platform reaching a device over the internet via DHCP or DNS-SD.
-
-## Controller Trust: Keeping Multiple Controllers From Stepping on Each Other
+## Controller Trust
 
 Finding a Controller is only half the story. USP explicitly allows an ISP, a device vendor, and a smart-home platform to all manage the same Agent independently — which raises an obvious question: what stops one Controller from reconfiguring settings another Controller depends on, or reading data it has no business seeing? The answer is **[Controller Trust][2]**: a role-based permission model that decides exactly what each Controller is allowed to touch.
 
@@ -122,15 +95,13 @@ Roles scope what each Controller *can* touch — they don't arbitrate what happe
 
 ## Recap
 
-- An Agent needs an MTP, address, port, and (if the MTP requires it) a resource path to reach a Controller — delivered either as one URL or as an FQDN resolved further via DNS-SD.
+- An Agent needs an MTP, address, port, and (if the MTP requires it) a resource path to reach a Controller — delivered either as one URL or as an FQDN it resolves the rest from. USP defines DHCP, DNS-SD, and mDNS for this; this post covers DHCP.
 - **DHCP discovery** uses vendor-identifying options keyed to the Broadband Forum's enterprise number (`3561`) rather than a flat blob like CWMP's option 43 — the Agent requests via option 124/16, the server responds via option 125/17 with five defined sub-options (URL, provisioning code, retry parameters, Endpoint ID), all decoded as strings.
 - DHCP has no built-in security, so trust with a DHCP-discovered Controller still has to be established separately — usually with pre-configured certificates.
-- **DNS-SD discovery** uses eight IANA-registered service names (`usp-agt-*`/`usp-ctr-*`, one pair per MTP) and the standard PTR → SRV → TXT → A/AAAA record chain to resolve a Controller.
-- **mDNS** handles discovery on a local network with no DHCP or DNS infrastructure to lean on, resolving `.local` addresses directly between Agent and Controller.
 - USP Controllers get no default access; each is assigned a **Role** (`Device.LocalAgent.ControllerTrust.Role.{i}`) that defines exactly what it can do, via `Permission` entries scoped to `Param`, `Obj`, `InstantiatedObj`, or `CommandEvent` and granted as an `rwxn` string.
 - This is how an ISP Controller and a smart-home platform's Controller can manage the same Agent safely: disjoint Roles give each exactly the scope it needs, enforced per-request at the Agent — not arbitration of simultaneous writes within a scope two Controllers both happen to share, which permissions don't solve.
 
 This has all been about who can reach the Agent and what they're allowed to do once there — not what the messages doing it actually look like. See [TR-369 Explained: Messages, RPCs, and Notifications]({{< ref "/posts/2026-08-06-tr369-explained-messages-and-notifications" >}}) for `Get`, `Set`, and the rest, lined up against their CWMP equivalents.
 
-[1]: https://github.com/BroadbandForum/usp/blob/master/specification/discovery/index.md
-[2]: https://github.com/BroadbandForum/usp-test/blob/master/02-authentication-and-access-control.md
+[1]: https://usp.technology/specification/#sec:discovery
+[2]: https://usp.technology/specification/#sec:auth

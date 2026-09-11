@@ -12,11 +12,11 @@ tags:
   - vlan
 ---
 
-The [UniFi Gateway]({{< ref "/posts/2026-08-20-setup-unifi-gateway" >}}) post ended with a single flat LAN — every device on one network, trusting every other device on that network by default. This post splits that into VLANs and controls what can talk to what, using UniFi's zone-based firewall to write policy between groups of networks instead of individual rules.
+A freshly adopted UniFi gateway starts with a single flat LAN — every device on one network, trusting every other device on that network by default. This post splits that into VLANs and controls what can talk to what, using UniFi's zone-based firewall to write policy between groups of networks instead of individual rules.
 
 ## Prerequisites
 
-- A UniFi gateway with at least one network already configured — see [Setting Up a UniFi Gateway]({{< ref "/posts/2026-08-20-setup-unifi-gateway" >}})
+- A UniFi gateway with at least one network already configured
 - UniFi OS/Network application recent enough to have zone-based firewall (it's the default on current UniFi OS releases; older adopted gateways may need to opt in from the legacy firewall)
 
 ## How Zones Work

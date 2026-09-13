@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" width="700" height="300"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+
+    <pattern id="hatch-blank" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="8" height="8" fill="#0d1117"/>
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#334155" stroke-width="1.5"/>
+    </pattern>
+  </defs>
+
+  <rect width="700" height="300" fill="url(#bg)" rx="8"/>
+
+  <!-- header -->
+  <line x1="0" y1="36" x2="700" y2="36" stroke="#0d1a2a" stroke-width="1"/>
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600"
+        fill="#94a3b8" letter-spacing="1">DESKPI RACKMATE T1 &#8212; 8U FRONT ELEVATION BY RACK UNIT</text>
+
+  <!-- rack rails -->
+  <rect x="220" y="50" width="8" height="205" fill="#111827" stroke="#334155" stroke-width="1"/>
+  <rect x="512" y="50" width="8" height="205" fill="#111827" stroke="#334155" stroke-width="1"/>
+  <g fill="#334155">
+    <circle cx="224" cy="61.5"  r="1.5"/><circle cx="516" cy="61.5"  r="1.5"/>
+    <circle cx="224" cy="87.5"  r="1.5"/><circle cx="516" cy="87.5"  r="1.5"/>
+    <circle cx="224" cy="113.5" r="1.5"/><circle cx="516" cy="113.5" r="1.5"/>
+    <circle cx="224" cy="139.5" r="1.5"/><circle cx="516" cy="139.5" r="1.5"/>
+    <circle cx="224" cy="165.5" r="1.5"/><circle cx="516" cy="165.5" r="1.5"/>
+    <circle cx="224" cy="191.5" r="1.5"/><circle cx="516" cy="191.5" r="1.5"/>
+    <circle cx="224" cy="217.5" r="1.5"/><circle cx="516" cy="217.5" r="1.5"/>
+    <circle cx="224" cy="243.5" r="1.5"/><circle cx="516" cy="243.5" r="1.5"/>
+  </g>
+
+  <!-- U8 — Ubiquiti Cloud Gateway Fiber (network / router zone) -->
+  <text x="200" y="66" text-anchor="middle" font-size="10" font-weight="700" fill="#94a3b8">U8</text>
+  <rect x="228" y="50" width="284" height="23" fill="#0e1a3a" stroke="#3b82f6" stroke-width="1.5" rx="3"/>
+  <text x="370" y="66" text-anchor="middle" font-size="12" font-weight="600" fill="#93c5fd">Ubiquiti Cloud Gateway Fiber</text>
+
+  <!-- U7 — Ubiquiti Flex 2.5G PoE (network / router zone) -->
+  <text x="200" y="92" text-anchor="middle" font-size="10" font-weight="700" fill="#94a3b8">U7</text>
+  <rect x="228" y="76" width="284" height="23" fill="#0e1a3a" stroke="#3b82f6" stroke-width="1.5" rx="3"/>
+  <text x="370" y="92" text-anchor="middle" font-size="12" font-weight="600" fill="#93c5fd">Ubiquiti Flex 2.5G PoE</text>
+
+  <!-- U6 — Patch Panel (neutral / passive) -->
+  <text x="200" y="118" text-anchor="middle" font-size="10" font-weight="700" fill="#94a3b8">U6</text>
+  <rect x="228" y="102" width="284" height="23" fill="#0d1117" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+  <text x="370" y="118" text-anchor="middle" font-size="12" font-weight="600" fill="#cbd5e1">Patch Panel</text>
+
+  <!-- U5 — Blank Panel -->
+  <text x="200" y="144" text-anchor="middle" font-size="10" font-weight="700" fill="#94a3b8">U5</text>
+  <rect x="228" y="128" width="284" height="23" fill="url(#hatch-blank)" stroke="#475569" stroke-width="1.5" rx="3"/>
+  <text x="370" y="144" text-anchor="middle" font-size="12" font-weight="600" fill="#94a3b8">Blank Panel</text>
+
+  <!-- U4 — TBD (empty / undecided placeholder) -->
+  <text x="200" y="170" text-anchor="middle" font-size="10" font-weight="700" fill="#94a3b8">U4</text>
+  <rect x="228" y="154" width="284" height="23" fill="none" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,3" rx="3"/>
+  <text x="370" y="170" text-anchor="middle" font-size="12" font-weight="600" font-style="italic" fill="#94a3b8">TBD &#8212; unassigned</text>
+
+  <!-- U3 — TBD (empty / undecided placeholder) -->
+  <text x="200" y="196" text-anchor="middle" font-size="10" font-weight="700" fill="#94a3b8">U3</text>
+  <rect x="228" y="180" width="284" height="23" fill="none" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,3" rx="3"/>
+  <text x="370" y="196" text-anchor="middle" font-size="12" font-weight="600" font-style="italic" fill="#94a3b8">TBD &#8212; unassigned</text>
+
+  <!-- U2 — Minisforum UN100P Mini PC (compute / LAN zone) -->
+  <text x="200" y="222" text-anchor="middle" font-size="10" font-weight="700" fill="#94a3b8">U2</text>
+  <rect x="228" y="206" width="284" height="23" fill="#071810" stroke="#166534" stroke-width="1.5" rx="3"/>
+  <text x="370" y="222" text-anchor="middle" font-size="12" font-weight="600" fill="#86efac">Minisforum UN100P Mini PC</text>
+
+  <!-- U1 — Blank Panel -->
+  <text x="200" y="248" text-anchor="middle" font-size="10" font-weight="700" fill="#94a3b8">U1</text>
+  <rect x="228" y="232" width="284" height="23" fill="url(#hatch-blank)" stroke="#475569" stroke-width="1.5" rx="3"/>
+  <text x="370" y="248" text-anchor="middle" font-size="12" font-weight="600" fill="#94a3b8">Blank Panel</text>
+
+  <!-- footer -->
+  <text x="350" y="284" text-anchor="middle" font-size="9" fill="#94a3b8">U8 at top, U1 at bottom &#8212; standard rack numbering. U4 &amp; U3 are unassigned; U5 &amp; U1 are blanking panels.</text>
+</svg>

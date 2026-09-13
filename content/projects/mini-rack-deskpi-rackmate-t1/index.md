@@ -1,7 +1,7 @@
 ---
 title: "Building a Mini Rack with the DeskPi RackMate T1"
 date: 2026-09-13
-draft: true
+draft: false
 description: A build log for a 10-inch, 8U mini rack based on the DeskPi RackMate T1 — planning the layout, assembling the frame, mounting gear on 0.5U and 1U shelves, and sorting power and cooling.
 summary: A build log for a 10-inch, 8U mini rack based on the DeskPi RackMate T1 — planning the layout, assembling the frame, mounting gear on 0.5U and 1U shelves, and sorting power and cooling.
 featured: true

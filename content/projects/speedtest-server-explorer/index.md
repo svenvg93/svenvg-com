@@ -2,7 +2,6 @@
 title: "Speedtest Server Explorer"
 date: 2026-04-18
 draft: false
-slug: speedtest-server-explorer
 description: "A searchable, interactive interface for exploring Speedtest's global server network"
 summary: "Search Speedtest's public server network by ISP, operator, or city, inspect any server, and launch a test in one click. Built on React and a Cloudflare Worker that returns geolocation-aware, proximity-sorted results."
 featured: true
@@ -12,7 +11,7 @@ tags:
   - Cloudflare Workers
 categories:
   - projects
-cover: ""
+cover: "cover.jpg"
 link: "https://speedtest-server-explorer.svenvanginkel.workers.dev/"
 status: "completed"
 ---

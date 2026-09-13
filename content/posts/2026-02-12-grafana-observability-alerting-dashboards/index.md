@@ -1,6 +1,6 @@
 ---
 title: "Grafana Observability: Alerting & Dashboards as Code"
-description: Set up Grafana alert rules, routing, and Discord notifications against your Prometheus metrics, then provision your dashboards as versioned JSON so both survive a container rebuild.
+description: Set up Grafana alert rules, routing, and Discord notifications against Traefik's Prometheus metrics and Unifi's Loki logs, then provision your dashboards as versioned JSON so both survive a container rebuild.
 date: 2026-02-12
 draft: false
 categories:
@@ -9,24 +9,26 @@ tags:
   - docker
   - grafana
   - prometheus
+  - loki
 series:
   - "Grafana Observability"
-series_order: 4
+series_order: 3
 ---
 
-Collecting metrics is only half the picture — you also need to know when something breaks, and you need your dashboards to survive a container rebuild. This post covers both: Grafana Alerting evaluates rules against your Prometheus data and fires notifications to a contact point of your choice, and dashboard provisioning loads dashboards from JSON files on disk so they're never lost and always in version control.
+Collecting metrics and logs is only half the picture — you also need to know when something breaks, and you need your dashboards to survive a container rebuild. This post covers both: Grafana Alerting evaluates rules against your Prometheus metrics or Loki logs and fires notifications to a contact point of your choice, and dashboard provisioning loads dashboards from JSON files on disk so they're never lost and always in version control.
 
 ## Prerequisites
 
-- Prometheus running with metrics flowing in
-- Grafana running with Prometheus added as a datasource
+- Prometheus and Loki running, with Grafana added as a datasource for both
+- Traefik metrics flowing into Prometheus — see [Traefik Observability]({{< ref "/posts/2024-05-23-traefik-reverse-proxy-observability" >}})
+- Unifi logs flowing into Loki — see [Unifi Syslog with Alloy and Loki]({{< ref "/posts/2026-01-29-unifi-logs-alloy" >}})
 - Setup from [Building the Stack]({{< ref "/posts/2026-01-08-grafana-observability-building-the-stack" >}})
 
 ## How Grafana Alerting Works
 
 Three components work together:
 
-- **Alert Rules** — PromQL expressions evaluated on a schedule; fire when a condition is met
+- **Alert Rules** — PromQL or LogQL expressions evaluated on a schedule; fire when a condition is met
 - **Contact Points** — where notifications are sent (Discord, webhook, email)
 - **Notification Policies** — route alerts to the right contact point
 
@@ -113,9 +115,9 @@ policies:
     receiver: Discord
 ```
 
-You can also split alerts into categories such as `system`, `infra`, and `docker`. The useful part is not just the folder layout in Grafana, but the labels on each rule. Once a rule carries a label like `scope: system`, you can route or filter it however you like later.
+You can also split alerts into categories such as `infra` and `unifi`. The useful part is not just the folder layout in Grafana, but the labels on each rule. Once a rule carries a label like `scope: unifi`, you can route or filter it however you like later.
 
-![Rules labeled scope=system, scope=infra, and scope=docker all converge on one notification policy, which routes by label to a Discord contact point](alert-routing.svg "Rules labeled scope=system, scope=infra, and scope=docker all converge on one notification policy, which routes by label to a Discord contact point")
+![Rules labeled scope=infra and scope=unifi converge on one notification policy, which routes by label to a Discord contact point](alert-routing.svg "Rules labeled scope=infra and scope=unifi converge on one notification policy, which routes by label to a Discord contact point")
 
 ```yaml {filename="alerting/policies.yaml"}
 apiVersion: 1
@@ -125,13 +127,10 @@ policies:
     routes:
       - receiver: Discord
         object_matchers:
-          - ["scope", "=", "system"]
-      - receiver: Discord
-        object_matchers:
           - ["scope", "=", "infra"]
       - receiver: Discord
         object_matchers:
-          - ["scope", "=", "docker"]
+          - ["scope", "=", "unifi"]
 ```
 
 ## Notification Template
@@ -148,72 +147,16 @@ That keeps the Discord message compact while still including the instance and se
 
 ### Structure
 
-Each rule uses two query steps — a Prometheus query (refId `A`) and a threshold expression (refId `B`). Keeping the threshold separate from the PromQL prevents Grafana from treating an empty result (condition not met) as missing data and firing a false `DatasourceNoData` alert.
+Each rule uses two query steps — a Prometheus or Loki query (refId `A`) and a threshold expression (refId `B`). Keeping the threshold separate from the query prevents Grafana from treating an empty result (condition not met) as missing data and firing a false `DatasourceNoData` alert.
 
-You do not need to keep everything in one alert group either. A common split is:
+You do not need to keep everything in one alert group either. This series splits rules by source:
 
-- `Systems` for host-level CPU, memory, disk, temperature, and reboot alerts
-- `Infrastructure` for service availability and network-level checks
-- `Docker` for container restarts, unhealthy containers, or missing exporters
+- `Infrastructure` for Traefik's Prometheus metrics — service availability, error rates, latency, certificate expiry
+- `Unifi` for Unifi's Loki logs — network-device events rather than metrics
 
-All rules across all three groups live together in a single `alerting/rules.yaml` file. Rather than reprint all eighteen rules — most of which just swap out the PromQL expression and threshold — here's the full definition of one representative rule from each group, followed by a summary table of the rest.
+All rules across both groups live together in a single `alerting/rules.yaml` file. Here's the full definition of one representative Traefik rule, followed by a summary table of the rest, then the Unifi log-based group.
 
-#### Systems: CPU Usage High
-
-```yaml {filename="alerting/rules.yaml (excerpt — systems group)"}
-apiVersion: 1
-groups:
-  - orgId: 1
-    name: systems
-    folder: Systems
-    interval: 1m
-    rules:
-      - uid: cpu-high
-        title: CPU Usage High
-        condition: B
-        data:
-          - refId: A
-            datasourceUid: prometheus
-            relativeTimeRange:
-              from: 300
-              to: 0
-            model:
-              expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[2m])) * 100)
-              instant: true
-              refId: A
-          - refId: B
-            datasourceUid: "__expr__"
-            model:
-              type: threshold
-              expression: "A"
-              refId: B
-              conditions:
-                - evaluator:
-                    params:
-                      - 80
-                    type: gt
-                  operator:
-                    type: and
-                  query:
-                    params:
-                      - A
-                  reducer:
-                    type: last
-        noDataState: OK
-        execErrState: Error
-        for: 5m
-        labels:
-          scope: system
-          severity: warning
-        annotations:
-          __dashboardUid__: "ddmvax2tzuv40c"
-          __panelId__: "5"
-          summary: "{{ $labels.instance }} CPU above 80% (current: {{ $values.A.Value | printf \"%.1f\" }}%)"
-```
-
-The query (refId `A`) averages CPU utilization across all cores over a 2-minute window; the threshold step (refId `B`) compares that average against 80% separately, so a scrape gap doesn't get misread as "no data = alert". It only fires once CPU has stayed above 80% for a full 5 minutes (`for: 5m`), and the summary annotation reuses the evaluated value (`$values.A.Value`) so the Discord message shows the exact percentage that tripped it.
-
-#### Infrastructure: Host Down
+#### Infrastructure: Traefik Down
 
 ```yaml {filename="alerting/rules.yaml (excerpt — infrastructure group)"}
 apiVersion: 1
@@ -223,8 +166,8 @@ groups:
     folder: Infrastructure
     interval: 1m
     rules:
-      - uid: host-down
-        title: Host Down
+      - uid: traefik-down
+        title: Traefik Down
         condition: A
         data:
           - refId: A
@@ -233,7 +176,7 @@ groups:
               from: 300
               to: 0
             model:
-              expr: up{job="unix"} == 0
+              expr: up{job="traefik"} == 0
               instant: true
               refId: A
         noDataState: Alerting
@@ -245,32 +188,44 @@ groups:
         annotations:
           __dashboardUid__: "ddmvax2tzuv40c"
           __panelId__: "1"
-          summary: "{{ $labels.instance }} is unreachable"
+          summary: "Traefik metrics endpoint is unreachable"
 ```
 
-This one skips the two-step pattern — `up{job="unix"} == 0` already evaluates to a clean boolean, so `condition: A` is enough on its own. The important difference from the threshold-style rules is `noDataState: Alerting` and `execErrState: Alerting`: for every other rule a missing scrape resolves to `OK`, but here a host that stops responding entirely looks exactly like "no data", so both are flipped to `Alerting` to make sure a fully-dead host still pages you instead of going quiet.
+This one skips the two-step pattern — `up{job="traefik"} == 0` already evaluates to a clean boolean, so `condition: A` is enough on its own. The important difference from the threshold-style rules is `noDataState: Alerting` and `execErrState: Alerting`: for every other rule a missing scrape resolves to `OK`, but here a target that stops responding entirely looks exactly like "no data", so both are flipped to `Alerting` to make sure a fully-dead target still pages you instead of going quiet.
 
-#### Docker: Docker Container Down
+#### The rest of the Infrastructure ruleset
 
-```yaml {filename="alerting/rules.yaml (excerpt — docker group)"}
+The remaining Traefik rules follow the same two-step query/threshold pattern used elsewhere in this post, just with a different PromQL expression and threshold per check:
+
+| Rule | What it checks | Threshold | Severity |
+|---|---|---|---|
+| Traefik 5xx Rate High (`traefik-5xx-high`) | Rate of HTTP 5xx responses served by Traefik | > 0.1 req/s for 5m | warning |
+| Traefik Response Time High (`traefik-latency-high`) | Average request duration across Traefik services | > 1s for 10m | warning |
+| Traefik Certificate Expiring Soon (`traefik-cert-expiring`) | Days remaining until TLS cert expiry | < 14 days | warning |
+
+#### Unifi: Log-Based Alerts
+
+Unifi doesn't expose Prometheus metrics — its data lives in Loki as log lines, from the [Unifi Syslog with Alloy and Loki]({{< ref "/posts/2026-01-29-unifi-logs-alloy" >}}) pipeline. Grafana can still alert on it: point the query at the Loki datasource instead of Prometheus, and use a LogQL `count_over_time` expression in place of a PromQL one. The same two-step query/threshold structure applies — count matching log lines over a window in refId `A`, then compare that count against a threshold in refId `B`:
+
+```yaml {filename="alerting/rules.yaml (excerpt — unifi group)"}
 apiVersion: 1
 groups:
   - orgId: 1
-    name: docker
-    folder: Docker
+    name: unifi
+    folder: Unifi
     interval: 1m
     rules:
-      - uid: docker-container-down
-        title: Docker Container Down
+      - uid: unifi-example
+        title: <TODO — name the condition this catches>
         condition: B
         data:
           - refId: A
-            datasourceUid: prometheus
+            datasourceUid: loki
             relativeTimeRange:
               from: 300
               to: 0
             model:
-              expr: time() - container_last_seen{container_label_com_docker_compose_project!="", name!=""} > 60
+              expr: 'count_over_time({job="unifi"} |= "<TODO — log line to match>" [5m])'
               instant: true
               refId: A
           - refId: B
@@ -293,39 +248,15 @@ groups:
                     type: last
         noDataState: OK
         execErrState: Error
-        for: 2m
+        for: 0m
         labels:
-          scope: docker
-          severity: critical
+          scope: unifi
+          severity: warning
         annotations:
-          __dashboardUid__: "docker-metrics"
-          __panelId__: "200"
-          summary: "{{ $labels.name }} has not reported metrics for more than 60 seconds"
+          summary: "<TODO — what fired and why it matters>"
 ```
 
-This one uses `container_last_seen` rather than `up{job="docker"}`, because cAdvisor's own scrape target stays up even when an individual container has stopped — only that container's last-seen timestamp goes stale. The PromQL already contains the threshold (`> 60`), which evaluates to `1` once a container hasn't reported in over 60 seconds; refId `B` just checks that this result is greater than `0`, i.e. true. The label filters `container_label_com_docker_compose_project!=""` and `name!=""` exclude cAdvisor's own internal/pause-container series that don't carry a real container name.
-
-#### The rest of the ruleset
-
-The remaining rules follow the same two-step query/threshold pattern shown above, just with a different PromQL expression and threshold per check. The full YAML for all of them is in the project's alerting config; here's what each one does:
-
-| Rule | What it checks | Threshold | Severity |
-|---|---|---|---|
-| Memory Usage High (`memory-high`) | % of RAM in use | > 85% for 5m | warning |
-| Swap Usage High (`swap-high`) | % of swap in use | > 80% for 5m | warning |
-| Disk Space Low (`disk-low`) | % free space on the root filesystem | < 10% for 5m | warning |
-| High Load Average (`load-high`) | 15-minute load average, normalized per CPU core | > 1 per core for 10m | warning |
-| High Temperature (`temp-high`) | Highest hwmon sensor reading | > 85°C for 5m | warning |
-| System Reboot Detected (`system-reboot`) | Seconds since boot | < 300s uptime, fires immediately | warning |
-| Network Errors (`network-errors`) | Combined rx+tx error rate on physical interfaces | > 10 errors/s for 5m | warning |
-| Network Throughput High (`network-high`) | Combined rx+tx byte rate on physical interfaces | > 100 MB/s for 5m | warning |
-| Traefik Down (`traefik-down`) | Traefik metrics endpoint reachability | unreachable for 2m | critical |
-| Traefik 5xx Rate High (`traefik-5xx-high`) | Rate of HTTP 5xx responses served by Traefik | > 0.1 req/s for 5m | warning |
-| Traefik Response Time High (`traefik-latency-high`) | Average request duration across Traefik services | > 1s for 10m | warning |
-| Traefik Certificate Expiring Soon (`traefik-cert-expiring`) | Days remaining until TLS cert expiry | < 14 days | warning |
-| Docker Container Restart Loop (`docker-container-restart-loop`) | Number of container start-time changes in a 15m window | > 2 restarts / 15m | critical |
-| Docker Container CPU High (`docker-container-cpu-high`) | Per-container CPU usage rate | > 0.8 cores for 10m | warning |
-| Docker Container Memory High (`docker-container-memory-high`) | Per-container working set memory | > 1 GiB for 10m | warning |
+<!-- TODO(Sven): fill in the actual Unifi log lines/thresholds you want to alert on — e.g. AP disconnects, DHCP failures, WAN flaps — once you've confirmed the exact log text from your own devices. -->
 
 ### Dashboard Linking
 
@@ -343,14 +274,14 @@ docker compose -f grafana/docker-compose.yml up -d
 
 ## Verification
 
-Open Grafana → **Alerting → Alert rules** and confirm the rules appear under the expected folders such as **Systems**, **Infrastructure**, or **Docker**, with state **Normal**.
+Open Grafana → **Alerting → Alert rules** and confirm the rules appear under the expected folders, **Infrastructure** or **Unifi**, with state **Normal**.
 
 To trigger a test notification, open **Alerting → Contact points**, find Discord, and click **Test**.
 
-To verify the CPU alert end-to-end, stress all cores for long enough to survive the 5-minute pending window:
+To verify the Traefik Down rule end-to-end, stop the Traefik container for longer than the 2-minute pending window and confirm the alert fires:
 
 ```bash
-stress-ng --cpu $(nproc) --timeout 360s
+docker stop traefik
 ```
 
 ## Dashboards as Code
@@ -373,12 +304,10 @@ grafana/
     ├── alerting/
     └── dashboards/
         ├── dashboards.yaml
-        ├── systems/
-        │   └── system-metrics.json
-        ├── docker/
-        │   └── docker-metrics.json
-        └── infrastructure/
-            └── traefik-proxy.json
+        ├── infrastructure/
+        │   └── traefik-proxy.json
+        └── unifi/
+            └── unifi-logs.json
 ```
 
 Each subdirectory maps to a folder in the Grafana UI. You can add as many folders and JSON files as you like.
@@ -391,16 +320,6 @@ Create the provider configuration file:
 apiVersion: 1
 
 providers:
-  - name: "systems"
-    orgId: 1
-    folder: "Systems"
-    type: file
-    disableDeletion: false
-    updateIntervalSeconds: 30
-    allowUiUpdates: true
-    options:
-      path: /etc/grafana/provisioning/dashboards/systems
-
   - name: "infrastructure"
     orgId: 1
     folder: "Infrastructure"
@@ -411,15 +330,15 @@ providers:
     options:
       path: /etc/grafana/provisioning/dashboards/infrastructure
 
-  - name: "docker"
+  - name: "unifi"
     orgId: 1
-    folder: "Docker"
+    folder: "Unifi"
     type: file
     disableDeletion: false
     updateIntervalSeconds: 30
     allowUiUpdates: true
     options:
-      path: /etc/grafana/provisioning/dashboards/docker
+      path: /etc/grafana/provisioning/dashboards/unifi
 ```
 
 A few settings worth noting:
@@ -451,7 +370,7 @@ After that, any new or updated JSON files in the dashboard directories are picke
 
 ### Verification
 
-Open Grafana → **Dashboards** and confirm the folders appear: **Systems**, **Infrastructure**, and **Docker**. Each folder should contain the dashboards from the corresponding JSON files.
+Open Grafana → **Dashboards** and confirm the folders appear: **Infrastructure** and **Unifi**. Each folder should contain the dashboards from the corresponding JSON files.
 
 To confirm provisioning is working correctly, check the Grafana logs:
 

@@ -1,14 +1,18 @@
 ---
 title: "Building a Mini Rack with the DeskPi RackMate T1"
-description: A build log for a 10-inch, 8U mini rack based on the DeskPi RackMate T1 — planning the layout, assembling the frame, mounting gear on 0.5U and 1U shelves, and sorting power and cooling.
 date: 2026-09-13
 draft: true
-categories:
-  - Homelab
+description: A build log for a 10-inch, 8U mini rack based on the DeskPi RackMate T1 — planning the layout, assembling the frame, mounting gear on 0.5U and 1U shelves, and sorting power and cooling.
+summary: A build log for a 10-inch, 8U mini rack based on the DeskPi RackMate T1 — planning the layout, assembling the frame, mounting gear on 0.5U and 1U shelves, and sorting power and cooling.
+featured: true
 tags:
   - homelab
   - mini-rack
   - deskpi
+categories:
+  - Homelab
+cover: "cover.jpg"
+status: "in_progress"
 ---
 
 A full 19-inch rack is overkill for a home setup that's really just a gateway, a switch, a Pi or two, and a small NAS. A 10-inch mini rack fits the same gear on a desk or shelf without dominating the room. The [DeskPi RackMate T1](https://deskpi.com/products/deskpi-rackmate-t1-2) is one of the more common options: a die-cast aluminium frame, 8U tall, 10 inches wide, flat-packed, with a whole ecosystem of 0.5U and 1U accessories built around it. (DeskPi sent me the RackMate T1 to try out.)
@@ -61,12 +65,6 @@ None of this gear ships with 10-inch rack ears, so it's all riding on shelves ra
 - **Patch Panel** will be DeskPi's own 10-inch panel, which comes with its own ears, so it mounts straight to the rails.
 - **Blank panels** fill the rest.
 
-<div style="max-width: 400px; margin: 0 auto;">
-
-![The frame assembled so far, with the Cloud Gateway Fiber mounted on its shelf](IMG_2446.jpeg "Work in progress — frame assembled, Cloud Gateway Fiber mounted")
-
-</div>
-
 With everything physically mounted, the next job is getting power to it.
 
 ## Power
@@ -110,7 +108,3 @@ That's the build mechanics covered — here's what it's actually cost so far.
 Assembly and racking everything: about 2 hours.
 
 That's where the build stands for now — the Flex switch, patch panel, and whatever ends up in U3/U4 are still on order, and I'll update this post as they arrive.
-
-## Related
-
-If the gear going into this rack includes a UniFi gateway, the [Setting Up a UniFi Gateway]({{< ref "/posts/2026-08-20-setup-unifi-gateway" >}}) walkthrough covers getting it configured once it's mounted.

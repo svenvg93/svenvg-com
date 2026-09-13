@@ -13,25 +13,19 @@
 
   <rect width="700" height="225" fill="url(#bg)" rx="8"/>
 
-  <!-- scope=system -->
-  <rect x="32" y="30" width="130" height="40" fill="none" stroke="#f97316" stroke-width="1.5" rx="5"/>
-  <text x="97" y="50" text-anchor="middle" font-size="10" font-weight="600" fill="#fed7aa">scope=system</text>
-  <text x="97" y="63" text-anchor="middle" font-size="8" fill="#f97316" opacity="0.8">CPU · memory · disk</text>
-
   <!-- scope=infra -->
-  <rect x="32" y="90" width="130" height="40" fill="none" stroke="#f97316" stroke-width="1.5" rx="5"/>
-  <text x="97" y="110" text-anchor="middle" font-size="10" font-weight="600" fill="#fed7aa">scope=infra</text>
-  <text x="97" y="123" text-anchor="middle" font-size="8" fill="#f97316" opacity="0.8">Traefik · containers</text>
+  <rect x="32" y="65" width="130" height="40" fill="none" stroke="#f97316" stroke-width="1.5" rx="5"/>
+  <text x="97" y="85" text-anchor="middle" font-size="10" font-weight="600" fill="#fed7aa">scope=infra</text>
+  <text x="97" y="98" text-anchor="middle" font-size="8" fill="#f97316" opacity="0.8">Traefik metrics</text>
 
-  <!-- scope=docker -->
-  <rect x="32" y="150" width="130" height="40" fill="none" stroke="#f97316" stroke-width="1.5" rx="5"/>
-  <text x="97" y="170" text-anchor="middle" font-size="10" font-weight="600" fill="#fed7aa">scope=docker</text>
-  <text x="97" y="183" text-anchor="middle" font-size="8" fill="#f97316" opacity="0.8">container health</text>
+  <!-- scope=unifi -->
+  <rect x="32" y="120" width="130" height="40" fill="none" stroke="#f97316" stroke-width="1.5" rx="5"/>
+  <text x="97" y="140" text-anchor="middle" font-size="10" font-weight="600" fill="#fed7aa">scope=unifi</text>
+  <text x="97" y="153" text-anchor="middle" font-size="8" fill="#f97316" opacity="0.8">Unifi logs</text>
 
   <!-- converging arrows -->
-  <line x1="162" y1="50" x2="197" y2="70" stroke="#f97316" stroke-width="1.2" marker-end="url(#arr-orange)"/>
-  <line x1="162" y1="110" x2="197" y2="110" stroke="#f97316" stroke-width="1.2" marker-end="url(#arr-orange)"/>
-  <line x1="162" y1="170" x2="197" y2="150" stroke="#f97316" stroke-width="1.2" marker-end="url(#arr-orange)"/>
+  <line x1="162" y1="85" x2="197" y2="100" stroke="#f97316" stroke-width="1.2" marker-end="url(#arr-orange)"/>
+  <line x1="162" y1="140" x2="197" y2="120" stroke="#f97316" stroke-width="1.2" marker-end="url(#arr-orange)"/>
 
   <!-- Notification Policy -->
   <rect x="199" y="55" width="170" height="110" fill="none" stroke="#f97316" stroke-width="1.5" rx="5"/>

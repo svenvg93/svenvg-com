@@ -12,7 +12,7 @@ tags:
   - unifi
 series:
   - "Grafana Observability"
-series_order: 3
+series_order: 2
 ---
 
 Unifi network devices generate valuable logs that can help you troubleshoot network issues and monitor your devices. By sending these syslog messages to Loki using Grafana Alloy, you can centralize your network logs alongside your application logs for unified observability.
@@ -23,8 +23,7 @@ This guide only covers device logs — security and firewall logs are out of sco
 
 ## Prerequisites
 
-- Grafana Alloy installed — see [Installing Grafana Alloy]({{< ref "/posts/2026-01-08-grafana-alloy-install" >}})
-- Grafana and Loki instance running (see my [Building the Stack]({{< ref "/posts/2026-01-08-grafana-observability-building-the-stack" >}}) post)
+- Grafana, Loki, and Grafana Alloy running — see [Building the Stack]({{< ref "/posts/2026-01-08-grafana-observability-building-the-stack" >}})
 - Unifi Controller with network devices configured
 
 ## Why Grafana Alloy?
@@ -38,10 +37,8 @@ Grafana Alloy is the next-generation telemetry collector that replaces Promtail.
 
 ## Open the Syslog Port
 
-Alloy needs to listen on UDP 514 for incoming syslog messages. This uses the same Alloy instance set up in the install posts above, so you only need to expose the extra port — nothing else about the existing install changes.
+Alloy needs to listen on UDP 514 for incoming syslog messages. This uses the same Alloy instance set up in [Building the Stack]({{< ref "/posts/2026-01-08-grafana-observability-building-the-stack" >}}), so you only need to expose the extra port — nothing else about the existing install changes.
 
-{{< tabs >}}
-{{< tab label="Docker" >}}
 Add the UDP port mapping to your existing `alloy/docker-compose.yml`:
 
 ```yaml {filename="docker-compose.yml"}
@@ -55,32 +52,14 @@ Recreate the container to pick up the new port:
 ```bash
 docker compose -f alloy/docker-compose.yml up -d
 ```
-{{< /tab >}}
-{{< tab label="systemd" >}}
-No compose file to edit — the systemd service already listens on whatever ports its config defines. Just make sure your firewall allows inbound UDP/514, e.g. with `ufw`:
-
-```bash
-sudo ufw allow 514/udp
-```
-{{< /tab >}}
-{{< /tabs >}}
 
 ## Configure Alloy for Syslog
 
 Add a new collector file to your existing Alloy config directory — `unifi-syslog.alloy`:
 
-{{< tabs >}}
-{{< tab label="Docker" >}}
 ```bash
 nano alloy/config/unifi-syslog.alloy
 ```
-{{< /tab >}}
-{{< tab label="systemd" >}}
-```bash
-sudo nano /etc/alloy/config/unifi-syslog.alloy
-```
-{{< /tab >}}
-{{< /tabs >}}
 
 ```hcl {filename="unifi-syslog.alloy"}
 /* UniFi Syslog (RFC3164) - Relabel rules to capture syslog metadata */
@@ -218,24 +197,15 @@ The pipeline handles both:
 
 #### 4. Loki Write
 
-The pipeline forwards to `loki.write.default.receiver` — the same `loki.write "default"` component already defined in `endpoint.alloy` from the install post. No new write endpoint is needed; every collector in the config directory shares it.
+The pipeline forwards to `loki.write.default.receiver` — the same `loki.write "default"` component already defined in `endpoint.alloy` from [Building the Stack]({{< ref "/posts/2026-01-08-grafana-observability-building-the-stack" >}}). No new write endpoint is needed; every collector in the config directory shares it.
 
 ## Reload Alloy
 
-Since Alloy loads every file in the config directory automatically, dropping in `unifi-syslog.alloy` is enough — restart the service to pick it up:
+Since Alloy loads every file in the config directory automatically, dropping in `unifi-syslog.alloy` is enough — restart the container to pick it up:
 
-{{< tabs >}}
-{{< tab label="Docker" >}}
 ```bash
 docker compose -f alloy/docker-compose.yml up -d alloy
 ```
-{{< /tab >}}
-{{< tab label="systemd" >}}
-```bash
-sudo systemctl restart alloy
-```
-{{< /tab >}}
-{{< /tabs >}}
 
 Open the Alloy web UI at `http://<HOST_IP>:12345` and confirm `loki.source.syslog.unifi` shows healthy.
 
@@ -277,4 +247,4 @@ With the labels and processing configured above, you can filter down further:
 {job="unifi", app="hostapd"}
 ```
 
-With Unifi logs flowing into the same Loki instance as the rest of your stack, you can correlate them with the host, container, and system logs set up in [Building the Stack]({{< ref "/posts/2026-01-08-grafana-observability-building-the-stack" >}}) — or move on to [alerting and dashboards as code]({{< ref "/posts/2026-02-12-grafana-observability-alerting-dashboards" >}}) to provision both from version control.
+With Unifi logs flowing into Loki, move on to [alerting and dashboards as code]({{< ref "/posts/2026-02-12-grafana-observability-alerting-dashboards" >}}) to get notified when something breaks and provision both from version control.

@@ -209,7 +209,6 @@ services:
   grafana:
     image: grafana/grafana
     container_name: grafana
-    hostname: ${HOSTNAME}
     environment:
       - TZ=Europe/Amsterdam
       - GF_SECURITY_ADMIN_PASSWORD=admin
@@ -226,8 +225,8 @@ networks:
     name: backend
 
 volumes:
-  grafana_data:
-    name: grafana_data
+  grafana-data:
+    name: grafana-data
 ```
 
 Change `GF_SECURITY_ADMIN_PASSWORD` to a secure password before starting.
@@ -280,7 +279,7 @@ services:
       - "12345:12345"
     volumes:
       - ./config/:/etc/alloy/config/:ro
-      - alloy-data:/var/lib/alloy/data
+      - alloy_data:/var/lib/alloy/data
     command:
       - run
       - --server.http.listen-addr=0.0.0.0:12345

@@ -64,104 +64,75 @@ nano alloy/config/unifi-syslog.alloy
 ```hcl {filename="unifi-syslog.alloy"}
 /* UniFi Syslog (RFC3164) - Relabel rules to capture syslog metadata */
 loki.relabel "unifi_syslog" {
-  forward_to = []
+	forward_to = []
 
-  // Copy severity first (for error, debug, or unknown values)
-  rule {
-    source_labels = ["__syslog_message_severity"]
-    target_label  = "detected_level"
-  }
-  // Then normalize specific values (these overwrite the above)
-  rule {
-    source_labels = ["__syslog_message_severity"]
-    regex         = "(?i)^(emergency|alert|critical)$"
-    target_label  = "detected_level"
-    replacement   = "critical"
-  }
-  rule {
-    source_labels = ["__syslog_message_severity"]
-    regex         = "(?i)^warning$"
-    target_label  = "detected_level"
-    replacement   = "warn"
-  }
-  rule {
-    source_labels = ["__syslog_message_severity"]
-    regex         = "(?i)^(notice|informational)$"
-    target_label  = "detected_level"
-    replacement   = "info"
-  }
-
-  rule {
-    source_labels = ["__syslog_message_hostname"]
-    target_label  = "host"
-  }
+	rule {
+		source_labels = ["__syslog_message_hostname"]
+		target_label  = "host"
+	}
 }
 
 loki.source.syslog "unifi" {
-  listener {
-    address       = "0.0.0.0:514"
-    protocol      = "udp"
-    syslog_format = "rfc3164"
-    use_incoming_timestamp = false
-    labels        = {
-      job      = "unifi",
-    }
-  }
-
-  relabel_rules = loki.relabel.unifi_syslog.rules
-  forward_to    = [loki.process.unifi.receiver]
+	listener {
+		address                 = "0.0.0.0:514"
+		protocol                = "udp"
+		syslog_format           = "rfc3164"
+		use_incoming_timestamp  = false
+		labels = {
+			job = "unifi",
+		}
+	}
+	relabel_rules = loki.relabel.unifi_syslog.rules
+	forward_to    = [loki.process.unifi.receiver]
 }
 
 loki.process "unifi" {
-  // Extract device MAC and firmware from AP/Switch prefix: "1c6a1b3f7059,U7-Pro-Wall-8.5.21+18681: ..."
-  // Gateway logs don't have this prefix — stages are no-ops for those.
-  stage.regex {
-    expression = `^(?P<device_mac>[0-9a-f]{12}),(?P<firmware>[^:\s]+):\s+`
-  }
+	// Extract device MAC and firmware from AP/Switch prefix: "1c6a1b3f7059,U7-Pro-Wall-8.5.21+18681: ..."
+	// Gateway logs don't have this prefix — stages are no-ops for those.
+	stage.regex {
+		expression = `^(?P<device_mac>[0-9a-f]{12}),(?P<firmware>[^:\s]+):\s+`
+	}
+	stage.labels {
+		values = {
+			device_mac = "",
+			firmware   = "",
+		}
+	}
 
-  stage.labels {
-    values = {
-      device_mac = "",
-      firmware   = "",
-    }
-  }
+	// Extract app and message from UniFi syslog content
+	// Format 1 (AP/Switch): "mac,device-firmware: process[pid][pid2]: message"
+	// Example: "6c63f8863465,U7-Pro-Wall-8.3.2+18064: hostapd[5343]: wifi1ap6: STA ..."
+	// Example: "1c6a1b3f7059,...: syswrapper[2807][16721]: [configure_vap] up wifi0ap0"
+	// Format 2 (Gateway): "hostname process[pid]: message"
+	// Example: "UCG-Fiber bash[2616997]: HISTORY: ..."
+	stage.regex {
+		expression = `^(?:[\w,\-\.\+]+:\s+|[\w\-]+\s+)?(?P<app>[\w\-]+)(?:\[\d+\])?:\s*(?P<message>.*)`
+	}
+	stage.labels {
+		values = {
+			app = "",
+		}
+	}
 
-  // Extract app and message from UniFi syslog content
-  // Format 1 (AP/Switch): "mac,device-firmware: process[pid][pid2]: message"
-  //   Example: "6c63f8863465,U7-Pro-Wall-8.3.2+18064: hostapd[5343]: wifi1ap6: STA ..."
-  //   Example: "1c6a1b3f7059,...: syswrapper[2807][16721]: [configure_vap] up wifi0ap0"
-  // Format 2 (Gateway): "hostname process[pid]: message"
-  //   Example: "UCG-Fiber bash[2616997]: HISTORY: ..."
-  stage.regex {
-    expression = `^(?:[\w,\-\.\+]+:\s+|[\w\-]+\s+)?(?P<app>[\w\-]+)(?:\[\d+\])?:\s*(?P<message>.*)`
-  }
+	// For stahtd lines, extract the embedded JSON payload into structured metadata
+	stage.match {
+		selector = `{app="stahtd"}`
 
-  stage.labels {
-    values = {
-      app = "",
-    }
-  }
+		stage.regex {
+			expression = `(?P<json_payload>\{.*?\})`
+		}
+		stage.structured_metadata {
+			values = {
+				json_payload = "",
+			}
+		}
+	}
 
-  // For stahtd lines, extract the embedded JSON payload into structured metadata
-  stage.match {
-    selector = `{app="stahtd"}`
+	stage.output {
+		source = "message"
+	}
 
-    stage.regex {
-      expression = `(?P<json_payload>\{.*?\})`
-    }
-
-    stage.structured_metadata {
-      values = {
-        json_payload = "",
-      }
-    }
-  }
-
-  stage.output {
-    source = "message"
-  }
-
-  forward_to = [loki.write.default.receiver]
+	forward_to = [loki.write.default.receiver]
 }
 ```
 
@@ -171,7 +142,6 @@ loki.process "unifi" {
 
 Runs before log processing to normalize metadata from the raw syslog headers:
 
-- **`detected_level`**: Maps RFC3164 severity words (emergency, alert, critical → `critical`; warning → `warn`; notice, informational → `info`) to standard Loki level labels
 - **`host`**: Copies the syslog hostname field so you can filter by device name
 
 #### 2. Syslog Listener (`loki.source.syslog "unifi"`)

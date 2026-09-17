@@ -132,4 +132,4 @@ dock: "always" # scroll | always | float
 toc:
   enabled: true # Enable or disable TOC globally
   position: "side" # Options: center | side
-  pinned: false # Side mode only: keep the TOC panel always visible when there is enough space
+  pinned: true # Side mode only: keep the TOC panel always visible when there is enough space

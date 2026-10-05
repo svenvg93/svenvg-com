@@ -12,12 +12,10 @@ tags:
 categories:
   - Homelab
 cover: "cover.jpg"
-status: "in_progress"
+status: "completed"
 ---
 
 A full 19-inch rack is overkill for a home setup that's really just a gateway, a switch, a Pi or two, and a small NAS. A 10-inch mini rack fits the same gear on a desk or shelf without dominating the room. The [DeskPi RackMate T1](https://deskpi.com/products/deskpi-rackmate-t1-2) is one of the more common options: a die-cast aluminium frame, 8U tall, 10 inches wide, flat-packed, with a whole ecosystem of 0.5U and 1U accessories built around it. (DeskPi sent me the RackMate T1 to try out.)
-
-> **Work in progress.** This build isn't finished — a few parts are still on order and some slots aren't decided yet. I'll fill this post in as pieces arrive.
 
 ## What the RackMate T1 Actually Is
 
@@ -36,14 +34,14 @@ Work out the U budget before assembly — it's much easier to plan on paper than
 
 | U | Item | Mounting |
 |---|------|----------|
-| 8 | Ubiquiti Cloud Gateway Fiber | |
-| 7 | Ubiquiti Flex 2.5G PoE | |
-| 6 | Patch Panel | |
-| 5 | Blank Panel | |
-| 4 | TBD | |
-| 3 | TBD | |
-| 2 | Minisforum UN100P Mini PC | |
-| 1 | Blank Panel | |
+| 8 | Ubiquiti Cloud Gateway Fiber | 1U vented shelf |
+| 7 | Ubiquiti Flex 2.5G PoE | 1U vented shelf |
+| 6 | Patch Panel | Rail-mounted |
+| 5 | Blank Panel | Rail-mounted |
+| 4 | Open | Airflow gap |
+| 3 | Open | Airflow gap |
+| 2 | Minisforum UN100P Mini PC | 1U vented shelf |
+| 1 | Blank Panel | Rail-mounted |
 
 A few rules of thumb:
 
@@ -54,16 +52,19 @@ A few rules of thumb:
 
 ![Rack elevation — what goes in each U, front view](rack-elevation.svg "DeskPi RackMate T1 rack elevation — layout by U")
 
+U3 and U4 were the last slots I had to decide on. In the end I left both open: they give the mini PC two units of clear air above it, and they leave room to add something later without moving anything else.
+
 That's the plan on paper — next is actually getting each device to stay put.
 
 ## Mounting the Gear
 
 None of this gear ships with 10-inch rack ears, so it's all riding on shelves rather than bolted straight to the rails:
 
-- **Ubiquiti Cloud Gateway Fiber** and **Minisforum UN100P Mini PC** each sit on their own 1U vented shelf — two extra shelves bought on top of the standard kit parts, held with cable ties or hook-and-loop.
-- **Ubiquiti Flex 2.5G PoE** will also get a shelf — still on order.
-- **Patch Panel** will be DeskPi's own 10-inch panel, which comes with its own ears, so it mounts straight to the rails.
-- **Blank panels** fill the rest.
+- **Ubiquiti Cloud Gateway Fiber**, **Ubiquiti Flex 2.5G PoE** and **Minisforum UN100P Mini PC** each sit on their own 1U vented shelf, held with cable ties or hook-and-loop.
+- **Patch Panel** is DeskPi's own 10-inch panel. It has its own ears, so it mounts straight to the rails.
+- **Blank panels** close off U5 and U1; U3 and U4 stay open.
+
+![The RackMate T1 partway through the build, with the Cloud Gateway Fiber on its shelf in the top unit](IMG_2446.jpeg#small "Partway through the build: Cloud Gateway Fiber racked at the top, shelves going in below")
 
 With everything physically mounted, the next job is getting power to it.
 
@@ -84,7 +85,9 @@ Options if you need airflow:
 - **A fan panel at the bottom of the rack**, pushing air up from below instead of pulling it out above — works well when the heat source is low in the stack.
 - **Just leave a 1U gap** above anything warm and skip active cooling entirely — often enough at this scale.
 
-Airflow sorted (or deliberately skipped), the last mechanical job is keeping all the resulting cabling under control.
+I went with the last option. The mini PC is the only thing in the rack that gets properly warm, and with U3 and U4 open above it there's enough room for the heat to rise away before it reaches the patch panel and switch. The gateway and switch run fine on their vented shelves, so the rack has no fans at all and makes no noise.
+
+Airflow sorted, the last mechanical job is keeping all the resulting cabling under control.
 
 ## Cable Management
 
@@ -93,7 +96,7 @@ Airflow sorted (or deliberately skipped), the last mechanical job is keeping all
 - Velcro, not zip ties, on anything you'll re-patch.
 - Label both ends of every cable now, not later.
 
-That's the build mechanics covered — here's what it's actually cost so far.
+That's the build mechanics covered — here's what it cost.
 
 ## Cost and Time
 
@@ -105,6 +108,10 @@ That's the build mechanics covered — here's what it's actually cost so far.
 | PDU or power strip | €19,95 |
 | **Total** | **€221,13** |
 
+The total doesn't include the patch panel or the Flex's shelf, which came later. The network gear and mini PC were already in use, so they aren't counted either.
+
 Assembly and racking everything: about 2 hours.
 
-That's where the build stands for now — the Flex switch, patch panel, and whatever ends up in U3/U4 are still on order, and I'll update this post as they arrive.
+## The Result
+
+The rack is done. The gateway, switch and mini PC share one 8U frame, all on a single PDU. Patching runs through one panel, and with passive cooling there's no fan noise. With U3 and U4 still open, there's room for a small NAS or a second mini PC later without rearranging the rest.

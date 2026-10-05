@@ -54,15 +54,15 @@
   <rect x="228" y="128" width="284" height="23" fill="url(#hatch-blank)" stroke="#475569" stroke-width="1.5" rx="3"/>
   <text x="370" y="144" text-anchor="middle" font-size="12" font-weight="600" fill="#94a3b8">Blank Panel</text>
 
-  <!-- U4 — TBD (empty / undecided placeholder) -->
+  <!-- U4 — open (airflow gap) -->
   <text x="200" y="170" text-anchor="middle" font-size="10" font-weight="700" fill="#94a3b8">U4</text>
   <rect x="228" y="154" width="284" height="23" fill="none" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,3" rx="3"/>
-  <text x="370" y="170" text-anchor="middle" font-size="12" font-weight="600" font-style="italic" fill="#94a3b8">TBD &#8212; unassigned</text>
+  <text x="370" y="170" text-anchor="middle" font-size="12" font-weight="600" font-style="italic" fill="#94a3b8">Open &#8212; airflow gap</text>
 
-  <!-- U3 — TBD (empty / undecided placeholder) -->
+  <!-- U3 — open (airflow gap) -->
   <text x="200" y="196" text-anchor="middle" font-size="10" font-weight="700" fill="#94a3b8">U3</text>
   <rect x="228" y="180" width="284" height="23" fill="none" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,3" rx="3"/>
-  <text x="370" y="196" text-anchor="middle" font-size="12" font-weight="600" font-style="italic" fill="#94a3b8">TBD &#8212; unassigned</text>
+  <text x="370" y="196" text-anchor="middle" font-size="12" font-weight="600" font-style="italic" fill="#94a3b8">Open &#8212; airflow gap</text>
 
   <!-- U2 — Minisforum UN100P Mini PC (compute / LAN zone) -->
   <text x="200" y="222" text-anchor="middle" font-size="10" font-weight="700" fill="#94a3b8">U2</text>
@@ -75,5 +75,5 @@
   <text x="370" y="248" text-anchor="middle" font-size="12" font-weight="600" fill="#94a3b8">Blank Panel</text>
 
   <!-- footer -->
-  <text x="350" y="284" text-anchor="middle" font-size="9" fill="#94a3b8">U8 at top, U1 at bottom &#8212; standard rack numbering. U4 &amp; U3 are unassigned; U5 &amp; U1 are blanking panels.</text>
+  <text x="350" y="284" text-anchor="middle" font-size="9" fill="#94a3b8">U8 at top, U1 at bottom &#8212; standard rack numbering. U4 &amp; U3 are left open for airflow; U5 &amp; U1 are blanking panels.</text>
 </svg>

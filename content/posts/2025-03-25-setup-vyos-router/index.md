@@ -25,7 +25,9 @@ VyOS offers powerful routing, firewalling, making it an excellent choice for hom
 
 **Note**: VyOS rolling release images are built from the latest development code, incorporating the newest changes from maintainers and community contributors. While they receive automated testing to ensure they boot and load configurations, they may include experimental features, bugs, and compatibility issues.
 
-Use the rolling release for a homelab where you want the newest features and don't mind the occasional rough edge. For a production firewall, use a numbered LTS release instead — VyOS publishes those as a separate, stability-focused track from the free rolling builds. This guide uses the rolling release throughout.
+Use the rolling release for a homelab where you want the newest features and don't mind the occasional rough edge. For a production firewall, use a numbered LTS release instead — VyOS publishes those as a separate, stability-focused track from the free rolling builds. This guide uses a rolling build from March 2025 throughout.
+
+The VyOS CLI does change between builds — the firewall syntax in particular was reworked in 1.4 — so if a command below is rejected, check `show version` and compare against the [VyOS documentation][docs] for your build.
 
 VyOS can run on various different platforms. Both bare metal as well as cloud platforms. In this guide we will use the "bare metal" installation inside of a VM.
 
@@ -65,7 +67,7 @@ commit; save
 
 In this setup I only have one interface in the bridge. You repeat the `interfaces bridge br0 member interface eth0` command for every interface you want to be part of the bridge.
 
-You can check the bridge with the command `run show bridge br0`
+You can check the bridge with the command `run show interfaces bridge`:
 
 
 ```bash
@@ -177,6 +179,9 @@ L>* 192.168.1.1/32 is directly connected, br0, weight 1, 00:07:15
 ## Firewall
 
 In VyOS (and most firewall systems using Netfilter/iptables), traffic filtering is managed through three main chains: INPUT, OUTPUT, and FORWARD. Understanding these chains is crucial for configuring firewall rules effectively.
+
+> [!WARNING]
+> If you're configuring over SSH, a wrong input rule cuts off your own session. Use `commit-confirm 5` instead of `commit` for the firewall blocks below. VyOS applies the change, and reverts to the previous configuration if you don't type `confirm` within 5 minutes. Once you've confirmed the session still works, run `confirm`, then `save`.
 
 ![Each chain handles a different traffic direction: INPUT filters what reaches the router itself, FORWARD filters traffic passing between networks, and OUTPUT filters what the router sends out.](firewall-chains.svg "Each chain handles a different traffic direction: INPUT filters what reaches the router itself, FORWARD filters traffic passing between networks, and OUTPUT filters what the router sends out.")
 
@@ -306,7 +311,22 @@ delete system login user vyos
 commit; save
 ```
 
+## Troubleshooting
+
+**`commit` fails.** VyOS validates the whole configuration on commit and prints the path that failed, for example a firewall rule referencing an interface that doesn't exist. Nothing is applied until the commit succeeds. Use `compare` to see the pending changes, and `discard` to throw them away and start over.
+
+**A committed change broke something.** Every `commit` is kept as a revision. `run show system commit` lists them, and `rollback <n>` returns to revision `n` (this reboots the router). `compare <n>` shows what changed since that revision.
+
+**LAN clients have no internet.** Work outward from the router:
+
+1. `run show ip route` — there must be a `0.0.0.0/0` route via the WAN interface. If it's missing, the WAN didn't get an address: check `run show interfaces`.
+2. `run ping 1.1.1.1` from the router — if this fails, the problem is the WAN, not the firewall or NAT.
+3. `show nat source` — the `outbound-interface` must be the interface that holds the public IP. For a VLAN that's `eth1.300` rather than `eth1`; for PPPoE it's `pppoe0`, not the underlying Ethernet port.
+
+**Clients get an address but names don't resolve.** Check that `allow-from` covers the LAN subnet and `listen-address` is the router's LAN IP, then test from a client with `nslookup example.com 192.168.1.1`.
+
 Now your VyOS router is fully configured and ready to power your homelab. With a secure and efficient network in place, you can focus on building and exploring your homelab projects.
 
 [1]: https://vyos.io
 [2]: https://github.com/vyos/vyos-nightly-build/releases
+[docs]: https://docs.vyos.io/en/latest/

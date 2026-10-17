@@ -14,11 +14,12 @@ tags:
 
 [Encrypted DNS]({{< ref "/posts/2026-05-21-encrypted-dns" >}}) is most useful at the resolver level — one place to configure, full network coverage, local DNS behavior unchanged. On UniFi that means the gateway itself, which ships a handful of predefined DNS-over-HTTPS providers instead of making you hand-roll the config. This post sets that up and compares the built-in options against each other, rather than just picking one and moving on.
 
-> This post is based on UniFi Network **10.6.101** — menu paths and options may differ on other versions.
-
 ## Prerequisites
 
 - A UniFi gateway running a recent UniFi OS/Network application release.
+
+> [!NOTE]
+> This post is based on UniFi Network **10.6.101** — menu paths and options may differ on other versions.
 
 ## UniFi's Built-in Encrypted DNS Options
 

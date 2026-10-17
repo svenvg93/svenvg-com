@@ -144,7 +144,7 @@ nano whoami/docker-compose.yml
 services:
   whoami:
     container_name: simple-service
-    image: traefik/whoami
+    image: traefik/whoami:v1.12.0
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.whoami.rule=Host(`whoami.${DOMAIN}`)"
@@ -157,7 +157,15 @@ services:
 
 networks:
   traefik:
-    name: traefik
+    external: true
+```
+
+`external: true` tells Compose the `traefik` network already exists — it was created by the Traefik stack — so this project joins it instead of trying to own it.
+
+Docker Compose reads `${DOMAIN}` from a `.env` file in the **same directory** as the `docker-compose.yml`, so the one in `traefik/` isn't visible here. Give whoami its own:
+
+```bash {filename="whoami/.env"}
+DOMAIN=<your-domain>
 ```
 
 **DNS and testing:**
@@ -184,9 +192,30 @@ docker compose -f traefik/docker-compose.yml up -d --force-recreate
 
 > Always check the [Traefik changelog](https://github.com/traefik/traefik/releases) before upgrading for breaking config changes.
 
+## Troubleshooting
+
+Start with the logs — almost every problem below shows up there first:
+
+```bash
+docker logs traefik 2>&1 | grep -iE "error|acme"
+```
+
+**The certificate isn't issued (browser shows `TRAEFIK DEFAULT CERT`).** Traefik serves its self-signed default until the ACME challenge succeeds. Look for `acme` errors in the log: an authentication error means the API token is wrong or missing the **Zone → Read** / **DNS → Edit** permissions; a timeout waiting for the TXT record usually clears up on its own with the 60-second `delaybeforecheck`. While experimenting, point the resolver at the Let's Encrypt staging server so repeated failures don't hit the production [rate limits][rate-limits]:
+
+```yaml
+- "--certificatesresolvers.le.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
+```
+
+Remove the line and delete the `traefik_data` volume once everything works, so Traefik requests real certificates.
+
+**`404 page not found`.** Traefik received the request but no router matched it. Open the dashboard and check whether the `whoami` router exists. If it doesn't, the container is missing `traefik.enable=true` (required because of `exposedbydefault=false`). If it does but the rule reads ``Host(`whoami.`)``, `DOMAIN` wasn't set — see the `.env` step above.
+
+**`Bad Gateway` or `Gateway Timeout`.** The router matched, but Traefik can't reach the container. The service must be on the `traefik` network, and `loadbalancer.server.port` must be the port the app listens on *inside* the container, not a published host port.
+
 With Traefik installed and issuing certificates, the next step is locking it down — see [Middlewares & Dashboard Security][2] for IP allowlisting, basic auth, security headers, and securing the dashboard itself.
 
 [lego]: https://go-acme.github.io/lego/dns/
+[rate-limits]: https://letsencrypt.org/docs/rate-limits/
 [2]: {{< ref "/posts/2024-05-22-traefik-reverse-proxy-middlewares-dashboard" >}}
 [3]: {{< ref "/posts/2024-05-23-traefik-reverse-proxy-observability" >}}
 [4]: {{< ref "/posts/2026-06-15-traefik-reverse-proxy-tcp-udp-routing" >}}

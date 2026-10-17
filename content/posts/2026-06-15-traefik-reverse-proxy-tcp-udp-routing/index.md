@@ -18,6 +18,7 @@ HTTP routing works because Traefik can read the request — the hostname, the pa
 ## Prerequisites
 
 - Traefik running — see the [installation guide][1]
+- The file provider enabled for the `conf.d/` examples — see [Enable the File Provider][2]
 
 ## How TCP/UDP Routing Differs from HTTP
 
@@ -96,6 +97,9 @@ To match all TLS connections on the entry point without inspecting the hostname,
 ```yaml
 rule: "HostSNI(`*`)"
 ```
+
+> [!WARNING]
+> On an entry point shared with HTTP routers, TCP routers are evaluated first. ``HostSNI(`*`)`` with passthrough on `websecure` captures *every* TLS connection on :443 — all your HTTPS services stop working. Only use the wildcard on an entry point dedicated to that backend.
 
 ### Plain TCP (No TLS)
 
@@ -186,7 +190,7 @@ tcp:
   routers:
     tls-passthrough:
       entryPoints: [websecure]
-      rule: "HostSNI(`*`)"
+      rule: "HostSNI(`app.example.com`)"
       service: backend-https
       tls:
         passthrough: true
@@ -219,8 +223,19 @@ udp:
           - address: "192.168.1.1:53"
 ```
 
-A TLS connection to `:443` is matched by SNI and forwarded encrypted to `192.168.1.10:443`. A connection to `:5432` goes straight to the PostgreSQL server on `192.168.1.20`. A UDP packet to `:53` is forwarded to the DNS resolver on `192.168.1.1`.
+A TLS connection to `:443` for `app.example.com` is matched by SNI and forwarded encrypted to `192.168.1.10:443`; every other hostname on `:443` still reaches your HTTP routers as before. A connection to `:5432` goes straight to the PostgreSQL server on `192.168.1.20`. A UDP packet to `:53` is forwarded to the DNS resolver on `192.168.1.1`.
+
+## Troubleshooting
+
+**Traefik won't start: `bind: address already in use` on port 53.** On Ubuntu and other systemd distributions, `systemd-resolved` already listens on port 53. Check with `sudo ss -lunp 'sport = :53'`. Either publish the port on the host's LAN address only (`"192.168.1.5:53:53/udp"` in `ports`, or `address: "192.168.1.5:53/udp"` on bare metal) or disable the resolved stub listener (`DNSStubListener=no` in `/etc/systemd/resolved.conf`, then `sudo systemctl restart systemd-resolved`).
+
+**All HTTPS sites broke after adding a TCP router.** A TCP router with ``HostSNI(`*`)`` on `websecure` is catching every connection — see the warning under [TLS Passthrough](#tls-passthrough).
+
+**A passthrough route doesn't match.** SNI routing only works when the client sends a hostname. Connecting by IP address (`https://192.168.1.5`) sends no SNI, so only a ``HostSNI(`*`)`` router can catch it. Test with the hostname: `openssl s_client -connect <traefik-ip>:443 -servername app.example.com`.
+
+**A plain-TCP or UDP service gets no traffic.** The entry point must be in both the `command` flags and the `ports` list — a missing port mapping means packets never reach the container. Check with `docker port traefik`.
 
 That covers HTTP, TCP, and UDP — between this and the rest of the series, Traefik is now handling routing, security, and observability for everything running behind it.
 
 [1]: {{< ref "/posts/2024-05-21-traefik-reverse-proxy-install" >}}
+[2]: {{< ref "/posts/2024-05-22-traefik-reverse-proxy-middlewares-dashboard#enable-the-file-provider" >}}

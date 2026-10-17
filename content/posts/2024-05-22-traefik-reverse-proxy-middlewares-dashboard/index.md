@@ -31,6 +31,34 @@ In Docker, both happen in labels on the service container. For bare metal, or wh
 
 Throughout this guide we use `lan-only`, `my-auth`, and `secure-headers` as the middleware names. You can name them anything — the name is just how Traefik identifies them internally.
 
+### Enable the File Provider
+
+The installation guide only enabled the Docker provider, so Traefik doesn't read `conf.d/` files yet. Add the file provider to the Traefik command flags and mount the directory:
+
+```yaml {filename="docker-compose.yml"}
+command:
+  # ... existing commands ...
+  - "--providers.file.directory=/etc/traefik/conf.d"
+  - "--providers.file.watch=true"
+
+volumes:
+  # ... existing volumes ...
+  - ./conf.d:/etc/traefik/conf.d:ro
+```
+
+Create the directory and recreate the container:
+
+```bash
+mkdir traefik/conf.d
+docker compose -f traefik/docker-compose.yml up -d --force-recreate
+```
+
+With `watch=true`, Traefik reloads any file you add or change in `conf.d/` without a restart.
+
+### Referencing Across Providers
+
+Every middleware belongs to the provider that defined it: `@docker` for labels, `@file` for `conf.d/` files. A router can use a middleware from its own provider by name alone, but referencing one from *another* provider needs the suffix. A Docker-labelled router that uses `secure-headers` from `conf.d/middlewares.yml` must call it `secure-headers@file` — without the suffix, Traefik reports the middleware as not found and disables the router.
+
 ## IPAllowList
 
 IPAllowList lets requests through only if the source IP matches an allowed range. Everything else gets a 403 immediately, before the request reaches your service.
@@ -66,7 +94,7 @@ http:
       middlewares: [lan-only]
       service: myapp
       tls:
-        certResolver: letsencrypt
+        certResolver: le
 ```
 
 ## BasicAuth
@@ -132,11 +160,11 @@ You can attach multiple middlewares to a single router. Traefik runs them in the
 
 A sensible order for homelab use: filter by IP first (cheapest check), then require auth, then add headers on the way out.
 
-In Docker labels, list them comma-separated:
+In Docker labels, list them comma-separated. `secure-headers` lives in a `conf.d/` file, so it needs the `@file` suffix:
 
 ```yaml {filename="docker-compose.yml"}
 labels:
-  - "traefik.http.routers.myapp.middlewares=lan-only,my-auth,secure-headers"
+  - "traefik.http.routers.myapp.middlewares=lan-only,my-auth,secure-headers@file"
 ```
 
 In dynamic config:
@@ -201,7 +229,7 @@ labels:
   - "traefik.http.routers.dashboard.middlewares=lan-only,my-auth"
 ```
 
-Replace `traefik.example.com` with your domain and point a DNS record to your server.
+Replace `traefik.example.com` with your domain and point a DNS record to your server. If you defined `lan-only` and `my-auth` in `conf.d/middlewares.yml` rather than in labels, reference them as `lan-only@file,my-auth@file`.
 
 ### Bare Metal
 
@@ -216,7 +244,7 @@ http:
       middlewares: [lan-only, my-auth]
       service: api@internal
       tls:
-        certResolver: letsencrypt
+        certResolver: le
 ```
 
 Update your static config to disable insecure mode:
@@ -249,6 +277,16 @@ curl -s -u admin:your-password https://traefik.example.com/api/http/middlewares 
 ```
 
 The three middlewares above cover the most common homelab needs, but Traefik has many more — rate limiting, redirects, compression, and request rewriting among them. The full list is in the [Traefik middleware documentation][middleware-docs]. The full API endpoint reference is in the [Traefik API documentation][api-docs].
+
+## Troubleshooting
+
+**The router disappears or shows an error after adding a middleware.** Open the router in the dashboard — Traefik prints the reason. `middleware "secure-headers@docker" does not exist` means the middleware was defined in a different provider than the router; add the `@file` suffix as described in [Referencing Across Providers](#referencing-across-providers).
+
+**`403 Forbidden` from inside your LAN.** `lan-only` is comparing against a different source IP than you expect. Enable access logs (covered in the [observability post][3]) and check the `ClientHost` field. If it shows a Docker bridge address such as `172.18.0.1` instead of your client's IP, the request isn't arriving at Traefik directly — commonly because another proxy or NAT sits in front of it — and the allowlist needs to match what Traefik actually sees.
+
+**BasicAuth keeps prompting even with the right password.** In Docker labels, every `$` in the hash must be doubled to `$$`. A single `$` gets swallowed by Compose variable interpolation, and the stored hash no longer matches. Run `docker compose config` to see the label value exactly as Traefik will receive it.
+
+**The dashboard loads but shows no data.** On bare metal, the router rule must match both `/api` and `/dashboard` — the UI fetches everything from `/api`.
 
 With the dashboard secured, the next step is watching Traefik itself — see [Observability with Prometheus, Loki & Grafana][3] to collect metrics and centralize logs.
 

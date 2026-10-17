@@ -16,7 +16,7 @@ MikroTik routers are a popular choice for homelabs thanks to their flexibility a
 
 ## Prerequisites
 
-- A MikroTik router running RouterOS
+- A MikroTik router running RouterOS v7 — check with `/system resource print`
 - A way to connect to it — serial cable or Ethernet, covered below
 
 ## Connect to the router
@@ -44,7 +44,14 @@ MikroTik routers ship with a default configuration that includes firewall rules,
 /system reset-configuration no-defaults=yes
 ```
 
-The router will reboot. After the reboot there is **no DHCP server**, so reconnect using a **serial cable** or set a **static IP** on your computer (e.g. `192.168.1.2/24`) before SSHing in. Log in again with `admin` and no password.
+The router will reboot with **no IP address and no DHCP server**, so SSH won't work until the LAN section below is applied. Reconnect at layer 2 instead:
+
+- **Serial cable** — same settings as above.
+- **Winbox by MAC address** — plug into any port, open [Winbox][winbox], and pick the router from the **Neighbors** tab by its MAC address. Winbox has a terminal window for pasting the commands below.
+
+Log in again with `admin` and no password. Once the LAN bridge has `192.168.1.1`, you can switch to SSH by giving your computer a static IP such as `192.168.1.2/24` (or via DHCP once the DHCP section is applied).
+
+To find your port names before building the bridge, run `/interface ethernet print`.
 
 > Replace the placeholder variables shown in `[BRACKETS]` with values that match your environment.
 
@@ -167,6 +174,9 @@ add action=masquerade chain=srcnat comment="Enable NAT on WAN interface" out-int
 
 Rules are processed top-down. This configuration allows established connections and LAN-initiated traffic, and drops everything else.
 
+> [!WARNING]
+> A wrong firewall rule can cut off your own session. Before pasting, press **Ctrl+X** in the terminal to enter **Safe Mode** (the prompt shows `<SAFE>`). If the connection drops while Safe Mode is on, RouterOS automatically reverts every change made since you entered it. Press **Ctrl+X** again to leave Safe Mode and keep the changes.
+
 ```bash {filename="Firewall Rules"}
 /ip firewall filter
 add action=accept chain=forward comment="Allow established,related" connection-state=established,related
@@ -247,6 +257,33 @@ set ssh address=192.168.1.0/24
 set winbox address=192.168.1.0/24
 ```
 
+## Verify
+
+Check each layer in order, from the router out:
+
+```bash {filename="Verification"}
+/ip dhcp-client print        # status should be "bound" (DHCP WAN)
+/interface pppoe-client print # or: status "connected" (PPPoE WAN)
+/ip route print where dst-address=0.0.0.0/0   # a default route must exist
+/ping 1.1.1.1 count=3
+/ping cloudflare.com count=3  # proves the router's own DNS works
+/ip dhcp-server lease print   # LAN clients that received an address
+```
+
+From a LAN client, browse to any website to confirm NAT and the forward chain are working.
+
+## Troubleshooting
+
+**Locked out after applying the firewall.** Connect over serial or Winbox by MAC address — the IP firewall doesn't filter layer-2 management connections. Then check the input chain with `/ip firewall filter print chain=input`: the "Allow traffic from LAN" rule must come before "Drop all else", and `bridge1` must be in the `LAN` interface list (`/interface list member print`).
+
+**The router has internet but LAN clients don't.** Check the NAT rule's packet counters with `/ip firewall nat print stats`. If they stay at zero, the WAN interface isn't in the `WAN` list — the masquerade rule matches on `out-interface-list=WAN`. For PPPoE, the list member must be the PPPoE interface (`internet`), not `ether1`.
+
+**Clients get an address but names don't resolve.** Confirm `allow-remote-requests=yes`, and that `/ip dns print` shows upstream servers (dynamic ones come from the WAN). Then test from a client with `nslookup example.com 192.168.1.1`.
+
+**No DHCP lease from the ISP.** Many ISPs require a VLAN tag on the WAN — check whether yours needs the "with VLAN" variant, and confirm the VLAN ID. `/log print where topics~"dhcp"` shows whether the router is sending discovers and getting replies.
+
 ---
 
 Your MikroTik router is now configured with a secure baseline. From here you can expand with VLANs, more granular firewall rules, or additional services like a [WireGuard VPN]({{< ref "/posts/2026-03-04-mikrotik-wireguard" >}}).
+
+[winbox]: https://mikrotik.com/download

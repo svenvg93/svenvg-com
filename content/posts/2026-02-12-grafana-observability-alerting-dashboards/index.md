@@ -56,7 +56,7 @@ Mount it into the Grafana container so the files above are actually picked up. A
 
 ```yaml {filename="docker-compose.yml"}
 volumes:
-  - grafana_data:/var/lib/grafana
+  - grafana-data:/var/lib/grafana
   - ./provisioning:/etc/grafana/provisioning
 ```
 
@@ -155,6 +155,10 @@ You do not need to keep everything in one alert group either. This series splits
 - `Unifi` for Unifi's Loki logs — network-device events rather than metrics
 
 All rules across both groups live together in a single `alerting/rules.yaml` file. Here's the full definition of one representative Traefik rule, followed by a summary table of the rest, then the Unifi log-based group.
+
+### Datasource UIDs
+
+Every query references its datasource by **UID**, not by name. Datasources added through the UI, as in Building the Stack, get a random UID — so `datasourceUid: prometheus` and `datasourceUid: loki` in the examples below won't match yours as-is. Open **Connections → Data sources**, click the datasource, and copy the UID from the end of the URL (`/connections/datasources/edit/<uid>`). Then replace `prometheus` and `loki` in `rules.yaml` with those values.
 
 #### Infrastructure: Traefik Down
 
@@ -286,7 +290,7 @@ docker stop traefik
 
 ## Dashboards as Code
 
-Dashboards created through the Grafana UI are stored in its SQLite database inside the `grafana_data` volume. The volume survives container rebuilds, but it is not in version control — there is no history, no way to diff changes, and no easy path to reproducing the same setup on another machine. Provisioning solves this by loading dashboards from JSON files on disk at startup, keeping them alongside the rest of your stack config in git.
+Dashboards created through the Grafana UI are stored in its SQLite database inside the `grafana-data` volume. The volume survives container rebuilds, but it is not in version control — there is no history, no way to diff changes, and no easy path to reproducing the same setup on another machine. Provisioning solves this by loading dashboards from JSON files on disk at startup, keeping them alongside the rest of your stack config in git.
 
 ### How Dashboard Provisioning Works
 
@@ -344,7 +348,7 @@ providers:
 A few settings worth noting:
 
 - **`updateIntervalSeconds: 30`** — Grafana polls the directory every 30 seconds and reloads any changed JSON files. This means you can update a dashboard file and see the change in the UI without restarting the container.
-- **`allowUiUpdates: true`** — You can still edit the dashboard in the Grafana UI. Changes made through the UI are written back to the JSON file on disk. Without this, any UI edits are discarded on the next reload.
+- **`allowUiUpdates: true`** — You can still edit and save the dashboard in the Grafana UI, but the change is stored in Grafana's database only — it is **not** written back to the JSON file, and it's overwritten the next time the file changes. To keep a UI edit, export the dashboard again and replace the file. Without this option, Grafana refuses to save provisioned dashboards from the UI at all.
 - **`disableDeletion: false`** — If you delete a JSON file, Grafana removes the dashboard from the UI on the next poll.
 
 ### Exporting Dashboards from the UI
@@ -353,8 +357,10 @@ To get a dashboard's JSON from an existing Grafana instance:
 
 1. Open the dashboard
 2. Click the **Share** icon (top toolbar) → **Export**
-3. Enable **Export for sharing externally** to replace internal datasource UIDs with variable names
+3. Leave **Export for sharing externally** **off**
 4. Click **Save to file**
+
+"Sharing externally" replaces each datasource UID with an `${DS_PROMETHEUS}`-style input that Grafana fills in during a manual import. File provisioning has no import step, so those placeholders never get filled in and every panel shows `Datasource ${DS_PROMETHEUS} was not found`. Exporting with the option off keeps the real UIDs, which match as long as you provision onto the same Grafana instance. For a fresh instance, replace the UIDs in the JSON as described in [Datasource UIDs](#datasource-uids).
 
 Save the downloaded file into the appropriate subdirectory under `provisioning/dashboards/`. Grafana will pick it up within 30 seconds.
 
@@ -385,3 +391,17 @@ provisioning.dashboard: Provisioned dashboard from file ...
 ```
 
 If a JSON file has a syntax error, Grafana logs the error and skips that file without affecting the others.
+
+## Troubleshooting
+
+**Grafana won't start after adding provisioning files.** Grafana fails at startup when an alerting provisioning file is invalid. The reason is in the log — usually a YAML indentation error or a duplicate `uid`:
+
+```bash
+docker logs grafana 2>&1 | grep -iE "provisioning|error" | tail -20
+```
+
+**Rules show `Error` with `data source not found`.** The `datasourceUid` in `rules.yaml` doesn't match a datasource on this instance — see [Datasource UIDs](#datasource-uids).
+
+**The Discord test notification never arrives.** Confirm the webhook URL actually reached the container with `docker exec grafana printenv DISCORD_WEBHOOK_URL`. If it's empty, the `environment` entry wasn't applied — recreate the container with `docker compose up -d`, since `docker restart` doesn't pick up compose changes.
+
+**Provisioned alert rules can't be edited in the UI.** That's intentional: provisioned resources are read-only in Grafana, so the files stay the source of truth. Change the YAML and restart Grafana instead.

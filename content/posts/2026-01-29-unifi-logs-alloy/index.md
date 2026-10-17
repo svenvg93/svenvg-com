@@ -217,4 +217,22 @@ With the labels and processing configured above, you can filter down further:
 {job="unifi", app="hostapd"}
 ```
 
+## Troubleshooting
+
+Work from the network inward: first confirm packets reach the host, then that Alloy accepts them, then that Loki stores them.
+
+**Are syslog packets arriving at the host?** Run this on the Docker host, then trigger some activity — reconnect a WiFi client, for example:
+
+```bash
+sudo tcpdump -ni any udp port 514
+```
+
+No packets means the problem is upstream of Alloy: the SIEM server IP in the UniFi settings is wrong, or a firewall between the devices and the host drops UDP 514. On a host running `ufw`, note that Docker-published ports bypass `ufw` rules, so `ufw` is rarely the cause here; a firewall on the gateway or between VLANs is more likely.
+
+**Packets arrive but Alloy doesn't receive them.** Check that the port is actually published with `docker port alloy` — it should list `514/udp`. If it's missing, the compose change wasn't applied; run `docker compose -f alloy/docker-compose.yml up -d` again. A `docker restart` doesn't apply compose changes.
+
+**Alloy receives logs but the `app` or `device_mac` labels are empty.** The regexes match the formats shown above. Firmware updates occasionally change the prefix, so compare a raw line from `{job="unifi"}` against the expressions in `loki.process "unifi"`.
+
+**Loki rejects lines with `entry too far behind` or `timestamp too old`.** `use_incoming_timestamp = false` should prevent this. If you switched it to `true`, a device with a drifting clock can send timestamps older than Loki's `reject_old_samples_max_age` — set NTP on the device or switch back.
+
 With Unifi logs flowing into Loki, move on to [alerting and dashboards as code]({{< ref "/posts/2026-02-12-grafana-observability-alerting-dashboards" >}}) to get notified when something breaks and provision both from version control.

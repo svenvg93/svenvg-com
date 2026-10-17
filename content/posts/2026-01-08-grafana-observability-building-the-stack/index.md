@@ -39,7 +39,7 @@ nano prometheus/docker-compose.yml
 ```yaml {filename="docker-compose.yml"}
 services:
   prometheus:
-    image: prom/prometheus
+    image: prom/prometheus:v3.15.0
     container_name: prometheus
     environment:
       - TZ=Europe/Amsterdam
@@ -82,16 +82,17 @@ scrape_configs: []
 
 `scrape_configs` is empty because Alloy pushes metrics via remote write. Adjust `retention.time` and `retention.size` to match your available disk space — whichever limit is hit first triggers cleanup.
 
-Start Prometheus:
+The Prometheus stack is the one that creates the `backend` network. Every other component in this post joins it as an `external` network, so start Prometheus first:
 
 ```bash
 docker compose -f prometheus/docker-compose.yml up -d
 ```
 
-Verify it's ready:
+Prometheus doesn't publish a port to the host — only containers on `backend` can reach it. Verify it's ready from a throwaway container on that network:
 
 ```bash
-curl -s http://localhost:9090/-/ready
+docker run --rm --network backend curlimages/curl:8.23.0 -s http://prometheus:9090/-/ready
+# Prometheus Server is Ready.
 ```
 
 ## Loki
@@ -108,7 +109,7 @@ nano loki/docker-compose.yml
 ```yaml {filename="docker-compose.yml"}
 services:
   loki:
-    image: grafana/loki
+    image: grafana/loki:3.7.8
     container_name: loki
     restart: unless-stopped
     environment:
@@ -122,7 +123,7 @@ services:
 
 networks:
   backend:
-    name: backend
+    external: true
 
 volumes:
   loki-data:
@@ -190,8 +191,11 @@ docker compose -f loki/docker-compose.yml up -d
 Verify it's ready:
 
 ```bash
-curl -s http://localhost:3100/ready
+docker run --rm --network backend curlimages/curl:8.23.0 -s http://loki:3100/ready
+# ready
 ```
+
+Loki can report `Ingester not ready: waiting for 15s after being ready` for the first few seconds after startup — wait and run it again.
 
 ## Grafana
 
@@ -207,13 +211,13 @@ nano grafana/docker-compose.yml
 ```yaml {filename="docker-compose.yml"}
 services:
   grafana:
-    image: grafana/grafana
+    image: grafana/grafana:13.2.4
     container_name: grafana
     environment:
       - TZ=Europe/Amsterdam
       - GF_SECURITY_ADMIN_PASSWORD=admin
     volumes:
-      - grafana_data:/var/lib/grafana
+      - grafana-data:/var/lib/grafana
     restart: unless-stopped
     ports:
       - 3000:3000
@@ -222,7 +226,7 @@ services:
 
 networks:
   backend:
-    name: backend
+    external: true
 
 volumes:
   grafana-data:
@@ -269,7 +273,7 @@ nano alloy/docker-compose.yml
 ```yaml {filename="docker-compose.yml"}
 services:
   alloy:
-    image: grafana/alloy:latest
+    image: grafana/alloy:v1.20.1
     container_name: alloy
     hostname: ${HOSTNAME}
     restart: unless-stopped
@@ -279,7 +283,7 @@ services:
       - "12345:12345"
     volumes:
       - ./config/:/etc/alloy/config/:ro
-      - alloy_data:/var/lib/alloy/data
+      - alloy-data:/var/lib/alloy/data
     command:
       - run
       - --server.http.listen-addr=0.0.0.0:12345
@@ -290,7 +294,7 @@ services:
 
 networks:
   backend:
-    name: backend
+    external: true
 
 volumes:
   alloy-data:
@@ -298,6 +302,12 @@ volumes:
 ```
 
 Alloy loads every `.alloy` file in the `config/` directory automatically — adding a new collector is as simple as dropping in a new file. Port `12345` is the Alloy web UI for debugging component status.
+
+`hostname: ${HOSTNAME}` names the container after the host so logs and metrics can be told apart per machine. Most shells set `HOSTNAME` without exporting it, so Compose can't see it — set it explicitly in `alloy/.env`:
+
+```bash {filename="alloy/.env"}
+HOSTNAME=<this-host's-name>
+```
 
 ### Endpoints
 
@@ -352,6 +362,20 @@ curl -s http://localhost:12345/-/healthy
 ```
 
 Open the Alloy web UI at `http://<HOST_IP>:12345` and verify all components show green. The `prometheus.remote_write.default` and `loki.write.default` components should both be running.
+
+As a final end-to-end check, open Grafana's **Explore** view, pick the Prometheus datasource, and run `alloy_build_info`. A result means the whole metrics path works: Alloy scraped itself, remote-wrote to Prometheus, and Grafana queried it back.
+
+## Troubleshooting
+
+**`network backend declared as external, but could not be found`.** The Prometheus stack creates the network, so it has to be started first. Run `docker compose -f prometheus/docker-compose.yml up -d`, then start the others.
+
+**Save & Test on a datasource fails with `no such host` or `connection refused`.** Grafana resolves `prometheus` and `loki` by container name, which only works on a shared network. Check that all four containers are listed in `docker network inspect backend`.
+
+**Alloy's `prometheus.remote_write` component reports errors.** A `404` from `/api/v1/write` means Prometheus is running without `--web.enable-remote-write-receiver` — check the flag in the `command` list and recreate the container. Connection errors mean Alloy isn't on the `backend` network.
+
+**An Alloy config change doesn't take effect.** Alloy refuses to load a config with a syntax error and keeps running the previous one. Check `docker logs alloy` for the parse error, which includes the file name and line.
+
+**Loki logs `permission denied` on `/loki`.** The Loki image runs as a non-root user (UID `10001`). A named volume, as used here, gets the right ownership automatically; if you switched to a bind mount, run `sudo chown -R 10001:10001` on the host directory.
 
 With Prometheus, Loki, Grafana, and Alloy all running, the base stack is in place. What you collect through it depends on what you're monitoring — this series continues with:
 

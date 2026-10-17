@@ -46,14 +46,16 @@ add address=192.168.100.1/24 interface=wireguard1 comment="WG subnet"
 
 Add firewall rules to allow WireGuard traffic and permit communication between VPN clients and your LAN.
 
+RouterOS appends new rules to the **end** of the chain, after any existing drop rule, where they would never match. `place-before` inserts them above it instead. The commands below assume the rule comments from the [initial router setup]({{< ref "/posts/2025-01-05-setup-mikrotik-router" >}}); adjust the `comment=` match if your drop rules are named differently.
+
 ```bash {filename="Firewall Configuration"}
 /ip firewall filter
-add chain=input action=accept protocol=udp dst-port=51820 in-interface-list=WAN comment="Allow WireGuard"
-add chain=forward action=accept in-interface=wireguard1 out-interface=bridge1 comment="WG to LAN"
-add chain=forward action=accept in-interface=bridge1 out-interface=wireguard1 comment="LAN to WG"
+add chain=input action=accept protocol=udp dst-port=51820 in-interface-list=WAN comment="Allow WireGuard" place-before=[find chain=input comment="Drop all else"]
+add chain=forward action=accept in-interface=wireguard1 out-interface=bridge1 comment="WG to LAN" place-before=[find chain=forward comment="drop all else"]
+add chain=forward action=accept in-interface=bridge1 out-interface=wireguard1 comment="LAN to WG" place-before=[find chain=forward comment="drop all else"]
 ```
 
->  Make sure these rules are placed **before** any drop rules in their respective chains. If you followed the initial router setup guide, the first rule already exists — skip it and add only the two forward rules.
+If you followed the initial router setup guide, the first rule already exists — skip it and add only the two forward rules. Check the result with `/ip firewall filter print chain=forward`: both WG rules must be listed above "drop all else".
 
 ## Peers
 
@@ -120,9 +122,38 @@ To enable internet traffic through the VPN, add these rules:
 
 ```bash {filename="Full-Tunnel Firewall Rules"}
 /ip firewall filter
-add action=accept chain=forward comment="WG to Internet" in-interface=wireguard1 out-interface-list=WAN
-add action=accept chain=input comment="Allow traffic from WG to router" in-interface=wireguard1
+add action=accept chain=forward comment="WG to Internet" in-interface=wireguard1 out-interface-list=WAN place-before=[find chain=forward comment="drop all else"]
+add action=accept chain=input comment="Allow traffic from WG to router" in-interface=wireguard1 place-before=[find chain=input comment="Drop all else"]
 ```
+
+The existing masquerade rule (`out-interface-list=WAN`) already covers traffic from the WireGuard subnet, so no extra NAT rule is needed.
+
+## Verify
+
+Activate the tunnel on the client, then check the peer on the router:
+
+```bash {filename="Verify"}
+/interface wireguard peers print detail
+```
+
+A working peer shows a recent `last-handshake` and non-zero `rx`/`tx` counters. From the client, `ping 192.168.100.1` tests the tunnel itself, and `ping 192.168.1.1` tests routing into the LAN.
+
+## Troubleshooting
+
+**No handshake at all (`last-handshake` stays empty).** The UDP packets aren't reaching the router, or the keys don't match. Check that:
+
+- The client's `Endpoint` is your current public IP. If the router sits behind an ISP modem, forward UDP 51820 on the modem. If your ISP uses CGNAT (the WAN address is in `100.64.0.0/10`), inbound connections can't reach you at all.
+- The router peer has the **client's** public key, and the client `[Peer]` has the **router's** public key — swapping them is the most common mistake.
+
+**Handshake works but the LAN is unreachable.** The forward rules are probably below the drop rule — check the order with `/ip firewall filter print chain=forward`. Also confirm the client's `Address` matches the peer's `allowed-address` exactly: the router drops packets from any other source address.
+
+**The tunnel drops after a few minutes of idle time.** A NAT device between the client and the router has expired the UDP mapping. Add a keepalive to the client's `[Peer]` section:
+
+```ini
+PersistentKeepalive = 25
+```
+
+**Full-tunnel connects, but websites don't load.** DNS is usually the culprit. The client's `DNS = 192.168.100.1` needs the "Allow traffic from WG to router" input rule and `allow-remote-requests=yes` on the router. Test with `nslookup example.com 192.168.100.1` from the client.
 
 ## Conclusion
 

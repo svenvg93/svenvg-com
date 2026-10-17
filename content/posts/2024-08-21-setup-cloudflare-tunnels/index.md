@@ -37,7 +37,7 @@ Add the following configuration to the file:
 ```yaml {filename="docker-compose.yml"}
 services:
   cloudflared:
-    image: cloudflare/cloudflared
+    image: cloudflare/cloudflared:2026.10.1
     container_name: cloudflared
     environment:
       - TZ=Europe/Amsterdam
@@ -88,7 +88,13 @@ Once everything is configured, you can start the tunnel by running:
 docker compose up -d
 ```
 
-If everything is correct you will see your tunnel connected within a couple of seconds.
+If everything is correct you will see your tunnel connected within a couple of seconds. Confirm it from the container side too:
+
+```bash
+docker logs cloudflared 2>&1 | grep "Registered tunnel connection"
+```
+
+A healthy tunnel logs one `Registered tunnel connection` line per edge connection, usually four.
 
 ## Add a service
 
@@ -106,13 +112,15 @@ Add the following configuration to the file:
 services:
   whoami:
     container_name: simple-service
-    image: traefik/whoami
+    image: traefik/whoami:v1.12.0
     networks:
         - cloudflared
 networks:
   cloudflared:
-    name: cloudflared
+    external: true
 ```
+
+`external: true` joins the `cloudflared` network created by the tunnel stack instead of trying to create it again.
 
 Run the command below to start the container.
 
@@ -129,11 +137,19 @@ Fill in the following fields:
 - Type: Choose HTTP.
 - URL: Enter the IP address and port of the application you want to connect.
 
-If the application is on the same docker network as the cloudflare tunnel you can use the container name.
+If the application is on the same docker network as the cloudflare tunnel you can use the container name — for this example, `simple-service:80`.
 
 Finally, click **Save Tunnel**. This will configure the tunnel, allowing you to access your service via Cloudflare.
 
 If you perform an nslookup and traceroute for the specified domain name, you’ll notice that all traffic is routed through Cloudflare, and your own IP address will not be visible. This demonstrates that the Cloudflare Tunnel effectively masks your server’s true IP, enhancing your security by protecting it from direct exposure to the internet.
+
+## Troubleshooting
+
+**The tunnel shows as Down or Inactive in the dashboard.** Check `docker logs cloudflared`. An authentication or `Unauthorized` error means the token in `.env` is incomplete — it's a single long string, and copying it from the install command often cuts it off or keeps part of the `--token` flag. If the log shows connection timeouts instead, the host can't reach Cloudflare outbound: cloudflared needs outbound UDP 7844 (QUIC) or, as a fallback, TCP 7844.
+
+**The hostname returns `502 Bad Gateway`.** The tunnel is up, but cloudflared can't reach the service. Check that the service URL uses the container name and the port *inside* the container (`simple-service:80`, not a published host port), and that both containers are on the `cloudflared` network: `docker network inspect cloudflared`.
+
+**The service uses HTTPS with a self-signed certificate.** Set the service type to HTTPS and enable **No TLS Verify** under the route's additional application settings → TLS. Otherwise cloudflared rejects the certificate and returns a 502.
 
 [1]: https://dash.cloudflare.com/
 [2]: https://github.com/traefik/whoami

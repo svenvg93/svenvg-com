@@ -161,6 +161,14 @@ Open the Alloy Web UI and confirm the `loki.source.file` component is healthy, t
 
 You can use the pre-built [Traefik Dashboard][grafana-dashboard] from GitHub, or explore available metrics from the [official Traefik metrics overview][metrics-overview].
 
+## Troubleshooting
+
+**`traefik_router_requests_total` returns nothing.** First check that the endpoint itself works: `curl -s http://<traefik-ip>:8080/metrics | head` should print metric lines. If it does, run `up{job="traefik"}` in Grafana Explore — `0` means Prometheus can't reach the target (wrong IP or port, or a host firewall blocking 8080); no result at all means the scrape job wasn't loaded, so check `docker logs prometheus` for a config parse error. Router-level metrics only appear after a router has served at least one request.
+
+**`{job="traefik"}` returns no logs.** Check that Traefik is writing files on the host with `ls -l /var/log/traefik`. If the directory is empty, the volume mapping or the `--accesslog.filepath` flag didn't apply — recreate the container with `--force-recreate`. If the files exist, open the Alloy UI: an unhealthy `loki.source.file.traefik` usually means `/var/log` isn't mounted into the Alloy container.
+
+**Logs stopped after a while.** Traefik doesn't rotate its own log files. If you add logrotate, use `copytruncate` or send Traefik a `USR1` signal after rotation so it reopens the file.
+
 With metrics and logs flowing, the last piece of the series covers routing traffic Traefik can't inspect at Layer 7 — see [TCP and UDP Routing][tcp-udp] for databases, DNS, and other non-HTTP services.
 
 [1]: {{< ref "/posts/2024-05-21-traefik-reverse-proxy-install" >}}

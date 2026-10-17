@@ -4,7 +4,7 @@ description: How an Agent finds a Controller in the first place via DHCP options
 date: 2026-08-04
 draft: false
 categories:
-  - Networking
+  - Broadband
 tags:
   - tr-369
   - cwmp

@@ -4,7 +4,7 @@ description: TR-369, the User Services Platform, is the Broadband Forum's design
 date: 2026-08-03
 draft: false
 categories:
-  - Networking
+  - Broadband
 tags:
   - tr-369
   - cwmp

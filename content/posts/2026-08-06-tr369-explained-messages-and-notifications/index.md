@@ -4,7 +4,7 @@ description: The actual USP message shapes for Get, Set, and error reporting, si
 date: 2026-08-06
 draft: false
 categories:
-  - Networking
+  - Broadband
 tags:
   - tr-369
   - cwmp

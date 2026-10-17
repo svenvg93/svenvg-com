@@ -4,7 +4,7 @@ description: WiFi 7 changes how a client uses spectrum, not just how fast a sing
 date: 2026-04-30
 draft: false
 categories:
-  - Networking
+  - Wireless
 tags:
   - wifi
   - wifi7

@@ -4,7 +4,7 @@ description: WPA3 fixes real weaknesses in WPA2 — but not the ones most people
 date: 2026-05-02
 draft: false
 categories:
-  - Networking
+  - Wireless
   - Security
 tags:
   - wifi

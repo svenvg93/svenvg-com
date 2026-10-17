@@ -5,17 +5,17 @@ main:
     params:
       icon: posts
 
-  - name: Series
-    pageRef: /series
-    weight: 20
-    params:
-      icon: series
-
   - name: Categories
     pageRef: /categories
     weight: 30
     params:
       icon: categories
+
+  - name: Series
+    pageRef: /series
+    weight: 20
+    params:
+      icon: series
 
   - name: More
     weight: 40

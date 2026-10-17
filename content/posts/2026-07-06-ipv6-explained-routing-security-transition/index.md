@@ -5,9 +5,9 @@ date: 2026-07-06
 draft: false
 categories:
   - Networking
+  - Security
 tags:
   - ipv6
-  - security
 series:
   - "IPv6 Explained"
 series_order: 3

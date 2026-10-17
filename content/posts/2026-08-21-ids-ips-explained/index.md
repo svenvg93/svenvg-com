@@ -4,7 +4,6 @@ description: A firewall filters on address and port. An IDS/IPS looks inside the
 date: 2026-08-21
 draft: false
 categories:
-  - Networking
   - Security
 tags:
   - ids

@@ -4,7 +4,7 @@ description: Sticky clients, band steering, and why 802.11k/r/v are the right to
 date: 2026-05-06
 draft: false
 categories:
-  - Networking
+  - Wireless
 tags:
   - wifi
   - wifi7

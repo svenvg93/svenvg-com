@@ -4,7 +4,7 @@ description: XGS-PON is the 10-gigabit symmetric fiber standard behind most new 
 date: 2026-05-19
 draft: false
 categories:
-  - Networking
+  - Broadband
 tags:
   - fiber
   - pon

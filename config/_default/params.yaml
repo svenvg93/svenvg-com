@@ -1,6 +1,6 @@
 # Basic site info with SEO
-description: "Sven van Ginkel — a network engineer sharing homelab guides on networking, self-hosting, observability, and automation, shaped by real ISP experience."
-keywords: ["Self-Hosting", "Homelab", "Networking", "Network Engineering", "WiFi", "DNS", "Linux", "Automation", "Infrastructure", "Docker"]
+description: "Sven van Ginkel — a network engineer explaining how networking technologies actually work, from WiFi 7 and XGS-PON to IPv6, encrypted DNS, and TR-369, shaped by real ISP experience."
+keywords: ["Networking", "Network Engineering", "WiFi 7", "IPv6", "XGS-PON", "Fiber", "DNS", "TR-369", "ISP", "Homelab"]
 defaultAuthor: "Sven van Ginkel"
 language: "en-US"
 shortName: "Sven van Ginkel"  # PWA
@@ -23,8 +23,8 @@ header:
 
 author:
   name: "Sven van Ginkel"
-  title: "Network Engineer • Homelab • Self-Hosting"
-  description: "I design CPE and provisioning systems for an ISP by day, and self-host and break things in my homelab by night — sharing the practical guides that come out of both."
+  title: "Network Engineer • ISP & CPE • Homelab"
+  description: "I design CPE and provisioning systems for an ISP by day, and break things in my homelab by night — writing about how the technologies behind both actually work."
   avatar: "/image.png"
   social:
     - name: "GitHub"

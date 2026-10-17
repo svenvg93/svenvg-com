@@ -4,7 +4,7 @@ description: Transmit power, channel selection, and channel width shape how well
 date: 2026-05-04
 draft: false
 categories:
-  - Networking
+  - Wireless
 tags:
   - wifi
   - wifi7

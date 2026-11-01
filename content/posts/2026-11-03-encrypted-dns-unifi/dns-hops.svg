@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 220" width="700" height="220"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <linearGradient id="grad-hop2" x1="310" y1="110" x2="391" y2="110" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#fb923c"/>
+    </linearGradient>
+    <marker id="arr-slate" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#94a3b8"/>
+    </marker>
+    <marker id="arr-orange" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#fb923c"/>
+    </marker>
+  </defs>
+
+  <rect width="700" height="220" fill="url(#bg)" rx="8"/>
+
+  <line x1="0" y1="36" x2="700" y2="36" stroke="#0d1a2a" stroke-width="1"/>
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">ONE DNS LOOKUP &#8212; WHICH HOP IS ENCRYPTED</text>
+
+  <!-- Zone brackets -->
+  <text x="162" y="52" text-anchor="middle" font-size="9" font-weight="600" fill="#86efac" letter-spacing="1">YOUR NETWORK</text>
+  <path d="M16,63 V58 H308 V63" fill="none" stroke="#166534" stroke-width="1.5"/>
+  <text x="538" y="52" text-anchor="middle" font-size="9" font-weight="600" fill="#f87171" letter-spacing="1">INTERNET</text>
+  <path d="M392,63 V58 H684 V63" fill="none" stroke="#7f1d1d" stroke-width="1.5"/>
+
+  <!-- Nodes -->
+  <rect x="16" y="78" width="104" height="64" fill="#071810" stroke="#166534" stroke-width="1.5" rx="5"/>
+  <text x="68" y="106" text-anchor="middle" font-size="12" font-weight="600" fill="#86efac">Client</text>
+  <text x="68" y="122" text-anchor="middle" font-size="9" fill="#94a3b8">laptop / phone</text>
+
+  <rect x="204" y="78" width="104" height="64" fill="#0e1a3a" stroke="#3b82f6" stroke-width="1.5" rx="5"/>
+  <text x="256" y="100" text-anchor="middle" font-size="12" font-weight="600" fill="#93c5fd">UniFi gateway</text>
+  <text x="256" y="116" text-anchor="middle" font-size="9" fill="#94a3b8">local records</text>
+  <text x="256" y="128" text-anchor="middle" font-size="9" fill="#94a3b8">answered here</text>
+
+  <rect x="392" y="78" width="104" height="64" fill="#150808" stroke="#7f1d1d" stroke-width="1.5" rx="5"/>
+  <text x="444" y="98" text-anchor="middle" font-size="12" font-weight="600" fill="#f87171">Upstream</text>
+  <text x="444" y="112" text-anchor="middle" font-size="12" font-weight="600" fill="#f87171">resolver</text>
+  <text x="444" y="129" text-anchor="middle" font-size="9" fill="#94a3b8">Cloudflare / Google</text>
+
+  <rect x="580" y="78" width="104" height="64" fill="#150808" stroke="#7f1d1d" stroke-width="1.5" rx="5"/>
+  <text x="632" y="106" text-anchor="middle" font-size="12" font-weight="600" fill="#f87171">Authoritative</text>
+  <text x="632" y="120" text-anchor="middle" font-size="12" font-weight="600" fill="#f87171">servers</text>
+
+  <!-- Hop 1 -->
+  <line x1="122" y1="110" x2="203" y2="110" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr-slate)"/>
+  <text x="162" y="88" text-anchor="middle" font-size="9" font-weight="600" fill="#94a3b8">Plain DNS</text>
+  <text x="162" y="100" text-anchor="middle" font-size="9" fill="#94a3b8">UDP/TCP 53</text>
+  <text x="162" y="164" text-anchor="middle" font-size="8" font-weight="600" fill="#94a3b8" letter-spacing="1">HOP 1</text>
+  <text x="162" y="178" text-anchor="middle" font-size="9" fill="#94a3b8">stays on your LAN</text>
+
+  <!-- Hop 2 (encrypted) -->
+  <line x1="310" y1="110" x2="391" y2="110" stroke="url(#grad-hop2)" stroke-width="1.5" marker-end="url(#arr-orange)"/>
+  <text x="350" y="88" text-anchor="middle" font-size="9" font-weight="600" fill="#fb923c">DoH</text>
+  <text x="350" y="100" text-anchor="middle" font-size="9" fill="#fb923c">HTTPS 443</text>
+  <rect x="318" y="118" width="64" height="16" fill="#1a0800" stroke="#c2410c" stroke-width="1.5" rx="5"/>
+  <text x="350" y="129" text-anchor="middle" font-size="8" font-weight="600" fill="#fb923c" letter-spacing="1">ENCRYPTED</text>
+  <text x="350" y="164" text-anchor="middle" font-size="8" font-weight="600" fill="#fb923c" letter-spacing="1">HOP 2</text>
+  <text x="350" y="178" text-anchor="middle" font-size="9" fill="#fb923c">crosses your ISP &#8212;</text>
+  <text x="350" y="190" text-anchor="middle" font-size="9" fill="#fb923c">what Encrypted DNS changes</text>
+
+  <!-- Hop 3 -->
+  <line x1="498" y1="110" x2="579" y2="110" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr-slate)"/>
+  <text x="538" y="100" text-anchor="middle" font-size="9" font-weight="600" fill="#94a3b8">Plain DNS</text>
+  <text x="538" y="164" text-anchor="middle" font-size="8" font-weight="600" fill="#94a3b8" letter-spacing="1">HOP 3</text>
+  <text x="538" y="178" text-anchor="middle" font-size="9" fill="#94a3b8">outside your control</text>
+</svg>

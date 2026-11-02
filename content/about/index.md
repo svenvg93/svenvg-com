@@ -12,7 +12,8 @@ There are plenty of step-by-step guides out there already. What's harder to find
 - **[Networking](/categories/networking/)** — IPv6, encrypted DNS, reverse proxies
 - **[Wireless](/categories/wireless/)** — WiFi 7, WPA3, channel planning, roaming
 - **[Broadband](/categories/broadband/)** — XGS-PON, TR-369/USP, CPE management
-- **[Security](/categories/security/)** — IDS/IPS, WPA3, securing IPv6 and DNS- **[Projects](/projects/)** — things I've built, and how they work
+- **[Security](/categories/security/)** — IDS/IPS, WPA3, securing IPv6 and DNS
+- **[Projects](/projects/)** — things I've built, and how they work
 
 ## Explore
 

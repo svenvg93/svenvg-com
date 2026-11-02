@@ -32,7 +32,7 @@ Each post bundle can include:
 
 Create a new post with `hugo new posts/YYYY-MM-DD-short-title/index.md`.
 
-Older step-by-step guides are parked in `unpublished/` (outside `content/`, so Hugo doesn't build them). To republish one, move its bundle back into `content/posts/` and give it one of the topic categories.
+Older step-by-step guides were removed in commit `c70b2c0` and live only in git history. To republish one, restore its bundle with `git checkout c70b2c0^ -- content/posts/<bundle>` and give it one of the topic categories.
 
 ## 🛠 Requirements
 

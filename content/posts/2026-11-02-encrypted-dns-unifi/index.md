@@ -1,8 +1,8 @@
 ---
 title: "How to Set Up Encrypted DNS on UniFi — and Make Every Device Use It"
 description: A step-by-step guide to UniFi's Encrypted DNS. Encrypt the gateway's upstream DNS, pick a resolver that blocks malicious domains, and redirect or block devices that try to go around it — with a test for every step.
-date: 2026-11-03
-draft: true
+date: 2026-11-02
+draft: false
 categories:
   - Networking
   - Security
@@ -32,7 +32,7 @@ UniFi's **Encrypted DNS** (called **DNS Shield** before Network 9) changes one h
 
 Clients keep sending plain DNS to the gateway on port 53, so nothing changes on your devices, and local DNS records you've defined on the gateway keep working. Hop 1 stays on your own network. Hop 3 is outside your control — resolvers talk to authoritative servers in plain DNS. Hop 2 is the one that crosses your ISP, and that's the one this fixes.
 
-## Step 1: Check What Your Gateway Uses Today
+## Check What Your Gateway Uses Today
 
 Before changing anything, record a baseline. Akamai runs a domain that reports the address of whichever resolver asked it:
 
@@ -42,7 +42,7 @@ dig +short @192.168.1.1 TXT whoami.ds.akahelp.net
 
 Look at the `"ns"` line. On a default setup, it's your ISP's resolver, or whatever DNS servers your WAN connection is configured with. Keep the output — you'll compare against it in step 4.
 
-## Step 2: Choose a Resolver
+## Choose a Resolver
 
 Encryption decides who can *see* your DNS. The resolver decides what it will *answer*. Some providers run filtering variants that refuse to resolve domains on their threat feeds — malware, phishing, command-and-control servers. A device that can't resolve a malicious domain can't connect to it.
 
@@ -62,19 +62,19 @@ Some things to weigh:
 - **Fixed filters have no allowlist.** If Quad9 or Cloudflare blocks something you need, you can't override it. NextDNS and AdGuard DNS let you add your own allow and block entries, and show what was blocked.
 - **You're moving trust, not removing it.** Whichever provider you pick sees every domain your network looks up, instead of your ISP.
 
-## Step 3: Turn On Encrypted DNS
+## Turn On Encrypted DNS
 
 In the UniFi Network app, open **Settings → CyberSecure** and find **Encrypted DNS**. Choose one of:
 
 - **Auto** — Cloudflare and Google, no filtering.
-- **A predefined provider** — pick it from the list, if the one you chose in step 2 is there.
+- **A predefined provider** — pick it from the list.
 - **Custom** — for anything else. Give it a name and paste the provider's **DNS stamp**: a single `sdns://` string that describes the resolver. NextDNS and AdGuard DNS show yours on their setup pages; Quad9 and Cloudflare stamps are in the DNSCrypt project's public resolver list.
 
 Apply the change. Note that with Encrypted DNS on, the gateway stops using the DNS servers from your WAN settings — the provider you chose here replaces them.
 
-## Step 4: Verify It
+## Verify It
 
-Run the baseline query from step 1 again, a few times:
+Run the baseline query again, a few times:
 
 ```bash
 dig +short @192.168.1.1 TXT whoami.ds.akahelp.net
@@ -91,7 +91,7 @@ dig @192.168.1.1 isitblocked.org | grep status      # Quad9: expect NXDOMAIN
 
 Finally, check that a normal site and one of your local DNS records still resolve.
 
-## Step 5: Redirect Hard-Coded DNS to the Gateway
+## Redirect Hard-Coded DNS to the Gateway
 
 Encrypted DNS only covers devices that use the gateway as their resolver, and on a default network any device can ignore it. Try it from your computer:
 

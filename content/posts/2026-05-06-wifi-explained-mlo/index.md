@@ -1,7 +1,7 @@
 ---
 title: "WiFi Explained: WiFi 7 Spectrum & Multi-Link Operation"
 description: WiFi 7 changes how a client uses spectrum, not just how fast a single link runs. Here's how Multi-RU and Preamble Puncturing make wide channels usable around interference, and how Multi-Link Operation lets a client use several bands as one logical link.
-date: 2026-04-30
+date: 2026-05-06
 draft: false
 categories:
   - Wireless
@@ -19,22 +19,22 @@ Every WiFi generation before 802.11be improved throughput mainly by making indiv
 
 WiFi 6 OFDMA assigns each client a single contiguous Resource Unit — a fixed block of subcarriers within the channel. This works well when the channel is clean, but it creates a constraint: clients must fit into the fixed blocks the AP carves out. Gaps between differently-sized clients waste spectrum.
 
-WiFi 7 (802.11be) introduces **Multi-RU assignment**: a single client can be assigned multiple Resource Units that are non-contiguous within the same channel. The AP can place those RUs anywhere across the spectrum — they don't have to be adjacent.
+WiFi 7 (802.11be) introduces **Multi-RU (MRU) assignment**: a single client can be assigned a combination of Resource Units as one allocation, and those RUs don't have to be adjacent. The combinations aren't free-form — the standard defines a fixed set. Small RUs only combine with small RUs (for example 52+26 or 106+26 tones), and large RUs with large RUs (for example a 484+242-tone MRU, which is an 80 MHz channel with one 20 MHz slice left out).
 
 Two key benefits follow from this:
 
-- **Better spectrum efficiency.** The AP fills the channel more completely by mixing RU sizes across clients. A client needing 40 MHz can receive two 20 MHz RUs that happen to be on opposite sides of the channel, rather than requiring a contiguous 40 MHz block.
+- **Better spectrum efficiency.** The AP fills the channel more completely by mixing RU sizes across clients. A client can be given 60 MHz of an 80 MHz channel as a single allocation, rather than being rounded down to a contiguous 40 MHz block.
 - **Works around localised interference.** If a portion of the spectrum has interference on a specific sub-band, that segment can be left unassigned while both sides of it remain productive. This pairs directly with Preamble Puncturing (below).
 
-Multi-RU is negotiated through the same Trigger Frame mechanism as WiFi 6 OFDMA, extended to carry per-client RU lists rather than single RU assignments. The AP is in full control of the allocation — the client receives exactly the sub-bands the Trigger Frame specifies.
+The AP is in full control of the allocation. On the downlink it signals each client's MRU in the frame's preamble; on the uplink it assigns them through the same Trigger Frame mechanism WiFi 6 OFDMA uses, extended to carry MRU assignments.
 
 ![Multi-RU — WiFi 6 contiguous blocks vs WiFi 7 non-contiguous assignment across the same channel](multi-ru-allocation.svg "Multi-RU — WiFi 6 contiguous blocks vs WiFi 7 non-contiguous assignment across the same channel")
 
 ## Preamble Puncturing: Wide Channels Around Interference
 
-WiFi 7's maximum channel width is 320 MHz. In practice, finding 320 MHz of contiguous clean spectrum is rare — radar systems, neighbouring APs, or legacy devices may occupy part of that range. In WiFi 6, the only response is to fall back to a narrower channel that avoids the interference entirely. A 320 MHz channel with 80 MHz of interference becomes a 160 MHz channel.
+WiFi 7's maximum channel width is 320 MHz. In practice, finding 320 MHz of contiguous clean spectrum is rare — radar systems, neighbouring APs, or legacy devices may occupy part of that range. Without a way around it, the only response is to fall back to a narrower channel that avoids the interference entirely. A 320 MHz channel with 80 MHz of interference becomes a 160 MHz channel.
 
-WiFi 7 adds **Preamble Puncturing**: the ability to mark specific 20 MHz sub-channels within a wide channel as inactive, while transmitting normally on the rest. The mechanism sits in the preamble — the header at the start of every WiFi 7 frame. The preamble carries a bitmap indicating which 20 MHz sub-channels are active and which are punctured. Receiving devices read the bitmap and ignore the punctured sub-channels.
+**Preamble Puncturing** first appeared in WiFi 6 as an optional feature, and almost nothing implemented it. WiFi 7 makes it mandatory, which is what turns it into something you can rely on: the ability to mark specific 20 MHz sub-channels within a wide channel as inactive, while transmitting normally on the rest. The mechanism sits in the preamble — the header at the start of every WiFi 7 frame. The preamble carries a bitmap indicating which 20 MHz sub-channels are active and which are punctured. Receiving devices read the bitmap and ignore the punctured sub-channels.
 
 The result: a 320 MHz channel with 80 MHz of interference becomes a 240 MHz active channel rather than a 160 MHz fallback. The throughput difference between 240 MHz and 160 MHz is significant.
 
@@ -147,7 +147,9 @@ Support is early. The mechanism is in 802.11be, but firmware exposure varies and
 
 MLO is not backwards compatible at the protocol level. Both the AP and the client must support WiFi 7 and negotiate MLO during association. A WiFi 7 AP provides no MLO benefit to a WiFi 6 client — that client connects on a single link as usual.
 
-MLO also requires **WPA3 and PMF**. A multi-link association is only set up inside an SAE security context with Protected Management Frames active — there is no WPA2 MLO. The multi-link device derives one pairwise key set during association, then each link is given its own group keys so broadcast and multicast traffic is protected per band. Turning on MLO therefore commits that SSID's MLO-capable clients to WPA3. See [WiFi Explained: WPA3, SAE, PMF, and OWE]({{< ref "/posts/2026-05-02-wifi-explained-wpa3" >}}#wpa3-is-mandatory-on-6-ghz-and-wifi-7).
+MLO also requires **WPA3 and PMF**. A multi-link association is only set up inside an SAE security context with Protected Management Frames active — there is no WPA2 MLO. The multi-link device derives one pairwise key set during association, then each link is given its own group keys so broadcast and multicast traffic is protected per band. Turning on MLO therefore commits that SSID's MLO-capable clients to WPA3.
+
+WiFi 7 also tightens what "WPA3" means. An MLO association expects the SAE variant with extended key support (SAE-EXT-KEY, AKM 24), the stronger GCMP-256 cipher, and Beacon Protection on top of PMF. A WiFi 6E client that does plain WPA3-SAE with AES-128 can still join the SSID — but only as a single-link client, not with MLO. See [WiFi Explained: WPA3, SAE, PMF, and OWE]({{< ref "/posts/2026-05-04-wifi-explained-wpa3" >}}#wpa3-is-mandatory-on-6-ghz-and-wifi-7).
 
 On the infrastructure side, the AP needs hardware capable of managing multi-link associations: coordinating frame scheduling across bands, maintaining per-link block-ack agreements, and presenting a unified MAC to the client. This is more complex than a standard tri-band AP.
 
@@ -161,16 +163,14 @@ From the perspective of the OS and applications, an MLO connection is a single n
 
 ![MLO vs LACP — layer comparison showing where each operates in the stack](mlo-vs-lacp.svg "MLO vs LACP — layer comparison showing where each operates in the stack")
 
-### Real-World Status
+### What to Check on Your Own Devices
 
-At the time of writing (early 2026), WiFi 7 APs from major vendors (UniFi, TP-Link BE series, Netgear Orbi 970) support MLO. Client support is growing: recent Qualcomm and MediaTek chipsets implement it, and it's present in newer laptops and phones with WiFi 7 adapters.
+WiFi 7 APs with MLO are widely available, and most current WiFi 7 phones and laptops advertise it. Advertising MLO and actually using it are different things, though. The areas where real-world behaviour most often diverges from the spec sheet:
 
-The areas to watch:
+- **Which mode the client actually runs** — most phones and laptops implement eMLSR. Some devices that claim STR operate in NSTR or single-link in practice, because RF isolation in a thin chassis is a genuine hardware challenge.
+- **Security settings** — a client only forms a multi-link association if the SSID meets WiFi 7's stricter WPA3 requirements (see [What MLO Requires](#what-mlo-requires)). Some early APs didn't enforce this, so an SSID could look like it supports MLO while clients silently connect on a single link.
+- **Driver and OS maturity** — MLO support has arrived at different speeds across Windows, macOS, Android and Linux, and across driver versions on each. If MLO isn't engaging, a driver or OS update is the first thing to check.
 
-- **eMLSR support on mobile** — Important for battery-powered devices. Support is arriving but not universal.
-- **STR in thin clients** — RF isolation is a genuine hardware challenge. Some devices claiming STR operate in NSTR in practice.
-- **Driver maturity on Linux** — Linux WiFi 7 / MLO support has improved rapidly across the 6.x kernel series but, as of early 2026, is still catching up to the Windows and macOS stacks.
+The AP side is largely ready. The constraint is the client device installed base, and how mature each client's firmware is.
 
-MLO's practical impact will grow as client support matures. The AP side is largely ready — the constraint now is the client device installed base.
-
-For the security side of WiFi 7 and beyond, see [WiFi Explained: WPA3, SAE, PMF, and OWE]({{< ref "/posts/2026-05-02-wifi-explained-wpa3" >}}). For how clients move between APs and bands once connected, see [WiFi Explained: Roaming and Client Management]({{< ref "/posts/2026-05-06-wifi-explained-roaming" >}}).
+For the security side of WiFi 7 and beyond, see [WiFi Explained: WPA3, SAE, PMF, and OWE]({{< ref "/posts/2026-05-04-wifi-explained-wpa3" >}}). For how clients move between APs and bands once connected, see [WiFi Explained: Roaming and Client Management]({{< ref "/posts/2026-05-02-wifi-explained-roaming" >}}).

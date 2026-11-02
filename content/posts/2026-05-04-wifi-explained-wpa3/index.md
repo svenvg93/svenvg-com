@@ -1,7 +1,7 @@
 ---
 title: "WiFi Explained: WPA3, SAE, PMF, and OWE"
 description: WPA3 fixes real weaknesses in WPA2 — but not the ones most people think. Here's what SAE, Protected Management Frames, and OWE actually do under the hood.
-date: 2026-05-02
+date: 2026-05-04
 draft: false
 categories:
   - Wireless
@@ -24,15 +24,15 @@ Two attacks made this concrete:
 - **KRACK (2017)** — Key Reinstallation Attack. A design flaw in the WPA2 4-way handshake itself: replaying a handshake message forces the client to reinstall an already-in-use key, resetting nonces and breaking encryption for active sessions. Correct, spec-compliant implementations were still vulnerable.
 - **PMKID attack (2018)** — An attacker can request a single PMKID frame from an AP without a client being present, then crack the PSK offline. No handshake capture required.
 
-Both attacks share the same root problem: the PSK is a static secret, and any captured material can be attacked indefinitely after the fact.
+KRACK was a flaw in the handshake's state machine, and was patched in client and AP implementations. The PMKID attack — and plain handshake capture — point at a deeper problem that patches can't fix: everything in the handshake is derived directly from a static PSK, so any captured material can be used to test password guesses offline, indefinitely, after the fact.
 
 ![WPA2 4-way handshake vs WPA3 SAE — attacker captures everything in WPA2, nothing useful in WPA3](wpa3-handshake-comparison.svg "WPA2 4-way handshake vs WPA3 SAE — attacker captures everything in WPA2, nothing useful in WPA3")
 
 ## SAE: Simultaneous Authentication of Equals
 
-SAE replaces the PSK-based 4-way handshake with a Password Authenticated Key Exchange (PAKE) called the Dragonfly handshake (defined in RFC 7664). The key properties:
+SAE replaces how the shared key is derived from the password. In WPA2-Personal the PSK *is* the pairwise master key (PMK); in WPA3 the PMK comes out of a Password Authenticated Key Exchange (PAKE) called the Dragonfly handshake (defined in RFC 7664). The familiar 4-way handshake still runs afterwards — but it now starts from a fresh, per-session PMK that has no offline relationship to the password. The key properties:
 
-- **The password is never transmitted.** Both sides prove they know the password without revealing it. An attacker capturing the exchange gets nothing crackable.
+- **Nothing captured can be tested offline.** Both sides prove they know the password without exposing anything derived from it alone. An attacker capturing the exchange — SAE or the 4-way handshake that follows — gets nothing they can run guesses against; each guess requires a live exchange with the AP.
 - **Forward secrecy.** A unique session key is derived per connection. Capturing today's traffic and cracking the password later doesn't decrypt it — the session key is gone.
 - **Commit-Confirm structure.** Both sides exchange commit frames (deriving a shared secret from the password and random values), then confirm frames (proving both arrived at the same secret). Neither side can complete authentication without knowing the password.
 
@@ -77,7 +77,7 @@ OWE improves open networks; FILS (802.11ai) improves how fast devices reconnect 
 On 802.1X/RADIUS enterprise networks, a full EAP exchange on every reconnect adds 300–500 ms before traffic can flow. For a phone moving between APs in a large building, this latency is noticeable on VoIP calls and video streams. FILS shortens this significantly for returning clients:
 
 - The first association is a full EAP exchange. FILS derives and caches a **FILS key** from that session.
-- On subsequent associations to any AP in the same [mobility domain]({{< ref "/posts/2026-05-06-wifi-explained-roaming" >}}#80211r--fast-bss-transition) — the group of APs that coordinate fast transitions — the client presents the cached FILS key material. Most of the EAP exchange is skipped.
+- On subsequent associations to any AP in the same [mobility domain]({{< ref "/posts/2026-05-02-wifi-explained-roaming" >}}#80211r--fast-bss-transition) — the group of APs that coordinate fast transitions — the client presents the cached FILS key material. Most of the EAP exchange is skipped.
 - Authentication completes in 1–2 RTTs rather than a multi-step EAP ladder.
 
 FILS is most relevant in high-density environments — stadiums, hospitals, transit hubs — where many devices reconnect frequently and 802.1X is already in use. It requires support on both the AP and the RADIUS server/supplicant stack. Adoption is narrower than SAE or PMF because it only matters for enterprise networks with 802.1X, not for home WPA3-Personal deployments.
@@ -112,7 +112,7 @@ The practical effects:
 
 - On a tri-band WPA2/WPA3 transition SSID, the 2.4 and 5 GHz radios accept both, but the 6 GHz radio only admits WPA3 clients. Some vendors will not broadcast the 6 GHz radio at all until WPA3 is enabled on the SSID.
 - **WiFi 6E and WiFi 7 client certification require WPA3 support.** A device carrying the logo can always do SAE.
-- **MLO requires WPA3 and PMF.** A multi-link association is only established inside an SAE security context with Protected Management Frames active — there is no WPA2 MLO. Enabling MLO on an SSID commits its MLO-capable clients to WPA3. See [WiFi Explained: WiFi 7 Spectrum & Multi-Link Operation]({{< ref "/posts/2026-04-30-wifi-explained-mlo" >}}#what-mlo-requires).
+- **MLO requires WPA3 and PMF.** A multi-link association is only established inside an SAE security context with Protected Management Frames active — there is no WPA2 MLO. Enabling MLO on an SSID commits its MLO-capable clients to WPA3. See [WiFi Explained: WiFi 7 Spectrum & Multi-Link Operation]({{< ref "/posts/2026-05-06-wifi-explained-mlo" >}}#what-mlo-requires).
 
 If you are deploying 6 GHz or WiFi 7, plan for WPA3-only on that SSID and keep a separate transition-mode SSID on 2.4/5 GHz for legacy gear.
 
@@ -132,7 +132,7 @@ WPA3 solves the offline cracking and deauth spoofing problems well. It doesn't s
 
 | Feature | WPA2-Personal | WPA3-Personal |
 |---------|--------------|--------------|
-| Key exchange | PSK 4-way handshake | SAE (Dragonfly) |
+| Key exchange | PSK, then 4-way handshake | SAE (Dragonfly), then 4-way handshake |
 | Offline cracking | Possible from captured handshake | Not possible |
 | Forward secrecy | No | Yes |
 | Management frame protection | Optional (802.11w) | Mandatory |
@@ -142,4 +142,4 @@ WPA3 solves the offline cracking and deauth spoofing problems well. It doesn't s
 | AP identity check | No | Optional — SAE-PK on public networks |
 | Allowed on 6 GHz | No | Required — WPA2 not permitted |
 
-For how WiFi 7 changes spectrum use and link behaviour on top of this, see [WiFi Explained: WiFi 7 Spectrum & Multi-Link Operation]({{< ref "/posts/2026-04-30-wifi-explained-mlo" >}}). For how clients roam between APs and bands, see [WiFi Explained: Roaming and Client Management]({{< ref "/posts/2026-05-06-wifi-explained-roaming" >}}).
+For how WiFi 7 changes spectrum use and link behaviour on top of this, see [WiFi Explained: WiFi 7 Spectrum & Multi-Link Operation]({{< ref "/posts/2026-05-06-wifi-explained-mlo" >}}). For how clients roam between APs and bands, see [WiFi Explained: Roaming and Client Management]({{< ref "/posts/2026-05-02-wifi-explained-roaming" >}}).

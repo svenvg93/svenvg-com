@@ -39,5 +39,5 @@
   <rect x="579" y="138" width="72" height="36" fill="none" stroke="#34d399" stroke-width="1.5" rx="4"/>
   <text x="615" y="161" text-anchor="middle" font-size="10" font-weight="600" fill="#86efac">B</text>
 
-  <text x="350" y="192" text-anchor="middle" font-size="9" fill="#94a3b8">Each client's sub-bands can sit anywhere in the channel, not just contiguously</text>
+  <text x="350" y="192" text-anchor="middle" font-size="9" fill="#94a3b8">Each client can get a non-adjacent combination of RUs, from a fixed set the standard allows</text>
 </svg>

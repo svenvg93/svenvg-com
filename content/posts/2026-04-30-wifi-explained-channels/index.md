@@ -1,7 +1,7 @@
 ---
 title: "WiFi Explained: Transmit Power, Channel Selection & Width"
 description: Transmit power, channel selection, and channel width shape how well a WiFi network performs before roaming or band steering ever enter the picture. Here's what each setting actually controls, and how to tune them together.
-date: 2026-05-04
+date: 2026-04-30
 draft: false
 categories:
   - Wireless
@@ -57,17 +57,17 @@ WiFi channels are slices of the radio spectrum. Choosing them well minimises int
 
 The 2.4 GHz band is 83.5 MHz wide and divided into 13 channels (14 in Japan) spaced 5 MHz apart. A 20 MHz channel overlaps with the four channels on either side. The only three channels that don't overlap with each other in most regions are **1, 6, and 11**.
 
-Using any other channel — 3, 4, 8 — means your transmissions partially overlap with neighbours, causing worse interference than full co-channel overlap would. Co-channel devices at least detect each other via CSMA/CA and back off. Partially-overlapping devices don't detect each other — they transmit simultaneously and corrupt each other's frames without backing off.
+Using any other channel — 3, 4, 8 — means your transmissions partially overlap with neighbours, causing worse interference than full co-channel overlap would. Co-channel devices decode each other's preambles and back off at a low signal level (around −82 dBm). Partially-overlapping devices can't decode each other — they only back off on raw energy detection, at a much higher threshold (around −62 dBm). Anything between those levels transmits over the top of the neighbour and corrupts its frames.
 
 The practical result: every 2.4 GHz radio in a building should be on 1, 6, or 11. Nothing else.
 
 ### 5 GHz — More Channels, More Flexibility
 
-The 5 GHz band offers up to 25 non-overlapping 20 MHz channels in most regions. It's divided into three sub-bands:
+The 5 GHz band offers up to 25 non-overlapping 20 MHz channels in the US, and around 19 in the EU, where the top sub-band is largely unavailable. It's divided into three sub-bands:
 
 - **UNII-1 (channels 36–48)** — available everywhere, no restrictions, no DFS required. Use these first.
 - **UNII-2 (channels 52–144)** — require **DFS** (Dynamic Frequency Selection). The AP must vacate the channel within 10 seconds if it detects radar. Moving to a fresh DFS channel then costs a 60-second channel-availability check before the radio can carry traffic again — 10 minutes on the weather-radar channels (120–128).
-- **UNII-3 (channels 149–165)** — available without DFS in most regions. Good second option after UNII-1. Some regions add **UNII-4** (channels 169–177, 5.9 GHz) on top.
+- **UNII-3 (channels 149–165)** — available without DFS in the US and several other regions, and a good second option after UNII-1 there. In most of Europe this range isn't part of the WLAN allocation; where it's usable at all, it falls under short-range-device rules at 25 mW, so most EU APs won't offer it. Some regions add **UNII-4** (channels 169–177, 5.9 GHz) on top.
 
 Auto channel selection works well on 5 GHz because the band has enough channels that APs can find clean ones without user help.
 
@@ -79,11 +79,11 @@ How much of the band you actually get depends on region. The US, Canada, South K
 
 The regulatory picture in 6 GHz is more layered than 5 GHz:
 
-- **Low Power Indoor (LPI)** — the default class for consumer APs. No DFS, no AFC. Max 30 dBm EIRP. Indoor use only.
-- **Standard Power** — higher transmit power (up to 36 dBm EIRP) for outdoor and long-range use, but requires **AFC (Automated Frequency Coordination)**: the AP queries a cloud service that checks whether any licensed incumbent (fixed satellite, point-to-point microwave) is present on the requested channel at the device's location. If clear, the channel is granted. If not, the AP uses a different one.
-- **Very Low Power (VLP)** — no AFC, no DFS, max 14 dBm EIRP. Permitted band-wide and outdoors. Designed for wearables, IoT, and short-range portable use.
+- **Low Power Indoor (LPI)** — the default class for consumer APs. No DFS, no AFC. Indoor use only. Max 30 dBm EIRP in the US; in the EU, max **23 dBm** EIRP with a 10 dBm/MHz power density limit.
+- **Standard Power** — higher transmit power (up to 36 dBm EIRP) for outdoor and long-range use, but requires **AFC (Automated Frequency Coordination)**: the AP queries a cloud service that checks whether any licensed incumbent (fixed satellite, point-to-point microwave) is present on the requested channel at the device's location. If clear, the channel is granted. If not, the AP uses a different one. This is a US (and some other regions') class — the EU has no Standard Power/AFC option.
+- **Very Low Power (VLP)** — no AFC, no DFS, max 14 dBm EIRP. Permitted indoors and outdoors. Designed for wearables, IoT, and short-range portable use.
 
-Most home and office APs operate as LPI devices, which is why the "no DFS, no AFC" experience is the norm for consumer equipment. Standard Power and AFC are relevant mainly for outdoor enterprise deployments.
+Most home and office APs operate as LPI devices, which is why the "no DFS, no AFC" experience is the norm for consumer equipment. Standard Power and AFC are relevant mainly for outdoor enterprise deployments in the US.
 
 ![Channel selection across 2.4, 5, and 6 GHz — usable channels, overlap zones, and DFS](channel-selection.svg "Channel selection across 2.4, 5, and 6 GHz — usable channels, overlap zones, and DFS")
 
@@ -110,7 +110,7 @@ This is where the regional split bites hardest. On the full 1200 MHz band, 320 M
 | Band | 20 MHz | 40 MHz | 80 MHz | 160 MHz | 320 MHz |
 |------|--------|--------|--------|---------|---------|
 | 2.4 GHz | 3 | 1–2 | — | — | — |
-| 5 GHz | ~25 | ~12 | ~6 | ~2–3 (DFS) | — |
+| 5 GHz (US / EU) | ~25 / ~19 | ~12 / ~9 | ~6 / ~4 | ~2–3 / ~2 (DFS) | — |
 | 6 GHz (full 1200 MHz) | ~59 | ~29 | ~14 | ~7 | ~3 |
 | 6 GHz (EU, 500 MHz) | ~24 | ~12 | ~6 | ~3 | ~1 |
 
@@ -140,4 +140,4 @@ A reasonable starting point for a multi-AP environment:
 
 These are starting points, not rules. A single-AP home network can run full power and wide channels without issue. A venue with 50 APs needs tighter power and narrower channel discipline to keep the co-channel interference manageable.
 
-Once these are dialed in, the next question is what happens once a network has more than one AP or more than one band: how — and when — does a client actually move between them? See [WiFi Explained: Roaming and Client Management]({{< ref "/posts/2026-05-06-wifi-explained-roaming" >}}) for that. Later parts of this series cover the security layer that sits on top — [WiFi Explained: WPA3, SAE, PMF, and OWE]({{< ref "/posts/2026-05-02-wifi-explained-wpa3" >}}) — and what WiFi 7 changes about spectrum use itself in [WiFi Explained: WiFi 7 Spectrum & Multi-Link Operation]({{< ref "/posts/2026-04-30-wifi-explained-mlo" >}}).
+Once these are dialed in, the next question is what happens once a network has more than one AP or more than one band: how — and when — does a client actually move between them? See [WiFi Explained: Roaming and Client Management]({{< ref "/posts/2026-05-02-wifi-explained-roaming" >}}) for that. Later parts of this series cover the security layer that sits on top — [WiFi Explained: WPA3, SAE, PMF, and OWE]({{< ref "/posts/2026-05-04-wifi-explained-wpa3" >}}) — and what WiFi 7 changes about spectrum use itself in [WiFi Explained: WiFi 7 Spectrum & Multi-Link Operation]({{< ref "/posts/2026-05-06-wifi-explained-mlo" >}}).

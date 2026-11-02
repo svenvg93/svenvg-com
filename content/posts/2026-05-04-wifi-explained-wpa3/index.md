@@ -13,7 +13,7 @@ series:
 series_order: 3
 ---
 
-WPA3 has been around since 2018, but most people enabled it because their router's UI said to — without knowing what actually changed. Some of the improvements are subtle, some are significant, and a few things WPA3 is assumed to fix it doesn't. This post covers the main components — SAE (the new handshake), PMF (protected management frames), OWE (open network encryption), SAE-PK (public-key AP authentication), and the Enterprise 192-bit mode — plus where WPA3 is now mandatory (6 GHz and WiFi 7), how MAC randomisation fits the same privacy story, and where WPA3 still falls short.
+WPA3 has been around since 2018, but most people enabled it because their router's UI said to — without knowing what actually changed. Some of the improvements are subtle, some are significant, and a few things WPA3 is assumed to fix it doesn't. This post covers the main components — SAE (the new handshake), PMF (protected management frames), OWE (open network encryption), SAE-PK (public-key AP authentication), and the Enterprise 192-bit mode — plus where WPA3 is now mandatory (6 GHz), what WiFi 7 adds on top of it and why that's where device compatibility breaks, how MAC randomisation fits the same privacy story, and where WPA3 still falls short.
 
 ## What Was Wrong with WPA2
 
@@ -102,19 +102,43 @@ One specific risk worth naming: WPA2 clients on the same SSID are still vulnerab
 
 A WPA3-only network gives the full benefit. Transition mode is a practical compromise.
 
-## WPA3 Is Mandatory on 6 GHz and WiFi 7
+## WPA3 Is Mandatory on 6 GHz
 
 Transition mode is a 2.4 and 5 GHz concession. It does not exist on 6 GHz.
 
 The regulatory decisions that opened the 6 GHz band (the FCC in the US, and equivalents elsewhere) require that every 6 GHz connection is protected: WPA3-SAE for password networks, OWE for open ones. WPA2, TKIP, and plain unencrypted open are not permitted on a 6 GHz BSS. A 6 GHz radio is WPA3-only by definition — there is nothing to transition from.
 
+6 GHz is also stricter about *how* SAE runs: only the constant-time **Hash-to-Element (H2E)** derivation is allowed. The original hunting-and-pecking method — the one Dragonblood targeted — is rejected on 6 GHz, while 2.4 and 5 GHz radios still accept it as a fallback for older clients.
+
 The practical effects:
 
-- On a tri-band WPA2/WPA3 transition SSID, the 2.4 and 5 GHz radios accept both, but the 6 GHz radio only admits WPA3 clients. Some vendors will not broadcast the 6 GHz radio at all until WPA3 is enabled on the SSID.
+- On a tri-band WPA2/WPA3 transition SSID, the 2.4 and 5 GHz radios accept both, but the 6 GHz radio only admits WPA3 clients that support H2E. Some vendors will not broadcast the 6 GHz radio at all until WPA3 is enabled on the SSID.
 - **WiFi 6E and WiFi 7 client certification require WPA3 support.** A device carrying the logo can always do SAE.
-- **MLO requires WPA3 and PMF.** A multi-link association is only established inside an SAE security context with Protected Management Frames active — there is no WPA2 MLO. Enabling MLO on an SSID commits its MLO-capable clients to WPA3. See [WiFi Explained: WiFi 7 Spectrum & Multi-Link Operation]({{< ref "/posts/2026-05-06-wifi-explained-mlo" >}}#what-mlo-requires).
 
-If you are deploying 6 GHz or WiFi 7, plan for WPA3-only on that SSID and keep a separate transition-mode SSID on 2.4/5 GHz for legacy gear.
+## What WiFi 7 Adds to WPA3
+
+WiFi 7 doesn't just require WPA3 — it requires a stronger configuration of it. For a WiFi 7 association (and therefore for [Multi-Link Operation]({{< ref "/posts/2026-05-06-wifi-explained-mlo" >}}#what-mlo-requires)), the SSID needs:
+
+- **SAE-EXT-KEY (AKM 24).** An extended variant of SAE. The original SAE (AKM 8) is tied to a fixed hash and key length; SAE-EXT-KEY scales them to the elliptic-curve group in use, which the stronger cipher below needs. It always uses H2E. Its fast-roaming counterpart, FT-SAE-EXT-KEY, is AKM 25.
+- **GCMP-256** as the data cipher, instead of the AES-128 CCMP that WPA2, WPA3 and WiFi 6E use. OWE networks have the same requirement.
+- **PMF required**, not just "capable".
+- **Beacon Protection.** PMF protects management frames sent to and from a client, but beacons are broadcast and were still unauthenticated — so an attacker could forge beacon contents such as channel-switch or power settings. Beacon Protection signs each beacon with a group key, letting associated clients detect forged ones.
+
+The "AKM" numbers are worth knowing because they're what you'll see in packet captures, client connection details and some vendors' settings pages. AKM 2 is WPA2-Personal, AKM 8 is the original WPA3-Personal, and AKM 24 is the WiFi 7 variant.
+
+### Why This Is Where Compatibility Breaks
+
+Many WiFi 6 and 6E devices support WPA3, but only AKM 8 with AES-128. An SSID that offers *only* AKM 24 with GCMP-256 is invisible to them in practice: it's WPA3, they do WPA3, and they still can't join.
+
+APs handle this by advertising both sets on the same SSID — AKM 8 with AES-128 alongside AKM 24 with GCMP-256 — and letting each client pick the strongest combination it supports. WiFi 7 clients choose AKM 24 and get MLO; WiFi 6/6E clients choose AKM 8 and connect on a single link, exactly as they would on a WiFi 6E network. Adding WPA2 transition mode on 2.4 and 5 GHz extends the same SSID to older devices still, at the cost covered in [Transition Mode](#transition-mode).
+
+| Client | 2.4 / 5 GHz | 6 GHz | MLO |
+|---|---|---|---|
+| WPA2-only | Only via transition mode | No | No |
+| WPA3, AKM 8 (most WiFi 6/6E) | Yes | Yes, if it supports H2E | No |
+| WPA3, AKM 24 + GCMP-256 (WiFi 7) | Yes | Yes | Yes |
+
+This is also why an SSID can look MLO-capable while clients quietly connect on a single link: if the AP doesn't offer AKM 24 with GCMP-256, a WiFi 7 client falls back to WiFi 6E behaviour without any error.
 
 ## What WPA3 Doesn't Fix
 
@@ -138,7 +162,7 @@ WPA3 solves the offline cracking and deauth spoofing problems well. It doesn't s
 | Management frame protection | Optional (802.11w) | Mandatory |
 | Open network encryption | No | OWE (optional) |
 | Minimum password requirement | None | None (but harder to crack) |
-| Password element derivation | Hunting-and-pecking | H2E (mandatory since WPA3 R2) |
+| Password element derivation | — | H2E (required on 6 GHz and with SAE-EXT-KEY) |
 | AP identity check | No | Optional — SAE-PK on public networks |
 | Allowed on 6 GHz | No | Required — WPA2 not permitted |
 

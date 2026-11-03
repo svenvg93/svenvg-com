@@ -135,7 +135,7 @@ A reasonable starting point for a multi-AP environment:
 | Band | Channel width | Channel | Transmit power |
 |------|--------------|---------|----------------|
 | 2.4 GHz | 20 MHz | 1, 6, or 11 (manual) | 14–17 dBm |
-| 5 GHz | 80 MHz | Auto (UNII-1/3 preferred) | 17–20 dBm |
+| 5 GHz | 80 MHz | Auto, DFS allowed (UNII-3 where permitted) | 17–20 dBm |
 | 6 GHz | 160 MHz | Auto | 17–20 dBm |
 
 These are starting points, not rules. A single-AP home network can run full power and wide channels without issue. A venue with 50 APs needs tighter power and narrower channel discipline to keep the co-channel interference manageable.

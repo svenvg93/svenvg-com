@@ -51,15 +51,12 @@ Two things to avoid on the main network:
 
 ## Per-Band Settings
 
-The reasoning is in [part 1]({{< ref "/posts/2026-04-30-wifi-explained-channels" >}}); these are EU figures.
+Use the [starting values]({{< ref "/posts/2026-04-30-wifi-explained-channels" >}}#how-power-channel-and-width-interact) from part 1 for width, channel and power. Two points matter most in the EU:
 
 ![Per-band settings at a glance — 2.4 GHz at 20 MHz, 5 GHz at 80 MHz, 6 GHz at 160 MHz (EU)](band-settings.svg "Per-band settings at a glance — 2.4 GHz at 20 MHz, 5 GHz at 80 MHz, 6 GHz at 160 MHz (EU)")
 
-- **2.4 GHz:** 20 MHz on channel 1, 6 or 11. Turn the power down to roughly match 5 GHz coverage.
-- **5 GHz:** 80 MHz, and allow DFS channels — without them the EU has only one 80 MHz channel. Avoid 160 MHz with more than one AP.
-- **6 GHz:** 160 MHz, which gives three non-overlapping channels in the EU. Keep 320 MHz for a single AP; it only fits once, and at range it's often slower than 160 MHz.
-
-For power, aim for matching coverage across bands, not matching numbers: 2.4 GHz low, 5 GHz medium, 6 GHz at or near its maximum.
+- **Allow DFS on 5 GHz.** Without it the EU has only one 80 MHz channel.
+- **Stay at 160 MHz on 6 GHz with more than one AP.** 320 MHz only fits once in the EU, and at range it's often slower than 160 MHz.
 
 ## Security
 
@@ -71,13 +68,7 @@ For power, aim for matching coverage across bands, not matching numbers: 2.4 GHz
 
 ## Roaming
 
-MLO spreads a client across one AP's bands; moving between APs is still a [roam]({{< ref "/posts/2026-05-02-wifi-explained-roaming" >}}). On the main network:
-
-- **802.11k and 802.11v: On.**
-- **802.11r: On, but test it.** If a device stops connecting, turn it off.
-- **Band steering: Off.** MLO clients use both bands anyway.
-
-On the IoT network, leave all of these off.
+MLO spreads a client across one AP's bands, but moving between APs is still a roam. Follow the [roaming post's configuration]({{< ref "/posts/2026-05-02-wifi-explained-roaming" >}}#practical-configuration) on the main network, with band steering off since MLO handles band selection. On the IoT network, leave all roaming features off.
 
 ## Checking It Works
 

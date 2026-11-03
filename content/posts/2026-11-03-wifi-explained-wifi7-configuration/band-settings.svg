@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" width="700" height="300"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="700" height="300" fill="url(#bg)" rx="8"/>
+
+  <line x1="0" y1="36" x2="700" y2="36" stroke="#0d1a2a" stroke-width="1"/>
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">PER-BAND SETTINGS — EU SPECTRUM AT A GLANCE</text>
+
+  <!-- ===== 2.4 GHz ===== -->
+  <text x="30" y="68" font-size="12" font-weight="600" fill="#7dd3fc">2.4 GHz</text>
+  <text x="30" y="82" font-size="9" fill="#94a3b8">20 MHz</text>
+  <rect x="150" y="54" width="508" height="26" fill="#0b1628" stroke="#1e3a5f" stroke-width="1.5" rx="5"/>
+  <rect x="162" y="58" width="122" height="18" fill="#0c2a3d" stroke="#38bdf8" stroke-width="1.5" rx="3"/>
+  <text x="223" y="71" text-anchor="middle" font-size="9" font-weight="600" fill="#bae6fd">ch 1</text>
+  <rect x="314" y="58" width="122" height="18" fill="#0c2a3d" stroke="#38bdf8" stroke-width="1.5" rx="3"/>
+  <text x="375" y="71" text-anchor="middle" font-size="9" font-weight="600" fill="#bae6fd">ch 6</text>
+  <rect x="466" y="58" width="122" height="18" fill="#0c2a3d" stroke="#38bdf8" stroke-width="1.5" rx="3"/>
+  <text x="527" y="71" text-anchor="middle" font-size="9" font-weight="600" fill="#bae6fd">ch 11</text>
+  <text x="150" y="98" font-size="9" fill="#94a3b8">Channels 1, 6 and 11 only — and lower transmit power to match 5 GHz coverage</text>
+
+  <!-- ===== 5 GHz ===== -->
+  <text x="30" y="132" font-size="12" font-weight="600" fill="#7dd3fc">5 GHz</text>
+  <text x="30" y="146" font-size="9" fill="#94a3b8">80 MHz</text>
+  <rect x="150" y="118" width="508" height="26" fill="#0b1628" stroke="#1e3a5f" stroke-width="1.5" rx="5"/>
+  <rect x="154" y="122" width="119" height="18" fill="#0c2a3d" stroke="#38bdf8" stroke-width="1.5" rx="3"/>
+  <text x="213" y="135" text-anchor="middle" font-size="9" font-weight="600" fill="#bae6fd">36–48 · no DFS</text>
+  <rect x="277" y="122" width="119" height="18" fill="none" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,3" rx="3"/>
+  <text x="336" y="135" text-anchor="middle" font-size="9" fill="#94a3b8">52–64 · DFS</text>
+  <rect x="400" y="122" width="119" height="18" fill="none" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,3" rx="3"/>
+  <text x="459" y="135" text-anchor="middle" font-size="9" fill="#94a3b8">100–112 · DFS</text>
+  <rect x="523" y="122" width="119" height="18" fill="none" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,3" rx="3"/>
+  <text x="582" y="135" text-anchor="middle" font-size="9" fill="#94a3b8">116–128 · DFS</text>
+  <text x="150" y="162" font-size="9" fill="#94a3b8">Only one non-DFS 80 MHz channel in the EU — every other 80 MHz channel is DFS</text>
+
+  <!-- ===== 6 GHz ===== -->
+  <text x="30" y="204" font-size="12" font-weight="600" fill="#7dd3fc">6 GHz</text>
+  <text x="30" y="218" font-size="9" fill="#94a3b8">160 MHz</text>
+  <!-- PSC markers -->
+  <g fill="#fcd34d">
+    <circle cx="182" cy="182" r="3"/>
+    <circle cx="266" cy="182" r="3"/>
+    <circle cx="351" cy="182" r="3"/>
+    <circle cx="436" cy="182" r="3"/>
+    <circle cx="520" cy="182" r="3"/>
+    <circle cx="605" cy="182" r="3"/>
+  </g>
+  <rect x="150" y="190" width="508" height="26" fill="#0b1628" stroke="#1e3a5f" stroke-width="1.5" rx="5"/>
+  <rect x="154" y="194" width="164" height="18" fill="#0c2a3d" stroke="#38bdf8" stroke-width="1.5" rx="3"/>
+  <text x="236" y="207" text-anchor="middle" font-size="9" font-weight="600" fill="#bae6fd">160 MHz</text>
+  <rect x="322" y="194" width="164" height="18" fill="#0c2a3d" stroke="#38bdf8" stroke-width="1.5" rx="3"/>
+  <text x="404" y="207" text-anchor="middle" font-size="9" font-weight="600" fill="#bae6fd">160 MHz</text>
+  <rect x="490" y="194" width="164" height="18" fill="#0c2a3d" stroke="#38bdf8" stroke-width="1.5" rx="3"/>
+  <text x="572" y="207" text-anchor="middle" font-size="9" font-weight="600" fill="#bae6fd">160 MHz</text>
+
+  <rect x="150" y="222" width="338" height="18" fill="none" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,3" rx="3"/>
+  <text x="319" y="235" text-anchor="middle" font-size="9" fill="#94a3b8">320 MHz — one channel, single AP only</text>
+
+  <text x="150" y="258" font-size="9" fill="#94a3b8">3 non-overlapping 160 MHz channels in the EU band — primary channel on a PSC (<tspan fill="#fcd34d">dots</tspan>)</text>
+
+  <text x="350" y="284" text-anchor="middle" font-size="9" fill="#94a3b8">Schematic, not to scale — highlighted blocks are the recommended default</text>
+</svg>

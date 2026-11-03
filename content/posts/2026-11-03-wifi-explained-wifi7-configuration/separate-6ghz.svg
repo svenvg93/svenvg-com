@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" width="700" height="300"
+     font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0d1520"/>
+    </linearGradient>
+    <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#4ade80"/>
+    </marker>
+    <marker id="arr-amber" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0,0 8,3 0,6" fill="#fcd34d"/>
+    </marker>
+  </defs>
+
+  <rect width="700" height="300" fill="url(#bg)" rx="8"/>
+
+  <line x1="0" y1="36" x2="700" y2="36" stroke="#0d1a2a" stroke-width="1"/>
+  <text x="350" y="22" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">CLIENT MOVING AWAY — SHARED SSID VS SEPARATE 6 GHZ SSID</text>
+  <line x1="350" y1="46" x2="350" y2="280" stroke="#1e3a5f" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- ===== Left: shared SSID ===== -->
+  <text x="175" y="58" text-anchor="middle" font-size="12" font-weight="700" fill="#86efac">Shared SSID</text>
+
+  <text x="175" y="76" text-anchor="middle" font-size="9" fill="#94a3b8">Near the AP</text>
+  <rect x="24" y="82" width="80" height="60" fill="#0e1a3a" stroke="#3b82f6" stroke-width="1.5" rx="5"/>
+  <text x="64" y="108" text-anchor="middle" font-size="12" font-weight="600" fill="#93c5fd">AP</text>
+  <text x="64" y="124" text-anchor="middle" font-size="9" fill="#94a3b8">one SSID</text>
+  <rect x="246" y="82" width="80" height="60" fill="#071810" stroke="#166534" stroke-width="1.5" rx="5"/>
+  <text x="286" y="108" text-anchor="middle" font-size="12" font-weight="600" fill="#86efac">Client</text>
+  <text x="286" y="124" text-anchor="middle" font-size="9" fill="#94a3b8">MLO on</text>
+  <line x1="104" y1="100" x2="245" y2="100" stroke="#4ade80" stroke-width="1.5" marker-end="url(#arr-green)"/>
+  <text x="175" y="92" text-anchor="middle" font-size="9" fill="#86efac">6 GHz</text>
+  <line x1="104" y1="124" x2="245" y2="124" stroke="#4ade80" stroke-width="1.5" marker-end="url(#arr-green)"/>
+  <text x="175" y="116" text-anchor="middle" font-size="9" fill="#86efac">5 GHz</text>
+
+  <text x="175" y="164" text-anchor="middle" font-size="9" fill="#94a3b8">Moving away</text>
+  <rect x="24" y="170" width="80" height="60" fill="#0e1a3a" stroke="#3b82f6" stroke-width="1.5" rx="5"/>
+  <text x="64" y="196" text-anchor="middle" font-size="12" font-weight="600" fill="#93c5fd">AP</text>
+  <text x="64" y="212" text-anchor="middle" font-size="9" fill="#94a3b8">one SSID</text>
+  <rect x="246" y="170" width="80" height="60" fill="#071810" stroke="#166534" stroke-width="1.5" rx="5"/>
+  <text x="286" y="196" text-anchor="middle" font-size="12" font-weight="600" fill="#86efac">Client</text>
+  <text x="286" y="212" text-anchor="middle" font-size="9" fill="#94a3b8">MLO on</text>
+  <line x1="104" y1="188" x2="245" y2="188" stroke="#475569" stroke-width="1.5" stroke-dasharray="2,4" opacity="0.8"/>
+  <text x="175" y="180" text-anchor="middle" font-size="9" fill="#94a3b8">6 GHz — fading</text>
+  <line x1="104" y1="212" x2="245" y2="212" stroke="#4ade80" stroke-width="1.5" marker-end="url(#arr-green)"/>
+  <text x="175" y="204" text-anchor="middle" font-size="9" fill="#86efac">5 GHz — carries traffic</text>
+
+  <text x="175" y="256" text-anchor="middle" font-size="9" font-weight="600" fill="#86efac">Same network, no drop</text>
+  <text x="175" y="270" text-anchor="middle" font-size="9" fill="#94a3b8">traffic simply continues on the 5 GHz link</text>
+
+  <!-- ===== Right: separate 6 GHz SSID ===== -->
+  <text x="525" y="58" text-anchor="middle" font-size="12" font-weight="700" fill="#fde68a">Separate 6 GHz SSID</text>
+
+  <text x="525" y="76" text-anchor="middle" font-size="9" fill="#94a3b8">Near the AP</text>
+  <rect x="374" y="82" width="80" height="60" fill="#0e1a3a" stroke="#3b82f6" stroke-width="1.5" rx="5"/>
+  <text x="414" y="108" text-anchor="middle" font-size="12" font-weight="600" fill="#93c5fd">AP</text>
+  <text x="414" y="124" text-anchor="middle" font-size="9" fill="#94a3b8">two SSIDs</text>
+  <rect x="596" y="82" width="80" height="60" fill="#071810" stroke="#166534" stroke-width="1.5" rx="5"/>
+  <text x="636" y="108" text-anchor="middle" font-size="12" font-weight="600" fill="#86efac">Client</text>
+  <text x="636" y="124" text-anchor="middle" font-size="9" fill="#94a3b8">no MLO</text>
+  <line x1="454" y1="100" x2="595" y2="100" stroke="#4ade80" stroke-width="1.5" marker-end="url(#arr-green)"/>
+  <text x="525" y="92" text-anchor="middle" font-size="9" fill="#86efac">6 GHz — SSID A</text>
+  <line x1="454" y1="124" x2="595" y2="124" stroke="#475569" stroke-width="1.5" stroke-dasharray="2,4" opacity="0.8"/>
+  <text x="525" y="116" text-anchor="middle" font-size="9" fill="#94a3b8">5 GHz — SSID B, unused</text>
+
+  <text x="525" y="164" text-anchor="middle" font-size="9" fill="#94a3b8">Moving away</text>
+  <rect x="374" y="170" width="80" height="60" fill="#0e1a3a" stroke="#3b82f6" stroke-width="1.5" rx="5"/>
+  <text x="414" y="196" text-anchor="middle" font-size="12" font-weight="600" fill="#93c5fd">AP</text>
+  <text x="414" y="212" text-anchor="middle" font-size="9" fill="#94a3b8">two SSIDs</text>
+  <rect x="596" y="170" width="80" height="60" fill="#1a1200" stroke="#d97706" stroke-width="1.5" rx="5"/>
+  <text x="636" y="196" text-anchor="middle" font-size="12" font-weight="600" fill="#fde68a">Client</text>
+  <text x="636" y="212" text-anchor="middle" font-size="9" fill="#94a3b8">disconnected</text>
+  <line x1="454" y1="188" x2="595" y2="188" stroke="#475569" stroke-width="1.5" stroke-dasharray="2,4" opacity="0.8"/>
+  <text x="525" y="180" text-anchor="middle" font-size="9" fill="#94a3b8">6 GHz — lost</text>
+  <line x1="454" y1="212" x2="595" y2="212" stroke="#fcd34d" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-amber)"/>
+  <text x="525" y="204" text-anchor="middle" font-size="9" fill="#fde68a">5 GHz — rejoin SSID B</text>
+
+  <text x="525" y="256" text-anchor="middle" font-size="9" font-weight="600" fill="#fde68a">Full reconnect, traffic gap</text>
+  <text x="525" y="270" text-anchor="middle" font-size="9" fill="#94a3b8">the client must leave one network and join the other</text>
+</svg>

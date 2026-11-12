@@ -1,6 +1,6 @@
 ---
 title: "How to Set Up Encrypted DNS on UniFi — and Make Every Device Use It"
-description: A step-by-step guide to UniFi's Encrypted DNS. Encrypt the gateway's upstream DNS, pick a resolver that blocks malicious domains, and redirect or block devices that try to go around it — with a test for every step.
+description: How to set up UniFi's Encrypted DNS. Encrypt the gateway's upstream DNS, pick a resolver that blocks malicious domains, and redirect or block devices that try to go around it — with a test for each change.
 date: 2026-11-02
 draft: false
 categories:
@@ -40,7 +40,7 @@ Before changing anything, record a baseline. Akamai runs a domain that reports t
 dig +short @192.168.1.1 TXT whoami.ds.akahelp.net
 ```
 
-Look at the `"ns"` line. On a default setup, it's your ISP's resolver, or whatever DNS servers your WAN connection is configured with. Keep the output — you'll compare against it in step 4.
+Look at the `"ns"` line. On a default setup, it's your ISP's resolver, or whatever DNS servers your WAN connection is configured with. Keep the output — you'll compare against it after turning Encrypted DNS on.
 
 ## Choose a Resolver
 
@@ -59,6 +59,7 @@ Some things to weigh:
 
 - **Auto doesn't filter.** UniFi's Auto mode uses Cloudflare's and Google's standard resolvers. Fine for privacy, but no blocking.
 - **Each provider blocks its own list.** Quad9 and Cloudflare use different threat feeds, so "filtered" means filtered by *that* provider's judgment.
+- **Don't mix resolvers that filter differently.** With more than one provider selected, the gateway spreads queries across them — that's why Auto alternates between Google and Cloudflare. Pair Quad9 with Google, and a malicious domain is only blocked when the query happens to go to Quad9. Even two filtering resolvers block different lists, so a domain on only one of them gets through some of the time. Pick one provider, or several that filter the same way.
 - **Fixed filters have no allowlist.** If Quad9 or Cloudflare blocks something you need, you can't override it. NextDNS and AdGuard DNS let you add your own allow and block entries, and show what was blocked.
 - **You're moving trust, not removing it.** Whichever provider you pick sees every domain your network looks up, instead of your ISP.
 
@@ -80,7 +81,20 @@ Run the baseline query again, a few times:
 dig +short @192.168.1.1 TXT whoami.ds.akahelp.net
 ```
 
-The `"ns"` address should now belong to your chosen provider. On Auto, you'll see it alternate between Google and Cloudflare addresses. This confirms the upstream changed; seeing the encryption itself would take a packet capture on the WAN side.
+The `"ns"` address should now belong to your chosen provider. On Auto, you'll see it alternate between Google and Cloudflare addresses. This confirms the upstream changed. To see the encryption itself, check the gateway's own log. Under the hood, UniFi runs **dnscrypt-proxy**, and it logs which resolver it connected to and how. SSH into the gateway (SSH has to be enabled in the console settings first) and run:
+
+```bash
+cat /var/log/dnscrypt-proxy-doh-0.log
+```
+
+```
+[NOTICE] Source [public-resolvers] loaded
+[NOTICE] [cloudflare-family] OK (DoH) - rtt: 22ms
+[NOTICE] Server with the lowest initial latency: cloudflare-family (rtt: 22ms)
+[NOTICE] dnscrypt-proxy is ready - live servers: 1
+```
+
+`OK (DoH)` confirms the upstream connection is encrypted, and `live servers` shows how many providers the gateway is using.
 
 If you chose a filtering resolver, test that it blocks. Each provider publishes a test domain:
 
@@ -115,9 +129,9 @@ The fix is a **destination NAT** rule that catches those queries and answers the
 8. Under **Destination**, enter the gateway's address and turn on **exclude**, so the rule matches every destination *except* the gateway. Set the **destination port** to `53`.
 9. Save the rule.
 
-Step 7 is the easy one to get wrong. A device sends its DNS query *to* port 53, but *from* a random high port like 54123 — so a rule with source port 53 never matches anything, and the redirect silently does nothing.
+The source port is the easy one to get wrong. A device sends its DNS query *to* port 53, but *from* a random high port like 54123 — so a rule with source port 53 never matches anything, and the redirect silently does nothing.
 
-Step 8's exclude keeps the rule from matching queries that already go to the gateway. There's no loop to worry about: with Encrypted DNS on, the gateway's own upstream traffic goes out as HTTPS, not port 53.
+The exclude on the destination keeps the rule from matching queries that already go to the gateway. There's no loop to worry about: with Encrypted DNS on, the gateway's own upstream traffic goes out as HTTPS, not port 53.
 
 ### Test the Rule
 
@@ -127,11 +141,11 @@ Query a resolver your gateway *doesn't* use, and check who really answered:
 dig +short @9.9.9.9 TXT whoami.ds.akahelp.net
 ```
 
-Without the rule, the `"ns"` line shows a Quad9 address. With it, it shows your gateway's upstream from step 4 instead. Pick a resolver that isn't your own provider for this test — if your gateway uses Google and you query `8.8.8.8`, the answer looks the same either way. And remember the redirect exists when troubleshooting later: `dig @9.9.9.9` from your network no longer reaches Quad9.
+Without the rule, the `"ns"` line shows a Quad9 address. With it, it shows the same upstream you saw when verifying Encrypted DNS. Pick a resolver that isn't your own provider for this test — if your gateway uses Google and you query `8.8.8.8`, the answer looks the same either way. And remember the redirect exists when troubleshooting later: `dig @9.9.9.9` from your network no longer reaches Quad9.
 
 The rule covers IPv4. If your network has IPv6 internet access, a device can still reach an outside resolver over IPv6, so add a matching rule for IPv6 as well.
 
-## Step 6: Block Encrypted DNS That Bypasses the Gateway
+## Block Encrypted DNS That Bypasses the Gateway
 
 DoT and DoH can't be redirected that way. Their clients check the resolver's TLS certificate, and the gateway can't present Cloudflare's or Google's, so a redirected connection just fails. Block them instead, with two firewall policies from your **Internal** zone to **External**:
 
@@ -155,7 +169,7 @@ The port 853 policy is reliable. The DoH policy can't be: DoH is ordinary HTTPS 
 
 ## What This Doesn't Cover
 
-With all six steps done, almost all DNS on your network goes through the gateway: encrypted on the way out, and filtered if you chose a filtering resolver. A few gaps remain:
+With all of this in place, almost all DNS on your network goes through the gateway: encrypted on the way out, and filtered if you chose a filtering resolver. A few gaps remain:
 
 - **The hostname still leaks in TLS.** The SNI field in the TLS handshake shows the site name in plain text, unless the site supports ECH.
 - **DoH detection is best-effort.** A determined app or piece of malware with its own DoH can still get out.
